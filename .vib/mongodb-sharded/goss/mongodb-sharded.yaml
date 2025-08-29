@@ -2,24 +2,24 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/mongodb/mongodb_get_source.txt:
+  /opt/bitmoa/mongodb/mongodb_get_source.txt:
     exists: true
     contents:
       - "This solution ships the official MongoDB Community binaries"
-  /opt/bitnami/mongodb/conf/mongodb.conf:
+  /opt/bitmoa/mongodb/conf/mongodb.conf:
     exists: true
     filetype: file
     mode: "0664"
     contents:
-      - /dbPath.*/bitnami/mongodb/data/db/
-      - /pidFilePath.*/opt/bitnami/mongodb/tmp/mongodb.pid/
-  /opt/bitnami/mongodb/conf/mongos.conf:
+      - /dbPath.*/bitmoa/mongodb/data/db/
+      - /pidFilePath.*/opt/bitmoa/mongodb/tmp/mongodb.pid/
+  /opt/bitmoa/mongodb/conf/mongos.conf:
     exists: true
     filetype: file
     mode: "0664"
     contents:
-      - /pidFilePath.*/opt/bitnami/mongodb/tmp/mongodb.pid/
-  /opt/bitnami/mongodb/logs/mongodb.log:
+      - /pidFilePath.*/opt/bitmoa/mongodb/tmp/mongodb.pid/
+  /opt/bitmoa/mongodb/logs/mongodb.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout

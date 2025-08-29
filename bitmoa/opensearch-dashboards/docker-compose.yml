@@ -1,0 +1,22 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: "2"
+services:
+  opensearch:
+    image: ghcr.io/bitmoa/opensearch:2
+    volumes:
+      - "opensearch_data:/bitmoa/opensearch"
+  opensearch-dashboards:
+    image: ghcr.io/bitmoa/opensearch-dashboards:2
+    ports:
+      - "5601:5601"
+    volumes:
+      - "opensearch_dashboards_data:/bitmoa/opensearch-dashboards"
+    depends_on:
+      - opensearch
+volumes:
+  opensearch_data:
+    driver: local
+  opensearch_dashboards_data:
+    driver: local

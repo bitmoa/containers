@@ -2,6 +2,6 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 directory:
-  /opt/bitnami/argo-workflow-exec/hack/git:
+  /opt/bitmoa/argo-workflow-exec/hack/git:
     exists: false
 

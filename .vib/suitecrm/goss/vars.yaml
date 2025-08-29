@@ -6,13 +6,13 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/suitecrm
-      - /opt/bitnami/suitecrm
-      - /opt/bitnami/suitecrm/tmp
-      - /opt/bitnami/suitecrm/vendor
+      - /bitmoa/suitecrm
+      - /opt/bitmoa/suitecrm
+      - /opt/bitmoa/suitecrm/tmp
+      - /opt/bitmoa/suitecrm/vendor
 files:
   - paths:
-      - /opt/bitnami/suitecrm/composer.json
+      - /opt/bitmoa/suitecrm/composer.json
 phpmodules:
   # Based on https://docs.suitecrm.com/admin/installation-guide/downloading-installing/#_recommended_installation_pre_requisites
   - curl
@@ -23,7 +23,7 @@ phpmodules:
   - xml
   - zip
   - zlib
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 sed_in_place:
   exclude_paths:
-    - \/opt\/bitnami\/suitecrm\/vendor\/.*
+    - \/opt\/bitmoa\/suitecrm\/vendor\/.*

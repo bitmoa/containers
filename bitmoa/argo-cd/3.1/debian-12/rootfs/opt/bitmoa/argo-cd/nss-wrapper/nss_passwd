@@ -1,0 +1,1 @@
+argocd:x:1001:0:ArgoCD:/opt/bitmoa/argo-cd:/bin/false

@@ -8,11 +8,11 @@ command:
     - "Usage:"
     - "pinniped-concierge [flags]"
 file:
-  /opt/bitnami/pinniped/bin/pinniped-concierge:
+  /opt/bitmoa/pinniped/bin/pinniped-concierge:
     exists: true
     filetype: symlink
     linked-to: pinniped-server
-  /opt/bitnami/pinniped/bin/pinniped-supervisor:
+  /opt/bitmoa/pinniped/bin/pinniped-supervisor:
     exists: true
     filetype: symlink
     linked-to: pinniped-server

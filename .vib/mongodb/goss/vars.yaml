@@ -13,14 +13,14 @@ files:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/mongodb
-      - /bitnami/mongodb/data
+      - /bitmoa/mongodb
+      - /bitmoa/mongodb/data
       - /docker-entrypoint-initdb.d
-      - /opt/bitnami/mongodb/conf
-      - /opt/bitnami/mongodb/logs
-      - /opt/bitnami/mongodb/tmp
+      - /opt/bitmoa/mongodb/conf
+      - /opt/bitmoa/mongodb/logs
+      - /opt/bitmoa/mongodb/tmp
       - /.mongodb
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: mongod
   flag: --version

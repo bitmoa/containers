@@ -9,17 +9,17 @@ directories:
     owner: daemon
     group: root
     paths:
-      - /opt/bitnami/matomo
-      - /opt/bitnami/matomo/tmp
-      - /opt/bitnami/matomo/misc/
-      - /opt/bitnami/matomo/misc/user
-      - /opt/bitnami/matomo/plugins
-      - /bitnami/matomo
+      - /opt/bitmoa/matomo
+      - /opt/bitmoa/matomo/tmp
+      - /opt/bitmoa/matomo/misc/
+      - /opt/bitmoa/matomo/misc/user
+      - /opt/bitmoa/matomo/plugins
+      - /bitmoa/matomo
 files:
   - paths:
-      - /opt/bitnami/matomo/piwik.js
-      - /opt/bitnami/matomo/piwik.php
+      - /opt/bitmoa/matomo/piwik.js
+      - /opt/bitmoa/matomo/piwik.php
 version:
-  bin_name: php /opt/bitnami/matomo/console
+  bin_name: php /opt/bitmoa/matomo/console
   flag: --version
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

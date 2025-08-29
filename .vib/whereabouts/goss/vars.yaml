@@ -5,8 +5,8 @@ binaries:
 files:
   - mode: "0755"
     paths:
-      - /opt/bitnami/whereabouts/bin/install-cni.sh
-root_dir: /opt/bitnami
+      - /opt/bitmoa/whereabouts/bin/install-cni.sh
+root_dir: /opt/bitmoa
 version:
   bin_name: whereabouts
   flag: --version

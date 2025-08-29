@@ -18,7 +18,7 @@ file:
     mode: "0775"     
     owner: harbor     
     filetype: directory
-  /opt/bitnami/harbor-registry/bin/registry_DO_NOT_USE_GC:
+  /opt/bitmoa/harbor-registry/bin/registry_DO_NOT_USE_GC:
     exists: true
     filetype: symlink
     linked-to: registry

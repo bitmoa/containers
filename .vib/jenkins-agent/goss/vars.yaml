@@ -3,12 +3,12 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/jenkins/home
-      - /opt/bitnami/jenkins-agent
-      - /opt/bitnami/jenkins-agent/tmp
-      - /opt/bitnami/jenkins-agent/logs
+      - /bitmoa/jenkins/home
+      - /opt/bitmoa/jenkins-agent
+      - /opt/bitmoa/jenkins-agent/tmp
+      - /opt/bitmoa/jenkins-agent/logs
 files:
   - paths:
-      - /opt/bitnami/jenkins-agent/agent.jar
-      - /opt/bitnami/jenkins-agent/LICENSE
-root_dir: /opt/bitnami
+      - /opt/bitmoa/jenkins-agent/agent.jar
+      - /opt/bitmoa/jenkins-agent/LICENSE
+root_dir: /opt/bitmoa

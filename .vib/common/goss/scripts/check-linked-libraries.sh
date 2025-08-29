@@ -6,7 +6,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-mapfile -t files < <( find "$BITNAMI_ROOT_DIR"/"$BITNAMI_APP_NAME" "$BITNAMI_ROOT_DIR"/common -type f -executable )
+mapfile -t files < <( find "$BITMOA_ROOT_DIR"/"$BITMOA_APP_NAME" "$BITMOA_ROOT_DIR"/common -type f -executable )
 
 for file in "${files[@]}"; do
   if [[ -n $EXCLUDE_PATHS ]] && [[ "$file" =~ $EXCLUDE_PATHS ]]; then

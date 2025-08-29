@@ -1,10 +1,10 @@
 files:
   - mode: "0644"
     paths:
-      - /opt/bitnami/thanos/.spdx-thanos.spdx
+      - /opt/bitmoa/thanos/.spdx-thanos.spdx
   - mode: "0755"
     paths:
-      - /opt/bitnami/thanos/bin/thanos
+      - /opt/bitmoa/thanos/bin/thanos
 version:
   bin_name: thanos
   flag: --version

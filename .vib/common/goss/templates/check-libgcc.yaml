@@ -7,7 +7,7 @@
 # - None
 ########################
 file:
-  /opt/bitnami/os/.spdx-os-libgcc.spdx:
+  /opt/bitmoa/os/.spdx-os-libgcc.spdx:
     exists: true
     mode: "0644"
     owner: root

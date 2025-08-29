@@ -3,13 +3,13 @@
 
 command:
   check-pgpool-compilation-options:
-    exec: ldd /opt/bitnami/pgpool/bin/pgpool
+    exec: ldd /opt/bitmoa/pgpool/bin/pgpool
     exit-status: 0
     stdout:
       - "libpam.so"
       - "libssl.so"
 file:
-  /opt/bitnami/pgpool/logs/pgpool.log:
+  /opt/bitmoa/pgpool/logs/pgpool.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout

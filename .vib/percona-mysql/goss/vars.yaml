@@ -6,14 +6,14 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/mysql
-      - /bitnami/mysql/data
-      - /opt/bitnami/mysql/conf
-      - /opt/bitnami/mysql/conf/bitnami
-      - /opt/bitnami/mysql/logs
-      - /opt/bitnami/mysql/tmp
+      - /bitmoa/mysql
+      - /bitmoa/mysql/data
+      - /opt/bitmoa/mysql/conf
+      - /opt/bitmoa/mysql/conf/bitmoa
+      - /opt/bitmoa/mysql/logs
+      - /opt/bitmoa/mysql/tmp
       - /.mysqlsh
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: mysql
   flag: --version

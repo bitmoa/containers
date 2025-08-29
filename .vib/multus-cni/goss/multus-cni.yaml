@@ -5,19 +5,19 @@ file:
   /usr/src/multus-cni:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/multus-cni/
+    linked-to: /opt/bitmoa/multus-cni/
   /thin_entrypoint:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/multus-cni/bin/thin_entrypoint
+    linked-to: /opt/bitmoa/multus-cni/bin/thin_entrypoint
   /install_multus:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/multus-cni/bin/install_multus
+    linked-to: /opt/bitmoa/multus-cni/bin/install_multus
   /host:
     exists: true
     filetype: symlink
-    linked-to: /bitnami/multus-cni/host
+    linked-to: /bitmoa/multus-cni/host
 user:
   multus-cni:
     exists: true

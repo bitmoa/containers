@@ -5,10 +5,10 @@ directories:
       - /app
     mode: "0775"
   - paths:
-      - /opt/bitnami/dotnet-sdk/bin/host
-      - /opt/bitnami/dotnet-sdk/bin/shared
-      - /opt/bitnami/dotnet-sdk/bin/sdk
-root_dir: /opt/bitnami
+      - /opt/bitmoa/dotnet-sdk/bin/host
+      - /opt/bitmoa/dotnet-sdk/bin/shared
+      - /opt/bitmoa/dotnet-sdk/bin/sdk
+root_dir: /opt/bitmoa
 linked_libraries:
   exclude_paths: .*\/Microsoft.NETCore.App/.*\/libcoreclrtraceptprovider.so
 version:

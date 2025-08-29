@@ -1,6 +1,6 @@
 binaries:
   - statsd_exporter
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: statsd_exporter
   flag: --version

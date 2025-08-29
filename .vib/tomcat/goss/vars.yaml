@@ -4,19 +4,19 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/tomcat/webapps
-      - /opt/bitnami/tomcat
-      - /opt/bitnami/tomcat/lib
-      - /opt/bitnami/tomcat/temp
-      - /opt/bitnami/tomcat/logs
-      - /opt/bitnami/tomcat/conf
-      - /opt/bitnami/tomcat/work
-      - /opt/bitnami/tomcat/webapps_default
+      - /bitmoa/tomcat/webapps
+      - /opt/bitmoa/tomcat
+      - /opt/bitmoa/tomcat/lib
+      - /opt/bitmoa/tomcat/temp
+      - /opt/bitmoa/tomcat/logs
+      - /opt/bitmoa/tomcat/conf
+      - /opt/bitmoa/tomcat/work
+      - /opt/bitmoa/tomcat/webapps_default
 files:
   - mode: "0664"
     paths:
-      - /opt/bitnami/tomcat/bin/setenv.sh
+      - /opt/bitmoa/tomcat/bin/setenv.sh
   - mode: "0755"
     paths:
-      - /opt/bitnami/tomcat/bin/version.sh
-root_dir: /opt/bitnami
+      - /opt/bitmoa/tomcat/bin/version.sh
+root_dir: /opt/bitmoa

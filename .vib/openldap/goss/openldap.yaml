@@ -2,19 +2,19 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/openldap/etc/slapd.d:
+  /opt/bitmoa/openldap/etc/slapd.d:
     exists: true
     filetype: symlink
-    linked-to: /bitnami/openldap/slapd.d
-  /opt/bitnami/openldap/var/data:
+    linked-to: /bitmoa/openldap/slapd.d
+  /opt/bitmoa/openldap/var/data:
     exists: true
     filetype: symlink
-    linked-to: /bitnami/openldap/data
-  /opt/bitnami/openldap/sbin/slapadd:
+    linked-to: /bitmoa/openldap/data
+  /opt/bitmoa/openldap/sbin/slapadd:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/openldap/sbin/slapd
-  /opt/bitnami/openldap/etc/slapd.conf.default:
+    linked-to: /opt/bitmoa/openldap/sbin/slapd
+  /opt/bitmoa/openldap/etc/slapd.conf.default:
     exists: false
   {{ range $package := .Vars.packages }}
   {{ $package }}:
@@ -22,7 +22,7 @@ file:
   {{ end }}
 command:
   check-pw-sha2-library-output:
-    exec: slappasswd -o module-load=/opt/bitnami/openldap/libexec/openldap/pw-sha2.so -h '{SHA256}' -s bitnami123
+    exec: slappasswd -o module-load=/opt/bitmoa/openldap/libexec/openldap/pw-sha2.so -h '{SHA256}' -s bitmoa123
     exit-status: 0
     stdout:
       - "zbRYwNWa5lwE8+I7W+YIdh2pA/UhaZWJB+eJ7euy5Fc="

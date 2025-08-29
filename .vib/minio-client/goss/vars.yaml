@@ -3,6 +3,6 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/minio-client
+      - /opt/bitmoa/minio-client
       - /.mc
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

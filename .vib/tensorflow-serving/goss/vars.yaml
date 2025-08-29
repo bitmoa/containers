@@ -6,13 +6,13 @@ directories:
     owner: tensorflow
     group: root
     paths:
-      - /opt/bitnami/tensorflow-serving
-      - /opt/bitnami/tensorflow-serving/tmp
-      - /opt/bitnami/tensorflow-serving/bin
-      - /opt/bitnami/tensorflow-serving/conf
-      - /opt/bitnami/tensorflow-serving/logs
-      - /bitnami/tensorflow-serving
-root_dir: /opt/bitnami
+      - /opt/bitmoa/tensorflow-serving
+      - /opt/bitmoa/tensorflow-serving/tmp
+      - /opt/bitmoa/tensorflow-serving/bin
+      - /opt/bitmoa/tensorflow-serving/conf
+      - /opt/bitmoa/tensorflow-serving/logs
+      - /bitmoa/tensorflow-serving
+root_dir: /opt/bitmoa
 version:
   bin_name: tensorflow_model_server
   flag: --version

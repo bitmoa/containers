@@ -10,7 +10,7 @@ command:
     - "{{ .Env.APP_VERSION }}"
   check-subpackages:
     # Check python packages that should have been installed
-    exec: . /opt/bitnami/superset/venv/bin/activate && pip list
+    exec: . /opt/bitmoa/superset/venv/bin/activate && pip list
     exit-status: 0
     stdout:
     {{ range $subpackage := .Vars.subpackages }}

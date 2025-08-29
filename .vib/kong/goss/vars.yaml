@@ -3,9 +3,9 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/kong/server
-      - /opt/bitnami/kong/conf
+      - /opt/bitmoa/kong/server
+      - /opt/bitmoa/kong/conf
   - paths:
       - /docker-entrypoint-initdb.d
-      - /opt/bitnami/kong/bin
-root_dir: /opt/bitnami
+      - /opt/bitmoa/kong/bin
+root_dir: /opt/bitmoa

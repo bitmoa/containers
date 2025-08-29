@@ -2,18 +2,18 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/mariadb/conf/my.cnf:
+  /opt/bitmoa/mariadb/conf/my.cnf:
     exists: true
     filetype: file
     contents:
-      - "socket=/opt/bitnami/mariadb/tmp/mysql.sock"
-      - "wsrep_provider=/opt/bitnami/mariadb/lib/libgalera_smm.so"
+      - "socket=/opt/bitmoa/mariadb/tmp/mysql.sock"
+      - "wsrep_provider=/opt/bitmoa/mariadb/lib/libgalera_smm.so"
       - "plugin_load_add = auth_pam"
-  /opt/bitnami/mariadb/lib/plugin:
+  /opt/bitmoa/mariadb/lib/plugin:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/mariadb/plugin
-  /opt/bitnami/mariadb/logs/mysqld.log:
+    linked-to: /opt/bitmoa/mariadb/plugin
+  /opt/bitmoa/mariadb/logs/mysqld.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout

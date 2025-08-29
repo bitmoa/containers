@@ -5,8 +5,8 @@ file:
   /opt/appsmith:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/appsmith
-  /opt/bitnami/appsmith/templates/docker.env.sh:
+    linked-to: /opt/bitmoa/appsmith
+  /opt/bitmoa/appsmith/templates/docker.env.sh:
     exists: true
     filetype: file
     contents:
@@ -14,7 +14,7 @@ file:
       - "APPSMITH_SUPERVISOR_USER"
 command:
   check-server-init:
-    exec: java -jar /opt/bitnami/appsmith/backend/server.jar
+    exec: java -jar /opt/bitmoa/appsmith/backend/server.jar
     exit-status: 1
     timeout: 30000
     stdout:

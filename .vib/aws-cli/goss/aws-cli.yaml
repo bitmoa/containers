@@ -3,5 +3,5 @@
 
 command:
   check-python-module:
-    exec: /opt/bitnami/aws-cli/venv/bin/python -c 'import awscli'
+    exec: /opt/bitmoa/aws-cli/venv/bin/python -c 'import awscli'
     exit-status: 0

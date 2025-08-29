@@ -5,11 +5,11 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami
-      - /bitnami/redis
-      - /bitnami/redis/data
-      - /opt/bitnami/redis
-root_dir: /opt/bitnami
+      - /bitmoa
+      - /bitmoa/redis
+      - /bitmoa/redis/data
+      - /opt/bitmoa/redis
+root_dir: /opt/bitmoa
 version:
   bin_name: redis-server
   flag: --version

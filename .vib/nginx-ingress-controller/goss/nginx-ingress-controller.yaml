@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/common/lib/libmaxminddb.so:
+  /opt/bitmoa/common/lib/libmaxminddb.so:
     exists: true
   /var/log/nginx/access.log:
     exists: true

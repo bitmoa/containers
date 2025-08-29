@@ -5,13 +5,13 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/valkey-sentinel
-      - /bitnami/valkey-sentinel/conf
-      - /opt/bitnami/valkey-sentinel
-      - /opt/bitnami/valkey-sentinel/etc
-      - /opt/bitnami/valkey-sentinel/logs
-      - /opt/bitnami/valkey-sentinel/tmp
-root_dir: /opt/bitnami
+      - /bitmoa/valkey-sentinel
+      - /bitmoa/valkey-sentinel/conf
+      - /opt/bitmoa/valkey-sentinel
+      - /opt/bitmoa/valkey-sentinel/etc
+      - /opt/bitmoa/valkey-sentinel/logs
+      - /opt/bitmoa/valkey-sentinel/tmp
+root_dir: /opt/bitmoa
 version:
   bin_name: valkey-server
   flag: --version

@@ -4,18 +4,18 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/kafka
-      - /bitnami/kafka/data
-      - /opt/bitnami/kafka
+      - /bitmoa/kafka
+      - /bitmoa/kafka/data
+      - /opt/bitmoa/kafka
       - /docker-entrypoint-initdb.d
   - paths:
-      - /bitnami/kafka/config
-      - /opt/bitnami/kafka/config
-      - /opt/bitnami/kafka/logs
+      - /bitmoa/kafka/config
+      - /opt/bitmoa/kafka/config
+      - /opt/bitmoa/kafka/logs
 files:
   - paths:
-      - /opt/bitnami/kafka/config/server.properties.original
-root_dir: /opt/bitnami
+      - /opt/bitmoa/kafka/config/server.properties.original
+root_dir: /opt/bitmoa
 version:
   bin_name: kafka-topics.sh
   flag: --version

@@ -1,0 +1,15 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  clickhouse:
+    image: ghcr.io/bitmoa/clickhouse:25
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '8123:8123'
+    volumes:
+      - clickhouse_data:/bitmoa/clickhouse
+volumes:
+  clickhouse_data:
+    driver: local

@@ -4,11 +4,11 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/prometheus/data
+      - /opt/bitmoa/prometheus/data
 files:
   - paths:
-      - /opt/bitnami/prometheus/conf/prometheus.yml
-root_dir: /opt/bitnami
+      - /opt/bitmoa/prometheus/conf/prometheus.yml
+root_dir: /opt/bitmoa
 version:
   bin_name: prometheus
   flag: --version

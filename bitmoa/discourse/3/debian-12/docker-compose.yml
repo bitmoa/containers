@@ -1,0 +1,66 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  postgresql:
+    image: ghcr.io/bitmoa/postgresql:latest
+    volumes:
+      - 'postgresql_data:/bitmoa/postgresql'
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=bn_discourse
+      - POSTGRESQL_DATABASE=bitmoa_discourse
+  redis:
+    image: ghcr.io/bitmoa/redis:latest
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - 'redis_data:/bitmoa/redis'
+  discourse:
+    image: ghcr.io/bitmoa/discourse:3
+    ports:
+      - '80:3000'
+    volumes:
+      - 'discourse_data:/bitmoa/discourse'
+    depends_on:
+      - postgresql
+      - redis
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - DISCOURSE_HOST=www.example.com
+      - DISCOURSE_DATABASE_HOST=postgresql
+      - DISCOURSE_DATABASE_PORT_NUMBER=5432
+      - DISCOURSE_DATABASE_USER=bn_discourse
+      - DISCOURSE_DATABASE_NAME=bitmoa_discourse
+      - DISCOURSE_REDIS_HOST=redis
+      - DISCOURSE_REDIS_PORT_NUMBER=6379
+      - POSTGRESQL_CLIENT_POSTGRES_USER=postgres
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_NAME=bitmoa_discourse
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_EXTENSIONS=hstore,pg_trgm
+  sidekiq:
+    image: ghcr.io/bitmoa/discourse:3
+    depends_on:
+      - discourse
+    volumes:
+      - 'discourse_data:/bitmoa/discourse'
+    command: /opt/bitmoa/scripts/discourse-sidekiq/run.sh
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - DISCOURSE_HOST=www.example.com
+      - DISCOURSE_DATABASE_HOST=postgresql
+      - DISCOURSE_DATABASE_PORT_NUMBER=5432
+      - DISCOURSE_DATABASE_USER=bn_discourse
+      - DISCOURSE_DATABASE_NAME=bitmoa_discourse
+      - DISCOURSE_REDIS_HOST=redis
+      - DISCOURSE_REDIS_PORT_NUMBER=6379
+volumes:
+  postgresql_data:
+    driver: local
+  redis_data:
+    driver: local
+  discourse_data:
+    driver: local

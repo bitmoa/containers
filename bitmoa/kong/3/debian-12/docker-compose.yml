@@ -1,0 +1,24 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  postgresql:
+    image: ghcr.io/bitmoa/postgresql:latest
+    volumes:
+      - postgresql_data:/bitmoa/postgresql
+    environment:
+      - POSTGRESQL_USERNAME=kong
+      - POSTGRESQL_PASSWORD=bitmoa
+      - POSTGRESQL_DATABASE=kong
+  kong:
+    image: ghcr.io/bitmoa/kong:3
+    ports:
+      - 8000:8000
+      - 8443:8443
+    environment:
+      - KONG_MIGRATE=yes
+      - KONG_PG_HOST=postgresql
+      - KONG_PG_PASSWORD=bitmoa
+volumes:
+  postgresql_data:
+    driver: local

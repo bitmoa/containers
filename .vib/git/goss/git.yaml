@@ -6,5 +6,5 @@ command:
     exec: git init {{randAlpha 5}}
     exit-status: 0
   check-git-clone:
-    exec: git clone https://github.com/bitnami/bncert.git {{randAlpha 5}}
+    exec: git clone https://github.com/bitmoa/bncert.git {{randAlpha 5}}
     exit-status: 0

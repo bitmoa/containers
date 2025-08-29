@@ -4,4 +4,4 @@ binaries:
 directories:
   - paths:
       - /etc/jobservice
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

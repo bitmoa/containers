@@ -1,7 +1,7 @@
 files:
   - mode: "0644"
     paths:
-      - /opt/bitnami/kaniko/.spdx-kaniko.spdx
+      - /opt/bitmoa/kaniko/.spdx-kaniko.spdx
   - mode: "0755"
     paths:
       - /kaniko/docker-credential-acr-env

@@ -3,10 +3,10 @@
 
 command:
   check-discourse-plugin-install:
-    exec: cd /opt/bitnami/discourse; if [[ ! -d "plugins/discourse-voting" ]]; then RAILS_ENV=production bundle exec rake plugin:install repo=https://github.com/discourse/discourse-voting/; fi
+    exec: cd /opt/bitmoa/discourse; if [[ ! -d "plugins/discourse-voting" ]]; then RAILS_ENV=production bundle exec rake plugin:install repo=https://github.com/discourse/discourse-voting/; fi
     exit-status: 0
   check-discourse-passenger-native-support:
-    exec: /opt/bitnami/discourse/bin/passenger-config build-native-support 2>&1
+    exec: /opt/bitmoa/discourse/bin/passenger-config build-native-support 2>&1
     exit-status: 0
     # Checks output is empty
     stdout:
@@ -17,7 +17,7 @@ command:
     stdout:
       - "terser"
 file:
-  /opt/bitnami/discourse/.image_optim.yml:
+  /opt/bitmoa/discourse/.image_optim.yml:
     exists: true
     filetype: file
     contents:

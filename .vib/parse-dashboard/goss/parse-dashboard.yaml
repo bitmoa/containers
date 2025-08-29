@@ -9,7 +9,7 @@ user:
     exists: true
 command:
   check-app-version:
-    exec: grep "version" /opt/bitnami/parse-dashboard/package.json
+    exec: grep "version" /opt/bitmoa/parse-dashboard/package.json
     exit-status: 0
     stdout:
       - "{{ .Env.APP_VERSION }}"

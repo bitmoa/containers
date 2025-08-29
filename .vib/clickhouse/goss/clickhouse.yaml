@@ -12,24 +12,24 @@ file:
   /var/lib/clickhouse/tmp:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/clickhouse/tmp
-  /opt/bitnami/clickhouse/logs/clickhouse.log:
+    linked-to: /opt/bitmoa/clickhouse/tmp
+  /opt/bitmoa/clickhouse/logs/clickhouse.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout
-  /opt/bitnami/clickhouse/logs/clickhouse_error.log:
+  /opt/bitmoa/clickhouse/logs/clickhouse_error.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stderr
-  /opt/bitnami/clickhouse/etc/config.xml:
+  /opt/bitmoa/clickhouse/etc/config.xml:
     exists: true
     filetype: file
     contents:
-      - /data dir.*\/bitnami\/clickhouse\/data/
+      - /data dir.*\/bitmoa\/clickhouse\/data/
       - /http_port.*from_env.*CLICKHOUSE_HTTP_PORT/
       - "!remote_servers"
       - "<console>1</console></logger>"
-  /opt/bitnami/clickhouse/etc/users.xml:
+  /opt/bitmoa/clickhouse/etc/users.xml:
     exists: true
     filetype: file
     contents:

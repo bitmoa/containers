@@ -3,7 +3,7 @@
 
 command:
   check-bin-caps:
-    exec: getcap /opt/bitnami/dotnet-sdk/bin/dotnet
+    exec: getcap /opt/bitmoa/dotnet-sdk/bin/dotnet
     stdout:
       - /{{ .Vars.binary.capabilities }}/
     exit-status: 0
@@ -23,6 +23,6 @@ command:
     exit-status: 0
 file:
   # Checks the permission change done at compilation
-  /opt/bitnami/dotnet-sdk/bin/sdk/{{ .Env.APP_VERSION }}/AppHostTemplate/apphost:
+  /opt/bitmoa/dotnet-sdk/bin/sdk/{{ .Env.APP_VERSION }}/AppHostTemplate/apphost:
     exists: true
     mode: "0755"

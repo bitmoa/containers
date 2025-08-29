@@ -1,7 +1,7 @@
 files:
   - mode: "0644"
     paths:
-      - /opt/bitnami/kserve/.spdx-kserve.spdx
+      - /opt/bitmoa/kserve/.spdx-kserve.spdx
   - mode: "0755"
     paths:
-      - /opt/bitnami/kserve/bin/manager
+      - /opt/bitmoa/kserve/bin/manager

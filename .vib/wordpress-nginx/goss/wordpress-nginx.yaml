@@ -3,7 +3,7 @@
 
 command:
   check-app-version:
-    exec: sed -nE "s/.wp_version\s*=\s*'([0-9\.]+)';/\1/p" /opt/bitnami/wordpress/wp-includes/version.php | sed -E 's/^[0-9]+\.[0-9]+$/&.0/'
+    exec: sed -nE "s/.wp_version\s*=\s*'([0-9\.]+)';/\1/p" /opt/bitmoa/wordpress/wp-includes/version.php | sed -E 's/^[0-9]+\.[0-9]+$/&.0/'
     exit-status: 0
     stdout:
       - "{{ .Env.APP_VERSION }}"
@@ -12,9 +12,9 @@ command:
     exec: wp --info
     exit-status: 0
     stdout:
-      - "/opt/bitnami/php/bin/php"
-      - "/opt/bitnami/mysql/bin/mariadb"
-      - "/opt/bitnami/wp-cli/conf/wp-cli.yml"
+      - "/opt/bitmoa/php/bin/php"
+      - "/opt/bitmoa/mysql/bin/mariadb"
+      - "/opt/bitmoa/wp-cli/conf/wp-cli.yml"
   check-enabled-modules:
     exec: php -m
     exit-status: 0
@@ -24,26 +24,26 @@ command:
     {{ end }}
 file:
   # HTTP vhost should have been properly rendered
-  /opt/bitnami/nginx/conf/server_blocks/wordpress-server-block.conf:
+  /opt/bitmoa/nginx/conf/server_blocks/wordpress-server-block.conf:
     exists: true
     filetype: file
     contents:
-      - /root\s+/opt/bitnami/wordpress/
-      - "rewrite ^/bitnami/wordpress(/.*) $1 last;"
+      - /root\s+/opt/bitmoa/wordpress/
+      - "rewrite ^/bitmoa/wordpress(/.*) $1 last;"
   # HTTPs vhost should have been properly rendered
-  /opt/bitnami/nginx/conf/server_blocks/wordpress-https-server-block.conf:
+  /opt/bitmoa/nginx/conf/server_blocks/wordpress-https-server-block.conf:
     exists: true
     filetype: file
     contents:
       - /listen \d+ ssl/
-      - /root\s+/opt/bitnami/wordpress/
-      - "rewrite ^/bitnami/wordpress(/.*) $1 last;"
+      - /root\s+/opt/bitmoa/wordpress/
+      - "rewrite ^/bitmoa/wordpress(/.*) $1 last;"
   # WP-CLI should point to wordpress' installation path
-  /opt/bitnami/wp-cli/conf/wp-cli.yml:
+  /opt/bitmoa/wp-cli/conf/wp-cli.yml:
     exists: true
     filetype: file
     contents:
-      - /path.*/opt/bitnami/wordpress/
+      - /path.*/opt/bitmoa/wordpress/
 group:
   daemon:
     exists: true

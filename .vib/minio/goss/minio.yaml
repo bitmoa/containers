@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/minio/log/minio-http.log:
+  /opt/bitmoa/minio/log/minio-http.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout

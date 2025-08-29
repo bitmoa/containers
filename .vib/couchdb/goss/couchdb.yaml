@@ -3,7 +3,7 @@
 
 file:
   # Checks default config for erlang is set
-  /opt/bitnami/couchdb/etc/vm.args:
+  /opt/bitmoa/couchdb/etc/vm.args:
     exists: true
     filetype: file
     contents:
@@ -12,8 +12,8 @@ command:
   check-library-path:
     exec: echo $LD_LIBRARY_PATH
     stdout:
-      - "/opt/bitnami/common/lib"
+      - "/opt/bitmoa/common/lib"
     exit-status: 0
   check-libmozjs:
-    exec: ls /opt/bitnami/common/lib | grep libmozjs
+    exec: ls /opt/bitmoa/common/lib | grep libmozjs
     exit-status: 0

@@ -1,0 +1,6 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+  
+services:
+  hubble-ui-backend:
+    image: ghcr.io/bitmoa/hubble-ui-backend:0

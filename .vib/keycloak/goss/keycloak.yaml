@@ -8,47 +8,47 @@ user:
   keycloak:
     exists: true
 file:
-  /opt/bitnami/keycloak:
+  /opt/bitmoa/keycloak:
     exists: true
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /opt/bitnami/keycloak/providers:
+  /opt/bitmoa/keycloak/providers:
     exists: true
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /opt/bitnami/keycloak/providers/log:
+  /opt/bitmoa/keycloak/providers/log:
     exists: true
     mode: "0775"     
     owner: keycloak     
     filetype: directory
-  /opt/bitnami/keycloak/providers/tmp:
+  /opt/bitmoa/keycloak/providers/tmp:
     exists: true
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /opt/bitnami/keycloak/conf:
+  /opt/bitmoa/keycloak/conf:
     exists: true
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /opt/bitnami/keycloak/.installation:
+  /opt/bitmoa/keycloak/.installation:
     exists: true
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /opt/bitnami/keycloak/data:
+  /opt/bitmoa/keycloak/data:
     exists: true
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /opt/bitnami/keycloak/lib:
+  /opt/bitmoa/keycloak/lib:
     exists: true
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /bitnami/keycloak:
+  /bitmoa/keycloak:
     exists: true
     mode: "0775"
     owner: keycloak
@@ -58,14 +58,14 @@ file:
     mode: "0775"
     owner: keycloak
     filetype: directory
-  /opt/bitnami/keycloak/modules/system/layers/keycloak/org/postgresql/jdbc/main/module.xml:
+  /opt/bitmoa/keycloak/modules/system/layers/keycloak/org/postgresql/jdbc/main/module.xml:
     exists: true
     contents:
       - "<module xmlns=\"urn:jboss:module:1.0\" name=\"org.postgresql.jdbc\">"
 command:
   check-app-version:
     # kc.sh --version only works after server initialization. Checking the version.txt instead.
-    exec: cat /opt/bitnami/keycloak/version.txt
+    exec: cat /opt/bitmoa/keycloak/version.txt
     exit-status: 0
     stdout:
     - "{{ .Env.APP_VERSION }}"

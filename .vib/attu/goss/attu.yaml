@@ -10,15 +10,15 @@ file:
   /app:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/attu
+    linked-to: /opt/bitmoa/attu
 command:
   attu-command-available:
-    exec: cd /opt/bitnami/attu; npm run
+    exec: cd /opt/bitmoa/attu; npm run
     exit-status: 0
     stdout:
       - "start:prod"
   run-attu:
-    exec: cd /opt/bitnami/attu; timeout --preserve-status 5 yarn start:prod  || true
+    exec: cd /opt/bitmoa/attu; timeout --preserve-status 5 yarn start:prod  || true
     timeout: 8000
     exit-status: 0
     stdout:

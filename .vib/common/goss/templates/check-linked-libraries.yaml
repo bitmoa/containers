@@ -15,7 +15,7 @@ command:
     {{ if and (index .Vars "linked_libraries") (index .Vars.linked_libraries "exclude_paths")}}
         {{ $exclude_paths = (.Vars.linked_libraries.exclude_paths | join "|") }}
     {{ end }}
-    exec: export BITNAMI_ROOT_DIR={{ .Vars.root_dir }} && export EXCLUDE_PATHS='{{ $exclude_paths }}' && ./common/goss/scripts/check-linked-libraries.sh
+    exec: export BITMOA_ROOT_DIR={{ .Vars.root_dir }} && export EXCLUDE_PATHS='{{ $exclude_paths }}' && ./common/goss/scripts/check-linked-libraries.sh
     {{ if and (index .Vars "linked_libraries") (index .Vars.linked_libraries "timeout")}}
     timeout: {{ .Vars.linked_libraries.timeout }}
     {{ else }}

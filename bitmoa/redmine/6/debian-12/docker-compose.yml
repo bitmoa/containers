@@ -1,0 +1,33 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  mariadb:
+    image: ghcr.io/bitmoa/mariadb:latest
+    volumes:
+      - 'mariadb_data:/bitmoa/mariadb'
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_redmine
+      - MARIADB_DATABASE=bitmoa_redmine
+  redmine:
+    image: ghcr.io/bitmoa/redmine:6
+    ports:
+      - '80:3000'
+    volumes:
+      - 'redmine_data:/bitmoa/redmine'
+    depends_on:
+      - mariadb
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDMINE_DATABASE_HOST=mariadb
+      - REDMINE_DATABASE_PORT_NUMBER=3306
+      - REDMINE_DATABASE_USER=bn_redmine
+      - REDMINE_DATABASE_NAME=bitmoa_redmine
+volumes:
+  mariadb_data:
+    driver: local
+  redmine_data:
+    driver: local

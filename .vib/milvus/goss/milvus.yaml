@@ -10,18 +10,18 @@ file:
   /milvus:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/milvus
+    linked-to: /opt/bitmoa/milvus
   /var/lib/milvus:
     exists: true
     filetype: symlink
-    linked-to: /bitnami/milvus/data
+    linked-to: /bitmoa/milvus/data
   /run/milvus:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/milvus/tmp
+    linked-to: /opt/bitmoa/milvus/tmp
 command:
   run-milvus:
-    exec: cd /opt/bitnami/milvus; timeout --preserve-status --kill-after=2 15 milvus run datanode || true
+    exec: cd /opt/bitmoa/milvus; timeout --preserve-status --kill-after=2 15 milvus run datanode || true
     timeout: 20000
     exit-status: 0
     stdout:

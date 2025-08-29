@@ -1,0 +1,20 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  openldap:
+    image: ghcr.io/bitmoa/openldap:2.6
+    ports:
+      - '1389:1389'
+      - '1636:1636'
+    environment:
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_USERS=user01,user02
+      - LDAP_PASSWORDS=password1,password2
+    volumes:
+      - 'openldap_data:/bitmoa/openldap'
+
+volumes:
+  openldap_data:
+    driver: local

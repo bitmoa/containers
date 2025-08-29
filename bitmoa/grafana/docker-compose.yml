@@ -1,0 +1,15 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  grafana:
+    image: ghcr.io/bitmoa/grafana:12
+    ports:
+      - '3000:3000'
+    environment:
+      - 'GF_SECURITY_ADMIN_PASSWORD=bitmoa'
+    volumes:
+      - grafana_data:/opt/bitmoa/grafana/data
+volumes:
+  grafana_data:
+    driver: local

@@ -6,7 +6,7 @@ on: # rebuild any PRs and main branch changes
       - labeled
     branches:
       - main
-      - bitnami:main
+      - bitmoa:main
 permissions: {}
 # Avoid concurrency over the same PR
 concurrency:
@@ -35,8 +35,8 @@ jobs:
         run: |
           files_changed="$(gh api --paginate /repos/${GITHUB_REPOSITORY}/pulls/${PULL_REQUEST_NUMBER}/files | jq -r '.[] | .filename')"
           # Adding || true to avoid "Process exited with code 1" errors
-          flavors=($(echo "$files_changed" | xargs dirname | grep -o "^bitnami/[^/]*/[^/]*/[^/]*" | sort | uniq || true))
-          assets=($(echo "$files_changed" | xargs dirname | sed -nr "s|bitnami/([^/]*)/.*|\1|p" | sort | uniq || true))
+          flavors=($(echo "$files_changed" | xargs dirname | grep -o "^bitmoa/[^/]*/[^/]*/[^/]*" | sort | uniq || true))
+          assets=($(echo "$files_changed" | xargs dirname | sed -nr "s|bitmoa/([^/]*)/.*|\1|p" | sort | uniq || true))
           non_readme_files=$(echo "$files_changed" | grep -vc "\.md" || true)
           dockerfiles=($(echo "$files_changed" | grep -oE ".*/Dockerfile$" | sort | uniq || true))
 
@@ -87,7 +87,7 @@ jobs:
     # Automatic PRs do not need to be re-tested in GitHub
     if: |
       needs.get-containers.outputs.result == 'ok' &&
-      github.event.pull_request.user.login != 'bitnami-bot'
+      github.event.pull_request.user.login != 'bitmoa-bot'
     name: VIB Verify
     permissions:
       contents: read
@@ -117,7 +117,7 @@ jobs:
             name="$(echo "${{ matrix.container }}" | awk -F '/' '{print $2}')"
             branch="$(echo "${{ matrix.container }}" | awk -F '/' '{print $3}')"
             tag=""
-            if [[ "${{ github.event.pull_request.user.login }}" == "bitnami-bot" ]]; then
+            if [[ "${{ github.event.pull_request.user.login }}" == "bitmoa-bot" ]]; then
               tag="$(grep -oE "org.opencontainers.image.ref.name=\".+\"" ${{ matrix.container }}/Dockerfile | sed -nr "s|org.opencontainers.image.ref.name=\"(.+)\"|\1|p")"
             else
               # Build a tag based on current RUN number
@@ -162,7 +162,7 @@ jobs:
       - vib-verify
     outputs:
       result: ${{ steps.get-status.outputs.result }}
-    if: ${{ always() && github.event.pull_request.user.login != 'bitnami-bot' }}
+    if: ${{ always() && github.event.pull_request.user.login != 'bitmoa-bot' }}
     steps:
       - id: get-status
         name: Check Status
@@ -208,10 +208,10 @@ jobs:
       pull-requests: write
     needs:
       - license-headers-linter
-    # This job will be executed when the PR was created by bitnami-bot and it has the 'auto-merge' label
+    # This job will be executed when the PR was created by bitmoa-bot and it has the 'auto-merge' label
     if: |
       contains(github.event.pull_request.labels.*.name, 'auto-merge') &&
-      github.event.pull_request.user.login == 'bitnami-bot'
+      github.event.pull_request.user.login == 'bitmoa-bot'
     steps:
       # Approve the CI's PR automatically, as it has been tested in our internal pipeline already
       # Approved by the 'github-actions' user; a PR can't be approved by its author
@@ -234,7 +234,7 @@ jobs:
           result-encoding: string
           retries: 3
           # Necessary to trigger CD workflows
-          github-token: ${{ secrets.BITNAMI_BOT_TOKEN }}
+          github-token: ${{ secrets.BITMOA_BOT_TOKEN }}
           script: |
             github.rest.pulls.merge({
               pull_number: context.issue.number,

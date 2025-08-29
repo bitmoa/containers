@@ -3,17 +3,17 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/opensearch-dashboards
-      - /opt/bitnami/opensearch-dashboards/logs
-      - /opt/bitnami/opensearch-dashboards/plugins
-      - /opt/bitnami/opensearch-dashboards/tmp
-      - /opt/bitnami/opensearch-dashboards/config
+      - /bitmoa/opensearch-dashboards
+      - /opt/bitmoa/opensearch-dashboards/logs
+      - /opt/bitmoa/opensearch-dashboards/plugins
+      - /opt/bitmoa/opensearch-dashboards/tmp
+      - /opt/bitmoa/opensearch-dashboards/config
 files:
   - paths:
-      - /opt/bitnami/opensearch-dashboards/package.json
-root_dir: /opt/bitnami
+      - /opt/bitmoa/opensearch-dashboards/package.json
+root_dir: /opt/bitmoa
 linked_libraries:
   exclude_paths:
     # Opensearch Dashboards embedded node is throwing a false positive because
     # it cannot be run in some distros (it has a fallback node.js in that scenario)
-    - /opt/bitnami/opensearch-dashboards/node/bin/node
+    - /opt/bitmoa/opensearch-dashboards/node/bin/node

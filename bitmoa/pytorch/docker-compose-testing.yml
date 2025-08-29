@@ -1,0 +1,13 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  pytorch:
+    image: ghcr.io/bitmoa/pytorch:2
+    command: sleep infinity
+    volumes:
+      - pytorch_data:/bitmoa
+
+volumes:
+  pytorch_data:
+    driver: local

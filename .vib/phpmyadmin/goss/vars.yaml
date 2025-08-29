@@ -6,12 +6,12 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/phpmyadmin
-      - /opt/bitnami/phpmyadmin
-      - /opt/bitnami/phpmyadmin/tmp
+      - /bitmoa/phpmyadmin
+      - /opt/bitmoa/phpmyadmin
+      - /opt/bitmoa/phpmyadmin/tmp
 files:
   - paths:
-      - /opt/bitnami/phpmyadmin/config.inc.php
+      - /opt/bitmoa/phpmyadmin/config.inc.php
 phpmodules:
   # Based on https://docs.phpmyadmin.net/en/latest/require.html#php
   # Required
@@ -22,4 +22,4 @@ phpmodules:
   - zip
   # Recommended
   - curl
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

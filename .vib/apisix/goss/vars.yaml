@@ -3,11 +3,11 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/apisix/conf
+      - /opt/bitmoa/apisix/conf
       # APISIX hardcodes its home to /usr/local/apisix
       - /usr/local/apisix/logs
       - /usr/local/apisix
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: apisix
   flag: version

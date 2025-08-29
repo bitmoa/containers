@@ -1,11 +1,11 @@
 binaries:
    - python
    - deepspeed
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 directories:
   - paths:
       # Paths to the client and server directories
-      - /opt/bitnami/python
+      - /opt/bitmoa/python
 version:
   bin_name: python
   flag: "-c 'import deepspeed; print(deepspeed.__version__)'"

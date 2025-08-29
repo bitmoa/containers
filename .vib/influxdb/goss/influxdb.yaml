@@ -18,7 +18,7 @@ file:
     exists: true
     mode: "0664"
     filetype: file
-  /opt/bitnami/influxdb/etc:
+  /opt/bitmoa/influxdb/etc:
     exists: true
     mode: "0775"
     filetype: directory

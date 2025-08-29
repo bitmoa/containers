@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/postgresql/logs/postgresql.log:
+  /opt/bitmoa/postgresql/logs/postgresql.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout

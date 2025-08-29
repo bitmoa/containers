@@ -3,7 +3,7 @@
 
 command:
   check-blackbox-exporter-run:
-    exec: cd /opt/bitnami/blackbox-exporter && timeout --preserve-status 5 blackbox_exporter
+    exec: cd /opt/bitmoa/blackbox-exporter && timeout --preserve-status 5 blackbox_exporter
     timeout: 8000
     exit-status: 0
     stderr:

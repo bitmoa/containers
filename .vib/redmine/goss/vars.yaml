@@ -6,18 +6,18 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/redmine
-      - /opt/bitnami/redmine
-      - /opt/bitnami/redmine/files
-      - /opt/bitnami/redmine/plugins
-      - /opt/bitnami/redmine/public/plugin_assets
-      - /opt/bitnami/redmine/log
-      - /opt/bitnami/redmine/tmp
-      - /opt/bitnami/redmine/config
-      - /opt/bitnami/redmine/db
-      - /opt/bitnami/redmine/.bundle
+      - /bitmoa/redmine
+      - /opt/bitmoa/redmine
+      - /opt/bitmoa/redmine/files
+      - /opt/bitmoa/redmine/plugins
+      - /opt/bitmoa/redmine/public/plugin_assets
+      - /opt/bitmoa/redmine/log
+      - /opt/bitmoa/redmine/tmp
+      - /opt/bitmoa/redmine/config
+      - /opt/bitmoa/redmine/db
+      - /opt/bitmoa/redmine/.bundle
 files:
   - mode: "0664"
     paths:
-      - /opt/bitnami/redmine/config/configuration.yml
-root_dir: /opt/bitnami
+      - /opt/bitmoa/redmine/config/configuration.yml
+root_dir: /opt/bitmoa

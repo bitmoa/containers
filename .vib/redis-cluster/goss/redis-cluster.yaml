@@ -2,30 +2,30 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/redis/etc/redis.conf:
+  /opt/bitmoa/redis/etc/redis.conf:
     exists: true
     contents:
       - /port.*6379/
-      - /dir.*/bitnami/redis/data/
-      - /pidfile.*/opt/bitnami/redis/tmp/redis.pid/
+      - /dir.*/bitmoa/redis/data/
+      - /pidfile.*/opt/bitmoa/redis/tmp/redis.pid/
       - "daemonize no"
       - "cluster-enabled yes"
-      - /cluster-config-file.*/bitnami/redis/data/nodes.conf/
+      - /cluster-config-file.*/bitmoa/redis/data/nodes.conf/
 command:
   check-redis-server:
-    exec: timeout --preserve-status 5 redis-server /opt/bitnami/redis/etc/redis.conf
+    exec: timeout --preserve-status 5 redis-server /opt/bitmoa/redis/etc/redis.conf
     exit-status: 0
     timeout: 10000
     stdout:
       - "Ready to accept connections"
   check-redis-server-ssl:
-    exec: ldd /opt/bitnami/redis/bin/redis-server
+    exec: ldd /opt/bitmoa/redis/bin/redis-server
     exit-status: 0
     stdout:
       - "libcrypto.so"
       - "libssl.so"
   check-redis-cli-ssl:
-    exec: ldd /opt/bitnami/redis/bin/redis-cli
+    exec: ldd /opt/bitmoa/redis/bin/redis-cli
     exit-status: 0
     stdout:
       - "libcrypto.so"

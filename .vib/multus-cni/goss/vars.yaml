@@ -6,8 +6,8 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/multus-cni/host
-root_dir: /opt/bitnami
+      - /bitmoa/multus-cni/host
+root_dir: /opt/bitmoa
 version:
   bin_name: multus
   flag: -v

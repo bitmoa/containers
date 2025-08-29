@@ -1,10 +1,10 @@
 files:
   - mode: "0644"
     paths:
-      - /opt/bitnami/minio-object-browser/.spdx-minio-object-browser.spdx
+      - /opt/bitmoa/minio-object-browser/.spdx-minio-object-browser.spdx
   - mode: "0755"
     paths:
-      - /opt/bitnami/minio-object-browser/bin/console
+      - /opt/bitmoa/minio-object-browser/bin/console
 version:
   bin_name: console
   flag: --version

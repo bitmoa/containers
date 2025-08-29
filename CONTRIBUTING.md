@@ -17,8 +17,8 @@ Any type of contribution is welcome: new features, bug fixes, documentation impr
 When submitting a PR make sure that:
 
 - It must pass CI jobs for linting and test the changes (if any).
-- It must follow [container best practices](https://engineering.bitnami.com/articles/best-practices-writing-a-dockerfile.html).
-- The title of the PR is clear enough and starts with "[bitnami/container-name]"
+- It must follow [container best practices](https://engineering.bitmoa.com/articles/best-practices-writing-a-dockerfile.html).
+- The title of the PR is clear enough and starts with "[bitmoa/container-name]"
 - If necessary, add information to the repository's `README.md`.
 
 #### Sign Your Work

@@ -9,20 +9,20 @@ command:
     stdout:
       - "Ready for connections"
 file:
-  /opt/bitnami/clickhouse-keeper/logs/clickhouse-keeper.log:
+  /opt/bitmoa/clickhouse-keeper/logs/clickhouse-keeper.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout
-  /opt/bitnami/clickhouse-keeper/logs/clickhouse-keeper.err.log:
+  /opt/bitmoa/clickhouse-keeper/logs/clickhouse-keeper.err.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stderr
-  /opt/bitnami/clickhouse-keeper/etc.default/keeper_config.xml:
+  /opt/bitmoa/clickhouse-keeper/etc.default/keeper_config.xml:
     exists: true
     filetype: file
     contents:
-      - /log_storage_path.*\/bitnami\/clickhouse-keeper\/coordination\/logs/
-      - /snapshot_storage_path.*\/bitnami\/clickhouse-keeper\/coordination\/snapshots/
+      - /log_storage_path.*\/bitmoa\/clickhouse-keeper\/coordination\/logs/
+      - /snapshot_storage_path.*\/bitmoa\/clickhouse-keeper\/coordination\/snapshots/
       - /tcp_port.*from_env.*CLICKHOUSE_KEEPER_TCP_PORT/
       - "<console>1</console>"
 group:

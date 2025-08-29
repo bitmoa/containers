@@ -1,0 +1,62 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  postgresql:
+    image: ghcr.io/bitmoa/postgresql:latest
+    environment:
+      - POSTGRESQL_DATABASE=bitmoa_concourse
+      - POSTGRESQL_USERNAME=bn_concourse
+      - POSTGRESQL_PASSWORD=bitmoa1
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - 'postgresql_data:/bitmoa/postgresql'
+  concourse:
+    image: concourse
+    command: concourse web
+    environment:
+      - CONCOURSE_RUNTIME=containerd
+      - CONCOURSE_POSTGRES_DATABASE=bitmoa_concourse
+      - CONCOURSE_POSTGRES_USER=bn_concourse
+      - CONCOURSE_POSTGRES_PASSWORD=bitmoa1
+      - CONCOURSE_SESSION_SIGNING_KEY=/bitmoa/concourse/concourse_keys/session_signing_key
+      - CONCOURSE_TSA_AUTHORIZED_KEYS=/bitmoa/concourse/concourse_keys/authorized_worker_keys
+      - CONCOURSE_TSA_HOST_KEY=/bitmoa/concourse/concourse_keys/tsa_host_key
+      - CONCOURSE_LOG_LEVEL=debug
+      - CONCOURSE_POSTGRES_HOST=postgresql
+      - CONCOURSE_EXTERNAL_URL=http://localhost:8080
+      - CONCOURSE_ADD_LOCAL_USER=user:bitmoa,guest:guest
+      - CONCOURSE_MAIN_TEAM_LOCAL_USER=user
+      - CONCOURSE_CLUSTER_NAME=dev
+      - CONCOURSE_ENABLE_PIPELINE_INSTANCES=true
+      - CONCOURSE_ENABLE_ACROSS_STEP=true
+      - CONCOURSE_ENABLE_CACHE_STREAMED_VOLUMES=true
+    volumes:
+      - 'concourse_web_data:/bitmoa/concourse'
+      - './concourse_keys/authorized_worker_keys:/bitmoa/concourse/concourse_keys/authorized_worker_keys'
+      - './concourse_keys/tsa_host_key:/bitmoa/concourse/concourse_keys/tsa_host_key'
+      - './concourse_keys/session_signing_key:/bitmoa/concourse/concourse_keys/session_signing_key'
+  concourse_worker:
+    image: concourse
+    command: concourse worker
+    privileged: true
+    environment:
+      - CONCOURSE_RUNTIME=containerd
+      - CONCOURSE_TSA_PUBLIC_KEY=/bitmoa/concourse/concourse_keys/tsa_host_key.pub
+      - CONCOURSE_TSA_WORKER_PRIVATE_KEY=/bitmoa/concourse/concourse_keys/worker_key
+      - CONCOURSE_LOG_LEVEL=debug
+      - CONCOURSE_TSA_HOST=concourse:2222
+      - CONCOURSE_BIND_IP=0.0.0.0
+      - CONCOURSE_BAGGAGECLAIM_BIND_IP=0.0.0.0
+      - CONCOURSE_BAGGAGECLAIM_DRIVER=overlay
+      - CONCOURSE_CONTAINERD_DNS_PROXY_ENABLE=true
+      - CONCOURSE_WEB_PUBLIC_DIR=/opt/bitmoa/concourse/web/public
+      - CONCOURSE_WORK_DIR=/opt/bitmoa/concourse
+    volumes:
+      - './concourse_keys/worker_key:/bitmoa/concourse/concourse_keys/worker_key'
+      - './concourse_keys/tsa_host_key.pub:/bitmoa/concourse/concourse_keys/tsa_host_key.pub'
+volumes:
+  postgresql_data:
+    driver: local
+  concourse_web_data:
+    driver: local

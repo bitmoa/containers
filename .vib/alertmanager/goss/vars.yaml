@@ -4,4 +4,4 @@ binaries:
 version:
   bin_name: alertmanager
   flag: --version
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

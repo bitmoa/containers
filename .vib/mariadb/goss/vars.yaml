@@ -4,16 +4,16 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/mariadb
-      - /bitnami/mariadb/data
-      - /opt/bitnami/mariadb/conf
-      - /opt/bitnami/mariadb/conf/bitnami
-      - /opt/bitnami/mariadb/logs
-      - /opt/bitnami/mariadb/tmp
+      - /bitmoa/mariadb
+      - /bitmoa/mariadb/data
+      - /opt/bitmoa/mariadb/conf
+      - /opt/bitmoa/mariadb/conf/bitmoa
+      - /opt/bitmoa/mariadb/logs
+      - /opt/bitmoa/mariadb/tmp
   - mode: "0755"
     paths:
-      - /opt/bitnami/mariadb/plugin/auth_pam_tool_dir
-root_dir: /opt/bitnami
+      - /opt/bitmoa/mariadb/plugin/auth_pam_tool_dir
+root_dir: /opt/bitmoa
 version:
   bin_name: mysql
   flag: --version

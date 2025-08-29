@@ -3,7 +3,7 @@
 
 command:
   check-entrypoint:
-    exec: /opt/bitnami/python/scripts/initializer-entrypoint --help
+    exec: /opt/bitmoa/python/scripts/initializer-entrypoint --help
     exit-status: 0
     stdout:
       - src_uri

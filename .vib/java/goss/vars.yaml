@@ -2,7 +2,7 @@ binaries:
   - java
 files:
   - paths:
-      - /opt/bitnami/java/legal/java.base/LICENSE
+      - /opt/bitmoa/java/legal/java.base/LICENSE
 linked_libraries:
   exclude_paths:
     # We don't compile Java, so it expects libraries elsewhere
@@ -10,4 +10,4 @@ linked_libraries:
     - '.*\/java\/lib\/.*'
     - '.*\/jre\/bin\/.*'
     - '.*\/jre\/lib\/.*'
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

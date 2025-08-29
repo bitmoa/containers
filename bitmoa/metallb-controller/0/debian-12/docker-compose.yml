@@ -1,0 +1,6 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  metallb:
+    image: ghcr.io/bitmoa/metallb:0

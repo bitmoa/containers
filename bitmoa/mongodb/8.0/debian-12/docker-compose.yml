@@ -1,0 +1,14 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  mongodb:
+    image: ghcr.io/bitmoa/mongodb:8.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongodb_data:/bitmoa/mongodb'
+
+volumes:
+  mongodb_data:
+    driver: local

@@ -8,16 +8,16 @@ binaries:
 sed_in_place:
   exclude_paths:
     # Ignore scripts provided by upstream volsync
-    - /opt/bitnami/volsync/mover-.*/.*
+    - /opt/bitmoa/volsync/mover-.*/.*
 directories:
   - mode: "0755"
     paths:
-      - /opt/bitnami/volsync/mover-rclone
-      - /opt/bitnami/volsync/mover-restic
-      - /opt/bitnami/volsync/mover-rsync
-      - /opt/bitnami/volsync/mover-rsync-tls
-      - /opt/bitnami/volsync/mover-syncthing
-root_dir: /opt/bitnami
+      - /opt/bitmoa/volsync/mover-rclone
+      - /opt/bitmoa/volsync/mover-restic
+      - /opt/bitmoa/volsync/mover-rsync
+      - /opt/bitmoa/volsync/mover-rsync-tls
+      - /opt/bitmoa/volsync/mover-syncthing
+root_dir: /opt/bitmoa
 version:
   bin_name: restic
   flag: version

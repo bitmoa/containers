@@ -1,0 +1,32 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  mariadb:
+    image: ghcr.io/bitmoa/mariadb:latest
+    volumes:
+      - "mariadb_data:/bitmoa/mariadb"
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_ejbca
+      - MARIADB_DATABASE=bitmoa_ejbca
+      - MARIADB_PASSWORD=Bitnami1234
+  ejbca:
+    image: ghcr.io/bitmoa/ejbca:9
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 8009:8009
+    volumes:
+      - "wildfly_data:/bitmoa/wildfly"
+    environment:
+      - EJBCA_DATABASE_HOST=mariadb
+      - EJBCA_DATABASE_NAME=bitmoa_ejbca
+      - EJBCA_DATABASE_USERNAME=bn_ejbca
+      - EJBCA_DATABASE_PASSWORD=Bitnami1234
+volumes:
+  mariadb_data:
+    driver: local
+  wildfly_data:
+    driver: local

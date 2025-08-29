@@ -5,23 +5,23 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/kibana
-      - /bitnami/kibana/data
-      - /opt/bitnami/kibana/config
-      - /opt/bitnami/kibana/logs
-      - /opt/bitnami/kibana/plugins
-      - /opt/bitnami/kibana/tmp
+      - /bitmoa/kibana
+      - /bitmoa/kibana/data
+      - /opt/bitmoa/kibana/config
+      - /opt/bitmoa/kibana/logs
+      - /opt/bitmoa/kibana/plugins
+      - /opt/bitmoa/kibana/tmp
       - /docker-entrypoint-initdb.d
 files:
   - paths:
-      - /opt/bitnami/kibana/config/node.options
+      - /opt/bitmoa/kibana/config/node.options
 sed_in_place:
   exclude_paths:
     # Ignore upstream code using sed -i
-    - /opt/bitnami/kibana/node_modules/@kbn/observability-onboarding-plugin/public/assets/auto_detect.sh
+    - /opt/bitmoa/kibana/node_modules/@kbn/observability-onboarding-plugin/public/assets/auto_detect.sh
 linked_libraries:
   timeout: 60000
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: kibana
   flag: --version

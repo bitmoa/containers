@@ -3,7 +3,7 @@
 
 command:
   check-bin-caps:
-    exec: getcap /opt/bitnami/dotnet/bin/dotnet
+    exec: getcap /opt/bitmoa/dotnet/bin/dotnet
     stdout:
       - /{{ .Vars.binary.capabilities }}/
     exit-status: 0

@@ -1,0 +1,42 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  rabbitmq:
+    image: ghcr.io/bitmoa/rabbitmq:4.1
+    ports:
+      - '4369:4369'
+      - '5551:5551'
+      - '5552:5552'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    volumes:
+      - 'rabbitmq_data:/bitmoa/rabbitmq/mnesia'
+      - ./config/advanced.config:/bitmoa/rabbitmq/conf/advanced.config:ro
+    environment:
+      - BITMOA_DEBUG=true
+      - RABBITMQ_SECURE_PASSWORD=yes
+      - RABBITMQ_ENABLE_LDAP=yes
+      - RABBITMQ_LDAP_TLS=no
+      - RABBITMQ_LDAP_SERVERS=openldap
+      - RABBITMQ_LDAP_SERVERS_PORT=1389
+      - RABBITMQ_LDAP_USER_DN_PATTERN=cn=$${username},ou=users,dc=example,dc=org
+      - RABBITMQ_LOGS=-
+  openldap:
+    image: 'ghcr.io/bitmoa/openldap:latest'
+    ports:
+      - '1389:1389'
+    environment:
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_USERS=user01
+      - LDAP_PASSWORDS=password1
+    volumes:
+      - 'openldap_data:/bitmoa/openldap'
+
+volumes:
+  rabbitmq_data:
+    driver: local
+  openldap_data:
+    driver: local

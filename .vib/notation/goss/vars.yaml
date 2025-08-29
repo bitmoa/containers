@@ -1,6 +1,6 @@
 binaries:
   - notation
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: notation
   flag: version

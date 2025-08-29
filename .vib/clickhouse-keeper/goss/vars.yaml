@@ -7,15 +7,15 @@ directories:
     owner: clickhouse
     group: root
     paths:
-      - /bitnami/clickhouse-keeper/coordination
-      - /opt/bitnami/clickhouse-keeper/etc
-      - /opt/bitnami/clickhouse-keeper/logs
-      - /opt/bitnami/clickhouse-keeper/tmp
+      - /bitmoa/clickhouse-keeper/coordination
+      - /opt/bitmoa/clickhouse-keeper/etc
+      - /opt/bitmoa/clickhouse-keeper/logs
+      - /opt/bitmoa/clickhouse-keeper/tmp
 files:
   - mode: "0664"
     paths:
       - /.clickhouse-keeper-client-history
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: clickhouse-keeper
   flag: --version

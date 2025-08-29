@@ -1,0 +1,32 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  postgresql:
+    image: ghcr.io/bitmoa/postgresql:latest
+    volumes:
+      - 'postgresql_data:/bitmoa/postgresql'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=bn_redmine
+      - POSTGRESQL_DATABASE=bitmoa_redmine
+  redmine:
+    image: ghcr.io/bitmoa/redmine:6
+    ports:
+      - '80:3000'
+    volumes:
+      - 'redmine_data:/bitmoa/redmine'
+    depends_on:
+      - postgresql
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDMINE_DATABASE_TYPE=postgresql
+      - REDMINE_DATABASE_HOST=postgresql
+      - REDMINE_DATABASE_PORT_NUMBER=5432
+      - REDMINE_DATABASE_USER=bn_redmine
+      - REDMINE_DATABASE_NAME=bitmoa_redmine
+volumes:
+  postgresql_data:
+    driver: local
+  redmine_data:
+    driver: local

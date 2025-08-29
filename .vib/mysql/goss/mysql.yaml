@@ -3,12 +3,12 @@
 
 file:
   # Checks there is a template already loaded as a config file
-  /opt/bitnami/mysql/conf/my.cnf:
+  /opt/bitmoa/mysql/conf/my.cnf:
     exists: true
     filetype: file
     contents:
-      - "socket=/opt/bitnami/mysql/tmp/mysql.sock"
-  /opt/bitnami/mysql/logs/mysqld.log:
+      - "socket=/opt/bitmoa/mysql/tmp/mysql.sock"
+  /opt/bitmoa/mysql/logs/mysqld.log:
     exists: true
     filetype: symlink
     linked-to: /proc/1/fd/1

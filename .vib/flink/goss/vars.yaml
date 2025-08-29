@@ -4,14 +4,14 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/flink
-      - /opt/bitnami/flink
-      - /opt/bitnami/flink/conf
-      - /opt/bitnami/flink/bin
-root_dir: /opt/bitnami
+      - /bitmoa/flink
+      - /opt/bitmoa/flink
+      - /opt/bitmoa/flink/conf
+      - /opt/bitmoa/flink/bin
+root_dir: /opt/bitmoa
 version:
   bin_name: flink
   flag: -v
 sed_in_place:
   exclude_paths:
-    - /opt/bitnami/flink/plugins
+    - /opt/bitmoa/flink/plugins

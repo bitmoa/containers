@@ -129,7 +129,17 @@ jobs:
 
           IMAGE_TAGS+=("${IMAGE_BASE}:${VERSION}" "${IMAGE_BASE}:${VERSION_PREFIX}-${OSTYPE}-${OSVER}" "${IMAGE_BASE}:${VERSION_PREFIX}")
 
+          # deduplicate
+          declare -A seen
+          IMAGE_TAGS_SET=()
           for tag in "${IMAGE_TAGS[@]}"; do
+            if [[ -z ${seen["$tag"]} ]]; then
+              IMAGE_TAGS_SET+=("$tag")
+              seen["$tag"]=1
+            fi
+          done
+
+          for tag in "${IMAGE_TAGS_SET[@]}"; do
             echo "Creating manifest for ${tag} from: ${PLATFORM_REFS[*]}"
             docker manifest create "${tag}" "${PLATFORM_REFS[@]}"
             DIGEST_REF="$(docker manifest push "${tag}")"

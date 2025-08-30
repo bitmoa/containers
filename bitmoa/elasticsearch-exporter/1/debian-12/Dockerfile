@@ -3,7 +3,7 @@
 
 FROM ghcr.io/bitmoa/minideb:bookworm
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG TARGETARCH
 
 LABEL com.vmware.cp.artifact.flavor="sha256:c50c90cfd9d12b445b011e6ad529f1ad3daea45c26d20b00732fae3cd71f6a83" \

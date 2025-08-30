@@ -3,7 +3,7 @@
 
 FROM ghcr.io/bitmoa/minideb:bookworm AS builder
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG TARGETARCH
 
 ENV OS_ARCH="${TARGETARCH:-amd64}"
@@ -36,7 +36,7 @@ RUN uninstall_packages curl
 
 FROM scratch
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG TARGETARCH
 
 ENV OS_ARCH="${TARGETARCH:-amd64}"

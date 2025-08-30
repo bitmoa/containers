@@ -3,7 +3,7 @@
 
 FROM ghcr.io/bitmoa/minideb:bookworm AS builder
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG TARGETARCH
 
 ENV OS_ARCH="${TARGETARCH:-amd64}"
@@ -33,7 +33,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
 
 FROM scratch
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG TARGETARCH
 
 ENV OS_ARCH="${TARGETARCH:-amd64}"

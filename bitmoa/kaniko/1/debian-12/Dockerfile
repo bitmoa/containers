@@ -3,7 +3,7 @@
 
 FROM ghcr.io/bitmoa/minideb:bookworm AS builder
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG TARGETARCH
 
 ENV HOME="/root" \
@@ -37,7 +37,7 @@ RUN mkdir -p /out/kaniko/.docker /out/etc && cp /opt/bitmoa/kaniko/bin/* /out/ka
 
 FROM scratch
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG TARGETARCH
 
 ENV HOME="/root" \

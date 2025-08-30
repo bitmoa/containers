@@ -11,12 +11,12 @@ echo "Tag: ${TAG}"
 
 # Expected format: NAME-VERSION-OSTYPE-OSVER-rREV
 # NAME may contain hyphens. Use regex with greedy NAME capture.
-if [[ "${TAG}" =~ ^(.+)-([0-9]+(\.[0-9]+)*)-([^-]+)-([^-]+)-([^-]+)$ ]]; then
+if [[ "${TAG}" =~ ^(.+)/([0-9]+(\.[0-9]+)*)-([^-]+)-([^-]+)-([^-]+)$ ]]; then
   NAME="${BASH_REMATCH[1]}"
   VERSION="${BASH_REMATCH[2]}"
   OSTYPE="${BASH_REMATCH[4]}"
   OSVER="${BASH_REMATCH[5]}"
-  REV="r${BASH_REMATCH[6]}"
+  REV="${BASH_REMATCH[6]}"
 else
   echo "ERROR: tag does not match required format NAME-VERSION-OSTYPE-OSVER-rREV"
   exit 1
@@ -34,9 +34,12 @@ for ((i=${#parts[@]}; i>=1; i--)); do
 done
 
 DOCKERFILE=""
+CONTEXT_DIR=""
 for prefix in "${candidates[@]}"; do
-  candidate="bitmoa/${NAME}/${prefix}/${OSTYPE}-${OSVER}/Dockerfile"
+  dir="bitmoa/${NAME}/${prefix}/${OSTYPE}-${OSVER}"
+  candidate="${dir}/Dockerfile"
   if [ -f "${candidate}" ]; then
+    CONTEXT_DIR="${dir}"
     DOCKERFILE="${candidate}"
     VERSION_PREFIX="${prefix}"
     break
@@ -52,6 +55,7 @@ if [ -z "${DOCKERFILE}" ]; then
   exit 1
 fi
 
+IMAGE_BASE="${DOCKER_REGISTRY}/${ORG}/${NAME}"
 IMAGE_TAG="${DOCKER_REGISTRY}/${ORG}/${NAME}:${VERSION}-${OSTYPE}-${OSVER}-${REV}"
 
 echo "name=${NAME}" >> "$GITHUB_OUTPUT"
@@ -61,4 +65,6 @@ echo "ostype=${OSTYPE}" >> "$GITHUB_OUTPUT"
 echo "osver=${OSVER}" >> "$GITHUB_OUTPUT"
 echo "rev=${REV}" >> "$GITHUB_OUTPUT"
 echo "dockerfile=${DOCKERFILE}" >> "$GITHUB_OUTPUT"
+echo "context_dir=${CONTEXT_DIR}" >> "$GITHUB_OUTPUT"
+echo "image_base=${IMAGE_BASE}" >> "$GITHUB_OUTPUT"
 echo "image_tag=${IMAGE_TAG}" >> "$GITHUB_OUTPUT"

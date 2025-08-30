@@ -3,7 +3,7 @@ name: CD
 on:
   push:
     tags:
-      - '*'
+      - '*/*'
   workflow_dispatch:
 
 permissions:
@@ -14,14 +14,28 @@ permissions:
 env:
   DOCKER_REGISTRY: ghcr.io
   ORG: bitmoa
+  ENABLE_COSIGN: "1"
 
 jobs:
-  build-and-sign:
-    runs-on: ubuntu-22.04
-    name: Build and push container on tag
+  build_multiarch:
+    name: Build per-arch
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm64]
+    continue-on-error: true
+    outputs:
+      image_tag: ${{ steps.parse.outputs.image_tag }}
+      dockerfile: ${{ steps.parse.outputs.dockerfile }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Parse tag and compute Dockerfile (same logic as containers policy)
+        id: parse
+        run: |
+          bash ./.github/parse-tag.sh
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -37,29 +51,91 @@ jobs:
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Parse tag and locate Dockerfile (regex + version-prefix candidates)
+      - name: Build & push single-arch image
+        id: build
+        uses: docker/build-push-action@v4
+        with:
+          context: ${{ steps.parse.outputs.context_dir }}
+          file: ${{ steps.parse.outputs.dockerfile }}
+          platforms: linux/${{ matrix.arch }}
+          push: true
+          # append arch suffix to pushed tag so we can build manifest from succeeded platforms
+          tags: ${{ steps.parse.outputs.image_tag }}-${{ matrix.arch }}
+
+  deploy_manifest:
+    name: Create manifest & sign
+    runs-on: ubuntu-24.04
+    needs: [ build_multiarch ]
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install utilities & cosign
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y jq
+        # cosign installed next
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.9.2
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Parse tag (again)
         id: parse
         run: |
           bash ./.github/parse-tag.sh
 
-      - name: Build and push multi-arch image
-        id: build
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ${{ steps.parse.outputs.dockerfile }}
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ steps.parse.outputs.image_tag }}
-
-      - name: cosign
-        env:
-          IMAGE_TAG: ${{ steps.parse.outputs.image_tag }}
+      - name: Build manifest list from available platform images
+        id: manifest
         run: |
           set -euo pipefail
-          IMAGE_DIGEST="$(docker inspect --format='{{index .RepoDigests 0}}' "${IMAGE_TAG}" | cut -d'@' -f2)"
-          cosign sign --yes "${IMAGE_TAG}@${IMAGE_DIGEST}"
+
+          COSIGN_VERIFY_ARGS="--certificate-identity=https://github.com/bitmoa/containers/.github/workflows/cd.yml@${GITHUB_REF} --certificate-oidc-issuer=https://token.actions.githubusercontent.com"
+
+          IMAGE_BASE="${{ steps.parse.outputs.image_base }}"
+          IMAGE_TAG="${{ steps.parse.outputs.image_tag }}"
+          
+          PLATFORM_REFS=()
+          # check amd64/arm64 and convert to repo@sha256:digest refs (skip manifest lists)
+          for arch in amd64 arm64; do
+            PLATFORM_DIGEST=$(docker manifest inspect "${IMAGE_TAG}-${arch}" | tee /dev/stderr | jq -r '.manifests.[] | select(.platform.architecture == "'${arch}'") | .digest' || true)
+            if [ -n "${PLATFORM_DIGEST}" ]; then
+              PLATFORM_REFS+=("${IMAGE_BASE}@${PLATFORM_DIGEST}")
+            fi
+          done
+
+          if [ "${#PLATFORM_REFS[@]}" -eq 0 ]; then
+            echo "No single-arch image digests available to create a manifest. Exiting without creating manifest."
+            exit 1
+          fi
+
+          IMAGE_TAGS=("${IMAGE_TAG}")
+
+          # Create additional variant manifests (e.g. 8.0.13, 8.0-debian-12, 8.0)
+          VERSION="${{ steps.parse.outputs.version }}"
+          VERSION_PREFIX="${{ steps.parse.outputs.version_prefix }}"
+          OSTYPE="${{ steps.parse.outputs.ostype }}"
+          OSVER="${{ steps.parse.outputs.osver }}"
+
+          IMAGE_TAGS+=("${IMAGE_BASE}:${VERSION}" "${IMAGE_BASE}:${VERSION_PREFIX}-${OSTYPE}-${OSVER}" "${IMAGE_BASE}:${VERSION_PREFIX}")
+
+          for tag in "${IMAGE_TAGS[@]}"; do
+            echo "Creating manifest for ${tag} from: ${PLATFORM_REFS[*]}"
+            docker manifest create "${tag}" "${PLATFORM_REFS[@]}"
+            DIGEST_REF="$(docker manifest push "${tag}")"
+            echo "Created manifest: ${DIGEST_REF}"
+            if [ "${ENABLE_COSIGN}" == "1" ]; then
+              cosign sign --yes "${tag}@${DIGEST_REF}"
+              cosign verify "${tag}@${DIGEST_REF}" ${COSIGN_VERIFY_ARGS}
+            fi
+          done

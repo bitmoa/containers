@@ -3,7 +3,7 @@
 
 FROM ghcr.io/bitmoa/minideb:bookworm
 
-ARG DOWNLOADS_URL="downloads.bitmoa.com/files/stacksmith"
+ARG DOWNLOADS_URL="github.com/bitmoa/downloads/raw/refs/heads/main/files"
 ARG ELASTICSEARCH_PLUGINS
 ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH

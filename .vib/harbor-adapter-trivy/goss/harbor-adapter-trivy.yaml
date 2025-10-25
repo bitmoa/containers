@@ -8,12 +8,12 @@ user:
   trivy-scanner:               
     exists: true
 file:
-  /bitnami/harbor-adapter-trivy/.cache/trivy:             
+  /bitmoa/harbor-adapter-trivy/.cache/trivy:             
     exists: true               
     mode: "0775"               
     owner: trivy-scanner               
     filetype: directory
-  /bitnami/harbor-adapter-trivy/.cache/reports:
+  /bitmoa/harbor-adapter-trivy/.cache/reports:
     exists: true
     mode: "0775"
     owner: trivy-scanner

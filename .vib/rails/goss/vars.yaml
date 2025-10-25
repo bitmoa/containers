@@ -9,7 +9,7 @@ directories:
   - mode: "0775"
     paths:
       - /app
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: rails
   flag: --version

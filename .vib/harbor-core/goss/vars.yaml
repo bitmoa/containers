@@ -3,10 +3,10 @@ binaries:
   - ini-file
 directories:
   - paths:
-      - /opt/bitnami/harbor-core/views
-      - /opt/bitnami/harbor-core/migrations
-      - /opt/bitnami/harbor-core/icons
+      - /opt/bitmoa/harbor-core/views
+      - /opt/bitmoa/harbor-core/migrations
+      - /opt/bitmoa/harbor-core/icons
 files:
   - paths:
-      - /opt/bitnami/harbor-core/UIVERSION
-root_dir: /opt/bitnami
+      - /opt/bitmoa/harbor-core/UIVERSION
+root_dir: /opt/bitmoa

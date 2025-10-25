@@ -3,14 +3,14 @@ binaries:
   - render-template
 directories:
   - paths:
-      - /opt/bitnami/nginx/client_body_temp
-      - /opt/bitnami/nginx/proxy_temp
-      - /opt/bitnami/nginx/fastcgi_temp
-      - /opt/bitnami/nginx/scgi_temp
-      - /opt/bitnami/nginx/uwsgi_temp
-      - /opt/bitnami/nginx/conf
+      - /opt/bitmoa/nginx/client_body_temp
+      - /opt/bitmoa/nginx/proxy_temp
+      - /opt/bitmoa/nginx/fastcgi_temp
+      - /opt/bitmoa/nginx/scgi_temp
+      - /opt/bitmoa/nginx/uwsgi_temp
+      - /opt/bitmoa/nginx/conf
 files:
   - paths:
-      - /opt/bitnami/harbor/swagger.yaml
-      - /opt/bitnami/harbor/swagger.json
-root_dir: /opt/bitnami
+      - /opt/bitmoa/harbor/swagger.yaml
+      - /opt/bitmoa/harbor/swagger.json
+root_dir: /opt/bitmoa

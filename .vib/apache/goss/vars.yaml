@@ -3,17 +3,17 @@ binaries:
   - render-template
 files:
   - paths:
-      - /opt/bitnami/apache/conf/modsecurity.conf
-      - /opt/bitnami/apache/conf/unicode.mapping
+      - /opt/bitmoa/apache/conf/modsecurity.conf
+      - /opt/bitmoa/apache/conf/unicode.mapping
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/apache/var/run
-      - /opt/bitnami/apache/conf
-      - /opt/bitnami/apache/logs
-      - /opt/bitnami/apache/conf/vhosts
-      - /opt/bitnami/apache/conf/vhosts/htaccess
-      - /opt/bitnami/apache/htdocs
+      - /opt/bitmoa/apache/var/run
+      - /opt/bitmoa/apache/conf
+      - /opt/bitmoa/apache/logs
+      - /opt/bitmoa/apache/conf/vhosts
+      - /opt/bitmoa/apache/conf/vhosts/htaccess
+      - /opt/bitmoa/apache/htdocs
 modules:
   loaded:
     # Explicitly enabled in postunpack
@@ -43,7 +43,7 @@ modules:
     - ldap
     - authnz_ldap
     - security3
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: apachectl
   flag: -v

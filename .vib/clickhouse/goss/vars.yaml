@@ -8,20 +8,20 @@ directories:
     owner: clickhouse
     group: root
     paths:
-      - /bitnami/clickhouse/data
-      - /opt/bitnami/clickhouse/etc
-      - /opt/bitnami/clickhouse/etc/conf.d
-      - /opt/bitnami/clickhouse/etc/users.d
-      - /opt/bitnami/clickhouse/logs
-      - /opt/bitnami/clickhouse/tmp
-      - /bitnami/clickhouse/etc
+      - /bitmoa/clickhouse/data
+      - /opt/bitmoa/clickhouse/etc
+      - /opt/bitmoa/clickhouse/etc/conf.d
+      - /opt/bitmoa/clickhouse/etc/users.d
+      - /opt/bitmoa/clickhouse/logs
+      - /opt/bitmoa/clickhouse/tmp
+      - /bitmoa/clickhouse/etc
       - /docker-entrypoint-startdb.d
       - /docker-entrypoint-initdb.d
 files:
   - mode: "0664"
     paths:
       - /.clickhouse-client-history
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: clickhouse-server
   flag: --version

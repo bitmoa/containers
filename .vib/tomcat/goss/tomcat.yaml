@@ -2,18 +2,18 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/apache-tomcat:
+  /opt/bitmoa/apache-tomcat:
     exists: true
     filetype: symlink
     linked-to: tomcat
-  /opt/bitnami/tomcat/webapps:
+  /opt/bitmoa/tomcat/webapps:
     exists: true
     filetype: symlink
-    linked-to: /bitnami/tomcat/webapps
+    linked-to: /bitmoa/tomcat/webapps
   /app:
     exists: true
     filetype: symlink
-    linked-to: /bitnami/tomcat/webapps
+    linked-to: /bitmoa/tomcat/webapps
 command:
   check-app-version:
     exec: version.sh

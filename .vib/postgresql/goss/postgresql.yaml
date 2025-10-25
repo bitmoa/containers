@@ -10,11 +10,11 @@ command:
       - "{{ .Env.APP_VERSION }}"
     exit-status: 0
 file:
-  /opt/bitnami/postgresql/logs/postgresql.log:
+  /opt/bitmoa/postgresql/logs/postgresql.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout
-  /opt/bitnami/postgresql/conf/postgresql.conf:
+  /opt/bitmoa/postgresql/conf/postgresql.conf:
     exists: true
     mode: "0664"
     contents:

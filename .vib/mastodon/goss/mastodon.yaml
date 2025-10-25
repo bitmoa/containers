@@ -8,13 +8,13 @@ user:
   mastodon:
     exists: true
 file:
-  /opt/bitnami/mastodon/config/initializers/1_hosts.rb:
+  /opt/bitmoa/mastodon/config/initializers/1_hosts.rb:
     exists: true
     filetype: file
     contents:
       - "https = ENV['MASTODON_HTTPS_ENABLED'] == 'true'"
       - "config.hosts.clear if ENV['MASTODON_ALLOW_ALL_DOMAINS'] == 'true'"
-  /opt/bitnami/mastodon/config/environments/production.rb:
+  /opt/bitmoa/mastodon/config/environments/production.rb:
     exists: true
     filetype: file
     contents:
@@ -22,4 +22,4 @@ file:
   /opt/mastodon:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/mastodon
+    linked-to: /opt/bitmoa/mastodon

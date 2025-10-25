@@ -4,15 +4,15 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/sonarqube
-      - /bitnami/sonarqube-provisioning
-      - /opt/bitnami/sonarqube/data
-      - /opt/bitnami/sonarqube/extensions
-      - /opt/bitnami/sonarqube/logs
-      - /opt/bitnami/sonarqube/temp
-      - /opt/bitnami/sonarqube/pids
+      - /bitmoa/sonarqube
+      - /bitmoa/sonarqube-provisioning
+      - /opt/bitmoa/sonarqube/data
+      - /opt/bitmoa/sonarqube/extensions
+      - /opt/bitmoa/sonarqube/logs
+      - /opt/bitmoa/sonarqube/temp
+      - /opt/bitmoa/sonarqube/pids
 files:
   - mode: "0664"
     paths:
-      - /opt/bitnami/sonarqube/conf/sonar.properties
-root_dir: /opt/bitnami
+      - /opt/bitmoa/sonarqube/conf/sonar.properties
+root_dir: /opt/bitmoa

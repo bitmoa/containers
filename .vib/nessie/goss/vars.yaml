@@ -3,11 +3,11 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/nessie/secrets
+      - /bitmoa/nessie/secrets
   - paths:
-      - /opt/bitnami/nessie
-root_dir: /opt/bitnami
+      - /opt/bitmoa/nessie
+root_dir: /opt/bitmoa
 # The application does not have a --version flag, but the server logs do show the version
 version:
   bin_name: timeout
-  flag: --preserve-status 9 java -jar /opt/bitnami/nessie/quarkus-run.jar || true
+  flag: --preserve-status 9 java -jar /opt/bitmoa/nessie/quarkus-run.jar || true

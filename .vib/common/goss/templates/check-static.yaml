@@ -43,7 +43,7 @@ file:
     exists: true
     mode: "0755"
     filetype: directory
-  /opt/bitnami/os/.spdx-os-static.spdx:
+  /opt/bitmoa/os/.spdx-os-static.spdx:
     exists: true
     mode: "0644"
     owner: root

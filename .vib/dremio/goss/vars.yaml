@@ -6,14 +6,14 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/dremio/secrets
-      - /opt/bitnami/dremio/log
-      - /opt/bitnami/dremio/run
-      - /opt/bitnami/dremio/tmp
-      - /bitnami/dremio/data
+      - /bitmoa/dremio/secrets
+      - /opt/bitmoa/dremio/log
+      - /opt/bitmoa/dremio/run
+      - /opt/bitmoa/dremio/tmp
+      - /bitmoa/dremio/data
   - paths:
-      - /opt/bitnami/dremio
-root_dir: /opt/bitnami
+      - /opt/bitmoa/dremio
+root_dir: /opt/bitmoa
 # The application does not have a --version flag, but the server logs do show the version
 version:
   bin_name: timeout

@@ -7,13 +7,13 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/openldap/data
-      - /bitnami/openldap/slapd.d
-      - /opt/bitnami/openldap/share
-      - /opt/bitnami/openldap/var
+      - /bitmoa/openldap/data
+      - /bitmoa/openldap/slapd.d
+      - /opt/bitmoa/openldap/share
+      - /opt/bitmoa/openldap/var
       - /docker-entrypoint-initdb.d
   - paths:
-      - /opt/bitnami/openldap/etc/certs
+      - /opt/bitmoa/openldap/etc/certs
 features:
   - Debug
   - Syslog
@@ -21,15 +21,15 @@ features:
   - LOCAL
 files:
   - paths:
-      - /opt/bitnami/openldap/sbin/slapd
-      - /opt/bitnami/openldap/share/slapd.ldif
+      - /opt/bitmoa/openldap/sbin/slapd
+      - /opt/bitmoa/openldap/share/slapd.ldif
 packages:
-  - /opt/bitnami/openldap/lib/libslapi.so
-  - /opt/bitnami/openldap/lib/openldap/argon2.so
-  - /opt/bitnami/openldap/lib/openldap/dyngroup.so
-  - /opt/bitnami/openldap/libexec/openldap/pw-pbkdf2.so
-  - /opt/bitnami/openldap/libexec/openldap/pw-sha2.so
-root_dir: /opt/bitnami
+  - /opt/bitmoa/openldap/lib/libslapi.so
+  - /opt/bitmoa/openldap/lib/openldap/argon2.so
+  - /opt/bitmoa/openldap/lib/openldap/dyngroup.so
+  - /opt/bitmoa/openldap/libexec/openldap/pw-pbkdf2.so
+  - /opt/bitmoa/openldap/libexec/openldap/pw-sha2.so
+root_dir: /opt/bitmoa
 version:
   bin_name: slapd
   flag: -VVV

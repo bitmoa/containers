@@ -5,12 +5,12 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami
-      - /bitnami/keydb
-      - /bitnami/keydb/data
-      - /opt/bitnami/keydb
-      - /opt/bitnami/keydb/etc
-root_dir: /opt/bitnami
+      - /bitmoa
+      - /bitmoa/keydb
+      - /bitmoa/keydb/data
+      - /opt/bitmoa/keydb
+      - /opt/bitmoa/keydb/etc
+root_dir: /opt/bitmoa
 version:
   bin_name: keydb-server
   flag: --version

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/sonarqube/bin/linux-x86-64/sonar.sh:
+  /opt/bitmoa/sonarqube/bin/linux-x86-64/sonar.sh:
     exists: true
     filetype: file
 group:

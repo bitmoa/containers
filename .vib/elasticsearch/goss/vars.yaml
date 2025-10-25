@@ -5,17 +5,17 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/elasticsearch
-      - /bitnami/elasticsearch/data
-      - /bitnami/elasticsearch/plugins
-      - /opt/bitnami/elasticsearch/tmp
-      - /opt/bitnami/elasticsearch/logs
-      - /opt/bitnami/elasticsearch/plugins
-      - /opt/bitnami/elasticsearch/modules
-      - /opt/bitnami/elasticsearch/config
+      - /bitmoa/elasticsearch
+      - /bitmoa/elasticsearch/data
+      - /bitmoa/elasticsearch/plugins
+      - /opt/bitmoa/elasticsearch/tmp
+      - /opt/bitmoa/elasticsearch/logs
+      - /opt/bitmoa/elasticsearch/plugins
+      - /opt/bitmoa/elasticsearch/modules
+      - /opt/bitmoa/elasticsearch/config
       - /docker-entrypoint-initdb.d
 files:
   - paths:
-      - /opt/bitnami/elasticsearch/config/es_config.sample
-      - /opt/bitnami/elasticsearch/config/log4j2.file.properties
-root_dir: /opt/bitnami
+      - /opt/bitmoa/elasticsearch/config/es_config.sample
+      - /opt/bitmoa/elasticsearch/config/log4j2.file.properties
+root_dir: /opt/bitmoa

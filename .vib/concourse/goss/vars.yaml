@@ -3,9 +3,9 @@ binaries:
   - fly
 directories:
   - paths:
-      - /opt/bitnami/concourse
-      - /opt/bitnami/concourse/fly-assets
+      - /opt/bitmoa/concourse
+      - /opt/bitmoa/concourse/fly-assets
 version:
   bin_name: concourse
   flag: --version
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

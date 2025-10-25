@@ -3,5 +3,5 @@
 
 command:
   check-app-binary:
-    exec: /opt/bitnami/bin/opensearch --version
+    exec: /opt/bitmoa/bin/opensearch --version
     exit-status: 127

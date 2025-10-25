@@ -1,10 +1,10 @@
 binaries:
    - rustc
    - rustfmt
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 directories:
   - paths:
-      - /opt/bitnami/rust
+      - /opt/bitmoa/rust
 version:
   bin_name: rustc
   flag: --version

@@ -3,34 +3,34 @@
 
 file:
   # Checks configured symlinks
-  /opt/bitnami/nginx/conf/bitnami/certs:
+  /opt/bitmoa/nginx/conf/bitmoa/certs:
     exists: true
     filetype: symlink
     linked-to: /certs
-  /opt/bitnami/nginx/html:
+  /opt/bitmoa/nginx/html:
     exists: true
     filetype: symlink
     linked-to: /app
-  /opt/bitnami/nginx/logs/access.log:
+  /opt/bitmoa/nginx/logs/access.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout
-  /opt/bitnami/nginx/logs/error.log:
+  /opt/bitmoa/nginx/logs/error.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stderr
   # Check selected dirs are not present
-  /opt/bitnami/certs:
+  /opt/bitmoa/certs:
     exists: false
-  /opt/bitnami/server_blocks:
+  /opt/bitmoa/server_blocks:
     exists: false
   # Check custom config
-  /opt/bitnami/nginx/conf/nginx.conf:
+  /opt/bitmoa/nginx/conf/nginx.conf:
     exists: true
     filetype: file
     contents:
       - /listen.*{{ .Vars.ports.http }}/
-  /opt/bitnami/nginx/conf/fastcgi_params:
+  /opt/bitmoa/nginx/conf/fastcgi_params:
     exists: true
     filetype: file
     contents:

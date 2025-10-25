@@ -9,11 +9,11 @@ command:
     stdout:
     - "{{ .Env.APP_VERSION }}"
 file:
-  /opt/bitnami/argo-cd/bin/argocd-server:
+  /opt/bitmoa/argo-cd/bin/argocd-server:
     exists: true
     filetype: symlink
-    linked-to: "/opt/bitnami/argo-cd/bin/argocd"
-  /opt/bitnami/argo-cd/bin/argocd-util:
+    linked-to: "/opt/bitmoa/argo-cd/bin/argocd"
+  /opt/bitmoa/argo-cd/bin/argocd-util:
     exists: true
     filetype: symlink
-    linked-to: "/opt/bitnami/argo-cd/bin/argocd"
+    linked-to: "/opt/bitmoa/argo-cd/bin/argocd"

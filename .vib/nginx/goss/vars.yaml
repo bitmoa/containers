@@ -9,21 +9,21 @@ config_opts:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/nginx
-      - /opt/bitnami/nginx/conf
-      - /opt/bitnami/nginx/conf/bitnami
-      - /opt/bitnami/nginx/conf/server_blocks
-      - /opt/bitnami/nginx/logs
-      - /opt/bitnami/nginx/tmp
+      - /bitmoa/nginx
+      - /opt/bitmoa/nginx/conf
+      - /opt/bitmoa/nginx/conf/bitmoa
+      - /opt/bitmoa/nginx/conf/server_blocks
+      - /opt/bitmoa/nginx/logs
+      - /opt/bitmoa/nginx/tmp
       - /docker-entrypoint-initdb.d
   - paths:
       - /app
       - /certs
 files:
   - paths:
-      - /opt/bitnami/nginx/logs/access.log
-      - /opt/bitnami/nginx/logs/error.log
-      - /opt/bitnami/nginx/conf/nginx.conf.default
+      - /opt/bitmoa/nginx/logs/access.log
+      - /opt/bitmoa/nginx/logs/error.log
+      - /opt/bitmoa/nginx/conf/nginx.conf.default
 modules:
   added:
     - brotli
@@ -47,7 +47,7 @@ modules:
     - stream_ssl
 ports:
   http: 8080
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: nginx
   flag: -v

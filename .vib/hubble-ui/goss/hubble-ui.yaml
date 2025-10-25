@@ -2,21 +2,21 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 file:
-  /opt/bitnami/nginx/conf/nginx.conf:
+  /opt/bitmoa/nginx/conf/nginx.conf:
     exists: true
-  /opt/bitnami/nginx/logs/access.log:
+  /opt/bitmoa/nginx/logs/access.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout
-  /opt/bitnami/nginx/logs/error.log:
+  /opt/bitmoa/nginx/logs/error.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stderr
   /app:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/hubble-ui/public
-  /opt/bitnami/hubble-ui/public/index.html:
+    linked-to: /opt/bitmoa/hubble-ui/public
+  /opt/bitmoa/hubble-ui/public/index.html:
     exists: true
     contents:
       - "Hubble UI"

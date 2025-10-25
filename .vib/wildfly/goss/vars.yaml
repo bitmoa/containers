@@ -4,16 +4,16 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/wildfly
+      - /opt/bitmoa/wildfly
       - /home/wildfly
-      - /opt/bitnami/wildfly/domain
-      - /opt/bitnami/wildfly/standalone
-      - /bitnami/wildfly/standalone/data
+      - /opt/bitmoa/wildfly/domain
+      - /opt/bitmoa/wildfly/standalone
+      - /bitmoa/wildfly/standalone/data
 files:
   - mode: "0664"
     paths:
-      - /opt/bitnami/wildfly/bin/standalone.conf
-root_dir: /opt/bitnami
+      - /opt/bitmoa/wildfly/bin/standalone.conf
+root_dir: /opt/bitmoa
 version:
-  bin_name: grep "Final</version>" /opt/bitnami/wildfly/docs/licenses/licenses.xml
+  bin_name: grep "Final</version>" /opt/bitmoa/wildfly/docs/licenses/licenses.xml
   flag: ""

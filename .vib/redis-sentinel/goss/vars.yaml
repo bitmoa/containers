@@ -5,10 +5,10 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/redis-sentinel
-      - /bitnami/redis-sentinel/conf
-      - /opt/bitnami/redis-sentinel
-root_dir: /opt/bitnami
+      - /bitmoa/redis-sentinel
+      - /bitmoa/redis-sentinel/conf
+      - /opt/bitmoa/redis-sentinel
+root_dir: /opt/bitmoa
 version:
   bin_name: redis-server
   flag: --version

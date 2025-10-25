@@ -4,15 +4,15 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/valkey
-      - /opt/bitnami/valkey
+      - /bitmoa/valkey
+      - /opt/bitmoa/valkey
   - paths:
-      - /bitnami/valkey/data
-      - /opt/bitnami/valkey/etc
+      - /bitmoa/valkey/data
+      - /opt/bitmoa/valkey/etc
 files:
   - paths:
-      - /opt/bitnami/valkey/etc/valkey-default.conf
-root_dir: /opt/bitnami
+      - /opt/bitmoa/valkey/etc/valkey-default.conf
+root_dir: /opt/bitmoa
 version:
   bin_name: valkey-server
   flag: --version

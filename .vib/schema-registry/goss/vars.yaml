@@ -4,10 +4,10 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/schema-registry/etc
-      - /opt/bitnami/schema-registry/logs
-      - /opt/bitnami/schema-registry/certs
+      - /opt/bitmoa/schema-registry/etc
+      - /opt/bitmoa/schema-registry/logs
+      - /opt/bitmoa/schema-registry/certs
   - paths:
-      - /opt/bitnami/schema-registry/etc/schema-registry
-      - /opt/bitnami/schema-registry/share/java/schema-registry
-root_dir: /opt/bitnami
+      - /opt/bitmoa/schema-registry/etc/schema-registry
+      - /opt/bitmoa/schema-registry/share/java/schema-registry
+root_dir: /opt/bitmoa

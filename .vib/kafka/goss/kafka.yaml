@@ -3,16 +3,16 @@
 
 file:
   # Checks specific files are no longer present
-  /opt/bitnami/kafka/configtmp:
+  /opt/bitmoa/kafka/configtmp:
     exists: false
-  /opt/bitnami/kafka/conf:
+  /opt/bitmoa/kafka/conf:
     exists: false
   {{ if regexMatch "^4.+" .Env.APP_VERSION }}
-  /opt/bitnami/kafka/config/log4j2.yaml:
+  /opt/bitmoa/kafka/config/log4j2.yaml:
     exists: true
     filetype: file
   {{ else }}
-  /opt/bitnami/kafka/config/log4j.properties:
+  /opt/bitmoa/kafka/config/log4j.properties:
     exists: true
     filetype: file
     contents:
@@ -22,7 +22,7 @@ file:
       - "!DatePattern"
       - "!Appender.File"
   {{ end }}
-  /opt/bitnami/kafka/bin/kafka-server-start.sh:
+  /opt/bitmoa/kafka/bin/kafka-server-start.sh:
     exists: true
     filetype: file
     contents:

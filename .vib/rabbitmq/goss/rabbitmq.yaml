@@ -13,16 +13,16 @@ file:
   /etc/rabbitmq:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/rabbitmq/etc/rabbitmq
+    linked-to: /opt/bitmoa/rabbitmq/etc/rabbitmq
   /var/lib/rabbitmq:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/rabbitmq/.rabbitmq
+    linked-to: /opt/bitmoa/rabbitmq/.rabbitmq
   /var/log/rabbitmq:
     exists: true
     filetype: symlink
-    linked-to: /opt/bitnami/rabbitmq/var/log/rabbitmq
-  /bitnami/rabbitmq/mnesia:
+    linked-to: /opt/bitmoa/rabbitmq/var/log/rabbitmq
+  /bitmoa/rabbitmq/mnesia:
     exists: true
     filetype: symlink
     linked-to: /var/lib/rabbitmq/mnesia

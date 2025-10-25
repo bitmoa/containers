@@ -7,43 +7,43 @@
 # - None
 ########################
 file:
-  /opt/bitnami/php/etc/php.ini:
+  /opt/bitmoa/php/etc/php.ini:
     exists: true
     contents:
       - /^opcache.interned_strings_buffer = 16/
       - /^opcache.memory_consumption = 192/
-      - /^opcache.file_cache = \/opt\/bitnami\/php\/var\/run\/opcache_file/
-      - /^upload_tmp_dir = \/opt\/bitnami\/php\/tmp/
-      - /^session.save_path = \/opt\/bitnami\/php\/var\/run\/session/
+      - /^opcache.file_cache = \/opt\/bitmoa\/php\/var\/run\/opcache_file/
+      - /^upload_tmp_dir = \/opt\/bitmoa\/php\/tmp/
+      - /^session.save_path = \/opt\/bitmoa\/php\/var\/run\/session/
       - /^error_log = \/dev\/stderr/
-  /opt/bitnami/php/etc/php-fpm.d/www.conf:
+  /opt/bitmoa/php/etc/php-fpm.d/www.conf:
     exists: true
     contents:
-      - /^listen = \/opt\/bitnami\/php\/var\/run\/www.sock/
-  /opt/bitnami/php/logs/php-fpm.log:
+      - /^listen = \/opt\/bitmoa\/php\/var\/run\/www.sock/
+  /opt/bitmoa/php/logs/php-fpm.log:
     exists: true
     filetype: symlink
     linked-to: /dev/stdout
-  /opt/bitnami/php/etc/common.conf.disabled:
+  /opt/bitmoa/php/etc/common.conf.disabled:
     exists: true
     filetype: file
-  /opt/bitnami/php/etc:
+  /opt/bitmoa/php/etc:
     exists: true
     filetype: directory
     mode: "0775"
-  /opt/bitnami/php/tmp:
+  /opt/bitmoa/php/tmp:
     exists: true
     filetype: directory
     mode: "0775"
-  /opt/bitnami/php/var/run:
+  /opt/bitmoa/php/var/run:
     exists: true
     filetype: directory
     mode: "0775"
-  /opt/bitnami/php/logs:
+  /opt/bitmoa/php/logs:
     exists: true
     filetype: directory
     mode: "0775"
-  /opt/bitnami/php/var/run/session:
+  /opt/bitmoa/php/var/run/session:
     exists: true
     filetype: directory
     mode: "0775"

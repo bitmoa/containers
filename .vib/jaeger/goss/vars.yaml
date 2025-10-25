@@ -8,5 +8,5 @@ binaries:
 #  - jaeger # v2
 directories:
   - paths:
-      - /opt/bitnami/jaeger/cassandra-schema
-root_dir: /opt/bitnami
+      - /opt/bitmoa/jaeger/cassandra-schema
+root_dir: /opt/bitmoa

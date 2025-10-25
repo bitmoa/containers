@@ -2,7 +2,7 @@ binaries:
   - java
   - wait-for-port
   - kc.sh
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 sed_in_place:
   exclude_paths:
-    - /opt/bitnami/keycloak/bin/federation-sssd-setup.sh
+    - /opt/bitmoa/keycloak/bin/federation-sssd-setup.sh

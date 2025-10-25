@@ -5,15 +5,15 @@ binaries:
   - php
 directories:
   - paths:
-      - /opt/bitnami/php/etc/conf.d
-      - /opt/bitnami/php/logs
+      - /opt/bitmoa/php/etc/conf.d
+      - /opt/bitmoa/php/logs
 files:
   - paths:
-      - /opt/bitnami/php/etc/php.ini-production
-      - /opt/bitnami/php/etc/php.ini-development
-      - /opt/bitnami/php/etc/environment.conf
-      - /opt/bitnami/php/etc/common.conf
-      - /opt/bitnami/php/etc/pear.conf
+      - /opt/bitmoa/php/etc/php.ini-production
+      - /opt/bitmoa/php/etc/php.ini-development
+      - /opt/bitmoa/php/etc/environment.conf
+      - /opt/bitmoa/php/etc/common.conf
+      - /opt/bitmoa/php/etc/pear.conf
 modules:
   enabled:
     - ZLib
@@ -52,7 +52,7 @@ modules:
     - WebP
   disabled:
     - rpath
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: php
   flag: -v

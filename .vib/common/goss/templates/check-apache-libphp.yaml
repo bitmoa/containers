@@ -16,12 +16,12 @@ command:
       - "mpm_prefork_module"
       - "!mpm_event_module"
 file:
-  /opt/bitnami/apache/conf/httpd.conf:
+  /opt/bitmoa/apache/conf/httpd.conf:
     exists: true
     filetype: file
     contents:
-      - "Include \"/opt/bitnami/apache/conf/bitnami/php.conf\""
-  /opt/bitnami/apache/conf/bitnami/php.conf:
+      - "Include \"/opt/bitmoa/apache/conf/bitmoa/php.conf\""
+  /opt/bitmoa/apache/conf/bitmoa/php.conf:
     exists: true
     filetype: file
     contents:

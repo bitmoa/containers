@@ -10,20 +10,20 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/discourse
-      - /bitnami/discourse
-      - /opt/bitnami/discourse/plugins
-      - /opt/bitnami/discourse/public/backups
-      - /opt/bitnami/discourse/public/uploads
-      - /opt/bitnami/discourse/app/assets
-      - /opt/bitnami/discourse/log
-      - /opt/bitnami/discourse/public
-      - /opt/bitnami/discourse/tmp
+      - /opt/bitmoa/discourse
+      - /bitmoa/discourse
+      - /opt/bitmoa/discourse/plugins
+      - /opt/bitmoa/discourse/public/backups
+      - /opt/bitmoa/discourse/public/uploads
+      - /opt/bitmoa/discourse/app/assets
+      - /opt/bitmoa/discourse/log
+      - /opt/bitmoa/discourse/public
+      - /opt/bitmoa/discourse/tmp
       - /home/discourse
       - /home/discourse/.bundle
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 linked_libraries:
   timeout: 60000
 sed_in_place:
   exclude_paths:
-    - /opt/bitnami/discourse/vendor/bundle/ruby/3.2.0/gems/ffi-1.16.3/ext/ffi_c/libffi/testsuite/emscripten/build-tests.sh
+    - /opt/bitmoa/discourse/vendor/bundle/ruby/3.2.0/gems/ffi-1.16.3/ext/ffi_c/libffi/testsuite/emscripten/build-tests.sh

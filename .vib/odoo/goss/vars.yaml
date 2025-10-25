@@ -7,15 +7,15 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/odoo
-      - /opt/bitnami/odoo/addons
-      - /opt/bitnami/odoo/conf
-      - /opt/bitnami/odoo/data
-      - /opt/bitnami/odoo/log
-      - /opt/bitnami/odoo/tmp/pids
+      - /bitmoa/odoo
+      - /opt/bitmoa/odoo/addons
+      - /opt/bitmoa/odoo/conf
+      - /opt/bitmoa/odoo/data
+      - /opt/bitmoa/odoo/log
+      - /opt/bitmoa/odoo/tmp/pids
 files:
   - paths:
-      - /opt/bitnami/odoo/package.json
+      - /opt/bitmoa/odoo/package.json
 linked_libraries:
   exclude_paths:
     # Ignore binaries bundled within Python libs
@@ -23,8 +23,8 @@ linked_libraries:
 sed_in_place:
   exclude_paths:
     # Ignore Odoo scripts from upstream
-    - \/opt\/bitnami\/odoo\/lib\/.*
-root_dir: /opt/bitnami
+    - \/opt\/bitmoa\/odoo\/lib\/.*
+root_dir: /opt/bitmoa
 version:
   bin_name: odoo
   # Convert the version format to the one used by the APP_VERSION environment variable

@@ -6,11 +6,11 @@ directories:
   - mode: "0775"
     paths:
       - /docker-entrypoint-initdb.d
-      - /opt/bitnami/pgpool/tmp
-      - /opt/bitnami/pgpool/logs
-      - /opt/bitnami/pgpool/conf
-      - /opt/bitnami/pgpool/etc
-      - /opt/bitnami/pgpool/data
+      - /opt/bitmoa/pgpool/tmp
+      - /opt/bitmoa/pgpool/logs
+      - /opt/bitmoa/pgpool/conf
+      - /opt/bitmoa/pgpool/etc
+      - /opt/bitmoa/pgpool/data
       - /var/run/nslcd
 files:
   - mode: "0660"
@@ -18,7 +18,7 @@ files:
     - /etc/nslcd.conf
   - paths:
       - /etc/pam.d/pgpool
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: pgpool
   flag: --version

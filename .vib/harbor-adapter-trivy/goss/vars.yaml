@@ -2,4 +2,4 @@ binaries:
   - scanner-trivy
   - trivy
   - wire
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

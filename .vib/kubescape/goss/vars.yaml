@@ -1,11 +1,11 @@
 binaries:
   - kubescape
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/kubescape/.kubescape
-      - /opt/bitnami/kubescape/.cache
+      - /opt/bitmoa/kubescape/.kubescape
+      - /opt/bitmoa/kubescape/.cache
 version:
   bin_name: kubescape
   flag: version

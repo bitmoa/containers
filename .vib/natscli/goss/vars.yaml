@@ -1,9 +1,9 @@
 binaries:
    - nats
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 directories:
   - paths:
-      - /opt/bitnami/natscli
+      - /opt/bitmoa/natscli
 version:
   bin_name: nats
   flag: --version

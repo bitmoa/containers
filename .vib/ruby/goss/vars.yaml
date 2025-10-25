@@ -10,8 +10,8 @@ modules:
   - readline
 files:
   - paths:
-    - /opt/bitnami/ruby/lib/libruby-static.a
-root_dir: /opt/bitnami
+    - /opt/bitmoa/ruby/lib/libruby-static.a
+root_dir: /opt/bitmoa
 version:
   bin_name: ruby
   flag: -v

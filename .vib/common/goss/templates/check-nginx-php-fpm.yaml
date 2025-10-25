@@ -7,10 +7,10 @@
 # - None
 ########################
 file:
-  /opt/bitnami/nginx/conf/bitnami/php-fpm.conf:
+  /opt/bitmoa/nginx/conf/bitmoa/php-fpm.conf:
     exists: true
     filetype: file
     contents:
       - "location ~ \\.php$ {"
-      - "fastcgi_pass   unix:/opt/bitnami/php/var/run/www.sock;"
+      - "fastcgi_pass   unix:/opt/bitmoa/php/var/run/www.sock;"
       - "include        fastcgi_params;"

@@ -3,19 +3,19 @@
 
 file:
   # HTTP vhost should have been properly rendered
-  /opt/bitnami/apache/conf/vhosts/drupal-vhost.conf:
+  /opt/bitmoa/apache/conf/vhosts/drupal-vhost.conf:
     exists: true
     filetype: file
     contents:
-      - /DocumentRoot.*/opt/bitnami/drupal/
+      - /DocumentRoot.*/opt/bitmoa/drupal/
   # HTTPs vhost should have been properly rendered
-  /opt/bitnami/apache/conf/vhosts/drupal-https-vhost.conf:
+  /opt/bitmoa/apache/conf/vhosts/drupal-https-vhost.conf:
     exists: true
     filetype: file
     contents:
       - "SSLEngine on"
-      - /DocumentRoot.*/opt/bitnami/drupal/
-  /opt/bitnami/apache/conf/vhosts/htaccess/drupal-htaccess.conf:
+      - /DocumentRoot.*/opt/bitmoa/drupal/
+  /opt/bitmoa/apache/conf/vhosts/htaccess/drupal-htaccess.conf:
     exists: true
     filetype: file
     contents:
@@ -23,12 +23,12 @@ file:
       - "SetHandler Drupal_Security_Do_Not_Remove_See_SA_2006_006"
       - "SetHandler Drupal_Security_Do_Not_Remove_See_SA_2013_003"
       - "php_flag engine off"
-  /opt/bitnami/drupal/sites/default/settings.php:
+  /opt/bitmoa/drupal/sites/default/settings.php:
     exists: true
     filetype: file
     contents:
       - "$settings['trusted_host_patterns'] = array('^.*$');"
-  /opt/bitnami/php/etc/php.ini:
+  /opt/bitmoa/php/etc/php.ini:
     exists: true
     filetype: file
     contents:

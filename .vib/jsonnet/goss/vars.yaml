@@ -1,7 +1,7 @@
 binaries:
   - jsonnet
   - jsonnetfmt
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 version:
   bin_name: jsonnet
   flag: --version

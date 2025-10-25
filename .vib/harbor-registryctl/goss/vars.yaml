@@ -6,4 +6,4 @@ directories:
   - paths:
       - /etc/registry
       - /etc/registryctl
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

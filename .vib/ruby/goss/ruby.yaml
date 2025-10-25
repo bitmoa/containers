@@ -15,7 +15,7 @@ command:
   {{ range $flag := .Vars.flags }}
   check-{{ $flag }}:
     exit-status: 0
-    exec: grep -r {{ $flag }} /opt/bitnami/ruby/include/
+    exec: grep -r {{ $flag }} /opt/bitmoa/ruby/include/
     stdout:
       - "config.h"
   {{ end }}

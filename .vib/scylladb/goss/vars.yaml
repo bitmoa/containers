@@ -8,32 +8,32 @@ binaries:
 files:
   - mode: "0755"
     paths:
-      - /opt/bitnami/scylladb/python3/bin/cqlsh
+      - /opt/bitmoa/scylladb/python3/bin/cqlsh
 directories:
   - mode: "0775"
     paths:
       - /.cassandra
-      - /bitnami/scylladb
-      - /bitnami/scylladb/etc
-      - /opt/bitnami/scylladb/tmp
-      - /opt/bitnami/scylladb/etc
-      - /opt/bitnami/scylladb/logs
+      - /bitmoa/scylladb
+      - /bitmoa/scylladb/etc
+      - /opt/bitmoa/scylladb/tmp
+      - /opt/bitmoa/scylladb/etc
+      - /opt/bitmoa/scylladb/logs
       - /docker-entrypoint-initdb.d
   - paths:
-      - /opt/bitnami/scylladb/etc.default
-root_dir: /opt/bitnami
+      - /opt/bitmoa/scylladb/etc.default
+root_dir: /opt/bitmoa
 linked_libraries:
   exclude_paths:
     # Ignore those included in the unified installer
-    - /opt/bitnami/scylladb/libexec/.*
-    - /opt/bitnami/scylladb/libreloc/.*
+    - /opt/bitmoa/scylladb/libexec/.*
+    - /opt/bitmoa/scylladb/libreloc/.*
 sed_in_place:
   exclude_paths:
     # Ignore upstream scripts (non Bitnami-related)
-    - /opt/bitnami/scylladb/share/cassandra/pylib/.*
-    - /opt/bitnami/scylladb/scripts/.*
-    - /opt/bitnami/scylladb/docker/.*
-    - /opt/bitnami/scylladb/supervisor/.*
+    - /opt/bitmoa/scylladb/share/cassandra/pylib/.*
+    - /opt/bitmoa/scylladb/scripts/.*
+    - /opt/bitmoa/scylladb/docker/.*
+    - /opt/bitmoa/scylladb/supervisor/.*
 version:
   bin_name: scylla
   flag: --version

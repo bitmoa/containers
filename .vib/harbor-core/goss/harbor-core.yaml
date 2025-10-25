@@ -30,7 +30,7 @@ file:
     exists: true
     filetype: symlink
     linked-to: /data/psc
-  /opt/bitnami/harbor-core/bin/swagger:
+  /opt/bitmoa/harbor-core/bin/swagger:
     exists: false
 command:
   # Ensure certificates exist

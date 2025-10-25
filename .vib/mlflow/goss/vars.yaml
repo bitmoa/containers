@@ -1,11 +1,11 @@
 binaries:
   - python
   - mlflow
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 directories:
   - mode: "0755"
     paths:
-      - /opt/bitnami/python
+      - /opt/bitmoa/python
   - mode: "0775"
     paths:
       - /app

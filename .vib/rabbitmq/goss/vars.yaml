@@ -4,15 +4,15 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /opt/bitnami/rabbitmq/sbin
+      - /opt/bitmoa/rabbitmq/sbin
       - /docker-entrypoint-initdb.d
-      - /opt/bitnami/rabbitmq/etc/rabbitmq
-      - /bitnami/rabbitmq/mnesia
-      - /opt/bitnami/rabbitmq/.rabbitmq
-      - /opt/bitnami/rabbitmq/var/lib/rabbitmq
-      - /opt/bitnami/rabbitmq/var/log/rabbitmq
-      - /opt/bitnami/rabbitmq/plugins
-root_dir: /opt/bitnami
+      - /opt/bitmoa/rabbitmq/etc/rabbitmq
+      - /bitmoa/rabbitmq/mnesia
+      - /opt/bitmoa/rabbitmq/.rabbitmq
+      - /opt/bitmoa/rabbitmq/var/lib/rabbitmq
+      - /opt/bitmoa/rabbitmq/var/log/rabbitmq
+      - /opt/bitmoa/rabbitmq/plugins
+root_dir: /opt/bitmoa
 version:
   bin_name: bash
   flag: -c "rabbitmqctl --version"

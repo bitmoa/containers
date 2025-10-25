@@ -6,19 +6,19 @@ binaries:
   - pg_restore
 files:
   - paths:
-    - /opt/bitnami/postgresql/conf/pg_hba.conf
+    - /opt/bitmoa/postgresql/conf/pg_hba.conf
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/postgresql
-      - /bitnami/postgresql/conf
-      - /bitnami/postgresql/conf/conf.d
+      - /bitmoa/postgresql
+      - /bitmoa/postgresql/conf
+      - /bitmoa/postgresql/conf/conf.d
       - /docker-entrypoint-initdb.d
-      - /opt/bitnami/postgresql/conf
-      - /opt/bitnami/postgresql/conf/conf.d
-      - /opt/bitnami/postgresql/logs
-      - /opt/bitnami/postgresql/tmp
-root_dir: /opt/bitnami
+      - /opt/bitmoa/postgresql/conf
+      - /opt/bitmoa/postgresql/conf/conf.d
+      - /opt/bitmoa/postgresql/logs
+      - /opt/bitmoa/postgresql/tmp
+root_dir: /opt/bitmoa
 version:
   bin_name: postgres
   flag: --version

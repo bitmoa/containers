@@ -9,5 +9,5 @@ command:
     exec: gsutil --version 2>&1 | grep "gsutil version:"
     exit-status: 0
 file:
-  /opt/bitnami/google-cloud-sdk/platform/bundledpythonunix:
+  /opt/bitmoa/google-cloud-sdk/platform/bundledpythonunix:
     exists: false

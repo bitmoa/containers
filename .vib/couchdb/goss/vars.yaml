@@ -7,12 +7,12 @@ binaries:
 directories:
   - mode: "0775"
     paths:
-      - /bitnami/couchdb/data
-      - /opt/bitnami/couchdb/etc
+      - /bitmoa/couchdb/data
+      - /opt/bitmoa/couchdb/etc
   - paths:
-      - /opt/bitnami/couchdb/etc/default.d
-      - /opt/bitnami/common/lib
-root_dir: /opt/bitnami
+      - /opt/bitmoa/couchdb/etc/default.d
+      - /opt/bitmoa/common/lib
+root_dir: /opt/bitmoa
 version:
   bin_name: couchjs
   flag: -V

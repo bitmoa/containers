@@ -8,7 +8,7 @@ binaries:
    - cilium-mount
    - cilium-sysctlfix
    - loopback
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa
 directories:
   - paths:
-      - /opt/bitnami/cilium
+      - /opt/bitmoa/cilium

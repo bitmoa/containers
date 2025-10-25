@@ -7,4 +7,4 @@ directories:
   - mode: "0775"
     paths:
       - /app
-root_dir: /opt/bitnami
+root_dir: /opt/bitmoa

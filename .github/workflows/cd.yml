@@ -133,7 +133,7 @@ jobs:
           declare -A seen
           IMAGE_TAGS_SET=()
           for tag in "${IMAGE_TAGS[@]}"; do
-            if [[ -z ${seen["$tag"]} ]]; then
+            if [[ -z ${seen["$tag"]:-} ]]; then
               IMAGE_TAGS_SET+=("$tag")
               seen["$tag"]=1
             fi
@@ -144,7 +144,7 @@ jobs:
             docker manifest create "${tag}" "${PLATFORM_REFS[@]}"
             DIGEST_REF="$(docker manifest push "${tag}")"
             echo "Created manifest: ${DIGEST_REF}"
-            if [ "${ENABLE_COSIGN}" == "1" ]; then
+            if [ "${ENABLE_COSIGN:-}" == "1" ]; then
               cosign sign --yes "${tag}@${DIGEST_REF}"
               cosign verify "${tag}@${DIGEST_REF}" ${COSIGN_VERIFY_ARGS}
             fi

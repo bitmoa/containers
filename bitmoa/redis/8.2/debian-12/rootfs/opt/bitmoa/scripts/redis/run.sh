@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Redis environment variables
-. /opt/bitnami/scripts/redis-env.sh
+. /opt/bitmoa/scripts/redis-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libredis.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libredis.sh
 
 # Parse CLI flags to pass to the 'redis-server' call
 args=("${REDIS_BASE_DIR}/etc/redis.conf" "--daemonize" "no")

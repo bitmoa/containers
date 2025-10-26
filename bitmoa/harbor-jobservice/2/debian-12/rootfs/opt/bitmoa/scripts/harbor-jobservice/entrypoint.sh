@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
 
 print_welcome_page
 
-if [[ "$1" = "/opt/bitnami/scripts/harbor-jobservice/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/harbor-jobservice/run.sh" ]]; then
     info "** Starting harbor-jobservice setup **"
-    /opt/bitnami/scripts/harbor-jobservice/setup.sh
+    /opt/bitmoa/scripts/harbor-jobservice/setup.sh
     info "** harbor-jobservice setup finished! **"
 fi
 

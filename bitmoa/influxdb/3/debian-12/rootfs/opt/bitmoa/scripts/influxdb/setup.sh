@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libinfluxdb.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libinfluxdb.sh
 
 # Load InfluxDB environment variables
-. /opt/bitnami/scripts/influxdb-env.sh
+. /opt/bitmoa/scripts/influxdb-env.sh
 
 # Ensure InfluxDB environment variables are valid
 influxdb_validate

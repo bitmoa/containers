@@ -7,26 +7,26 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libmysqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libmysqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libmysql.sh ]]; then
-    . /opt/bitnami/scripts/libmysql.sh
-elif [[ -f /opt/bitnami/scripts/libmariadb.sh ]]; then
-    . /opt/bitnami/scripts/libmariadb.sh
+if [[ -f /opt/bitmoa/scripts/libmysqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libmysqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libmysql.sh ]]; then
+    . /opt/bitmoa/scripts/libmysql.sh
+elif [[ -f /opt/bitmoa/scripts/libmariadb.sh ]]; then
+    . /opt/bitmoa/scripts/libmariadb.sh
 fi
 
-if [[ -f /opt/bitnami/scripts/libpostgresqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libpostgresql.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresql.sh
+if [[ -f /opt/bitmoa/scripts/libpostgresqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libpostgresql.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresql.sh
 fi
 
 ########################
@@ -132,7 +132,7 @@ moodle_initialize() {
     local db_type db_host db_port db_name db_user db_pass
     local -r app_name="moodle"
     if ! is_app_initialized "$app_name"; then
-        # Ensure Moodle persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure Moodle persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring Moodle directories exist"
         for dir in "$MOODLE_VOLUME_DIR" "$MOODLE_DATA_DIR"; do
             ensure_dir_exists "$dir"
@@ -221,7 +221,7 @@ EOF
         info "Running database upgrade"
         moodle_upgrade
 
-        # Skip the following check for legacy installs where moodledata is in /bitnami/moodle/moodledata and not /bitnami/moodledata (#142)
+        # Skip the following check for legacy installs where moodledata is in /bitmoa/moodle/moodledata and not /bitmoa/moodledata (#142)
         if ! is_dir_empty "${MOODLE_DATA_DIR}/sessions"; then
             # This fixes an issue when restoring Moodle, due to cookies/sessions from a previous run being considered closed.
             # Therefore, users are unable to connect to Moodle with their cookies since the server considers them invalid.

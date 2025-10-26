@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-17T12:18:42Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/node/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/node" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/node/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/node" \
       org.opencontainers.image.title="node" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="24.10.0"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
@@ -25,7 +25,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages build-essential ca-certificates curl git libbz2-1.0 libffi8 libgcc-s1 liblzma5 libncursesw6 libreadline8 libsqlite3-0 libsqlite3-dev libssl-dev libssl3 libstdc++6 libtinfo6 pkg-config procps unzip wget zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "python-3.14.0-4-linux-${OS_ARCH}-debian-12" \
       "node-24.10.0-0-linux-${OS_ARCH}-debian-12" \
@@ -36,7 +36,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
@@ -48,11 +48,11 @@ RUN sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs && \
     sed -i 's/sha512/sha512 minlen=8/' /etc/pam.d/common-password
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/node/postunpack.sh
+RUN /opt/bitmoa/scripts/node/postunpack.sh
 ENV APP_VERSION="24.10.0" \
-    BITNAMI_APP_NAME="node" \
+    BITMOA_APP_NAME="node" \
     IMAGE_REVISION="11" \
-    PATH="/opt/bitnami/python/bin:/opt/bitnami/node/bin:$PATH"
+    PATH="/opt/bitmoa/python/bin:/opt/bitmoa/node/bin:$PATH"
 
 EXPOSE 3000
 

@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Parse environment
-. /opt/bitnami/scripts/parse-env.sh
+. /opt/bitmoa/scripts/parse-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libparse.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libparse.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Ensure the Parse base directory exists and has proper permissions
 info "Configuring file permissions for Parse"

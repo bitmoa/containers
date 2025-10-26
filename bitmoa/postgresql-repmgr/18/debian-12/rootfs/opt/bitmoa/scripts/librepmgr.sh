@@ -7,12 +7,12 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libnet.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libnet.sh
 
 ########################
 # Execute repmgr command and print the output
@@ -558,7 +558,7 @@ EOF
 
    if is_boolean_yes "$REPMGR_FENCE_OLD_PRIMARY"; then
         cat <<EOF >>"${REPMGR_CONF_FILE}.tmp"
-child_nodes_disconnect_command='/bin/bash -c ". /opt/bitnami/scripts/libpostgresql.sh && . /opt/bitnami/scripts/postgresql-env.sh && postgresql_stop && kill -TERM 1"'
+child_nodes_disconnect_command='/bin/bash -c ". /opt/bitmoa/scripts/libpostgresql.sh && . /opt/bitmoa/scripts/postgresql-env.sh && postgresql_stop && kill -TERM 1"'
 EOF
         if [[ -v REPMGR_CHILD_NODES_CHECK_INTERVAL ]]; then
             cat <<EOF >>"${REPMGR_CONF_FILE}.tmp"
@@ -579,7 +579,7 @@ EOF
 
     if [[ "$REPMGR_FENCE_OLD_PRIMARY" == "true" ]]; then
         cat <<EOF >>"${REPMGR_CONF_FILE}.tmp"
-child_nodes_disconnect_command='/bin/bash -c ". /opt/bitnami/scripts/libpostgresql.sh && . /opt/bitnami/scripts/postgresql-env.sh && postgresql_stop && kill -TERM 1"'
+child_nodes_disconnect_command='/bin/bash -c ". /opt/bitmoa/scripts/libpostgresql.sh && . /opt/bitmoa/scripts/postgresql-env.sh && postgresql_stop && kill -TERM 1"'
 EOF
         if [[ -v REPMGR_CHILD_NODES_CHECK_INTERVAL ]]; then
             cat <<EOF >>"${REPMGR_CONF_FILE}.tmp"

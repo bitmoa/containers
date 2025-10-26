@@ -3,11 +3,11 @@
 
 services:
   mongodb:
-    image: docker.io/bitnami/mongodb:8.2
+    image: ghcr.io/bitmoa/mongodb:8.2
     ports:
       - "27017:27017"
     volumes:
-      - 'mongodb_data:/bitnami/mongodb'
+      - 'mongodb_data:/bitmoa/mongodb'
 
 volumes:
   mongodb_data:

@@ -11,12 +11,12 @@ set -o nounset
 set -o pipefail
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libcassandra.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libcassandra.sh
 
 # Load Cassandra environment variables
-. /opt/bitnami/scripts/cassandra-env.sh
+. /opt/bitmoa/scripts/cassandra-env.sh
 
 # Set default Cassandra host environment variable
 cassandra_set_default_host

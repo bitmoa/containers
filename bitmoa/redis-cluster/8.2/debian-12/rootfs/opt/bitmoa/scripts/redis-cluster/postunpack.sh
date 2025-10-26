@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Redis environment variables
-. /opt/bitnami/scripts/redis-cluster-env.sh
+. /opt/bitmoa/scripts/redis-cluster-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/librediscluster.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/librediscluster.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 for dir in "$REDIS_VOLUME_DIR" "$REDIS_DATA_DIR" "$REDIS_BASE_DIR" "$REDIS_CONF_DIR" "$REDIS_DEFAULT_CONF_DIR"; do
     ensure_dir_exists "$dir"
@@ -30,7 +30,7 @@ redis_conf_set daemonize no
 redis_conf_set cluster-enabled yes
 redis_conf_set cluster-config-file "${REDIS_DATA_DIR}/nodes.conf"
 
-chmod -R g+rwX  "$REDIS_BASE_DIR" /bitnami/redis
+chmod -R g+rwX  "$REDIS_BASE_DIR" /bitmoa/redis
 
 redis_conf_set logfile "" # Log to stdout
 

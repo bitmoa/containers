@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/librabbitmq.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/librabbitmq.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load RabbitMQ environment variables
-. /opt/bitnami/scripts/rabbitmq-env.sh
+. /opt/bitmoa/scripts/rabbitmq-env.sh
 
 # Set up queue rebalance to run in the background after the cluster is up
 if is_boolean_yes "$RABBITMQ_CLUSTER_REBALANCE"; then

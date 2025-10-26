@@ -10,4 +10,4 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purpose
 mkdir /app
 chmod g+rwx /app
-setcap CAP_NET_BIND_SERVICE=+eip /opt/bitnami/aspnet-core/bin/dotnet
+setcap CAP_NET_BIND_SERVICE=+eip /opt/bitmoa/aspnet-core/bin/dotnet

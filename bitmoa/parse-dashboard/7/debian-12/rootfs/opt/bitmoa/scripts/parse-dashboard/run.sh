@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Parse environment
-. /opt/bitnami/scripts/parse-dashboard-env.sh
+. /opt/bitmoa/scripts/parse-dashboard-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libparsedashboard.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libparsedashboard.sh
 
 info "** Starting Parse **"
 

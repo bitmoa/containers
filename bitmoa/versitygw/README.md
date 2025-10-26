@@ -6,4 +6,4 @@
 
 [Overview of Versity S3 Gateway](https://www.versity.com/products/versitygw/)
 
-This container image is only available under the [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications).
+This container image is only available under the [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications).

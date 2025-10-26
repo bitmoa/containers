@@ -10,17 +10,17 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libspark.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libspark.sh
 
 # Load Spark environment settings
-. /opt/bitnami/scripts/spark-env.sh
+. /opt/bitmoa/scripts/spark-env.sh
 
 print_welcome_page
 
 # We add the copy from default config in the entrypoint to not break users 
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/spark/conf)
+# case someone mounts a configuration file in /opt/bitmoa/spark/conf)
 debug "Copying files from $SPARK_DEFAULT_CONF_DIR to $SPARK_CONF_DIR"
 cp -nr "$SPARK_DEFAULT_CONF_DIR"/. "$SPARK_CONF_DIR"
 
@@ -30,9 +30,9 @@ if [ ! $EUID -eq 0 ] && [ -e "$LIBNSS_WRAPPER_PATH" ]; then
     export LD_PRELOAD="$LIBNSS_WRAPPER_PATH"
 fi
 
-if [[ "$1" = "/opt/bitnami/scripts/spark/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/spark/run.sh" ]]; then
     info "** Starting Spark setup **"
-    /opt/bitnami/scripts/spark/setup.sh
+    /opt/bitmoa/scripts/spark/setup.sh
     info "** Spark setup finished! **"
 fi
 
@@ -42,7 +42,7 @@ case "$1" in
   driver)
     shift 1
     CMD=(
-        "/opt/bitnami/spark/bin/spark-submit"
+        "/opt/bitmoa/spark/bin/spark-submit"
         --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS"
         --conf "spark.executorEnv.SPARK_DRIVER_POD_IP=$SPARK_DRIVER_BIND_ADDRESS"
         --conf "spark.jars.ivy=/tmp/.ivy"
@@ -65,7 +65,7 @@ case "$1" in
       "${SPARK_EXECUTOR_JAVA_OPTS[@]}"
       "-Xms${SPARK_EXECUTOR_MEMORY}"
       "-Xmx${SPARK_EXECUTOR_MEMORY}"
-      -cp '/opt/bitnami/spark/conf::/opt/bitnami/spark/jars/*'
+      -cp '/opt/bitmoa/spark/conf::/opt/bitmoa/spark/jars/*'
       org.apache.spark.scheduler.cluster.k8s.KubernetesExecutorBackend
       --driver-url "$SPARK_DRIVER_URL"
       --executor-id "$SPARK_EXECUTOR_ID"

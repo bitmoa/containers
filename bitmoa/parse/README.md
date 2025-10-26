@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name parse bitnami/parse:latest
+docker run --name parse bitmoa/parse:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Parse Server in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Parse Server Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/parse).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Parse Server Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/parse).
 
 ## Why use a non-root container?
 
@@ -49,9 +49,9 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Prerequisites
 
@@ -76,7 +76,7 @@ If you want to run the application manually instead of using docker-compose, the
 2. Start a MongoDB&reg; database in the network generated:
 
     ```console
-    docker run -d --name mongodb --net=parse_network bitnami/mongodb
+    docker run -d --name mongodb --net=parse_network bitmoa/mongodb
     ```
 
     *Note:* You need to give the container a name in order to Parse to resolve the host
@@ -84,7 +84,7 @@ If you want to run the application manually instead of using docker-compose, the
 3. Run the Parse container:
 
     ```console
-    docker run -d -p 1337:1337 --name parse --net=parse_network bitnami/parse
+    docker run -d -p 1337:1337 --name parse --net=parse_network bitmoa/parse
     ```
 
     Then you can access your application at `http://your-ip/parse`
@@ -92,19 +92,19 @@ If you want to run the application manually instead of using docker-compose, the
 #### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/parse/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/parse/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/parse).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/parse).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ### Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami` path. Additionally you should mount a volume for [persistence of the MongoDB&reg; data](https://github.com/bitnami/containers/blob/main/bitnami/mongodb#persisting-your-database).
+For persistence you should mount a volume at the `/bitmoa` path. Additionally you should mount a volume for [persistence of the MongoDB&reg; data](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb#persisting-your-database).
 
 The above examples define docker volumes namely `mongodb_data` and `parse_data`. The Parse application state will persist as long as these volumes are not removed.
 
@@ -114,18 +114,18 @@ To avoid inadvertent removal of these volumes you can [mount host directories as
 
 #### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/parse/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/parse/docker-compose.yml) file present in this repository:
 
 ```yaml
   mongodb:
   ...
     volumes:
-      - /path/to/your/local/mongodb_data:/bitnami
+      - /path/to/your/local/mongodb_data:/bitmoa
   ...
   parse:
   ...
     volumes:
-      - /path/to/parse-persistence:/bitnami
+      - /path/to/parse-persistence:/bitmoa
   ...
 ```
 
@@ -144,8 +144,8 @@ In this case you need to specify the directories to mount on the run command. Th
     ```console
     docker run -d --name mongodb \
       --net parse-tier \
-      --volume /path/to/mongodb-persistence:/bitnami \
-      bitnami/mongodb:latest
+      --volume /path/to/mongodb-persistence:/bitmoa \
+      bitmoa/mongodb:latest
     ```
 
     *Note:* You need to give the container a name in order to Parse to resolve the host
@@ -155,18 +155,18 @@ In this case you need to specify the directories to mount on the run command. Th
     ```console
     docker run -d --name parse -p 1337:1337 \
       --net parse-tier \
-      --volume /path/to/parse-persistence:/bitnami \
-       bitnami/parse:latest
+      --volume /path/to/parse-persistence:/bitmoa \
+       bitmoa/parse:latest
     ```
 
 ## Upgrade this application
 
-Bitnami provides up-to-date versions of Mongodb and Parse, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Parse container. For the Mongodb upgrade see <https://github.com/bitnami/containers/tree/main/bitnami/mongodb#user-content-upgrade-this-image>
+Bitnami provides up-to-date versions of Mongodb and Parse, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Parse container. For the Mongodb upgrade see <https://github.com/bitmoa/containers/tree/main/bitmoa/mongodb#user-content-upgrade-this-image>
 
 1. Get the updated images:
 
    ```console
-   docker pull bitnami/parse:latest
+   docker pull bitmoa/parse:latest
    ```
 
 2. Stop your container
@@ -180,7 +180,7 @@ Bitnami provides up-to-date versions of Mongodb and Parse, including security pa
     rsync -a /path/to/parse-persistence /path/to/parse-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
     ```
 
-    Additionally, [snapshot the MongoDB&reg; data](https://github.com/bitnami/containers/blob/main/bitnami/mongodb#step-2-stop-and-backup-the-currently-running-container)
+    Additionally, [snapshot the MongoDB&reg; data](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb#step-2-stop-and-backup-the-currently-running-container)
 
     You can use these snapshots to restore the application state should the upgrade fail.
 
@@ -192,7 +192,7 @@ Bitnami provides up-to-date versions of Mongodb and Parse, including security pa
 5. Run the new image
 
     - For docker-compose: `$ docker-compose up parse`
-    - For manual execution (mount the directories if needed): `docker run --name parse bitnami/parse:latest`
+    - For manual execution (mount the directories if needed): `docker run --name parse bitmoa/parse:latest`
 
 ## Configuration
 
@@ -214,7 +214,7 @@ Bitnami provides up-to-date versions of Mongodb and Parse, including security pa
 | `PARSE_ENABLE_CLOUD_CODE`         | Enable Parse cloud code support.              | `no`                           |
 | `PARSE_DATABASE_HOST`             | Database server host.                         | `$PARSE_DEFAULT_DATABASE_HOST` |
 | `PARSE_DATABASE_PORT_NUMBER`      | Database server port.                         | `27017`                        |
-| `PARSE_DATABASE_NAME`             | Database name.                                | `bitnami_parse`                |
+| `PARSE_DATABASE_NAME`             | Database name.                                | `bitmoa_parse`                |
 | `PARSE_DATABASE_USER`             | Database user name.                           | `bn_parse`                     |
 | `PARSE_DATABASE_PASSWORD`         | Database user password.                       | `nil`                          |
 
@@ -222,20 +222,20 @@ Bitnami provides up-to-date versions of Mongodb and Parse, including security pa
 
 | Name                          | Description                                      | Value                           |
 |-------------------------------|--------------------------------------------------|---------------------------------|
-| `PARSE_BASE_DIR`              | Parse installation directory.                    | `${BITNAMI_ROOT_DIR}/parse`     |
+| `PARSE_BASE_DIR`              | Parse installation directory.                    | `${BITMOA_ROOT_DIR}/parse`     |
 | `PARSE_TMP_DIR`               | Parse temp directory.                            | `${PARSE_BASE_DIR}/tmp`         |
 | `PARSE_LOGS_DIR`              | Parse logs directory.                            | `${PARSE_BASE_DIR}/logs`        |
 | `PARSE_PID_FILE`              | Parse PID file.                                  | `${PARSE_TMP_DIR}/parse.pid`    |
 | `PARSE_LOG_FILE`              | Parse logs file.                                 | `${PARSE_LOGS_DIR}/parse.log`   |
 | `PARSE_CONF_FILE`             | Configuration file for Parse.                    | `${PARSE_BASE_DIR}/config.json` |
-| `PARSE_VOLUME_DIR`            | Parse directory for mounted configuration files. | `${BITNAMI_VOLUME_DIR}/parse`   |
+| `PARSE_VOLUME_DIR`            | Parse directory for mounted configuration files. | `${BITMOA_VOLUME_DIR}/parse`   |
 | `PARSE_DAEMON_USER`           | Parse system user.                               | `parse`                         |
 | `PARSE_DAEMON_GROUP`          | Parse system group.                              | `parse`                         |
 | `PARSE_DEFAULT_DATABASE_HOST` | Default database server host.                    | `mongodb`                       |
 
 When you start the parse image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/parse/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/parse/docker-compose.yml) file present in this repository:
 
 ```yaml
 parse:
@@ -248,7 +248,7 @@ parse:
 - For manual execution add a `-e` option with each variable and value:
 
 ```console
- docker run -d -e PARSE_HOST=my_host -p 1337:1337 --name parse -v /your/local/path/bitnami/parse:/bitnami --network=parse_network bitnami/parse
+ docker run -d -e PARSE_HOST=my_host -p 1337:1337 --name parse -v /your/local/path/bitmoa/parse:/bitmoa --network=parse_network bitmoa/parse
 ```
 
 ### How to deploy your Cloud functions with Parse Cloud Code?
@@ -266,7 +266,7 @@ Parse.Cloud.define("sayHelloWorld", function(request, response) {
 EOF
 ```
 
-- Mount the directory as a data volume at the `/opt/bitnami/parse/cloud` path on your Parse Container and set the environment variable `PARSE_ENABLE_CLOUD_CODE` to `yes`. You can use the `docker-compose.yml` below:
+- Mount the directory as a data volume at the `/opt/bitmoa/parse/cloud` path on your Parse Container and set the environment variable `PARSE_ENABLE_CLOUD_CODE` to `yes`. You can use the `docker-compose.yml` below:
 
 > NOTE: In the example below, Parse Dashboard is also deployed.
 
@@ -274,26 +274,26 @@ EOF
 version: '2'
 services:
   mongodb:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     volumes:
-      - mongodb_data:/bitnami
+      - mongodb_data:/bitmoa
   parse:
-    image: bitnami/parse:latest
+    image: bitmoa/parse:latest
     ports:
       - 1337:1337
     environment:
       - PARSE_ENABLE_CLOUD_CODE=yes
     volumes:
-      - parse_data:/bitnami
-      - /path/to/home/directory/cloud:/opt/bitnami/parse/cloud
+      - parse_data:/bitmoa
+      - /path/to/home/directory/cloud:/opt/bitmoa/parse/cloud
     depends_on:
       - mongodb
   parse-dashboard:
-    image: bitnami/parse-dashboard:latest
+    image: bitmoa/parse-dashboard:latest
     ports:
       - 80:4040
     volumes:
-      - parse_dashboard_data:/bitnami
+      - parse_dashboard_data:/bitmoa
     depends_on:
       - parse
 volumes:
@@ -319,7 +319,7 @@ Find more information about Cloud Code and Cloud functions in the [official docu
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Parse Server Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Parse Server Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -340,11 +340,11 @@ The Bitnami Parse Server Docker image from the [Bitnami Secure Images](https://w
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

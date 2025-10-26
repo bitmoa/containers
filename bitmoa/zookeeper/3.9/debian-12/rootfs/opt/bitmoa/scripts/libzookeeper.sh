@@ -7,12 +7,12 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 # Functions
 
@@ -531,7 +531,7 @@ zookeeper_stop() {
 
 ########################
 # Ensure a smooth transition to Bash logic in Helm Chart deployments.
-# See https://github.com/bitnami/charts/pull/1390/files#diff-6b063ad92827264b128cc05c45bd9232L85-L90
+# See https://github.com/bitmoa/charts/pull/1390/files#diff-6b063ad92827264b128cc05c45bd9232L85-L90
 # Globals:
 #   None
 # Arguments:
@@ -540,16 +540,16 @@ zookeeper_stop() {
 #   None
 #########################
 zookeeper_ensure_backwards_compatibility() {
-    mkdir -p "/opt/bitnami/base"
-    cat >"/opt/bitnami/base/functions" <<EOF
+    mkdir -p "/opt/bitmoa/base"
+    cat >"/opt/bitmoa/base/functions" <<EOF
 #!/bin/bash
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-warn "You are probably using an old version of the bitnami/zookeeper Helm Chart. Please consider upgrading to 5.0.0 or later."
+warn "You are probably using an old version of the bitmoa/zookeeper Helm Chart. Please consider upgrading to 5.0.0 or later."
 
-exec /opt/bitnami/scripts/entrypoint.sh /opt/bitnami/scripts/run.sh
+exec /opt/bitmoa/scripts/entrypoint.sh /opt/bitmoa/scripts/run.sh
 EOF
 }
 

@@ -12,19 +12,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 Deploy NGINX Ingress Controller for Kubernetes on your [Kubernetes cluster](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 ```console
-docker run --name nginx-ingress-controller bitnami/nginx-ingress-controller:latest
+docker run --name nginx-ingress-controller bitmoa/nginx-ingress-controller:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,19 +35,19 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy NGINX Ingress Controller in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami NGINX Ingress Controller Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/nginx-ingress-controller).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami NGINX Ingress Controller Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/nginx-ingress-controller).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Configuration
 
@@ -55,7 +55,7 @@ For further documentation, please check [here](https://github.com/kubernetes/ing
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami NGINX Ingress Controller Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami NGINX Ingress Controller Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -67,12 +67,12 @@ The Bitnami NGINX Ingress Controller Docker image from the [Bitnami Secure Image
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues/new) or submitting a [pull
-request](https://github.com/bitnami/containers/pulls/new) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues/new) or submitting a [pull
+request](https://github.com/bitmoa/containers/pulls/new) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`docker version`)

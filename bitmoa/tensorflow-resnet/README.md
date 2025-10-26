@@ -20,14 +20,14 @@ tar xzf resnet_50_classification_1.tar.gz -C 1
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -38,7 +38,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -48,9 +48,9 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Prerequisites
 
@@ -73,7 +73,7 @@ Running TensorFlow ResNet client with the TensorFlow Serving server is the recom
 2. Start a Tensorflow Serving server in the network generated:
 
     ```console
-    docker run -d -v /tmp/model-data:/bitnami/model-data -e TENSORFLOW_SERVING_MODEL_NAME=resnet -p 8500:8500 -p 8501:8501 --name tensorflow-serving --net tensorflow-tier bitnami/tensorflow-serving:latest
+    docker run -d -v /tmp/model-data:/bitmoa/model-data -e TENSORFLOW_SERVING_MODEL_NAME=resnet -p 8500:8500 -p 8501:8501 --name tensorflow-serving --net tensorflow-tier bitmoa/tensorflow-serving:latest
     ```
 
     *Note:* You need to give the container a name in order to TensorFlow ResNet client to resolve the host
@@ -81,17 +81,17 @@ Running TensorFlow ResNet client with the TensorFlow Serving server is the recom
 3. Run the TensorFlow ResNet client container:
 
     ```console
-    docker run -d -v /tmp/model-data:/bitnami/model-data --name tensorflow-resnet --net tensorflow-tier bitnami/tensorflow-resnet:latest
+    docker run -d -v /tmp/model-data:/bitmoa/model-data --name tensorflow-resnet --net tensorflow-tier bitmoa/tensorflow-resnet:latest
     ```
 
 ## Upgrade this application
 
-Bitnami provides up-to-date versions of Tensorflow-Serving and TensorFlow ResNet client, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the TensorFlow ResNet client container. For the Tensorflow-Serving upgrade see <https://github.com/bitnami/containers/tree/main/bitnami/tensorflow-serving#user-content-upgrade-this-image>
+Bitnami provides up-to-date versions of Tensorflow-Serving and TensorFlow ResNet client, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the TensorFlow ResNet client container. For the Tensorflow-Serving upgrade see <https://github.com/bitmoa/containers/tree/main/bitmoa/tensorflow-serving#user-content-upgrade-this-image>
 
 1. Get the updated images:
 
     ```console
-    docker pull bitnami/tensorflow-resnet:latest
+    docker pull bitmoa/tensorflow-resnet:latest
     ```
 
 2. Stop your container
@@ -104,7 +104,7 @@ Bitnami provides up-to-date versions of Tensorflow-Serving and TensorFlow ResNet
     rsync -a tensorflow-resnet-persistence tensorflow-resnet-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
     ```
 
-Additionally, [snapshot the TensorFlow Serving data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#step-2-stop-and-backup-the-currently-running-container)
+Additionally, [snapshot the TensorFlow Serving data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#step-2-stop-and-backup-the-currently-running-container)
 
 You can use these snapshots to restore the application state should the upgrade fail.
 
@@ -114,7 +114,7 @@ You can use these snapshots to restore the application state should the upgrade 
 
 2. Run the new image
 
-    - Mount the directories if needed: `docker run --name tensorflow-resnet bitnami/tensorflow-resnet:latest`
+    - Mount the directories if needed: `docker run --name tensorflow-resnet bitmoa/tensorflow-resnet:latest`
 
 ## Configuration
 
@@ -163,7 +163,7 @@ Tensorflow Resnet can be customized by specifying environment variables on the f
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami TensorFlow ResNet Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami TensorFlow ResNet Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -179,11 +179,11 @@ The Bitnami TensorFlow ResNet Docker image from the [Bitnami Secure Images](http
 
 ## Contributing
 
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

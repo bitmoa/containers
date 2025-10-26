@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-logstash}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -68,7 +68,7 @@ done
 unset logstash_env_vars
 
 # Paths
-export LOGSTASH_BASE_DIR="/opt/bitnami/logstash"
+export LOGSTASH_BASE_DIR="/opt/bitmoa/logstash"
 export LOGSTASH_CONF_DIR="${LOGSTASH_BASE_DIR}/config"
 export LOGSTASH_DEFAULT_CONF_DIR="${LOGSTASH_BASE_DIR}/config.default"
 export LOGSTASH_PIPELINE_CONF_DIR="${LOGSTASH_BASE_DIR}/pipeline"
@@ -78,7 +78,7 @@ export LOGSTASH_CONF_FILE="${LOGSTASH_CONF_DIR}/logstash.yml"
 LOGSTASH_PIPELINE_CONF_FILENAME="${LOGSTASH_PIPELINE_CONF_FILENAME:-"${LOGSTASH_CONF_FILENAME:-}"}"
 export LOGSTASH_PIPELINE_CONF_FILENAME="${LOGSTASH_PIPELINE_CONF_FILENAME:-logstash.conf}"
 export LOGSTASH_PIPELINE_CONF_FILE="${LOGSTASH_PIPELINE_CONF_DIR}/${LOGSTASH_PIPELINE_CONF_FILENAME}"
-export LOGSTASH_VOLUME_DIR="/bitnami/logstash"
+export LOGSTASH_VOLUME_DIR="/bitmoa/logstash"
 export LOGSTASH_DATA_DIR="${LOGSTASH_VOLUME_DIR}/data"
 export LOGSTASH_MOUNTED_CONF_DIR="${LOGSTASH_VOLUME_DIR}/config"
 export LOGSTASH_MOUNTED_PIPELINE_CONF_DIR="${LOGSTASH_VOLUME_DIR}/pipeline"
@@ -118,11 +118,11 @@ export LOGSTASH_ELASTICSEARCH_HOST="${LOGSTASH_ELASTICSEARCH_HOST:-elasticsearch
 export LOGSTASH_ELASTICSEARCH_PORT_NUMBER="${LOGSTASH_ELASTICSEARCH_PORT_NUMBER:-9200}"
 
 # Default JVM configuration
-export JAVA_HOME="${BITNAMI_ROOT_DIR}/java"
+export JAVA_HOME="${BITMOA_ROOT_DIR}/java"
 export LS_JAVA_HOME="${LS_JAVA_HOME:-${JAVA_HOME}}"
 export LS_JAVA_OPTS="${LS_JAVA_OPTS:-} ${JAVA_TOOL_OPTIONS:-}"
 
 # Other parameters
-export PATH="${LOGSTASH_BIN_DIR}:${JAVA_HOME}/bin:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${LOGSTASH_BIN_DIR}:${JAVA_HOME}/bin:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # Custom environment variables may be defined below

@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblaravel.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/liblaravel.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Laravel environment
-. /opt/bitnami/scripts/laravel-env.sh
+. /opt/bitmoa/scripts/laravel-env.sh
 
 # Ensure required directories exist
 ensure_dir_exists "/app"

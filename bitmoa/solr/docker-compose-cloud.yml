@@ -3,7 +3,7 @@
 
 services:
   solrnode1:
-    image: docker.io/bitnami/solr:9
+    image: ghcr.io/bitmoa/solr:9
     environment:
       - SOLR_ENABLE_CLOUD_MODE=yes
       - SOLR_CLOUD_BOOTSTRAP=yes
@@ -14,13 +14,13 @@ services:
     ports:
       - '8983:8983'
     volumes:
-      - 'solr_data:/bitnami/solr'
+      - 'solr_data:/bitmoa/solr'
   zk1:
-    image: docker.io/bitnami/zookeeper:latest
+    image: ghcr.io/bitmoa/zookeeper:latest
     ports:
       - '2181'
     volumes:
-      - zookeeper_data:/bitnami
+      - zookeeper_data:/bitmoa
     environment:
       - ZOO_SERVER_ID=1
       - ALLOW_ANONYMOUS_LOGIN=yes

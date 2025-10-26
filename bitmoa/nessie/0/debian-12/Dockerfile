@@ -1,19 +1,19 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
-ARG JAVA_EXTRA_SECURITY_DIR="/bitnami/java/extra-security"
+ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-24T08:01:59Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/nessie/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/nessie" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/nessie/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/nessie" \
       org.opencontainers.image.title="nessie" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="0.105.6"
 
 ENV HOME="/" \
@@ -27,7 +27,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "jre-21.0.9-11-0-linux-${OS_ARCH}-debian-12" \
       "nessie-0.105.6-0-linux-${OS_ARCH}-debian-12" \
@@ -38,25 +38,25 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN chmod g+rwX /opt/bitnami
-RUN ln -s /opt/bitnami/nessie /deployments && mkdir -p /bitnami/nessie/secrets && chmod g+rwX /bitnami/nessie/secrets
+RUN chmod g+rwX /opt/bitmoa
+RUN ln -s /opt/bitmoa/nessie /deployments && mkdir -p /bitmoa/nessie/secrets && chmod g+rwX /bitmoa/nessie/secrets
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/java/postunpack.sh
+RUN /opt/bitmoa/scripts/java/postunpack.sh
 ENV APP_VERSION="0.105.6" \
-    BITNAMI_APP_NAME="nessie" \
+    BITMOA_APP_NAME="nessie" \
     IMAGE_REVISION="0" \
-    JAVA_HOME="/opt/bitnami/java" \
-    PATH="/opt/bitnami/java/bin:/opt/bitnami/nessie/bin:$PATH"
+    JAVA_HOME="/opt/bitmoa/java" \
+    PATH="/opt/bitmoa/java/bin:/opt/bitmoa/nessie/bin:$PATH"
 
 EXPOSE 9000 19120
 
-WORKDIR /opt/bitnami/nessie
+WORKDIR /opt/bitmoa/nessie
 USER 1001
-ENTRYPOINT [ "java", "-jar", "/opt/bitnami/nessie/quarkus-run.jar" ]
+ENTRYPOINT [ "java", "-jar", "/opt/bitmoa/nessie/quarkus-run.jar" ]

@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libkong.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libkong.sh
 
 # Load Kong environment variables
-. /opt/bitnami/scripts/kong-env.sh
+. /opt/bitmoa/scripts/kong-env.sh
 
 # Ensure Kong environment variables are valid
 kong_validate

@@ -10,14 +10,14 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 print_welcome_page
 
-if [[ "$*" = *"/opt/bitnami/scripts/minio-client/run.sh"* ]]; then
+if [[ "$*" = *"/opt/bitmoa/scripts/minio-client/run.sh"* ]]; then
     info "** Starting MinIO Client setup **"
-    /opt/bitnami/scripts/minio-client/setup.sh
+    /opt/bitmoa/scripts/minio-client/setup.sh
     info "** MinIO Client setup finished! **"
 fi
 

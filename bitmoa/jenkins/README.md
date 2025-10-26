@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name jenkins bitnami/jenkins:latest
+docker run --name jenkins bitmoa/jenkins:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Jenkins in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Jenkins Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/jenkins).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Jenkins Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/jenkins).
 
 ## Why use a non-root container?
 
@@ -49,30 +49,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Jenkins Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/jenkins).
+The recommended way to get the Bitnami Jenkins Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/jenkins).
 
 ```console
-docker pull bitnami/jenkins:latest
+docker pull bitmoa/jenkins:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/jenkins/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/jenkins/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/jenkins:[TAG]
+docker pull bitmoa/jenkins:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
@@ -91,8 +91,8 @@ docker network create jenkins-network
 $ docker volume create --name jenkins_data
 docker run -d -p 80:8080 --name jenkins \
   --network jenkins-network \
-  --volume jenkins_data:/bitnami/jenkins \
-  bitnami/jenkins:latest
+  --volume jenkins_data:/bitmoa/jenkins \
+  bitmoa/jenkins:latest
 ```
 
 Access your application at `http://your-ip/`
@@ -101,13 +101,13 @@ Access your application at `http://your-ip/`
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami/jenkins` path. The above examples define a docker volume namely `jenkins_data`. The Jenkins application state will persist as long as this volume is not removed.
+For persistence you should mount a volume at the `/bitmoa/jenkins` path. The above examples define a docker volume namely `jenkins_data`. The Jenkins application state will persist as long as this volume is not removed.
 
 To avoid inadvertent removal of this volume you can [mount host directories as data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/). Alternatively you can make use of volume plugins to host the volume data.
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/jenkins/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/jenkins/docker-compose.yml) file present in this repository:
 
 ```diff
   ...
@@ -115,8 +115,8 @@ This requires a minor change to the [`docker-compose.yml`](https://github.com/bi
     jenkins:
     ...
     volumes:
--     - jenkins_data:/bitnami/jenkins
-+     - /path/to/jenkins-persistence:/bitnami/jenkins
+-     - jenkins_data:/bitmoa/jenkins
++     - /path/to/jenkins-persistence:/bitmoa/jenkins
 - volumes:
 -   jenkins_data:
 -     driver: local
@@ -137,20 +137,20 @@ docker network create jenkins-network
 ```console
 docker run -d -p 80:8080 --name jenkins \
   --network jenkins-network \
-  --volume /path/to/jenkins-persistence:/bitnami/jenkins \
-  bitnami/jenkins:latest
+  --volume /path/to/jenkins-persistence:/bitmoa/jenkins \
+  bitmoa/jenkins:latest
 ```
 
 ### Using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/jenkins/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/jenkins/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/jenkins).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/jenkins).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Configuration
 
@@ -179,27 +179,27 @@ If you detect any issue in the `docker-compose.yaml` file, feel free to report i
 | `JENKINS_SKIP_BOOTSTRAP`             | Whether to perform initial bootstrapping for the application.                                                                         | `no`                         |
 | `JENKINS_ENABLE_SWARM`               | Enable the Jenkins Swarm configuration.                                                                                               | `no`                         |
 | `JENKINS_CERTS_DIR`                  | Password of keystore.                                                                                                                 | `${JENKINS_HOME}`            |
-| `JENKINS_KEYSTORE_PASSWORD`          | Password of keystore.                                                                                                                 | `bitnami`                    |
+| `JENKINS_KEYSTORE_PASSWORD`          | Password of keystore.                                                                                                                 | `bitmoa`                    |
 | `JENKINS_OPTS`                       | Jenkins launcher parameters.                                                                                                          | `nil`                        |
 | `JENKINS_USERNAME`                   | Jenkins admin user name.                                                                                                              | `user`                       |
-| `JENKINS_PASSWORD`                   | Jenkins admin user password.                                                                                                          | `bitnami`                    |
+| `JENKINS_PASSWORD`                   | Jenkins admin user password.                                                                                                          | `bitmoa`                    |
 | `JENKINS_EMAIL`                      | Jenkins admin user e-mail address.                                                                                                    | `user@example.com`           |
 | `JENKINS_SWARM_USERNAME`             | Jenkins user for Swarm access name .                                                                                                  | `swarm`                      |
 | `JENKINS_SWARM_PASSWORD`             | Jenkins user for Swarm access password.                                                                                               | `nil`                        |
-| `JAVA_HOME`                          | Java Home directory.                                                                                                                  | `${BITNAMI_ROOT_DIR}/java`   |
+| `JAVA_HOME`                          | Java Home directory.                                                                                                                  | `${BITMOA_ROOT_DIR}/java`   |
 | `JAVA_OPTS`                          | Java options.                                                                                                                         | `nil`                        |
 
 #### Read-only environment variables
 
 | Name                                   | Description                                                                                | Value                                                   |
 |----------------------------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------|
-| `JENKINS_BASE_DIR`                     | Jenkins installation directory.                                                            | `${BITNAMI_ROOT_DIR}/jenkins`                           |
+| `JENKINS_BASE_DIR`                     | Jenkins installation directory.                                                            | `${BITMOA_ROOT_DIR}/jenkins`                           |
 | `JENKINS_LOGS_DIR`                     | Jenkins directory for log files.                                                           | `${JENKINS_BASE_DIR}/logs`                              |
 | `JENKINS_LOG_FILE`                     | Path to the Jenkins log file.                                                              | `${JENKINS_LOGS_DIR}/jenkins.log`                       |
 | `JENKINS_TMP_DIR`                      | Jenkins directory for runtime temporary files.                                             | `${JENKINS_BASE_DIR}/tmp`                               |
 | `JENKINS_PID_FILE`                     | Path to the Jenkins PID file.                                                              | `${JENKINS_TMP_DIR}/jenkins.pid`                        |
-| `JENKINS_TEMPLATES_DIR`                | Path to the directory containing templates to generate groovy scripts.                     | `${BITNAMI_ROOT_DIR}/scripts/jenkins/bitnami-templates` |
-| `JENKINS_VOLUME_DIR`                   | Persistence base directory.                                                                | `${BITNAMI_VOLUME_DIR}/jenkins`                         |
+| `JENKINS_TEMPLATES_DIR`                | Path to the directory containing templates to generate groovy scripts.                     | `${BITMOA_ROOT_DIR}/scripts/jenkins/bitmoa-templates` |
+| `JENKINS_VOLUME_DIR`                   | Persistence base directory.                                                                | `${BITMOA_VOLUME_DIR}/jenkins`                         |
 | `JENKINS_MOUNTED_CONTENT_DIR`          | Directory to mount custom Jenkins content (such as Groovy scripts or configuration files). | `/usr/share/jenkins/ref`                                |
 | `JENKINS_DAEMON_USER`                  | Jenkins system user.                                                                       | `jenkins`                                               |
 | `JENKINS_DAEMON_GROUP`                 | Jenkins system group.                                                                      | `jenkins`                                               |
@@ -211,7 +211,7 @@ If you detect any issue in the `docker-compose.yaml` file, feel free to report i
 
 When you start the Jenkins image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/jenkins/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/jenkins/docker-compose.yml) file present in this repository:
 
     ```yaml
     jenkins:
@@ -227,13 +227,13 @@ When you start the Jenkins image, you can adjust the configuration of the instan
     $ docker run -d -p 80:8080 --name jenkins \
       --env JENKINS_PASSWORD=my_password \
       --network jenkins-network \
-      --volume /path/to/jenkins-persistence:/bitnami/jenkins \
-      bitnami/jenkins:latest
+      --volume /path/to/jenkins-persistence:/bitmoa/jenkins \
+      bitmoa/jenkins:latest
     ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Jenkins Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Jenkins Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -269,8 +269,8 @@ To backup your data, configuration and logs, follow these simple steps:
 We need to mount two volumes in a container we will use to create the backup: a directory on your host to store the backup in, and the volumes from the container we just stopped so we can access the data.
 
 ```console
-docker run --rm -v /path/to/jenkins-backups:/backups --volumes-from jenkins bitnami/os-shell \
-  cp -a /bitnami/jenkins /backups/latest
+docker run --rm -v /path/to/jenkins-backups:/backups --volumes-from jenkins bitmoa/os-shell \
+  cp -a /bitmoa/jenkins /backups/latest
 ```
 
 ### Restoring a backup
@@ -280,9 +280,9 @@ Restoring a backup is as simple as mounting the backup as volumes in the contain
 ```diff
  $ docker run -d --name jenkins \
    ...
--  --volume /path/to/jenkins-persistence:/bitnami/jenkins \
-+  --volume /path/to/jenkins-backups/latest:/bitnami/jenkins \
-   bitnami/jenkins:latest
+-  --volume /path/to/jenkins-persistence:/bitmoa/jenkins \
++  --volume /path/to/jenkins-backups/latest:/bitmoa/jenkins \
+   bitmoa/jenkins:latest
 ```
 
 ### Upgrading Jenkins
@@ -292,7 +292,7 @@ Bitnami provides up-to-date versions of Jenkins, including security patches, soo
 ### Step 1. Get the updated images
 
 ```console
-docker pull bitnami/jenkins:latest
+docker pull bitmoa/jenkins:latest
 ```
 
 ### Step 2. Stop your container
@@ -312,7 +312,7 @@ Follow the steps in [Backing up your container](#backing-up-your-container) to t
 ### Step 5. Run the new image
 
 - For docker-compose: `$ docker-compose up jenkins`
-- For manual execution (mount the directories if needed): `docker run --name jenkins bitnami/jenkins:latest`
+- For manual execution (mount the directories if needed): `docker run --name jenkins bitmoa/jenkins:latest`
 
 ## Customize this image
 
@@ -320,10 +320,10 @@ For customizations, please note that this image is, by default, a non-root conta
 
 ### Extend this image
 
-To extend the bitnami original image, you can create your own image using a Dockerfile with the format below:
+To extend the bitmoa original image, you can create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/jenkins
+FROM bitmoa/jenkins
 ## Put your customizations below
 ...
 ```
@@ -333,7 +333,7 @@ Here is an example of extending the image with the following modifications:
 - Install the `vim` editor
 
 ```Dockerfile
-FROM bitnami/jenkins
+FROM bitmoa/jenkins
 
 ## Change user to perform privileged actions
 USER 0
@@ -364,7 +364,7 @@ You might need to customize the JVM running Jenkins, typically to pass system pr
 ```console
 docker run -d --name jenkins -p 80:8080 \
   --env JAVA_OPTS=-Dhudson.footerURL=http://mycompany.com \
-  bitnami/jenkins:latest
+  bitmoa/jenkins:latest
 ```
 
 ### Using custom launcher parameters
@@ -374,7 +374,7 @@ In order to use custom parameters for Jenkins launcher, for example if you need 
 ```console
 docker run -d --name jenkins -p 8080:8080 \
   --env JENKINS_OPTS="--prefix=/jenkins" \
-  bitnami/jenkins:latest
+  bitmoa/jenkins:latest
 ```
 
 ### Skipping Bitnami initialization
@@ -386,7 +386,7 @@ By default, when running this image, Bitnami implement some logic in order to co
 
 ### Adding files/directories to the image
 
-You can include files to the image automatically. All files/directories located in `/usr/share/jenkins/ref` are copied to `/bitnami/jenkins/home` (default Jenkins home directory).
+You can include files to the image automatically. All files/directories located in `/usr/share/jenkins/ref` are copied to `/bitmoa/jenkins/home` (default Jenkins home directory).
 
 #### Examples
 
@@ -404,7 +404,7 @@ $ echo "println '--> bye world'" > jenkins-init.groovy.d/BA_bye.groovy
 docker run -d -p 80:8080 --name jenkins \
   --env "JENKINS_SKIP_BOOTSTRAP=yes" \
   --volume "$(pwd)/jenkins-init.groovy.d:/usr/share/jenkins/ref/init.groovy.d" \
-  bitnami/jenkins:latest
+  bitmoa/jenkins:latest
 
 $ docker logs jenkins | grep world
 --> hello world!
@@ -419,7 +419,7 @@ You can use your our own `config.xml` file. However, using this feature will dis
 docker run -d -p 80:8080 --name jenkins \
   --env "JENKINS_SKIP_BOOTSTRAP=yes" \
   --volume "$(pwd)/config.xml:/usr/share/jenkins/ref/config.xml" \
-  bitnami/jenkins:latest
+  bitmoa/jenkins:latest
 ```
 
 > NOTE: The default `admin` user with this setup will not be created. It should be done separately.
@@ -470,11 +470,11 @@ docker run -d -p 80:8080 --name jenkins \
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

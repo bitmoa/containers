@@ -10,16 +10,16 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 print_welcome_page
 
 # Configure NSS wrapper
 if ! am_i_root; then
     export LNAME="git"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if ! user_exists "$(id -u)" && [[ -f "$LD_PRELOAD" ]]; then
         # shellcheck disable=SC2155
         export NSS_WRAPPER_PASSWD="$(mktemp)"

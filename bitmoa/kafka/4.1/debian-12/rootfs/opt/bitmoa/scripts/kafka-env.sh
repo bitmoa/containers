@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-kafka}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -67,8 +67,8 @@ done
 unset kafka_env_vars
 
 # Paths
-export KAFKA_BASE_DIR="${BITNAMI_ROOT_DIR}/kafka"
-export KAFKA_VOLUME_DIR="/bitnami/kafka"
+export KAFKA_BASE_DIR="${BITMOA_ROOT_DIR}/kafka"
+export KAFKA_VOLUME_DIR="/bitmoa/kafka"
 export KAFKA_DATA_DIR="${KAFKA_VOLUME_DIR}/data"
 export KAFKA_CONF_DIR="${KAFKA_BASE_DIR}/config"
 export KAFKA_CONF_FILE="${KAFKA_CONF_DIR}/server.properties"
@@ -77,7 +77,7 @@ export KAFKA_CERTS_DIR="${KAFKA_CONF_DIR}/certs"
 export KAFKA_INITSCRIPTS_DIR="/docker-entrypoint-initdb.d"
 export KAFKA_LOG_DIR="${KAFKA_BASE_DIR}/logs"
 export KAFKA_HOME="$KAFKA_BASE_DIR"
-export PATH="${KAFKA_BASE_DIR}/bin:${BITNAMI_ROOT_DIR}/java/bin:${PATH}"
+export PATH="${KAFKA_BASE_DIR}/bin:${BITMOA_ROOT_DIR}/java/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export KAFKA_DAEMON_USER="kafka"
@@ -106,15 +106,15 @@ export KAFKA_ZOOKEEPER_TLS_VERIFY_HOSTNAME="${KAFKA_ZOOKEEPER_TLS_VERIFY_HOSTNAM
 
 # Authentication
 export KAFKA_INTER_BROKER_USER="${KAFKA_INTER_BROKER_USER:-user}"
-export KAFKA_INTER_BROKER_PASSWORD="${KAFKA_INTER_BROKER_PASSWORD:-bitnami}"
+export KAFKA_INTER_BROKER_PASSWORD="${KAFKA_INTER_BROKER_PASSWORD:-bitmoa}"
 export KAFKA_CONTROLLER_USER="${KAFKA_CONTROLLER_USER:-controller_user}"
-export KAFKA_CONTROLLER_PASSWORD="${KAFKA_CONTROLLER_PASSWORD:-bitnami}"
+export KAFKA_CONTROLLER_PASSWORD="${KAFKA_CONTROLLER_PASSWORD:-bitmoa}"
 export KAFKA_CERTIFICATE_PASSWORD="${KAFKA_CERTIFICATE_PASSWORD:-}"
 export KAFKA_TLS_TRUSTSTORE_FILE="${KAFKA_TLS_TRUSTSTORE_FILE:-}"
 export KAFKA_TLS_TYPE="${KAFKA_TLS_TYPE:-JKS}"
 export KAFKA_TLS_CLIENT_AUTH="${KAFKA_TLS_CLIENT_AUTH:-required}"
 export KAFKA_CLIENT_USERS="${KAFKA_CLIENT_USERS:-user}"
-export KAFKA_CLIENT_PASSWORDS="${KAFKA_CLIENT_PASSWORDS:-bitnami}"
+export KAFKA_CLIENT_PASSWORDS="${KAFKA_CLIENT_PASSWORDS:-bitmoa}"
 
 # Java settings
 export KAFKA_HEAP_OPTS="${KAFKA_HEAP_OPTS:--Xmx1024m -Xms1024m}"

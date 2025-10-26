@@ -7,9 +7,9 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 ########################
 # Validate settings in POSTGRESQL_CLIENT_* environment variables
@@ -159,7 +159,7 @@ get_env_var_value() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   POSTGRESQL_*
 # Arguments:
 #   $1 - Database where to run the queries
@@ -189,7 +189,7 @@ postgresql_execute_print_output() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   POSTGRESQL_*
 # Arguments:
 #   $1 - Database where to run the queries
@@ -200,7 +200,7 @@ postgresql_execute_print_output() {
 #   None
 #########################
 postgresql_execute() {
-    if [[ "${BITNAMI_DEBUG:-false}" = true ]]; then
+    if [[ "${BITMOA_DEBUG:-false}" = true ]]; then
         "postgresql_execute_print_output" "$@"
     elif [[ "${NO_ERRORS:-false}" = true ]]; then
         "postgresql_execute_print_output" "$@" 2>/dev/null
@@ -214,7 +214,7 @@ postgresql_execute() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Remote PostgreSQL service hostname
@@ -238,7 +238,7 @@ postgresql_remote_execute_print_output() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Remote PostgreSQL service hostname
@@ -250,7 +250,7 @@ postgresql_remote_execute_print_output() {
 # Returns:
 #   None
 postgresql_remote_execute() {
-    if [[ "${BITNAMI_DEBUG:-false}" = true ]]; then
+    if [[ "${BITMOA_DEBUG:-false}" = true ]]; then
         "postgresql_remote_execute_print_output" "$@"
     elif [[ "${NO_ERRORS:-false}" = true ]]; then
         "postgresql_remote_execute_print_output" "$@" 2>/dev/null

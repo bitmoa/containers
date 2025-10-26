@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libkibana.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libkibana.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load environment
-. /opt/bitnami/scripts/kibana-env.sh
+. /opt/bitmoa/scripts/kibana-env.sh
 
 for dir in "$SERVER_TMP_DIR" "$SERVER_LOGS_DIR" "$SERVER_CONF_DIR" "$SERVER_DEFAULT_CONF_DIR" "$SERVER_PLUGINS_DIR" "$SERVER_DEFAULT_PLUGINS_DIR" "$SERVER_VOLUME_DIR" "$SERVER_DATA_DIR" "$SERVER_INITSCRIPTS_DIR"; do
     ensure_dir_exists "$dir"

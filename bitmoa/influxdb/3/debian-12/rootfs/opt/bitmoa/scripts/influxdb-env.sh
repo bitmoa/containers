@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-influxdb}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -84,8 +84,8 @@ done
 unset influxdb_env_vars
 
 # Paths
-export INFLUXDB_BASE_DIR="${BITNAMI_ROOT_DIR}/influxdb"
-export INFLUXDB_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/influxdb"
+export INFLUXDB_BASE_DIR="${BITMOA_ROOT_DIR}/influxdb"
+export INFLUXDB_VOLUME_DIR="${BITMOA_VOLUME_DIR}/influxdb"
 export INFLUXDB_BIN_DIR="${INFLUXDB_BASE_DIR}/bin"
 export INFLUXDB_DATA_DIR="${INFLUXDB_DATA_DIR:-${INFLUXDB_VOLUME_DIR}/data}"
 export INFLUXDB3_DB_DIR="$INFLUXDB_DATA_DIR"
@@ -97,7 +97,7 @@ export INFLUXDB_CONF_FILE_FORMAT="${INFLUXDB_CONF_FILE_FORMAT:-yaml}"
 export INFLUXDB_CONF_FILE="${INFLUXDB_CONF_DIR}/config.${INFLUXDB_CONF_FILE_FORMAT}"
 export INFLUXDB_INITSCRIPTS_DIR="/docker-entrypoint-initdb.d"
 export INFLUXDB_AUTOGEN_ADMIN_TOKEN_FILE="${INFLUXDB_AUTOGEN_ADMIN_TOKEN_FILE:-${INFLUXDB_VOLUME_DIR}/.token}"
-export LD_LIBRARY_PATH="${BITNAMI_ROOT_DIR}/python/lib"
+export LD_LIBRARY_PATH="${BITMOA_ROOT_DIR}/python/lib"
 
 # InfluxDB 2.x aliases
 export INFLUXD_ENGINE_PATH="${INFLUXDB_VOLUME_DIR}"
@@ -131,8 +131,8 @@ export INFLUXDB3_OBJECT_STORE="$INFLUXDB_OBJECT_STORE"
 
 # InfluxDB 1.x to 2.x upgrade settings
 export INFLUXDB_INIT_MODE="${INFLUXDB_INIT_MODE:-setup}"
-export INFLUXDB_INIT_V1_DIR="${INFLUXDB_INIT_V1_DIR:-${BITNAMI_VOLUME_DIR}/v1}"
-export INFLUXDB_INIT_V1_CONFIG="${INFLUXDB_INIT_V1_CONFIG:-${BITNAMI_VOLUME_DIR}/v1/config.yaml}"
+export INFLUXDB_INIT_V1_DIR="${INFLUXDB_INIT_V1_DIR:-${BITMOA_VOLUME_DIR}/v1}"
+export INFLUXDB_INIT_V1_CONFIG="${INFLUXDB_INIT_V1_CONFIG:-${BITMOA_VOLUME_DIR}/v1/config.yaml}"
 export INFLUXDB_UPGRADE_LOG_FILE="${INFLUXDB_UPGRADE_LOG_FILE:-${INFLUXDB_INIT_V1_DIR}/upgrade.log}"
 export INFLUXDB_CONTINUOUS_QUERY_EXPORT_FILE="${INFLUXDB_CONTINUOUS_QUERY_EXPORT_FILE:-${INFLUXDB_INIT_V1_DIR}/v1-cq-export.txt}"
 

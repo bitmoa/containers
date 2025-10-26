@@ -10,7 +10,7 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
 
 ########################
 # Find the path to the libjemalloc library file

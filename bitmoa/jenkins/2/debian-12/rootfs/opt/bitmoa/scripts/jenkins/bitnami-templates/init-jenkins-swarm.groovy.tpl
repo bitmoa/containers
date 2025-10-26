@@ -17,11 +17,11 @@ def securityRealm = new HudsonPrivateSecurityRealm(false, false, null)
 jenkins.setSecurityRealm(securityRealm)
 
 // Create new admin account
-println " [bitnami/groovy-init-jenkins-with-slaves] Creating Jenkins users"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Creating Jenkins users"
 def adminUsername = '{{JENKINS_USERNAME}}'
 def adminPassword = '{{JENKINS_PASSWORD}}'
 securityRealm.createAccount(adminUsername, adminPassword)
-println " [bitnami/groovy-init-jenkins-with-slaves] Admin user created: {{JENKINS_USERNAME}}:*******"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Admin user created: {{JENKINS_USERNAME}}:*******"
 if (adminUsername != 'admin') {
     // Delete the existing by default admin account
     User u = User.get('admin')
@@ -31,16 +31,16 @@ if (adminUsername != 'admin') {
 def slaveUsername = '{{JENKINS_SWARM_USERNAME}}'
 def slavePassword = '{{JENKINS_SWARM_PASSWORD}}'
 securityRealm.createAccount(slaveUsername, slavePassword)
-println " [bitnami/groovy-init-jenkins-with-slaves] Slave user created: {{JENKINS_SWARM_USERNAME}}:*******"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Slave user created: {{JENKINS_SWARM_USERNAME}}:*******"
 // Create system account. Same password than admin account
 def systemUsername = 'system_user'
 def systemPassword = '{{JENKINS_PASSWORD}}'
 securityRealm.createAccount(systemUsername, systemPassword)
-println " [bitnami/groovy-init-jenkins-with-slaves] System user created: system_user:*******"
+println " [bitmoa/groovy-init-jenkins-with-slaves] System user created: system_user:*******"
 
 // Set Authorization strategy
 // Roles based on https://wiki.jenkins-ci.org/display/JENKINS/Matrix-based+security
-println " [bitnami/groovy-init-jenkins-with-slaves] Setting Authorization Strategy"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Setting Authorization Strategy"
 def strategy = new GlobalMatrixAuthorizationStrategy()
 // Setting Slave Permissions
 // Slave Permissions
@@ -94,27 +94,27 @@ strategy.add(hudson.model.View.CREATE, new PermissionEntry(AuthorizationType.USE
 strategy.add(hudson.model.View.DELETE, new PermissionEntry(AuthorizationType.USER, adminUsername))
 strategy.add(hudson.model.View.READ, new PermissionEntry(AuthorizationType.USER, adminUsername))
 jenkins.setAuthorizationStrategy(strategy);
-println " [bitnami/groovy-init-jenkins-with-slaves] Authorization Strategy set"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Authorization Strategy set"
 
 // Configure Authorize Project Plugin
 // Proper rules are needed to increase the security settings of the jobs and to avoid warning messages
-println " [bitnami/groovy-init-jenkins-with-slaves] Configuring 'Authorize Project' plugin"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Configuring 'Authorize Project' plugin"
 def configureGlobalAuthenticator = true
 def configureProjectAuthenticator = true
 def authenticators = QueueItemAuthenticatorConfiguration.get().getAuthenticators()
 for (authenticator in authenticators) {
   if (authenticator instanceof GlobalQueueItemAuthenticator) {
-    println " [bitnami/groovy-init-jenkins-with-slaves]     Skipping global build authenticator, it exists"
+    println " [bitmoa/groovy-init-jenkins-with-slaves]     Skipping global build authenticator, it exists"
     configureGlobalAuthenticator = false
   } else if (authenticator instanceof ProjectQueueItemAuthenticator) {
-    println " [bitnami/groovy-init-jenkins-with-slaves]     Skipping per-project build authenticator, it exists"
+    println " [bitmoa/groovy-init-jenkins-with-slaves]     Skipping per-project build authenticator, it exists"
     configureProjectAuthenticator = false
   }
 }
 if (configureGlobalAuthenticator) {
   def globalStrategy = new SpecificUsersAuthorizationStrategy(systemUsername)
   def globalStrategyName = globalStrategy.getDescriptor().getDisplayName()
-  println " [bitnami/groovy-init-jenkins-with-slaves]     Configuring global build authenticator with '${globalStrategyName}' strategy"
+  println " [bitmoa/groovy-init-jenkins-with-slaves]     Configuring global build authenticator with '${globalStrategyName}' strategy"
   authenticators.add(new GlobalQueueItemAuthenticator(globalStrategy))
 }
 if (configureProjectAuthenticator) {
@@ -128,39 +128,39 @@ if (configureProjectAuthenticator) {
     (specificUsersAuthorizationStrategyDescriptor.getId()): true,
     (systemAuthorizationStrategyDescriptor.getId()): false
   ]
-  println " [bitnami/groovy-init-jenkins-with-slaves]     Configuring per-project build authenticator"
-  println " [bitnami/groovy-init-jenkins-with-slaves]         Allowing '${anonymousAuthorizationStrategyDescriptor.getDisplayName()}' strategy"
-  println " [bitnami/groovy-init-jenkins-with-slaves]         Allowing '${triggeringUsersAuthorizationStrategyDescriptor.getDisplayName()}' strategy"
-  println " [bitnami/groovy-init-jenkins-with-slaves]         Allowing '${specificUsersAuthorizationStrategyDescriptor.getDisplayName()}' strategy"
+  println " [bitmoa/groovy-init-jenkins-with-slaves]     Configuring per-project build authenticator"
+  println " [bitmoa/groovy-init-jenkins-with-slaves]         Allowing '${anonymousAuthorizationStrategyDescriptor.getDisplayName()}' strategy"
+  println " [bitmoa/groovy-init-jenkins-with-slaves]         Allowing '${triggeringUsersAuthorizationStrategyDescriptor.getDisplayName()}' strategy"
+  println " [bitmoa/groovy-init-jenkins-with-slaves]         Allowing '${specificUsersAuthorizationStrategyDescriptor.getDisplayName()}' strategy"
   authenticators.add(new ProjectQueueItemAuthenticator(projectStrategy))
 }
-println " [bitnami/groovy-init-jenkins-with-slaves] 'Authorize Project' plugin configuration finished"
+println " [bitmoa/groovy-init-jenkins-with-slaves] 'Authorize Project' plugin configuration finished"
 
 // Configure JNLP port
-println " [bitnami/groovy-init-jenkins-with-slaves] Configuring JNLP port"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Configuring JNLP port"
 jenkins.setSlaveAgentPort({{jnlp_port}})
-println " [bitnami/groovy-init-jenkins-with-slaves] JNLP port is set to '{{jnlp_port}}'"
+println " [bitmoa/groovy-init-jenkins-with-slaves] JNLP port is set to '{{jnlp_port}}'"
 
 // require a crumb issuer
-println " [bitnami/groovy-init-jenkins] Enabling CSRF Protection"
+println " [bitmoa/groovy-init-jenkins] Enabling CSRF Protection"
 jenkins.setCrumbIssuer(new DefaultCrumbIssuer(true));
-println " [bitnami/groovy-init-jenkins] CSRF Protection enabled"
+println " [bitmoa/groovy-init-jenkins] CSRF Protection enabled"
 
 // Set master-slave security
-println " [bitnami/groovy-init-jenkins] Setting master-slave security"
+println " [bitmoa/groovy-init-jenkins] Setting master-slave security"
 jenkins.getInjector().getInstance(AdminWhitelistRule.class).setMasterKillSwitch(false);
-println " [bitnami/groovy-init-jenkins] master-slave set"
+println " [bitmoa/groovy-init-jenkins] master-slave set"
 
 // Set master executors
-println " [bitnami/groovy-init-jenkins] Setting master executors to 0"
+println " [bitmoa/groovy-init-jenkins] Setting master executors to 0"
 jenkins.setNumExecutors(0);
-println " [bitnami/groovy-init-jenkins] master executors set"
+println " [bitmoa/groovy-init-jenkins] master executors set"
 
 jenkins.save()
 
 // Complete wizard
-println " [bitnami/groovy-init-jenkins-with-slaves] Passing wizard"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Passing wizard"
 def wizard = new SetupWizard()
 wizard.init(true)
 wizard.completeSetup()
-println " [bitnami/groovy-init-jenkins-with-slaves] Wizard passed"
+println " [bitmoa/groovy-init-jenkins-with-slaves] Wizard passed"

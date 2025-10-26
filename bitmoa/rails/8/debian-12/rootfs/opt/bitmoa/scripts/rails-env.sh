@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-rails}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -65,7 +65,7 @@ RAILS_SKIP_DB_WAIT="${RAILS_SKIP_DB_WAIT:-"${SKIP_DB_WAIT:-}"}"
 export RAILS_SKIP_DB_WAIT="${RAILS_SKIP_DB_WAIT:-no}"
 RAILS_RETRY_ATTEMPTS="${RAILS_RETRY_ATTEMPTS:-"${RETRY_ATTEMPTS:-}"}"
 export RAILS_RETRY_ATTEMPTS="${RAILS_RETRY_ATTEMPTS:-30}"
-export PATH="${BITNAMI_ROOT_DIR}/ruby/bin:${BITNAMI_ROOT_DIR}/mysql/bin:${BITNAMI_ROOT_DIR}/node/bin:${BITNAMI_ROOT_DIR}/git/bin:${PATH}"
+export PATH="${BITMOA_ROOT_DIR}/ruby/bin:${BITMOA_ROOT_DIR}/mysql/bin:${BITMOA_ROOT_DIR}/node/bin:${BITMOA_ROOT_DIR}/git/bin:${PATH}"
 
 # Database configuration
 RAILS_DATABASE_TYPE="${RAILS_DATABASE_TYPE:-"${DATABASE_TYPE:-}"}"
@@ -78,7 +78,7 @@ RAILS_DATABASE_PORT_NUMBER="${RAILS_DATABASE_PORT_NUMBER:-"${DATABASE_PORT_NUMBE
 export RAILS_DATABASE_PORT_NUMBER="${RAILS_DATABASE_PORT_NUMBER:-3306}"
 export DATABASE_PORT_NUMBER="$RAILS_DATABASE_PORT_NUMBER" # only used during the first initialization
 RAILS_DATABASE_NAME="${RAILS_DATABASE_NAME:-"${DATABASE_NAME:-}"}"
-export RAILS_DATABASE_NAME="${RAILS_DATABASE_NAME:-bitnami_myapp}"
+export RAILS_DATABASE_NAME="${RAILS_DATABASE_NAME:-bitmoa_myapp}"
 export DATABASE_NAME="$RAILS_DATABASE_NAME" # only used during the first initialization
 
 # Custom environment variables may be defined below

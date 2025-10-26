@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libtensorflow-serving.sh
+. /opt/bitmoa/scripts/libtensorflow-serving.sh
 
 # Load tensorflow environment variables
-. /opt/bitnami/scripts/tensorflowserving-env.sh
+. /opt/bitmoa/scripts/tensorflowserving-env.sh
 
 # Ensure tensorflow environment variables are valid
 tensorflow_serving_validate

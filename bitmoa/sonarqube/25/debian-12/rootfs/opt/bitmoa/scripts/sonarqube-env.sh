@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-sonarqube}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -76,10 +76,10 @@ done
 unset sonarqube_env_vars
 
 # Paths
-export SONARQUBE_BASE_DIR="${BITNAMI_ROOT_DIR}/sonarqube"
+export SONARQUBE_BASE_DIR="${BITMOA_ROOT_DIR}/sonarqube"
 export SONARQUBE_DATA_DIR="${SONARQUBE_BASE_DIR}/data"
 export SONARQUBE_EXTENSIONS_DIR="${SONARQUBE_BASE_DIR}/extensions"
-export SONARQUBE_MOUNTED_PROVISIONING_DIR="${SONARQUBE_MOUNTED_PROVISIONING_DIR:-/bitnami/sonarqube-provisioning}"
+export SONARQUBE_MOUNTED_PROVISIONING_DIR="${SONARQUBE_MOUNTED_PROVISIONING_DIR:-/bitmoa/sonarqube-provisioning}"
 export SONARQUBE_CONF_DIR="${SONARQUBE_BASE_DIR}/conf"
 export SONARQUBE_CONF_FILE="${SONARQUBE_CONF_DIR}/sonar.properties"
 export SONARQUBE_LOGS_DIR="${SONARQUBE_BASE_DIR}/logs"
@@ -87,10 +87,10 @@ export SONARQUBE_LOG_FILE="${SONARQUBE_LOGS_DIR}/sonar.log"
 export SONARQUBE_TMP_DIR="${SONARQUBE_BASE_DIR}/temp"
 export SONARQUBE_PID_FILE="${SONARQUBE_BASE_DIR}/pids/SonarQube.pid"
 export SONARQUBE_BIN_DIR="${SONARQUBE_BASE_DIR}/bin/linux-x86-64"
-export PATH="${BITNAMI_ROOT_DIR}/java/bin:${PATH}"
+export PATH="${BITMOA_ROOT_DIR}/java/bin:${PATH}"
 
 # SonarQube persistence configuration
-export SONARQUBE_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/sonarqube"
+export SONARQUBE_VOLUME_DIR="${BITMOA_VOLUME_DIR}/sonarqube"
 export SONARQUBE_DATA_TO_PERSIST="${SONARQUBE_DATA_TO_PERSIST:-${SONARQUBE_DATA_DIR} ${SONARQUBE_EXTENSIONS_DIR}}"
 
 # System users (when running with a privileged user)
@@ -115,7 +115,7 @@ export SONARQUBE_EXTRA_PROPERTIES="${SONARQUBE_EXTRA_PROPERTIES:-}"
 
 # SonarQube credentials
 export SONARQUBE_USERNAME="${SONARQUBE_USERNAME:-admin}" # only used during the first initialization
-export SONARQUBE_PASSWORD="${SONARQUBE_PASSWORD:-bitnami}" # only used during the first initialization
+export SONARQUBE_PASSWORD="${SONARQUBE_PASSWORD:-bitmoa}" # only used during the first initialization
 export SONARQUBE_EMAIL="${SONARQUBE_EMAIL:-user@example.com}" # only used during the first initialization
 
 # SonarQube SMTP credentials
@@ -138,7 +138,7 @@ export SONARQUBE_DATABASE_HOST="${SONARQUBE_DATABASE_HOST:-$SONARQUBE_DEFAULT_DA
 SONARQUBE_DATABASE_PORT_NUMBER="${SONARQUBE_DATABASE_PORT_NUMBER:-"${POSTGRESQL_PORT_NUMBER:-}"}"
 export SONARQUBE_DATABASE_PORT_NUMBER="${SONARQUBE_DATABASE_PORT_NUMBER:-5432}" # only used during the first initialization
 SONARQUBE_DATABASE_NAME="${SONARQUBE_DATABASE_NAME:-"${POSTGRESQL_DATABASE_NAME:-}"}"
-export SONARQUBE_DATABASE_NAME="${SONARQUBE_DATABASE_NAME:-bitnami_sonarqube}" # only used during the first initialization
+export SONARQUBE_DATABASE_NAME="${SONARQUBE_DATABASE_NAME:-bitmoa_sonarqube}" # only used during the first initialization
 SONARQUBE_DATABASE_USER="${SONARQUBE_DATABASE_USER:-"${POSTGRESQL_DATABASE_USER:-}"}"
 SONARQUBE_DATABASE_USER="${SONARQUBE_DATABASE_USER:-"${POSTGRESQL_DATABASE_USERNAME:-}"}"
 export SONARQUBE_DATABASE_USER="${SONARQUBE_DATABASE_USER:-bn_sonarqube}" # only used during the first initialization

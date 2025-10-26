@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run -it --name phpfpm -v /path/to/app:/app bitnami/php-fpm
+docker run -it --name phpfpm -v /path/to/app:/app bitmoa/php-fpm
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,15 +33,15 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ### Deprecation Note (2022-01-21)
 
@@ -57,24 +57,24 @@ The formatting convention for `prod` tags has been changed:
 
 ## Get this image
 
-The recommended way to get the Bitnami PHP-FPM Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/php-fpm).
+The recommended way to get the Bitnami PHP-FPM Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/php-fpm).
 
 ```console
-docker pull bitnami/php-fpm:latest
+docker pull bitmoa/php-fpm:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/php-fpm/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/php-fpm/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/php-fpm:[TAG]
+docker pull bitmoa/php-fpm:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Connecting to other containers
@@ -137,7 +137,7 @@ Docker's linking system uses container ids or names to reference containers. We 
 docker run -it --name phpfpm \
   --network app-tier
   -v /path/to/app:/app \
-  bitnami/php-fpm
+  bitmoa/php-fpm
 ```
 
 or using Docker Compose:
@@ -145,7 +145,7 @@ or using Docker Compose:
 ```yaml
 services:
   phpfpm:
-    image: bitnami/php-fpm:latest
+    image: bitmoa/php-fpm:latest
     networks:
       - app-tier
     volumes:
@@ -156,9 +156,9 @@ services:
 
 ```console
 docker run -it \
-  -v /path/to/server_block.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf \
+  -v /path/to/server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/yourapp.conf \
   --network app-tier \
-  bitnami/nginx
+  bitmoa/nginx
 ```
 
 or using Docker Compose:
@@ -166,7 +166,7 @@ or using Docker Compose:
 ```yaml
 services:
   nginx:
-    image: bitnami/nginx:latest
+    image: bitmoa/nginx:latest
     depends_on:
       - phpfpm
     networks:
@@ -175,7 +175,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - /path/to/server_block.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf
+      - /path/to/server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/yourapp.conf
 ```
 
 ## PHP runtime
@@ -187,7 +187,7 @@ Since this image bundles a PHP runtime, you may want to make use of PHP outside 
 PHP provides a REPL where you can interactively test and try things out in PHP.
 
 ```console
-docker run -it --name phpfpm bitnami/php-fpm php -a
+docker run -it --name phpfpm bitmoa/php-fpm php -a
 ```
 
 **Further Reading:**
@@ -199,7 +199,7 @@ docker run -it --name phpfpm bitnami/php-fpm php -a
 The default work directory for the PHP-FPM image is `/app`. You can mount a folder from your host here that includes your PHP script, and run it normally using the `php` command.
 
 ```console
-docker run -it --name php-fpm -v /path/to/app:/app bitnami/php-fpm \
+docker run -it --name php-fpm -v /path/to/app:/app bitmoa/php-fpm \
   php script.php
 ```
 
@@ -225,7 +225,7 @@ docker run -it --name php-fpm -v /path/to/app:/app bitnami/php-fpm \
 
 | Name                                          | Description                                                                                                 | Value                             |
 |-----------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| `PHP_BASE_DIR`                                | PHP-FPM installation directory.                                                                             | `${BITNAMI_ROOT_DIR}/php`         |
+| `PHP_BASE_DIR`                                | PHP-FPM installation directory.                                                                             | `${BITMOA_ROOT_DIR}/php`         |
 | `PHP_BIN_DIR`                                 | PHP directory for binary executables.                                                                       | `${PHP_BASE_DIR}/bin`             |
 | `PHP_CONF_DIR`                                | PHP configuration directory.                                                                                | `${PHP_BASE_DIR}/etc`             |
 | `PHP_DEFAULT_CONF_DIR`                        | PHP configuration directory.                                                                                | `${PHP_BASE_DIR}/etc.default`     |
@@ -254,17 +254,17 @@ You can mount a custom config file from your host to edit the default configurat
 Run the PHP-FPM image, mounting a file from your host.
 
 ```console
-docker run --name phpfpm -v /path/to/php-fpm.conf:/opt/bitnami/php/etc/php-fpm.conf bitnami/php-fpm
+docker run --name phpfpm -v /path/to/php-fpm.conf:/opt/bitmoa/php/etc/php-fpm.conf bitmoa/php-fpm
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/php-fpm/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/php-fpm/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   phpfpm:
   ...
     volumes:
-      - /path/to/php-fpm.conf:/opt/bitnami/php/etc/php-fpm.conf
+      - /path/to/php-fpm.conf:/opt/bitmoa/php/etc/php-fpm.conf
   ...
 ```
 
@@ -292,7 +292,7 @@ docker-compose restart phpfpm
 
 ### Add additional .ini files
 
-PHP has been configured at compile time to scan the `/opt/bitnami/php/etc/conf.d/` folder for extra .ini configuration files so it is also possible to mount your customizations there.
+PHP has been configured at compile time to scan the `/opt/bitmoa/php/etc/conf.d/` folder for extra .ini configuration files so it is also possible to mount your customizations there.
 
 Multiple files are loaded in alphabetical order. It is common to have a file per extension and use a numeric prefix to guarantee an order loading the configuration.
 
@@ -309,7 +309,7 @@ In order to override the default `max_file_uploads` settings you can do the foll
 2. Run the php-fpm container mounting the custom file.
 
     ```console
-    docker run -it -v /path/to/custom.ini:/opt/bitnami/php/etc/conf.d/custom.ini bitnami/php-fpm php -i | grep max_file_uploads
+    docker run -it -v /path/to/custom.ini:/opt/bitmoa/php/etc/conf.d/custom.ini bitmoa/php-fpm php -i | grep max_file_uploads
 
     ```
 
@@ -317,7 +317,7 @@ In order to override the default `max_file_uploads` settings you can do the foll
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami PHP-FPM Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami PHP-FPM Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -348,11 +348,11 @@ Bitnami provides up-to-date versions of PHP-FPM, including security patches, soo
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/php-fpm:latest
+docker pull bitmoa/php-fpm:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/php-fpm:latest`.
+`bitmoa/php-fpm:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -393,7 +393,7 @@ docker-compose rm -v phpfpm
 Re-create your container from the new image.
 
 ```console
-docker run --name phpfpm bitnami/php-fpm:latest
+docker run --name phpfpm bitmoa/php-fpm:latest
 ```
 
 or using Docker Compose:
@@ -404,18 +404,18 @@ docker-compose up phpfpm
 
 ## Useful Links
 
-- [Create An AMP Development Environment With Bitnami Containers](https://docs.bitnami.com/containers/how-to/create-amp-environment-containers/)
-- [Create An EMP Development Environment With Bitnami Containers](https://docs.bitnami.com/containers/how-to/create-emp-environment-containers/)
+- [Create An AMP Development Environment With Bitnami Containers](https://docs.bitmoa.com/containers/how-to/create-amp-environment-containers/)
+- [Create An EMP Development Environment With Bitnami Containers](https://docs.bitmoa.com/containers/how-to/create-emp-environment-containers/)
 
 ## Notable Changes
 
 ### 7.2.3-r2, 7.1.15-r2, 7.0.28-r2 and 5.6.34-r2 (2018-03-13)
 
-- PHP has been configured at compile time to scan the `/opt/bitnami/php/etc/conf.d/` folder for extra .ini configuration files.
+- PHP has been configured at compile time to scan the `/opt/bitmoa/php/etc/conf.d/` folder for extra .ini configuration files.
 
 ### 7.0.6-r0 (2016-05-17)
 
-- All volumes have been merged at `/bitnami/php-fpm`. Now you only need to mount a single volume at `/bitnami/php-fpm` for persistence.
+- All volumes have been merged at `/bitmoa/php-fpm`. Now you only need to mount a single volume at `/bitmoa/php-fpm` for persistence.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 ### 5.5.30-2 (2015-12-07)
@@ -424,7 +424,7 @@ docker-compose up phpfpm
 
 ### 5.5.30-0-r01 (2015-11-10)
 
-- `php.ini` is now exposed in the volume mounted at `/bitnami/php-fpm/conf/` allowing users to change the defaults as per their requirements.
+- `php.ini` is now exposed in the volume mounted at `/bitmoa/php-fpm/conf/` allowing users to change the defaults as per their requirements.
 
 ### 5.5.30-0 (2015-10-06)
 
@@ -434,15 +434,15 @@ docker-compose up phpfpm
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

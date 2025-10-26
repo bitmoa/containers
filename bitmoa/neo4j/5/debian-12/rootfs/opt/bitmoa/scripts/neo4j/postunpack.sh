@@ -10,15 +10,15 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Neo4j environment
-. /opt/bitnami/scripts/neo4j-env.sh
+. /opt/bitmoa/scripts/neo4j-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libneo4j.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libneo4j.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export JAVA_HOME="/opt/bitnami/java"
+export JAVA_HOME="/opt/bitmoa/java"
 
 # Ensure the Neo4j base directory exists and has proper permissions
 info "Configuring file permissions for Neo4j"

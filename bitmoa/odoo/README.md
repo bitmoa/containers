@@ -10,7 +10,7 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name odoo bitnami/odoo:latest
+docker run --name odoo bitmoa/odoo:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure d
@@ -18,14 +18,14 @@ eployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -36,46 +36,46 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Odoo in Kubernetes?
 
 Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the
-[Bitnami Odoo Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/odoo).
+[Bitnami Odoo Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/odoo).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Odoo Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/odoo).
+The recommended way to get the Bitnami Odoo Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/odoo).
 
 ```console
-docker pull bitnami/odoo:latest
+docker pull bitmoa/odoo:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/odoo/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/odoo/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/odoo:[TAG]
+docker pull bitmoa/odoo:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-Odoo requires access to a PostgreSQL database to store information. We'll use the [Bitnami Docker Image for PostgreSQL](https://github.com/bitnami/containers/tree/main/bitnami/postgresql) for the database requirements.
+Odoo requires access to a PostgreSQL database to store information. We'll use the [Bitnami Docker Image for PostgreSQL](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -91,10 +91,10 @@ docker network create odoo-network
 $ docker volume create --name postgresql_data
 docker run -d --name postgresql \
   --env ALLOW_EMPTY_PASSWORD=yes \
-  --env POSTGRESQL_PASSWORD=bitnami \
+  --env POSTGRESQL_PASSWORD=bitmoa \
   --network odoo-network \
-  --volume postgresql_data:/bitnami/postgresql \
-  bitnami/postgresql:latest
+  --volume postgresql_data:/bitmoa/postgresql \
+  bitmoa/postgresql:latest
 ```
 
 #### Step 3: Create volumes for Odoo persistence and launch the container
@@ -104,10 +104,10 @@ $ docker volume create --name odoo_data
 docker run -d --name odoo \
   -p 80:8069 \
   --env ALLOW_EMPTY_PASSWORD=yes \
-  --env ODOO_DATABASE_ADMIN_PASSWORD=bitnami \
+  --env ODOO_DATABASE_ADMIN_PASSWORD=bitmoa \
   --network odoo-network \
-  --volume odoo_data:/bitnami/odoo \
-  bitnami/odoo:latest
+  --volume odoo_data:/bitmoa/odoo \
+  bitmoa/odoo:latest
 ```
 
 Access your application at `http://your-ip/`
@@ -115,19 +115,19 @@ Access your application at `http://your-ip/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/odoo/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/odoo/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/odoo).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/odoo).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/odoo` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the PostgreSQL data](https://github.com/bitnami/containers/tree/main/bitnami/postgresql#persisting-your-database).
+For persistence you should mount a directory at the `/bitmoa/odoo` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the PostgreSQL data](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql#persisting-your-database).
 
 The above examples define the Docker volumes named `postgresql_data` and `odoo_data`. The Odoo application state will persist as long as volumes are not removed.
 
@@ -135,20 +135,20 @@ To avoid inadvertent removal of volumes, you can [mount host directories as data
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/odoo/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/odoo/docker-compose.yml) file present in this repository:
 
 ```diff
    postgresql:
      ...
      volumes:
--      - postgresql_data:/bitnami/postgresql
-+      - /path/to/postgresql-persistence:/bitnami/postgresql
+-      - postgresql_data:/bitmoa/postgresql
++      - /path/to/postgresql-persistence:/bitmoa/postgresql
    ...
    odoo:
      ...
      volumes:
--      - odoo_data:/bitnami/odoo
-+      - /path/to/odoo-persistence:/bitnami/odoo
+-      - odoo_data:/bitmoa/odoo
++      - /path/to/odoo-persistence:/bitmoa/odoo
    ...
 -volumes:
 -  postgresql_data:
@@ -172,10 +172,10 @@ docker network create odoo-network
 ```console
 docker run -d --name postgresql \
   --env ALLOW_EMPTY_PASSWORD=yes \
-  --env POSTGRESQL_PASSWORD=bitnami \
+  --env POSTGRESQL_PASSWORD=bitmoa \
   --network odoo-network \
-  --volume /path/to/postgresql-persistence:/bitnami/postgresql \
-  bitnami/postgresql:latest
+  --volume /path/to/postgresql-persistence:/bitmoa/postgresql \
+  bitmoa/postgresql:latest
 ```
 
 #### Step 3. Create the Odoo container with host volumes
@@ -184,10 +184,10 @@ docker run -d --name postgresql \
 docker run -d --name odoo \
   -p 80:8069 \
   --env ALLOW_EMPTY_PASSWORD=yes \
-  --env ODOO_DATABASE_ADMIN_PASSWORD=bitnami \
+  --env ODOO_DATABASE_ADMIN_PASSWORD=bitmoa \
   --network odoo-network \
-  --volume /path/to/odoo-persistence:/bitnami/odoo \
-  bitnami/odoo:latest
+  --volume /path/to/odoo-persistence:/bitmoa/odoo \
+  bitmoa/odoo:latest
 ```
 
 ## Configuration
@@ -206,7 +206,7 @@ docker run -d --name odoo \
 | `ODOO_LOAD_DEMO_DATA`          | Whether to load demo data.                                                                                                 | `no`                                                   |
 | `ODOO_LIST_DB`                 | Whether the database selector is available.                                                                                | `no`                                                   |
 | `ODOO_EMAIL`                   | Odoo user e-mail address.                                                                                                  | `user@example.com`                                     |
-| `ODOO_PASSWORD`                | Odoo user password.                                                                                                        | `bitnami`                                              |
+| `ODOO_PASSWORD`                | Odoo user password.                                                                                                        | `bitmoa`                                              |
 | `ODOO_SMTP_HOST`               | Odoo SMTP server host.                                                                                                     | `nil`                                                  |
 | `ODOO_SMTP_PORT_NUMBER`        | Odoo SMTP server port number.                                                                                              | `nil`                                                  |
 | `ODOO_SMTP_USER`               | Odoo SMTP server user.                                                                                                     | `nil`                                                  |
@@ -214,7 +214,7 @@ docker run -d --name odoo \
 | `ODOO_SMTP_PROTOCOL`           | Odoo SMTP server protocol to use.                                                                                          | `nil`                                                  |
 | `ODOO_DATABASE_HOST`           | Database server host.                                                                                                      | `$ODOO_DEFAULT_DATABASE_HOST`                          |
 | `ODOO_DATABASE_PORT_NUMBER`    | Database server port.                                                                                                      | `5432`                                                 |
-| `ODOO_DATABASE_NAME`           | Database name.                                                                                                             | `bitnami_odoo`                                         |
+| `ODOO_DATABASE_NAME`           | Database name.                                                                                                             | `bitmoa_odoo`                                         |
 | `ODOO_DATABASE_USER`           | Database user name.                                                                                                        | `bn_odoo`                                              |
 | `ODOO_DATABASE_PASSWORD`       | Database user password.                                                                                                    | `nil`                                                  |
 | `ODOO_DATABASE_FILTER`         | Database filter                                                                                                            | `nil`                                                  |
@@ -223,7 +223,7 @@ docker run -d --name odoo \
 
 | Name                         | Description                                     | Value                                         |
 |------------------------------|-------------------------------------------------|-----------------------------------------------|
-| `ODOO_BASE_DIR`              | Odoo installation directory.                    | `${BITNAMI_ROOT_DIR}/odoo`                    |
+| `ODOO_BASE_DIR`              | Odoo installation directory.                    | `${BITMOA_ROOT_DIR}/odoo`                    |
 | `ODOO_BIN_DIR`               | Odoo directory for binary executables.          | `${ODOO_BASE_DIR}/bin`                        |
 | `ODOO_CONF_DIR`              | Odoo directory for configuration files.         | `${ODOO_BASE_DIR}/conf`                       |
 | `ODOO_CONF_FILE`             | Configuration file for Odoo.                    | `${ODOO_CONF_DIR}/odoo.conf`                  |
@@ -233,14 +233,14 @@ docker run -d --name odoo \
 | `ODOO_PID_FILE`              | PID file for Odoo.                              | `${ODOO_TMP_DIR}/odoo.pid`                    |
 | `ODOO_LOGS_DIR`              | Odoo directory for log files.                   | `${ODOO_BASE_DIR}/log`                        |
 | `ODOO_LOG_FILE`              | Log file for Odoo.                              | `${ODOO_LOGS_DIR}/odoo-server.log`            |
-| `ODOO_VOLUME_DIR`            | Odoo directory for mounted configuration files. | `${BITNAMI_VOLUME_DIR}/odoo`                  |
+| `ODOO_VOLUME_DIR`            | Odoo directory for mounted configuration files. | `${BITMOA_VOLUME_DIR}/odoo`                  |
 | `ODOO_DAEMON_USER`           | Odoo system user.                               | `odoo`                                        |
 | `ODOO_DAEMON_GROUP`          | Odoo system group.                              | `odoo`                                        |
 | `ODOO_DEFAULT_DATABASE_HOST` | Default database server host.                   | `postgresql`                                  |
 
 When you start the Odoo image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/odoo/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/odoo/docker-compose.yml) file present in this repository:
 
     ```yaml
     odoo:
@@ -256,8 +256,8 @@ When you start the Odoo image, you can adjust the configuration of the instance 
     $ docker run -d --name odoo -p 80:8069 \
       --env ODOO_PASSWORD=my_password \
       --network odoo-tier \
-      --volume /path/to/odoo-persistence:/bitnami \
-      bitnami/odoo:latest
+      --volume /path/to/odoo-persistence:/bitmoa \
+      bitmoa/odoo:latest
     ```
 
 ### Examples
@@ -266,7 +266,7 @@ When you start the Odoo image, you can adjust the configuration of the instance 
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/odoo/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/odoo/docker-compose.yml) file present in this repository:
 
     ```yaml
       odoo:
@@ -289,15 +289,15 @@ This would be an example of SMTP configuration using a Gmail account:
       --env ODOO_SMTP_USER=your_email@gmail.com \
       --env ODOO_SMTP_PASSWORD=your_password \
       --network odoo-tier \
-      --volume /path/to/odoo-persistence:/bitnami \
-      bitnami/odoo:latest
+      --volume /path/to/odoo-persistence:/bitmoa \
+      bitmoa/odoo:latest
     ```
 
 #### Connect Odoo container to an existing database
 
 The Bitnami Odoo container supports connecting the Odoo application to an external database. This would be an example of using an external database for Odoo.
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/odoo/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/odoo/docker-compose.yml) file present in this repository:
 
     ```diff
        odoo:
@@ -320,15 +320,15 @@ The Bitnami Odoo container supports connecting the Odoo application to an extern
       --env ODOO_DATABASE_HOST=mariadb_host \
       --env ODOO_DATABASE_PORT_NUMBER=3306 \
       --env ODOO_DATABASE_ADMIN_PASSWORD=odoo_password \
-      --volume odoo_data:/bitnami/odoo \
-      bitnami/odoo:latest
+      --volume odoo_data:/bitmoa/odoo \
+      bitmoa/odoo:latest
     ```
 
 In case the database already contains data from a previous Odoo installation, you need to set the variable `ODOO_SKIP_BOOTSTRAP` to `yes`. Otherwise, the container would execute the installation wizard and could modify the existing data in the database. Note that, when setting `ODOO_SKIP_BOOTSTRAP` to `yes`, values for environment variables such as `ODOO_EMAIL` or `ODOO_PASSWORD` will be ignored.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Odoo Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Odoo Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -372,7 +372,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/odoo-backups:/backups --volumes-from odoo busybox \
-  cp -a /bitnami/odoo /backups/latest
+  cp -a /bitmoa/odoo /backups/latest
 ```
 
 ### Restoring a backup
@@ -384,9 +384,9 @@ For the PostgreSQL database container:
 ```diff
  $ docker run -d --name postgresql \
    ...
--  --volume /path/to/postgresql-persistence:/bitnami/postgresql \
-+  --volume /path/to/postgresql-backups/latest:/bitnami/postgresql \
-   bitnami/postgresql:latest
+-  --volume /path/to/postgresql-persistence:/bitmoa/postgresql \
++  --volume /path/to/postgresql-backups/latest:/bitmoa/postgresql \
+   bitmoa/postgresql:latest
 ```
 
 For the Odoo container:
@@ -394,21 +394,21 @@ For the Odoo container:
 ```diff
  $ docker run -d --name odoo \
    ...
--  --volume /path/to/odoo-persistence:/bitnami/odoo \
-+  --volume /path/to/odoo-backups/latest:/bitnami/odoo \
-   bitnami/odoo:latest
+-  --volume /path/to/odoo-persistence:/bitmoa/odoo \
++  --volume /path/to/odoo-backups/latest:/bitmoa/odoo \
+   bitmoa/odoo:latest
 ```
 
 ### Upgrade this image
 
-Bitnami provides up-to-date versions of PostgreSQL and Odoo, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Odoo container. For the PostgreSQL upgrade see: <https://github.com/bitnami/containers/tree/main/bitnami/odoo#user-content-upgrade-this-image>
+Bitnami provides up-to-date versions of PostgreSQL and Odoo, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Odoo container. For the PostgreSQL upgrade see: <https://github.com/bitmoa/containers/tree/main/bitmoa/odoo#user-content-upgrade-this-image>
 
-The `bitnami/odoo:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitnami/odoo:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitnami/odoo/tags/).
+The `bitmoa/odoo:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitmoa/odoo:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitmoa/odoo/tags/).
 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/odoo:latest
+docker pull bitmoa/odoo:latest
 ```
 
 #### Step 2: Stop the running container
@@ -452,11 +452,11 @@ docker-compose up -d
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

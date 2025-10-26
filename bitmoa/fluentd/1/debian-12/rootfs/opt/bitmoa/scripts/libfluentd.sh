@@ -19,10 +19,10 @@ fluentd_env() {
     cat <<"EOF"
 # Bitnami debug
 export MODULE=fluentd
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # Paths
-export FLUENTD_BASE_DIR="/opt/bitnami/fluentd"
+export FLUENTD_BASE_DIR="/opt/bitmoa/fluentd"
 export FLUENTD_BIN_DIR="${FLUENTD_BASE_DIR}/bin"
 export FLUENTD_CONF_DIR="${FLUENTD_BASE_DIR}/conf"
 export FLUENTD_LOG_DIR="${FLUENTD_BASE_DIR}/logs"

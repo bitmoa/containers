@@ -10,15 +10,15 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load phpMyAdmin environment
-. /opt/bitnami/scripts/phpmyadmin-env.sh
+. /opt/bitmoa/scripts/phpmyadmin-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libphpmyadmin.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libphpmyadmin.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load web server environment and functions (after phpMyAdmin environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # Ensure phpMyAdmin environment variables are valid
 phpmyadmin_validate

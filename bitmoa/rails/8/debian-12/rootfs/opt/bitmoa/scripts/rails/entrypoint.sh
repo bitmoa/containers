@@ -10,17 +10,17 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load Rails environment
-. /opt/bitnami/scripts/rails-env.sh
+. /opt/bitmoa/scripts/rails-env.sh
 
 print_welcome_page
 
 if [[ "$*" == "bundle exec "* ]]; then
     info "** Running Rails setup **"
-    /opt/bitnami/scripts/rails/setup.sh
+    /opt/bitmoa/scripts/rails/setup.sh
     info "** Rails setup finished! **"
 fi
 

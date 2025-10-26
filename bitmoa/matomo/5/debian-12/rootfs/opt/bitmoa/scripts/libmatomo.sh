@@ -7,20 +7,20 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libmysqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libmysqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libmysql.sh ]]; then
-    . /opt/bitnami/scripts/libmysql.sh
-elif [[ -f /opt/bitnami/scripts/libmariadb.sh ]]; then
-    . /opt/bitnami/scripts/libmariadb.sh
+if [[ -f /opt/bitmoa/scripts/libmysqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libmysqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libmysql.sh ]]; then
+    . /opt/bitmoa/scripts/libmysql.sh
+elif [[ -f /opt/bitmoa/scripts/libmariadb.sh ]]; then
+    . /opt/bitmoa/scripts/libmariadb.sh
 fi
 
 ########################
@@ -106,7 +106,7 @@ matomo_initialize() {
     local db_host db_port db_name db_user db_pass
     local -r app_name="matomo"
     if ! is_app_initialized "$app_name"; then
-        # Ensure Matomo persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure Matomo persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring Matomo directories exist"
         ensure_dir_exists "$MATOMO_VOLUME_DIR"
         # Use daemon:root ownership for compatibility when running as a non-root user

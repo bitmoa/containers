@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libexpress.sh
+. /opt/bitmoa/scripts/libexpress.sh
 
 # Load Express environment
-. /opt/bitnami/scripts/express-env.sh
+. /opt/bitmoa/scripts/express-env.sh
 
 # Ensure Express environment variables are valid
 express_validate

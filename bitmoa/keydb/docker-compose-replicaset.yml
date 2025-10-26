@@ -3,7 +3,7 @@
 
 services:
   keydb-primary:
-    image: docker.io/bitnami/keydb:6
+    image: ghcr.io/bitmoa/keydb:6
     ports:
       - '6379'
     environment:
@@ -11,10 +11,10 @@ services:
       - KEYDB_PASSWORD=my_password
       - KEYDB_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
     volumes:
-      - 'keydb_data:/bitnami/keydb/data'
+      - 'keydb_data:/bitmoa/keydb/data'
 
   keydb-secondary:
-    image: docker.io/bitnami/keydb:6
+    image: ghcr.io/bitmoa/keydb:6
     ports:
       - '6379'
     depends_on:

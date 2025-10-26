@@ -3,16 +3,16 @@
 
 services:
   percona-mysql:
-    image: docker.io/bitnami/percona-mysql:8.4
+    image: ghcr.io/bitmoa/percona-mysql:8.4
     ports:
       - '3306:3306'
     volumes:
-      - 'mysql_data:/bitnami/mysql/data'
+      - 'mysql_data:/bitmoa/mysql/data'
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
     healthcheck:
-      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      test: ['CMD', '/opt/bitmoa/scripts/mysql/healthcheck.sh']
       interval: 15s
       timeout: 5s
       retries: 6

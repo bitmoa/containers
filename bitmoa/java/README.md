@@ -10,25 +10,25 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run -it --name java bitnami/java
+docker run -it --name java bitmoa/java
 ```
 
 ### Docker Compose
 
 ```console
-docker run --name java bitnami/java:latest
+docker run --name java bitmoa/java:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -39,15 +39,15 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ### Deprecation Note (2022-01-21)
 
@@ -63,24 +63,24 @@ The formatting convention for `prod` tags has been changed:
 
 ## Get this image
 
-The recommended way to get the Bitnami Java Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/java).
+The recommended way to get the Bitnami Java Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/java).
 
 ```console
-docker pull bitnami/java:latest
+docker pull bitmoa/java:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/java/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/java/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/java:[TAG]
+docker pull bitmoa/java:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Configuration
@@ -90,7 +90,7 @@ docker build -t bitnami/APP:latest .
 The default work directory for the Java image is `/app`. You can mount a folder from your host here that includes your Java jar or war, and run it normally using the `java` command.
 
 ```console
-docker run -it --name java -v /path/to/app:/app bitnami/java:latest \
+docker run -it --name java -v /path/to/app:/app bitmoa/java:latest \
   java -jar package.jar
 ```
 
@@ -98,7 +98,7 @@ or using Docker Compose:
 
 ```yaml
 java:
-  image: bitnami/java:latest
+  image: bitmoa/java:latest
   command: "java -jar package.jar"
   volumes:
     - .:/app
@@ -110,24 +110,24 @@ java:
 
 ## Replace the default truststore using a custom base image
 
-In case you are replacing the default [minideb](https://github.com/bitnami/minideb) base image with a custom base image (based on Debian), it is possible to replace the default truststore located in the `/opt/bitnami/java/lib/security` folder. This is done by setting the `JAVA_EXTRA_SECURITY_DIR` docker build ARG variable, which needs to point to a location that contains a *cacerts* file that would substitute the originally bundled truststore. In the following example we will use a minideb fork that contains a custom *cacerts* file in the */bitnami/java/extra-security* folder:
+In case you are replacing the default [minideb](https://github.com/bitmoa/minideb) base image with a custom base image (based on Debian), it is possible to replace the default truststore located in the `/opt/bitmoa/java/lib/security` folder. This is done by setting the `JAVA_EXTRA_SECURITY_DIR` docker build ARG variable, which needs to point to a location that contains a *cacerts* file that would substitute the originally bundled truststore. In the following example we will use a minideb fork that contains a custom *cacerts* file in the */bitmoa/java/extra-security* folder:
 
-- In the Dockerfile, replace `FROM docker.io/bitnami/minideb:latest` to use a custom image, defined with the `MYJAVAFORK:TAG` placeholder:
+- In the Dockerfile, replace `FROM ghcr.io/bitmoa/minideb:latest` to use a custom image, defined with the `MYJAVAFORK:TAG` placeholder:
 
 ```diff
-- FROM bitnami/minideb:latest
+- FROM bitmoa/minideb:latest
 + FROM MYFORK:TAG
 ```
 
 - Run `docker build` setting the value of `JAVA_EXTRA_SECURITY_DIR`. Remember to replace the `MYJAVAFORK:TAG` placeholder.
 
 ```console
-docker build --build-arg JAVA_EXTRA_SECURITY_DIR=/bitnami/java/extra-security -t MYJAVAFORK:TAG .
+docker build --build-arg JAVA_EXTRA_SECURITY_DIR=/bitmoa/java/extra-security -t MYJAVAFORK:TAG .
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Java Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Java Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -140,10 +140,10 @@ Bitnami provides up-to-date versions of Java, including security patches, soon a
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/java:latest
+docker pull bitmoa/java:latest
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/java:latest`.
+or if you're using Docker Compose, update the value of the image property to `bitmoa/java:latest`.
 
 #### Step 2: Remove the currently running container
 
@@ -162,7 +162,7 @@ docker-compose rm -v java
 Re-create your container from the new image.
 
 ```console
-docker run --name java bitnami/java:latest
+docker run --name java bitmoa/java:latest
 ```
 
 or using Docker Compose:
@@ -181,15 +181,15 @@ docker-compose up java
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

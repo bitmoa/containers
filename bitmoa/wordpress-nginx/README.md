@@ -9,21 +9,21 @@
 ## TL;DR
 
 ```console
-docker run --name wordpress-nginx bitnami/wordpress-nginx:latest
+docker run --name wordpress-nginx bitmoa/wordpress-nginx:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -34,7 +34,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -44,35 +44,35 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami WordPress with NGINX Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/wordpress-nginx).
+The recommended way to get the Bitnami WordPress with NGINX Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/wordpress-nginx).
 
 ```console
-docker pull bitnami/wordpress-nginx:latest
+docker pull bitmoa/wordpress-nginx:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/wordpress-nginx/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/wordpress-nginx/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/wordpress-nginx:[TAG]
+docker pull bitmoa/wordpress-nginx:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-WordPress requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitnami/containers/tree/main/bitnami/mariadb) for the database requirements.
+WordPress requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -89,11 +89,11 @@ $ docker volume create --name mariadb_data
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_wordpress \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_wordpress \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_wordpress \
   --network wordpress-network \
-  --volume mariadb_data:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume mariadb_data:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3: Create volumes for WordPress persistence and launch the container
@@ -104,11 +104,11 @@ docker run -d --name wordpress \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env WORDPRESS_DATABASE_USER=bn_wordpress \
-  --env WORDPRESS_DATABASE_PASSWORD=bitnami \
-  --env WORDPRESS_DATABASE_NAME=bitnami_wordpress \
+  --env WORDPRESS_DATABASE_PASSWORD=bitmoa \
+  --env WORDPRESS_DATABASE_NAME=bitmoa_wordpress \
   --network wordpress-network \
-  --volume wordpress_data:/bitnami/wordpress \
-  bitnami/wordpress-nginx:latest
+  --volume wordpress_data:/bitmoa/wordpress \
+  bitmoa/wordpress-nginx:latest
 ```
 
 Access your application at `http://your-ip/`
@@ -116,19 +116,19 @@ Access your application at `http://your-ip/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/wordpress-nginx/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/wordpress-nginx/docker-compose.yml > docker-compose.yml
 docker-compose up
 ```
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/wordpress` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#persisting-your-database).
+For persistence you should mount a directory at the `/bitmoa/wordpress` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
 The above examples define the Docker volumes named `mariadb_data` and `wordpress_data`. The WordPress application state will persist as long as volumes are not removed.
 
@@ -136,20 +136,20 @@ To avoid inadvertent removal of volumes, you can [mount host directories as data
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/wordpress-nginx/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress-nginx/docker-compose.yml) file present in this repository:
 
 ```diff
    mariadb:
      ...
      volumes:
--      - mariadb_data:/bitnami/mariadb
-+      - /path/to/mariadb-persistence:/bitnami/mariadb
+-      - mariadb_data:/bitmoa/mariadb
++      - /path/to/mariadb-persistence:/bitmoa/mariadb
    ...
    wordpress:
       ...
      volumes:
--      - wordpress_data:/bitnami/wordpress
-+      - /path/to/wordpress-persistence:/bitnami/wordpress
+-      - wordpress_data:/bitmoa/wordpress
++      - /path/to/wordpress-persistence:/bitmoa/wordpress
    ...
 -volumes:
 -  mariadb_data:
@@ -174,11 +174,11 @@ docker network create wordpress-network
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_wordpress \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_wordpress \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_wordpress \
   --network wordpress-network \
-  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 > NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
@@ -190,11 +190,11 @@ docker run -d --name wordpress \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env WORDPRESS_DATABASE_USER=bn_wordpress \
-  --env WORDPRESS_DATABASE_PASSWORD=bitnami \
-  --env WORDPRESS_DATABASE_NAME=bitnami_wordpress \
+  --env WORDPRESS_DATABASE_PASSWORD=bitmoa \
+  --env WORDPRESS_DATABASE_NAME=bitmoa_wordpress \
   --network wordpress-network \
-  --volume /path/to/wordpress-persistence:/bitnami/wordpress \
-  bitnami/wordpress-nginx:latest
+  --volume /path/to/wordpress-persistence:/bitmoa/wordpress \
+  bitmoa/wordpress-nginx:latest
 ```
 
 > NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
@@ -211,8 +211,8 @@ docker run -d --name wordpress \
 | `WORDPRESS_ENABLE_HTTPS`                         | Whether to enable HTTPS for WordPress by default.                                                                                                                                                                                                  | `no`                                             |
 | `WORDPRESS_BLOG_NAME`                            | WordPress blog name.                                                                                                                                                                                                                               | `"User's blog"`                                  |
 | `WORDPRESS_SCHEME`                               | Scheme to generate application URLs. Deprecated by `WORDPRESS_ENABLE_HTTPS`.                                                                                                                                                                       | `http`                                           |
-| `WORDPRESS_HTACCESS_OVERRIDE_NONE`               | Set the Apache `AllowOverride` variable to `None`. All the default directives will be loaded from `/opt/bitnami/wordpress/wordpress-htaccess.conf`.                                                                                                | `yes`                                            |
-| `WORDPRESS_ENABLE_HTACCESS_PERSISTENCE`          | Persist the custom changes of the htaccess. It depends on the value of `WORDPRESS_HTACCESS_OVERRIDE_NONE`, when `yes` it will persist `/opt/bitnami/wordpress/wordpress-htaccess.conf` if `no` it will persist `/opt/bitnami/wordpress/.htaccess`. | `no`                                             |
+| `WORDPRESS_HTACCESS_OVERRIDE_NONE`               | Set the Apache `AllowOverride` variable to `None`. All the default directives will be loaded from `/opt/bitmoa/wordpress/wordpress-htaccess.conf`.                                                                                                | `yes`                                            |
+| `WORDPRESS_ENABLE_HTACCESS_PERSISTENCE`          | Persist the custom changes of the htaccess. It depends on the value of `WORDPRESS_HTACCESS_OVERRIDE_NONE`, when `yes` it will persist `/opt/bitmoa/wordpress/wordpress-htaccess.conf` if `no` it will persist `/opt/bitmoa/wordpress/.htaccess`. | `no`                                             |
 | `WORDPRESS_RESET_DATA_PERMISSIONS`               | Force resetting ownership/permissions on persisted data when initializing, otherwise it assumes the ownership/permissions are correct. Ignored when running as non-root.                                                                           | `no`                                             |
 | `WORDPRESS_TABLE_PREFIX`                         | Table prefix to use in WordPress.                                                                                                                                                                                                                  | `wp_`                                            |
 | `WORDPRESS_PLUGINS`                              | List of WordPress plugins to install and activate, separated via commas. Can also be set to `all` to activate all currently installed plugins, or `none` to skip.                                                                                  | `none`                                           |
@@ -232,7 +232,7 @@ docker run -d --name wordpress \
 | `WORDPRESS_ENABLE_REVERSE_PROXY`                 | Enable WordPress support for reverse proxy headers                                                                                                                                                                                                 | `no`                                             |
 | `WORDPRESS_ENABLE_XML_RPC`                       | Enable the WordPress XML-RPC endpoint                                                                                                                                                                                                              | `no`                                             |
 | `WORDPRESS_USERNAME`                             | WordPress user name.                                                                                                                                                                                                                               | `user`                                           |
-| `WORDPRESS_PASSWORD`                             | WordPress user password.                                                                                                                                                                                                                           | `bitnami`                                        |
+| `WORDPRESS_PASSWORD`                             | WordPress user password.                                                                                                                                                                                                                           | `bitmoa`                                        |
 | `WORDPRESS_EMAIL`                                | WordPress user e-mail address.                                                                                                                                                                                                                     | `user@example.com`                               |
 | `WORDPRESS_FIRST_NAME`                           | WordPress user first name.                                                                                                                                                                                                                         | `UserName`                                       |
 | `WORDPRESS_LAST_NAME`                            | WordPress user last name.                                                                                                                                                                                                                          | `LastName`                                       |
@@ -252,7 +252,7 @@ docker run -d --name wordpress \
 | `WORDPRESS_SMTP_PROTOCOL`                        | WordPress SMTP server protocol to use.                                                                                                                                                                                                             | `nil`                                            |
 | `WORDPRESS_DATABASE_HOST`                        | Database server host.                                                                                                                                                                                                                              | `$WORDPRESS_DEFAULT_DATABASE_HOST`               |
 | `WORDPRESS_DATABASE_PORT_NUMBER`                 | Database server port.                                                                                                                                                                                                                              | `3306`                                           |
-| `WORDPRESS_DATABASE_NAME`                        | Database name.                                                                                                                                                                                                                                     | `bitnami_wordpress`                              |
+| `WORDPRESS_DATABASE_NAME`                        | Database name.                                                                                                                                                                                                                                     | `bitmoa_wordpress`                              |
 | `WORDPRESS_DATABASE_USER`                        | Database user name.                                                                                                                                                                                                                                | `bn_wordpress`                                   |
 | `WORDPRESS_DATABASE_PASSWORD`                    | Database user password.                                                                                                                                                                                                                            | `nil`                                            |
 | `WORDPRESS_ENABLE_DATABASE_SSL`                  | Whether to enable SSL for database connections.                                                                                                                                                                                                    | `no`                                             |
@@ -266,13 +266,13 @@ docker run -d --name wordpress \
 
 | Name                              | Description                                          | Value                                 |
 |-----------------------------------|------------------------------------------------------|---------------------------------------|
-| `WORDPRESS_BASE_DIR`              | WordPress installation directory.                    | `${BITNAMI_ROOT_DIR}/wordpress`       |
+| `WORDPRESS_BASE_DIR`              | WordPress installation directory.                    | `${BITMOA_ROOT_DIR}/wordpress`       |
 | `WORDPRESS_CONF_FILE`             | Configuration file for WordPress.                    | `${WORDPRESS_BASE_DIR}/wp-config.php` |
-| `WP_CLI_BASE_DIR`                 | WP-CLI installation directory.                       | `${BITNAMI_ROOT_DIR}/wp-cli`          |
+| `WP_CLI_BASE_DIR`                 | WP-CLI installation directory.                       | `${BITMOA_ROOT_DIR}/wp-cli`          |
 | `WP_CLI_BIN_DIR`                  | WP-CLI directory for binary files.                   | `${WP_CLI_BASE_DIR}/bin`              |
 | `WP_CLI_CONF_DIR`                 | WP-CLI directory for configuration files.            | `${WP_CLI_BASE_DIR}/conf`             |
 | `WP_CLI_CONF_FILE`                | Configuration file for WP-CLI.                       | `${WP_CLI_CONF_DIR}/wp-cli.yml`       |
-| `WORDPRESS_VOLUME_DIR`            | WordPress directory for mounted configuration files. | `${BITNAMI_VOLUME_DIR}/wordpress`     |
+| `WORDPRESS_VOLUME_DIR`            | WordPress directory for mounted configuration files. | `${BITMOA_VOLUME_DIR}/wordpress`     |
 | `WORDPRESS_DEFAULT_DATABASE_HOST` | Default database server host.                        | `mariadb`                             |
 | `PHP_DEFAULT_MEMORY_LIMIT`        | Default PHP memory limit.                            | `512M`                                |
 | `PHP_DEFAULT_POST_MAX_SIZE`       | Default PHP post_max_size.                           | `80M`                                 |
@@ -282,7 +282,7 @@ docker run -d --name wordpress \
 
 When you start the WordPress image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/wordpress-nginx/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress-nginx/docker-compose.yml) file present in this repository:
 
     ```yaml
     wordpress:
@@ -298,8 +298,8 @@ When you start the WordPress image, you can adjust the configuration of the inst
     $ docker run -d --name wordpress -p 80:8080 -p 443:8443 \
       --env WORDPRESS_PASSWORD=my_password \
       --network wordpress-tier \
-      --volume /path/to/wordpress-persistence:/bitnami \
-      bitnami/wordpress-nginx:latest
+      --volume /path/to/wordpress-persistence:/bitmoa \
+      bitmoa/wordpress-nginx:latest
     ```
 
 ### Examples
@@ -308,14 +308,14 @@ When you start the WordPress image, you can adjust the configuration of the inst
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/wordpress-nginx/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress-nginx/docker-compose.yml) file present in this repository:
 
     ```yaml
       wordpress:
         ...
         environment:
           - WORDPRESS_DATABASE_USER=bn_wordpress
-          - WORDPRESS_DATABASE_NAME=bitnami_wordpress
+          - WORDPRESS_DATABASE_NAME=bitmoa_wordpress
           - ALLOW_EMPTY_PASSWORD=yes
           - WORDPRESS_SMTP_HOST=smtp.gmail.com
           - WORDPRESS_SMTP_PORT=587
@@ -329,21 +329,21 @@ This would be an example of SMTP configuration using a Gmail account:
     ```console
     $ docker run -d --name wordpress -p 80:8080 -p 443:8443 \
       --env WORDPRESS_DATABASE_USER=bn_wordpress \
-      --env WORDPRESS_DATABASE_NAME=bitnami_wordpress \
+      --env WORDPRESS_DATABASE_NAME=bitmoa_wordpress \
       --env WORDPRESS_SMTP_HOST=smtp.gmail.com \
       --env WORDPRESS_SMTP_PORT=587 \
       --env WORDPRESS_SMTP_USER=your_email@gmail.com \
       --env WORDPRESS_SMTP_PASSWORD=your_password \
       --network wordpress-tier \
-      --volume /path/to/wordpress-persistence:/bitnami \
-      bitnami/wordpress-nginx:latest
+      --volume /path/to/wordpress-persistence:/bitmoa \
+      bitmoa/wordpress-nginx:latest
     ```
 
 ##### Connect WordPress container to an existing database
 
 The Bitnami WordPress container supports connecting the WordPress application to an external database. This would be an example of using an external database for WordPress.
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/wordpress-nginx/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress-nginx/docker-compose.yml) file present in this repository:
 
     ```diff
        wordpress:
@@ -370,15 +370,15 @@ The Bitnami WordPress container supports connecting the WordPress application to
       --env WORDPRESS_DATABASE_NAME=wordpress_db \
       --env WORDPRESS_DATABASE_USER=wordpress_user \
       --env WORDPRESS_DATABASE_PASSWORD=wordpress_password \
-      --volume wordpress_data:/bitnami/wordpress \
-      bitnami/wordpress-nginx:latest
+      --volume wordpress_data:/bitmoa/wordpress \
+      bitmoa/wordpress-nginx:latest
     ```
 
 In case the database already contains data from a previous WordPress installation, you need to set the variable `WORDPRESS_SKIP_BOOTSTRAP` to `yes`. Otherwise, the container would execute the installation wizard and could modify the existing data in the database. Note that, when setting `WORDPRESS_SKIP_BOOTSTRAP` to `yes`, values for environment variables such as `WORDPRESS_USERNAME`, `WORDPRESS_PASSWORD` or `WORDPRESS_EMAIL` will be ignored. Make sure that, in this imported database, the table prefix matches the one set in `WORDPRESS_TABLE_PREFIX`.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami WordPress with NGINX Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami WordPress with NGINX Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -442,7 +442,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/wordpress-backups:/backups --volumes-from wordpress busybox \
-  cp -a /bitnami/wordpress /backups/latest
+  cp -a /bitmoa/wordpress /backups/latest
 ```
 
 ### Restoring a backup
@@ -454,9 +454,9 @@ For the MariaDB database container:
 ```diff
  $ docker run -d --name mariadb \
    ...
--  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-+  --volume /path/to/mariadb-backups/latest:/bitnami/mariadb \
-   bitnami/mariadb:latest
+-  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
++  --volume /path/to/mariadb-backups/latest:/bitmoa/mariadb \
+   bitmoa/mariadb:latest
 ```
 
 For the WordPress container:
@@ -464,21 +464,21 @@ For the WordPress container:
 ```diff
  $ docker run -d --name wordpress \
    ...
--  --volume /path/to/wordpress-persistence:/bitnami/wordpress \
-+  --volume /path/to/wordpress-backups/latest:/bitnami/wordpress \
-   bitnami/wordpress:latest
+-  --volume /path/to/wordpress-persistence:/bitmoa/wordpress \
++  --volume /path/to/wordpress-backups/latest:/bitmoa/wordpress \
+   bitmoa/wordpress:latest
 ```
 
 ### Upgrade this image
 
-Bitnami provides up-to-date versions of MariaDB and WordPress, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the WordPress container. For the MariaDB upgrade see <https://github.com/bitnami/containers/tree/main/bitnami/mariadb#upgrade-this-image>
+Bitnami provides up-to-date versions of MariaDB and WordPress, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the WordPress container. For the MariaDB upgrade see <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
 
-The `bitnami/wordpress-nginx:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitnami/wordpress-nginx:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitnami/wordpress-nginx/tags/).
+The `bitmoa/wordpress-nginx:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitmoa/wordpress-nginx:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitmoa/wordpress-nginx/tags/).
 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/wordpress-nginx:latest
+docker pull bitmoa/wordpress-nginx:latest
 ```
 
 #### Step 2: Stop the running container
@@ -518,14 +518,14 @@ The Bitnami WordPress with NGINX Docker image is designed to be extended so it c
 Before extending this image, please note there are certain configuration settings you can modify using the original image:
 
 - Settings that can be adapted using environment variables. For instance, you can change the ports used by NGINX for HTTP and HTTPS, by setting the environment variables `NGINX_HTTP_PORT_NUMBER` and `NGINX_HTTPS_PORT_NUMBER` respectively.
-- [Adding custom server blocks](https://github.com/bitnami/containers/blob/main/bitnami/nginx#adding-custom-server-blocks).
-- [Replacing the 'nginx.conf' file](https://github.com/bitnami/containers/blob/main/bitnami/nginx#full-configuration).
-- [Using custom SSL certificates](https://github.com/bitnami/containers/blob/main/bitnami/nginx#using-custom-ssl-certificates).
+- [Adding custom server blocks](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx#adding-custom-server-blocks).
+- [Replacing the 'nginx.conf' file](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx#full-configuration).
+- [Using custom SSL certificates](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx#using-custom-ssl-certificates).
 
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/wordpress-nginx
+FROM bitmoa/wordpress-nginx
 ## Put your customizations below
 ...
 ```
@@ -537,7 +537,7 @@ Here is an example of extending the image with the following modifications:
 - Modify the ports used by NGINX
 
 ```Dockerfile
-FROM bitnami/wordpress-nginx
+FROM bitmoa/wordpress-nginx
 
 ## Change user to perform privileged actions
 USER 0
@@ -547,7 +547,7 @@ RUN install_packages vim
 USER 1001
 
 ## Modify 'worker_connections' on NGINX config file to '512'
-RUN sed -i -r "s#(\s+worker_connections\s+)[0-9]+;#\1512;#" /opt/bitnami/nginx/conf/nginx.conf
+RUN sed -i -r "s#(\s+worker_connections\s+)[0-9]+;#\1512;#" /opt/bitmoa/nginx/conf/nginx.conf
 
 ## Modify the ports used by NGINX by default
 # It is also possible to change these environment variables at runtime
@@ -556,11 +556,11 @@ ENV NGINX_HTTPS_PORT_NUMBER=8143
 EXPOSE 8181 8143
 ```
 
-Based on the extended image, you can update the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/wordpress-nginx/docker-compose.yml) file present in this repository to add other features:
+Based on the extended image, you can update the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress-nginx/docker-compose.yml) file present in this repository to add other features:
 
 ```diff
    wordpress:
--    image: bitnami/wordpress-nginx:latest
+-    image: bitmoa/wordpress-nginx:latest
 +    build: .
      ports:
 -      - 80:8080
@@ -593,23 +593,23 @@ Based on the extended image, you can update the [`docker-compose.yml`](https://g
 - Consequences:
   - The HTTP/HTTPS ports exposed by the container are now `8080/8443` instead of `80/443`.
   - Backwards compatibility is not guaranteed when data is persisted using docker or docker-compose. We highly recommend migrating the WP site by exporting its content, and importing it on a new WordPress container. In the links below you'll find some alternatives:
-    - [Migrate WordPress using All-in-One WP Migration plugin](https://docs.bitnami.com/general/how-to/migrate-wordpress/)
+    - [Migrate WordPress using All-in-One WP Migration plugin](https://docs.bitmoa.com/general/how-to/migrate-wordpress/)
     - [Migrate WordPress using VaultPress](https://vaultpress.com/)
   - No writing permissions will be granted on `wp-config.php` by default.
 
 ### 5.2.1-debian-9-r8 and 5.2.1-ol-7-r8
 
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
-- The PHP configuration volume (`/bitnami/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitnami/php/conf`, or mount specific configuration files individually.
-- Enabling custom NGINX certificates by placing them at `/opt/bitnami/nginx/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
+- The PHP configuration volume (`/bitmoa/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/php/conf`, or mount specific configuration files individually.
+- Enabling custom NGINX certificates by placing them at `/opt/bitmoa/nginx/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

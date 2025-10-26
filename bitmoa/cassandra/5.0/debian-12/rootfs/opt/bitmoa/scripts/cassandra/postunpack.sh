@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libcassandra.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libcassandra.sh
 
 # Load Cassandra environment variables
-. /opt/bitnami/scripts/cassandra-env.sh
+. /opt/bitmoa/scripts/cassandra-env.sh
 
 # Starting with version 5.0.2, we found that the Cassandra official configuration
 # was in a file called cassandra_latest.yaml. We copy that file to ensure that it is using

@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Redis environment variables
-. /opt/bitnami/scripts/redis-cluster-env.sh
+. /opt/bitmoa/scripts/redis-cluster-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/librediscluster.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/librediscluster.sh
 
 # Ensure Redis environment variables settings are valid
 redis_cluster_validate

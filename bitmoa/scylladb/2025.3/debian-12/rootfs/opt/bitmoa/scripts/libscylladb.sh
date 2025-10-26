@@ -227,13 +227,13 @@ cassandra_stop() {
 # shellcheck disable=SC1090,SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libversion.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libversion.sh
 
 ########################
 # Returns cassandra major version
@@ -618,7 +618,7 @@ cassandra_enable_auth() {
 cassandra_setup_logging() {
     if ! cassandra_is_file_external "${DB_MOUNTED_LOGBACK_PATH}"; then
         replace_in_file "${DB_LOGBACK_FILE}" "system[.]log" "${DB_FLAVOR}.log"
-        if [[ "$BITNAMI_DEBUG" = "false" ]]; then
+        if [[ "$BITMOA_DEBUG" = "false" ]]; then
             replace_in_file "${DB_LOGBACK_FILE}" "(<appender-ref\s+ref=\"ASYNCDEBUGLOG\"\s+\/>)" "<!-- \1 -->"
         fi
     else
@@ -975,7 +975,7 @@ cassandra_custom_init_scripts() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - User to run queries
@@ -1005,7 +1005,7 @@ cassandra_execute() {
     fi
     args+=("$host")
     args+=("$port")
-    if [[ "${BITNAMI_DEBUG}" = true ]]; then
+    if [[ "${BITMOA_DEBUG}" = true ]]; then
         local -r command="$(cat)"
         debug "Executing CQL \"$command\""
         echo "$command" | "${cmd[@]}" "${args[@]}"
@@ -1019,7 +1019,7 @@ cassandra_execute() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Maximum number of retries (default: $DB_CQL_MAX_RETRIES)
@@ -1064,7 +1064,7 @@ cassandra_execute_with_retries() {
 ########################
 # Wait until nodetool checks the node is ready
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Maximum number of retries (default $DB_INIT_MAX_RETRIES)
@@ -1087,7 +1087,7 @@ wait_for_nodetool_up() {
         local -r check_regex="UN\s*(${DB_HOST}|${machine_ip}|127.0.0.1)"
 
         local output="/dev/null"
-        if [[ "$BITNAMI_DEBUG" = "true" ]]; then
+        if [[ "$BITMOA_DEBUG" = "true" ]]; then
             output="/dev/stdout"
         fi
 
@@ -1106,7 +1106,7 @@ wait_for_nodetool_up() {
         local actual_node_count
 
         local output="/dev/null"
-        if [[ "$BITNAMI_DEBUG" = "true" ]]; then
+        if [[ "$BITMOA_DEBUG" = "true" ]]; then
             output="/dev/stdout"
         fi
 
@@ -1121,7 +1121,7 @@ wait_for_nodetool_up() {
         true
     else
         error "$DB_FLAVOR failed to start up"
-        if [[ "$BITNAMI_DEBUG" = "true" ]]; then
+        if [[ "$BITMOA_DEBUG" = "true" ]]; then
             error "Nodetool output"
             "${check_cmd[@]}" "${check_args[@]}"
         fi
@@ -1134,7 +1134,7 @@ wait_for_nodetool_up() {
             true
         else
             error "Some nodes did not reach the UN status (Up/Normal)"
-            if [[ "$BITNAMI_DEBUG" = "true" ]]; then
+            if [[ "$BITMOA_DEBUG" = "true" ]]; then
                 error "Nodetool output"
                 "${check_cmd[@]}" "${check_args[@]}"
             fi
@@ -1146,7 +1146,7 @@ wait_for_nodetool_up() {
 ########################
 # Wait until the log file shows that CQL is ready
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Log file to check
@@ -1168,7 +1168,7 @@ wait_for_cql_log_entry() {
         local -r check_regex="Starting listening for CQL clients"
 
         local output="/dev/null"
-        if [[ "$BITNAMI_DEBUG" = "true" ]]; then
+        if [[ "$BITMOA_DEBUG" = "true" ]]; then
             output="/dev/stdout"
         fi
         "${check_cmd[@]}" "${check_args[@]}" | grep -E "${check_regex}" >"${output}"

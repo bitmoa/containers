@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Ghost environment
-. /opt/bitnami/scripts/ghost-env.sh
+. /opt/bitmoa/scripts/ghost-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libghost.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libghost.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Ensure the Ghost base directory exists and has proper permissions
 info "Configuring file permissions for Ghost"

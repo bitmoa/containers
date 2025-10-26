@@ -7,13 +7,13 @@
 # shellcheck disable=SC1090,SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libversion.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libversion.sh
 
 # Functions
 
@@ -240,10 +240,10 @@ kafka_configure_default_truststore_locations() {
         local kafka_truststore_filename="kafka.truststore.jks"
         [[ "$KAFKA_TLS_TYPE" = "PEM" ]] && kafka_truststore_filename="kafka.truststore.pem"
         if [[ -f "${KAFKA_CERTS_DIR}/${kafka_truststore_filename}" ]]; then
-            # Mounted in /opt/bitnami/kafka/conf/certs
+            # Mounted in /opt/bitmoa/kafka/conf/certs
             export KAFKA_TLS_TRUSTSTORE_FILE="${KAFKA_CERTS_DIR}/${kafka_truststore_filename}"
         else
-            # Mounted in /bitnami/kafka/conf/certs
+            # Mounted in /bitmoa/kafka/conf/certs
             export KAFKA_TLS_TRUSTSTORE_FILE="${KAFKA_MOUNTED_CONF_DIR}/certs/${kafka_truststore_filename}"
         fi
     fi
@@ -253,10 +253,10 @@ kafka_configure_default_truststore_locations() {
             local zk_truststore_filename="zookeeper.truststore.jks"
             [[ "$KAFKA_ZOOKEEPER_TLS_TYPE" = "PEM" ]] && zk_truststore_filename="zookeeper.truststore.pem"
             if [[ -f "${KAFKA_CERTS_DIR}/${zk_truststore_filename}" ]]; then
-                # Mounted in /opt/bitnami/kafka/conf/certs
+                # Mounted in /opt/bitmoa/kafka/conf/certs
                 export KAFKA_ZOOKEEPER_TLS_TRUSTSTORE_FILE="${KAFKA_CERTS_DIR}/${zk_truststore_filename}"
             else
-                # Mounted in /bitnami/kafka/conf/certs
+                # Mounted in /bitmoa/kafka/conf/certs
                 export KAFKA_ZOOKEEPER_TLS_TRUSTSTORE_FILE="${KAFKA_MOUNTED_CONF_DIR}/certs/${zk_truststore_filename}"
             fi
         fi

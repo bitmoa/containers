@@ -3,11 +3,11 @@
 
 services:
   pg-0:
-    image: docker.io/bitnami/postgresql-repmgr:latest
+    image: ghcr.io/bitmoa/postgresql-repmgr:latest
     ports:
       - 5432
     volumes:
-      - pg_0_data:/bitnami/postgresql
+      - pg_0_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
       - POSTGRESQL_USERNAME=customuser
@@ -21,11 +21,11 @@ services:
       - REPMGR_USERNAME=repmgr
       - REPMGR_PASSWORD=repmgrpassword
   pg-1:
-    image: docker.io/bitnami/postgresql-repmgr:4
+    image: ghcr.io/bitmoa/postgresql-repmgr:4
     ports:
       - 5432
     volumes:
-      - pg_1_data:/bitnami/postgresql
+      - pg_1_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
       - POSTGRESQL_USERNAME=customuser
@@ -39,7 +39,7 @@ services:
       - REPMGR_USERNAME=repmgr
       - REPMGR_PASSWORD=repmgrpassword
   pgpool:
-    image: docker.io/bitnami/pgpool:4
+    image: ghcr.io/bitmoa/pgpool:4
     ports:
       - 5432:5432
     environment:
@@ -59,12 +59,12 @@ services:
       - PGPOOL_POSTGRES_CUSTOM_USERS=customuser
       - PGPOOL_POSTGRES_CUSTOM_PASSWORDS=custompassword
     healthcheck:
-      test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
+      test: ["CMD", "/opt/bitmoa/scripts/pgpool/healthcheck.sh"]
       interval: 10s
       timeout: 5s
       retries: 5
   openldap:
-    image: 'docker.io/bitnami/openldap:latest'
+    image: 'ghcr.io/bitmoa/openldap:latest'
     ports:
       - '1389:1389'
     environment:
@@ -73,7 +73,7 @@ services:
       - LDAP_USERS=customuser
       - LDAP_PASSWORDS=custompassword
     volumes:
-      - 'openldap_data:/bitnami/openldap'
+      - 'openldap_data:/bitmoa/openldap'
 
 volumes:
   pg_0_data:

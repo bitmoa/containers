@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libmastodon.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libmastodon.sh
 
 # Load Mastodon environment variables
-. /opt/bitnami/scripts/mastodon-env.sh
+. /opt/bitmoa/scripts/mastodon-env.sh
 
 # System User
 ensure_user_exists "$MASTODON_DAEMON_USER" --group "$MASTODON_DAEMON_GROUP" --home "/home/${MASTODON_DAEMON_USER}" --system

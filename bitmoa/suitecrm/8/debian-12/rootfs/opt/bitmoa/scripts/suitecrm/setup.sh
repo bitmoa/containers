@@ -10,26 +10,26 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load SuiteCRM environment
-. /opt/bitnami/scripts/suitecrm-env.sh
+. /opt/bitmoa/scripts/suitecrm-env.sh
 
 # Load MySQL Client environment for 'mysql_remote_execute' (after 'suitecrm-env.sh' so that MODULE is not set to a wrong value)
-if [[ -f /opt/bitnami/scripts/mysql-client-env.sh ]]; then
-    . /opt/bitnami/scripts/mysql-client-env.sh
-elif [[ -f /opt/bitnami/scripts/mysql-env.sh ]]; then
-    . /opt/bitnami/scripts/mysql-env.sh
-elif [[ -f /opt/bitnami/scripts/mariadb-env.sh ]]; then
-    . /opt/bitnami/scripts/mariadb-env.sh
+if [[ -f /opt/bitmoa/scripts/mysql-client-env.sh ]]; then
+    . /opt/bitmoa/scripts/mysql-client-env.sh
+elif [[ -f /opt/bitmoa/scripts/mysql-env.sh ]]; then
+    . /opt/bitmoa/scripts/mysql-env.sh
+elif [[ -f /opt/bitmoa/scripts/mariadb-env.sh ]]; then
+    . /opt/bitmoa/scripts/mariadb-env.sh
 fi
 
 # Load PHP environment for cron configuration (after 'moodle-env.sh' so that MODULE is not set to a wrong value)
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libsuitecrm.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libsuitecrm.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load web server environment and functions (after SuiteCRM environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # Ensure SuiteCRM environment variables are valid
 suitecrm_validate

@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name nginx bitnami/nginx:latest
+docker run --name nginx bitmoa/nginx:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,11 +33,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy NGINX Open Source in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami NGINX Open Source Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/nginx).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami NGINX Open Source Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/nginx).
 
 ## Why use a non-root container?
 
@@ -47,32 +47,32 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami NGINX Open Source Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/nginx).
+The recommended way to get the Bitnami NGINX Open Source Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/nginx).
 
 ```console
-docker pull bitnami/nginx:latest
+docker pull bitmoa/nginx:latest
 ```
 
 To use a specific version, you can pull a versioned tag. You can view the
-[list of available versions](https://hub.docker.com/r/bitnami/nginx/tags/)
+[list of available versions](https://hub.docker.com/r/bitmoa/nginx/tags/)
 in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/nginx:[TAG]
+docker pull bitmoa/nginx:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Hosting a static website
@@ -80,10 +80,10 @@ docker build -t bitnami/APP:latest .
 This NGINX Open Source image exposes a volume at `/app`. Content mounted here is served by the default catch-all server block.
 
 ```console
-docker run -v /path/to/app:/app bitnami/nginx:latest
+docker run -v /path/to/app:/app bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/nginx/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -99,7 +99,7 @@ services:
 To access your web server from your host machine you can ask Docker to map a random port on your host to ports `8080` and `8443` exposed in the container.
 
 ```console
-docker run --name nginx -P bitnami/nginx:latest
+docker run --name nginx -P bitmoa/nginx:latest
 ```
 
 Run `docker port` to determine the random ports Docker assigned.
@@ -112,7 +112,7 @@ $ docker port nginx
 You can also manually specify the ports you want forwarded from your host to the container.
 
 ```console
-docker run -p 9000:8080 bitnami/nginx:latest
+docker run -p 9000:8080 bitmoa/nginx:latest
 ```
 
 Access your web server in the browser by navigating to `http://localhost:9000`.
@@ -121,7 +121,7 @@ Access your web server in the browser by navigating to `http://localhost:9000`.
 
 ### Adding custom server blocks
 
-The default `nginx.conf` includes server blocks placed in `/opt/bitnami/nginx/conf/server_blocks/`. You can mount a `my_server_block.conf` file containing your custom server block at this location.
+The default `nginx.conf` includes server blocks placed in `/opt/bitmoa/nginx/conf/server_blocks/`. You can mount a `my_server_block.conf` file containing your custom server block at this location.
 
 For example, in order add a server block for `www.example.com`:
 
@@ -140,18 +140,18 @@ server {
 
 ```console
 docker run --name nginx \
-  -v /path/to/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro \
-  bitnami/nginx:latest
+  -v /path/to/my_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_server_block.conf:ro \
+  bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/nginx/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   nginx:
   ...
     volumes:
-      - /path/to/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
+      - /path/to/my_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_server_block.conf:ro
   ...
 ```
 
@@ -159,32 +159,32 @@ services:
 
 The default `nginx.conf` supports custom configuration files organized by NGINX context. You can mount configuration files into the appropriate context directories:
 
-- `/opt/bitnami/nginx/conf/context.d/main/` - For main context directives (e.g., module loading, worker processes)
-- `/opt/bitnami/nginx/conf/context.d/events/` - For events context directives (e.g., worker_connections)
-- `/opt/bitnami/nginx/conf/context.d/http/` - For http context directives (equivalent to server_blocks)
+- `/opt/bitmoa/nginx/conf/context.d/main/` - For main context directives (e.g., module loading, worker processes)
+- `/opt/bitmoa/nginx/conf/context.d/events/` - For events context directives (e.g., worker_connections)
+- `/opt/bitmoa/nginx/conf/context.d/http/` - For http context directives (equivalent to server_blocks)
 
 For example, to enable the WebDAV module, create a `webdav.conf` file with the following content:
 
 ```nginx
-load_module /opt/bitnami/nginx/modules/ngx_http_dav_module.so;
+load_module /opt/bitmoa/nginx/modules/ngx_http_dav_module.so;
 ```
 
 Mount it to the main context directory:
 
 ```console
 docker run --name nginx \
-  -v /path/to/webdav.conf:/opt/bitnami/nginx/conf/context.d/main/webdav.conf:ro \
-  bitnami/nginx:latest
+  -v /path/to/webdav.conf:/opt/bitmoa/nginx/conf/context.d/main/webdav.conf:ro \
+  bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/nginx/docker-compose.yml) file:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file:
 
 ```yaml
 services:
   nginx:
   ...
     volumes:
-      - /path/to/webdav.conf:/opt/bitnami/nginx/conf/context.d/main/webdav.conf:ro
+      - /path/to/webdav.conf:/opt/bitmoa/nginx/conf/context.d/main/webdav.conf:ro
   ...
 ```
 
@@ -192,13 +192,13 @@ Similarly, you can add custom server blocks to the http context:
 
 ```console
 docker run --name nginx \
-  -v /path/to/my_server_block.conf:/opt/bitnami/nginx/conf/context.d/http/my_server_block.conf:ro \
-  bitnami/nginx:latest
+  -v /path/to/my_server_block.conf:/opt/bitmoa/nginx/conf/context.d/http/my_server_block.conf:ro \
+  bitmoa/nginx:latest
 ```
 
 ### Adding custom stream server blocks
 
-Similar to server blocks, you can include server blocks for the [NGINX Stream Core Module](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) mounting them at `/opt/bitnami/nginx/conf/stream_server_blocks/`. In order to do so, it's also necessary to set the `NGINX_ENABLE_STREAM` environment variable to `yes`.
+Similar to server blocks, you can include server blocks for the [NGINX Stream Core Module](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) mounting them at `/opt/bitmoa/nginx/conf/stream_server_blocks/`. In order to do so, it's also necessary to set the `NGINX_ENABLE_STREAM` environment variable to `yes`.
 
 #### Step 1: Write your `my_stream_server_block.conf` file with the following content
 
@@ -224,11 +224,11 @@ server {
 ```console
 docker run --name nginx \
   -e NGINX_ENABLE_STREAM=yes \
-  -v /path/to/my_stream_server_block.conf:/opt/bitnami/nginx/conf/stream_server_blocks/my_stream_server_block.conf:ro \
-  bitnami/nginx:latest
+  -v /path/to/my_stream_server_block.conf:/opt/bitmoa/nginx/conf/stream_server_blocks/my_stream_server_block.conf:ro \
+  bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/nginx/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -238,7 +238,7 @@ services:
       - NGINX_ENABLE_STREAM=yes
   ...
     volumes:
-      - /path/to/my_stream_server_block.conf:/opt/bitnami/nginx/conf/stream_server_blocks/my_stream_server_block.conf:ro
+      - /path/to/my_stream_server_block.conf:/opt/bitmoa/nginx/conf/stream_server_blocks/my_stream_server_block.conf:ro
   ...
 ```
 
@@ -264,8 +264,8 @@ Write your `my_server_block.conf` file with the SSL configuration and the relati
   server {
     listen       8443 ssl;
 
-    ssl_certificate      bitnami/certs/tls.crt;
-    ssl_certificate_key  bitnami/certs/tls.key;
+    ssl_certificate      bitmoa/certs/tls.crt;
+    ssl_certificate_key  bitmoa/certs/tls.key;
 
     ssl_session_cache    shared:SSL:1m;
     ssl_session_timeout  5m;
@@ -286,12 +286,12 @@ Run the NGINX Open Source image, mounting the certificates directory from your h
 
 ```console
 docker run --name nginx \
-  -v /path/to/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro \
+  -v /path/to/my_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_server_block.conf:ro \
   -v /path/to/nginx-persistence/certs:/certs \
-  bitnami/nginx:latest
+  bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/nginx/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -299,7 +299,7 @@ services:
   ...
     volumes:
     - /path/to/nginx-persistence/certs:/certs
-    - /path/to/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
+    - /path/to/my_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_server_block.conf:ro
   ...
 ```
 
@@ -325,8 +325,8 @@ server {
 
 ```console
 docker run --name nginx --rm -p 9000:8080 \
-  -v /path/to/my_redirect_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_redirect.conf:ro \
-  bitnami/nginx:latest
+  -v /path/to/my_redirect_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_redirect.conf:ro \
+  bitmoa/nginx:latest
 ```
 
 As mentioned, default redirections issued by NGINX Open Source image will be relative. The client should build the final URL
@@ -347,9 +347,9 @@ Please keep in mind that some old clients could be not compatible with relative 
 
 ```console
 docker run --name nginx --rm -p 9000:8080 \
-  -v /path/to/my_redirect_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_redirect.conf:ro \
+  -v /path/to/my_redirect_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_redirect.conf:ro \
   -e NGINX_ENABLE_ABSOLUTE_REDIRECT=yes \
-  bitnami/nginx:latest
+  bitmoa/nginx:latest
 ```
 
 As result, the container will reply with a full URL in the `Location` header but it doesn't have the port. This is useful if you are exposing the container in standard ports (80 or 443)
@@ -366,10 +366,10 @@ Location: http://localhost/index.html
 
 ```console
 docker run --name nginx --rm -p 9000:8080 \
-  -v /path/to/my_redirect_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_redirect.conf:ro \
+  -v /path/to/my_redirect_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_redirect.conf:ro \
   -e NGINX_ENABLE_ABSOLUTE_REDIRECT=yes \
   -e NGINX_ENABLE_PORT_IN_REDIRECT=yes \
-  bitnami/nginx:latest
+  bitmoa/nginx:latest
 ```
 
 In this case the container will include the port where it is listening to in redirections, not the port where it is exposed (in the example `8080` vs `9000`)
@@ -386,50 +386,50 @@ To amend this situation and build reachable URLs, you have to run the container 
 
 ```console
 docker run --name nginx --rm -p 9000:9000 \
-  -v /path/to/my_redirect_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_redirect.conf:ro \
+  -v /path/to/my_redirect_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_redirect.conf:ro \
   -e NGINX_ENABLE_ABSOLUTE_REDIRECT=yes \
   -e NGINX_ENABLE_PORT_IN_REDIRECT=yes \
   -e NGINX_HTTP_PORT_NUMBER=9000
-  bitnami/nginx:latest
+  bitmoa/nginx:latest
 ```
 
 ### Full configuration
 
-The image looks for configurations in `/opt/bitnami/nginx/conf/nginx.conf`. You can overwrite the `nginx.conf` file using your own custom configuration file.
+The image looks for configurations in `/opt/bitmoa/nginx/conf/nginx.conf`. You can overwrite the `nginx.conf` file using your own custom configuration file.
 
 ```console
 docker run --name nginx \
-  -v /path/to/your_nginx.conf:/opt/bitnami/nginx/conf/nginx.conf:ro \
-  bitnami/nginx:latest
+  -v /path/to/your_nginx.conf:/opt/bitmoa/nginx/conf/nginx.conf:ro \
+  bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/nginx/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   nginx:
   ...
     volumes:
-      - /path/to/your_nginx.conf:/opt/bitnami/nginx/conf/nginx.conf:ro
+      - /path/to/your_nginx.conf:/opt/bitmoa/nginx/conf/nginx.conf:ro
   ...
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami NGINX Open Source Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami NGINX Open Source Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
 ## Reverse proxy to other containers
 
-NGINX can be used to reverse proxy to other containers using Docker's linking system. This is particularly useful if you want to serve dynamic content through an NGINX frontend. To do so, [add a server block](#adding-custom-server-blocks) like the following in the `/opt/bitnami/nginx/conf/server_blocks/` folder:
+NGINX can be used to reverse proxy to other containers using Docker's linking system. This is particularly useful if you want to serve dynamic content through an NGINX frontend. To do so, [add a server block](#adding-custom-server-blocks) like the following in the `/opt/bitmoa/nginx/conf/server_blocks/` folder:
 
 ```nginx
 server {
     listen 0.0.0.0:8080;
     server_name yourapp.com;
-    access_log /opt/bitnami/nginx/logs/yourapp_access.log;
-    error_log /opt/bitnami/nginx/logs/yourapp_error.log;
+    access_log /opt/bitmoa/nginx/logs/yourapp_access.log;
+    error_log /opt/bitmoa/nginx/logs/yourapp_error.log;
 
     location / {
         proxy_set_header X-Real-IP $remote_addr;
@@ -479,7 +479,7 @@ Before extending this image, please note there are certain configuration setting
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/nginx
+FROM bitmoa/nginx
 ### Put your customizations below
 ...
 ```
@@ -492,7 +492,7 @@ Here is an example of extending the image with the following modifications:
 - Change the user that runs the container
 
 ```Dockerfile
-FROM bitnami/nginx
+FROM bitmoa/nginx
 
 ### Change user to perform privileged actions
 USER 0
@@ -502,7 +502,7 @@ RUN install_packages vim
 USER 1001
 
 ### Modify 'worker_connections' on NGINX config file to '512'
-RUN sed -i -r "s#(\s+worker_connections\s+)[0-9]+;#\1512;#" /opt/bitnami/nginx/conf/nginx.conf
+RUN sed -i -r "s#(\s+worker_connections\s+)[0-9]+;#\1512;#" /opt/bitmoa/nginx/conf/nginx.conf
 
 ### Modify the ports used by NGINX by default
 ENV NGINX_HTTP_PORT_NUMBER=8181 # It is also possible to change this environment variable at runtime
@@ -530,11 +530,11 @@ services:
     depends_on:
       - cloner
     volumes:
-      - ./config/my_server_block.conf:/opt/bitnami/nginx/conf/conf.d/server_blocks/my_server_block.conf:ro
+      - ./config/my_server_block.conf:/opt/bitmoa/nginx/conf/conf.d/server_blocks/my_server_block.conf:ro
       - ./certs:/certs
       - data:/app
   cloner:
-    image: bitnami/git:latest
+    image: bitmoa/git:latest
     command:
       - clone
       - https://github.com/cloudacademy/static-website-example
@@ -548,10 +548,10 @@ volumes:
 
 #### NGINX HTTP DAV module
 
-The [module ngx_http_dav_module](https://nginx.org/en/docs/http/ngx_http_dav_module.html) is intended for file management automation via the WebDAV protocol. In current Bitnami images, this module is built as a dynamic module located under the `/opt/bitnami/nginx/modules` directory. You will need to load it in your NGINX configuration for you to be able to use its directives.
+The [module ngx_http_dav_module](https://nginx.org/en/docs/http/ngx_http_dav_module.html) is intended for file management automation via the WebDAV protocol. In current Bitnami images, this module is built as a dynamic module located under the `/opt/bitmoa/nginx/modules` directory. You will need to load it in your NGINX configuration for you to be able to use its directives.
 
 ```text
-load_module /opt/bitnami/nginx/modules/ngx_http_dav_module.so;
+load_module /opt/bitmoa/nginx/modules/ngx_http_dav_module.so;
 ```
 
 #### Adding custom NGINX modules
@@ -564,10 +564,10 @@ Below is an example Dockerfile to build and install the NGINX Perl module (`ngx_
 
 ```Dockerfile
 ARG NGINX_VERSION=1.25.0
-ARG BITNAMI_NGINX_REVISION=r0
-ARG BITNAMI_NGINX_TAG=${NGINX_VERSION}-debian-12-${BITNAMI_NGINX_REVISION}
+ARG BITMOA_NGINX_REVISION=r0
+ARG BITMOA_NGINX_TAG=${NGINX_VERSION}-debian-12-${BITMOA_NGINX_REVISION}
 
-FROM bitnami/nginx:${BITNAMI_NGINX_TAG} AS builder
+FROM bitmoa/nginx:${BITMOA_NGINX_TAG} AS builder
 USER root
 ## Redeclare NGINX_VERSION so it can be used as a parameter inside this build stage
 ARG NGINX_VERSION
@@ -583,21 +583,21 @@ RUN cd /tmp && \
     tar xzf nginx-${NGINX_VERSION}.tar.gz
 ## Compile NGINX with desired module
 RUN cd /tmp/nginx-${NGINX_VERSION} && \
-    rm -rf /opt/bitnami/nginx && \
-    ./configure --prefix=/opt/bitnami/nginx --with-compat --with-http_perl_module=dynamic && \
+    rm -rf /opt/bitmoa/nginx && \
+    ./configure --prefix=/opt/bitmoa/nginx --with-compat --with-http_perl_module=dynamic && \
     make && \
     make install
 
-FROM bitnami/nginx:${BITNAMI_NGINX_TAG}
+FROM bitmoa/nginx:${BITMOA_NGINX_TAG}
 USER root
 ## Install ngx_http_perl_module system package dependencies
 RUN install_packages libperl-dev
 ## Install ngx_http_perl_module files
 COPY --from=builder /usr/local/lib/x86_64-linux-gnu/perl /usr/local/lib/x86_64-linux-gnu/perl
-COPY --from=builder /opt/bitnami/nginx/modules/ngx_http_perl_module.so /opt/bitnami/nginx/modules/ngx_http_perl_module.so
+COPY --from=builder /opt/bitmoa/nginx/modules/ngx_http_perl_module.so /opt/bitmoa/nginx/modules/ngx_http_perl_module.so
 ## Enable module
-RUN echo "load_module modules/ngx_http_perl_module.so;" | cat - /opt/bitnami/nginx/conf/nginx.conf > /tmp/nginx.conf && \
-    cp /tmp/nginx.conf /opt/bitnami/nginx/conf/nginx.conf
+RUN echo "load_module modules/ngx_http_perl_module.so;" | cat - /opt/bitmoa/nginx/conf/nginx.conf > /tmp/nginx.conf && \
+    cp /tmp/nginx.conf /opt/bitmoa/nginx/conf/nginx.conf
 ## Set the container to be run as a non-root user by default
 USER 1001
 ```
@@ -611,11 +611,11 @@ Bitnami provides up-to-date versions of NGINX Open Source, including security pa
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/nginx:latest
+docker pull bitmoa/nginx:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/nginx:latest`.
+`bitmoa/nginx:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -648,7 +648,7 @@ docker-compose rm -v nginx
 Re-create your container from the new image.
 
 ```console
-docker run --name nginx bitnami/nginx:latest
+docker run --name nginx bitmoa/nginx:latest
 ```
 
 or using Docker Compose:
@@ -659,7 +659,7 @@ docker-compose up nginx
 
 ## Useful Links
 
-- [Create An EMP Development Environment With Bitnami Containers](https://docs.bitnami.com/containers/how-to/create-emp-environment-containers/)
+- [Create An EMP Development Environment With Bitnami Containers](https://docs.bitmoa.com/containers/how-to/create-emp-environment-containers/)
 
 ## Notable Changes
 
@@ -687,21 +687,21 @@ docker-compose up nginx
 ### 1.16.0-r3
 
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
-- The recommended mount point for adding custom server blocks changes from `/opt/bitnami/nginx/conf/vhosts` to `/opt/bitnami/nginx/conf/server_blocks`. Remember to update your Docker Compose files to user the new mount point.
+- The recommended mount point for adding custom server blocks changes from `/opt/bitmoa/nginx/conf/vhosts` to `/opt/bitmoa/nginx/conf/server_blocks`. Remember to update your Docker Compose files to user the new mount point.
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/nginx).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/nginx).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

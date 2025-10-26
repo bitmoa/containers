@@ -7,18 +7,18 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libmongodbclient.sh ]]; then
-    . /opt/bitnami/scripts/libmongodbclient.sh
-elif [[ -f /opt/bitnami/scripts/libmongodb.sh ]]; then
-    . /opt/bitnami/scripts/libmongodb.sh
+if [[ -f /opt/bitmoa/scripts/libmongodbclient.sh ]]; then
+    . /opt/bitmoa/scripts/libmongodbclient.sh
+elif [[ -f /opt/bitmoa/scripts/libmongodb.sh ]]; then
+    . /opt/bitmoa/scripts/libmongodb.sh
 fi
 
 ########################
@@ -100,7 +100,7 @@ parse_validate() {
 #########################
 parse_initialize() {
     # In order to maintain backwards compatibility, we check if the config.json is mounted
-    local -r persisted_conf_file="/bitnami/parse/config.json"
+    local -r persisted_conf_file="/bitmoa/parse/config.json"
     if ! [[ -f "$persisted_conf_file" ]] || is_boolean_yes "$PARSE_FORCE_OVERWRITE_CONF_FILE"; then
         # Create configuration file.
         # Based on https://github.com/parse-community/parse-server/blob/master/bootstrap.sh

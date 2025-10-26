@@ -1,6 +1,6 @@
 ## Dockerfile for building production image.
 ## Consider replacing below rolling tag by a digest or a immutable tag
-FROM bitnami/express:{{APP_VERSION}}
+FROM bitmoa/express:{{APP_VERSION}}
 LABEL maintainer "John Smith <john.smith@acme.com>"
 
 ENV DISABLE_WELCOME_MESSAGE=1
@@ -15,7 +15,7 @@ ENV SKIP_DB_WAIT=0 \
     SKIP_BOWER_INSTALL=1
 
 COPY . /app
-RUN sudo chown -R bitnami: /app
+RUN sudo chown -R bitmoa: /app
 
 RUN npm install
 RUN bower install

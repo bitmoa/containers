@@ -9,12 +9,12 @@ set -o nounset
 set -o pipefail
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libconsul.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libconsul.sh
 
 # Load Consul env. variables
-. /opt/bitnami/scripts/consul-env.sh
+. /opt/bitmoa/scripts/consul-env.sh
 
 if am_i_root; then
     ensure_user_exists "${CONSUL_DAEMON_USER}" --group "${CONSUL_DAEMON_GROUP}"

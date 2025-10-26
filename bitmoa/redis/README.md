@@ -10,21 +10,21 @@ Disclaimer: Redis is a registered trademark of Redis Ltd. Any rights therein are
 ## TL;DR
 
 ```console
-docker run --name redis -e ALLOW_EMPTY_PASSWORD=yes bitnami/redis:latest
+docker run --name redis -e ALLOW_EMPTY_PASSWORD=yes bitmoa/redis:latest
 ```
 
 **Warning**: These quick setups are only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Redis(R) in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Redis(R) Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/redis).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Redis(R) Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/redis).
 
 ## Why use a non-root container?
 
@@ -49,55 +49,55 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Redis(R) Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/redis).
+The recommended way to get the Bitnami Redis(R) Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/redis).
 
 ```console
-docker pull bitnami/redis:latest
+docker pull bitmoa/redis:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/redis/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/redis/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/redis:[TAG]
+docker pull bitmoa/redis:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your database
 
-Redis(R) provides a different range of [persistence options](https://redis.io/topics/persistence). This contanier uses *AOF persistence by default* but it is easy to overwrite that configuration in a `docker-compose.yaml` file with this entry `command: /opt/bitnami/scripts/redis/run.sh --appendonly no`. Alternatively, you may use the `REDIS_AOF_ENABLED` env variable as explained in [Disabling AOF persistence](https://github.com/bitnami/containers/blob/main/bitnami/redis#disabling-aof-persistence).
+Redis(R) provides a different range of [persistence options](https://redis.io/topics/persistence). This contanier uses *AOF persistence by default* but it is easy to overwrite that configuration in a `docker-compose.yaml` file with this entry `command: /opt/bitmoa/scripts/redis/run.sh --appendonly no`. Alternatively, you may use the `REDIS_AOF_ENABLED` env variable as explained in [Disabling AOF persistence](https://github.com/bitmoa/containers/blob/main/bitmoa/redis#disabling-aof-persistence).
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/redis-persistence:/bitnami/redis/data \
-    bitnami/redis:latest
+    -v /path/to/redis-persistence:/bitmoa/redis/data \
+    bitmoa/redis:latest
 ```
 
-You can also do this by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+You can also do this by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   redis:
   ...
     volumes:
-      - /path/to/redis-persistence:/bitnami/redis/data
+      - /path/to/redis-persistence:/bitmoa/redis/data
   ...
 ```
 
@@ -127,7 +127,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 docker run -d --name redis-server \
     -e ALLOW_EMPTY_PASSWORD=yes \
     --network app-tier \
-    bitnami/redis:latest
+    bitmoa/redis:latest
 ```
 
 #### Step 3: Launch your Redis(R) client instance
@@ -137,7 +137,7 @@ Finally we create a new container instance to launch the Redis(R) client and con
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/redis:latest redis-cli -h redis-server
+    bitmoa/redis:latest redis-cli -h redis-server
 ```
 
 ### Using a Docker Compose file
@@ -153,7 +153,7 @@ networks:
 
 services:
   redis:
-    image: bitnami/redis:latest
+    image: bitmoa/redis:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
@@ -221,8 +221,8 @@ docker-compose up -d
 
 | Name                        | Description                           | Value                           |
 |-----------------------------|---------------------------------------|---------------------------------|
-| `REDIS_VOLUME_DIR`          | Persistence base directory            | `/bitnami/redis`                |
-| `REDIS_BASE_DIR`            | Redis installation directory          | `${BITNAMI_ROOT_DIR}/redis`     |
+| `REDIS_VOLUME_DIR`          | Persistence base directory            | `/bitmoa/redis`                |
+| `REDIS_BASE_DIR`            | Redis installation directory          | `${BITMOA_ROOT_DIR}/redis`     |
 | `REDIS_CONF_DIR`            | Redis configuration directory         | `${REDIS_BASE_DIR}/etc`         |
 | `REDIS_DEFAULT_CONF_DIR`    | Redis default configuration directory | `${REDIS_BASE_DIR}/etc.default` |
 | `REDIS_MOUNTED_CONF_DIR`    | Redis mounted configuration directory | `${REDIS_BASE_DIR}/mounted-etc` |
@@ -243,10 +243,10 @@ For security reasons, you may want to disable some commands. You can specify the
 - `REDIS_DISABLE_COMMANDS`: Comma-separated list of Redis(R) commands to disable. Defaults to empty.
 
 ```console
-docker run --name redis -e REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG bitnami/redis:latest
+docker run --name redis -e REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -274,10 +274,10 @@ services:
 Passing extra command-line flags to the redis service command is possible by adding them as arguments to *run.sh* script:
 
 ```console
-docker run --name redis -e ALLOW_EMPTY_PASSWORD=yes bitnami/redis:latest /opt/bitnami/scripts/redis/run.sh --maxmemory 100mb
+docker run --name redis -e ALLOW_EMPTY_PASSWORD=yes bitmoa/redis:latest /opt/bitmoa/scripts/redis/run.sh --maxmemory 100mb
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -285,7 +285,7 @@ services:
   ...
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 100mb
+    command: /opt/bitmoa/scripts/redis/run.sh --maxmemory 100mb
   ...
 ```
 
@@ -296,10 +296,10 @@ Refer to the [Redis(R) documentation](https://redis.io/topics/config#passing-arg
 Passing the `REDIS_PASSWORD` environment variable when running the image for the first time will set the Redis(R) server password to the value of `REDIS_PASSWORD` (or the content of the file specified in `REDIS_PASSWORD_FILE`).
 
 ```console
-docker run --name redis -e REDIS_PASSWORD=password123 bitnami/redis:latest
+docker run --name redis -e REDIS_PASSWORD=password123 bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -319,10 +319,10 @@ services:
 By default the Redis(R) image expects all the available passwords to be set. In order to allow empty passwords, it is necessary to set the `ALLOW_EMPTY_PASSWORD=yes` env variable. This env variable is only recommended for testing or development purposes. We strongly recommend specifying the `REDIS_PASSWORD` for any other scenario.
 
 ```console
-docker run --name redis -e ALLOW_EMPTY_PASSWORD=yes bitnami/redis:latest
+docker run --name redis -e ALLOW_EMPTY_PASSWORD=yes bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -338,7 +338,7 @@ services:
 Redis 6.0 features a [new multi-threading model](https://segmentfault.com/a/1190000040376111/en). You can set both `io-threads` and `io-threads-do-reads` though the env vars `REDIS_IO_THREADS` and `REDIS_IO_THREADS_DO_READS`
 
 ```console
-docker run --name redis -e REDIS_IO_THREADS=4 -e REDIS_IO_THREADS_DO_READS=yes bitnami/redis:latest
+docker run --name redis -e REDIS_IO_THREADS=4 -e REDIS_IO_THREADS_DO_READS=yes bitmoa/redis:latest
 ```
 
 ### Disabling AOF persistence
@@ -346,10 +346,10 @@ docker run --name redis -e REDIS_IO_THREADS=4 -e REDIS_IO_THREADS_DO_READS=yes b
 Redis(R) offers different [options](https://redis.io/topics/persistence) when it comes to persistence. By default, this image is set up to use the AOF (Append Only File) approach. Should you need to change this behaviour, setting the `REDIS_AOF_ENABLED=no` env variable will disable this feature.
 
 ```console
-docker run --name redis -e REDIS_AOF_ENABLED=no bitnami/redis:latest
+docker run --name redis -e REDIS_AOF_ENABLED=no bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -365,19 +365,19 @@ services:
 Redis(R) offers [ACL](https://redis.io/topics/acl) since 6.0 which allows certain connections to be limited in terms of the commands that can be executed and the keys that can be accessed. We strongly recommend enabling ACL in production by specifiying the `REDIS_ACLFILE`.
 
 ```console
-docker run -name redis -e REDIS_ACLFILE=/opt/bitnami/redis/mounted-etc/users.acl -v /path/to/users.acl:/opt/bitnami/redis/mounted-etc/users.acl bitnami/redis:latest
+docker run -name redis -e REDIS_ACLFILE=/opt/bitmoa/redis/mounted-etc/users.acl -v /path/to/users.acl:/opt/bitmoa/redis/mounted-etc/users.acl bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   redis:
   ...
     environment:
-      - REDIS_ACLFILE=/opt/bitnami/redis/mounted-etc/users.acl
+      - REDIS_ACLFILE=/opt/bitmoa/redis/mounted-etc/users.acl
     volumes:
-      - /path/to/users.acl:/opt/bitnami/redis/mounted-etc/users.acl
+      - /path/to/users.acl:/opt/bitmoa/redis/mounted-etc/users.acl
   ...
 ```
 
@@ -386,10 +386,10 @@ services:
 By default, this image is set up to launch Redis(R) in standalone mode on port 6379. Should you need to change this behavior, setting the `REDIS_PORT_NUMBER` environment variable will modify the port number. This is not to be confused with `REDIS_MASTER_PORT_NUMBER` or `REDIS_REPLICA_PORT` environment variables that are applicable in replication mode.
 
 ```console
-docker run --name redis -e REDIS_PORT_NUMBER=7000 -p 7000:7000 bitnami/redis:latest
+docker run --name redis -e REDIS_PORT_NUMBER=7000 -p 7000:7000 bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -424,7 +424,7 @@ The first step is to start the Redis(R) master.
 docker run --name redis-master \
   -e REDIS_REPLICATION_MODE=master \
   -e REDIS_PASSWORD=masterpassword123 \
-  bitnami/redis:latest
+  bitmoa/redis:latest
 ```
 
 In the above command the container is configured as the `master` using the `REDIS_REPLICATION_MODE` parameter. The `REDIS_PASSWORD` parameter enables authentication on the Redis(R) master.
@@ -441,7 +441,7 @@ docker run --name redis-replica \
   -e REDIS_MASTER_PORT_NUMBER=6379 \
   -e REDIS_MASTER_PASSWORD=masterpassword123 \
   -e REDIS_PASSWORD=password123 \
-  bitnami/redis:latest
+  bitmoa/redis:latest
 ```
 
 In the above command the container is configured as a `slave` using the `REDIS_REPLICATION_MODE` parameter. The `REDIS_MASTER_HOST`, `REDIS_MASTER_PORT_NUMBER` and `REDIS_MASTER_PASSWORD` parameters are used connect and authenticate with the Redis(R) master. The `REDIS_PASSWORD` parameter enables authentication on the Redis(R) replica.
@@ -463,17 +463,17 @@ version: '2'
 
 services:
   redis-master:
-    image: bitnami/redis:latest
+    image: bitmoa/redis:latest
     ports:
       - 6379
     environment:
       - REDIS_REPLICATION_MODE=master
       - REDIS_PASSWORD=my_master_password
     volumes:
-      - /path/to/redis-persistence:/bitnami
+      - /path/to/redis-persistence:/bitmoa
 
   redis-replica:
-    image: bitnami/redis:latest
+    image: bitmoa/redis:latest
     ports:
       - 6379
     depends_on:
@@ -515,14 +515,14 @@ When enabling TLS, conventional standard traffic is disabled by default. However
 
     ```console
     $ docker run --name redis \
-        -v /path/to/certs:/opt/bitnami/redis/certs \
-        -v /path/to/redis-data-persistence:/bitnami/redis/data \
+        -v /path/to/certs:/opt/bitmoa/redis/certs \
+        -v /path/to/redis-data-persistence:/bitmoa/redis/data \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e REDIS_TLS_ENABLED=yes \
-        -e REDIS_TLS_CERT_FILE=/opt/bitnami/redis/certs/redis.crt \
-        -e REDIS_TLS_KEY_FILE=/opt/bitnami/redis/certs/redis.key \
-        -e REDIS_TLS_CA_FILE=/opt/bitnami/redis/certs/redisCA.crt \
-        bitnami/redis:latest
+        -e REDIS_TLS_CERT_FILE=/opt/bitmoa/redis/certs/redis.crt \
+        -e REDIS_TLS_KEY_FILE=/opt/bitmoa/redis/certs/redis.key \
+        -e REDIS_TLS_CA_FILE=/opt/bitmoa/redis/certs/redisCA.crt \
+        bitmoa/redis:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -534,39 +534,39 @@ When enabling TLS, conventional standard traffic is disabled by default. However
         environment:
           ...
           - REDIS_TLS_ENABLED=yes
-          - REDIS_TLS_CERT_FILE=/opt/bitnami/redis/certs/redis.crt
-          - REDIS_TLS_KEY_FILE=/opt/bitnami/redis/certs/redis.key
-          - REDIS_TLS_CA_FILE=/opt/bitnami/redis/certs/redisCA.crt
+          - REDIS_TLS_CERT_FILE=/opt/bitmoa/redis/certs/redis.crt
+          - REDIS_TLS_KEY_FILE=/opt/bitmoa/redis/certs/redis.key
+          - REDIS_TLS_CA_FILE=/opt/bitmoa/redis/certs/redisCA.crt
         ...
         volumes:
-          - /path/to/certs:/opt/bitnami/redis/certs
-          - /path/to/redis-persistence:/bitnami/redis/data
+          - /path/to/certs:/opt/bitmoa/redis/certs
+          - /path/to/redis-persistence:/bitmoa/redis/data
       ...
     ```
 
-Alternatively, you may also provide with this configuration in your [custom](https://github.com/bitnami/containers/blob/main/bitnami/redis#configuration-file) configuration file.
+Alternatively, you may also provide with this configuration in your [custom](https://github.com/bitmoa/containers/blob/main/bitmoa/redis#configuration-file) configuration file.
 
 ### Configuration file
 
-The image looks for configurations in `/opt/bitnami/redis/mounted-etc/redis.conf`. You can overwrite the `redis.conf` file using your own custom configuration file.
+The image looks for configurations in `/opt/bitmoa/redis/mounted-etc/redis.conf`. You can overwrite the `redis.conf` file using your own custom configuration file.
 
 ```console
 docker run --name redis \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/your_redis.conf:/opt/bitnami/redis/mounted-etc/redis.conf \
-    -v /path/to/redis-data-persistence:/bitnami/redis/data \
-    bitnami/redis:latest
+    -v /path/to/your_redis.conf:/opt/bitmoa/redis/mounted-etc/redis.conf \
+    -v /path/to/redis-data-persistence:/bitmoa/redis/data \
+    bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   redis:
   ...
     volumes:
-      - /path/to/your_redis.conf:/opt/bitnami/redis/mounted-etc/redis.conf
-      - /path/to/redis-persistence:/bitnami/redis/data
+      - /path/to/your_redis.conf:/opt/bitmoa/redis/mounted-etc/redis.conf
+      - /path/to/redis-persistence:/bitmoa/redis/data
   ...
 ```
 
@@ -574,23 +574,23 @@ Refer to the [Redis(R) configuration](https://redis.io/topics/config) manual for
 
 ### Overriding configuration
 
-Instead of providing a custom `redis.conf`, you may also choose to provide only settings you wish to override. The image will look for `/opt/bitnami/redis/mounted-etc/overrides.conf`. This will be ignored if custom `redis.conf` is provided.
+Instead of providing a custom `redis.conf`, you may also choose to provide only settings you wish to override. The image will look for `/opt/bitmoa/redis/mounted-etc/overrides.conf`. This will be ignored if custom `redis.conf` is provided.
 
 ```console
 docker run --name redis \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/overrides.conf:/opt/bitnami/redis/mounted-etc/overrides.conf \
-    bitnami/redis:latest
+    -v /path/to/overrides.conf:/opt/bitmoa/redis/mounted-etc/overrides.conf \
+    bitmoa/redis:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redis/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redis/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   redis:
   ...
     volumes:
-      - /path/to/overrides.conf:/opt/bitnami/redis/mounted-etc/overrides.conf
+      - /path/to/overrides.conf:/opt/bitmoa/redis/mounted-etc/overrides.conf
   ...
 ```
 
@@ -602,11 +602,11 @@ When the value of `REDIS_RDB_POLICY_DISABLED` is `no` (default value) the Redis(
 
     ```console
     $ docker run --name redis \
-        -v /path/to/redis-data-persistence:/bitnami/redis/data \
+        -v /path/to/redis-data-persistence:/bitmoa/redis/data \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e REDIS_RDB_POLICY_DISABLED=no
         -e REDIS_RDB_POLICY="900#1 600#5 300#10 120#50 60#1000 30#10000"
-        bitnami/redis:latest
+        bitmoa/redis:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -625,7 +625,7 @@ When the value of `REDIS_RDB_POLICY_DISABLED` is `no` (default value) the Redis(
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Redis&reg; Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Redis&reg; Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -654,11 +654,11 @@ Bitnami provides up-to-date versions of Redis(R), including security patches, so
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/redis:latest
+docker pull bitmoa/redis:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/redis:latest`.
+`bitmoa/redis:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -697,7 +697,7 @@ docker-compose rm -v redis
 Re-create your container from the new image.
 
 ```console
-docker run --name redis bitnami/redis:latest
+docker run --name redis bitmoa/redis:latest
 ```
 
 or using Docker Compose:
@@ -710,7 +710,7 @@ docker-compose up redis
 
 ### 5.0.8-debian-10-r24
 
-- The recommended mount point to use a custom `redis.conf` changes from `/opt/bitnami/redis/etc/` to `/opt/bitnami/redis/mounted-etc/`.
+- The recommended mount point to use a custom `redis.conf` changes from `/opt/bitmoa/redis/etc/` to `/opt/bitmoa/redis/mounted-etc/`.
 
 ### 5.0.0-r0
 
@@ -719,8 +719,8 @@ docker-compose up redis
 ### 4.0.1-r24
 
 - Decrease the size of the container. It is not necessary Node.js anymore. Redis(R) configuration moved to bash scripts in the `rootfs/` folder.
-- The recommended mount point to persist data changes to `/bitnami/redis/data`.
-- The main `redis.conf` file is not persisted in a volume. The path is `/opt/bitnami/redis/mounted-etc/redis.conf`.
+- The recommended mount point to persist data changes to `/bitmoa/redis/data`.
+- The main `redis.conf` file is not persisted in a volume. The path is `/opt/bitmoa/redis/mounted-etc/redis.conf`.
 - Backwards compatibility is not guaranteed when data is persisted using docker-compose. You can use the workaround below to overcome it:
 
 ```bash
@@ -730,9 +730,9 @@ VOLUME=$(docker volume ls | grep "redis_data" | awk '{print $2}')
 docker run --rm -i -v=${VOLUME}:/tmp/redis busybox find /tmp/redis/data -maxdepth 1 -exec mv {} /tmp/redis \;
 docker run --rm -i -v=${VOLUME}:/tmp/redis busybox rm -rf /tmp/redis/{data,conf,.initialized}
 ## Change the mount point
-sed -i -e 's#redis_data:/bitnami/redis#redis_data:/bitnami/redis/data#g' docker-compose.yml
-## Pull the latest bitnami/redis image
-docker pull bitnami/redis:latest
+sed -i -e 's#redis_data:/bitmoa/redis#redis_data:/bitmoa/redis/data#g' docker-compose.yml
+## Pull the latest bitmoa/redis image
+docker pull bitmoa/redis:latest
 docker-compose up -d
 ```
 
@@ -743,22 +743,22 @@ docker-compose up -d
 
 ### 3.2.0-r0
 
-- All volumes have been merged at `/bitnami/redis`. Now you only need to mount a single volume at `/bitnami/redis` for persistence.
+- All volumes have been merged at `/bitmoa/redis`. Now you only need to mount a single volume at `/bitmoa/redis` for persistence.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/redis).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/redis).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

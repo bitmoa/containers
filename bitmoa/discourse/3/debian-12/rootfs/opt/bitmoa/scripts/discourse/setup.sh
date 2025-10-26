@@ -10,17 +10,17 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Discourse environment
-. /opt/bitnami/scripts/discourse-env.sh
+. /opt/bitmoa/scripts/discourse-env.sh
 
 # Load PostgreSQL Client environment for 'postgresql_remote_execute' (after 'discourse-env.sh' so that MODULE is not set to a wrong value)
-if [[ -f /opt/bitnami/scripts/postgresql-client-env.sh ]]; then
-    . /opt/bitnami/scripts/postgresql-client-env.sh
-elif [[ -f /opt/bitnami/scripts/postgresql-env.sh ]]; then
-    . /opt/bitnami/scripts/postgresql-env.sh
+if [[ -f /opt/bitmoa/scripts/postgresql-client-env.sh ]]; then
+    . /opt/bitmoa/scripts/postgresql-client-env.sh
+elif [[ -f /opt/bitmoa/scripts/postgresql-env.sh ]]; then
+    . /opt/bitmoa/scripts/postgresql-env.sh
 fi
 
 # Load libraries
-. /opt/bitnami/scripts/libdiscourse.sh
+. /opt/bitmoa/scripts/libdiscourse.sh
 
 # Ensure Discourse environment variables are valid
 discourse_validate

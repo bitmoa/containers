@@ -1,7 +1,7 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm AS builder
+FROM ghcr.io/bitmoa/minideb:bookworm AS builder
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
@@ -15,7 +15,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "kube-rbac-proxy-0.20.0-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -25,7 +25,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN uninstall_packages curl
@@ -41,20 +41,20 @@ ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
       org.opencontainers.image.created="2025-10-14T03:43:43Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
       org.opencontainers.image.title="kube-rbac-proxy" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="0.20.0"
 
 COPY rootfs /
-COPY --from=builder /opt/bitnami/kube-rbac-proxy/.spdx-kube-rbac-proxy.spdx /opt/bitnami/kube-rbac-proxy/.spdx-kube-rbac-proxy.spdx
-COPY --from=builder /opt/bitnami/kube-rbac-proxy/bin/kube-rbac-proxy /opt/bitnami/kube-rbac-proxy/bin/kube-rbac-proxy
-COPY --from=builder /opt/bitnami/kube-rbac-proxy/licenses /opt/bitnami/kube-rbac-proxy/licenses
+COPY --from=builder /opt/bitmoa/kube-rbac-proxy/.spdx-kube-rbac-proxy.spdx /opt/bitmoa/kube-rbac-proxy/.spdx-kube-rbac-proxy.spdx
+COPY --from=builder /opt/bitmoa/kube-rbac-proxy/bin/kube-rbac-proxy /opt/bitmoa/kube-rbac-proxy/bin/kube-rbac-proxy
+COPY --from=builder /opt/bitmoa/kube-rbac-proxy/licenses /opt/bitmoa/kube-rbac-proxy/licenses
 
 ENV APP_VERSION="0.20.0" \
-    BITNAMI_APP_NAME="kube-rbac-proxy" \
+    BITMOA_APP_NAME="kube-rbac-proxy" \
     IMAGE_REVISION="2" \
-    PATH="/opt/bitnami/kube-rbac-proxy/bin:$PATH"
+    PATH="/opt/bitmoa/kube-rbac-proxy/bin:$PATH"
 
 USER 1001
 

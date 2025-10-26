@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-zookeeper}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -93,8 +93,8 @@ done
 unset zookeeper_env_vars
 
 # Paths
-export ZOO_BASE_DIR="${BITNAMI_ROOT_DIR}/zookeeper"
-export ZOO_VOLUME_DIR="/bitnami/zookeeper"
+export ZOO_BASE_DIR="${BITMOA_ROOT_DIR}/zookeeper"
+export ZOO_VOLUME_DIR="/bitmoa/zookeeper"
 export ZOO_DATA_DIR="${ZOO_VOLUME_DIR}/data"
 export ZOO_DATA_LOG_DIR="${ZOO_DATA_LOG_DIR:-}"
 export ZOO_CONF_DIR="${ZOO_BASE_DIR}/conf"
@@ -103,7 +103,7 @@ export ZOO_CONF_FILE="${ZOO_CONF_DIR}/zoo.cfg"
 export ZOO_LOG_DIR="${ZOO_BASE_DIR}/logs"
 export ZOO_LOG_FILE="${ZOO_LOG_DIR}/zookeeper.out"
 export ZOO_BIN_DIR="${ZOO_BASE_DIR}/bin"
-export PATH="${BITNAMI_ROOT_DIR}/common/bin:${BITNAMI_ROOT_DIR}/java/bin:${PATH}"
+export PATH="${BITMOA_ROOT_DIR}/common/bin:${BITMOA_ROOT_DIR}/java/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export ZOO_DAEMON_USER="zookeeper"

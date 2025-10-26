@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libmemcached.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libmemcached.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load Memcached environment variables
-. /opt/bitnami/scripts/memcached-env.sh
+. /opt/bitmoa/scripts/memcached-env.sh
 
 # Ensure directories used by Memcached exist and have proper ownership and permissions
 for dir in "$MEMCACHED_CONF_DIR" "$MEMCACHED_DEFAULT_CONF_DIR" "$SASL_CONF_PATH"; do

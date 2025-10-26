@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-parse}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -62,17 +62,17 @@ done
 unset parse_env_vars
 
 # Paths
-export PARSE_BASE_DIR="${BITNAMI_ROOT_DIR}/parse"
+export PARSE_BASE_DIR="${BITMOA_ROOT_DIR}/parse"
 export PARSE_TMP_DIR="${PARSE_BASE_DIR}/tmp"
 export PARSE_LOGS_DIR="${PARSE_BASE_DIR}/logs"
 export PARSE_PID_FILE="${PARSE_TMP_DIR}/parse.pid"
 export PARSE_LOG_FILE="${PARSE_LOGS_DIR}/parse.log"
 export PARSE_CONF_FILE="${PARSE_BASE_DIR}/config.json"
-export PATH="${BITNAMI_ROOT_DIR}/node/bin:${PATH}"
+export PATH="${BITMOA_ROOT_DIR}/node/bin:${PATH}"
 export PARSE_FORCE_OVERWRITE_CONF_FILE="${PARSE_FORCE_OVERWRITE_CONF_FILE:-no}"
 
 # Parse persistence configuration
-export PARSE_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/parse"
+export PARSE_VOLUME_DIR="${BITMOA_VOLUME_DIR}/parse"
 
 # System users (when running with a privileged user)
 export PARSE_DAEMON_USER="parse"
@@ -97,7 +97,7 @@ PARSE_DATABASE_PORT_NUMBER="${PARSE_DATABASE_PORT_NUMBER:-"${MONGODB_PORT_NUMBER
 PARSE_DATABASE_PORT_NUMBER="${PARSE_DATABASE_PORT_NUMBER:-"${MONGODB_PORT:-}"}"
 export PARSE_DATABASE_PORT_NUMBER="${PARSE_DATABASE_PORT_NUMBER:-27017}" # only used during the first initialization
 PARSE_DATABASE_NAME="${PARSE_DATABASE_NAME:-"${MONGODB_DATABASE_NAME:-}"}"
-export PARSE_DATABASE_NAME="${PARSE_DATABASE_NAME:-bitnami_parse}" # only used during the first initialization
+export PARSE_DATABASE_NAME="${PARSE_DATABASE_NAME:-bitmoa_parse}" # only used during the first initialization
 PARSE_DATABASE_USER="${PARSE_DATABASE_USER:-"${MONGODB_DATABASE_USER:-}"}"
 PARSE_DATABASE_USER="${PARSE_DATABASE_USER:-"${MONGODB_DATABASE_USERNAME:-}"}"
 export PARSE_DATABASE_USER="${PARSE_DATABASE_USER:-bn_parse}" # only used during the first initialization

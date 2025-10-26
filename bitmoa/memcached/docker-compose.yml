@@ -3,6 +3,6 @@
 
 services:
   memcached:
-    image: docker.io/bitnami/memcached:1
+    image: ghcr.io/bitmoa/memcached:1
     ports:
       - '11211:11211'

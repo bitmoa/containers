@@ -10,18 +10,18 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libmysql.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libmysql.sh
 
 # Load MySQL environment variables
-. /opt/bitnami/scripts/mysql-env.sh
+. /opt/bitmoa/scripts/mysql-env.sh
 
 # Configure MySQL options based on build-time defaults
 info "Configuring default MySQL options"
 ensure_dir_exists "$DB_CONF_DIR"
 mysql_create_default_config
 
-for dir in "$DB_TMP_DIR" "$DB_LOGS_DIR" "$DB_CONF_DIR" "$DB_DEFAULT_CONF_DIR" "${DB_CONF_DIR}/bitnami" "$DB_VOLUME_DIR" "$DB_DATA_DIR" "/.mysqlsh"; do
+for dir in "$DB_TMP_DIR" "$DB_LOGS_DIR" "$DB_CONF_DIR" "$DB_DEFAULT_CONF_DIR" "${DB_CONF_DIR}/bitmoa" "$DB_VOLUME_DIR" "$DB_DATA_DIR" "/.mysqlsh"; do
     ensure_dir_exists "$dir"
     chmod -R g+rwX "$dir"
 done

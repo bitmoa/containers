@@ -1,7 +1,7 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm AS builder
+FROM ghcr.io/bitmoa/minideb:bookworm AS builder
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
@@ -15,7 +15,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "oras-1.3.0-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -25,7 +25,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN uninstall_packages curl
@@ -41,20 +41,20 @@ ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
       org.opencontainers.image.created="2025-10-14T05:27:49Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
       org.opencontainers.image.title="oras" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="1.3.0"
 
 COPY rootfs /
-COPY --from=builder /opt/bitnami/oras/.spdx-oras.spdx /opt/bitnami/oras/.spdx-oras.spdx
-COPY --from=builder /opt/bitnami/oras/bin/oras /opt/bitnami/oras/bin/oras
-COPY --from=builder /opt/bitnami/oras/licenses /opt/bitnami/oras/licenses
+COPY --from=builder /opt/bitmoa/oras/.spdx-oras.spdx /opt/bitmoa/oras/.spdx-oras.spdx
+COPY --from=builder /opt/bitmoa/oras/bin/oras /opt/bitmoa/oras/bin/oras
+COPY --from=builder /opt/bitmoa/oras/licenses /opt/bitmoa/oras/licenses
 
 ENV APP_VERSION="1.3.0" \
-    BITNAMI_APP_NAME="oras" \
+    BITMOA_APP_NAME="oras" \
     IMAGE_REVISION="2" \
-    PATH="/opt/bitnami/oras/bin:$PATH"
+    PATH="/opt/bitmoa/oras/bin:$PATH"
 
 USER 1001
 

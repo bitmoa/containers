@@ -3,4 +3,4 @@
 
 services:
   chainloop-artifact-cas:
-    image: docker.io/bitnami/chainloop-artifact-cas:1
+    image: ghcr.io/bitmoa/chainloop-artifact-cas:1

@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libwildfly.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libwildfly.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load WildFly environment
-. /opt/bitnami/scripts/wildfly-env.sh
+. /opt/bitmoa/scripts/wildfly-env.sh
 
 EXEC="${WILDFLY_BIN_DIR}/standalone.sh"
 declare -a args=("-Djboss.server.data.dir=${WILDFLY_DATA_DIR}" "$@")

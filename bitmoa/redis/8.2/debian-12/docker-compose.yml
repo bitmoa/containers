@@ -3,7 +3,7 @@
 
 services:
   redis:
-    image: docker.io/bitnami/redis:8.2
+    image: ghcr.io/bitmoa/redis:8.2
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
@@ -11,7 +11,7 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - 'redis_data:/bitnami/redis/data'
+      - 'redis_data:/bitmoa/redis/data'
 
 volumes:
   redis_data:

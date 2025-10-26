@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name opensearch bitnami/opensearch:latest
+docker run --name opensearch bitmoa/opensearch:latest
 ```
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy OpenSearch in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami OpenSearch Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/opensearch).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami OpenSearch Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/opensearch).
 
 ## Why use a non-root container?
 
@@ -49,51 +49,51 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami OpenSearch Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/opensearch).
+The recommended way to get the Bitnami OpenSearch Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/opensearch).
 
 ```console
-docker pull bitnami/opensearch:latest
+docker pull bitmoa/opensearch:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/opensearch/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/opensearch/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/opensearch:[TAG]
+docker pull bitmoa/opensearch:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the application will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/opensearch-data-persistence:/bitnami/opensearch/data \
-    bitnami/opensearch:latest
+    -v /path/to/opensearch-data-persistence:/bitmoa/opensearch/data \
+    bitmoa/opensearch:latest
 ```
 
-or by making a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/opensearch/docker-compose.yml) file present in this repository:
+or by making a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/opensearch/docker-compose.yml) file present in this repository:
 
 ```yaml
 opensearch:
   ...
   volumes:
-    - /path/to/opensearch-data-persistence:/bitnami/opensearch/data
+    - /path/to/opensearch-data-persistence:/bitmoa/opensearch/data
   ...
 ```
 
@@ -133,7 +133,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name opensearch-server \
     --network app-tier \
-    bitnami/opensearch:latest
+    bitmoa/opensearch:latest
 ```
 
 #### Step 3: Launch your application container
@@ -162,7 +162,7 @@ networks:
 
 services:
   opensearch:
-    image: bitnami/opensearch:latest
+    image: bitmoa/opensearch:latest
     networks:
       - app-tier
   myapp:
@@ -214,7 +214,7 @@ docker-compose up -d
 | `OPENSEARCH_HTTP_PORT_NUMBER`                  | Opensearch port                                                                                                     | `9200`                                      |
 | `OPENSEARCH_ACTION_DESTRUCTIVE_REQUIRES_NAME`  | Enable action destructive requires name                                                                             | `nil`                                       |
 | `OPENSEARCH_ENABLE_SECURITY`                   | Enable Opensearch security settings.                                                                                | `false`                                     |
-| `OPENSEARCH_PASSWORD`                          | Password for "admin" user.                                                                                          | `bitnami`                                   |
+| `OPENSEARCH_PASSWORD`                          | Password for "admin" user.                                                                                          | `bitmoa`                                   |
 | `OPENSEARCH_TLS_VERIFICATION_MODE`             | Opensearch TLS verification mode in transport layer.                                                                | `full`                                      |
 | `OPENSEARCH_TLS_USE_PEM`                       | Configure Security settings using PEM certificates.                                                                 | `false`                                     |
 | `OPENSEARCH_KEYSTORE_PASSWORD`                 | Password for the Opensearch keystore containing the certificates or password-protected PEM key.                     | `nil`                                       |
@@ -247,8 +247,8 @@ docker-compose up -d
 | `OPENSEARCH_HTTP_TLS_CA_CERT_LOCATION`         | Path to CA certificate for HTTP TLS.                                                                                | `$DB_CA_CERT_LOCATION`                      |
 | `OPENSEARCH_SECURITY_DIR`                      | Root directory of the Opensearch Security plugin.                                                                   | `${DB_PLUGINS_DIR}/opensearch-security`     |
 | `OPENSEARCH_SECURITY_CONF_DIR`                 | Configuration directory of the Opensearch Security plugin.                                                          | `${DB_CONF_DIR}/opensearch-security`        |
-| `OPENSEARCH_DASHBOARDS_PASSWORD`               | Password for the Opensearch-dashboards user.                                                                        | `bitnami`                                   |
-| `LOGSTASH_PASSWORD`                            | Password for the Logstash user.                                                                                     | `bitnami`                                   |
+| `OPENSEARCH_DASHBOARDS_PASSWORD`               | Password for the Opensearch-dashboards user.                                                                        | `bitmoa`                                   |
+| `LOGSTASH_PASSWORD`                            | Password for the Logstash user.                                                                                     | `bitmoa`                                   |
 | `OPENSEARCH_SET_CGROUP`                        | Configure Opensearch java opts with cgroup hierarchy override, so cgroup statistics are available in the container. | `true`                                      |
 | `OPENSEARCH_SECURITY_BOOTSTRAP`                | If set to true, this node will be configured with instructions to bootstrap the Opensearch security config.         | `false`                                     |
 | `OPENSEARCH_SECURITY_NODES_DN`                 | Comma-separated list including the Opensearch nodes allowed TLS DNs.                                                | `nil`                                       |
@@ -261,8 +261,8 @@ docker-compose up -d
 | Name                             | Description                                                     | Value                            |
 |----------------------------------|-----------------------------------------------------------------|----------------------------------|
 | `DB_FLAVOR`                      | Database flavor. Valid values: `elasticsearch` or `opensearch`. | `opensearch`                     |
-| `OPENSEARCH_VOLUME_DIR`          | Persistence base directory                                      | `/bitnami/opensearch`            |
-| `OPENSEARCH_BASE_DIR`            | Opensearch installation directory                               | `/opt/bitnami/opensearch`        |
+| `OPENSEARCH_VOLUME_DIR`          | Persistence base directory                                      | `/bitmoa/opensearch`            |
+| `OPENSEARCH_BASE_DIR`            | Opensearch installation directory                               | `/opt/bitmoa/opensearch`        |
 | `OPENSEARCH_CONF_DIR`            | Opensearch configuration directory                              | `${DB_BASE_DIR}/config`          |
 | `OPENSEARCH_DEFAULT_CONF_DIR`    | Opensearch default configuration directory                      | `${DB_BASE_DIR}/config.default`  |
 | `OPENSEARCH_LOGS_DIR`            | Opensearch logs directory                                       | `${DB_BASE_DIR}/logs`            |
@@ -298,8 +298,8 @@ opensearch:
  $ docker run -d --name opensearch \
     -p 9201:9201 --network=opensearch_network \
     -e OPENSEARCH_PORT_NUMBER=9201 \
-    -v /path/to/opensearch-data-persistence:/bitnami/opensearch/data \
-    bitnami/opensearch
+    -v /path/to/opensearch-data-persistence:/bitmoa/opensearch/data \
+    bitmoa/opensearch
 ```
 
 ### Setting up a cluster
@@ -335,7 +335,7 @@ docker run --name opensearch-node1 \
   -e OPENSEARCH_CLUSTER_NAME=opensearch-cluster \
   -e OPENSEARCH_CLUSTER_HOSTS=opensearch-node1,opensearch-node2 \
   -e OPENSEARCH_NODE_NAME=elastic-node1 \
-  bitnami/opensearch:latest
+  bitmoa/opensearch:latest
 ```
 
 In the above command the container is added to a cluster named `opensearch-cluster` using the `OPENSEARCH_CLUSTER_NAME`. The `OPENSEARCH_CLUSTER_HOSTS` parameter set the name of the nodes that set the cluster so we will need to launch other container for the second node. Finally the `OPENSEARCH_NODE_NAME` parameter allows to indicate a known name for the node, otherwise opensearch will generate a random one.
@@ -349,7 +349,7 @@ docker run --name opensearch-node2 \
   -e OPENSEARCH_CLUSTER_NAME=opensearch-cluster \
   -e OPENSEARCH_CLUSTER_HOSTS=opensearch-node1,opensearch-node2 \
   -e OPENSEARCH_NODE_NAME=elastic-node2 \
-  bitnami/opensearch:latest
+  bitmoa/opensearch:latest
 ```
 
 In the above command a new opensearch node is being added to the opensearch cluster indicated by `OPENSEARCH_CLUSTER_NAME`.
@@ -362,14 +362,14 @@ With Docker Compose the cluster configuration can be setup using:
 version: '2'
 services:
   opensearch-node1:
-    image: bitnami/opensearch:latest
+    image: bitmoa/opensearch:latest
     environment:
       - OPENSEARCH_CLUSTER_NAME=opensearch-cluster
       - OPENSEARCH_CLUSTER_HOSTS=opensearch-node1,opensearch-node2
       - OPENSEARCH_NODE_NAME=elastic-node1
 
   opensearch-node2:
-    image: bitnami/opensearch:latest
+    image: bitmoa/opensearch:latest
     environment:
       - OPENSEARCH_CLUSTER_NAME=opensearch-cluster
       - OPENSEARCH_CLUSTER_HOSTS=opensearch-node1,opensearch-node2
@@ -378,30 +378,30 @@ services:
 
 ### Configuration file
 
-In order to use a custom configuration file instead of the default one provided out of the box, you can create a file named `opensearch.yml` and mount it at `/opt/bitnami/opensearch/config/opensearch.yml` to overwrite the default configuration:
+In order to use a custom configuration file instead of the default one provided out of the box, you can create a file named `opensearch.yml` and mount it at `/opt/bitmoa/opensearch/config/opensearch.yml` to overwrite the default configuration:
 
 ```console
 docker run -d --name opensearch \
     -p 9201:9201 \
-    -v /path/to/opensearch.yml:/opt/bitnami/opensearch/config/opensearch.yml \
-    -v /path/to/opensearch-data-persistence:/bitnami/opensearch/data \
-    bitnami/opensearch:latest
+    -v /path/to/opensearch.yml:/opt/bitmoa/opensearch/config/opensearch.yml \
+    -v /path/to/opensearch-data-persistence:/bitmoa/opensearch/data \
+    bitmoa/opensearch:latest
 ```
 
-or by changing the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/opensearch/docker-compose.yml) file present in this repository:
+or by changing the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/opensearch/docker-compose.yml) file present in this repository:
 
 ```yaml
 opensearch:
   ...
   volumes:
-    - /path/to/opensearch.yml:/opt/bitnami/opensearch/config/opensearch.yml
-    - /path/to/opensearch-data-persistence:/bitnami/opensearch/data
+    - /path/to/opensearch.yml:/opt/bitmoa/opensearch/config/opensearch.yml
+    - /path/to/opensearch-data-persistence:/bitmoa/opensearch/data
   ...
 ```
 
 Please, note that the whole configuration file will be replaced by the provided, default one; ensure that the syntax and fields you provide are properly set and exhaustive.
 
-If you would rather extend than replace the default configuration with your settings, mount your custom configuration file at `/opt/bitnami/opensearch/config/my_opensearch.yml`.
+If you would rather extend than replace the default configuration with your settings, mount your custom configuration file at `/opt/bitmoa/opensearch/config/my_opensearch.yml`.
 
 ### Plugins
 
@@ -410,10 +410,10 @@ You can add extra plugins by setting the `OPENSEARCH_PLUGINS` environment variab
 ```console
 docker run -d --name opensearch \
     -e OPENSEARCH_PLUGINS=analysis-icu \
-    bitnami/opensearch:latest
+    bitmoa/opensearch:latest
 ```
 
-The Bitnami OpenSearch Docker image will also install plugin `.zip` files mounted at the `/bitnami/opensearch/plugins` directory inside the container, making it possible to install them from disk without requiring Internet access.
+The Bitnami OpenSearch Docker image will also install plugin `.zip` files mounted at the `/bitmoa/opensearch/plugins` directory inside the container, making it possible to install them from disk without requiring Internet access.
 
 #### Adding plugins at build time (persisting plugins)
 
@@ -422,9 +422,9 @@ The Bitnami OpenSearch image provides a way to create your custom image installi
 To create your own image providing plugins execute the following command. Remember to replace the `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/opensearch/VERSION/OPERATING-SYSTEM
-docker build --build-arg OPENSEARCH_PLUGINS=<plugin1,plugin2,...> -t bitnami/opensearch:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/opensearch/VERSION/OPERATING-SYSTEM
+docker build --build-arg OPENSEARCH_PLUGINS=<plugin1,plugin2,...> -t bitmoa/opensearch:latest .
 ```
 
 The command above will build the image providing this GitHub repository as build context, and will pass the list of plugins to install to the build logic.
@@ -437,7 +437,7 @@ In order to have your custom files inside the Docker image, you can mount them a
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami OpenSearch Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami OpenSearch Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -457,7 +457,7 @@ docker-compose logs opensearch
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
-Additionally, in case you'd like to modify OpenSearch logging configuration, it can be done by overwriting the file `/opt/bitnami/opensearch/config/log4j2.properties`.
+Additionally, in case you'd like to modify OpenSearch logging configuration, it can be done by overwriting the file `/opt/bitmoa/opensearch/config/log4j2.properties`.
 The syntax of this file can be found in OpenSearch [logging documentation](https://www.elastic.co/guide/en/opensearch/reference/current/logging.html).
 
 ## Maintenance
@@ -469,11 +469,11 @@ Bitnami provides up-to-date versions of OpenSearch, including security patches, 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/opensearch:latest
+docker pull bitmoa/opensearch:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/opensearch:latest`.
+`bitmoa/opensearch:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -514,7 +514,7 @@ docker-compose rm -v opensearch
 Re-create your container from the new image, restoring your backup if necessary.
 
 ```console
-docker run --name opensearch bitnami/opensearch:latest
+docker run --name opensearch bitmoa/opensearch:latest
 ```
 
 or using Docker Compose:
@@ -525,17 +525,17 @@ docker-compose up opensearch
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/opensearch).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/opensearch).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue], or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this Docker image. You can request new features by creating an [issue], or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`docker version`)

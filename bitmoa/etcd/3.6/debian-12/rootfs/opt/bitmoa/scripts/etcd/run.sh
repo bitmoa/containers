@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libetcd.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libetcd.sh
 
 # Load etcd environment variables
-. /opt/bitnami/scripts/etcd-env.sh
+. /opt/bitmoa/scripts/etcd-env.sh
 
 # We need to unset ETCD_ROOT_PASSWORD otherwise it will be logged by etcd process
 unset ETCD_ROOT_PASSWORD

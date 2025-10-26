@@ -3,7 +3,7 @@
 
 services:
   mongodb-sharded:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-sharded
       - MONGODB_SHARDING_MODE=mongos
@@ -15,7 +15,7 @@ services:
       - "27017:27017"
 
   mongodb-shard0:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard0
       - MONGODB_SHARDING_MODE=shardsvr
@@ -25,10 +25,10 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_REPLICA_SET_NAME=shard0
     volumes:
-      - 'shard0_data:/bitnami'
+      - 'shard0_data:/bitmoa'
 
   mongodb-cfg:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-cfg
       - MONGODB_SHARDING_MODE=configsvr
@@ -37,7 +37,7 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_REPLICA_SET_NAME=cfgreplicaset
     volumes:
-      - 'cfg_data:/bitnami'
+      - 'cfg_data:/bitmoa'
 
 volumes:
   shard0_data:

@@ -3,13 +3,13 @@
 
 services:
   influxdb:
-    image: docker.io/bitnami/influxdb:3
+    image: ghcr.io/bitmoa/influxdb:3
     ports:
       - 8181:8181
     environment:
       - INFLUXDB_NODE_ID=0
     volumes:
-      - influxdb_data:/bitnami/influxdb
+      - influxdb_data:/bitmoa/influxdb
 volumes:
   influxdb_data:
     driver: local

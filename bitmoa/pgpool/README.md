@@ -12,21 +12,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ### Docker Compose
 
 ```console
-docker run --name pgpool bitnami/pgpool:latest
+docker run --name pgpool bitmoa/pgpool:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -37,11 +37,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Pgpool-II in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami PostgreSQL HA Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami PostgreSQL HA Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/postgresql-ha).
 
 ## Why use a non-root container?
 
@@ -51,30 +51,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Pgpool-II Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/pgpool).
+The recommended way to get the Bitnami Pgpool-II Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/pgpool).
 
 ```console
-docker pull bitnami/pgpool:latest
+docker pull bitmoa/pgpool:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/pgpool/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/pgpool/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/pgpool:[TAG]
+docker pull bitmoa/pgpool:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Connecting to other containers
@@ -109,7 +109,7 @@ docker run --detach --rm --name pg-0 \
   --env POSTGRESQL_USERNAME=customuser \
   --env POSTGRESQL_PASSWORD=custompassword \
   --env POSTGRESQL_DATABASE=customdatabase \
-  bitnami/postgresql-repmgr:latest
+  bitmoa/postgresql-repmgr:latest
 docker run --detach --rm --name pg-1 \
   --network my-network \
   --env REPMGR_PARTNER_NODES=pg-0,pg-1 \
@@ -121,7 +121,7 @@ docker run --detach --rm --name pg-1 \
   --env POSTGRESQL_USERNAME=customuser \
   --env POSTGRESQL_PASSWORD=custompassword \
   --env POSTGRESQL_DATABASE=customdatabase \
-  bitnami/postgresql-repmgr:latest
+  bitmoa/postgresql-repmgr:latest
 ```
 
 #### Step 3: Launch the pgpool container within your network
@@ -139,7 +139,7 @@ docker run --detach --rm --name pgpool \
   --env PGPOOL_POSTGRES_PASSWORD=adminpassword \
   --env PGPOOL_ADMIN_USERNAME=admin \
   --env PGPOOL_ADMIN_PASSWORD=adminpassword \
-  bitnami/pgpool:latest
+  bitmoa/pgpool:latest
 ```
 
 #### Step 4: Launch your PostgreSQL client instance
@@ -149,7 +149,7 @@ Finally we create a new container instance to launch the PostgreSQL client and c
 ```console
 docker run -it --rm \
   --network my-network \
-  bitnami/postgresql:latest \
+  bitmoa/postgresql:latest \
   psql -h pgpool -U customuser -d customdatabase
 ```
 
@@ -165,11 +165,11 @@ networks:
     driver: bridge
 services:
   pg-0:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     ports:
       - 5432
     volumes:
-      - pg_0_data:/bitnami/postgresql
+      - pg_0_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
       - POSTGRESQL_USERNAME=customuser
@@ -181,11 +181,11 @@ services:
       - REPMGR_NODE_NAME=pg-0
       - REPMGR_NODE_NETWORK_NAME=pg-0
   pg-1:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     ports:
       - 5432
     volumes:
-      - pg_1_data:/bitnami/postgresql
+      - pg_1_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
       - POSTGRESQL_USERNAME=customuser
@@ -197,7 +197,7 @@ services:
       - REPMGR_NODE_NAME=pg-1
       - REPMGR_NODE_NETWORK_NAME=pg-1
   pgpool:
-    image: bitnami/pgpool:latest
+    image: bitmoa/pgpool:latest
     ports:
       - 5432:5432
     environment:
@@ -210,7 +210,7 @@ services:
       - PGPOOL_ADMIN_USERNAME=admin
       - PGPOOL_ADMIN_PASSWORD=adminpassword
     healthcheck:
-      test: ["CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh"]
+      test: ["CMD", "/opt/bitmoa/scripts/pgpool/healthcheck.sh"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -260,7 +260,7 @@ docker run --detach --name pg-0 \
   --env POSTGRESQL_USERNAME=customuser \
   --env POSTGRESQL_PASSWORD=custompassword \
   --env POSTGRESQL_DATABASE=customdatabase \
-  bitnami/postgresql-repmgr:latest
+  bitmoa/postgresql-repmgr:latest
 ```
 
 #### Step 2: Create a standby node
@@ -280,7 +280,7 @@ docker run --detach --name pg-1 \
   --env POSTGRESQL_USERNAME=customuser \
   --env POSTGRESQL_PASSWORD=custompassword \
   --env POSTGRESQL_DATABASE=customdatabase \
-  bitnami/postgresql-repmgr:latest
+  bitmoa/postgresql-repmgr:latest
 ```
 
 #### Step 3: Create the pgpool instance
@@ -294,7 +294,7 @@ docker run --detach --rm --name pgpool \
   --env PGPOOL_ENABLE_LDAP=no \
   --env PGPOOL_USERNAME=customuser \
   --env PGPOOL_PASSWORD=custompassword \
-  bitnami/pgpool:latest
+  bitmoa/pgpool:latest
 ```
 
 With these three commands you now have a two node PostgreSQL primary-standby streaming replication cluster using Pgpool-II as proxy up and running. You can scale the cluster by adding/removing standby nodes without incurring any downtime.
@@ -305,10 +305,10 @@ If the master goes down, **repmgr** will ensure any of the standby nodes takes t
 
 > **Note**: The configuration of the other nodes in the cluster needs to be updated so that they are aware of them. This would require you to restart the old nodes adapting the `REPMGR_PARTNER_NODES` environment variable. You also need to restart the Pgpoll instance adapting the `PGPOOL_BACKEND_NODES` environment variable.
 
-With Docker Compose the HA PostgreSQL cluster can be setup using the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/pgpool/docker-compose.yml) file present in this repository:
+With Docker Compose the HA PostgreSQL cluster can be setup using the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/pgpool/docker-compose.yml) file present in this repository:
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/pgpool/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/pgpool/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
@@ -319,7 +319,7 @@ docker-compose up -d
 In order to have your custom files inside the docker image you can mount them as a volume. With docker-compose:
 
 ```diff
-     image: bitnami/pgpool:latest
+     image: bitmoa/pgpool:latest
      ports:
        - 5432:5432
 +    volumes:
@@ -345,12 +345,12 @@ When enabling TLS, Pgpool-II will support both standard and encrypted traffic by
 
     ```console
     $ docker run \
-        -v /path/to/certs:/opt/bitnami/pgpool/certs \
+        -v /path/to/certs:/opt/bitmoa/pgpool/certs \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e PGPOOL_ENABLE_TLS=yes \
-        -e PGPOOL_TLS_CERT_FILE=/opt/bitnami/pgpool/certs/postgres.crt \
-        -e PGPOOL_TLS_KEY_FILE=/opt/bitnami/pgpool/certs/postgres.key \
-        bitnami/pgpool:latest
+        -e PGPOOL_TLS_CERT_FILE=/opt/bitmoa/pgpool/certs/postgres.crt \
+        -e PGPOOL_TLS_KEY_FILE=/opt/bitmoa/pgpool/certs/postgres.key \
+        bitmoa/pgpool:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -362,16 +362,16 @@ When enabling TLS, Pgpool-II will support both standard and encrypted traffic by
         environment:
           ...
           - PGPOOL_ENABLE_TLS=yes
-          - PGPOOL_TLS_CERT_FILE=/opt/bitnami/pgpool/certs/postgres.crt
-          - PGPOOL_TLS_KEY_FILE=/opt/bitnami/pgpool/certs/postgres.key
+          - PGPOOL_TLS_CERT_FILE=/opt/bitmoa/pgpool/certs/postgres.crt
+          - PGPOOL_TLS_KEY_FILE=/opt/bitmoa/pgpool/certs/postgres.key
         ...
         volumes:
           ...
-          - /path/to/certs:/opt/bitnami/pgpool/certs
+          - /path/to/certs:/opt/bitmoa/pgpool/certs
       ...
     ```
 
-Alternatively, you may also provide this configuration in your [custom](https://github.com/bitnami/containers/blob/main/bitnami/pgpool#configuration-file) configuration file.
+Alternatively, you may also provide this configuration in your [custom](https://github.com/bitmoa/containers/blob/main/bitmoa/pgpool#configuration-file) configuration file.
 
 ### Configuration file
 
@@ -390,7 +390,7 @@ max_pool='300'
 Run the Pgpool-II image, mounting a directory from your host and setting `PGPOOL_USER_CONF_FILE` and `PGPOOL_USER_HBA_FILE`. Using Docker Compose:
 
 ```diff
-     image: bitnami/pgpool:latest
+     image: bitmoa/pgpool:latest
      ports:
        - 5432:5432
 +    volumes:
@@ -517,7 +517,7 @@ This command will prompt for a password, this password is the one set in the env
 
 | Name                      | Description                                             | Value                              |
 |---------------------------|---------------------------------------------------------|------------------------------------|
-| `PGPOOL_BASE_DIR`         | Pgpool-II installation directory.                       | `${BITNAMI_ROOT_DIR}/pgpool`       |
+| `PGPOOL_BASE_DIR`         | Pgpool-II installation directory.                       | `${BITMOA_ROOT_DIR}/pgpool`       |
 | `PGPOOL_BIN_DIR`          | Pgpool-II binaries directory.                           | `${PGPOOL_BASE_DIR}/bin`           |
 | `PGPOOL_DATA_DIR`         | Pgpool-II data directory.                               | `${PGPOOL_BASE_DIR}/data`          |
 | `PGPOOL_DEFAULT_CONF_DIR` | Pgpool-II default configuration directory.              | `${PGPOOL_BASE_DIR}/conf.default`  |
@@ -536,7 +536,7 @@ This command will prompt for a password, this password is the one set in the env
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Pgpool-II Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Pgpool-II Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -559,7 +559,7 @@ Bitnami provides up-to-date versions of Pgpool-II, including security patches, s
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/pgpool:latest
+docker pull bitmoa/pgpool:latest
 ```
 
 #### Step 2: Stop the running container
@@ -588,7 +588,7 @@ docker-compose up pgpool
 
 ### 4.3.1-debian-10-r67
 
-- The ENV `PGPOOL_AUTHENTICATION_METHOD` default value has been changed from `md5` to `scram-sha-256` as our `bitnami/postgresql-repmgr:latest` image now uses PSQL v14, which has `scram-sha-256` as the default auth method.
+- The ENV `PGPOOL_AUTHENTICATION_METHOD` default value has been changed from `md5` to `scram-sha-256` as our `bitmoa/postgresql-repmgr:latest` image now uses PSQL v14, which has `scram-sha-256` as the default auth method.
 
 ### 4.1.1-debian-10-r35
 
@@ -605,15 +605,15 @@ docker-compose up pgpool
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

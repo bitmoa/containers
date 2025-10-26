@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-keycloak}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -103,15 +103,15 @@ done
 unset keycloak_env_vars
 
 # Paths
-export BITNAMI_VOLUME_DIR="/bitnami"
-export JAVA_HOME="/opt/bitnami/java"
-export KEYCLOAK_BASE_DIR="/opt/bitnami/keycloak"
+export BITMOA_VOLUME_DIR="/bitmoa"
+export JAVA_HOME="/opt/bitmoa/java"
+export KEYCLOAK_BASE_DIR="/opt/bitmoa/keycloak"
 export KEYCLOAK_BIN_DIR="$KEYCLOAK_BASE_DIR/bin"
 export KEYCLOAK_PROVIDERS_DIR="$KEYCLOAK_BASE_DIR/providers"
 export KEYCLOAK_LOG_DIR="$KEYCLOAK_PROVIDERS_DIR/log"
 export KEYCLOAK_TMP_DIR="$KEYCLOAK_PROVIDERS_DIR/tmp"
 export KEYCLOAK_DOMAIN_TMP_DIR="$KEYCLOAK_BASE_DIR/domain/tmp"
-export KEYCLOAK_VOLUME_DIR="/bitnami/keycloak"
+export KEYCLOAK_VOLUME_DIR="/bitmoa/keycloak"
 export KEYCLOAK_CONF_DIR="$KEYCLOAK_BASE_DIR/conf"
 export KEYCLOAK_DEFAULT_CONF_DIR="$KEYCLOAK_BASE_DIR/conf.default"
 export KEYCLOAK_MOUNTED_CONF_DIR="${KEYCLOAK_MOUNTED_CONF_DIR:-${KEYCLOAK_VOLUME_DIR}/conf}"
@@ -174,7 +174,7 @@ KC_DB="${KC_DB:-"${KEYCLOAK_DATABASE_VENDOR:-}"}"
 export KC_DB="${KC_DB:-postgres}"
 export KEYCLOAK_DATABASE_HOST="${KEYCLOAK_DATABASE_HOST:-postgresql}"
 export KEYCLOAK_DATABASE_PORT="${KEYCLOAK_DATABASE_PORT:-5432}"
-export KEYCLOAK_DATABASE_NAME="${KEYCLOAK_DATABASE_NAME:-bitnami_keycloak}"
+export KEYCLOAK_DATABASE_NAME="${KEYCLOAK_DATABASE_NAME:-bitmoa_keycloak}"
 export KEYCLOAK_JDBC_PARAMS="${KEYCLOAK_JDBC_PARAMS:-}"
 export KEYCLOAK_JDBC_DRIVER="${KEYCLOAK_JDBC_DRIVER:-postgresql}"
 KC_DB_USERNAME="${KC_DB_USERNAME:-"${KEYCLOAK_DATABASE_USER:-}"}"

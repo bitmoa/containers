@@ -10,11 +10,11 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libspark.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libspark.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Spark environment settings
-. /opt/bitnami/scripts/spark-env.sh
+. /opt/bitmoa/scripts/spark-env.sh
 
 if [ "$SPARK_MODE" == "master" ]; then
     # Master constants

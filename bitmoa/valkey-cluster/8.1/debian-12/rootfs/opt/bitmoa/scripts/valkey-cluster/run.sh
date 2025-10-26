@@ -14,11 +14,11 @@ set -o pipefail
 set -m
 
 # Load Valkey environment variables
-. /opt/bitnami/scripts/valkey-cluster-env.sh
+. /opt/bitmoa/scripts/valkey-cluster-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalkeycluster.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalkeycluster.sh
 
 read -ra nodes <<< "$(tr ',;' ' ' <<< "${VALKEY_NODES}")"
 

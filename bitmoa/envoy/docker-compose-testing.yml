@@ -4,13 +4,13 @@
 services:
 
   envoy:
-    image: docker.io/bitnami/envoy:1.36
+    image: ghcr.io/bitmoa/envoy:1.36
     volumes:
-      - ./examples/frontend.yaml:/opt/bitnami/envoy/conf/envoy.yaml
+      - ./examples/frontend.yaml:/opt/bitmoa/envoy/conf/envoy.yaml
 
   service1:
-    image: bitnami/nginx
+    image: bitmoa/nginx
 
   service2:
-    image: bitnami/apache
+    image: bitmoa/apache
 

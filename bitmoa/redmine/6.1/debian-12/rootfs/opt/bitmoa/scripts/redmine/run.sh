@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Redmine environment
-. /opt/bitnami/scripts/redmine-env.sh
+. /opt/bitmoa/scripts/redmine-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libredmine.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libredmine.sh
 
 cd "$REDMINE_BASE_DIR"
 

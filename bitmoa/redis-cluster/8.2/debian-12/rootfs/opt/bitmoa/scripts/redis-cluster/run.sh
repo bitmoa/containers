@@ -14,11 +14,11 @@ set -o pipefail
 set -m
 
 # Load Redis environment variables
-. /opt/bitnami/scripts/redis-cluster-env.sh
+. /opt/bitmoa/scripts/redis-cluster-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/librediscluster.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/librediscluster.sh
 
 read -ra nodes <<< "$(tr ',;' ' ' <<< "${REDIS_NODES}")"
 

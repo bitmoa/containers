@@ -10,12 +10,12 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libminio.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libminio.sh
 
 # Load MinIO environment
-. /opt/bitnami/scripts/minio-env.sh
+. /opt/bitmoa/scripts/minio-env.sh
 
 # Constants
 EXEC=$(command -v minio)

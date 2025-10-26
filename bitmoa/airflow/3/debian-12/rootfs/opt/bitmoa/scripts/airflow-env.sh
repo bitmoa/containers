@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-airflow}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -97,7 +97,7 @@ done
 unset airflow_env_vars
 
 # Airflow paths
-export AIRFLOW_BASE_DIR="${BITNAMI_ROOT_DIR}/airflow"
+export AIRFLOW_BASE_DIR="${BITMOA_ROOT_DIR}/airflow"
 export AIRFLOW_HOME="$AIRFLOW_BASE_DIR"
 export AIRFLOW_BIN_DIR="${AIRFLOW_BASE_DIR}/venv/bin"
 export AIRFLOW_LOGS_DIR="${AIRFLOW_BASE_DIR}/logs"
@@ -106,7 +106,7 @@ export AIRFLOW_CONF_FILE="${AIRFLOW_BASE_DIR}/airflow.cfg"
 export AIRFLOW_WEBSERVER_CONF_FILE="${AIRFLOW_BASE_DIR}/webserver_config.py"
 export AIRFLOW_TMP_DIR="${AIRFLOW_BASE_DIR}/tmp"
 export AIRFLOW_DAGS_DIR="${AIRFLOW_BASE_DIR}/dags"
-export PATH="${AIRFLOW_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${AIRFLOW_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export AIRFLOW_DAEMON_USER="airflow"
@@ -114,7 +114,7 @@ export AIRFLOW_DAEMON_GROUP="airflow"
 
 # User configuration
 export AIRFLOW_USERNAME="${AIRFLOW_USERNAME:-user}"
-export AIRFLOW_PASSWORD="${AIRFLOW_PASSWORD:-bitnami}"
+export AIRFLOW_PASSWORD="${AIRFLOW_PASSWORD:-bitmoa}"
 export AIRFLOW_FIRSTNAME="${AIRFLOW_FIRSTNAME:-Firstname}"
 export AIRFLOW_LASTNAME="${AIRFLOW_LASTNAME:-Lastname}"
 export AIRFLOW_EMAIL="${AIRFLOW_EMAIL:-user@example.com}"
@@ -144,7 +144,7 @@ export AIRFLOW_TRIGGERER_DEFAULT_CAPACITY="${AIRFLOW_TRIGGERER_DEFAULT_CAPACITY:
 AIRFLOW_WORKER_QUEUE="${AIRFLOW_WORKER_QUEUE:-"${AIRFLOW_QUEUE:-}"}"
 export AIRFLOW_WORKER_QUEUE="${AIRFLOW_WORKER_QUEUE:-}"
 export AIRFLOW_SKIP_DB_SETUP="${AIRFLOW_SKIP_DB_SETUP:-no}"
-export PYTHONPYCACHEPREFIX="${PYTHONPYCACHEPREFIX:-/opt/bitnami/airflow/venv/tmp}"
+export PYTHONPYCACHEPREFIX="${PYTHONPYCACHEPREFIX:-/opt/bitmoa/airflow/venv/tmp}"
 export AIRFLOW_DB_MIGRATE_TIMEOUT="${AIRFLOW_DB_MIGRATE_TIMEOUT:-120}"
 export AIRFLOW_ENABLE_HTTPS="${AIRFLOW_ENABLE_HTTPS:-no}" # only used during the first initialization
 export AIRFLOW_EXTERNAL_APISERVER_PORT_NUMBER="${AIRFLOW_EXTERNAL_APISERVER_PORT_NUMBER:-80}" # only used during the first initialization
@@ -152,7 +152,7 @@ export AIRFLOW_EXTERNAL_APISERVER_PORT_NUMBER="${AIRFLOW_EXTERNAL_APISERVER_PORT
 # Airflow database configuration
 export AIRFLOW_DATABASE_HOST="${AIRFLOW_DATABASE_HOST:-postgresql}"
 export AIRFLOW_DATABASE_PORT_NUMBER="${AIRFLOW_DATABASE_PORT_NUMBER:-5432}"
-export AIRFLOW_DATABASE_NAME="${AIRFLOW_DATABASE_NAME:-bitnami_airflow}"
+export AIRFLOW_DATABASE_NAME="${AIRFLOW_DATABASE_NAME:-bitmoa_airflow}"
 export AIRFLOW_DATABASE_USERNAME="${AIRFLOW_DATABASE_USERNAME:-bn_airflow}"
 export AIRFLOW_DATABASE_PASSWORD="${AIRFLOW_DATABASE_PASSWORD:-}"
 export AIRFLOW_DATABASE_USE_SSL="${AIRFLOW_DATABASE_USE_SSL:-no}"

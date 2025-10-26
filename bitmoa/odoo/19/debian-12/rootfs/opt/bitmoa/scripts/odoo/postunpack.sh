@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Odoo environment
-. /opt/bitnami/scripts/odoo-env.sh
+. /opt/bitmoa/scripts/odoo-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libodoo.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libodoo.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # The 'odoo-bin' tool is really the same as 'odoo', but due to the way it was installed, it appears in the latter form
 # Official Odoo docs refer to 'odoo-bin' so we add a symlink for users to be able to use any form

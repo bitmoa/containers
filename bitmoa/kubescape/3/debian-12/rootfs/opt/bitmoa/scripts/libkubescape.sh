@@ -7,14 +7,14 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Load Kubescape environment variables
-. /opt/bitnami/scripts/kubescape-env.sh
+. /opt/bitmoa/scripts/kubescape-env.sh
 
 ########################
 # Prints the usage instructions for the oss_assessment custom action
@@ -27,29 +27,29 @@ kubescape_oss_assessment_usage() {
 
   echo """
 Usage:
-  docker run --rm -it bitnami/kubescape:<tag> oss-assessment scan [project] [flags]
+  docker run --rm -it bitmoa/kubescape:<tag> oss-assessment scan [project] [flags]
 
 Examples:
 
   Scan command is for scanning an existing cluster or kubernetes manifest files based on pre-defined frameworks
 
   # Scan git repository
-  docker run --rm -it bitnami/kubescape oss-assessment <repository_url>
+  docker run --rm -it bitmoa/kubescape oss-assessment <repository_url>
 
   # Scan remote Kubernetes cluster.
-  docker run --rm -it -v /path/to/.kubeconfig:/.kubeconfig bitnami/kubescape oss-assessment --kubeconfig /.kubeconfig
+  docker run --rm -it -v /path/to/.kubeconfig:/.kubeconfig bitmoa/kubescape oss-assessment --kubeconfig /.kubeconfig
 
   # Scan and save the results into a file
-  docker run --rm -it -v /path/to/output:/output bitnami/kubescape oss-assessment --output /output/report.json
+  docker run --rm -it -v /path/to/output:/output bitmoa/kubescape oss-assessment --output /output/report.json
 
   # Disable kubescape logs
-  docker run --rm -it bitnami/kubescape oss-assessment 'repository_url' --log-level error
+  docker run --rm -it bitmoa/kubescape oss-assessment 'repository_url' --log-level error
 
   # Enable debug logs
-  docker run --rm -it -e BITNAMI_DEBUG=true bitnami/kubescape oss-assessment 'repository_url' --log-level error
+  docker run --rm -it -e BITMOA_DEBUG=true bitmoa/kubescape oss-assessment 'repository_url' --log-level error
 
   # Disable all logs and export result using docker output
-  docker run --rm -it bitnami/kubescape oss-assessment 'repository_url' --silent > report.json
+  docker run --rm -it bitmoa/kubescape oss-assessment 'repository_url' --silent > report.json
 
   # NOTE: When using volumes, permission changes may be required because of the container running as user 1001
 

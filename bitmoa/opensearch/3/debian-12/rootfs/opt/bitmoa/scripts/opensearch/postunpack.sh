@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libopensearch.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libopensearch.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load environment
-. /opt/bitnami/scripts/opensearch-env.sh
+. /opt/bitmoa/scripts/opensearch-env.sh
 
 for dir in "$DB_TMP_DIR" "$DB_DATA_DIR" "$DB_LOGS_DIR" "${DB_BASE_DIR}/plugins" "${DB_BASE_DIR}/modules" "${DB_BASE_DIR}/extensions" "$DB_CONF_DIR" "$DB_VOLUME_DIR" "$DB_INITSCRIPTS_DIR" "$DB_MOUNTED_PLUGINS_DIR" "$DB_DEFAULT_CONF_DIR" "$DB_DEFAULT_PLUGINS_DIR"; do
     ensure_dir_exists "$dir"
@@ -32,7 +32,7 @@ for dir in "$DB_TMP_DIR" "$DB_DATA_DIR" "$DB_LOGS_DIR" "${DB_BASE_DIR}/plugins" 
     # until we can avoid this hack, we can't guarantee this container to work on K8s distributions
     # where containers are exectued with non-privileged users with random user IDs.
     #
-    # Issue reported at: https://github.com/bitnami/bitnami-docker-elasticsearch/issues/50
+    # Issue reported at: https://github.com/bitmoa/bitmoa-docker-elasticsearch/issues/50
     chown -R 1001:0 "$dir"
 done
 

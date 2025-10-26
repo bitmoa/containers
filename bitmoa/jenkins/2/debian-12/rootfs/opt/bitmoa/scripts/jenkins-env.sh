@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-jenkins}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -68,15 +68,15 @@ done
 unset jenkins_env_vars
 
 # Paths
-export JENKINS_BASE_DIR="${BITNAMI_ROOT_DIR}/jenkins"
+export JENKINS_BASE_DIR="${BITMOA_ROOT_DIR}/jenkins"
 export JENKINS_LOGS_DIR="${JENKINS_BASE_DIR}/logs"
 export JENKINS_LOG_FILE="${JENKINS_LOGS_DIR}/jenkins.log"
 export JENKINS_TMP_DIR="${JENKINS_BASE_DIR}/tmp"
 export JENKINS_PID_FILE="${JENKINS_TMP_DIR}/jenkins.pid"
-export JENKINS_TEMPLATES_DIR="${BITNAMI_ROOT_DIR}/scripts/jenkins/bitnami-templates"
+export JENKINS_TEMPLATES_DIR="${BITMOA_ROOT_DIR}/scripts/jenkins/bitmoa-templates"
 
 # Jenkins persistence configuration
-export JENKINS_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/jenkins"
+export JENKINS_VOLUME_DIR="${BITMOA_VOLUME_DIR}/jenkins"
 export JENKINS_HOME="${JENKINS_HOME:-${JENKINS_VOLUME_DIR}/home}"
 export JENKINS_MOUNTED_CONTENT_DIR="/usr/share/jenkins/ref"
 export JENKINS_PLUGINS="${JENKINS_PLUGINS:-}"
@@ -109,18 +109,18 @@ JENKINS_SKIP_BOOTSTRAP="${JENKINS_SKIP_BOOTSTRAP:-"${DISABLE_JENKINS_INITIALIZAT
 export JENKINS_SKIP_BOOTSTRAP="${JENKINS_SKIP_BOOTSTRAP:-no}" # only used during the first initialization
 export JENKINS_ENABLE_SWARM="${JENKINS_ENABLE_SWARM:-no}"
 export JENKINS_CERTS_DIR="${JENKINS_CERTS_DIR:-${JENKINS_HOME}}"
-export JENKINS_KEYSTORE_PASSWORD="${JENKINS_KEYSTORE_PASSWORD:-bitnami}"
+export JENKINS_KEYSTORE_PASSWORD="${JENKINS_KEYSTORE_PASSWORD:-bitmoa}"
 export JENKINS_OPTS="${JENKINS_OPTS:-}"
 
 # Jenkins credentials
 export JENKINS_USERNAME="${JENKINS_USERNAME:-user}" # only used during the first initialization
-export JENKINS_PASSWORD="${JENKINS_PASSWORD:-bitnami}" # only used during the first initialization
+export JENKINS_PASSWORD="${JENKINS_PASSWORD:-bitmoa}" # only used during the first initialization
 export JENKINS_EMAIL="${JENKINS_EMAIL:-user@example.com}" # only used during the first initialization
 export JENKINS_SWARM_USERNAME="${JENKINS_SWARM_USERNAME:-swarm}" # only used during the first initialization
 export JENKINS_SWARM_PASSWORD="${JENKINS_SWARM_PASSWORD:-}" # only used during the first initialization
 
 # Java configuration
-export JAVA_HOME="${JAVA_HOME:-${BITNAMI_ROOT_DIR}/java}"
+export JAVA_HOME="${JAVA_HOME:-${BITMOA_ROOT_DIR}/java}"
 export JAVA_OPTS="${JAVA_OPTS:-}"
 
 # Custom environment variables may be defined below

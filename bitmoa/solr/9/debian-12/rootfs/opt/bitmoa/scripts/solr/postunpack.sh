@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libsolr.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libsolr.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load solr environment variables
-. /opt/bitnami/scripts/solr-env.sh
+. /opt/bitmoa/scripts/solr-env.sh
 
 ensure_user_exists "$SOLR_DAEMON_USER" --group "$SOLR_DAEMON_GROUP"
 for dir in "$SOLR_TMP_DIR" "$SOLR_VOLUME_DIR" "$SOLR_LOGS_DIR" "$SOLR_BASE_DIR"; do

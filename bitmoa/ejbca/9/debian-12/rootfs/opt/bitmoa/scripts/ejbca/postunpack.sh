@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libejbca.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libejbca.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load ejbca environment variables
-. /opt/bitnami/scripts/ejbca-env.sh
+. /opt/bitmoa/scripts/ejbca-env.sh
 
 ensure_user_exists "$EJBCA_DAEMON_USER" --group "$EJBCA_DAEMON_GROUP" --system
 

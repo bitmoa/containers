@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name mariadb -e ALLOW_EMPTY_PASSWORD=yes bitnami/mariadb:latest
+docker run --name mariadb -e ALLOW_EMPTY_PASSWORD=yes bitmoa/mariadb:latest
 ```
 
 **Warning**: These quick setups are only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy MariaDB in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami MariaDB Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/mariadb).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami MariaDB Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/mariadb).
 
 ## Why use a non-root container?
 
@@ -49,55 +49,55 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami MariaDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/mariadb).
+The recommended way to get the Bitnami MariaDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/mariadb).
 
 ```console
-docker pull bitnami/mariadb:latest
+docker pull bitmoa/mariadb:latest
 ```
 
 To use a specific version, you can pull a versioned tag. You can view the
-[list of available versions](https://hub.docker.com/r/bitnami/mariadb/tags/)
+[list of available versions](https://hub.docker.com/r/bitmoa/mariadb/tags/)
 in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/mariadb:[TAG]
+docker pull bitmoa/mariadb:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your database
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/mariadb` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/mariadb` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/mariadb-persistence:/bitnami/mariadb \
-    bitnami/mariadb:latest
+    -v /path/to/mariadb-persistence:/bitmoa/mariadb \
+    bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   mariadb:
   ...
     volumes:
-      - /path/to/mariadb-persistence:/bitnami/mariadb
+      - /path/to/mariadb-persistence:/bitmoa/mariadb
   ...
 ```
 
@@ -127,7 +127,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 docker run -d --name mariadb-server \
     -e ALLOW_EMPTY_PASSWORD=yes \
     --network app-tier \
-    bitnami/mariadb:latest
+    bitmoa/mariadb:latest
 ```
 
 #### Step 3: Launch your MariaDB client instance
@@ -137,7 +137,7 @@ Finally we create a new container instance to launch the MariaDB client and conn
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/mariadb:latest mysql -h mariadb-server -u root
+    bitmoa/mariadb:latest mysql -h mariadb-server -u root
 ```
 
 ### Using a Docker Compose file
@@ -153,7 +153,7 @@ networks:
 
 services:
   mariadb:
-    image: bitnami/mariadb:latest
+    image: bitmoa/mariadb:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
@@ -223,8 +223,8 @@ docker-compose up -d
 | Name                            | Description                                                  | Value                           |
 |---------------------------------|--------------------------------------------------------------|---------------------------------|
 | `DB_FLAVOR`                     | SQL database flavor. Valid values: `mariadb` or `mysql`.     | `mariadb`                       |
-| `DB_BASE_DIR`                   | Base path for MariaDB files.                                 | `${BITNAMI_ROOT_DIR}/mariadb`   |
-| `DB_VOLUME_DIR`                 | MariaDB directory for persisted files.                       | `${BITNAMI_VOLUME_DIR}/mariadb` |
+| `DB_BASE_DIR`                   | Base path for MariaDB files.                                 | `${BITMOA_ROOT_DIR}/mariadb`   |
+| `DB_VOLUME_DIR`                 | MariaDB directory for persisted files.                       | `${BITMOA_VOLUME_DIR}/mariadb` |
 | `DB_DATA_DIR`                   | MariaDB directory for data files.                            | `${DB_VOLUME_DIR}/data`         |
 | `DB_BIN_DIR`                    | MariaDB directory where executable binary files are located. | `${DB_BASE_DIR}/bin`            |
 | `DB_SBIN_DIR`                   | MariaDB directory where service binary files are located.    | `${DB_BASE_DIR}/sbin`           |
@@ -258,10 +258,10 @@ Passing extra command-line flags to the mysqld service command is possible throu
 - `MARIADB_EXTRA_FLAGS`: Flags to be appended to the startup command. No defaults
 
 ```console
-docker run --name mariadb -e ALLOW_EMPTY_PASSWORD=yes -e MARIADB_EXTRA_FLAGS='--max-connect-errors=1000 --max_connections=155' bitnami/mariadb:latest
+docker run --name mariadb -e ALLOW_EMPTY_PASSWORD=yes -e MARIADB_EXTRA_FLAGS='--max-connect-errors=1000 --max_connections=155' bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -291,10 +291,10 @@ The root user and password can easily be setup with the Bitnami MariaDB Docker i
 Passing the `MARIADB_ROOT_PASSWORD` environment variable when running the image for the first time will set the password of the `MARIADB_ROOT_USER` user to the value of `MARIADB_ROOT_PASSWORD`.
 
 ```console
-docker run --name mariadb -e MARIADB_ROOT_PASSWORD=password123 bitnami/mariadb:latest
+docker run --name mariadb -e MARIADB_ROOT_PASSWORD=password123 bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -312,10 +312,10 @@ services:
 By default the MariaDB image expects all the available passwords to be set. In order to allow empty passwords, it is necessary to set the `ALLOW_EMPTY_PASSWORD=yes` env variable. This env variable is only recommended for testing or development purposes. We strongly recommend specifying the `MARIADB_ROOT_PASSWORD` for any other scenario.
 
 ```console
-docker run --name mariadb -e ALLOW_EMPTY_PASSWORD=yes bitnami/mariadb:latest
+docker run --name mariadb -e ALLOW_EMPTY_PASSWORD=yes bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -334,10 +334,10 @@ By passing the `MARIADB_DATABASE` environment variable when running the image fo
 docker run --name mariadb \
     -e ALLOW_EMPTY_PASSWORD=yes \
     -e MARIADB_DATABASE=my_database \
-    bitnami/mariadb:latest
+    bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -359,10 +359,10 @@ docker run --name mariadb \
   -e MARIADB_USER=my_user \
   -e MARIADB_PASSWORD=my_password \
   -e MARIADB_DATABASE=my_database \
-  bitnami/mariadb:latest
+  bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -388,10 +388,10 @@ To disable the test database in the Bitnami MariaDB container, set the `MARIADB_
 docker run --name mariadb \
     -e ALLOW_EMPTY_PASSWORD=yes \
     -e MARIADB_SKIP_TEST_DB=yes \
-    bitnami/mariadb:latest
+    bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -413,10 +413,10 @@ By default MariaDB doesn't enable [slow query log](https://mariadb.com/kb/en/slo
 Slow queries information is logged to the `<data-dir>/<hostname>-slow.log` file by default, and you can easily check it with the `mysqldumpslow` tool ([link to docs](https://mariadb.com/kb/en/mysqldumpslow/)):
 
 ```console
-$ docker run -d -e MARIADB_ENABLE_SLOW_QUERY=1 -e ALLOW_EMPTY_PASSWORD=yes --name my-mariadb-container bitnami/mariadb
+$ docker run -d -e MARIADB_ENABLE_SLOW_QUERY=1 -e ALLOW_EMPTY_PASSWORD=yes --name my-mariadb-container bitmoa/mariadb
 # wait a bit for the initialization process...
 $ docker exec -it my-mariadb-container mysqldumpslow
-Reading mysql slow query log from /bitnami/mariadb/data/<hostname>-slow.log
+Reading mysql slow query log from /bitmoa/mariadb/data/<hostname>-slow.log
 Count: 1  Time=0.01s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
   GRANT ALL PRIVILEGES ON *.* TO 'S'@'S' WITH GRANT OPTION
 
@@ -452,7 +452,7 @@ A **zero downtime** MariaDB master-slave [replication](https://dev.mysql.com/doc
 
 In a replication cluster you can have one master and zero or more slaves. When replication is enabled the master node is in read-write mode, while the slaves are in read-only mode. For best performance its advisable to limit the reads to the slaves.
 
-> **Note**: you can use the [mariadb-galera image](https://github.com/bitnami/containers/blob/main/bitnami/mariadb-galera) to set up a master-master replication cluster
+> **Note**: you can use the [mariadb-galera image](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb-galera) to set up a master-master replication cluster
 >
 #### Step 1: Create the replication master
 
@@ -467,7 +467,7 @@ docker run --name mariadb-master \
   -e MARIADB_USER=my_user \
   -e MARIADB_PASSWORD=my_password \
   -e MARIADB_DATABASE=my_database \
-  bitnami/mariadb:latest
+  bitmoa/mariadb:latest
 ```
 
 In the above command the container is configured as the `master` using the `MARIADB_REPLICATION_MODE` parameter. A replication user is specified using the `MARIADB_REPLICATION_USER` and `MARIADB_REPLICATION_PASSWORD` parameters.
@@ -483,7 +483,7 @@ docker run --name mariadb-slave --link mariadb-master:master \
   -e MARIADB_REPLICATION_PASSWORD=my_repl_password \
   -e MARIADB_MASTER_HOST=master \
   -e MARIADB_MASTER_ROOT_PASSWORD=master_root_password \
-  bitnami/mariadb:latest
+  bitmoa/mariadb:latest
 ```
 
 In the above command the container is configured as a `slave` using the `MARIADB_REPLICATION_MODE` parameter. The `MARIADB_MASTER_HOST`, `MARIADB_MASTER_ROOT_USER` and `MARIADB_MASTER_ROOT_PASSWORD` parameters are used by the slave to connect to the master. It also takes a dump of the existing data in the master server. The replication user credentials are specified using the `MARIADB_REPLICATION_USER` and `MARIADB_REPLICATION_PASSWORD` parameters and should be the same as the one specified on the master.
@@ -497,11 +497,11 @@ version: '2'
 
 services:
   mariadb-master:
-    image: bitnami/mariadb:latest
+    image: bitmoa/mariadb:latest
     ports:
       - 3306
     volumes:
-      - /path/to/mariadb-persistence:/bitnami/mariadb
+      - /path/to/mariadb-persistence:/bitmoa/mariadb
     environment:
       - MARIADB_REPLICATION_MODE=master
       - MARIADB_REPLICATION_USER=repl_user
@@ -511,7 +511,7 @@ services:
       - MARIADB_PASSWORD=my_password
       - MARIADB_DATABASE=my_database
   mariadb-slave:
-    image: bitnami/mariadb:latest
+    image: bitmoa/mariadb:latest
     ports:
       - 3306
     depends_on:
@@ -537,7 +537,7 @@ The above command scales up the number of slaves to `3`. You can scale down in t
 
 ### Configuration file
 
-The image looks for user-defined configurations in `/opt/bitnami/mariadb/conf/my_custom.cnf`. Create a file named `my_custom.cnf` and mount it at `/opt/bitnami/mariadb/conf/my_custom.cnf`.
+The image looks for user-defined configurations in `/opt/bitmoa/mariadb/conf/my_custom.cnf`. Create a file named `my_custom.cnf` and mount it at `/opt/bitmoa/mariadb/conf/my_custom.cnf`.
 
 For example, in order to override the `max_allowed_packet` directive:
 
@@ -554,20 +554,20 @@ max_allowed_packet=32M
 docker run --name mariadb \
     -p 3306:3306 \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro \
-    -v /path/to/mariadb-persistence:/bitnami/mariadb \
-    bitnami/mariadb:latest
+    -v /path/to/my_custom.cnf:/opt/bitmoa/mariadb/conf/my_custom.cnf:ro \
+    -v /path/to/mariadb-persistence:/bitmoa/mariadb \
+    bitmoa/mariadb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mariadb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   mariadb:
   ...
     volumes:
-      - /path/to/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - /path/to/mariadb-persistence:/bitnami/mariadb
+      - /path/to/my_custom.cnf:/opt/bitmoa/mariadb/conf/my_custom.cnf:ro
+      - /path/to/mariadb-persistence:/bitmoa/mariadb
   ...
 ```
 
@@ -580,7 +580,7 @@ Refer to the [MariaDB server option and variable reference guide](https://dev.my
 It is also possible to use your custom `my.cnf` and overwrite the main configuration file.
 
 ```console
-docker run --name mariadb  -e ALLOW_EMPTY_PASSWORD=yes -v /path/to/my.cnf:/opt/bitnami/mariadb/conf/my.cnf:ro bitnami/mariadb:latest
+docker run --name mariadb  -e ALLOW_EMPTY_PASSWORD=yes -v /path/to/my.cnf:/opt/bitmoa/mariadb/conf/my.cnf:ro bitmoa/mariadb:latest
 ```
 
 ## Customize this image
@@ -596,7 +596,7 @@ Before extending this image, please note there are certain configuration setting
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/mariadb
+FROM bitmoa/mariadb
 ### Put your customizations below
 ...
 ```
@@ -609,7 +609,7 @@ Here is an example of extending the image with the following modifications:
 - Change the user that runs the container
 
 ```Dockerfile
-FROM bitnami/mariadb
+FROM bitmoa/mariadb
 
 ### Change user to perform privileged actions
 USER 0
@@ -619,7 +619,7 @@ RUN install_packages vim
 USER 1001
 
 ### modify configuration file.
-RUN ini-file set --section "mysqld" --key "collation-server" --value "utf8_general_ci" "/opt/bitnami/mariadb/conf/my.cnf"
+RUN ini-file set --section "mysqld" --key "collation-server" --value "utf8_general_ci" "/opt/bitmoa/mariadb/conf/my.cnf"
 
 ### Modify the ports used by MariaDB by default
 ## It is also possible to change these environment variables at runtime
@@ -643,8 +643,8 @@ services:
     ports:
       - 3306:3307
     volumes:
-      - /path/to/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - data:/bitnami/mariadb/data
+      - /path/to/my_custom.cnf:/opt/bitmoa/mariadb/conf/my_custom.cnf:ro
+      - data:/bitmoa/mariadb/data
 volumes:
   data:
     driver: local
@@ -664,7 +664,7 @@ or using Docker Compose:
 docker-compose logs mariadb
 ```
 
-To increase the verbosity on intialization or add extra debug information, you can assign the `BITNAMI_DEBUG` environment variable to `true`.
+To increase the verbosity on intialization or add extra debug information, you can assign the `BITMOA_DEBUG` environment variable to `true`.
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
@@ -677,11 +677,11 @@ Bitnami provides up-to-date versions of MariaDB, including security patches, soo
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/mariadb:latest
+docker pull bitmoa/mariadb:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/mariadb:latest`.
+`bitmoa/mariadb:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -722,7 +722,7 @@ docker-compose rm -v mariadb
 Re-create your container from the new image.
 
 ```console
-docker run --name mariadb bitnami/mariadb:latest
+docker run --name mariadb bitmoa/mariadb:latest
 ```
 
 or using Docker Compose:
@@ -735,8 +735,8 @@ docker-compose up mariadb
 
 ## Useful Links
 
-- [Create An AMP Development Environment With Bitnami Containers](https://docs.bitnami.com/containers/how-to/create-amp-environment-containers/)
-- [Create An EMP Development Environment With Bitnami Containers](https://docs.bitnami.com/containers/how-to/create-emp-environment-containers/)
+- [Create An AMP Development Environment With Bitnami Containers](https://docs.bitmoa.com/containers/how-to/create-amp-environment-containers/)
+- [Create An EMP Development Environment With Bitnami Containers](https://docs.bitmoa.com/containers/how-to/create-emp-environment-containers/)
 
 ## Notable Changes
 
@@ -755,16 +755,16 @@ docker-compose up mariadb
 ### 10.1.36-r14 and 10.2.27-r36
 
 - Decrease the size of the container. It is not necessary Node.js anymore. MariaDB configuration moved to bash scripts in the `rootfs/` folder.
-- The recommended mount point to persist data changes to `/bitnami/mariadb`.
-- The MariaDB configuration files are not persisted in a volume anymore. Now, they can be found at `/opt/bitnami/mariadb/conf`.
+- The recommended mount point to persist data changes to `/bitmoa/mariadb`.
+- The MariaDB configuration files are not persisted in a volume anymore. Now, they can be found at `/opt/bitmoa/mariadb/conf`.
 - Backwards compatibility is not guaranteed when data is persisted using docker-compose. You can use the workaround below to overcome it:
 
 ```console
 $ docker-compose down
 ## Change the mount point
-sed -i -e 's#mariadb_data:/bitnami#mariadb_data:/bitnami/mariadb#g' docker-compose.yml
-## Pull the latest bitnami/mariadb image
-$ docker pull bitnami/mariadb:latest
+sed -i -e 's#mariadb_data:/bitmoa#mariadb_data:/bitmoa/mariadb#g' docker-compose.yml
+## Pull the latest bitmoa/mariadb image
+$ docker pull bitmoa/mariadb:latest
 $ docker-compose up -d
 ```
 
@@ -776,7 +776,7 @@ $ docker-compose up -d
 
 - The mariadb conf file is not in a persistent volume by default.
 
-- The user is able to specify a custom file in the default location '/opt/bitnami/mariadb/conf/my.cnf'.
+- The user is able to specify a custom file in the default location '/opt/bitmoa/mariadb/conf/my.cnf'.
 
 ### 10.1.28-r2
 
@@ -796,22 +796,22 @@ $ docker-compose up -d
 
 ### 10.1.13-r0
 
-- All volumes have been merged at `/bitnami/mariadb`. Now you only need to mount a single volume at `/bitnami/mariadb` for persistence.
+- All volumes have been merged at `/bitmoa/mariadb`. Now you only need to mount a single volume at `/bitmoa/mariadb` for persistence.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/mariadb).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/mariadb).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

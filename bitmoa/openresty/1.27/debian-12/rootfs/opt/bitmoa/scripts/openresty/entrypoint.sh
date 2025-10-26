@@ -10,17 +10,17 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libopenresty.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libopenresty.sh
 
 # Load OpenResty environment variables
-. /opt/bitnami/scripts/openresty-env.sh
+. /opt/bitmoa/scripts/openresty-env.sh
 
 print_welcome_page
 
-if [[ "$1" = "/opt/bitnami/scripts/openresty/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/openresty/run.sh" ]]; then
     info "** Starting OpenResty setup **"
-    /opt/bitnami/scripts/openresty/setup.sh
+    /opt/bitmoa/scripts/openresty/setup.sh
     info "** OpenResty setup finished! **"
 fi
 

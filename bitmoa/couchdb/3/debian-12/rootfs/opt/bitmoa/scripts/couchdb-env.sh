@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-couchdb}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -47,17 +47,17 @@ done
 unset couchdb_env_vars
 
 # Paths
-export COUCHDB_BASE_DIR="${BITNAMI_ROOT_DIR}/couchdb"
-export COUCHDB_VOLUME_DIR="/bitnami/couchdb"
+export COUCHDB_BASE_DIR="${BITMOA_ROOT_DIR}/couchdb"
+export COUCHDB_VOLUME_DIR="/bitmoa/couchdb"
 export COUCHDB_BIN_DIR="${COUCHDB_BASE_DIR}/bin"
 export COUCHDB_CONF_DIR="${COUCHDB_BASE_DIR}/etc"
-export COUCHDB_CONF_FILE="${COUCHDB_CONF_DIR}/default.d/10-bitnami.ini"
+export COUCHDB_CONF_FILE="${COUCHDB_CONF_DIR}/default.d/10-bitmoa.ini"
 export COUCHDB_DATA_DIR="${COUCHDB_VOLUME_DIR}/data"
 
 # System users (when running with a privileged user)
 export COUCHDB_DAEMON_USER="couchdb"
 export COUCHDB_DAEMON_GROUP="couchdb"
-export PATH="${COUCHDB_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${COUCHDB_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # CouchDB settings
 export COUCHDB_NODENAME="${COUCHDB_NODENAME:-}"
@@ -67,6 +67,6 @@ export COUCHDB_BIND_ADDRESS="${COUCHDB_BIND_ADDRESS:-}"
 export COUCHDB_CREATE_DATABASES="${COUCHDB_CREATE_DATABASES:-yes}"
 export COUCHDB_USER="${COUCHDB_USER:-admin}"
 export COUCHDB_PASSWORD="${COUCHDB_PASSWORD:-couchdb}"
-export COUCHDB_SECRET="${COUCHDB_SECRET:-bitnami}"
+export COUCHDB_SECRET="${COUCHDB_SECRET:-bitmoa}"
 
 # Custom environment variables may be defined below

@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libmemcached.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libmemcached.sh
 
 # Load Memcached environment variables
-. /opt/bitnami/scripts/memcached-env.sh
+. /opt/bitmoa/scripts/memcached-env.sh
 
 # Ensure Memcached environment variables are valid
 memcached_validate

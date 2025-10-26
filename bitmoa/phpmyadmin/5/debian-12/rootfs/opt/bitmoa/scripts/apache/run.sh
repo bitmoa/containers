@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libapache.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libapache.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load Apache environment
-. /opt/bitnami/scripts/apache-env.sh
+. /opt/bitmoa/scripts/apache-env.sh
 
 info "** Starting Apache **"
 exec "${APACHE_BIN_DIR}/httpd" -f "$APACHE_CONF_FILE" -D "FOREGROUND"

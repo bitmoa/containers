@@ -7,10 +7,10 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 ########################
 # Set a config option into the Flink configuration specified file.

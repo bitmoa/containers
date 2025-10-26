@@ -10,12 +10,12 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libelasticsearch.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libelasticsearch.sh
 
 # Load environment
-. /opt/bitnami/scripts/elasticsearch-env.sh
+. /opt/bitmoa/scripts/elasticsearch-env.sh
 
 # Ensure Elasticsearch environment variables settings are valid
 elasticsearch_validate

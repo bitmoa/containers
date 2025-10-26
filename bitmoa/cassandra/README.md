@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name cassandra bitnami/cassandra:latest
+docker run --name cassandra bitmoa/cassandra:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -43,57 +43,57 @@ Non-root container images add an extra layer of security and are generally recom
 
 ## How to deploy Apache Cassandra in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Cassandra Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/cassandra).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Cassandra Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/cassandra).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Apache Cassandra Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/cassandra).
+The recommended way to get the Bitnami Apache Cassandra Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/cassandra).
 
 ```console
-docker pull bitnami/cassandra:latest
+docker pull bitmoa/cassandra:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/cassandra/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/cassandra/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/cassandra:[TAG]
+docker pull bitmoa/cassandra:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/cassandra-persistence:/bitnami \
-    bitnami/cassandra:latest
+    -v /path/to/cassandra-persistence:/bitmoa \
+    bitmoa/cassandra:latest
 ```
 
 or using Docker Compose:
 
 ```yaml
 cassandra:
-  image: bitnami/cassandra:latest
+  image: bitmoa/cassandra:latest
   volumes:
-    - /path/to/cassandra-persistence:/bitnami
+    - /path/to/cassandra-persistence:/bitmoa
 ```
 
 > NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
@@ -121,7 +121,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name cassandra-server \
     --network app-tier \
-    bitnami/cassandra:latest
+    bitmoa/cassandra:latest
 ```
 
 #### Step 3: Launch your Apache Cassandra client instance
@@ -131,7 +131,7 @@ Finally we create a new container instance to launch the Apache Cassandra client
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/cassandra:latest cqlsh --username cassandra --password cassandra cassandra-server
+    bitmoa/cassandra:latest cqlsh --username cassandra --password cassandra cassandra-server
 ```
 
 ### Using a Docker Compose file
@@ -147,7 +147,7 @@ networks:
 
 services:
   cassandra:
-    image: bitnami/cassandra:latest
+    image: bitmoa/cassandra:latest
     networks:
       - app-tier
   myapp:
@@ -229,17 +229,17 @@ docker-compose up -d
 | Name                                  | Description                                                                     | Value                                           |
 |---------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------|
 | `DB_FLAVOR`                           | Database flavor. Valid values: `cassandra` or `scylladb`.                       | `cassandra`                                     |
-| `CASSANDRA_BASE_DIR`                  | Cassandra installation directory                                                | `/opt/bitnami/cassandra`                        |
+| `CASSANDRA_BASE_DIR`                  | Cassandra installation directory                                                | `/opt/bitmoa/cassandra`                        |
 | `CASSANDRA_BIN_DIR`                   | Cassandra executables directory                                                 | `${DB_BASE_DIR}/bin`                            |
-| `CASSANDRA_VOLUME_DIR`                | Persistence base directory                                                      | `/bitnami/cassandra`                            |
+| `CASSANDRA_VOLUME_DIR`                | Persistence base directory                                                      | `/bitmoa/cassandra`                            |
 | `CASSANDRA_DATA_DIR`                  | Cassandra data directory                                                        | `${DB_VOLUME_DIR}/data`                         |
 | `CASSANDRA_COMMITLOG_DIR`             | Cassandra commit log directory                                                  | `${DB_DATA_DIR}/commitlog`                      |
 | `CASSANDRA_INITSCRIPTS_DIR`           | Path to the Cassandra container init scripts directory                          | `/docker-entrypoint-initdb.d`                   |
 | `CASSANDRA_LOG_DIR`                   | Cassandra logs directory                                                        | `${DB_BASE_DIR}/logs`                           |
 | `CASSANDRA_TMP_DIR`                   | Cassandra temporary directory                                                   | `${DB_BASE_DIR}/tmp`                            |
-| `JAVA_BASE_DIR`                       | Java base directory                                                             | `${BITNAMI_ROOT_DIR}/java`                      |
+| `JAVA_BASE_DIR`                       | Java base directory                                                             | `${BITMOA_ROOT_DIR}/java`                      |
 | `JAVA_BIN_DIR`                        | Java binary directory                                                           | `${JAVA_BASE_DIR}/bin`                          |
-| `PYTHON_BASE_DIR`                     | Python base directory                                                           | `${BITNAMI_ROOT_DIR}/python`                    |
+| `PYTHON_BASE_DIR`                     | Python base directory                                                           | `${BITMOA_ROOT_DIR}/python`                    |
 | `PYTHON_BIN_DIR`                      | Python binary directory                                                         | `${PYTHON_BASE_DIR}/bin`                        |
 | `CASSANDRA_LOG_FILE`                  | Path to the Cassandra log file                                                  | `${DB_LOG_DIR}/cassandra.log`                   |
 | `CASSANDRA_FIRST_BOOT_LOG_FILE`       | Path to the Cassandra first boot log file                                       | `${DB_LOG_DIR}/cassandra_first_boot.log`        |
@@ -276,7 +276,7 @@ When you start the cassandra image, you can adjust the configuration of the inst
 
 ```yaml
 cassandra:
-  image: bitnami/cassandra:latest
+  image: bitmoa/cassandra:latest
   environment:
     - CASSANDRA_TRANSPORT_PORT_NUMBER=7000
 ```
@@ -286,8 +286,8 @@ cassandra:
 ```console
  $ docker run --name cassandra -d -p 7000:7000 --network=cassandra_network \
     -e CASSANDRA_TRANSPORT_PORT_NUMBER=7000 \
-    -v /your/local/path/bitnami/cassandra:/bitnami \
-    bitnami/cassandra
+    -v /your/local/path/bitmoa/cassandra:/bitmoa \
+    bitmoa/cassandra
 ```
 
 ### Setting the server password on first run
@@ -298,14 +298,14 @@ Passing the `CASSANDRA_PASSWORD` environment variable along with `CASSANDRA_PASS
 docker run --name cassandra \
     -e CASSANDRA_PASSWORD_SEEDER=yes \
     -e CASSANDRA_PASSWORD=password123 \
-    bitnami/cassandra:latest
+    bitmoa/cassandra:latest
 ```
 
 or using Docker Compose:
 
 ```yaml
 cassandra:
-  image: bitnami/cassandra:latest
+  image: bitmoa/cassandra:latest
   environment:
     - CASSANDRA_PASSWORD_SEEDER=yes
     - CASSANDRA_PASSWORD=password123
@@ -327,7 +327,7 @@ docker run --name cassandra-node1 \
   -e CASSANDRA_SEEDS=cassandra-node1,cassandra-node2 \
   -e CASSANDRA_PASSWORD_SEEDER=yes \
   -e CASSANDRA_PASSWORD=mypassword \
-  bitnami/cassandra:latest
+  bitmoa/cassandra:latest
 ```
 
 In the above command the container is added to a cluster named `cassandra-cluster` using the `CASSANDRA_CLUSTER_NAME`. The `CASSANDRA_CLUSTER_HOSTS` parameter set the name of the nodes that set the cluster so we will need to launch other container for the second node. Finally the `CASSANDRA_NODE_NAME` parameter allows to indicate a known name for the node, otherwise cassandra will generate a random one.
@@ -340,7 +340,7 @@ docker run --name cassandra-node2 \
   -e CASSANDRA_CLUSTER_NAME=cassandra-cluster \
   -e CASSANDRA_SEEDS=cassandra-node1,cassandra-node2 \
   -e CASSANDRA_PASSWORD=mypassword \
-  bitnami/cassandra:latest
+  bitmoa/cassandra:latest
 ```
 
 In the above command a new cassandra node is being added to the cassandra cluster indicated by `CASSANDRA_CLUSTER_NAME`.
@@ -353,7 +353,7 @@ With Docker Compose the cluster configuration can be setup using:
 version: '2'
 services:
   cassandra-node1:
-    image: bitnami/cassandra:latest
+    image: bitmoa/cassandra:latest
     environment:
       - CASSANDRA_CLUSTER_NAME=cassandra-cluster
       - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2
@@ -361,7 +361,7 @@ services:
       - CASSANDRA_PASSWORD=password123
 
   cassandra-node2:
-    image: bitnami/cassandra:latest
+    image: bitmoa/cassandra:latest
     environment:
       - CASSANDRA_CLUSTER_NAME=cassandra-cluster
       - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2
@@ -377,23 +377,23 @@ In order to have your custom files inside the docker image you can mount them as
 ```console
 docker run --name cassandra \
   -v /path/to/init-scripts:/docker-entrypoint-initdb.d \
-  -v /path/to/cassandra-persistence:/bitnami
-  bitnami/cassandra:latest
+  -v /path/to/cassandra-persistence:/bitmoa
+  bitmoa/cassandra:latest
 ```
 
 Or with docker-compose
 
 ```yaml
 cassandra:
-  image: bitnami/cassandra:latest
+  image: bitmoa/cassandra:latest
   volumes:
     - /path/to/init-scripts:/docker-entrypoint-initdb.d
-    - /path/to/cassandra-persistence:/bitnami
+    - /path/to/cassandra-persistence:/bitmoa
 ```
 
 ### Configuration file
 
-The image looks for configurations in `/bitnami/cassandra/conf/`. As mentioned in [Persisting your application](#persisting-your-application) you can mount a volume at `/bitnami` and copy/edit the configurations in the `/path/to/cassandra-persistence/cassandra/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
+The image looks for configurations in `/bitmoa/cassandra/conf/`. As mentioned in [Persisting your application](#persisting-your-application) you can mount a volume at `/bitmoa` and copy/edit the configurations in the `/path/to/cassandra-persistence/cassandra/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
 
 #### Step 1: Run the Apache Cassandra image
 
@@ -401,17 +401,17 @@ Run the Apache Cassandra image, mounting a directory from your host.
 
 ```console
 docker run --name cassandra \
-    -v /path/to/cassandra-persistence:/bitnami \
-    bitnami/cassandra:latest
+    -v /path/to/cassandra-persistence:/bitmoa \
+    bitmoa/cassandra:latest
 ```
 
 or using Docker Compose:
 
 ```yaml
 cassandra:
-  image: bitnami/cassandra:latest
+  image: bitmoa/cassandra:latest
   volumes:
-    - /path/to/cassandra-persistence:/bitnami
+    - /path/to/cassandra-persistence:/bitmoa
 ```
 
 #### Step 2: Edit the configuration
@@ -440,13 +440,13 @@ Refer to the [configuration](http://docs.datastax.com/en/cassandra/3.x/cassandra
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Cassandra Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Cassandra Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
 ## TLS Encryption
 
-The Bitnami Apache Cassandra Docker image allows configuring TLS encryption between nodes and between server-client. This is done by mounting in `/bitnami/cassandra/secrets` two files:
+The Bitnami Apache Cassandra Docker image allows configuring TLS encryption between nodes and between server-client. This is done by mounting in `/bitmoa/cassandra/secrets` two files:
 
 - `keystore`: File with the server keystore
 - `truststore`: File with the server truststore
@@ -483,11 +483,11 @@ Bitnami provides up-to-date versions of Apache Cassandra, including security pat
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/cassandra:latest
+docker pull bitmoa/cassandra:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/cassandra:latest`.
+`bitmoa/cassandra:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -526,7 +526,7 @@ docker-compose rm -v cassandra
 Re-create your container from the new image.
 
 ```console
-docker run --name cassandra bitnami/cassandra:latest
+docker run --name cassandra bitmoa/cassandra:latest
 ```
 
 or using Docker Compose:
@@ -555,17 +555,17 @@ docker-compose up cassandra
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/cassandra).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/cassandra).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues), or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues), or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

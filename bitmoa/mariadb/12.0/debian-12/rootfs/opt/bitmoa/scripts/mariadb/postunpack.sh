@@ -10,18 +10,18 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libmariadb.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libmariadb.sh
 
 # Load MariaDB environment variables
-. /opt/bitnami/scripts/mariadb-env.sh
+. /opt/bitmoa/scripts/mariadb-env.sh
 
 # Configure MariaDB options based on build-time defaults
 info "Configuring default MariaDB options"
 ensure_dir_exists "$DB_CONF_DIR"
 mariadb_create_default_config
 
-for dir in "$DB_TMP_DIR" "$DB_LOGS_DIR" "$DB_CONF_DIR" "$DB_DEFAULT_CONF_DIR" "${DB_CONF_DIR}/bitnami" "$DB_VOLUME_DIR" "$DB_DATA_DIR"; do
+for dir in "$DB_TMP_DIR" "$DB_LOGS_DIR" "$DB_CONF_DIR" "$DB_DEFAULT_CONF_DIR" "${DB_CONF_DIR}/bitmoa" "$DB_VOLUME_DIR" "$DB_DATA_DIR"; do
     ensure_dir_exists "$dir"
     chmod -R g+rwX "$dir"
 done

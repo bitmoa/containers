@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091,SC1090
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Bitnami Consul library
 

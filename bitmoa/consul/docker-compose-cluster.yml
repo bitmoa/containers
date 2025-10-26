@@ -3,7 +3,7 @@
 
 services:
   consul-node1:
-    image: docker.io/bitnami/consul:1
+    image: ghcr.io/bitmoa/consul:1
     environment:
       - CONSUL_BOOTSTRAP_EXPECT=3
       - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
@@ -17,10 +17,10 @@ services:
       - '8600:8600'
       - '8600:8600/udp'
     volumes:
-      - 'consul-node1_data:/bitnami'
+      - 'consul-node1_data:/bitmoa'
 
   consul-node2:
-    image: docker.io/bitnami/consul:1
+    image: ghcr.io/bitmoa/consul:1
     environment:
       - CONSUL_BOOTSTRAP_EXPECT=3
       - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
@@ -28,10 +28,10 @@ services:
       - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
       - CONSUL_ENABLE_UI=false
     volumes:
-      - 'consul-node2_data:/bitnami'
+      - 'consul-node2_data:/bitmoa'
 
   consul-node3:
-    image: docker.io/bitnami/consul:1
+    image: ghcr.io/bitmoa/consul:1
     environment:
       - CONSUL_BOOTSTRAP_EXPECT=3
       - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
@@ -39,7 +39,7 @@ services:
       - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
       - CONSUL_ENABLE_UI=false
     volumes:
-      - 'consul-node3_data:/bitnami'
+      - 'consul-node3_data:/bitmoa'
 
 volumes:
   consul-node1_data:

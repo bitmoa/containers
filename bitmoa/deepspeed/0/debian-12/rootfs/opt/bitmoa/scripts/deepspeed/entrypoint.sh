@@ -10,9 +10,9 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 print_welcome_page
 
@@ -21,7 +21,7 @@ print_welcome_page
 # This container supports arbitrary UIDs, therefore we have do it dynamically
 if ! am_i_root; then
     export LNAME="deepspeed"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"

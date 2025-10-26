@@ -3,5 +3,5 @@
   
 services:
   hubble-relay:
-    image: docker.io/bitnami/hubble-relay:1
+    image: ghcr.io/bitmoa/hubble-relay:1
     container_name: hubble-relay

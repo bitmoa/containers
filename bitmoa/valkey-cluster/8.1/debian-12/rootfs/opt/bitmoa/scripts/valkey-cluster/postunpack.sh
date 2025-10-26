@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Valkey environment variables
-. /opt/bitnami/scripts/valkey-cluster-env.sh
+. /opt/bitmoa/scripts/valkey-cluster-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libvalkeycluster.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libvalkeycluster.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 for dir in "$VALKEY_VOLUME_DIR" "$VALKEY_DATA_DIR" "$VALKEY_BASE_DIR" "$VALKEY_CONF_DIR" "$VALKEY_DEFAULT_CONF_DIR"; do
     ensure_dir_exists "$dir"
@@ -30,7 +30,7 @@ valkey_conf_set daemonize no
 valkey_conf_set cluster-enabled yes
 valkey_conf_set cluster-config-file "${VALKEY_DATA_DIR}/nodes.conf"
 
-chmod -R g+rwX  "$VALKEY_BASE_DIR" /bitnami/valkey
+chmod -R g+rwX  "$VALKEY_BASE_DIR" /bitmoa/valkey
 
 valkey_conf_set logfile "" # Log to stdout
 

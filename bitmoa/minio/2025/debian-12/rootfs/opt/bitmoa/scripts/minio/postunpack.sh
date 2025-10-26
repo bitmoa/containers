@@ -5,11 +5,11 @@
 # shellcheck disable=SC1090,SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libminio.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libminio.sh
 
 # Load MinIO environment
-. /opt/bitnami/scripts/minio-env.sh
+. /opt/bitmoa/scripts/minio-env.sh
 
 # Ensure non-root user has write permissions on a set of directories
 for dir in "$MINIO_DATA_DIR" "$MINIO_CERTS_DIR" "$MINIO_LOGS_DIR" "$MINIO_TMP_DIR" "$MINIO_SECRETS_DIR"; do

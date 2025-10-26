@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name logstash bitnami/logstash:latest
+docker run --name logstash bitmoa/logstash:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,11 +33,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Logstash in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Logstash Chart GitHub repository](https://github.com/bitnami/charts/tree/main/bitnami/logstash).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Logstash Chart GitHub repository](https://github.com/bitmoa/charts/tree/main/bitmoa/logstash).
 
 ## Why use a non-root container?
 
@@ -47,51 +47,51 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Logstash Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/logstash).
+The recommended way to get the Bitnami Logstash Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/logstash).
 
 ```console
-docker pull bitnami/logstash:latest
+docker pull bitmoa/logstash:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/logstash/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/logstash/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/logstash:[TAG]
+docker pull bitmoa/logstash:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/logstash-persistence:/bitnami \
-    bitnami/logstash:latest
+    -v /path/to/logstash-persistence:/bitmoa \
+    bitmoa/logstash:latest
 ```
 
-You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/logstash/docker-compose.yml) file present in this repository:
+You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/logstash/docker-compose.yml) file present in this repository:
 
 ```yaml
 logstash:
   ...
   volumes:
-    - /path/to/logstash-persistence:/bitnami
+    - /path/to/logstash-persistence:/bitmoa
   ...
 ```
 
@@ -116,7 +116,7 @@ docker network create logstash-network --driver bridge
 Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `logstash-network` network.
 
 ```console
-docker run --name logstash-node1 --network logstash-network bitnami/logstash:latest
+docker run --name logstash-node1 --network logstash-network bitmoa/logstash:latest
 ```
 
 #### Step 3: Run another containers
@@ -128,7 +128,7 @@ We can launch another containers using the same flag (`--network NETWORK`) in th
 By default, this container provides a very basic configuration for Logstash, that listen http on port 8080 and writes to stdout.
 
 ```console
-docker run -d -p 8080:8080 bitnami/logstash:latest
+docker run -d -p 8080:8080 bitmoa/logstash:latest
 ```
 
 ### Environment variables
@@ -168,7 +168,7 @@ docker run -d -p 8080:8080 bitnami/logstash:latest
 
 | Name                                 | Description                                                            | Value                                                              |
 |--------------------------------------|------------------------------------------------------------------------|--------------------------------------------------------------------|
-| `LOGSTASH_BASE_DIR`                  | Logstash installation directory                                        | `/opt/bitnami/logstash`                                            |
+| `LOGSTASH_BASE_DIR`                  | Logstash installation directory                                        | `/opt/bitmoa/logstash`                                            |
 | `LOGSTASH_CONF_DIR`                  | Logstash settings files directory                                      | `${LOGSTASH_BASE_DIR}/config`                                      |
 | `LOGSTASH_DEFAULT_CONF_DIR`          | Logstash default settings files directory                              | `${LOGSTASH_BASE_DIR}/config.default`                              |
 | `LOGSTASH_PIPELINE_CONF_DIR`         | Logstash pipeline configuration files directory                        | `${LOGSTASH_BASE_DIR}/pipeline`                                    |
@@ -176,13 +176,13 @@ docker run -d -p 8080:8080 bitnami/logstash:latest
 | `LOGSTASH_BIN_DIR`                   | Logstash executables directory                                         | `${LOGSTASH_BASE_DIR}/bin`                                         |
 | `LOGSTASH_CONF_FILE`                 | Path to Logstash settings file                                         | `${LOGSTASH_CONF_DIR}/logstash.yml`                                |
 | `LOGSTASH_PIPELINE_CONF_FILE`        | Path to Logstash pipeline configuration file                           | `${LOGSTASH_PIPELINE_CONF_DIR}/${LOGSTASH_PIPELINE_CONF_FILENAME}` |
-| `LOGSTASH_VOLUME_DIR`                | Persistence base directory                                             | `/bitnami/logstash`                                                |
+| `LOGSTASH_VOLUME_DIR`                | Persistence base directory                                             | `/bitmoa/logstash`                                                |
 | `LOGSTASH_DATA_DIR`                  | Logstash data directory                                                | `${LOGSTASH_VOLUME_DIR}/data`                                      |
 | `LOGSTASH_MOUNTED_CONF_DIR`          | Directory where Logstash settings files will be mounted.               | `${LOGSTASH_VOLUME_DIR}/config`                                    |
 | `LOGSTASH_MOUNTED_PIPELINE_CONF_DIR` | Directory where Logstash pipeline configuration files will be mounted. | `${LOGSTASH_VOLUME_DIR}/pipeline`                                  |
 | `LOGSTASH_DAEMON_USER`               | Logstash system user                                                   | `logstash`                                                         |
 | `LOGSTASH_DAEMON_GROUP`              | Logstash system group                                                  | `logstash`                                                         |
-| `JAVA_HOME`                          | Java installation folder.                                              | `${BITNAMI_ROOT_DIR}/java`                                         |
+| `JAVA_HOME`                          | Java installation folder.                                              | `${BITMOA_ROOT_DIR}/java`                                         |
 | `LS_JAVA_OPTS`                       | Logstash supported Java options.                                       | `${LS_JAVA_OPTS:-} ${JAVA_TOOL_OPTIONS:-}`                         |
 
 ### Using a configuration string
@@ -190,15 +190,15 @@ docker run -d -p 8080:8080 bitnami/logstash:latest
 For simple configurations, you specify it using the `LOGSTASH_CONF_STRING` environment variable:
 
 ```console
-docker run --env LOGSTASH_CONF_STRING="input {file {path => \"/tmp/logstash_input\"}} output {file {path => \"/tmp/logstash_output\"}}" bitnami/logstash:latest
+docker run --env LOGSTASH_CONF_STRING="input {file {path => \"/tmp/logstash_input\"}} output {file {path => \"/tmp/logstash_output\"}}" bitmoa/logstash:latest
 ```
 
 ### Using a configuration file
 
-You can override the default configuration for Logstash by mounting your own configuration files on directory `/bitnami/logstash/pipeline`. You will need to indicate the file holding the pipeline definition by setting the `LOGSTASH_PIPELINE_CONF_FILENAME` environment variable.
+You can override the default configuration for Logstash by mounting your own configuration files on directory `/bitmoa/logstash/pipeline`. You will need to indicate the file holding the pipeline definition by setting the `LOGSTASH_PIPELINE_CONF_FILENAME` environment variable.
 
 ```console
-docker run -d --env LOGSTASH_PIPELINE_CONF_FILENAME=my_config.conf -v /path/to/custom-conf-directory:/bitnami/logstash/pipeline bitnami/logstash:latest
+docker run -d --env LOGSTASH_PIPELINE_CONF_FILENAME=my_config.conf -v /path/to/custom-conf-directory:/bitmoa/logstash/pipeline bitmoa/logstash:latest
 ```
 
 ### Additional command line options
@@ -206,7 +206,7 @@ docker run -d --env LOGSTASH_PIPELINE_CONF_FILENAME=my_config.conf -v /path/to/c
 In case you want to add extra flags to the Logstash command, use the `LOGSTASH_EXTRA_FLAGS` variable. Example:
 
 ```console
-docker run -d --env LOGSTASH_EXTRA_FLAGS="-w 4 -b 4096" bitnami/logstash:latest
+docker run -d --env LOGSTASH_EXTRA_FLAGS="-w 4 -b 4096" bitmoa/logstash:latest
 ```
 
 ### Using multiple pipelines
@@ -216,7 +216,7 @@ You can use [multiple pipelines](https://www.elastic.co/guide/en/logstash/master
 In that case, you should place your `pipelines.yml` file in the mounted volume (together with the rest of the desired configuration files). If the `LOGSTASH_ENABLE_MULTIPLE_PIPELINES` environment variable is set to `true` but there is not any `pipelines.yml` file in the mounted volume, a dummy file is created using `LOGSTASH_PIPELINE_CONF_FILENAME` as a single pipeline.
 
 ```console
-docker run -d --env LOGSTASH_ENABLE_MULTIPLE_PIPELINES=true -v /path/to/custom-conf-directory:/bitnami/logstash/config bitnami/logstash:latest
+docker run -d --env LOGSTASH_ENABLE_MULTIPLE_PIPELINES=true -v /path/to/custom-conf-directory:/bitmoa/logstash/config bitmoa/logstash:latest
 ```
 
 ### Exposing Logstash API
@@ -224,7 +224,7 @@ docker run -d --env LOGSTASH_ENABLE_MULTIPLE_PIPELINES=true -v /path/to/custom-c
 You can expose the Logstash API by setting the environment variable `LOGSTASH_EXPOSE_API`, you can also change the default port by using `LOGSTASH_API_PORT_NUMBER`.
 
 ```console
-docker run -d --env LOGSTASH_EXPOSE_API=yes --env LOGSTASH_API_PORT_NUMBER=9090 -p 9090:9090 bitnami/logstash:latest
+docker run -d --env LOGSTASH_EXPOSE_API=yes --env LOGSTASH_API_PORT_NUMBER=9090 -p 9090:9090 bitmoa/logstash:latest
 ```
 
 ### Plugins
@@ -234,7 +234,7 @@ You can add extra plugins by setting the `LOGSTASH_PLUGINS` environment variable
 ```console
 docker run -d --name logstash \
     -e LOGSTASH_PLUGINS=logstash-input-github \
-    bitnami/logstash:latest
+    bitmoa/logstash:latest
 ```
 
 #### Adding plugins at build time (persisting plugins)
@@ -244,16 +244,16 @@ The Bitnami Logstash image provides a way to create your custom image installing
 To create your own image providing plugins execute the following command. Remember to replace the `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/logstash/VERSION/OPERATING-SYSTEM
-docker build --build-arg LOGSTASH_PLUGINS=<plugin1,plugin2,...> -t bitnami/logstash:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/logstash/VERSION/OPERATING-SYSTEM
+docker build --build-arg LOGSTASH_PLUGINS=<plugin1,plugin2,...> -t bitmoa/logstash:latest .
 ```
 
 The command above will build the image providing this GitHub repository as build context, and will pass the list of plugins to install to the build logic.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Logstash Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Logstash Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -267,7 +267,7 @@ docker logs logstash
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
-Additionally, in case you'd like to modify Logstash logging configuration, it can be done by overwriting the file `/opt/bitnami/logstash/config/log4j2.properties`.
+Additionally, in case you'd like to modify Logstash logging configuration, it can be done by overwriting the file `/opt/bitmoa/logstash/config/log4j2.properties`.
 The syntax of this file can be found in Logstash [logging documentation](https://www.elastic.co/guide/en/logstash/current/logging.html).
 
 ## Maintenance
@@ -279,7 +279,7 @@ Bitnami provides up-to-date versions of Logstash, including security patches, so
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/logstash:latest
+docker pull bitmoa/logstash:latest
 ```
 
 #### Step 2: Stop the running container
@@ -301,28 +301,28 @@ docker rm -v logstash
 Re-create your container from the new image.
 
 ```console
-docker run --name logstash bitnami/logstash:latest
+docker run --name logstash bitmoa/logstash:latest
 ```
 
 ## Notable Changes
 
 ### 7.15.2-debian-10-r12
 
-- Pipeline configuration files (i.e. `default_config.conf`) are being added into the `/opt/bitnami/logstash/pipeline` directory, instead of `/opt/bitnami/logstash/config`. Subsequently, `LOGSTASH_CONF_FILENAME` was renamed to `LOGSTASH_PIPELINE_CONF_FILENAME`, and `LOGSTASH_CONF_STRING` was renamed to `LOGSTASH_PIPELINE_CONF_STRING`.
+- Pipeline configuration files (i.e. `default_config.conf`) are being added into the `/opt/bitmoa/logstash/pipeline` directory, instead of `/opt/bitmoa/logstash/config`. Subsequently, `LOGSTASH_CONF_FILENAME` was renamed to `LOGSTASH_PIPELINE_CONF_FILENAME`, and `LOGSTASH_CONF_STRING` was renamed to `LOGSTASH_PIPELINE_CONF_STRING`.
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/logstash).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/logstash).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

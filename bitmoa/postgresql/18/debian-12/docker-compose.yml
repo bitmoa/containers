@@ -3,11 +3,11 @@
 
 services:
   postgresql:
-    image: docker.io/bitnami/postgresql:18
+    image: ghcr.io/bitmoa/postgresql:18
     ports:
       - '5432:5432'
     volumes:
-      - 'postgresql_data:/bitnami/postgresql'
+      - 'postgresql_data:/bitmoa/postgresql'
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
 

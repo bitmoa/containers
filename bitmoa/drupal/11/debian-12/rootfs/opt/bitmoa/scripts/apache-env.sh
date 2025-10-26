@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-apache}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -45,7 +45,7 @@ unset apache_env_vars
 export WEB_SERVER_TYPE="apache"
 
 # Paths
-export APACHE_BASE_DIR="${BITNAMI_ROOT_DIR}/apache"
+export APACHE_BASE_DIR="${BITMOA_ROOT_DIR}/apache"
 export APACHE_BIN_DIR="${APACHE_BASE_DIR}/bin"
 export APACHE_CONF_DIR="${APACHE_BASE_DIR}/conf"
 export APACHE_DEFAULT_CONF_DIR="${APACHE_BASE_DIR}/conf.default"
@@ -56,7 +56,7 @@ export APACHE_VHOSTS_DIR="${APACHE_CONF_DIR}/vhosts"
 export APACHE_HTACCESS_DIR="${APACHE_VHOSTS_DIR}/htaccess"
 export APACHE_CONF_FILE="${APACHE_CONF_DIR}/httpd.conf"
 export APACHE_PID_FILE="${APACHE_TMP_DIR}/httpd.pid"
-export PATH="${APACHE_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${APACHE_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export APACHE_DAEMON_USER="daemon"

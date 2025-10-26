@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load PHP-FPM environment variables
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # PHP OPcache optimizations
 php_conf_set "opcache.interned_strings_buffer" "$PHP_DEFAULT_OPCACHE_INTERNED_STRINGS_BUFFER"

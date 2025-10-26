@@ -10,17 +10,17 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load SonarQube environment
-. /opt/bitnami/scripts/sonarqube-env.sh
+. /opt/bitmoa/scripts/sonarqube-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libsonarqube.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libsonarqube.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 info "Updating PID files location"
 # PIDFile appears in branch 9
-replace_in_file "${SONARQUBE_BIN_DIR}/sonar.sh" "PIDFILE=\".*" "PIDFILE=\"/opt/bitnami/sonarqube/pids/\$APP_NAME.pid\""
+replace_in_file "${SONARQUBE_BIN_DIR}/sonar.sh" "PIDFILE=\".*" "PIDFILE=\"/opt/bitmoa/sonarqube/pids/\$APP_NAME.pid\""
 
 # Ensure the SonarQube base directory exists and has proper permissions
 # Based on https://github.com/SonarSource/docker-sonarqube/blob/master/9/community/Dockerfile#L129

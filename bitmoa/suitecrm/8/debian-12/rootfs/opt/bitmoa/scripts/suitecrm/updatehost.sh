@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load SuiteCRM environment
-. /opt/bitnami/scripts/suitecrm-env.sh
+. /opt/bitmoa/scripts/suitecrm-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libsuitecrm.sh
-. /opt/bitnami/scripts/libfile.sh
+. /opt/bitmoa/scripts/libsuitecrm.sh
+. /opt/bitmoa/scripts/libfile.sh
 
 SUITECRM_SERVER_HOST="${1:?missing host}"
 if is_boolean_yes "$SUITECRM_ENABLE_HTTPS"; then

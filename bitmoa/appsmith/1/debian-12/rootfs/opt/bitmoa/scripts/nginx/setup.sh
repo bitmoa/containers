@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libnginx.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libnginx.sh
 
 # Load NGINX environment variables
-. /opt/bitnami/scripts/nginx-env.sh
+. /opt/bitmoa/scripts/nginx-env.sh
 
 # Ensure NGINX environment variables settings are valid
 nginx_validate
@@ -36,8 +36,8 @@ nginx_custom_init_scripts
 ! am_i_root || chmod o+w "$(readlink /dev/stdout)" "$(readlink /dev/stderr)"
 
 # Configure HTTPS port number
-if [[ -f "${NGINX_CONF_DIR}/bitnami/certs/tls.crt" ]] && [[ -n "${NGINX_HTTPS_PORT_NUMBER:-}" ]] && [[ ! -f "${NGINX_SERVER_BLOCKS_DIR}/default-https-server-block.conf" ]] && is_file_writable "${NGINX_SERVER_BLOCKS_DIR}/default-https-server-block.conf"; then
-    cp "${BITNAMI_ROOT_DIR}/scripts/nginx/bitnami-templates/default-https-server-block.conf" "${NGINX_SERVER_BLOCKS_DIR}/default-https-server-block.conf"
+if [[ -f "${NGINX_CONF_DIR}/bitmoa/certs/tls.crt" ]] && [[ -n "${NGINX_HTTPS_PORT_NUMBER:-}" ]] && [[ ! -f "${NGINX_SERVER_BLOCKS_DIR}/default-https-server-block.conf" ]] && is_file_writable "${NGINX_SERVER_BLOCKS_DIR}/default-https-server-block.conf"; then
+    cp "${BITMOA_ROOT_DIR}/scripts/nginx/bitmoa-templates/default-https-server-block.conf" "${NGINX_SERVER_BLOCKS_DIR}/default-https-server-block.conf"
 fi
 
 # Initialize NGINX

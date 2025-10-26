@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Valkey Sentinel environment variables
-. /opt/bitnami/scripts/valkey-sentinel-env.sh
+. /opt/bitmoa/scripts/valkey-sentinel-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libvalkeysentinel.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libvalkeysentinel.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Ensure non-root user has write permissions on a set of directories
 for dir in "$VALKEY_SENTINEL_BASE_DIR" "$VALKEY_SENTINEL_CONF_DIR" "$VALKEY_SENTINEL_LOG_DIR" "$VALKEY_SENTINEL_TMP_DIR" "$VALKEY_SENTINEL_VOLUME_DIR" "${VALKEY_SENTINEL_VOLUME_DIR}/conf" "$VALKEY_SENTINEL_DEFAULT_CONF_DIR"; do

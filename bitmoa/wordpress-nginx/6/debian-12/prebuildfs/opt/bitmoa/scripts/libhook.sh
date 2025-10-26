@@ -7,8 +7,8 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Override functions that log to stdout/stderr of the current process, so they print to process 1
 for function_to_override in stderr_print debug_execute; do

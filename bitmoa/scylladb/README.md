@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name scylladb bitnami/scylladb:latest
+docker run --name scylladb bitmoa/scylladb:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,65 +35,65 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
-Non-root container images add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. Learn more about non-root containers [in our docs](https://docs.bitnami.com/tutorials/work-with-non-root-containers/).
+Non-root container images add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. Learn more about non-root containers [in our docs](https://docs.bitmoa.com/tutorials/work-with-non-root-containers/).
 
 ## How to deploy ScyllaDB in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami ScyllaDB Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/scylladb).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami ScyllaDB Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/scylladb).
 
 ## Supported tags and respective `Dockerfile` links
 
-Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://docs.bitnami.com/tutorials/understand-rolling-tags-containers/).
+Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://docs.bitmoa.com/tutorials/understand-rolling-tags-containers/).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami ScyllaDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/scylladb).
+The recommended way to get the Bitnami ScyllaDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/scylladb).
 
 ```console
-docker pull bitnami/scylladb:latest
+docker pull bitmoa/scylladb:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/scylladb/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/scylladb/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/scylladb:[TAG]
+docker pull bitmoa/scylladb:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/scylladb-persistence:/bitnami \
-    bitnami/scylladb:latest
+    -v /path/to/scylladb-persistence:/bitmoa \
+    bitmoa/scylladb:latest
 ```
 
 or using Docker Compose:
 
 ```yaml
 scylladb:
-  image: bitnami/scylladb:latest
+  image: bitmoa/scylladb:latest
   volumes:
-    - /path/to/scylladb-persistence:/bitnami
+    - /path/to/scylladb-persistence:/bitmoa
 ```
 
 > NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
@@ -121,7 +121,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name scylladb-server \
     --network app-tier \
-    bitnami/scylladb:latest
+    bitmoa/scylladb:latest
 ```
 
 #### Step 3: Launch your ScyllaDB client instance
@@ -131,7 +131,7 @@ Finally we create a new container instance to launch the ScyllaDB client and con
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/scylladb:latest cqlsh --username scylladb --password scylladb scylladb-server
+    bitmoa/scylladb:latest cqlsh --username scylladb --password scylladb scylladb-server
 ```
 
 ### Using a Docker Compose file
@@ -147,7 +147,7 @@ networks:
 
 services:
   scylladb:
-    image: bitnami/scylladb:latest
+    image: bitmoa/scylladb:latest
     networks:
       - app-tier
   myapp:
@@ -233,17 +233,17 @@ docker-compose up -d
 | Name                                 | Description                                                                    | Value                                                            |
 |--------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------|
 | `DB_FLAVOR`                          | Database flavor. Valid values: `cassandra` or `scylladb`.                      | `scylladb`                                                       |
-| `SCYLLADB_BASE_DIR`                  | ScyllaDB installation directory                                                | `/opt/bitnami/scylladb`                                          |
+| `SCYLLADB_BASE_DIR`                  | ScyllaDB installation directory                                                | `/opt/bitmoa/scylladb`                                          |
 | `SCYLLADB_BIN_DIR`                   | ScyllaDB executables directory                                                 | `${DB_BASE_DIR}/bin`                                             |
-| `SCYLLADB_VOLUME_DIR`                | Persistence base directory                                                     | `/bitnami/scylladb`                                              |
+| `SCYLLADB_VOLUME_DIR`                | Persistence base directory                                                     | `/bitmoa/scylladb`                                              |
 | `SCYLLADB_DATA_DIR`                  | ScyllaDB data directory                                                        | `${DB_VOLUME_DIR}/data`                                          |
 | `SCYLLADB_COMMITLOG_DIR`             | ScyllaDB commit log directory                                                  | `${DB_DATA_DIR}/commitlog`                                       |
 | `SCYLLADB_INITSCRIPTS_DIR`           | Path to the ScyllaDB container init scripts directory                          | `/docker-entrypoint-initdb.d`                                    |
 | `SCYLLADB_LOG_DIR`                   | ScyllaDB logs directory                                                        | `${DB_BASE_DIR}/logs`                                            |
 | `SCYLLADB_TMP_DIR`                   | ScyllaDB temporary directory                                                   | `${DB_BASE_DIR}/tmp`                                             |
-| `JAVA_BASE_DIR`                      | Java base directory                                                            | `${BITNAMI_ROOT_DIR}/java`                                       |
+| `JAVA_BASE_DIR`                      | Java base directory                                                            | `${BITMOA_ROOT_DIR}/java`                                       |
 | `JAVA_BIN_DIR`                       | Java binary directory                                                          | `${JAVA_BASE_DIR}/bin`                                           |
-| `PYTHON_BASE_DIR`                    | Python base directory                                                          | `${BITNAMI_ROOT_DIR}/python`                                     |
+| `PYTHON_BASE_DIR`                    | Python base directory                                                          | `${BITMOA_ROOT_DIR}/python`                                     |
 | `PYTHON_BIN_DIR`                     | Python binary directory                                                        | `${PYTHON_BASE_DIR}/bin`                                         |
 | `SCYLLADB_LOG_FILE`                  | Path to the ScyllaDB log file                                                  | `${DB_LOG_DIR}/scylladb.log`                                     |
 | `SCYLLADB_FIRST_BOOT_LOG_FILE`       | Path to the ScyllaDB first boot log file                                       | `${DB_LOG_DIR}/scylladb_first_boot.log`                          |
@@ -281,7 +281,7 @@ When you start the scylladb image, you can adjust the configuration of the insta
 
 ```yaml
 scylladb:
-  image: bitnami/scylladb:latest
+  image: bitmoa/scylladb:latest
   environment:
     - SCYLLADB_TRANSPORT_PORT_NUMBER=7000
 ```
@@ -291,8 +291,8 @@ scylladb:
 ```console
  $ docker run --name scylladb -d -p 7000:7000 --network=scylladb_network \
     -e SCYLLADB_TRANSPORT_PORT_NUMBER=7000 \
-    -v /your/local/path/bitnami/scylladb:/bitnami \
-    bitnami/scylladb
+    -v /your/local/path/bitmoa/scylladb:/bitmoa \
+    bitmoa/scylladb
 ```
 
 ### Setting the server password on first run
@@ -303,14 +303,14 @@ Passing the `SCYLLADB_PASSWORD` environment variable along with `SCYLLADB_PASSWO
 docker run --name scylladb \
     -e SCYLLADB_PASSWORD_SEEDER=yes \
     -e SCYLLADB_PASSWORD=password123 \
-    bitnami/scylladb:latest
+    bitmoa/scylladb:latest
 ```
 
 or using Docker Compose:
 
 ```yaml
 scylladb:
-  image: bitnami/scylladb:latest
+  image: bitmoa/scylladb:latest
   environment:
     - SCYLLADB_PASSWORD_SEEDER=yes
     - SCYLLADB_PASSWORD=password123
@@ -332,7 +332,7 @@ docker run --name scylladb-node1 \
   -e SCYLLADB_SEEDS=scylladb-node1,scylladb-node2 \
   -e SCYLLADB_PASSWORD_SEEDER=yes \
   -e SCYLLADB_PASSWORD=mypassword \
-  bitnami/scylladb:latest
+  bitmoa/scylladb:latest
 ```
 
 In the above command the container is added to a cluster named `scylladb-cluster` using the `SCYLLADB_CLUSTER_NAME`. The `SCYLLADB_CLUSTER_HOSTS` parameter set the name of the nodes that set the cluster so we will need to launch other container for the second node. Finally the `SCYLLADB_NODE_NAME` parameter allows to indicate a known name for the node, otherwise scylladb will generate a random one.
@@ -345,7 +345,7 @@ docker run --name scylladb-node2 \
   -e SCYLLADB_CLUSTER_NAME=scylladb-cluster \
   -e SCYLLADB_SEEDS=scylladb-node1,scylladb-node2 \
   -e SCYLLADB_PASSWORD=mypassword \
-  bitnami/scylladb:latest
+  bitmoa/scylladb:latest
 ```
 
 In the above command a new scylladb node is being added to the scylladb cluster indicated by `SCYLLADB_CLUSTER_NAME`.
@@ -358,7 +358,7 @@ With Docker Compose the cluster configuration can be setup using:
 version: '2'
 services:
   scylladb-node1:
-    image: bitnami/scylladb:latest
+    image: bitmoa/scylladb:latest
     environment:
       - SCYLLADB_CLUSTER_NAME=scylladb-cluster
       - SCYLLADB_SEEDS=scylladb-node1,scylladb-node2
@@ -366,7 +366,7 @@ services:
       - SCYLLADB_PASSWORD=password123
 
   scylladb-node2:
-    image: bitnami/scylladb:latest
+    image: bitmoa/scylladb:latest
     environment:
       - SCYLLADB_CLUSTER_NAME=scylladb-cluster
       - SCYLLADB_SEEDS=scylladb-node1,scylladb-node2
@@ -382,23 +382,23 @@ In order to have your custom files inside the docker image you can mount them as
 ```console
 docker run --name scylladb \
   -v /path/to/init-scripts:/docker-entrypoint-initdb.d \
-  -v /path/to/scylladb-persistence:/bitnami
-  bitnami/scylladb:latest
+  -v /path/to/scylladb-persistence:/bitmoa
+  bitmoa/scylladb:latest
 ```
 
 Or with docker-compose
 
 ```yaml
 scylladb:
-  image: bitnami/scylladb:latest
+  image: bitmoa/scylladb:latest
   volumes:
     - /path/to/init-scripts:/docker-entrypoint-initdb.d
-    - /path/to/scylladb-persistence:/bitnami
+    - /path/to/scylladb-persistence:/bitmoa
 ```
 
 ### Configuration file
 
-The image looks for configurations in `/bitnami/scylladb/conf/`. As mentioned in [Persisting your application](#persisting-your-application) you can mount a volume at `/bitnami` and copy/edit the configurations in the `/path/to/scylladb-persistence/scylladb/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
+The image looks for configurations in `/bitmoa/scylladb/conf/`. As mentioned in [Persisting your application](#persisting-your-application) you can mount a volume at `/bitmoa` and copy/edit the configurations in the `/path/to/scylladb-persistence/scylladb/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
 
 #### Step 1: Run the ScyllaDB image
 
@@ -406,17 +406,17 @@ Run the ScyllaDB image, mounting a directory from your host.
 
 ```console
 docker run --name scylladb \
-    -v /path/to/scylladb-persistence:/bitnami \
-    bitnami/scylladb:latest
+    -v /path/to/scylladb-persistence:/bitmoa \
+    bitmoa/scylladb:latest
 ```
 
 or using Docker Compose:
 
 ```yaml
 scylladb:
-  image: bitnami/scylladb:latest
+  image: bitmoa/scylladb:latest
   volumes:
-    - /path/to/scylladb-persistence:/bitnami
+    - /path/to/scylladb-persistence:/bitmoa
 ```
 
 #### Step 2: Edit the configuration
@@ -445,13 +445,13 @@ Refer to the [configuration](http://docs.datastax.com/en/scylladb/3.x/scylladb/c
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami ScyllaDB Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami ScyllaDB Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
 ## TLS Encryption
 
-The Bitnami ScyllaDB Docker image allows configuring TLS encryption between nodes and between server-client. This is done by mounting in `/bitnami/scylladb/secrets` two files:
+The Bitnami ScyllaDB Docker image allows configuring TLS encryption between nodes and between server-client. This is done by mounting in `/bitmoa/scylladb/secrets` two files:
 
 - `keystore`: File with the server keystore
 - `truststore`: File with the server truststore
@@ -488,11 +488,11 @@ Bitnami provides up-to-date versions of ScyllaDB, including security patches, so
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/scylladb:latest
+docker pull bitmoa/scylladb:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/scylladb:latest`.
+`bitmoa/scylladb:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -531,7 +531,7 @@ docker-compose rm -v scylladb
 Re-create your container from the new image.
 
 ```console
-docker run --name scylladb bitnami/scylladb:latest
+docker run --name scylladb bitmoa/scylladb:latest
 ```
 
 or using Docker Compose:
@@ -542,17 +542,17 @@ docker-compose up scylladb
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/scylladb).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/scylladb).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues), or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues), or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

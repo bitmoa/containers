@@ -10,9 +10,9 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 print_welcome_page
 
@@ -26,7 +26,7 @@ fi
 # This container supports arbitrary UIDs, therefore we have do it dynamically
 if ! am_i_root; then
     export LNAME="argocd"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if ! user_exists "$(id -u)" && [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"
@@ -34,7 +34,7 @@ if ! am_i_root; then
         NSS_WRAPPER_GROUP="$(mktemp)"
         export NSS_WRAPPER_GROUP
         if [[ "$HOME" == "/" ]]; then
-            export HOME=/opt/bitnami/argo-cd
+            export HOME=/opt/bitmoa/argo-cd
         fi
         echo "argocd:x:$(id -u):$(id -g):ArgoCD:${HOME}:/bin/false" > "$NSS_WRAPPER_PASSWD"
         echo "argocd:x:$(id -g):" > "$NSS_WRAPPER_GROUP"

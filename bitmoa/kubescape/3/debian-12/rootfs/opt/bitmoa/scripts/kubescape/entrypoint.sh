@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libkubescape.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libkubescape.sh
 
 # Load Kubescape environment variables
-. /opt/bitnami/scripts/kubescape-env.sh
+. /opt/bitmoa/scripts/kubescape-env.sh
 
 # Custom action that performs Bitnami OSS assessment
 if [[ "$1" = "oss-assessment" ]]; then

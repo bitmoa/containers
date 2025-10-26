@@ -10,21 +10,21 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Drupal environment
-. /opt/bitnami/scripts/drupal-env.sh
+. /opt/bitmoa/scripts/drupal-env.sh
 
 # Load PHP environment for 'php_conf_set' (after 'drupal-env.sh' so that MODULE is not set to a wrong value)
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libdrupal.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libdrupal.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load web server environment and functions (after Drupal environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # Enable Drupal configuration file
 [[ ! -f "$DRUPAL_CONF_FILE" ]] && cp "${DRUPAL_BASE_DIR}/sites/default/default.settings.php" "$DRUPAL_CONF_FILE"
@@ -65,4 +65,4 @@ drupal_fix_htaccess_warning_protection
 
 # Copy all initially generated configuration files to the default directory
 # (this is to avoid breaking when entrypoint is being overridden)
-cp -r "/opt/bitnami/$(web_server_type)/conf"/* "/opt/bitnami/$(web_server_type)/conf.default"
+cp -r "/opt/bitmoa/$(web_server_type)/conf"/* "/opt/bitmoa/$(web_server_type)/conf.default"

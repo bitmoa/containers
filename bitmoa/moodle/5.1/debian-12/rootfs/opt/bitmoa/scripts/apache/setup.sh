@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libapache.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libapache.sh
 
 # Load Apache environment
-. /opt/bitnami/scripts/apache-env.sh
+. /opt/bitmoa/scripts/apache-env.sh
 
 # Ensure Apache environment variables are valid
 apache_validate
@@ -30,12 +30,12 @@ if ! is_dir_empty "$APACHE_DEFAULT_CONF_DIR"; then
     cp -nr "$APACHE_DEFAULT_CONF_DIR"/. "$APACHE_CONF_DIR"
 fi
 # Generate SSL certs (without a passphrase)
-ensure_dir_exists "${APACHE_CONF_DIR}/bitnami/certs"
-if [[ ! -f "${APACHE_CONF_DIR}/bitnami/certs/tls.crt" ]]; then
+ensure_dir_exists "${APACHE_CONF_DIR}/bitmoa/certs"
+if [[ ! -f "${APACHE_CONF_DIR}/bitmoa/certs/tls.crt" ]]; then
     info "Generating sample certificates"
-    SSL_KEY_FILE="${APACHE_CONF_DIR}/bitnami/certs/tls.key"
-    SSL_CERT_FILE="${APACHE_CONF_DIR}/bitnami/certs/tls.crt"
-    SSL_CSR_FILE="${APACHE_CONF_DIR}/bitnami/certs/tls.csr"
+    SSL_KEY_FILE="${APACHE_CONF_DIR}/bitmoa/certs/tls.key"
+    SSL_CERT_FILE="${APACHE_CONF_DIR}/bitmoa/certs/tls.crt"
+    SSL_CSR_FILE="${APACHE_CONF_DIR}/bitmoa/certs/tls.csr"
     SSL_SUBJ="/CN=example.com"
     SSL_EXT="subjectAltName=DNS:example.com,DNS:www.example.com,IP:127.0.0.1"
     rm -f "$SSL_KEY_FILE" "$SSL_CERT_FILE"
@@ -50,8 +50,8 @@ if [[ ! -f "${APACHE_CONF_DIR}/bitnami/certs/tls.crt" ]]; then
     rm -f "$SSL_CSR_FILE"
 fi
 # Load SSL configuration
-if [[ -f "${APACHE_CONF_DIR}/bitnami/bitnami.conf" ]] && [[ -f "${APACHE_CONF_DIR}/bitnami/bitnami-ssl.conf" ]]; then
-    ensure_apache_configuration_exists "Include \"${APACHE_CONF_DIR}/bitnami/bitnami-ssl.conf\"" "bitnami-ssl\.conf" "${APACHE_CONF_DIR}/bitnami/bitnami.conf"
+if [[ -f "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf" ]] && [[ -f "${APACHE_CONF_DIR}/bitmoa/bitmoa-ssl.conf" ]]; then
+    ensure_apache_configuration_exists "Include \"${APACHE_CONF_DIR}/bitmoa/bitmoa-ssl.conf\"" "bitmoa-ssl\.conf" "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf"
 fi
 
 # Copy vhosts files
@@ -62,14 +62,14 @@ fi
 
 # Mount certificate files
 if ! is_dir_empty "${APACHE_BASE_DIR}/certs"; then
-    warn "The directory '${APACHE_BASE_DIR}/certs' was externally mounted. This is a legacy configuration and will be deprecated soon. Please mount certificate files at '/certs' instead. Find an example at: https://github.com/bitnami/containers/tree/main/bitnami/apache#using-custom-ssl-certificates"
-    warn "Restoring certificates at '${APACHE_BASE_DIR}/certs' to '${APACHE_CONF_DIR}/bitnami/certs'"
-    rm -rf "${APACHE_CONF_DIR}/bitnami/certs"
-    ln -sf "${APACHE_BASE_DIR}/certs" "${APACHE_CONF_DIR}/bitnami/certs"
+    warn "The directory '${APACHE_BASE_DIR}/certs' was externally mounted. This is a legacy configuration and will be deprecated soon. Please mount certificate files at '/certs' instead. Find an example at: https://github.com/bitmoa/containers/tree/main/bitmoa/apache#using-custom-ssl-certificates"
+    warn "Restoring certificates at '${APACHE_BASE_DIR}/certs' to '${APACHE_CONF_DIR}/bitmoa/certs'"
+    rm -rf "${APACHE_CONF_DIR}/bitmoa/certs"
+    ln -sf "${APACHE_BASE_DIR}/certs" "${APACHE_CONF_DIR}/bitmoa/certs"
 elif ! is_dir_empty "/certs"; then
     info "Mounting certificates files from '/certs'"
-    rm -rf "${APACHE_CONF_DIR}/bitnami/certs"
-    ln -sf "/certs" "${APACHE_CONF_DIR}/bitnami/certs"
+    rm -rf "${APACHE_CONF_DIR}/bitmoa/certs"
+    ln -sf "/certs" "${APACHE_CONF_DIR}/bitmoa/certs"
 fi
 
 # Mount application files
@@ -80,11 +80,11 @@ if ! is_dir_empty "/app"; then
 fi
 
 # Restore persisted configuration files (deprecated)
-if ! is_dir_empty "/bitnami/apache/conf"; then
-    warn "The directory '/bitnami/apache/conf' was externally mounted. This is a legacy configuration and will be deprecated soon. Please mount certificate files at '${APACHE_CONF_DIR}' instead. Find an example at: https://github.com/bitnami/containers/tree/main/bitnami/apache#full-configuration"
-    warn "Restoring configuration at '/bitnami/apache/conf' to '${APACHE_CONF_DIR}'"
+if ! is_dir_empty "/bitmoa/apache/conf"; then
+    warn "The directory '/bitmoa/apache/conf' was externally mounted. This is a legacy configuration and will be deprecated soon. Please mount certificate files at '${APACHE_CONF_DIR}' instead. Find an example at: https://github.com/bitmoa/containers/tree/main/bitmoa/apache#full-configuration"
+    warn "Restoring configuration at '/bitmoa/apache/conf' to '${APACHE_CONF_DIR}'"
     rm -rf "$APACHE_CONF_DIR"
-    ln -sf "/bitnami/apache/conf" "$APACHE_CONF_DIR"
+    ln -sf "/bitmoa/apache/conf" "$APACHE_CONF_DIR"
 fi
 
 # Update ports in configuration

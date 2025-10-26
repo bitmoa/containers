@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-parse-dashboard}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -60,7 +60,7 @@ done
 unset parse_dashboard_env_vars
 
 # Paths
-export PARSE_DASHBOARD_BASE_DIR="${BITNAMI_ROOT_DIR}/parse-dashboard"
+export PARSE_DASHBOARD_BASE_DIR="${BITMOA_ROOT_DIR}/parse-dashboard"
 export PARSE_DASHBOARD_TMP_DIR="${PARSE_DASHBOARD_BASE_DIR}/tmp"
 export PARSE_DASHBOARD_LOGS_DIR="${PARSE_DASHBOARD_BASE_DIR}/logs"
 export PARSE_DASHBOARD_PID_FILE="${PARSE_DASHBOARD_TMP_DIR}/parse-dashboard.pid"
@@ -69,7 +69,7 @@ export PARSE_DASHBOARD_CONF_FILE="${PARSE_DASHBOARD_BASE_DIR}/config.json"
 export PARSE_DASHBOARD_FORCE_OVERWRITE_CONF_FILE="${PARSE_DASHBOARD_FORCE_OVERWRITE_CONF_FILE:-no}"
 
 # Parse persistence configuration
-export PARSE_DASHBOARD_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/parse-dashboard"
+export PARSE_DASHBOARD_VOLUME_DIR="${BITMOA_VOLUME_DIR}/parse-dashboard"
 
 # System users (when running with a privileged user)
 export PARSE_DASHBOARD_DAEMON_USER="parsedashboard"
@@ -97,6 +97,6 @@ export PARSE_DASHBOARD_PARSE_PROTOCOL="${PARSE_DASHBOARD_PARSE_PROTOCOL:-http}"
 # Parse credentials
 PARSE_DASHBOARD_USERNAME="${PARSE_DASHBOARD_USERNAME:-"${PARSE_DASHBOARD_USER:-}"}"
 export PARSE_DASHBOARD_USERNAME="${PARSE_DASHBOARD_USERNAME:-user}"
-export PARSE_DASHBOARD_PASSWORD="${PARSE_DASHBOARD_PASSWORD:-bitnami}"
+export PARSE_DASHBOARD_PASSWORD="${PARSE_DASHBOARD_PASSWORD:-bitmoa}"
 
 # Custom environment variables may be defined below

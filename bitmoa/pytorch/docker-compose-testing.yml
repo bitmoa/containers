@@ -3,10 +3,10 @@
 
 services:
   pytorch:
-    image: docker.io/bitnami/pytorch:2
+    image: ghcr.io/bitmoa/pytorch:2
     command: sleep infinity
     volumes:
-      - pytorch_data:/bitnami
+      - pytorch_data:/bitmoa
 
 volumes:
   pytorch_data:

@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-etcd}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -65,8 +65,8 @@ done
 unset etcd_env_vars
 
 # Paths
-export ETCD_BASE_DIR="/opt/bitnami/etcd"
-export ETCD_VOLUME_DIR="/bitnami/etcd"
+export ETCD_BASE_DIR="/opt/bitmoa/etcd"
+export ETCD_VOLUME_DIR="/bitmoa/etcd"
 export ETCD_BIN_DIR="${ETCD_BASE_DIR}/bin"
 export ETCD_DATA_DIR="${ETCD_VOLUME_DIR}/data"
 export ETCD_CONF_DIR="${ETCD_BASE_DIR}/conf"
@@ -77,7 +77,7 @@ export ETCD_SNAPSHOTS_DIR="${ETCD_SNAPSHOTS_DIR:-/snapshots}"
 export ETCD_SNAPSHOT_HISTORY_LIMIT="${ETCD_SNAPSHOT_HISTORY_LIMIT:-1}"
 export ETCD_INIT_SNAPSHOTS_DIR="${ETCD_INIT_SNAPSHOTS_DIR:-/init-snapshot}"
 export ETCD_NEW_MEMBERS_ENV_FILE="${ETCD_DATA_DIR}/new_member_envs"
-export PATH="${ETCD_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${ETCD_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export ETCD_DAEMON_USER="etcd"

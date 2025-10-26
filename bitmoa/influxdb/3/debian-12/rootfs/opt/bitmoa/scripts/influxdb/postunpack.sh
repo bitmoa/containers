@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libinfluxdb.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libinfluxdb.sh
 
 # Load InfluxDB environment variables
-. /opt/bitnami/scripts/influxdb-env.sh
+. /opt/bitmoa/scripts/influxdb-env.sh
 
 ensure_user_exists "$INFLUXDB_DAEMON_USER" --group "$INFLUXDB_DAEMON_GROUP"
 

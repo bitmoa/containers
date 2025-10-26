@@ -8,13 +8,13 @@
 # shellcheck disable=SC1090
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
 
 ########################
 # Check if Jenkins is running
@@ -213,7 +213,7 @@ jenkins_initialize() {
         if ! is_mounted_dir_empty "$JENKINS_MOUNTED_CONTENT_DIR"; then
             info "Moving custom mounted files to Jenkins home directory"
             echo "--- Copying files at $(date)" >>"${JENKINS_LOGS_DIR}/copy_reference_file.log"
-            find "$JENKINS_MOUNTED_CONTENT_DIR" \( -type f -o -type l \) -and -not -path "$JENKINS_MOUNTED_CONTENT_DIR/plugins/*" | xargs -I % -P10 bash -c '. /opt/bitnami/scripts/libjenkins.sh && jenkins_add_custom_file %'
+            find "$JENKINS_MOUNTED_CONTENT_DIR" \( -type f -o -type l \) -and -not -path "$JENKINS_MOUNTED_CONTENT_DIR/plugins/*" | xargs -I % -P10 bash -c '. /opt/bitmoa/scripts/libjenkins.sh && jenkins_add_custom_file %'
         fi
         # Install Jenkins plugins defined in JENKINS_PLUGINS
         jenkins_install_plugins
@@ -423,7 +423,7 @@ jenkins_install_plugins() {
     if ! is_mounted_dir_empty "$JENKINS_MOUNTED_CONTENT_DIR/plugins"; then
         debug "Moving custom mounted plugins to Jenkins home directory"
         echo "--- Copying files at $(date)" >>"${JENKINS_LOGS_DIR}/copy_reference_file.log"
-        find "$JENKINS_MOUNTED_CONTENT_DIR/plugins" \( -type f -o -type l \) | xargs -I % -P10 bash -c '. /opt/bitnami/scripts/libjenkins.sh && jenkins_add_custom_file %'
+        find "$JENKINS_MOUNTED_CONTENT_DIR/plugins" \( -type f -o -type l \) | xargs -I % -P10 bash -c '. /opt/bitmoa/scripts/libjenkins.sh && jenkins_add_custom_file %'
     else
         debug "${JENKINS_MOUNTED_CONTENT_DIR}/plugins is empty"
     fi
@@ -476,7 +476,7 @@ jenkins_override_home_paths() {
         # Mount relative path from mounted content dir
         if ! is_mounted_dir_empty "$JENKINS_MOUNTED_CONTENT_DIR/${relpath}"; then
             debug "Copying mounted directory ${relpath} to Jenkins home directory"
-            find "$JENKINS_MOUNTED_CONTENT_DIR/${relpath}" \( -type f -o -type l \) | xargs -I % -P10 bash -c '. /opt/bitnami/scripts/libjenkins.sh && jenkins_add_custom_file %'
+            find "$JENKINS_MOUNTED_CONTENT_DIR/${relpath}" \( -type f -o -type l \) | xargs -I % -P10 bash -c '. /opt/bitmoa/scripts/libjenkins.sh && jenkins_add_custom_file %'
         elif [[ -f "$JENKINS_MOUNTED_CONTENT_DIR/${relpath}" ]]; then
             debug "Copying mounted file ${relpath} to Jenkins home directory"
             jenkins_add_custom_file "$JENKINS_MOUNTED_CONTENT_DIR/${relpath}"

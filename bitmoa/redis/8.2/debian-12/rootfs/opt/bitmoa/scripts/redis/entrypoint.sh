@@ -10,23 +10,23 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Redis environment variables
-. /opt/bitnami/scripts/redis-env.sh
+. /opt/bitmoa/scripts/redis-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libredis.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libredis.sh
 
 print_welcome_page
 
 # We add the copy from default config in the entrypoint to not break users 
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/redis/etc)
+# case someone mounts a configuration file in /opt/bitmoa/redis/etc)
 debug "Copying files from $REDIS_DEFAULT_CONF_DIR to $REDIS_CONF_DIR"
 cp -nr "$REDIS_DEFAULT_CONF_DIR"/. "$REDIS_CONF_DIR"
 
-if [[ "$*" = *"/opt/bitnami/scripts/redis/run.sh"* || "$*" = *"/run.sh"* ]]; then
+if [[ "$*" = *"/opt/bitmoa/scripts/redis/run.sh"* || "$*" = *"/run.sh"* ]]; then
     info "** Starting Redis setup **"
-    /opt/bitnami/scripts/redis/setup.sh
+    /opt/bitmoa/scripts/redis/setup.sh
     info "** Redis setup finished! **"
 fi
 

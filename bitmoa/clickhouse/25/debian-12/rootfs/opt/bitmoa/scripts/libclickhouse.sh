@@ -8,12 +8,12 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 ########################
 # Validate settings in CLICKHOUSE_* env vars
@@ -197,7 +197,7 @@ clickhouse_initialize() {
         info "Skipping user setup"
     elif [[ "$CLICKHOUSE_ADMIN_USER" != "default" ]]; then
         # If we need to set an admin user different from default, we create a configuration override
-        local -r admin_user_override="${CLICKHOUSE_CONF_DIR}/users.d/__bitnami_default_user.xml"
+        local -r admin_user_override="${CLICKHOUSE_CONF_DIR}/users.d/__bitmoa_default_user.xml"
         cat <<EOF >"${admin_user_override}"
 <clickhouse>
   <!-- Docs: <https://clickhouse.com/docs/en/operations/settings/settings_users/> -->

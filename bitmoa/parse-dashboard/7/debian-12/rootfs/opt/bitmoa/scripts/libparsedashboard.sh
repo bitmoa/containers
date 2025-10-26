@@ -7,12 +7,12 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 ########################
 # Validate settings in PARSE_DASHBOARD_* env vars
@@ -87,9 +87,9 @@ parse_dashboard_validate() {
 #   None
 #########################
 parse_dashboard_initialize() {
-    local -r persisted_conf_file="/bitnami/parse-dashboard/config.json"
+    local -r persisted_conf_file="/bitmoa/parse-dashboard/config.json"
     if ! [[ -f "$persisted_conf_file" ]] || is_boolean_yes "$PARSE_DASHBOARD_FORCE_OVERWRITE_CONF_FILE"; then
-        # Ensure Parse persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure Parse persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring Parse directories exist"
         ensure_dir_exists "$PARSE_DASHBOARD_VOLUME_DIR"
         # Use daemon:root ownership for compatibility when running as a non-root user

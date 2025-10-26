@@ -3,11 +3,11 @@
 
 services:
   primary:
-    image: docker.io/bitnami/percona-mysql:8.4
+    image: ghcr.io/bitmoa/percona-mysql:8.4
     ports:
       - '3306'
     volumes:
-      - 'primary_data:/bitnami/mysql/data'
+      - 'primary_data:/bitmoa/mysql/data'
     environment:
       - MYSQL_REPLICATION_MODE=master
       - MYSQL_REPLICATION_USER=repl_user
@@ -17,13 +17,13 @@ services:
       - MYSQL_DATABASE=my_database
       - MYSQL_ROOT_PASSWORD=my_root_password
     healthcheck:
-      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      test: ['CMD', '/opt/bitmoa/scripts/mysql/healthcheck.sh']
       interval: 15s
       timeout: 5s
       retries: 6
 
   secondary:
-    image: docker.io/bitnami/percona-mysql:8.4
+    image: ghcr.io/bitmoa/percona-mysql:8.4
     ports:
       - '3306'
     depends_on:
@@ -36,7 +36,7 @@ services:
       - MYSQL_MASTER_PORT_NUMBER=3306
       - MYSQL_MASTER_ROOT_PASSWORD=my_root_password
     healthcheck:
-      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      test: ['CMD', '/opt/bitmoa/scripts/mysql/healthcheck.sh']
       interval: 15s
       timeout: 5s
       retries: 6

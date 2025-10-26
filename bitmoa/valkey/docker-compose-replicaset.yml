@@ -3,7 +3,7 @@
 
 services:
   valkey-primary:
-    image: docker.io/bitnami/valkey:8.1
+    image: ghcr.io/bitmoa/valkey:8.1
     ports:
       - '6379'
     environment:
@@ -11,10 +11,10 @@ services:
       - VALKEY_PASSWORD=my_password
       - VALKEY_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
     volumes:
-      - 'valkey_data:/bitnami/valkey/data'
+      - 'valkey_data:/bitmoa/valkey/data'
 
   valkey-replica:
-    image: docker.io/bitnami/valkey:8.1
+    image: ghcr.io/bitmoa/valkey:8.1
     ports:
       - '6379'
     depends_on:

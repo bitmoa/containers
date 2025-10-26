@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name elasticsearch bitnami/elasticsearch:latest
+docker run --name elasticsearch bitmoa/elasticsearch:latest
 ```
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Elasticsearch in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Elasticsearch Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/elasticsearch).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Elasticsearch Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/elasticsearch).
 
 ## Why use a non-root container?
 
@@ -49,51 +49,51 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Elasticsearch Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/elasticsearch).
+The recommended way to get the Bitnami Elasticsearch Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/elasticsearch).
 
 ```console
-docker pull bitnami/elasticsearch:latest
+docker pull bitmoa/elasticsearch:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/elasticsearch/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/elasticsearch/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/elasticsearch:[TAG]
+docker pull bitmoa/elasticsearch:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the application will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/elasticsearch-data-persistence:/bitnami/elasticsearch/data \
-    bitnami/elasticsearch:latest
+    -v /path/to/elasticsearch-data-persistence:/bitmoa/elasticsearch/data \
+    bitmoa/elasticsearch:latest
 ```
 
-or by making a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/elasticsearch/docker-compose.yml) file present in this repository:
+or by making a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/elasticsearch/docker-compose.yml) file present in this repository:
 
 ```yaml
 elasticsearch:
   ...
   volumes:
-    - /path/to/elasticsearch-data-persistence:/bitnami/elasticsearch/data
+    - /path/to/elasticsearch-data-persistence:/bitmoa/elasticsearch/data
   ...
 ```
 
@@ -133,7 +133,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name elasticsearch-server \
     --network app-tier \
-    bitnami/elasticsearch:latest
+    bitmoa/elasticsearch:latest
 ```
 
 #### Step 3: Launch your application container
@@ -162,7 +162,7 @@ networks:
 
 services:
   elasticsearch:
-    image: bitnami/elasticsearch:latest
+    image: bitmoa/elasticsearch:latest
     networks:
       - app-tier
   myapp:
@@ -214,7 +214,7 @@ docker-compose up -d
 | `ELASTICSEARCH_HTTP_PORT_NUMBER`                  | Elasticsearch port                                                                                                     | `9200`                                         |
 | `ELASTICSEARCH_ACTION_DESTRUCTIVE_REQUIRES_NAME`  | Enable action destructive requires name                                                                                | `nil`                                          |
 | `ELASTICSEARCH_ENABLE_SECURITY`                   | Enable Elasticsearch security settings.                                                                                | `false`                                        |
-| `ELASTICSEARCH_PASSWORD`                          | Password for "elastic" user.                                                                                           | `bitnami`                                      |
+| `ELASTICSEARCH_PASSWORD`                          | Password for "elastic" user.                                                                                           | `bitmoa`                                      |
 | `ELASTICSEARCH_TLS_VERIFICATION_MODE`             | Elasticsearch TLS verification mode in transport layer.                                                                | `full`                                         |
 | `ELASTICSEARCH_TLS_USE_PEM`                       | Configure Security settings using PEM certificates.                                                                    | `false`                                        |
 | `ELASTICSEARCH_KEYSTORE_PASSWORD`                 | Password for the Elasticsearch keystore containing the certificates or password-protected PEM key.                     | `nil`                                          |
@@ -255,8 +255,8 @@ docker-compose up -d
 | Name                                | Description                                                     | Value                                       |
 |-------------------------------------|-----------------------------------------------------------------|---------------------------------------------|
 | `DB_FLAVOR`                         | Database flavor. Valid values: `elasticsearch` or `opensearch`. | `elasticsearch`                             |
-| `ELASTICSEARCH_VOLUME_DIR`          | Persistence base directory                                      | `/bitnami/elasticsearch`                    |
-| `ELASTICSEARCH_BASE_DIR`            | Elasticsearch installation directory                            | `/opt/bitnami/elasticsearch`                |
+| `ELASTICSEARCH_VOLUME_DIR`          | Persistence base directory                                      | `/bitmoa/elasticsearch`                    |
+| `ELASTICSEARCH_BASE_DIR`            | Elasticsearch installation directory                            | `/opt/bitmoa/elasticsearch`                |
 | `ELASTICSEARCH_CONF_DIR`            | Elasticsearch configuration directory                           | `${DB_BASE_DIR}/config`                     |
 | `ELASTICSEARCH_DEFAULT_CONF_DIR`    | Elasticsearch default configuration directory                   | `${DB_BASE_DIR}/config.default`             |
 | `ELASTICSEARCH_LOGS_DIR`            | Elasticsearch logs directory                                    | `${DB_BASE_DIR}/logs`                       |
@@ -273,7 +273,7 @@ docker-compose up -d
 | `ELASTICSEARCH_DAEMON_USER`         | Elasticsearch system user                                       | `elasticsearch`                             |
 | `ELASTICSEARCH_DAEMON_GROUP`        | Elasticsearch system group                                      | `elasticsearch`                             |
 | `ELASTICSEARCH_USERNAME`            | Username of the Elasticsearch superuser.                        | `elastic`                                   |
-| `JAVA_HOME`                         | Java installation folder.                                       | `${BITNAMI_ROOT_DIR}/java`                  |
+| `JAVA_HOME`                         | Java installation folder.                                       | `${BITMOA_ROOT_DIR}/java`                  |
 | `ES_JAVA_OPTS`                      | Elasticsearch supported Java options.                           | `${ES_JAVA_OPTS:-} ${JAVA_TOOL_OPTIONS:-}`  |
 | `CLI_JAVA_OPTS`                     | Elasticsearch CLI supported Java options.                       | `${CLI_JAVA_OPTS:-} ${JAVA_TOOL_OPTIONS:-}` |
 
@@ -295,8 +295,8 @@ elasticsearch:
  $ docker run -d --name elasticsearch \
     -p 9201:9201 --network=elasticsearch_network \
     -e ELASTICSEARCH_PORT_NUMBER=9201 \
-    -v /path/to/elasticsearch-data-persistence:/bitnami/elasticsearch/data \
-    bitnami/elasticsearch
+    -v /path/to/elasticsearch-data-persistence:/bitmoa/elasticsearch/data \
+    bitmoa/elasticsearch
 ```
 
 #### Step 1: Create a new network
@@ -314,7 +314,7 @@ docker run --name elasticsearch-node1 \
   -e ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster \
   -e ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2 \
   -e ELASTICSEARCH_NODE_NAME=elastic-node1 \
-  bitnami/elasticsearch:latest
+  bitmoa/elasticsearch:latest
 ```
 
 In the above command the container is added to a cluster named `elasticsearch-cluster` using the `ELASTICSEARCH_CLUSTER_NAME`. The `ELASTICSEARCH_CLUSTER_HOSTS` parameter set the name of the nodes that set the cluster so we will need to launch other container for the second node. Finally the `ELASTICSEARCH_NODE_NAME` parameter allows to indicate a known name for the node, otherwise elasticsearch will generate a random one.
@@ -328,7 +328,7 @@ docker run --name elasticsearch-node2 \
   -e ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster \
   -e ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2 \
   -e ELASTICSEARCH_NODE_NAME=elastic-node2 \
-  bitnami/elasticsearch:latest
+  bitmoa/elasticsearch:latest
 ```
 
 In the above command a new elasticsearch node is being added to the elasticsearch cluster indicated by `ELASTICSEARCH_CLUSTER_NAME`.
@@ -341,14 +341,14 @@ With Docker Compose the cluster configuration can be setup using:
 version: '2'
 services:
   elasticsearch-node1:
-    image: bitnami/elasticsearch:latest
+    image: bitmoa/elasticsearch:latest
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2
       - ELASTICSEARCH_NODE_NAME=elastic-node1
 
   elasticsearch-node2:
-    image: bitnami/elasticsearch:latest
+    image: bitmoa/elasticsearch:latest
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2
@@ -357,30 +357,30 @@ services:
 
 ### Configuration file
 
-In order to use a custom configuration file instead of the default one provided out of the box, you can create a file named `elasticsearch.yml` and mount it at `/opt/bitnami/elasticsearch/config/elasticsearch.yml` to overwrite the default configuration:
+In order to use a custom configuration file instead of the default one provided out of the box, you can create a file named `elasticsearch.yml` and mount it at `/opt/bitmoa/elasticsearch/config/elasticsearch.yml` to overwrite the default configuration:
 
 ```console
 docker run -d --name elasticsearch \
     -p 9201:9201 \
-    -v /path/to/elasticsearch.yml:/opt/bitnami/elasticsearch/config/elasticsearch.yml \
-    -v /path/to/elasticsearch-data-persistence:/bitnami/elasticsearch/data \
-    bitnami/elasticsearch:latest
+    -v /path/to/elasticsearch.yml:/opt/bitmoa/elasticsearch/config/elasticsearch.yml \
+    -v /path/to/elasticsearch-data-persistence:/bitmoa/elasticsearch/data \
+    bitmoa/elasticsearch:latest
 ```
 
-or by changing the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/elasticsearch/docker-compose.yml) file present in this repository:
+or by changing the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/elasticsearch/docker-compose.yml) file present in this repository:
 
 ```yaml
 elasticsearch:
   ...
   volumes:
-    - /path/to/elasticsearch.yml:/opt/bitnami/elasticsearch/config/elasticsearch.yml
-    - /path/to/elasticsearch-data-persistence:/bitnami/elasticsearch/data
+    - /path/to/elasticsearch.yml:/opt/bitmoa/elasticsearch/config/elasticsearch.yml
+    - /path/to/elasticsearch-data-persistence:/bitmoa/elasticsearch/data
   ...
 ```
 
 Please, note that the whole configuration file will be replaced by the provided, default one; ensure that the syntax and fields you provide are properly set and exhaustive.
 
-If you would rather extend than replace the default configuration with your settings, mount your custom configuration file at `/opt/bitnami/elasticsearch/config/my_elasticsearch.yml`.
+If you would rather extend than replace the default configuration with your settings, mount your custom configuration file at `/opt/bitmoa/elasticsearch/config/my_elasticsearch.yml`.
 
 ### Plugins
 
@@ -391,10 +391,10 @@ You can add extra plugins by setting the `ELASTICSEARCH_PLUGINS` environment var
 ```console
 docker run -d --name elasticsearch \
     -e ELASTICSEARCH_PLUGINS=analysis-icu \
-    bitnami/elasticsearch:latest
+    bitmoa/elasticsearch:latest
 ```
 
-The Bitnami Elasticsearch Docker image will also install plugin `.zip` files mounted at the `/bitnami/elasticsearch/plugins` directory inside the container, making it possible to install them from disk without requiring Internet access.
+The Bitnami Elasticsearch Docker image will also install plugin `.zip` files mounted at the `/bitmoa/elasticsearch/plugins` directory inside the container, making it possible to install them from disk without requiring Internet access.
 
 #### Adding plugins at build time (persisting plugins)
 
@@ -403,9 +403,9 @@ The Bitnami Elasticsearch image provides a way to create your custom image insta
 To create your own image providing plugins execute the following command. Remember to replace the `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/elasticsearch/VERSION/OPERATING-SYSTEM
-docker build --build-arg ELASTICSEARCH_PLUGINS=<plugin1,plugin2,...> -t bitnami/elasticsearch:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/elasticsearch/VERSION/OPERATING-SYSTEM
+docker build --build-arg ELASTICSEARCH_PLUGINS=<plugin1,plugin2,...> -t bitmoa/elasticsearch:latest .
 ```
 
 The command above will build the image providing this GitHub repository as build context, and will pass the list of plugins to install to the build logic.
@@ -418,7 +418,7 @@ In order to have your custom files inside the Docker image, you can mount them a
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Elasticsearch Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Elasticsearch Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -438,7 +438,7 @@ docker-compose logs elasticsearch
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
-Additionally, in case you'd like to modify Elasticsearch logging configuration, it can be done by overwriting the file `/opt/bitnami/elasticsearch/config/log4j2.properties`.
+Additionally, in case you'd like to modify Elasticsearch logging configuration, it can be done by overwriting the file `/opt/bitmoa/elasticsearch/config/log4j2.properties`.
 The syntax of this file can be found in Elasticsearch [logging documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html).
 
 ## Maintenance
@@ -450,11 +450,11 @@ Bitnami provides up-to-date versions of Elasticsearch, including security patche
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/elasticsearch:latest
+docker pull bitmoa/elasticsearch:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/elasticsearch:latest`.
+`bitmoa/elasticsearch:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -495,7 +495,7 @@ docker-compose rm -v elasticsearch
 Re-create your container from the new image, restoring your backup if necessary.
 
 ```console
-docker run --name elasticsearch bitnami/elasticsearch:latest
+docker run --name elasticsearch bitmoa/elasticsearch:latest
 ```
 
 or using Docker Compose:
@@ -527,17 +527,17 @@ docker-compose up elasticsearch
 ### 6.4.0-debian-9-r19, 6.4.0-ol-7-r18, 5.6.4-debian-9-r54, and 5.6.4-ol-7-r60
 
 - Decrease the size of the container. It is not necessary Node.js anymore. Elasticsearch configuration moved to bash scripts in the `rootfs/` folder.
-- The recommended mount point to persist data changes to `/bitnami/elasticsearch/data`.
-- The Elasticsearch configuration files are not persisted in a volume anymore. Now, they can be found at `/opt/bitnami/elasticsearch/config`.
+- The recommended mount point to persist data changes to `/bitmoa/elasticsearch/data`.
+- The Elasticsearch configuration files are not persisted in a volume anymore. Now, they can be found at `/opt/bitmoa/elasticsearch/config`.
 - Elasticsearch `plugins` and `modules` are not persisted anymore. It's necessary to indicate what plugins to install using the env. variable `ELASTICSEARCH_PLUGINS`
 - Backwards compatibility is not guaranteed when data is persisted using docker-compose. You can use the workaround below to overcome it:
 
 ```console
 $ docker-compose down
 # Change the mount point
-sed -i -e 's#elasticsearch_data:/bitnami#elasticsearch_data:/bitnami/elasticsearch/data#g' docker-compose.yml
-# Pull the latest bitnami/elasticsearch image
-$ docker pull bitnami/elasticsearch:latest
+sed -i -e 's#elasticsearch_data:/bitmoa#elasticsearch_data:/bitmoa/elasticsearch/data#g' docker-compose.yml
+# Pull the latest bitmoa/elasticsearch image
+$ docker pull bitmoa/elasticsearch:latest
 $ docker-compose up -d
 ```
 
@@ -552,17 +552,17 @@ $ docker-compose up -d
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/elasticsearch).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue], or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this Docker image. You can request new features by creating an [issue], or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`docker version`)

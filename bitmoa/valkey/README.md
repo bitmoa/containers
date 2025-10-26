@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name valkey -e ALLOW_EMPTY_PASSWORD=yes bitnami/valkey:latest
+docker run --name valkey -e ALLOW_EMPTY_PASSWORD=yes bitmoa/valkey:latest
 ```
 
 **Warning**: These quick setups are only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Valkey  in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Valkey Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/valkey).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Valkey Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/valkey).
 
 ## Why use a non-root container?
 
@@ -49,55 +49,55 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Valkey Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/valkey).
+The recommended way to get the Bitnami Valkey Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/valkey).
 
 ```console
-docker pull bitnami/valkey:latest
+docker pull bitmoa/valkey:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/valkey/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/valkey/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/valkey:[TAG]
+docker pull bitmoa/valkey:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your database
 
-Valkey provides a different range of [persistence options](https://valkey.io/docs/topics/persistence.html). This contanier uses *AOF persistence by default* but it is easy to overwrite that configuration in a `docker-compose.yaml` file with this entry `command: /opt/bitnami/scripts/valkey/run.sh --appendonly no`. Alternatively, you may use the `VALKEY_AOF_ENABLED` env variable as explained in [Disabling AOF persistence](https://github.com/bitnami/containers/blob/main/bitnami/valkey#disabling-aof-persistence).
+Valkey provides a different range of [persistence options](https://valkey.io/docs/topics/persistence.html). This contanier uses *AOF persistence by default* but it is easy to overwrite that configuration in a `docker-compose.yaml` file with this entry `command: /opt/bitmoa/scripts/valkey/run.sh --appendonly no`. Alternatively, you may use the `VALKEY_AOF_ENABLED` env variable as explained in [Disabling AOF persistence](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey#disabling-aof-persistence).
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/valkey-persistence:/bitnami/valkey/data \
-    bitnami/valkey:latest
+    -v /path/to/valkey-persistence:/bitmoa/valkey/data \
+    bitmoa/valkey:latest
 ```
 
-You can also do this by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+You can also do this by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   valkey:
   ...
     volumes:
-      - /path/to/valkey-persistence:/bitnami/valkey/data
+      - /path/to/valkey-persistence:/bitmoa/valkey/data
   ...
 ```
 
@@ -127,7 +127,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 docker run -d --name valkey-server \
     -e ALLOW_EMPTY_PASSWORD=yes \
     --network app-tier \
-    bitnami/valkey:latest
+    bitmoa/valkey:latest
 ```
 
 #### Step 3: Launch your Valkey client instance
@@ -137,7 +137,7 @@ Finally we create a new container instance to launch the Valkey client and conne
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/valkey:latest valkey-cli -h valkey-server
+    bitmoa/valkey:latest valkey-cli -h valkey-server
 ```
 
 ### Using a Docker Compose file
@@ -153,7 +153,7 @@ networks:
 
 services:
   valkey:
-    image: bitnami/valkey:latest
+    image: bitmoa/valkey:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
@@ -221,8 +221,8 @@ docker-compose up -d
 
 | Name                         | Description                            | Value                            |
 |------------------------------|----------------------------------------|----------------------------------|
-| `VALKEY_VOLUME_DIR`          | Persistence base directory             | `/bitnami/valkey`                |
-| `VALKEY_BASE_DIR`            | Valkey installation directory          | `${BITNAMI_ROOT_DIR}/valkey`     |
+| `VALKEY_VOLUME_DIR`          | Persistence base directory             | `/bitmoa/valkey`                |
+| `VALKEY_BASE_DIR`            | Valkey installation directory          | `${BITMOA_ROOT_DIR}/valkey`     |
 | `VALKEY_CONF_DIR`            | Valkey configuration directory         | `${VALKEY_BASE_DIR}/etc`         |
 | `VALKEY_DEFAULT_CONF_DIR`    | Valkey default configuration directory | `${VALKEY_BASE_DIR}/etc.default` |
 | `VALKEY_MOUNTED_CONF_DIR`    | Valkey mounted configuration directory | `${VALKEY_BASE_DIR}/mounted-etc` |
@@ -243,10 +243,10 @@ For security reasons, you may want to disable some commands. You can specify the
 - `VALKEY_DISABLE_COMMANDS`: Comma-separated list of Valkey commands to disable. Defaults to empty.
 
 ```console
-docker run --name valkey -e VALKEY_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG bitnami/valkey:latest
+docker run --name valkey -e VALKEY_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -274,10 +274,10 @@ services:
 Passing extra command-line flags to the valkey service command is possible by adding them as arguments to *run.sh* script:
 
 ```console
-docker run --name valkey -e ALLOW_EMPTY_PASSWORD=yes bitnami/valkey:latest /opt/bitnami/scripts/valkey/run.sh --maxmemory 100mb
+docker run --name valkey -e ALLOW_EMPTY_PASSWORD=yes bitmoa/valkey:latest /opt/bitmoa/scripts/valkey/run.sh --maxmemory 100mb
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -285,7 +285,7 @@ services:
   ...
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-    command: /opt/bitnami/scripts/valkey/run.sh --maxmemory 100mb
+    command: /opt/bitmoa/scripts/valkey/run.sh --maxmemory 100mb
   ...
 ```
 
@@ -294,10 +294,10 @@ services:
 Passing the `VALKEY_PASSWORD` environment variable when running the image for the first time will set the Valkey server password to the value of `VALKEY_PASSWORD` (or the content of the file specified in `VALKEY_PASSWORD_FILE`).
 
 ```console
-docker run --name valkey -e VALKEY_PASSWORD=password123 bitnami/valkey:latest
+docker run --name valkey -e VALKEY_PASSWORD=password123 bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -317,10 +317,10 @@ services:
 By default the Valkey image expects all the available passwords to be set. In order to allow empty passwords, it is necessary to set the `ALLOW_EMPTY_PASSWORD=yes` env variable. This env variable is only recommended for testing or development purposes. We strongly recommend specifying the `VALKEY_PASSWORD` for any other scenario.
 
 ```console
-docker run --name valkey -e ALLOW_EMPTY_PASSWORD=yes bitnami/valkey:latest
+docker run --name valkey -e ALLOW_EMPTY_PASSWORD=yes bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -336,10 +336,10 @@ services:
 Valkey offers different [options](https://valkey.io/docs/topics/persistence.html) when it comes to persistence. By default, this image is set up to use the AOF (Append Only File) approach. Should you need to change this behaviour, setting the `VALKEY_AOF_ENABLED=no` env variable will disable this feature.
 
 ```console
-docker run --name valkey -e VALKEY_AOF_ENABLED=no bitnami/valkey:latest
+docker run --name valkey -e VALKEY_AOF_ENABLED=no bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -355,19 +355,19 @@ services:
 Valkey offers [ACL](https://valkey.io/docs/topics/acl.html) which allows certain connections to be limited in terms of the commands that can be executed and the keys that can be accessed. We strongly recommend enabling ACL in production by specifiying the `VALKEY_ACLFILE`.
 
 ```console
-docker run -name valkey -e VALKEY_ACLFILE=/opt/bitnami/valkey/mounted-etc/users.acl -v /path/to/users.acl:/opt/bitnami/valkey/mounted-etc/users.acl bitnami/valkey:latest
+docker run -name valkey -e VALKEY_ACLFILE=/opt/bitmoa/valkey/mounted-etc/users.acl -v /path/to/users.acl:/opt/bitmoa/valkey/mounted-etc/users.acl bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   valkey:
   ...
     environment:
-      - VALKEY_ACLFILE=/opt/bitnami/valkey/mounted-etc/users.acl
+      - VALKEY_ACLFILE=/opt/bitmoa/valkey/mounted-etc/users.acl
     volumes:
-      - /path/to/users.acl:/opt/bitnami/valkey/mounted-etc/users.acl
+      - /path/to/users.acl:/opt/bitmoa/valkey/mounted-etc/users.acl
   ...
 ```
 
@@ -376,10 +376,10 @@ services:
 By default, this image is set up to launch Valkey in standalone mode on port 6379. Should you need to change this behavior, setting the `VALKEY_PORT_NUMBER` environment variable will modify the port number. This is not to be confused with `VALKEY_PRIMARY_PORT_NUMBER` or `VALKEY_REPLICA_PORT` environment variables that are applicable in replication mode.
 
 ```console
-docker run --name valkey -e VALKEY_PORT_NUMBER=7000 -p 7000:7000 bitnami/valkey:latest
+docker run --name valkey -e VALKEY_PORT_NUMBER=7000 -p 7000:7000 bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -414,7 +414,7 @@ The first step is to start the Valkey primary.
 docker run --name valkey-primary \
   -e VALKEY_REPLICATION_MODE=primary \
   -e VALKEY_PASSWORD=primarypassword123 \
-  bitnami/valkey:latest
+  bitmoa/valkey:latest
 ```
 
 In the above command the container is configured as the `primary` using the `VALKEY_REPLICATION_MODE` parameter. The `VALKEY_PASSWORD` parameter enables authentication on the Valkey primary.
@@ -431,7 +431,7 @@ docker run --name valkey-replica \
   -e VALKEY_PRIMARY_PORT_NUMBER=6379 \
   -e VALKEY_PRIMARY_PASSWORD=primarypassword123 \
   -e VALKEY_PASSWORD=password123 \
-  bitnami/valkey:latest
+  bitmoa/valkey:latest
 ```
 
 In the above command the container is configured as a `replica` using the `VALKEY_REPLICATION_MODE` parameter. The `VALKEY_PRIMARY_HOST`, `VALKEY_PRIMARY_PORT_NUMBER` and `VALKEY_PRIMARY_PASSWORD` parameters are used connect and authenticate with the Valkey primary. The `VALKEY_PASSWORD` parameter enables authentication on the Valkey replica.
@@ -453,17 +453,17 @@ version: '2'
 
 services:
   valkey-primary:
-    image: bitnami/valkey:latest
+    image: bitmoa/valkey:latest
     ports:
       - 6379
     environment:
       - VALKEY_REPLICATION_MODE=primary
       - VALKEY_PASSWORD=my_primary_password
     volumes:
-      - /path/to/valkey-persistence:/bitnami
+      - /path/to/valkey-persistence:/bitmoa
 
   valkey-replica:
-    image: bitnami/valkey:latest
+    image: bitmoa/valkey:latest
     ports:
       - 6379
     depends_on:
@@ -505,14 +505,14 @@ When enabling TLS, conventional standard traffic is disabled by default. However
 
     ```console
     $ docker run --name valkey \
-        -v /path/to/certs:/opt/bitnami/valkey/certs \
-        -v /path/to/valkey-data-persistence:/bitnami/valkey/data \
+        -v /path/to/certs:/opt/bitmoa/valkey/certs \
+        -v /path/to/valkey-data-persistence:/bitmoa/valkey/data \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e VALKEY_TLS_ENABLED=yes \
-        -e VALKEY_TLS_CERT_FILE=/opt/bitnami/valkey/certs/valkey.crt \
-        -e VALKEY_TLS_KEY_FILE=/opt/bitnami/valkey/certs/valkey.key \
-        -e VALKEY_TLS_CA_FILE=/opt/bitnami/valkey/certs/valkeyCA.crt \
-        bitnami/valkey:latest
+        -e VALKEY_TLS_CERT_FILE=/opt/bitmoa/valkey/certs/valkey.crt \
+        -e VALKEY_TLS_KEY_FILE=/opt/bitmoa/valkey/certs/valkey.key \
+        -e VALKEY_TLS_CA_FILE=/opt/bitmoa/valkey/certs/valkeyCA.crt \
+        bitmoa/valkey:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -524,61 +524,61 @@ When enabling TLS, conventional standard traffic is disabled by default. However
         environment:
           ...
           - VALKEY_TLS_ENABLED=yes
-          - VALKEY_TLS_CERT_FILE=/opt/bitnami/valkey/certs/valkey.crt
-          - VALKEY_TLS_KEY_FILE=/opt/bitnami/valkey/certs/valkey.key
-          - VALKEY_TLS_CA_FILE=/opt/bitnami/valkey/certs/valkeyCA.crt
+          - VALKEY_TLS_CERT_FILE=/opt/bitmoa/valkey/certs/valkey.crt
+          - VALKEY_TLS_KEY_FILE=/opt/bitmoa/valkey/certs/valkey.key
+          - VALKEY_TLS_CA_FILE=/opt/bitmoa/valkey/certs/valkeyCA.crt
         ...
         volumes:
-          - /path/to/certs:/opt/bitnami/valkey/certs
-          - /path/to/valkey-persistence:/bitnami/valkey/data
+          - /path/to/certs:/opt/bitmoa/valkey/certs
+          - /path/to/valkey-persistence:/bitmoa/valkey/data
       ...
     ```
 
-Alternatively, you may also provide with this configuration in your [custom](https://github.com/bitnami/containers/blob/main/bitnami/valkey#configuration-file) configuration file.
+Alternatively, you may also provide with this configuration in your [custom](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey#configuration-file) configuration file.
 
 ### Configuration file
 
-The image looks for configurations in `/opt/bitnami/valkey/mounted-etc/valkey.conf`. You can overwrite the `valkey.conf` file using your own custom configuration file.
+The image looks for configurations in `/opt/bitmoa/valkey/mounted-etc/valkey.conf`. You can overwrite the `valkey.conf` file using your own custom configuration file.
 
 ```console
 docker run --name valkey \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/your_valkey.conf:/opt/bitnami/valkey/mounted-etc/valkey.conf \
-    -v /path/to/valkey-data-persistence:/bitnami/valkey/data \
-    bitnami/valkey:latest
+    -v /path/to/your_valkey.conf:/opt/bitmoa/valkey/mounted-etc/valkey.conf \
+    -v /path/to/valkey-data-persistence:/bitmoa/valkey/data \
+    bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   valkey:
   ...
     volumes:
-      - /path/to/your_valkey.conf:/opt/bitnami/valkey/mounted-etc/valkey.conf
-      - /path/to/valkey-persistence:/bitnami/valkey/data
+      - /path/to/your_valkey.conf:/opt/bitmoa/valkey/mounted-etc/valkey.conf
+      - /path/to/valkey-persistence:/bitmoa/valkey/data
   ...
 ```
 
 ### Overriding configuration
 
-Instead of providing a custom `valkey.conf`, you may also choose to provide only settings you wish to override. The image will look for `/opt/bitnami/valkey/mounted-etc/overrides.conf`. This will be ignored if custom `valkey.conf` is provided.
+Instead of providing a custom `valkey.conf`, you may also choose to provide only settings you wish to override. The image will look for `/opt/bitmoa/valkey/mounted-etc/overrides.conf`. This will be ignored if custom `valkey.conf` is provided.
 
 ```console
 docker run --name valkey \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/overrides.conf:/opt/bitnami/valkey/mounted-etc/overrides.conf \
-    bitnami/valkey:latest
+    -v /path/to/overrides.conf:/opt/bitmoa/valkey/mounted-etc/overrides.conf \
+    bitmoa/valkey:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/valkey/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/valkey/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   valkey:
   ...
     volumes:
-      - /path/to/overrides.conf:/opt/bitnami/valkey/mounted-etc/overrides.conf
+      - /path/to/overrides.conf:/opt/bitmoa/valkey/mounted-etc/overrides.conf
   ...
 ```
 
@@ -590,11 +590,11 @@ When the value of `VALKEY_RDB_POLICY_DISABLED` is `no` (default value) the Valke
 
     ```console
     $ docker run --name valkey \
-        -v /path/to/valkey-data-persistence:/bitnami/valkey/data \
+        -v /path/to/valkey-data-persistence:/bitmoa/valkey/data \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e VALKEY_RDB_POLICY_DISABLED=no
         -e VALKEY_RDB_POLICY="900#1 600#5 300#10 120#50 60#1000 30#10000"
-        bitnami/valkey:latest
+        bitmoa/valkey:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -613,7 +613,7 @@ When the value of `VALKEY_RDB_POLICY_DISABLED` is `no` (default value) the Valke
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Valkey Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Valkey Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -642,11 +642,11 @@ Bitnami provides up-to-date versions of Valkey, including security patches, soon
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/valkey:latest
+docker pull bitmoa/valkey:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/valkey:latest`.
+`bitmoa/valkey:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -685,7 +685,7 @@ docker-compose rm -v valkey
 Re-create your container from the new image.
 
 ```console
-docker run --name valkey bitnami/valkey:latest
+docker run --name valkey bitmoa/valkey:latest
 ```
 
 or using Docker Compose:
@@ -696,13 +696,13 @@ docker-compose up valkey
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/valkey).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/valkey).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Notable Changes
 
@@ -712,7 +712,7 @@ We'd love for you to contribute to this container. You can request new features 
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

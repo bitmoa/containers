@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name sonarqube bitnami/sonarqube:latest
+docker run --name sonarqube bitmoa/sonarqube:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -45,35 +45,35 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami SonarQube&trade; Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/sonarqube).
+The recommended way to get the Bitnami SonarQube&trade; Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/sonarqube).
 
 ```console
-docker pull bitnami/sonarqube:latest
+docker pull bitmoa/sonarqube:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/sonarqube/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/sonarqube/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/sonarqube:[TAG]
+docker pull bitmoa/sonarqube:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-SonarQube&trade; requires access to a PostgreSQL database to store information. We'll use the [Bitnami Docker Image for PostgreSQL](https://github.com/bitnami/containers/tree/main/bitnami/postgresql) for the database requirements.
+SonarQube&trade; requires access to a PostgreSQL database to store information. We'll use the [Bitnami Docker Image for PostgreSQL](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -90,11 +90,11 @@ $ docker volume create --name postgresql_data
 docker run -d --name postgresql \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env POSTGRESQL_USERNAME=bn_sonarqube \
-  --env POSTGRESQL_PASSWORD=bitnami \
-  --env POSTGRESQL_DATABASE=bitnami_sonarqube \
+  --env POSTGRESQL_PASSWORD=bitmoa \
+  --env POSTGRESQL_DATABASE=bitmoa_sonarqube \
   --network sonarqube-network \
-  --volume postgresql_data:/bitnami/postgresql \
-  bitnami/postgresql:latest
+  --volume postgresql_data:/bitmoa/postgresql \
+  bitmoa/postgresql:latest
 ```
 
 #### Step 3: Create volumes for SonarQube&trade; persistence and launch the container
@@ -105,11 +105,11 @@ docker run -d --name sonarqube \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env SONARQUBE_DATABASE_USER=bn_sonarqube \
-  --env SONARQUBE_DATABASE_PASSWORD=bitnami \
-  --env SONARQUBE_DATABASE_NAME=bitnami_sonarqube \
+  --env SONARQUBE_DATABASE_PASSWORD=bitmoa \
+  --env SONARQUBE_DATABASE_NAME=bitmoa_sonarqube \
   --network sonarqube-network \
-  --volume sonarqube_data:/bitnami/sonarqube \
-  bitnami/sonarqube:latest
+  --volume sonarqube_data:/bitmoa/sonarqube \
+  bitmoa/sonarqube:latest
 ```
 
 Access your application at `http://your-ip/`
@@ -117,19 +117,19 @@ Access your application at `http://your-ip/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/sonarqube/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/sonarqube/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/apache).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/apache).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/sonarqube` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the PostgreSQL data](https://github.com/bitnami/containers/tree/main/bitnami/postgresql#persisting-your-database).
+For persistence you should mount a directory at the `/bitmoa/sonarqube` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the PostgreSQL data](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql#persisting-your-database).
 
 The above examples define the Docker volumes named `postgresql_data` and `sonarqube_data`. The SonarQube&trade; application state will persist as long as volumes are not removed.
 
@@ -137,20 +137,20 @@ To avoid inadvertent removal of volumes, you can [mount host directories as data
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/sonarqube/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/sonarqube/docker-compose.yml) file present in this repository:
 
 ```diff
    postgresql:
      ...
      volumes:
--      - postgresql_data:/bitnami/postgresql
-+      - /path/to/postgresql-persistence:/bitnami/postgresql
+-      - postgresql_data:/bitmoa/postgresql
++      - /path/to/postgresql-persistence:/bitmoa/postgresql
    ...
    sonarqube:
      ...
      volumes:
--      - sonarqube_data:/bitnami/sonarqube
-+      - /path/to/sonarqube-persistence:/bitnami/sonarqube
+-      - sonarqube_data:/bitmoa/sonarqube
++      - /path/to/sonarqube-persistence:/bitmoa/sonarqube
    ...
 -volumes:
 -  postgresql_data:
@@ -175,11 +175,11 @@ docker network create sonarqube-network
 docker run -d --name postgresql \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env POSTGRESQL_USERNAME=bn_sonarqube \
-  --env POSTGRESQL_PASSWORD=bitnami \
-  --env POSTGRESQL_DATABASE=bitnami_sonarqube \
+  --env POSTGRESQL_PASSWORD=bitmoa \
+  --env POSTGRESQL_DATABASE=bitmoa_sonarqube \
   --network sonarqube-network \
-  --volume /path/to/postgresql-persistence:/bitnami/postgresql \
-  bitnami/postgresql:latest
+  --volume /path/to/postgresql-persistence:/bitmoa/postgresql \
+  bitmoa/postgresql:latest
 ```
 
 #### Step 3. Create the SonarQube&trade; container with host volumes
@@ -189,11 +189,11 @@ docker run -d --name sonarqube \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env SONARQUBE_DATABASE_USER=bn_sonarqube \
-  --env SONARQUBE_DATABASE_PASSWORD=bitnami \
-  --env SONARQUBE_DATABASE_NAME=bitnami_sonarqube \
+  --env SONARQUBE_DATABASE_PASSWORD=bitmoa \
+  --env SONARQUBE_DATABASE_NAME=bitmoa_sonarqube \
   --network sonarqube-network \
-  --volume /path/to/sonarqube-persistence:/bitnami/sonarqube \
-  bitnami/sonarqube:latest
+  --volume /path/to/sonarqube-persistence:/bitmoa/sonarqube \
+  bitmoa/sonarqube:latest
 ```
 
 ## Configuration
@@ -204,7 +204,7 @@ docker run -d --name sonarqube \
 
 | Name                                    | Description                                                                                                                                            | Default Value                                       |
 |-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| `SONARQUBE_MOUNTED_PROVISIONING_DIR`    | Directory for SonarQube initial provisioning.                                                                                                          | `/bitnami/sonarqube-provisioning`                   |
+| `SONARQUBE_MOUNTED_PROVISIONING_DIR`    | Directory for SonarQube initial provisioning.                                                                                                          | `/bitmoa/sonarqube-provisioning`                   |
 | `SONARQUBE_DATA_TO_PERSIST`             | Files to persist relative to the SonarQube installation directory. To provide multiple values, separate them with a whitespace.                        | `${SONARQUBE_DATA_DIR} ${SONARQUBE_EXTENSIONS_DIR}` |
 | `SONARQUBE_PORT_NUMBER`                 | SonarQube Web application port number.                                                                                                                 | `9000`                                              |
 | `SONARQUBE_ELASTICSEARCH_PORT_NUMBER`   | SonarQube Elasticsearch application port number.                                                                                                       | `9001`                                              |
@@ -216,7 +216,7 @@ docker run -d --name sonarqube \
 | `SONARQUBE_ELASTICSEARCH_JAVA_ADD_OPTS` | Additional Java options for Elasticsearch.                                                                                                             | `nil`                                               |
 | `SONARQUBE_EXTRA_PROPERTIES`            | Comma separated list of properties to be set in the sonar.properties file, e.g. `my.sonar.property1=property_value,my.sonar.property2=property_value`. | `nil`                                               |
 | `SONARQUBE_USERNAME`                    | SonarQube user name.                                                                                                                                   | `admin`                                             |
-| `SONARQUBE_PASSWORD`                    | SonarQube user password.                                                                                                                               | `bitnami`                                           |
+| `SONARQUBE_PASSWORD`                    | SonarQube user password.                                                                                                                               | `bitmoa`                                           |
 | `SONARQUBE_EMAIL`                       | SonarQube user e-mail address.                                                                                                                         | `user@example.com`                                  |
 | `SONARQUBE_SMTP_HOST`                   | SonarQube SMTP server host.                                                                                                                            | `nil`                                               |
 | `SONARQUBE_SMTP_PORT_NUMBER`            | SonarQube SMTP server port number.                                                                                                                     | `nil`                                               |
@@ -225,7 +225,7 @@ docker run -d --name sonarqube \
 | `SONARQUBE_SMTP_PROTOCOL`               | SonarQube SMTP server protocol to use.                                                                                                                 | `nil`                                               |
 | `SONARQUBE_DATABASE_HOST`               | Database server host.                                                                                                                                  | `$SONARQUBE_DEFAULT_DATABASE_HOST`                  |
 | `SONARQUBE_DATABASE_PORT_NUMBER`        | Database server port.                                                                                                                                  | `5432`                                              |
-| `SONARQUBE_DATABASE_NAME`               | Database name.                                                                                                                                         | `bitnami_sonarqube`                                 |
+| `SONARQUBE_DATABASE_NAME`               | Database name.                                                                                                                                         | `bitmoa_sonarqube`                                 |
 | `SONARQUBE_DATABASE_USER`               | Database user name.                                                                                                                                    | `bn_sonarqube`                                      |
 | `SONARQUBE_DATABASE_PASSWORD`           | Database user password.                                                                                                                                | `nil`                                               |
 
@@ -233,7 +233,7 @@ docker run -d --name sonarqube \
 
 | Name                              | Description                                          | Value                                                     |
 |-----------------------------------|------------------------------------------------------|-----------------------------------------------------------|
-| `SONARQUBE_BASE_DIR`              | SonarQube installation directory.                    | `${BITNAMI_ROOT_DIR}/sonarqube`                           |
+| `SONARQUBE_BASE_DIR`              | SonarQube installation directory.                    | `${BITMOA_ROOT_DIR}/sonarqube`                           |
 | `SONARQUBE_DATA_DIR`              | Directory for SonarQube data files.                  | `${SONARQUBE_BASE_DIR}/data`                              |
 | `SONARQUBE_EXTENSIONS_DIR`        | Directory for SonarQube extensions.                  | `${SONARQUBE_BASE_DIR}/extensions`                        |
 | `SONARQUBE_CONF_DIR`              | Directory for SonarQube configuration files.         | `${SONARQUBE_BASE_DIR}/conf`                              |
@@ -243,7 +243,7 @@ docker run -d --name sonarqube \
 | `SONARQUBE_TMP_DIR`               | Directory for SonarQube temporary files.             | `${SONARQUBE_BASE_DIR}/temp`                              |
 | `SONARQUBE_PID_FILE`              | SonarQube PID file.                                  | `${SONARQUBE_BASE_DIR}/pids/SonarQube.pid`                |
 | `SONARQUBE_BIN_DIR`               | SonarQube directory for binary executables.          | `${SONARQUBE_BASE_DIR}/bin/linux-x86-64`                  |
-| `SONARQUBE_VOLUME_DIR`            | SonarQube directory for mounted configuration files. | `${BITNAMI_VOLUME_DIR}/sonarqube`                         |
+| `SONARQUBE_VOLUME_DIR`            | SonarQube directory for mounted configuration files. | `${BITMOA_VOLUME_DIR}/sonarqube`                         |
 | `SONARQUBE_DAEMON_USER`           | SonarQube system user.                               | `sonarqube`                                               |
 | `SONARQUBE_DAEMON_USER_ID`        | SonarQube system user ID.                            | `1001`                                                    |
 | `SONARQUBE_DAEMON_GROUP`          | SonarQube system group.                              | `sonarqube`                                               |
@@ -254,7 +254,7 @@ docker run -d --name sonarqube \
 
 When you start the SonarQube&trade; image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/sonarqube/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/sonarqube/docker-compose.yml) file present in this repository:
 
     ```yaml
     sonarqube:
@@ -270,8 +270,8 @@ When you start the SonarQube&trade; image, you can adjust the configuration of t
     $ docker run -d --name sonarqube -p 80:8080 -p 443:8443 \
       --env SONARQUBE_PASSWORD=my_password \
       --network sonarqube-tier \
-      --volume /path/to/sonarqube-persistence:/bitnami \
-      bitnami/sonarqube:latest
+      --volume /path/to/sonarqube-persistence:/bitmoa \
+      bitmoa/sonarqube:latest
     ```
 
 ### Examples
@@ -280,14 +280,14 @@ When you start the SonarQube&trade; image, you can adjust the configuration of t
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/sonarqube/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/sonarqube/docker-compose.yml) file present in this repository:
 
     ```yaml
       sonarqube:
         ...
         environment:
           - SONARQUBE_DATABASE_USER=bn_sonarqube
-          - SONARQUBE_DATABASE_NAME=bitnami_sonarqube
+          - SONARQUBE_DATABASE_NAME=bitmoa_sonarqube
           - ALLOW_EMPTY_PASSWORD=yes
           - SONARQUBE_SMTP_HOST=smtp.gmail.com
           - SONARQUBE_SMTP_PORT_NUMBER=587
@@ -301,21 +301,21 @@ This would be an example of SMTP configuration using a Gmail account:
     ```console
     $ docker run -d --name sonarqube -p 80:8080 -p 443:8443 \
       --env SONARQUBE_DATABASE_USER=bn_sonarqube \
-      --env SONARQUBE_DATABASE_NAME=bitnami_sonarqube \
+      --env SONARQUBE_DATABASE_NAME=bitmoa_sonarqube \
       --env SONARQUBE_SMTP_HOST=smtp.gmail.com \
       --env SONARQUBE_SMTP_PORT_NUMBER=587 \
       --env SONARQUBE_SMTP_USER=your_email@gmail.com \
       --env SONARQUBE_SMTP_PASSWORD=your_password \
       --network sonarqube-tier \
-      --volume /path/to/sonarqube-persistence:/bitnami \
-      bitnami/sonarqube:latest
+      --volume /path/to/sonarqube-persistence:/bitmoa \
+      bitmoa/sonarqube:latest
     ```
 
 #### Connect SonarQube&trade; container to an existing database
 
 The Bitnami SonarQube&trade; container supports connecting the SonarQube&trade; application to an external database. This would be an example of using an external database for SonarQube&trade;.
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/sonarqube/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/sonarqube/docker-compose.yml) file present in this repository:
 
     ```diff
        sonarqube:
@@ -342,15 +342,15 @@ The Bitnami SonarQube&trade; container supports connecting the SonarQube&trade; 
       --env SONARQUBE_DATABASE_NAME=sonarqube_db \
       --env SONARQUBE_DATABASE_USER=sonarqube_user \
       --env SONARQUBE_DATABASE_PASSWORD=sonarqube_password \
-      --volume sonarqube_data:/bitnami/sonarqube \
-      bitnami/sonarqube:latest
+      --volume sonarqube_data:/bitmoa/sonarqube \
+      bitmoa/sonarqube:latest
     ```
 
 In case the database already contains data from a previous SonarQube&trade; installation, you need to set the variable `SONARQUBE_SKIP_BOOTSTRAP` to `yes`. Otherwise, the container would execute the installation wizard and could modify the existing data in the database. Note that, when setting `SONARQUBE_SKIP_BOOTSTRAP` to `yes`, values for environment variables such as `SONARQUBE_USERNAME`, `SONARQUBE_PASSWORD` or `SONARQUBE_EMAIL` will be ignored.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami SonarQube&trade; Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami SonarQube&trade; Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -394,7 +394,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/sonarqube-backups:/backups --volumes-from sonarqube busybox \
-  cp -a /bitnami/sonarqube /backups/latest
+  cp -a /bitmoa/sonarqube /backups/latest
 ```
 
 ### Restoring a backup
@@ -406,9 +406,9 @@ For the PostgreSQL database container:
 ```diff
  $ docker run -d --name postgresql \
    ...
--  --volume /path/to/postgresql-persistence:/bitnami/postgresql \
-+  --volume /path/to/postgresql-backups/latest:/bitnami/postgresql \
-   bitnami/postgresql:latest
+-  --volume /path/to/postgresql-persistence:/bitmoa/postgresql \
++  --volume /path/to/postgresql-backups/latest:/bitmoa/postgresql \
+   bitmoa/postgresql:latest
 ```
 
 For the SonarQube&trade; container:
@@ -416,21 +416,21 @@ For the SonarQube&trade; container:
 ```diff
  $ docker run -d --name sonarqube \
    ...
--  --volume /path/to/sonarqube-persistence:/bitnami/sonarqube \
-+  --volume /path/to/sonarqube-backups/latest:/bitnami/sonarqube \
-   bitnami/sonarqube:latest
+-  --volume /path/to/sonarqube-persistence:/bitmoa/sonarqube \
++  --volume /path/to/sonarqube-backups/latest:/bitmoa/sonarqube \
+   bitmoa/sonarqube:latest
 ```
 
 ### Upgrade this image
 
-Bitnami provides up-to-date versions of PostgreSQL and SonarQube&trade;, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the SonarQube&trade; container. For the PostgreSQL upgrade see: <https://github.com/bitnami/containers/tree/main/bitnami/postgresql#user-content-upgrade-this-image>
+Bitnami provides up-to-date versions of PostgreSQL and SonarQube&trade;, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the SonarQube&trade; container. For the PostgreSQL upgrade see: <https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql#user-content-upgrade-this-image>
 
-The `bitnami/sonarqube:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitnami/sonarqube:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitnami/sonarqube/tags/).
+The `bitmoa/sonarqube:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitmoa/sonarqube:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitmoa/sonarqube/tags/).
 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/sonarqube:latest
+docker pull bitmoa/sonarqube:latest
 ```
 
 #### Step 2: Stop the running container
@@ -472,11 +472,11 @@ docker-compose up -d
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

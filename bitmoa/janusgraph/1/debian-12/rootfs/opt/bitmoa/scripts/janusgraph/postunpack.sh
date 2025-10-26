@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libjanusgraph.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libjanusgraph.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load JanusGraph environment variables
-. /opt/bitnami/scripts/janusgraph-env.sh
+. /opt/bitmoa/scripts/janusgraph-env.sh
 
 # Ensure directories used by JanusGraph exist and have proper ownership and permissions
 for dir in "$JANUSGRAPH_VOLUME_DIR" "$JANUSGRAPH_CONF_DIR" "$JANUSGRAPH_DATA_DIR" "$JANUSGRAPH_LOGS_DIR" "${JANUSGRAPH_BASE_DIR}/scripts" "$JANUSGRAPH_MOUNTED_CONF_DIR" "$JANUSGRAPH_DEFAULT_CONF_DIR"; do

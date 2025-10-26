@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libtensorflow-serving.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libtensorflow-serving.sh
 
 # Load tensorflow environment variables
-. /opt/bitnami/scripts/tensorflowserving-env.sh
+. /opt/bitmoa/scripts/tensorflowserving-env.sh
 
 info "** Starting Tensorflow **"
 start_command=("${TENSORFLOW_SERVING_BASE_DIR}/serving/bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server" \

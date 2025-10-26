@@ -7,12 +7,12 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 ########################
 # Validate settings in APACHE_* env vars
@@ -79,10 +79,10 @@ apache_configure_http_port() {
         echo "$apache_configuration" > "$APACHE_CONF_FILE"
     fi
 
-    if [[ -w "${APACHE_CONF_DIR}/bitnami/bitnami.conf" ]]; then
-        debug "Configuring port ${port} on file ${APACHE_CONF_DIR}/bitnami/bitnami.conf"
-        apache_configuration="$(sed -E "$vhost_exp" "${APACHE_CONF_DIR}/bitnami/bitnami.conf")"
-        echo "$apache_configuration" > "${APACHE_CONF_DIR}/bitnami/bitnami.conf"
+    if [[ -w "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf" ]]; then
+        debug "Configuring port ${port} on file ${APACHE_CONF_DIR}/bitmoa/bitmoa.conf"
+        apache_configuration="$(sed -E "$vhost_exp" "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf")"
+        echo "$apache_configuration" > "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf"
     fi
 
     if [[ -w "${APACHE_VHOSTS_DIR}/00_status-vhost.conf" ]]; then
@@ -107,10 +107,10 @@ apache_configure_https_port() {
     local -r vhost_exp="s|VirtualHost\s+([^:>]+)(:[0-9]+)|VirtualHost \1:${port}|"
     local apache_configuration
 
-    if [[ -w "${APACHE_CONF_DIR}/bitnami/bitnami-ssl.conf" ]]; then
-        debug "Configuring port ${port} on file ${APACHE_CONF_DIR}/bitnami/bitnami-ssl.conf"
-        apache_configuration="$(sed -E -e "$listen_exp" -e "$vhost_exp" "${APACHE_CONF_DIR}/bitnami/bitnami-ssl.conf")"
-        echo "$apache_configuration" > "${APACHE_CONF_DIR}/bitnami/bitnami-ssl.conf"
+    if [[ -w "${APACHE_CONF_DIR}/bitmoa/bitmoa-ssl.conf" ]]; then
+        debug "Configuring port ${port} on file ${APACHE_CONF_DIR}/bitmoa/bitmoa-ssl.conf"
+        apache_configuration="$(sed -E -e "$listen_exp" -e "$vhost_exp" "${APACHE_CONF_DIR}/bitmoa/bitmoa-ssl.conf")"
+        echo "$apache_configuration" > "${APACHE_CONF_DIR}/bitmoa/bitmoa-ssl.conf"
     fi
 }
 
@@ -263,7 +263,7 @@ ensure_apache_configuration_exists() {
 }
 
 ########################
-# Collect all the .htaccess files from /opt/bitnami/$name and write the result in the 'htaccess' directory
+# Collect all the .htaccess files from /opt/bitmoa/$name and write the result in the 'htaccess' directory
 # Globals:
 #   APACHE_*
 # Arguments:
@@ -278,7 +278,7 @@ apache_replace_htaccess_files() {
     local -r app="${1:?missing app}"
     local -r result_file="${APACHE_HTACCESS_DIR}/${app}-htaccess.conf"
     # Default options
-    local document_root="${BITNAMI_ROOT_DIR}/${app}"
+    local document_root="${BITMOA_ROOT_DIR}/${app}"
     local overwrite="yes"
     local -a htaccess_files
     local htaccess_dir
@@ -385,7 +385,7 @@ ensure_apache_app_configuration_exists() {
     export additional_https_configuration=""
     export before_vhost_configuration=""
     export allow_override="All"
-    export document_root="${BITNAMI_ROOT_DIR}/${app}"
+    export document_root="${BITMOA_ROOT_DIR}/${app}"
     export extra_directory_configuration=""
     export default_http_port="${APACHE_HTTP_PORT_NUMBER:-"$APACHE_DEFAULT_HTTP_PORT_NUMBER"}"
     export default_https_port="${APACHE_HTTPS_PORT_NUMBER:-"$APACHE_DEFAULT_HTTPS_PORT_NUMBER"}"
@@ -504,7 +504,7 @@ EOF
     # We remove lines that are empty or contain only newspaces with 'sed', so the resulting file looks better
     local template_name="app"
     [[ -n "$type" && "$type" != "php" ]] && template_name="app-${type}"
-    local -r template_dir="${BITNAMI_ROOT_DIR}/scripts/apache/bitnami-templates"
+    local -r template_dir="${BITMOA_ROOT_DIR}/scripts/apache/bitmoa-templates"
     local http_vhost="${APACHE_VHOSTS_DIR}/${app}-vhost.conf"
     local https_vhost="${APACHE_VHOSTS_DIR}/${app}-https-vhost.conf"
     local -r disable_suffix=".disabled"
@@ -579,7 +579,7 @@ ensure_apache_prefix_configuration_exists() {
     # Template variables defaults
     export additional_configuration=""
     export allow_override="All"
-    export document_root="${BITNAMI_ROOT_DIR}/${app}"
+    export document_root="${BITMOA_ROOT_DIR}/${app}"
     export extra_directory_configuration=""
     # Validate arguments
     local var_name
@@ -640,8 +640,8 @@ EOF
     # We remove lines that are empty or contain only newspaces with 'sed', so the resulting file looks better
     local template_name="app"
     [[ -n "$type" && "$type" != "php" ]] && template_name="app-${type}"
-    local -r template_dir="${BITNAMI_ROOT_DIR}/scripts/apache/bitnami-templates"
-    local -r prefix_file="${APACHE_CONF_DIR}/bitnami/${app}.conf"
+    local -r template_dir="${BITMOA_ROOT_DIR}/scripts/apache/bitmoa-templates"
+    local -r prefix_file="${APACHE_CONF_DIR}/bitmoa/${app}.conf"
     if is_file_writable "$prefix_file"; then
         # Create file with root group write privileges, so it can be modified in non-root containers
         [[ ! -f "$prefix_file" ]] && touch "$prefix_file" && chmod g+rw "$prefix_file"

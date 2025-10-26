@@ -1,12 +1,12 @@
 
 services:
   opensearch:
-    image: docker.io/bitnami/opensearch:3
+    image: ghcr.io/bitmoa/opensearch:3
     ports:
       - '9200:9200'
       - '9300:9300'
     volumes:
-      - 'opensearch_data:/bitnami/opensearch/data'
+      - 'opensearch_data:/bitmoa/opensearch/data'
 volumes:
   opensearch_data:
     driver: local

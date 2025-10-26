@@ -10,23 +10,23 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load KeyDB environment variables
-. /opt/bitnami/scripts/keydb-env.sh
+. /opt/bitmoa/scripts/keydb-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libkeydb.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libkeydb.sh
 
 print_welcome_page
 
 # We add the copy from default config in the entrypoint to not break users 
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/keydb/etc)
+# case someone mounts a configuration file in /opt/bitmoa/keydb/etc)
 debug "Copying files from $KEYDB_DEFAULT_CONF_DIR to $KEYDB_CONF_DIR"
 cp -nr "$KEYDB_DEFAULT_CONF_DIR"/. "$KEYDB_CONF_DIR"
 
-if [[ "$*" = *"/opt/bitnami/scripts/keydb/run.sh"* || "$*" = *"/run.sh"* ]]; then
+if [[ "$*" = *"/opt/bitmoa/scripts/keydb/run.sh"* || "$*" = *"/run.sh"* ]]; then
     info "** Starting KeyDB setup **"
-    /opt/bitnami/scripts/keydb/setup.sh
+    /opt/bitmoa/scripts/keydb/setup.sh
     info "** KeyDB setup finished! **"
 fi
 

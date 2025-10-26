@@ -3,11 +3,11 @@
 
 services:
   pg-0:
-    image: docker.io/bitnami/postgresql-repmgr:18
+    image: ghcr.io/bitmoa/postgresql-repmgr:18
     ports:
       - 5432
     volumes:
-      - pg_0_data:/bitnami/postgresql
+      - pg_0_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
       - POSTGRESQL_USERNAME=customuser
@@ -21,11 +21,11 @@ services:
       - REPMGR_NODE_NETWORK_NAME=pg-0
       - REPMGR_PORT_NUMBER=5432
   pg-1:
-    image: docker.io/bitnami/postgresql-repmgr:18
+    image: ghcr.io/bitmoa/postgresql-repmgr:18
     ports:
       - 5432
     volumes:
-      - pg_1_data:/bitnami/postgresql
+      - pg_1_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
       - POSTGRESQL_USERNAME=customuser

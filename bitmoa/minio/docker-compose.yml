@@ -3,12 +3,12 @@
 
 services:
   minio:
-    image: docker.io/bitnami/minio:2025
+    image: ghcr.io/bitmoa/minio:2025
     ports:
       - '9000:9000'
       - '9001:9001'
     volumes:
-      - 'minio_data:/bitnami/minio/data'
+      - 'minio_data:/bitmoa/minio/data'
 
 volumes:
   minio_data:

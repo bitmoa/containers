@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-22T20:20:04Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/mlflow/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/mlflow" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/mlflow/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/mlflow" \
       org.opencontainers.image.title="mlflow" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="3.5.1"
 
 ENV HOME="/" \
@@ -26,7 +26,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl git libbz2-1.0 libcom-err2 libcrypt1 libffi8 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblzma5 libncursesw6 libnettle8 libnsl2 libp11-kit0 libpq5 libreadline8 libsasl2-2 libsqlite3-0 libssl3 libstdc++6 libtasn1-6 libtinfo6 libtirpc3 libunistring2 procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "python-3.12.12-3-linux-${OS_ARCH}-debian-12" \
       "mlflow-3.5.1-0-linux-${OS_ARCH}-debian-12" \
@@ -37,7 +37,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
@@ -47,11 +47,11 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN mkdir /.local && chmod g+rwX /.local
 RUN uninstall_packages curl
 
-RUN mkdir -p /app/mlruns /app/mlartifacts /bitnami/mlflow && chmod g+rwX /app /app/mlruns /app/mlartifacts /bitnami/mlflow && ln -s /opt/bitnami/python/lib/*/site-packages/mlflow/server/auth/ /bitnami/mlflow-basic-auth
+RUN mkdir -p /app/mlruns /app/mlartifacts /bitmoa/mlflow && chmod g+rwX /app /app/mlruns /app/mlartifacts /bitmoa/mlflow && ln -s /opt/bitmoa/python/lib/*/site-packages/mlflow/server/auth/ /bitmoa/mlflow-basic-auth
 ENV APP_VERSION="3.5.1" \
-    BITNAMI_APP_NAME="mlflow" \
+    BITMOA_APP_NAME="mlflow" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/python/bin:$PATH"
+    PATH="/opt/bitmoa/python/bin:$PATH"
 
 WORKDIR /app
 USER 1001

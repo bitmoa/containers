@@ -8,12 +8,12 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 ########################
 # Validate settings in CLICKHOUSE_KEEPER_* env vars
@@ -145,7 +145,7 @@ keeper_initialize() {
         # ref: https://github.com/ClickHouse/ClickHouse/blob/master/docker/keeper/entrypoint.sh
         keeper_conf_set "/clickhouse/keeper_server/server_id" "$CLICKHOUSE_KEEPER_SERVER_ID"
         keeper_conf_set "/clickhouse/keeper_server/raft_configuration/server/id" "$CLICKHOUSE_KEEPER_SERVER_ID"
-        is_boolean_yes "${BITNAMI_DEBUG}" && keeper_conf_set "/clickhouse/logger/level" "debug"
+        is_boolean_yes "${BITMOA_DEBUG}" && keeper_conf_set "/clickhouse/logger/level" "debug"
     fi
 
     # Avoid exit code of previous commands to affect the result of this function

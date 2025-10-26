@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-matomo}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -80,12 +80,12 @@ done
 unset matomo_env_vars
 
 # Paths
-export MATOMO_BASE_DIR="${BITNAMI_ROOT_DIR}/matomo"
+export MATOMO_BASE_DIR="${BITMOA_ROOT_DIR}/matomo"
 export MATOMO_CONF_DIR="${MATOMO_BASE_DIR}/config"
 export MATOMO_CONF_FILE="${MATOMO_CONF_DIR}/config.ini.php"
 
 # Matomo persistence configuration
-export MATOMO_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/matomo"
+export MATOMO_VOLUME_DIR="${BITMOA_VOLUME_DIR}/matomo"
 export MATOMO_DATA_TO_PERSIST="${MATOMO_DATA_TO_PERSIST:-$MATOMO_BASE_DIR}"
 export MATOMO_EXCLUDED_DATA_FROM_UPDATE="${MATOMO_EXCLUDED_DATA_FROM_UPDATE:-}"
 
@@ -101,7 +101,7 @@ export MATOMO_ENABLE_PROXY_URI_HEADER="${MATOMO_ENABLE_PROXY_URI_HEADER:-no}" # 
 
 # Matomo credentials
 export MATOMO_USERNAME="${MATOMO_USERNAME:-user}" # only used during the first initialization
-export MATOMO_PASSWORD="${MATOMO_PASSWORD:-bitnami}" # only used during the first initialization
+export MATOMO_PASSWORD="${MATOMO_PASSWORD:-bitmoa}" # only used during the first initialization
 export MATOMO_EMAIL="${MATOMO_EMAIL:-user@example.com}" # only used during the first initialization
 export MATOMO_HOST="${MATOMO_HOST:-127.0.0.1}" # only used during the first initialization
 export MATOMO_WEBSITE_NAME="${MATOMO_WEBSITE_NAME:-example}" # only used during the first initialization
@@ -134,7 +134,7 @@ export MATOMO_NOREPLY_ADDRESS="${MATOMO_NOREPLY_ADDRESS:-}" # only used during t
 export MATOMO_DEFAULT_DATABASE_HOST="mariadb" # only used at build time
 export MATOMO_DATABASE_HOST="${MATOMO_DATABASE_HOST:-$MATOMO_DEFAULT_DATABASE_HOST}" # only used during the first initialization
 export MATOMO_DATABASE_PORT_NUMBER="${MATOMO_DATABASE_PORT_NUMBER:-3306}" # only used during the first initialization
-export MATOMO_DATABASE_NAME="${MATOMO_DATABASE_NAME:-bitnami_matomo}" # only used during the first initialization
+export MATOMO_DATABASE_NAME="${MATOMO_DATABASE_NAME:-bitmoa_matomo}" # only used during the first initialization
 export MATOMO_DATABASE_USER="${MATOMO_DATABASE_USER:-bn_matomo}" # only used during the first initialization
 export MATOMO_DATABASE_PASSWORD="${MATOMO_DATABASE_PASSWORD:-}" # only used during the first initialization
 export MATOMO_DATABASE_TABLE_PREFIX="${MATOMO_DATABASE_TABLE_PREFIX:-matomo_}" # only used during the first initialization

@@ -8,12 +8,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libcassandra.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libcassandra.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Cassandra environment variables
-. /opt/bitnami/scripts/cassandra-env.sh
+. /opt/bitmoa/scripts/cassandra-env.sh
 
 # As we cannot use "local" we will use "readonly" for read-only variables.
 # The scope of "readonly" is global, so we attach "__run_" to avoid conflicts
@@ -24,7 +24,7 @@ info "** Starting Cassandra **"
 # During the startup logic, we bootstap Cassandra. This is because Cassandra seeder nodes
 # need to be able to connect to each other, and after that authentication can be configured.
 # However, some applications may detect at this point that the database is ready.
-# While in other bitnami containers we would stop the database and run it in foreground,
+# While in other bitmoa containers we would stop the database and run it in foreground,
 # we prefer keeping it running in this case.
 # So, in this run.sh script, we first check if Cassandra was already running in
 # one of the two cases:

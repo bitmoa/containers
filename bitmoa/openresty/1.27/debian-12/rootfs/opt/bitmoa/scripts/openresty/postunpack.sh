@@ -10,8 +10,8 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libopenresty.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libopenresty.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Auxiliar Functions
 
@@ -32,7 +32,7 @@ openresty_patch_httpoxy_vulnerability() {
 }
 
 # Load OpenResty environment variables
-. /opt/bitnami/scripts/openresty-env.sh
+. /opt/bitmoa/scripts/openresty-env.sh
 
 # Ensure non-root user has write permissions on a set of directories
 declare -a writable_dirs=(
@@ -40,8 +40,8 @@ declare -a writable_dirs=(
     "$OPENRESTY_CONF_DIR"
     "${OPENRESTY_BASE_DIR}/nginx"
     "$OPENRESTY_SERVER_BLOCKS_DIR"
-    "${OPENRESTY_CONF_DIR}/bitnami"
-    "${OPENRESTY_CONF_DIR}/bitnami/certs"
+    "${OPENRESTY_CONF_DIR}/bitmoa"
+    "${OPENRESTY_CONF_DIR}/bitmoa/certs"
     "$OPENRESTY_LOGS_DIR"
     "$OPENRESTY_TMP_DIR"
     "$OPENRESTY_SITE_DIR"
@@ -64,8 +64,8 @@ mv "$OPENRESTY_HTDOCS_DIR" /app
 ln -sf /app "$OPENRESTY_HTDOCS_DIR"
 
 # Users can mount their certificates at /certs
-mv "${OPENRESTY_CONF_DIR}/bitnami/certs" /certs
-ln -sf /certs "${OPENRESTY_CONF_DIR}/bitnami/certs"
+mv "${OPENRESTY_CONF_DIR}/bitmoa/certs" /certs
+ln -sf /certs "${OPENRESTY_CONF_DIR}/bitmoa/certs"
 
 ln -sf "/dev/stdout" "${OPENRESTY_LOGS_DIR}/access.log"
 ln -sf "/dev/stderr" "${OPENRESTY_LOGS_DIR}/error.log"

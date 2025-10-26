@@ -10,9 +10,9 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libcilium.sh
+. /opt/bitmoa/scripts/libcilium.sh
 
 # Load Cilium environment variables
-. /opt/bitnami/scripts/cilium-env.sh
+. /opt/bitmoa/scripts/cilium-env.sh
 
 cilium_uninstall_cni_plugin "$1"

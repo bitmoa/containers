@@ -10,23 +10,23 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libmysql.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libmysql.sh
 
 # Load MySQL environment variables
-. /opt/bitnami/scripts/mysql-env.sh
+. /opt/bitmoa/scripts/mysql-env.sh
 
 print_welcome_page
 
 # We add the copy from default config in the entrypoint to not break users 
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/mysql/conf)
+# case someone mounts a configuration file in /opt/bitmoa/mysql/conf)
 debug "Copying files from $DB_DEFAULT_CONF_DIR to $DB_CONF_DIR"
 cp -nfr "$DB_DEFAULT_CONF_DIR"/. "$DB_CONF_DIR"
 
-if [[ "$1" = "/opt/bitnami/scripts/mysql/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/mysql/run.sh" ]]; then
     info "** Starting MySQL setup **"
-    /opt/bitnami/scripts/mysql/setup.sh
+    /opt/bitmoa/scripts/mysql/setup.sh
     info "** MySQL setup finished! **"
 fi
 

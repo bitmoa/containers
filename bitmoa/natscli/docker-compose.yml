@@ -5,4 +5,4 @@ version: '2'
 
 services:
   natscli:
-    image: docker.io/bitnami/natscli:0
+    image: ghcr.io/bitmoa/natscli:0

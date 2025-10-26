@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-flink}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -43,7 +43,7 @@ done
 unset flink_env_vars
 
 # Paths
-export FLINK_BASE_DIR="${BITNAMI_ROOT_DIR}/flink"
+export FLINK_BASE_DIR="${BITMOA_ROOT_DIR}/flink"
 export FLINK_BIN_DIR="${FLINK_BASE_DIR}/bin"
 export FLINK_WORK_DIR="${FLINK_BASE_DIR}"
 export FLINK_LOG_DIR="${FLINK_BASE_DIR}/log"
@@ -57,12 +57,12 @@ export FLINK_TASK_MANAGER_NUMBER_OF_TASK_SLOTS="${FLINK_TASK_MANAGER_NUMBER_OF_T
 export FLINK_PROPERTIES="${FLINK_PROPERTIES:-}"
 
 # Flink persistence configuration
-export FLINK_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/flink"
+export FLINK_VOLUME_DIR="${BITMOA_VOLUME_DIR}/flink"
 export FLINK_DATA_TO_PERSIST="conf plugins"
 
 # Flink system parameters
 export FLINK_DAEMON_USER="flink"
 export FLINK_DAEMON_GROUP="flink"
-export PATH="/opt/bitnami/common/bin:/opt/bitnami/flink/bin:$PATH"
+export PATH="/opt/bitmoa/common/bin:/opt/bitmoa/flink/bin:$PATH"
 
 # Custom environment variables may be defined below

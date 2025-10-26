@@ -10,8 +10,8 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libnginx.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libnginx.sh
 
 # Catch SIGTERM signal and stop all child processes
 _forwardTerm() {
@@ -23,7 +23,7 @@ _forwardTerm() {
 trap _forwardTerm TERM
 
 info "Starting PHP-FPM..."
-/opt/bitnami/scripts/php/run.sh &
+/opt/bitmoa/scripts/php/run.sh &
 
 info "Starting NGINX..."
-/opt/bitnami/scripts/nginx/run.sh
+/opt/bitmoa/scripts/nginx/run.sh

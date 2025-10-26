@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libclickhouse.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libclickhouse.sh
 
 # Load ClickHouse environment variables
-. /opt/bitnami/scripts/clickhouse-env.sh
+. /opt/bitmoa/scripts/clickhouse-env.sh
 
 # System User
 ensure_user_exists "$CLICKHOUSE_DAEMON_USER" --group "$CLICKHOUSE_DAEMON_GROUP" --system

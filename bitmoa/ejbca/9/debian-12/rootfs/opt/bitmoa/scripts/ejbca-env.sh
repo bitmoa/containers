@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-ejbca}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -62,8 +62,8 @@ done
 unset ejbca_env_vars
 
 # Paths
-export BITNAMI_VOLUME_DIR="/bitnami"
-export EJBCA_BASE_DIR="${BITNAMI_ROOT_DIR}/ejbca"
+export BITMOA_VOLUME_DIR="/bitmoa"
+export EJBCA_BASE_DIR="${BITMOA_ROOT_DIR}/ejbca"
 export EJBCA_BIN_DIR="${EJBCA_BASE_DIR}/bin"
 export EJBCA_CONF_DIR="${EJBCA_BASE_DIR}/conf"
 export EJBCA_DEFAULT_CONF_DIR="${EJBCA_BASE_DIR}/conf.default"
@@ -72,8 +72,8 @@ export EJBCA_INITSCRIPTS_DIR="/docker-entrypoint-initdb.d"
 export EJBCA_DATABASE_SCRIPTS_DIR="${EJBCA_BASE_DIR}/sql-scripts"
 
 # Persistence
-export EJBCA_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/ejbca"
-export EJBCA_WILDFLY_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/wildfly"
+export EJBCA_VOLUME_DIR="${BITMOA_VOLUME_DIR}/ejbca"
+export EJBCA_WILDFLY_VOLUME_DIR="${BITMOA_VOLUME_DIR}/wildfly"
 export EJBCA_DATA_DIR="${EJBCA_VOLUME_DIR}/tls"
 
 # DB scripts
@@ -84,7 +84,7 @@ export EJBCA_DB_SCRIPT_TABLES="${EJBCA_DATABASE_SCRIPTS_DIR}/create-tables-ejbca
 export EJBCA_EAR_FILE="${EJBCA_BASE_DIR}/dist/ejbca.ear"
 
 # Wildfly
-export EJBCA_WILDFLY_BASE_DIR="${BITNAMI_ROOT_DIR}/wildfly"
+export EJBCA_WILDFLY_BASE_DIR="${BITMOA_ROOT_DIR}/wildfly"
 export EJBCA_WILDFLY_STANDALONE_DIR="${EJBCA_WILDFLY_BASE_DIR}/standalone"
 export EJBCA_WILDFLY_DEFAULT_STANDALONE_DIR="${EJBCA_WILDFLY_BASE_DIR}/standalone.default"
 export EJBCA_WILDFLY_DOMAIN_DIR="${EJBCA_WILDFLY_BASE_DIR}/domain"
@@ -137,7 +137,7 @@ export EJBCA_SMTP_PASSWORD="${EJBCA_SMTP_PASSWORD:-}"
 
 # EJBCA environment variables.
 export EJBCA_HOME="${EJBCA_BASE_DIR}"
-export JAVA_HOME="/opt/bitnami/java"
+export JAVA_HOME="/opt/bitmoa/java"
 export JBOSS_HOME="${EJBCA_WILDFLY_BASE_DIR}"
 export LAUNCH_JBOSS_IN_BACKGROUND="true"
 export JBOSS_PIDFILE="${EJBCA_WILDFLY_PID_FILE}"

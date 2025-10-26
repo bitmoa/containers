@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libmongodb.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libmongodb.sh
 
 # Load environment
-. /opt/bitnami/scripts/mongodb-env.sh
+. /opt/bitmoa/scripts/mongodb-env.sh
 
 is_boolean_yes "$MONGODB_DISABLE_SYSTEM_LOG" && MONGODB_DISABLE_SYSTEM_LOG="true" || MONGODB_DISABLE_SYSTEM_LOG="false"
 is_boolean_yes "$MONGODB_ENABLE_DIRECTORY_PER_DB" && MONGODB_ENABLE_DIRECTORY_PER_DB="true" || MONGODB_ENABLE_DIRECTORY_PER_DB="false"

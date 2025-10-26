@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libcilium.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libcilium.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load Cilium environment variables
-. /opt/bitnami/scripts/cilium-env.sh
+. /opt/bitmoa/scripts/cilium-env.sh
 
 exit_code=0
 if ! retry_while "is_kube_proxy_ready"; then

@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Airflow environment variables
-. /opt/bitnami/scripts/airflow-env.sh
+. /opt/bitmoa/scripts/airflow-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libairflow.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libairflow.sh
 
 print_welcome_page
 
@@ -28,15 +28,15 @@ if ! am_i_root && [[ -e "$LIBNSS_WRAPPER_PATH" ]]; then
 fi
 
 # Install custom python package if requirements.txt is present
-if [[ -f "/bitnami/python/requirements.txt" ]]; then
-    . /opt/bitnami/airflow/venv/bin/activate
-    pip install -r /bitnami/python/requirements.txt
+if [[ -f "/bitmoa/python/requirements.txt" ]]; then
+    . /opt/bitmoa/airflow/venv/bin/activate
+    pip install -r /bitmoa/python/requirements.txt
     deactivate
 fi
 
-if [[ "$*" = *"/opt/bitnami/scripts/airflow/run.sh"* || "$*" = *"/run.sh"* ]]; then
+if [[ "$*" = *"/opt/bitmoa/scripts/airflow/run.sh"* || "$*" = *"/run.sh"* ]]; then
     info "** Starting Airflow setup **"
-    /opt/bitnami/scripts/airflow/setup.sh
+    /opt/bitmoa/scripts/airflow/setup.sh
     info "** Airflow setup finished! **"
 fi
 

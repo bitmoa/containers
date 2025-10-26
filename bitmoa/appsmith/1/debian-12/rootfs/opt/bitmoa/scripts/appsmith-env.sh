@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-appsmith}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -72,8 +72,8 @@ done
 unset appsmith_env_vars
 
 # Paths
-export APPSMITH_BASE_DIR="${BITNAMI_ROOT_DIR}/appsmith"
-export APPSMITH_VOLUME_DIR="/bitnami/appsmith"
+export APPSMITH_BASE_DIR="${BITMOA_ROOT_DIR}/appsmith"
+export APPSMITH_VOLUME_DIR="/bitmoa/appsmith"
 export APPSMITH_LOG_DIR="${APPSMITH_BASE_DIR}/logs"
 export APPSMITH_LOG_FILE="${APPSMITH_LOG_DIR}/appsmith.log"
 export APPSMITH_CONF_DIR="${APPSMITH_BASE_DIR}/conf"
@@ -86,10 +86,10 @@ export APPSMITH_GIT_ROOT="${APPSMITH_BASE_DIR}/git-storage"
 # Appsmith configuration parameters
 export ALLOW_EMPTY_PASSWORD="${ALLOW_EMPTY_PASSWORD:-no}"
 export APPSMITH_USERNAME="${APPSMITH_USERNAME:-user}" # only used during the first initialization
-export APPSMITH_PASSWORD="${APPSMITH_PASSWORD:-bitnami123}" # only used during the first initialization
+export APPSMITH_PASSWORD="${APPSMITH_PASSWORD:-bitmoa123}" # only used during the first initialization
 export APPSMITH_EMAIL="${APPSMITH_EMAIL:-user@example.com}" # only used during the first initialization
 export APPSMITH_MODE="${APPSMITH_MODE:-backend}"
-export APPSMITH_ENCRYPTION_PASSWORD="${APPSMITH_ENCRYPTION_PASSWORD:-bitnami123}" # only used during the first initialization
+export APPSMITH_ENCRYPTION_PASSWORD="${APPSMITH_ENCRYPTION_PASSWORD:-bitmoa123}" # only used during the first initialization
 export APPSMITH_ENCRYPTION_SALT="${APPSMITH_ENCRYPTION_SALT:-}"
 export APPSMITH_API_HOST="${APPSMITH_API_HOST:-appsmith-api}"
 export APPSMITH_API_PORT="${APPSMITH_API_PORT:-8080}"
@@ -102,7 +102,7 @@ export APPSMITH_DATABASE_HOST="${APPSMITH_DATABASE_HOST:-mongodb}" # only used d
 APPSMITH_DATABASE_PORT_NUMBER="${APPSMITH_DATABASE_PORT_NUMBER:-"${MONGODB_PORT_NUMBER:-}"}"
 export APPSMITH_DATABASE_PORT_NUMBER="${APPSMITH_DATABASE_PORT_NUMBER:-27017}" # only used during the first initialization
 APPSMITH_DATABASE_NAME="${APPSMITH_DATABASE_NAME:-"${MONGODB_DATABASE_NAME:-}"}"
-export APPSMITH_DATABASE_NAME="${APPSMITH_DATABASE_NAME:-bitnami_appsmith}" # only used during the first initialization
+export APPSMITH_DATABASE_NAME="${APPSMITH_DATABASE_NAME:-bitmoa_appsmith}" # only used during the first initialization
 APPSMITH_DATABASE_USER="${APPSMITH_DATABASE_USER:-"${MONGODB_DATABASE_USER:-}"}"
 export APPSMITH_DATABASE_USER="${APPSMITH_DATABASE_USER:-bn_appsmith}" # only used during the first initialization
 APPSMITH_DATABASE_PASSWORD="${APPSMITH_DATABASE_PASSWORD:-"${MONGODB_DATABASE_PASSWORD:-}"}"

@@ -3,22 +3,22 @@
 
 services:
   postgresql:
-    image: docker.io/bitnami/postgresql:latest
+    image: ghcr.io/bitmoa/postgresql:latest
     volumes:
-      - postgresql_data:/bitnami/postgresql
+      - postgresql_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_USERNAME=kong
-      - POSTGRESQL_PASSWORD=bitnami
+      - POSTGRESQL_PASSWORD=bitmoa
       - POSTGRESQL_DATABASE=kong
   kong:
-    image: docker.io/bitnami/kong:3
+    image: ghcr.io/bitmoa/kong:3
     ports:
       - 8000:8000
       - 8443:8443
     environment:
       - KONG_MIGRATE=yes
       - KONG_PG_HOST=postgresql
-      - KONG_PG_PASSWORD=bitnami
+      - KONG_PG_PASSWORD=bitmoa
 volumes:
   postgresql_data:
     driver: local

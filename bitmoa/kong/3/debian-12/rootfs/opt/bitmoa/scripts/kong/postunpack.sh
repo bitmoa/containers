@@ -9,13 +9,13 @@ set -o nounset
 set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libkong.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libkong.sh
 
 # Load Kong environment variables
-. /opt/bitnami/scripts/kong-env.sh
+. /opt/bitmoa/scripts/kong-env.sh
 
 # Ensure users and groups used by Kong exist
 ensure_user_exists "$KONG_DAEMON_USER" --group "$KONG_DAEMON_GROUP"
@@ -33,7 +33,7 @@ kong_conf_set nginx_daemon off
 kong_conf_set nginx_user "$KONG_DAEMON_USER"
 kong_configure_non_empty_values
 install_opentelemetry
-configure_lua_paths "/opt/bitnami/scripts/kong-env.sh" "/etc/bash.bashrc"
+configure_lua_paths "/opt/bitmoa/scripts/kong-env.sh" "/etc/bash.bashrc"
 # Comment out 'resolver_address' setting to force Kong to use values from '/etc/resolv.conf'
 replace_in_file "$KONG_CONF_FILE" "^resolver_address\s*=.*" "# resolver_address ="
 

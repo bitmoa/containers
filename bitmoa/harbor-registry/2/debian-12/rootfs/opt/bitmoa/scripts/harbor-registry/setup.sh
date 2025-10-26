@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libharbor.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libharbor.sh
 
 # Load environment
-. /opt/bitnami/scripts/harbor-registry-env.sh
+. /opt/bitmoa/scripts/harbor-registry-env.sh
 
 # Auxiliar Functions
 

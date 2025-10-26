@@ -3,4 +3,4 @@
   
 services:
   cilium:
-    image: docker.io/bitnami/cilium:1
+    image: ghcr.io/bitmoa/cilium:1

@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Grafana environment
-. /opt/bitnami/scripts/grafana-env.sh
+. /opt/bitmoa/scripts/grafana-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 declare cmd="grafana"
 declare -a args=(

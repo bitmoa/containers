@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-wordpress}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -112,16 +112,16 @@ done
 unset wordpress_env_vars
 
 # Paths
-export WORDPRESS_BASE_DIR="${BITNAMI_ROOT_DIR}/wordpress"
+export WORDPRESS_BASE_DIR="${BITMOA_ROOT_DIR}/wordpress"
 export WORDPRESS_CONF_FILE="${WORDPRESS_BASE_DIR}/wp-config.php"
-export WP_CLI_BASE_DIR="${BITNAMI_ROOT_DIR}/wp-cli"
+export WP_CLI_BASE_DIR="${BITMOA_ROOT_DIR}/wp-cli"
 export WP_CLI_BIN_DIR="${WP_CLI_BASE_DIR}/bin"
 export WP_CLI_CONF_DIR="${WP_CLI_BASE_DIR}/conf"
 export WP_CLI_CONF_FILE="${WP_CLI_CONF_DIR}/wp-cli.yml"
-export PATH="${BITNAMI_ROOT_DIR}/common/bin:${BITNAMI_ROOT_DIR}/mysql/bin:${PATH}"
+export PATH="${BITMOA_ROOT_DIR}/common/bin:${BITMOA_ROOT_DIR}/mysql/bin:${PATH}"
 
 # WordPress persistence configuration
-export WORDPRESS_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/wordpress"
+export WORDPRESS_VOLUME_DIR="${BITMOA_VOLUME_DIR}/wordpress"
 export WORDPRESS_DATA_TO_PERSIST="${WORDPRESS_DATA_TO_PERSIST:-wp-config.php wp-content}"
 
 # WordPress configuration
@@ -153,7 +153,7 @@ export WORDPRESS_ENABLE_XML_RPC="${WORDPRESS_ENABLE_XML_RPC:-no}" # only used du
 
 # WordPress credentials
 export WORDPRESS_USERNAME="${WORDPRESS_USERNAME:-user}" # only used during the first initialization
-export WORDPRESS_PASSWORD="${WORDPRESS_PASSWORD:-bitnami}" # only used during the first initialization
+export WORDPRESS_PASSWORD="${WORDPRESS_PASSWORD:-bitmoa}" # only used during the first initialization
 export WORDPRESS_EMAIL="${WORDPRESS_EMAIL:-user@example.com}" # only used during the first initialization
 export WORDPRESS_FIRST_NAME="${WORDPRESS_FIRST_NAME:-UserName}" # only used during the first initialization
 export WORDPRESS_LAST_NAME="${WORDPRESS_LAST_NAME:-LastName}" # only used during the first initialization
@@ -195,7 +195,7 @@ export WORDPRESS_DATABASE_HOST="${WORDPRESS_DATABASE_HOST:-$WORDPRESS_DEFAULT_DA
 WORDPRESS_DATABASE_PORT_NUMBER="${WORDPRESS_DATABASE_PORT_NUMBER:-"${MARIADB_PORT_NUMBER:-}"}"
 export WORDPRESS_DATABASE_PORT_NUMBER="${WORDPRESS_DATABASE_PORT_NUMBER:-3306}" # only used during the first initialization
 WORDPRESS_DATABASE_NAME="${WORDPRESS_DATABASE_NAME:-"${MARIADB_DATABASE_NAME:-}"}"
-export WORDPRESS_DATABASE_NAME="${WORDPRESS_DATABASE_NAME:-bitnami_wordpress}" # only used during the first initialization
+export WORDPRESS_DATABASE_NAME="${WORDPRESS_DATABASE_NAME:-bitmoa_wordpress}" # only used during the first initialization
 WORDPRESS_DATABASE_USER="${WORDPRESS_DATABASE_USER:-"${MARIADB_DATABASE_USER:-}"}"
 export WORDPRESS_DATABASE_USER="${WORDPRESS_DATABASE_USER:-bn_wordpress}" # only used during the first initialization
 WORDPRESS_DATABASE_PASSWORD="${WORDPRESS_DATABASE_PASSWORD:-"${MARIADB_DATABASE_PASSWORD:-}"}"

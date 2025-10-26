@@ -3,13 +3,13 @@
 
 services:
   mariadb:
-    image: docker.io/bitnami/mariadb:latest
+    image: ghcr.io/bitmoa/mariadb:latest
     environment:
-      - MARIADB_ROOT_PASSWORD=bitnami
+      - MARIADB_ROOT_PASSWORD=bitmoa
     volumes:
-      - 'mariadb_data:/bitnami'
+      - 'mariadb_data:/bitmoa'
   phpmyadmin:
-    image: docker.io/bitnami/phpmyadmin:5
+    image: ghcr.io/bitmoa/phpmyadmin:5
     ports:
       - '80:8080'
       - '443:8443'

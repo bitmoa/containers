@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name ejbca bitnami/ejbca:latest
+docker run --name ejbca bitmoa/ejbca:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,45 +35,45 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
-Non-root container images add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. Learn more about non-root containers [in our docs](https://docs.bitnami.com/containers/how-to/work-with-non-root-containers/).
+Non-root container images add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. Learn more about non-root containers [in our docs](https://docs.bitmoa.com/containers/how-to/work-with-non-root-containers/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami EJBCA Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/ejbca).
+The recommended way to get the Bitnami EJBCA Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/ejbca).
 
 ```console
-docker pull bitnami/ejbca:latest
+docker pull bitmoa/ejbca:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/ejbca/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/ejbca/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/ejbca:[TAG]
+docker pull bitmoa/ejbca:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-EJBCA requires access to a MySQL or MariaDB database to store information. We'll use our very own [MariaDB image](https://github.com/bitnami/containers/tree/main/bitnami/mariadb) for the database requirements.
+EJBCA requires access to a MySQL or MariaDB database to store information. We'll use our very own [MariaDB image](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -91,10 +91,10 @@ docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_ejbca \
   --env MARIADB_PASSWORD=Bitnami1234 \
-  --env MARIADB_DATABASE=bitnami_ejbca \
+  --env MARIADB_DATABASE=bitmoa_ejbca \
   --network ejbca-network \
-  --volume mariadb_data:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume mariadb_data:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3: Create volumes for EJBCA persistence and launch the container
@@ -107,10 +107,10 @@ docker run -d --name ejbca \
   --env EJBCA_DATABASE_USERNAME=bn_ejbca \
   --env EJBCA_DATABASE_PASSWORD=Bitnami1234 \
   --env EJBCA_DATABASE_HOST=mariadb \
-  --env EJBCA_DATABASE_NAME=bitnami_ejbca \
+  --env EJBCA_DATABASE_NAME=bitmoa_ejbca \
   --network ejbca-network \
-  --volume ejbca_data:/bitnami/wildfly \
-  bitnami/ejbca:latest
+  --volume ejbca_data:/bitmoa/wildfly \
+  bitmoa/ejbca:latest
 ```
 
 Access your application at `http://your-ip:8080/ejbca/`
@@ -118,34 +118,34 @@ Access your application at `http://your-ip:8080/ejbca/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/ejbca/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/ejbca/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/ejbca).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/ejbca).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/wildfly` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/wildfly` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/ejbca-persistence:/bitnami/wildfly \
-    bitnami/ejbca:latest
+    -v /path/to/ejbca-persistence:/bitmoa/wildfly \
+    bitmoa/ejbca:latest
 ```
 
-You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/ejbca/docker-compose.yml) file present in this repository:
+You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/ejbca/docker-compose.yml) file present in this repository:
 
 ```diff
    ejbca:
      ...
      volumes:
--      - wildfly_data:/bitnami/wildfly
-+      - /path/to/ejbca-persistence:/bitnami/wildfly
+-      - wildfly_data:/bitmoa/wildfly
++      - /path/to/ejbca-persistence:/bitmoa/wildfly
    ...
 -volumes:
 -  ejbca_data:
@@ -188,21 +188,21 @@ You can also do this with a minor change to the [`docker-compose.yml`](https://g
 
 | Name                                     | Description                                      | Value                                                                                                                                                                                        |
 |------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `BITNAMI_VOLUME_DIR`                     | Directory where to mount volumes.                | `/bitnami`                                                                                                                                                                                   |
-| `EJBCA_BASE_DIR`                         | EJBCA installation directory.                    | `${BITNAMI_ROOT_DIR}/ejbca`                                                                                                                                                                  |
+| `BITMOA_VOLUME_DIR`                     | Directory where to mount volumes.                | `/bitmoa`                                                                                                                                                                                   |
+| `EJBCA_BASE_DIR`                         | EJBCA installation directory.                    | `${BITMOA_ROOT_DIR}/ejbca`                                                                                                                                                                  |
 | `EJBCA_BIN_DIR`                          | EJBCA directory for binary executables.          | `${EJBCA_BASE_DIR}/bin`                                                                                                                                                                      |
 | `EJBCA_CONF_DIR`                         | EJBCA directory for configuration files.         | `${EJBCA_BASE_DIR}/conf`                                                                                                                                                                     |
 | `EJBCA_DEFAULT_CONF_DIR`                 | EJBCA directory for default configuration files. | `${EJBCA_BASE_DIR}/conf.default`                                                                                                                                                             |
 | `EJBCA_TMP_DIR`                          | EJBCA directory for temp files.                  | `${EJBCA_BASE_DIR}/tmp`                                                                                                                                                                      |
 | `EJBCA_INITSCRIPTS_DIR`                  | EJBCA directory for init scripts.                | `/docker-entrypoint-initdb.d`                                                                                                                                                                |
 | `EJBCA_DATABASE_SCRIPTS_DIR`             | EJBCA directory for database scripts.            | `${EJBCA_BASE_DIR}/sql-scripts`                                                                                                                                                              |
-| `EJBCA_VOLUME_DIR`                       | EJBCA persistence directory.                     | `${BITNAMI_VOLUME_DIR}/ejbca`                                                                                                                                                                |
-| `EJBCA_WILDFLY_VOLUME_DIR`               | EJBCA Wildlfy persistence directory.             | `${BITNAMI_VOLUME_DIR}/wildfly`                                                                                                                                                              |
+| `EJBCA_VOLUME_DIR`                       | EJBCA persistence directory.                     | `${BITMOA_VOLUME_DIR}/ejbca`                                                                                                                                                                |
+| `EJBCA_WILDFLY_VOLUME_DIR`               | EJBCA Wildlfy persistence directory.             | `${BITMOA_VOLUME_DIR}/wildfly`                                                                                                                                                              |
 | `EJBCA_DATA_DIR`                         | EJBCA data directory.                            | `${EJBCA_VOLUME_DIR}/tls`                                                                                                                                                                    |
 | `EJBCA_DB_SCRIPT_INDEXES`                | EJBCA database tables creation script.           | `${EJBCA_DATABASE_SCRIPTS_DIR}/create-index-ejbca.sql`                                                                                                                                       |
 | `EJBCA_DB_SCRIPT_TABLES`                 | EJBCA database indexes creation script.          | `${EJBCA_DATABASE_SCRIPTS_DIR}/create-tables-ejbca-mysql.sql`                                                                                                                                |
 | `EJBCA_EAR_FILE`                         | EJBCA application deployment file.               | `${EJBCA_BASE_DIR}/dist/ejbca.ear`                                                                                                                                                           |
-| `EJBCA_WILDFLY_BASE_DIR`                 | Wildfly base directory.                          | `${BITNAMI_ROOT_DIR}/wildfly`                                                                                                                                                                |
+| `EJBCA_WILDFLY_BASE_DIR`                 | Wildfly base directory.                          | `${BITMOA_ROOT_DIR}/wildfly`                                                                                                                                                                |
 | `EJBCA_WILDFLY_STANDALONE_DIR`           | Wildfly standalone directory.                    | `${EJBCA_WILDFLY_BASE_DIR}/standalone`                                                                                                                                                       |
 | `EJBCA_WILDFLY_DEFAULT_STANDALONE_DIR`   | Wildfly default standalone directory.            | `${EJBCA_WILDFLY_BASE_DIR}/standalone.default`                                                                                                                                               |
 | `EJBCA_WILDFLY_DOMAIN_DIR`               | Wildfly domain directory.                        | `${EJBCA_WILDFLY_BASE_DIR}/domain`                                                                                                                                                           |
@@ -224,7 +224,7 @@ You can also do this with a minor change to the [`docker-compose.yml`](https://g
 | `EJBCA_WILDFLY_ADMIN_PASSWORD_FILE`      | File to store the wildfly admin password         | `${EJBCA_WILDFLY_TMP_DIR}/wildfly_admin.pwd`                                                                                                                                                 |
 | `EJBCA_TEMP_CERT`                        | Temporary cert file                              | `${EJBCA_TMP_DIR}/cacert.der`                                                                                                                                                                |
 | `EJBCA_HOME`                             | EJBCA home.                                      | `${EJBCA_BASE_DIR}`                                                                                                                                                                          |
-| `JAVA_HOME`                              | Java home.                                       | `/opt/bitnami/java`                                                                                                                                                                          |
+| `JAVA_HOME`                              | Java home.                                       | `/opt/bitmoa/java`                                                                                                                                                                          |
 | `JBOSS_HOME`                             | Jboss home                                       | `${EJBCA_WILDFLY_BASE_DIR}`                                                                                                                                                                  |
 | `LAUNCH_JBOSS_IN_BACKGROUND`             | Run jboss in background                          | `true`                                                                                                                                                                                       |
 | `JBOSS_PIDFILE`                          | Wildfly PID file                                 | `${EJBCA_WILDFLY_PID_FILE}`                                                                                                                                                                  |
@@ -232,7 +232,7 @@ You can also do this with a minor change to the [`docker-compose.yml`](https://g
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami EJBCA Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami EJBCA Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -261,7 +261,7 @@ Bitnami provides up-to-date versions of EJBCA, including security patches, soon 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/ejbca:latest
+docker pull bitmoa/ejbca:latest
 ```
 
 #### Step 2: Stop the running container
@@ -283,14 +283,14 @@ docker rm -v ejbca
 Re-create your container from the new image.
 
 ```console
-docker run --name ejbca bitnami/ejbca:latest
+docker run --name ejbca bitmoa/ejbca:latest
 ```
 
 ## Notable Changes
 
 ### 7.4.3-2-debian-10-r68
 
-The persistence has been refactorized and the volume mount point was moved from `/bitnami/ejbca` to `/bitnami/wildfly`.
+The persistence has been refactorized and the volume mount point was moved from `/bitmoa/ejbca` to `/bitmoa/wildfly`.
 
 In previous versions only password files were persisted, making the container was unable to restart. The initialization logic has been changed as well as the persisted data directories. The Wildlfy configuration and data directories are now persisted, making the container able to automatically restart.
 The time that the container takes to restart has also been improved.
@@ -298,11 +298,11 @@ Due to the mentioned changes, the automatic upgrade from previous image versions
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

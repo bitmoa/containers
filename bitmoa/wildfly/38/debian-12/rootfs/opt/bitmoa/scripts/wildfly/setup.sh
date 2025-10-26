@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libwildfly.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libwildfly.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Load WildFly environment
-. /opt/bitnami/scripts/wildfly-env.sh
+. /opt/bitmoa/scripts/wildfly-env.sh
 
 # Ensure WildFly environment variables are valid
 wildfly_validate

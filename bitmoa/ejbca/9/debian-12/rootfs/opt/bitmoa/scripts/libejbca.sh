@@ -7,13 +7,13 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfile.sh
 
 ########################
 # Validate settings in EJBCA_* env. variables
@@ -612,7 +612,7 @@ ejbca_initialize() {
     am_i_root && configure_permissions_ownership "$EJBCA_TMP_DIR" -u "$EJBCA_DAEMON_USER" -g "$EJBCA_DAEMON_GROUP"
     am_i_root && configure_permissions_ownership "$EJBCA_DATA_DIR" -u "$EJBCA_DAEMON_USER" -g "$EJBCA_DAEMON_GROUP"
 
-    # Note we need to use wildfly instead of ejbca as directory since the persist_app function relativizes them to /opt/bitnami/wildfly
+    # Note we need to use wildfly instead of ejbca as directory since the persist_app function relativizes them to /opt/bitmoa/wildfly
     if ! is_app_initialized "wildfly"; then
         info "Deploying EJBCA from scratch"
 

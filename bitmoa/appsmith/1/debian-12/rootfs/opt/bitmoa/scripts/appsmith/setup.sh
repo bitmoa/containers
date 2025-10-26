@@ -10,15 +10,15 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libwebserver.sh
-. /opt/bitnami/scripts/libappsmith.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libappsmith.sh
 
 # Load Appsmith environment settings
-. /opt/bitnami/scripts/appsmith-env.sh
+. /opt/bitmoa/scripts/appsmith-env.sh
 
 # Load web server environment (after WordPress environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # Ensure Appsmith environment settings are valid
 appsmith_validate
@@ -33,7 +33,7 @@ cp -nr "$NGINX_DEFAULT_CONF_DIR"/. "$NGINX_CONF_DIR" || true
 # Nginx configuration, based on upstream nginx configuration but removing hardcoded references to localhost
 # https://github.com/appsmithorg/appsmith/blob/release/deploy/docker/templates/nginx/nginx-app-http.conf.template.sh#L102
 ensure_web_server_app_configuration_exists "appsmith" \
-    --document-root /opt/bitnami/appsmith/editor      \
+    --document-root /opt/bitmoa/appsmith/editor      \
     --http-port "$APPSMITH_UI_HTTP_PORT"              \
     --https-port "$APPSMITH_UI_HTTPS_PORT"            \
     --nginx-external-configuration $'

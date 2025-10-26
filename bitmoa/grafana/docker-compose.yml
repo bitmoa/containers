@@ -3,13 +3,13 @@
 
 services:
   grafana:
-    image: docker.io/bitnami/grafana:12.2
+    image: ghcr.io/bitmoa/grafana:12.2
     ports:
       - '3000:3000'
     environment:
-      - 'GF_SECURITY_ADMIN_PASSWORD=bitnami'
+      - 'GF_SECURITY_ADMIN_PASSWORD=bitmoa'
     volumes:
-      - grafana_data:/opt/bitnami/grafana/data
+      - grafana_data:/opt/bitmoa/grafana/data
 volumes:
   grafana_data:
     driver: local

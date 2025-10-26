@@ -3,12 +3,12 @@
 
 services:
   elasticsearch:
-    image: docker.io/bitnami/elasticsearch:9.1
+    image: ghcr.io/bitmoa/elasticsearch:9.1
     ports:
       - '9200:9200'
       - '9300:9300'
     volumes:
-      - 'elasticsearch_data:/bitnami/elasticsearch/data'
+      - 'elasticsearch_data:/bitmoa/elasticsearch/data'
 volumes:
   elasticsearch_data:
     driver: local

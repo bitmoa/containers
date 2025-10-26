@@ -3,4 +3,4 @@
   
 services:
   charts-syncer:
-    image: docker.io/bitnami/charts-syncer:2
+    image: ghcr.io/bitmoa/charts-syncer:2

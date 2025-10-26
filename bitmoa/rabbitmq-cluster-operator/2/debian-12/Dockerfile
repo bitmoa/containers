@@ -1,7 +1,7 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm AS builder
+FROM ghcr.io/bitmoa/minideb:bookworm AS builder
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
@@ -15,7 +15,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "rabbitmq-cluster-operator-2.17.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -25,7 +25,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 
@@ -40,20 +40,20 @@ ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
       org.opencontainers.image.created="2025-10-15T09:23:33Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
       org.opencontainers.image.title="rabbitmq-cluster-operator" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="2.17.0"
 
 COPY rootfs /
-COPY --from=builder /opt/bitnami/rabbitmq-cluster-operator/.spdx-rabbitmq-cluster-operator.spdx /opt/bitnami/rabbitmq-cluster-operator/.spdx-rabbitmq-cluster-operator.spdx
-COPY --from=builder /opt/bitnami/rabbitmq-cluster-operator/bin/manager /opt/bitnami/rabbitmq-cluster-operator/bin/manager
-COPY --from=builder /opt/bitnami/rabbitmq-cluster-operator/licenses /opt/bitnami/rabbitmq-cluster-operator/licenses
+COPY --from=builder /opt/bitmoa/rabbitmq-cluster-operator/.spdx-rabbitmq-cluster-operator.spdx /opt/bitmoa/rabbitmq-cluster-operator/.spdx-rabbitmq-cluster-operator.spdx
+COPY --from=builder /opt/bitmoa/rabbitmq-cluster-operator/bin/manager /opt/bitmoa/rabbitmq-cluster-operator/bin/manager
+COPY --from=builder /opt/bitmoa/rabbitmq-cluster-operator/licenses /opt/bitmoa/rabbitmq-cluster-operator/licenses
 
 ENV APP_VERSION="2.17.0" \
-    BITNAMI_APP_NAME="rabbitmq-cluster-operator" \
+    BITMOA_APP_NAME="rabbitmq-cluster-operator" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/rabbitmq-cluster-operator/bin:$PATH"
+    PATH="/opt/bitmoa/rabbitmq-cluster-operator/bin:$PATH"
 
 USER 1001
 

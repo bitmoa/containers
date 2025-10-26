@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libldapclient.sh
-. /opt/bitnami/scripts/libmariadbgalera.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libldapclient.sh
+. /opt/bitmoa/scripts/libmariadbgalera.sh
 
 # Load MariaDB environment variables
-. /opt/bitnami/scripts/mariadb-env.sh
+. /opt/bitmoa/scripts/mariadb-env.sh
 
 # Load LDAP environment variables
 eval "$(ldap_env)"

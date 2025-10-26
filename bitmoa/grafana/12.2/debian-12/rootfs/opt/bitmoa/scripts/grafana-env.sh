@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-grafana}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -57,12 +57,12 @@ done
 unset grafana_env_vars
 
 # Grafana paths
-export GRAFANA_BASE_DIR="${BITNAMI_ROOT_DIR}/grafana"
+export GRAFANA_BASE_DIR="${BITMOA_ROOT_DIR}/grafana"
 export GRAFANA_BIN_DIR="${GRAFANA_BASE_DIR}/bin"
 export GRAFANA_TMP_DIR="${GRAFANA_TMP_DIR:-${GRAFANA_BASE_DIR}/tmp}"
 export GRAFANA_CONF_DIR="${GRAFANA_BASE_DIR}/conf"
 export GRAFANA_PID_FILE="${GRAFANA_PID_FILE:-${GRAFANA_TMP_DIR}/grafana.pid}"
-export PATH="${GRAFANA_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${GRAFANA_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 export GRAFANA_DEFAULT_CONF_DIR="${GRAFANA_DEFAULT_CONF_DIR:-${GRAFANA_BASE_DIR}/conf.default}"
 export GRAFANA_DEFAULT_PLUGINS_DIR="${GRAFANA_DEFAULT_PLUGINS_DIR:-${GRAFANA_BASE_DIR}/default-plugins}"
 
@@ -81,7 +81,7 @@ GF_INSTALL_PLUGINS="${GF_INSTALL_PLUGINS:-"${GRAFANA_PLUGINS:-}"}"
 export GF_INSTALL_PLUGINS="${GF_INSTALL_PLUGINS:-}"
 export GF_INSTALL_PLUGINS_SKIP_TLS="${GF_INSTALL_PLUGINS_SKIP_TLS:-yes}"
 export GF_FEATURE_TOGGLES="${GF_FEATURE_TOGGLES:-}"
-export GF_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/grafana"
+export GF_VOLUME_DIR="${BITMOA_VOLUME_DIR}/grafana"
 export GF_SECURITY_ADMIN_PASSWORD="${GF_SECURITY_ADMIN_PASSWORD:-}"
 export GRAFANA_MIGRATION_LOCK="${GRAFANA_MIGRATION_LOCK:-false}"
 export GRAFANA_SLEEP_TIME="${GRAFANA_SLEEP_TIME:-10}"

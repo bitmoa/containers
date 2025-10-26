@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libpostgresql.sh
-. /opt/bitnami/scripts/librepmgr.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libpostgresql.sh
+. /opt/bitmoa/scripts/librepmgr.sh
 
 # Load PostgreSQL & repmgr environment variables
-. /opt/bitnami/scripts/postgresql-env.sh
+. /opt/bitmoa/scripts/postgresql-env.sh
 
 readonly repmgr_flags=("-f" "$REPMGR_CONF_FILE" "--daemonize=false")
 # shellcheck disable=SC2155

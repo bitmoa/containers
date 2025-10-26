@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libksql.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libksql.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load KSQL environment variables
-. /opt/bitnami/scripts/ksql-env.sh
+. /opt/bitmoa/scripts/ksql-env.sh
 
 # Auxiliar functions
 

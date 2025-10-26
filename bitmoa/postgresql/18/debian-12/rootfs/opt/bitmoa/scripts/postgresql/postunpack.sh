@@ -5,12 +5,12 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libpostgresql.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libpostgresql.sh
 
 # Load PostgreSQL environment variables
-. /opt/bitnami/scripts/postgresql-env.sh
+. /opt/bitmoa/scripts/postgresql-env.sh
 
 for dir in "$POSTGRESQL_INITSCRIPTS_DIR" "$POSTGRESQL_TMP_DIR" "$POSTGRESQL_LOG_DIR" "$POSTGRESQL_CONF_DIR" "${POSTGRESQL_CONF_DIR}/conf.d" "$POSTGRESQL_MOUNTED_CONF_DIR" "$POSTGRESQL_DEFAULT_CONF_DIR" "${POSTGRESQL_MOUNTED_CONF_DIR}/conf.d" "$POSTGRESQL_VOLUME_DIR"; do
     ensure_dir_exists "$dir"

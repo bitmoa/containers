@@ -10,21 +10,21 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load SuiteCRM environment
-. /opt/bitnami/scripts/suitecrm-env.sh
+. /opt/bitmoa/scripts/suitecrm-env.sh
 
 # Load PHP environment for 'php_conf_set' (after 'suitecrm-env.sh' so that MODULE is not set to a wrong value)
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libsuitecrm.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libsuitecrm.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load web server environment and functions (after SuiteCRM environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # Ensure the SuiteCRM base directory exists and has proper permissions
 info "Configuring file permissions for SuiteCRM"
@@ -49,7 +49,7 @@ web_server_validate
 # Not moving .htaccess because SuiteCRM generates some of them during installation
 # Backward compatibility with SuiteCRM 7
 if [[ -d "${SUITECRM_BASE_DIR}/public" ]]; then
-    ensure_web_server_app_configuration_exists "suitecrm" --type php --apache-move-htaccess "no" --document-root "${BITNAMI_ROOT_DIR}/suitecrm/public"
+    ensure_web_server_app_configuration_exists "suitecrm" --type php --apache-move-htaccess "no" --document-root "${BITMOA_ROOT_DIR}/suitecrm/public"
 else
     ensure_web_server_app_configuration_exists "suitecrm" --type php --apache-move-htaccess "no"
 fi

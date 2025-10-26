@@ -11,12 +11,12 @@ set -o nounset
 set -o pipefail
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libscylladb.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libscylladb.sh
 
 # Load ScyllaDB environment variables
-. /opt/bitnami/scripts/scylladb-env.sh
+. /opt/bitmoa/scripts/scylladb-env.sh
 
 # Ensure ScyllaDB is stopped when this script ends.
 trap "cassandra_stop" EXIT

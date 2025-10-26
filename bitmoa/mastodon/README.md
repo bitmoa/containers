@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run -it --name mastodon bitnami/mastodon
+docker run -it --name mastodon bitmoa/mastodon
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,36 +33,36 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Mastodon Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/mastodon).
+The recommended way to get the Bitnami Mastodon Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/mastodon).
 
 ```console
-docker pull bitnami/mastodon:latest
+docker pull bitmoa/mastodon:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/mastodon/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/mastodon/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/mastodon:[TAG]
+docker pull bitmoa/mastodon:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Maintenance
@@ -74,10 +74,10 @@ Bitnami provides up-to-date versions of Mastodon, including security patches, so
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/mastodon:latest
+docker pull bitmoa/mastodon:latest
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/mastodon:latest`.
+or if you're using Docker Compose, update the value of the image property to `bitmoa/mastodon:latest`.
 
 #### Step 2: Remove the currently running container
 
@@ -96,7 +96,7 @@ docker-compose rm -v mastodon
 Re-create your container from the new image.
 
 ```console
-docker run --name mastodon bitnami/mastodon:latest
+docker run --name mastodon bitmoa/mastodon:latest
 ```
 
 or using Docker Compose:
@@ -117,11 +117,11 @@ docker-compose up mastodon
 | `ALLOW_EMPTY_PASSWORD`               | Allow an empty password.                                              | `no`                                                                           |
 | `MASTODON_CREATE_ADMIN`              | Create admin for Mastodon.                                            | `true`                                                                         |
 | `MASTODON_ADMIN_USERNAME`            | Mastodon admin username.                                              | `user`                                                                         |
-| `MASTODON_ADMIN_PASSWORD`            | Mastodon admin password.                                              | `bitnami1`                                                                     |
-| `MASTODON_ADMIN_EMAIL`               | Mastodon admin email.                                                 | `user@bitnami.org`                                                             |
+| `MASTODON_ADMIN_PASSWORD`            | Mastodon admin password.                                              | `bitmoa1`                                                                     |
+| `MASTODON_ADMIN_EMAIL`               | Mastodon admin email.                                                 | `user@bitmoa.org`                                                             |
 | `MASTODON_ALLOW_ALL_DOMAINS`         | Allow accessing Mastodon with any domain.                             | `true`                                                                         |
-| `MASTODON_SECRET_KEY_BASE`           | Mastodon secret key base.                                             | `bitnami123`                                                                   |
-| `MASTODON_OTP_SECRET`                | Mastodon OTP secret.                                                  | `bitnami123`                                                                   |
+| `MASTODON_SECRET_KEY_BASE`           | Mastodon secret key base.                                             | `bitmoa123`                                                                   |
+| `MASTODON_OTP_SECRET`                | Mastodon OTP secret.                                                  | `bitmoa123`                                                                   |
 | `MASTODON_HTTPS_ENABLED`             | Enable HTTPS in Mastodon.                                             | `false`                                                                        |
 | `MASTODON_ASSETS_PRECOMPILE`         | Run rake assets:precompile on startup.                                | `true`                                                                         |
 | `MASTODON_WEB_DOMAIN`                | Mastodon web domain (for generating links).                           | `127.0.0.1`                                                                    |
@@ -132,7 +132,7 @@ docker-compose up mastodon
 | `MASTODON_LIMITED_FEDERATION_MODE`   | Use an allow-list for federating with other servers.                  | `false`                                                                        |
 | `MASTODON_STREAMING_API_BASE_URL`    | Mastodon public api base url.                                         | `ws://localhost:${MASTODON_STREAMING_PORT_NUMBER}`                             |
 | `MASTODON_SMTP_LOGIN`                | SMTP server authentication username.                                  | `5432`                                                                         |
-| `MASTODON_SMTP_PASSWORD`             | SMTP server authentication password.                                  | `bitnami_mastodon`                                                             |
+| `MASTODON_SMTP_PASSWORD`             | SMTP server authentication password.                                  | `bitmoa_mastodon`                                                             |
 | `RAILS_SERVE_STATIC_FILES`           | Have puma server the static files in the public/ folder               | `true`                                                                         |
 | `MASTODON_BIND_ADDRESS`              | Address to listen for interfaces                                      | `0.0.0.0`                                                                      |
 | `MASTODON_DATA_TO_PERSIST`           | Data to persist from installations.                                   | `$MASTODON_ASSETS_DIR $MASTODON_SYSTEM_DIR`                                    |
@@ -140,7 +140,7 @@ docker-compose up mastodon
 | `MASTODON_MIGRATE_DATABASE`          | Run rake db:migrate job.                                              | `true`                                                                         |
 | `MASTODON_DATABASE_HOST`             | Database server host.                                                 | `postgresql`                                                                   |
 | `MASTODON_DATABASE_PORT_NUMBER`      | Database server port.                                                 | `5432`                                                                         |
-| `MASTODON_DATABASE_NAME`             | Database name.                                                        | `bitnami_mastodon`                                                             |
+| `MASTODON_DATABASE_NAME`             | Database name.                                                        | `bitmoa_mastodon`                                                             |
 | `MASTODON_DATABASE_USERNAME`         | Database user name.                                                   | `bn_mastodon`                                                                  |
 | `MASTODON_DATABASE_PASSWORD`         | Database user password.                                               | `nil`                                                                          |
 | `MASTODON_DATABASE_POOL`             | Number of DB pool processes.                                          | `5`                                                                            |
@@ -154,7 +154,7 @@ docker-compose up mastodon
 | `MASTODON_ELASTICSEARCH_USER`        | Elasticsearch user.                                                   | `elastic`                                                                      |
 | `MASTODON_ELASTICSEARCH_PASSWORD`    | Elasticsearch user password.                                          | `nil`                                                                          |
 | `MASTODON_S3_ENABLED`                | Enable S3                                                             | `false`                                                                        |
-| `MASTODON_S3_BUCKET`                 | S3 Bucket for storing data                                            | `bitnami_mastodon`                                                             |
+| `MASTODON_S3_BUCKET`                 | S3 Bucket for storing data                                            | `bitmoa_mastodon`                                                             |
 | `MASTODON_S3_HOSTNAME`               | S3 endpoint                                                           | `minio`                                                                        |
 | `MASTODON_S3_PROTOCOL`               | S3 protocol (can be https or http)                                    | `http`                                                                         |
 | `MASTODON_S3_PORT_NUMBER`            | S3 port                                                               | `9000`                                                                         |
@@ -169,8 +169,8 @@ docker-compose up mastodon
 
 | Name                    | Description                       | Value                                |
 |-------------------------|-----------------------------------|--------------------------------------|
-| `MASTODON_BASE_DIR`     | Mastodon installation directory.  | `${BITNAMI_ROOT_DIR}/mastodon`       |
-| `MASTODON_VOLUME_DIR`   | Mastodon volume directory.        | `/bitnami/mastodon`                  |
+| `MASTODON_BASE_DIR`     | Mastodon installation directory.  | `${BITMOA_ROOT_DIR}/mastodon`       |
+| `MASTODON_VOLUME_DIR`   | Mastodon volume directory.        | `/bitmoa/mastodon`                  |
 | `MASTODON_ASSETS_DIR`   | Mastodon public assets directory. | `${MASTODON_BASE_DIR}/public/assets` |
 | `MASTODON_SYSTEM_DIR`   | Mastodon public system directory. | `${MASTODON_BASE_DIR}/public/system` |
 | `MASTODON_TMP_DIR`      | Mastodon tmp directory.           | `${MASTODON_BASE_DIR}/tmp`           |
@@ -182,7 +182,7 @@ docker-compose up mastodon
 
 When you start the Mastodon image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. Please note that some variables are only considered when the container is started for the first time. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mastodon/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mastodon/docker-compose.yml) file present in this repository:
 
     ```yaml
     mastodon-api:
@@ -199,8 +199,8 @@ When you start the Mastodon image, you can adjust the configuration of the insta
       --env MASTODON_ADMIN_PASSWORD=my_password \
       --env MASTODON_MODE=backend \
       --network mastodon-tier \
-      --volume /path/to/mastodon-persistence:/bitnami \
-      bitnami/mastodon:latest
+      --volume /path/to/mastodon-persistence:/bitmoa \
+      bitmoa/mastodon:latest
     ```
 
 This container is fully compatible with the upstream Mastodon environment variables. Check the official [Mastodon documentation page](https://docs.joinmastodon.org/admin/config/) for more information.
@@ -221,7 +221,7 @@ The running mode is defined via the `MASTODON_MODE` environment variable. The po
 
 The Bitnami Mastodon container supports connecting the Mastodon application to an external database. This would be an example of using an external database for Mastodon.
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mastodon/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mastodon/docker-compose.yml) file present in this repository:
 
     ```diff
        mastodon:
@@ -247,13 +247,13 @@ The Bitnami Mastodon container supports connecting the Mastodon application to a
       --env DB_NAME=mastodon_db \
       --env DB_USER=mastodon_user \
       --env DB_PASS=mastodon_password \
-      --volume mastodon_data:/bitnami/mastodon \
-      bitnami/mastodon:latest
+      --volume mastodon_data:/bitmoa/mastodon \
+      bitmoa/mastodon:latest
     ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Mastodon Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Mastodon Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -275,17 +275,17 @@ You can configure the containers [logging driver](https://docs.docker.com/engine
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/mastodon).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/mastodon).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

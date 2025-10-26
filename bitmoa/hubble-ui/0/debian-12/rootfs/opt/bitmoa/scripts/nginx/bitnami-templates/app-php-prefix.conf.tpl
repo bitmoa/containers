@@ -3,9 +3,9 @@ location ^~ {{location}} {
 
     {{acl_configuration}}
 
-    include "/opt/bitnami/nginx/conf/bitnami/00_protect-hidden-files.conf";
-    include "/opt/bitnami/nginx/conf/bitnami/00_protect-uploads-dirs.conf";
-    include "/opt/bitnami/nginx/conf/bitnami/php-fpm.conf";
+    include "/opt/bitmoa/nginx/conf/bitmoa/00_protect-hidden-files.conf";
+    include "/opt/bitmoa/nginx/conf/bitmoa/00_protect-uploads-dirs.conf";
+    include "/opt/bitmoa/nginx/conf/bitmoa/php-fpm.conf";
 }
 
 {{additional_configuration}}

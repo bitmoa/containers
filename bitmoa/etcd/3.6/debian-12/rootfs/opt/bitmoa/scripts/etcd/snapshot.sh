@@ -9,12 +9,12 @@ set -o pipefail
 set -o nounset
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libetcd.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libetcd.sh
 
 # Load etcd environment settings
-. /opt/bitnami/scripts/etcd-env.sh
+. /opt/bitmoa/scripts/etcd-env.sh
 
 ensure_dir_exists "$ETCD_SNAPSHOTS_DIR"
 endpoints="$(etcdctl_get_endpoints)"

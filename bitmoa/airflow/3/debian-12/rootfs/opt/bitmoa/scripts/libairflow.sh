@@ -7,14 +7,14 @@
 # shellcheck disable=SC1091,SC2153
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libversion.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libversion.sh
 
 # Functions
 
@@ -340,7 +340,7 @@ airflow_generate_config() {
     fi
 
     # Configure log level if debug mode
-    is_boolean_yes "$BITNAMI_DEBUG" && airflow_conf_set "logging" "logging_level" "DEBUG"
+    is_boolean_yes "$BITMOA_DEBUG" && airflow_conf_set "logging" "logging_level" "DEBUG"
 
     # Configure authentication backend
     airflow_conf_set "core" "auth_manager" "airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager"

@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name redmine bitnami/redmine:latest
+docker run --name redmine bitmoa/redmine:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,45 +35,45 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Redmine in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Redmine Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/redmine).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Redmine Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/redmine).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Redmine Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/redmine).
+The recommended way to get the Bitnami Redmine Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/redmine).
 
 ```console
-docker pull bitnami/redmine:latest
+docker pull bitmoa/redmine:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/redmine/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/redmine/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/redmine:[TAG]
+docker pull bitmoa/redmine:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-Redmine requires access to a MySQL, MariaDB or PostgreSQL database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitnami/containers/tree/main/bitnami/mariadb) for the database requirements.
+Redmine requires access to a MySQL, MariaDB or PostgreSQL database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -90,11 +90,11 @@ $ docker volume create --name mariadb_data
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_redmine \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_redmine \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_redmine \
   --network redmine-network \
-  --volume mariadb_data:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume mariadb_data:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3: Create volumes for Redmine persistence and launch the container
@@ -105,11 +105,11 @@ docker run -d --name redmine \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env REDMINE_DATABASE_USER=bn_redmine \
-  --env REDMINE_DATABASE_PASSWORD=bitnami \
-  --env REDMINE_DATABASE_NAME=bitnami_redmine \
+  --env REDMINE_DATABASE_PASSWORD=bitmoa \
+  --env REDMINE_DATABASE_NAME=bitmoa_redmine \
   --network redmine-network \
-  --volume redmine_data:/bitnami/redmine \
-  bitnami/redmine:latest
+  --volume redmine_data:/bitmoa/redmine \
+  bitmoa/redmine:latest
 ```
 
 Access your application at `http://your-ip/`
@@ -117,19 +117,19 @@ Access your application at `http://your-ip/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/redmine/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/redmine/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/redmine).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/redmine).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/redmine` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#persisting-your-database).
+For persistence you should mount a directory at the `/bitmoa/redmine` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
 The above examples define the Docker volumes named `mariadb_data` and `redmine_data`. The Redmine application state will persist as long as volumes are not removed.
 
@@ -137,20 +137,20 @@ To avoid inadvertent removal of volumes, you can [mount host directories as data
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redmine/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redmine/docker-compose.yml) file present in this repository:
 
 ```diff
    mariadb:
      ...
      volumes:
--      - ariadb_data:/bitnami/mariadb
-+      - /path/to/mariadb-persistence:/bitnami/mariadb
+-      - ariadb_data:/bitmoa/mariadb
++      - /path/to/mariadb-persistence:/bitmoa/mariadb
    ...
    redmine:
      ...
      volumes:
--      - redmine_data:/bitnami/redmine
-+      - /path/to/redmine-persistence:/bitnami/redmine
+-      - redmine_data:/bitmoa/redmine
++      - /path/to/redmine-persistence:/bitmoa/redmine
    ...
 -volumes:
 -  mariadb_data:
@@ -175,11 +175,11 @@ docker network create redmine-network
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_redmine \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_redmine \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_redmine \
   --network redmine-network \
-  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3. Create the Redmine container with host volumes
@@ -189,11 +189,11 @@ docker run -d --name redmine \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env REDMINE_DATABASE_USER=bn_redmine \
-  --env REDMINE_DATABASE_PASSWORD=bitnami \
-  --env REDMINE_DATABASE_NAME=bitnami_redmine \
+  --env REDMINE_DATABASE_PASSWORD=bitmoa \
+  --env REDMINE_DATABASE_NAME=bitmoa_redmine \
   --network redmine-network \
-  --volume /path/to/redmine-persistence:/bitnami/redmine \
-  bitnami/redmine:latest
+  --volume /path/to/redmine-persistence:/bitmoa/redmine \
+  bitmoa/redmine:latest
 ```
 
 ## Configuration
@@ -213,7 +213,7 @@ docker run -d --name redmine \
 | `REDMINE_SKIP_BOOTSTRAP`           | Whether to perform initial bootstrapping for the application.                                                                   | `nil`                                                                                                       |
 | `REDMINE_QUEUE_ADAPTER`            | Active job queue adapter. You may need to install additional dependencies if you select a value other than "async" or "inline". | `inline`                                                                                                    |
 | `REDMINE_USERNAME`                 | Redmine user name.                                                                                                              | `user`                                                                                                      |
-| `REDMINE_PASSWORD`                 | Redmine user password.                                                                                                          | `bitnami1`                                                                                                  |
+| `REDMINE_PASSWORD`                 | Redmine user password.                                                                                                          | `bitmoa1`                                                                                                  |
 | `REDMINE_EMAIL`                    | Redmine user e-mail address.                                                                                                    | `user@example.com`                                                                                          |
 | `REDMINE_FIRST_NAME`               | Redmine user first name.                                                                                                        | `UserName`                                                                                                  |
 | `REDMINE_LAST_NAME`                | Redmine user last name.                                                                                                         | `LastName`                                                                                                  |
@@ -229,7 +229,7 @@ docker run -d --name redmine \
 | `REDMINE_DATABASE_TYPE`            | Database type to be used for the Redmine installation. Allowed values: *mariadb*, *postgresql*.                                 | `mariadb`                                                                                                   |
 | `REDMINE_DATABASE_HOST`            | Database server host.                                                                                                           | `$REDMINE_DEFAULT_DATABASE_HOST`                                                                            |
 | `REDMINE_DATABASE_PORT_NUMBER`     | Database server port.                                                                                                           | `3306`                                                                                                      |
-| `REDMINE_DATABASE_NAME`            | Database name.                                                                                                                  | `bitnami_redmine`                                                                                           |
+| `REDMINE_DATABASE_NAME`            | Database name.                                                                                                                  | `bitmoa_redmine`                                                                                           |
 | `REDMINE_DATABASE_USER`            | Database user name.                                                                                                             | `bn_redmine`                                                                                                |
 | `REDMINE_DATABASE_PASSWORD`        | Database user password.                                                                                                         | `nil`                                                                                                       |
 
@@ -237,16 +237,16 @@ docker run -d --name redmine \
 
 | Name                            | Description                                        | Value                           |
 |---------------------------------|----------------------------------------------------|---------------------------------|
-| `REDMINE_BASE_DIR`              | Redmine installation directory.                    | `${BITNAMI_ROOT_DIR}/redmine`   |
+| `REDMINE_BASE_DIR`              | Redmine installation directory.                    | `${BITMOA_ROOT_DIR}/redmine`   |
 | `REDMINE_CONF_DIR`              | Redmine directory for configuration files.         | `${REDMINE_BASE_DIR}/config`    |
-| `REDMINE_VOLUME_DIR`            | Redmine directory for mounted configuration files. | `${BITNAMI_VOLUME_DIR}/redmine` |
+| `REDMINE_VOLUME_DIR`            | Redmine directory for mounted configuration files. | `${BITMOA_VOLUME_DIR}/redmine` |
 | `REDMINE_DAEMON_USER`           | Redmine system user.                               | `redmine`                       |
 | `REDMINE_DAEMON_GROUP`          | Redmine system group.                              | `redmine`                       |
 | `REDMINE_DEFAULT_DATABASE_HOST` | Default database server host.                      | `mariadb`                       |
 
 When you start the Redmine image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redmine/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redmine/docker-compose.yml) file present in this repository:
 
     ```yaml
     redmine:
@@ -262,8 +262,8 @@ When you start the Redmine image, you can adjust the configuration of the instan
     $ docker run -d --name redmine -p 80:8080 -p 443:8443 \
       --env REDMINE_PASSWORD=my_password \
       --network redmine-tier \
-      --volume /path/to/redmine-persistence:/bitnami \
-      bitnami/redmine:latest
+      --volume /path/to/redmine-persistence:/bitmoa \
+      bitmoa/redmine:latest
     ```
 
 ### Examples
@@ -272,14 +272,14 @@ When you start the Redmine image, you can adjust the configuration of the instan
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redmine/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redmine/docker-compose.yml) file present in this repository:
 
     ```yaml
       redmine:
         ...
         environment:
           - REDMINE_DATABASE_USER=bn_redmine
-          - REDMINE_DATABASE_NAME=bitnami_redmine
+          - REDMINE_DATABASE_NAME=bitmoa_redmine
           - ALLOW_EMPTY_PASSWORD=yes
           - REDMINE_SMTP_HOST=smtp.gmail.com
           - REDMINE_SMTP_PORT=587
@@ -293,21 +293,21 @@ This would be an example of SMTP configuration using a Gmail account:
     ```console
     $ docker run -d --name redmine -p 80:8080 -p 443:8443 \
       --env REDMINE_DATABASE_USER=bn_redmine \
-      --env REDMINE_DATABASE_NAME=bitnami_redmine \
+      --env REDMINE_DATABASE_NAME=bitmoa_redmine \
       --env REDMINE_SMTP_HOST=smtp.gmail.com \
       --env REDMINE_SMTP_PORT=587 \
       --env REDMINE_SMTP_USER=your_email@gmail.com \
       --env REDMINE_SMTP_PASSWORD=your_password \
       --network redmine-tier \
-      --volume /path/to/redmine-persistence:/bitnami \
-      bitnami/redmine:latest
+      --volume /path/to/redmine-persistence:/bitmoa \
+      bitmoa/redmine:latest
     ```
 
 #### Connect Redmine container to an existing database
 
 The Bitnami Redmine container supports connecting the Redmine application to an external database. This would be an example of using an external database for Redmine.
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/redmine/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/redmine/docker-compose.yml) file present in this repository:
 
     ```diff
        redmine:
@@ -334,15 +334,15 @@ The Bitnami Redmine container supports connecting the Redmine application to an 
       --env REDMINE_DATABASE_NAME=redmine_db \
       --env REDMINE_DATABASE_USER=redmine_user \
       --env REDMINE_DATABASE_PASSWORD=redmine_password \
-      --volume redmine_data:/bitnami/redmine \
-      bitnami/redmine:latest
+      --volume redmine_data:/bitmoa/redmine \
+      bitmoa/redmine:latest
     ```
 
 In case the database already contains data from a previous Redmine installation, you need to set the variable `REDMINE_SKIP_BOOTSTRAP` to `yes`. Otherwise, the container would execute the installation wizard and could modify the existing data in the database. Note that, when setting `REDMINE_SKIP_BOOTSTRAP` to `yes`, values for environment variables such as `REDMINE_USERNAME`, `REDMINE_PASSWORD` or `REDMINE_EMAIL` will be ignored.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Redmine Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Redmine Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -376,7 +376,7 @@ Before extending this image, please note there are certain configuration setting
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/redmine
+FROM bitmoa/redmine
 ### Put your customizations below
 ...
 ```
@@ -384,10 +384,10 @@ FROM bitnami/redmine
 Here is an example of extending to install custom plugins:
 
 ```Dockerfile
-FROM bitnami/redmine
+FROM bitmoa/redmine
 
 ### Install custom plugins
-RUN cd /opt/bitnami/redmine && \
+RUN cd /opt/bitmoa/redmine && \
     git clone https://github.com/user_name/name_of_the_plugin.git plugins/name_of_the_plugin && \
     bundle config set frozen false && bundle install && bundle config set frozen true
 ```
@@ -416,7 +416,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/redmine-backups:/backups --volumes-from redmine busybox \
-  cp -a /bitnami/redmine /backups/latest
+  cp -a /bitmoa/redmine /backups/latest
 ```
 
 ### Restoring a backup
@@ -428,9 +428,9 @@ For the MariaDB database container:
 ```diff
  $ docker run -d --name mariadb \
    ...
--  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-+  --volume /path/to/mariadb-backups/latest:/bitnami/mariadb \
-   bitnami/mariadb:latest
+-  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
++  --volume /path/to/mariadb-backups/latest:/bitmoa/mariadb \
+   bitmoa/mariadb:latest
 ```
 
 For the Redmine container:
@@ -438,21 +438,21 @@ For the Redmine container:
 ```diff
  $ docker run -d --name redmine \
    ...
--  --volume /path/to/redmine-persistence:/bitnami/redmine \
-+  --volume /path/to/redmine-backups/latest:/bitnami/redmine \
-   bitnami/redmine:latest
+-  --volume /path/to/redmine-persistence:/bitmoa/redmine \
++  --volume /path/to/redmine-backups/latest:/bitmoa/redmine \
+   bitmoa/redmine:latest
 ```
 
 ### Upgrade this image
 
-Bitnami provides up-to-date versions of MariaDB and Redmine, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Redmine container. For the MariaDB upgrade see: <https://github.com/bitnami/containers/tree/main/bitnami/mariadb#upgrade-this-image>
+Bitnami provides up-to-date versions of MariaDB and Redmine, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Redmine container. For the MariaDB upgrade see: <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
 
-The `bitnami/redmine:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitnami/redmine:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitnami/redmine/tags/).
+The `bitmoa/redmine:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitmoa/redmine:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitmoa/redmine/tags/).
 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/redmine:latest
+docker pull bitmoa/redmine:latest
 ```
 
 #### Step 2: Stop the running container
@@ -497,11 +497,11 @@ docker-compose up -d
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

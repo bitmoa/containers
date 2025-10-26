@@ -12,19 +12,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ### Docker Compose
 
 ```console
-docker run --name kibana bitnami/kibana:latest
+docker run --name kibana bitmoa/kibana:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -45,30 +45,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Kibana Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/kibana).
+The recommended way to get the Bitnami Kibana Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/kibana).
 
 ```console
-docker pull bitnami/kibana:latest
+docker pull bitmoa/kibana:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/kibana/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/kibana/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/kibana:[TAG]
+docker pull bitmoa/kibana:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
@@ -86,7 +86,7 @@ If you want to run the application manually instead of using the chart, these ar
 2. Run the Elasticsearch container:
 
     ```console
-    docker run -d -p 9200:9200 --name elasticsearch --net=kibana_network bitnami/elasticsearch
+    docker run -d -p 9200:9200 --name elasticsearch --net=kibana_network bitmoa/elasticsearch
     ```
 
 3. Run the Kibana container:
@@ -94,7 +94,7 @@ If you want to run the application manually instead of using the chart, these ar
     ```console
     docker run -d -p 5601:5601 --name kibana --net=kibana_network \
       -e KIBANA_ELASTICSEARCH_URL=elasticsearch \
-      bitnami/kibana
+      bitmoa/kibana
     ```
 
   Then you can access your application at `http://your-ip:5601/`
@@ -103,14 +103,14 @@ If you want to run the application manually instead of using the chart, these ar
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the application will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami` path. Additionally you should mount a volume for [persistence of the Elasticsearch data](https://github.com/bitnami/containers/blob/main/bitnami/elasticsearch#persisting-your-application).
+For persistence you should mount a volume at the `/bitmoa` path. Additionally you should mount a volume for [persistence of the Elasticsearch data](https://github.com/bitmoa/containers/blob/main/bitmoa/elasticsearch#persisting-your-application).
 
 The above examples define docker volumes namely `elasticsearch_data` and `kibana_data`. The Kibana application state will persist as long as these volumes are not removed.
 
 To avoid inadvertent removal of these volumes you can [mount host directories as data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/). Alternatively you can make use of volume plugins to host the volume data.
 
 ```console
-docker run -v /path/to/kibana-persistence:/bitnami/kibana bitnami/kibana:latest
+docker run -v /path/to/kibana-persistence:/bitmoa/kibana bitmoa/kibana:latest
 ```
 
 > NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
@@ -136,7 +136,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name kibana-server \
     --network app-tier \
-    bitnami/kibana:latest
+    bitmoa/kibana:latest
 ```
 
 #### Step 3: Launch your application container
@@ -197,9 +197,9 @@ docker run -d --name myapp \
 | Name                         | Description                                                                                   | Value                                |
 |------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------|
 | `SERVER_FLAVOR`              | Server flavor. Valid values: `kibana` or `opensearch-dashboards`.                             | `kibana`                             |
-| `BITNAMI_VOLUME_DIR`         | Directory where to mount volumes                                                              | `/bitnami`                           |
-| `KIBANA_VOLUME_DIR`          | Kibana persistence directory                                                                  | `${BITNAMI_VOLUME_DIR}/kibana`       |
-| `KIBANA_BASE_DIR`            | Kibana installation directory                                                                 | `${BITNAMI_ROOT_DIR}/kibana`         |
+| `BITMOA_VOLUME_DIR`         | Directory where to mount volumes                                                              | `/bitmoa`                           |
+| `KIBANA_VOLUME_DIR`          | Kibana persistence directory                                                                  | `${BITMOA_VOLUME_DIR}/kibana`       |
+| `KIBANA_BASE_DIR`            | Kibana installation directory                                                                 | `${BITMOA_ROOT_DIR}/kibana`         |
 | `KIBANA_CONF_DIR`            | Kibana configuration directory                                                                | `${SERVER_BASE_DIR}/config`          |
 | `KIBANA_DEFAULT_CONF_DIR`    | Kibana default configuration directory                                                        | `${SERVER_BASE_DIR}/config.default`  |
 | `KIBANA_LOGS_DIR`            | Kibana logs directory                                                                         | `${SERVER_BASE_DIR}/logs`            |
@@ -221,7 +221,7 @@ When you start the kibana image, you can adjust the configuration of the instanc
 #### Specifying Environment Variables on the Docker command line
 
 ```console
-docker run -d -e KIBANA_ELASTICSEARCH_URL=elasticsearch --name kibana bitnami/kibana:latest
+docker run -d -e KIBANA_ELASTICSEARCH_URL=elasticsearch --name kibana bitmoa/kibana:latest
 ```
 
 ### Initializing a new instance
@@ -232,14 +232,14 @@ In order to have your custom files inside the docker image you can mount them as
 
 ### Configuration file
 
-The image looks for configurations in `/bitnami/kibana/conf/`. As mentioned in [Persisting your application](#persisting-your-application) you can mount a volume at `/bitnami` and copy/edit the configurations in the `/path/to/kibana-persistence/kibana/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
+The image looks for configurations in `/bitmoa/kibana/conf/`. As mentioned in [Persisting your application](#persisting-your-application) you can mount a volume at `/bitmoa` and copy/edit the configurations in the `/path/to/kibana-persistence/kibana/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
 
 #### Step 1: Run the Kibana image
 
 Run the Kibana image, mounting a directory from your host.
 
 ```console
-docker run --name kibana -v /path/to/kibana-persistence:/bitnami bitnami/kibana:latest
+docker run --name kibana -v /path/to/kibana-persistence:/bitmoa bitmoa/kibana:latest
 ```
 
 #### Step 2: Edit the configuration
@@ -262,7 +262,7 @@ Refer to the [configuration](https://www.elastic.co/guide/en/kibana/current/sett
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Kibana Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Kibana Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -285,7 +285,7 @@ Bitnami provides up-to-date versions of Kibana, including security patches, soon
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/kibana:latest
+docker pull bitmoa/kibana:latest
 ```
 
 #### Step 2: Stop and backup the currently running container
@@ -302,7 +302,7 @@ Next, take a snapshot of the persistent volume `/path/to/kibana-persistence` usi
 rsync -a /path/to/kibana-persistence /path/to/kibana-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
 ```
 
-Additionally, [snapshot the Elasticsearch data](https://github.com/bitnami/containers/blob/main/bitnami/elasticsearch#step-2-stop-and-backup-the-currently-running-container)
+Additionally, [snapshot the Elasticsearch data](https://github.com/bitmoa/containers/blob/main/bitmoa/elasticsearch#step-2-stop-and-backup-the-currently-running-container)
 
 You can use these snapshots to restore the application state should the upgrade fail.
 
@@ -317,7 +317,7 @@ docker rm -v kibana
 Re-create your container from the new image, restoring your backup if necessary.
 
 ```console
-docker run --name kibana bitnami/kibana:latest
+docker run --name kibana bitmoa/kibana:latest
 ```
 
 ## Notable Changes
@@ -344,11 +344,11 @@ docker run --name kibana bitnami/kibana:latest
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

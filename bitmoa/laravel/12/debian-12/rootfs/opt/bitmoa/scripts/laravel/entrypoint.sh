@@ -10,19 +10,19 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Laravel environment
-. /opt/bitnami/scripts/laravel-env.sh
+. /opt/bitmoa/scripts/laravel-env.sh
 
 print_welcome_page
 
-if [[ "$*" = *"/opt/bitnami/scripts/laravel/run.sh"* ]]; then
+if [[ "$*" = *"/opt/bitmoa/scripts/laravel/run.sh"* ]]; then
     info "** Running Laravel setup **"
-    /opt/bitnami/scripts/php/setup.sh
-    /opt/bitnami/scripts/laravel/setup.sh
+    /opt/bitmoa/scripts/php/setup.sh
+    /opt/bitmoa/scripts/laravel/setup.sh
     /post-init.sh
     info "** Laravel setup finished! **"
 fi

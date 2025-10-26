@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-14T19:43:03Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/dotnet/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/dotnet" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/dotnet/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/dotnet" \
       org.opencontainers.image.title="dotnet" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="9.0.10"
 
 ENV HOME="/app" \
@@ -26,7 +26,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl libcap2-bin libgcc-s1 libicu-dev liblttng-ust-dev libstdc++6 procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "dotnet-9.0.10-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -36,7 +36,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
@@ -47,14 +47,14 @@ RUN sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs && \
     sed -i 's/sha512/sha512 minlen=8/' /etc/pam.d/common-password
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/dotnet/postunpack.sh
+RUN /opt/bitmoa/scripts/dotnet/postunpack.sh
 ENV APP_VERSION="9.0.10" \
-    BITNAMI_APP_NAME="dotnet" \
+    BITMOA_APP_NAME="dotnet" \
     DOTNET_CLI_HOME="/app" \
-    DOTNET_ROOT="/opt/bitnami/dotnet/bin" \
+    DOTNET_ROOT="/opt/bitmoa/dotnet/bin" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/dotnet/bin:$PATH"
+    PATH="/opt/bitmoa/dotnet/bin:$PATH"
 
 WORKDIR /app
-ENTRYPOINT [ "/opt/bitnami/scripts/dotnet/entrypoint.sh" ]
+ENTRYPOINT [ "/opt/bitmoa/scripts/dotnet/entrypoint.sh" ]
 CMD [ "/bin/bash" ]

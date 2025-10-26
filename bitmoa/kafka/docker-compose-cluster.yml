@@ -3,7 +3,7 @@
 
 services:
   kafka-0:
-    image: docker.io/bitnami/kafka:4.1
+    image: ghcr.io/bitmoa/kafka:4.1
     ports:
       - "9092"
     environment:
@@ -23,9 +23,9 @@ services:
       - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
       - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
     volumes:
-      - kafka_0_data:/bitnami/kafka
+      - kafka_0_data:/bitmoa/kafka
   kafka-1:
-    image: docker.io/bitnami/kafka:4.1
+    image: ghcr.io/bitmoa/kafka:4.1
     ports:
       - "9092"
     environment:
@@ -45,9 +45,9 @@ services:
       - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
       - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
     volumes:
-      - kafka_1_data:/bitnami/kafka
+      - kafka_1_data:/bitmoa/kafka
   kafka-2:
-    image: docker.io/bitnami/kafka:4.1
+    image: ghcr.io/bitmoa/kafka:4.1
     ports:
       - "9092"
     environment:
@@ -67,7 +67,7 @@ services:
       - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
       - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
     volumes:
-      - kafka_2_data:/bitnami/kafka
+      - kafka_2_data:/bitmoa/kafka
 
 volumes:
   kafka_0_data:

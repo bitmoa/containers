@@ -10,12 +10,12 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libminioclient.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libminioclient.sh
 
 # Load MinIO Client environment
-. /opt/bitnami/scripts/minio-client-env.sh
+. /opt/bitmoa/scripts/minio-client-env.sh
 
 # Configure MinIO Client to use a MinIO server
 minio_client_configure_server

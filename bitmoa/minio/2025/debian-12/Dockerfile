@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-16T20:51:44Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/minio/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/minio" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/minio/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/minio" \
       org.opencontainers.image.title="minio" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="2025.10.15"
 
 ENV HOME="/" \
@@ -26,7 +26,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl jq procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "minio-client-2025.8.13-2-linux-${OS_ARCH}-debian-12" \
       "minio-2025.10.15-0-linux-${OS_ARCH}-debian-12" \
@@ -37,27 +37,27 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN chmod g+rwX /opt/bitnami
+RUN chmod g+rwX /opt/bitmoa
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/minio-client/postunpack.sh
-RUN /opt/bitnami/scripts/minio/postunpack.sh
+RUN /opt/bitmoa/scripts/minio-client/postunpack.sh
+RUN /opt/bitmoa/scripts/minio/postunpack.sh
 ENV APP_VERSION="2025.10.15" \
-    BITNAMI_APP_NAME="minio" \
+    BITMOA_APP_NAME="minio" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/minio-client/bin:/opt/bitnami/minio/bin:$PATH"
+    PATH="/opt/bitmoa/minio-client/bin:/opt/bitmoa/minio/bin:$PATH"
 
-VOLUME [ "/bitnami/minio/data", "/certs" ]
+VOLUME [ "/bitmoa/minio/data", "/certs" ]
 
 EXPOSE 9000 9001
 
-WORKDIR /opt/bitnami/minio-client
+WORKDIR /opt/bitmoa/minio-client
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/minio/entrypoint.sh" ]
-CMD [ "/opt/bitnami/scripts/minio/run.sh" ]
+ENTRYPOINT [ "/opt/bitmoa/scripts/minio/entrypoint.sh" ]
+CMD [ "/opt/bitmoa/scripts/minio/run.sh" ]

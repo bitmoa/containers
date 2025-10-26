@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-superset}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -78,7 +78,7 @@ done
 unset superset_env_vars
 
 # Superset paths
-export SUPERSET_BASE_DIR="${BITNAMI_ROOT_DIR}/superset"
+export SUPERSET_BASE_DIR="${BITMOA_ROOT_DIR}/superset"
 export SUPERSET_HOME="${SUPERSET_BASE_DIR}/superset_home"
 export SUPERSET_BIN_DIR="${SUPERSET_BASE_DIR}/venv/bin"
 export SUPERSET_LOGS_DIR="${SUPERSET_BASE_DIR}/logs"
@@ -89,7 +89,7 @@ export SUPERSET_CONFIG_PATH="$SUPERSET_CONF_FILE"
 export SUPERSET_TMP_DIR="${SUPERSET_BASE_DIR}/tmp"
 export SUPERSET_CELERY_BEAT_PID="${SUPERSET_TMP_DIR}/superset-celerybeat.pid"
 export SUPERSET_CELERY_BEAT_SCHEDULE="${SUPERSET_TMP_DIR}/superset-celerybeat-schedule"
-export PATH="${SUPERSET_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${SUPERSET_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export SUPERSET_DAEMON_USER="superset"
@@ -97,7 +97,7 @@ export SUPERSET_DAEMON_GROUP="superset"
 
 # Superset user configuration
 export SUPERSET_USERNAME="${SUPERSET_USERNAME:-user}"
-export SUPERSET_PASSWORD="${SUPERSET_PASSWORD:-bitnami}"
+export SUPERSET_PASSWORD="${SUPERSET_PASSWORD:-bitmoa}"
 export SUPERSET_FIRSTNAME="${SUPERSET_FIRSTNAME:-Firstname}"
 export SUPERSET_LASTNAME="${SUPERSET_LASTNAME:-Lastname}"
 export SUPERSET_EMAIL="${SUPERSET_EMAIL:-user@example.com}"
@@ -128,7 +128,7 @@ export SUPERSET_IMPORT_DATASOURCES="${SUPERSET_IMPORT_DATASOURCES:-}"
 export SUPERSET_SKIP_DATABASE_WAIT="${SUPERSET_SKIP_DATABASE_WAIT:-no}"
 export SUPERSET_DATABASE_HOST="${SUPERSET_DATABASE_HOST:-postgresql}"
 export SUPERSET_DATABASE_PORT_NUMBER="${SUPERSET_DATABASE_PORT_NUMBER:-5432}"
-export SUPERSET_DATABASE_NAME="${SUPERSET_DATABASE_NAME:-bitnami_superset}"
+export SUPERSET_DATABASE_NAME="${SUPERSET_DATABASE_NAME:-bitmoa_superset}"
 export SUPERSET_DATABASE_USERNAME="${SUPERSET_DATABASE_USERNAME:-bn_superset}"
 export SUPERSET_DATABASE_PASSWORD="${SUPERSET_DATABASE_PASSWORD:-}"
 export SUPERSET_DATABASE_USE_SSL="${SUPERSET_DATABASE_USE_SSL:-no}"

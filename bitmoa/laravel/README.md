@@ -13,19 +13,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 
 ```console
 mkdir ~/myapp && cd ~/myapp
-docker run --name laravel -v ${PWD}/my-project:/app bitnami/laravel:latest
+docker run --name laravel -v ${PWD}/my-project:/app bitmoa/laravel:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -36,15 +36,15 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Introduction
 
@@ -52,11 +52,11 @@ Subscribe to project updates by watching the [bitnami/containers GitHub repo](ht
 
 The Bitnami Laravel Development Container has been carefully engineered to provide you and your team with a highly reproducible Laravel development environment. We hope you find the Bitnami Laravel Development Container useful in your quest for world domination. Happy hacking!
 
-[Learn more about Bitnami Development Containers.](https://docs.bitnami.com/containers/how-to/use-bitnami-development-containers/)
+[Learn more about Bitnami Development Containers.](https://docs.bitmoa.com/containers/how-to/use-bitmoa-development-containers/)
 
 ## Getting started
 
-Laravel requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitnami/containers/tree/main/bitnami/mariadb) for the database requirements.
+Laravel requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
 
 ### Step 1: Create a network
 
@@ -71,10 +71,10 @@ $ docker volume create --name mariadb_data
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_myapp \
-  --env MARIADB_DATABASE=bitnami_myapp \
+  --env MARIADB_DATABASE=bitmoa_myapp \
   --network laravel-network \
-  --volume mariadb_data:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume mariadb_data:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 ### Step 3: Launch the container using the local current directory as volume
@@ -85,10 +85,10 @@ $ docker run -d --name laravel \
   --env DB_HOST=mariadb \
   --env DB_PORT=3306 \
   --env DB_USERNAME=bn_myapp \
-  --env DB_DATABASE=bitnami_myapp \
+  --env DB_DATABASE=bitmoa_myapp \
   --network laravel-network \
   --volume ${PWD}/my-project:/app \
-  bitnami/laravel:latest
+  bitmoa/laravel:latest
 ```
 
 Among other things, the above command creates a container service, named `myapp`, for Laravel development and bootstraps a new Laravel application in the application directory. You can use your favorite IDE for developing the application.
@@ -99,7 +99,7 @@ Among other things, the above command creates a container service, named `myapp`
 
 After the application server has been launched in the `myapp` service, visit `http://localhost:8000` in your favorite web browser and you'll be greeted by the default Laravel welcome page.
 
-**Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options for the [MariaDB container](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#readme) for a more secure deployment.
+**Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options for the [MariaDB container](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#readme) for a more secure deployment.
 
 ## Environment variables
 
@@ -113,7 +113,7 @@ After the application server has been launched in the `myapp` service, visit `ht
 | `LARAVEL_DATABASE_TYPE`        | Database server type.                          | `mysql`         |
 | `LARAVEL_DATABASE_HOST`        | Database server host.                          | `mariadb`       |
 | `LARAVEL_DATABASE_PORT_NUMBER` | Database server port.                          | `3306`          |
-| `LARAVEL_DATABASE_NAME`        | Database name.                                 | `bitnami_myapp` |
+| `LARAVEL_DATABASE_NAME`        | Database name.                                 | `bitmoa_myapp` |
 | `LARAVEL_DATABASE_USER`        | Database user name.                            | `bn_myapp`      |
 | `LARAVEL_DATABASE_PASSWORD`    | Database user password.                        | `nil`           |
 
@@ -121,7 +121,7 @@ After the application server has been launched in the `myapp` service, visit `ht
 
 | Name               | Description                     | Value                         |
 |--------------------|---------------------------------|-------------------------------|
-| `LARAVEL_BASE_DIR` | Laravel installation directory. | `${BITNAMI_ROOT_DIR}/laravel` |
+| `LARAVEL_BASE_DIR` | Laravel installation directory. | `${BITMOA_ROOT_DIR}/laravel` |
 
 ## Executing commands
 
@@ -139,7 +139,7 @@ where `<command>` is the command you want to launch inside the container.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Laravel Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Laravel Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -151,7 +151,7 @@ The Bitnami Laravel Docker image from the [Bitnami Secure Images](https://www.ar
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues/new) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues/new) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Special Thanks
 
@@ -161,7 +161,7 @@ We want to thank the following individuals for reporting vulnerabilities respons
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new). Be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new). Be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`docker version`)

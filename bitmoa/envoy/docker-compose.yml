@@ -3,4 +3,4 @@
 
 services:
   envoy:
-    image: docker.io/bitnami/envoy:1.36
+    image: ghcr.io/bitmoa/envoy:1.36

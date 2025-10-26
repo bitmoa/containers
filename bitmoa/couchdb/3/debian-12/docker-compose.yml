@@ -3,7 +3,7 @@
 
 services:
   couchdb:
-    image: docker.io/bitnami/couchdb:3
+    image: ghcr.io/bitmoa/couchdb:3
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=couchdb
@@ -12,7 +12,7 @@ services:
       - '4369:4369'
       - '9100:9100'
     volumes:
-      - couchdb_data:/bitnami/couchdb
+      - couchdb_data:/bitmoa/couchdb
 volumes:
   couchdb_data:
     driver: local

@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Redis Sentinel environment variables
-. /opt/bitnami/scripts/redis-sentinel-env.sh
+. /opt/bitmoa/scripts/redis-sentinel-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libredissentinel.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libredissentinel.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Create daemon user if needed
 am_i_root && ensure_user_exists "$REDIS_SENTINEL_DAEMON_USER" --group "$REDIS_SENTINEL_DAEMON_GROUP"

@@ -3,13 +3,13 @@
 
 services:
   clickhouse:
-    image: docker.io/bitnami/clickhouse:25
+    image: ghcr.io/bitmoa/clickhouse:25
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - '8123:8123'
     volumes:
-      - clickhouse_data:/bitnami/clickhouse
+      - clickhouse_data:/bitmoa/clickhouse
 volumes:
   clickhouse_data:
     driver: local

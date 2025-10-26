@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-06T20:22:33Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb-galera/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb-galera" \
       org.opencontainers.image.title="mariadb-galera" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="12.0.2"
 
 ENV HOME="/" \
@@ -26,7 +26,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl iproute2 ldap-utils libaio1 libaudit1 libcap-ng0 libcrypt1 libgcc-s1 libicu72 libldap-common liblzma5 libncurses6 libpam-ldapd libpam0g libssl3 libstdc++6 libtinfo6 libxml2 nslcd procps psmisc rsync socat zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "ini-file-1.4.9-1-linux-${OS_ARCH}-debian-12" \
       "mariadb-galera-12.0.2-1-linux-${OS_ARCH}-debian-12" \
@@ -37,25 +37,25 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN chmod g+rwX /opt/bitnami
+RUN chmod g+rwX /opt/bitmoa
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN mkdir /docker-entrypoint-initdb.d
 RUN uninstall_packages curl
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/mariadb-galera/postunpack.sh
+RUN /opt/bitmoa/scripts/mariadb-galera/postunpack.sh
 ENV APP_VERSION="12.0.2" \
-    BITNAMI_APP_NAME="mariadb-galera" \
+    BITMOA_APP_NAME="mariadb-galera" \
     IMAGE_REVISION="2" \
-    PATH="/opt/bitnami/common/bin:/opt/bitnami/mariadb/bin:/opt/bitnami/mariadb/sbin:/opt/bitnami/common/sbin:$PATH"
+    PATH="/opt/bitmoa/common/bin:/opt/bitmoa/mariadb/bin:/opt/bitmoa/mariadb/sbin:/opt/bitmoa/common/sbin:$PATH"
 
 EXPOSE 3306 4444 4567 4568
 
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/mariadb-galera/entrypoint.sh" ]
-CMD [ "/opt/bitnami/scripts/mariadb-galera/run.sh" ]
+ENTRYPOINT [ "/opt/bitmoa/scripts/mariadb-galera/entrypoint.sh" ]
+CMD [ "/opt/bitmoa/scripts/mariadb-galera/run.sh" ]

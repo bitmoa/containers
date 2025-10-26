@@ -10,17 +10,17 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libopensearch.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libopensearch.sh
 
 # Load environment
-. /opt/bitnami/scripts/opensearch-env.sh
+. /opt/bitmoa/scripts/opensearch-env.sh
 
 print_welcome_page
 
 # We add the copy from default config in the entrypoint to not break users 
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/elasticsearch/conf)
+# case someone mounts a configuration file in /opt/bitmoa/elasticsearch/conf)
 debug "Copying files from $DB_DEFAULT_CONF_DIR to $DB_CONF_DIR"
 cp -nr "$DB_DEFAULT_CONF_DIR"/. "$DB_CONF_DIR"
 
@@ -37,9 +37,9 @@ if ! is_dir_empty "$DB_DEFAULT_PLUGINS_DIR"; then
     done
 fi
 
-if [[ "$1" = "/opt/bitnami/scripts/opensearch/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/opensearch/run.sh" ]]; then
     info "** Starting Opensearch setup **"
-    /opt/bitnami/scripts/opensearch/setup.sh
+    /opt/bitmoa/scripts/opensearch/setup.sh
     info "** Opensearch setup finished! **"
 fi
 

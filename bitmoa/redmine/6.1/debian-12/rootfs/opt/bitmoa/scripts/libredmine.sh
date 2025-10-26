@@ -7,25 +7,25 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 # Load database libraries
-if [[ -f /opt/bitnami/scripts/libmysqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libmysqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libmysql.sh ]]; then
-    . /opt/bitnami/scripts/libmysql.sh
-elif [[ -f /opt/bitnami/scripts/libmariadb.sh ]]; then
-    . /opt/bitnami/scripts/libmariadb.sh
+if [[ -f /opt/bitmoa/scripts/libmysqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libmysqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libmysql.sh ]]; then
+    . /opt/bitmoa/scripts/libmysql.sh
+elif [[ -f /opt/bitmoa/scripts/libmariadb.sh ]]; then
+    . /opt/bitmoa/scripts/libmariadb.sh
 fi
-if [[ -f /opt/bitnami/scripts/libpostgresqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libpostgresql.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresql.sh
+if [[ -f /opt/bitmoa/scripts/libpostgresqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libpostgresql.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresql.sh
 fi
 
 ########################
@@ -133,7 +133,7 @@ redmine_initialize() {
     if ! is_app_initialized "$app_name"; then
         local -a db_execute_args=("$REDMINE_DATABASE_HOST" "$REDMINE_DATABASE_PORT_NUMBER" "$REDMINE_DATABASE_NAME" "$REDMINE_DATABASE_USER" "$REDMINE_DATABASE_PASSWORD")
 
-        # Ensure Redmine persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure Redmine persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring Redmine directories exist"
         ensure_dir_exists "$REDMINE_VOLUME_DIR"
         # Use daemon:root ownership for compatibility when running as a non-root user

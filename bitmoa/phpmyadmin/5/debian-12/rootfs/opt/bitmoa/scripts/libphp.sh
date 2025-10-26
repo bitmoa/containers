@@ -7,11 +7,11 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 ########################
 # Add or modify an entry in the main PHP configuration file (php.ini)

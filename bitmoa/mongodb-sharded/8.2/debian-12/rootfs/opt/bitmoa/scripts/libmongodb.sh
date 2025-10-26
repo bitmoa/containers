@@ -7,13 +7,13 @@
 # shellcheck disable=SC1090,SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libnet.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libnet.sh
 
 ########################
 # Return field separator to use in lists. One of comma or semi-colon, comma
@@ -1645,11 +1645,11 @@ mongodb_execute_print_output() {
 
 ########################
 # Execute an arbitrary query/queries against the running MongoDB service,
-# discard its output unless BITNAMI_DEBUG is true
+# discard its output unless BITMOA_DEBUG is true
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 # Arguments:
 #   $1 - User to run queries
 #   $2 - Password

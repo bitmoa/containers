@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: cluster-autoscaler
       containers:
-        - image: bitnami/cluster-autoscaler:latest
+        - image: bitmoa/cluster-autoscaler:latest
           name: cluster-autoscaler
           resources:
             limits:

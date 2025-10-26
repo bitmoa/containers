@@ -10,7 +10,7 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name ghost bitnami/ghost:latest
+docker run --name ghost bitmoa/ghost:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure d
@@ -18,14 +18,14 @@ eployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -36,11 +36,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Ghost in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Ghost Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/ghost).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Ghost Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/ghost).
 
 ## Why use a non-root container?
 
@@ -50,35 +50,35 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Ghost Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/ghost).
+The recommended way to get the Bitnami Ghost Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/ghost).
 
 ```console
-docker pull bitnami/ghost:latest
+docker pull bitmoa/ghost:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/ghost/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/ghost/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/ghost:[TAG]
+docker pull bitmoa/ghost:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-Ghost requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MySQL](https://github.com/bitnami/containers/tree/main/bitnami/mysql) for the database requirements.
+Ghost requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MySQL](https://github.com/bitmoa/containers/tree/main/bitmoa/mysql) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -95,11 +95,11 @@ $ docker volume create --name mysql_data
 docker run -d --name mysql \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MYSQL_USER=bn_ghost \
-  --env MYSQL_PASSWORD=bitnami \
-  --env MYSQL_DATABASE=bitnami_ghost \
+  --env MYSQL_PASSWORD=bitmoa \
+  --env MYSQL_DATABASE=bitmoa_ghost \
   --network ghost-network \
-  --volume mysql_data:/bitnami/mysql \
-  bitnami/mysql:latest
+  --volume mysql_data:/bitmoa/mysql \
+  bitmoa/mysql:latest
 ```
 
 #### Step 3: Create volumes for Ghost persistence and launch the container
@@ -110,11 +110,11 @@ docker run -d --name ghost \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env GHOST_DATABASE_USER=bn_ghost \
-  --env GHOST_DATABASE_PASSWORD=bitnami \
-  --env GHOST_DATABASE_NAME=bitnami_ghost \
+  --env GHOST_DATABASE_PASSWORD=bitmoa \
+  --env GHOST_DATABASE_NAME=bitmoa_ghost \
   --network ghost-network \
-  --volume ghost_data:/bitnami/ghost \
-  bitnami/ghost:latest
+  --volume ghost_data:/bitmoa/ghost \
+  bitmoa/ghost:latest
 ```
 
 Access your application at `http://your-ip/`
@@ -122,19 +122,19 @@ Access your application at `http://your-ip/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/ghost/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/ghost/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/ghost).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/ghost).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/ghost` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MySQL data](https://github.com/bitnami/containers/blob/main/bitnami/mysql#persisting-your-database).
+For persistence you should mount a directory at the `/bitmoa/ghost` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MySQL data](https://github.com/bitmoa/containers/blob/main/bitmoa/mysql#persisting-your-database).
 
 The above examples define the Docker volumes named `mysql_data` and `ghost_data`. The Ghost application state will persist as long as volumes are not removed.
 
@@ -142,20 +142,20 @@ To avoid inadvertent removal of volumes, you can [mount host directories as data
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/ghost/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/ghost/docker-compose.yml) file present in this repository:
 
 ```diff
    mysql:
      ...
      volumes:
--      - mysql_data:/bitnami/mysql
-+      - /path/to/mysql-persistence:/bitnami/mysql
+-      - mysql_data:/bitmoa/mysql
++      - /path/to/mysql-persistence:/bitmoa/mysql
    ...
    ghost:
      ...
      volumes:
--      - ghost_data:/bitnami/ghost
-+      - /path/to/ghost-persistence:/bitnami/ghost
+-      - ghost_data:/bitmoa/ghost
++      - /path/to/ghost-persistence:/bitmoa/ghost
    ...
 -volumes:
 -  mysql_data:
@@ -180,11 +180,11 @@ docker network create ghost-network
 docker run -d --name mysql \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MYSQL_USER=bn_ghost \
-  --env MYSQL_PASSWORD=bitnami \
-  --env MYSQL_DATABASE=bitnami_ghost \
+  --env MYSQL_PASSWORD=bitmoa \
+  --env MYSQL_DATABASE=bitmoa_ghost \
   --network ghost-network \
-  --volume /path/to/mysql-persistence:/bitnami/mysql \
-  bitnami/mysql:latest
+  --volume /path/to/mysql-persistence:/bitmoa/mysql \
+  bitmoa/mysql:latest
 ```
 
 #### Step 3. Create the Ghost container with host volumes
@@ -194,11 +194,11 @@ docker run -d --name ghost \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env GHOST_DATABASE_USER=bn_ghost \
-  --env GHOST_DATABASE_PASSWORD=bitnami \
-  --env GHOST_DATABASE_NAME=bitnami_ghost \
+  --env GHOST_DATABASE_PASSWORD=bitmoa \
+  --env GHOST_DATABASE_NAME=bitmoa_ghost \
   --network ghost-network \
-  --volume /path/to/ghost-persistence:/bitnami/ghost \
-  bitnami/ghost:latest
+  --volume /path/to/ghost-persistence:/bitmoa/ghost \
+  bitmoa/ghost:latest
 ```
 
 ## Configuration
@@ -218,7 +218,7 @@ docker run -d --name ghost \
 | `GHOST_BLOG_TITLE`                 | Ghost blog title.                                                                                                           | `"User's blog"`                  |
 | `GHOST_SKIP_BOOTSTRAP`             | Whether to perform initial bootstrapping for the application.                                                               | `nil`                            |
 | `GHOST_USERNAME`                   | Ghost user name.                                                                                                            | `user`                           |
-| `GHOST_PASSWORD`                   | Ghost user password.                                                                                                        | `bitnami123`                     |
+| `GHOST_PASSWORD`                   | Ghost user password.                                                                                                        | `bitmoa123`                     |
 | `GHOST_EMAIL`                      | Ghost user e-mail address.                                                                                                  | `user@example.com`               |
 | `GHOST_SMTP_FROM_ADDRESS`          | Ghost SMTP from address.                                                                                                    | `nil`                            |
 | `GHOST_SMTP_HOST`                  | Ghost SMTP server host.                                                                                                     | `nil`                            |
@@ -228,7 +228,7 @@ docker run -d --name ghost \
 | `GHOST_SMTP_PROTOCOL`              | Ghost SMTP server protocol to use.                                                                                          | `nil`                            |
 | `GHOST_DATABASE_HOST`              | Database server host.                                                                                                       | `$GHOST_DEFAULT_DATABASE_HOST`   |
 | `GHOST_DATABASE_PORT_NUMBER`       | Database server port.                                                                                                       | `3306`                           |
-| `GHOST_DATABASE_NAME`              | Database name.                                                                                                              | `bitnami_ghost`                  |
+| `GHOST_DATABASE_NAME`              | Database name.                                                                                                              | `bitmoa_ghost`                  |
 | `GHOST_DATABASE_USER`              | Database user name.                                                                                                         | `bn_ghost`                       |
 | `GHOST_DATABASE_PASSWORD`          | Database user password.                                                                                                     | `nil`                            |
 | `GHOST_DATABASE_ENABLE_SSL`        | Whether to enable SSL for database connection                                                                               | `no`                             |
@@ -238,12 +238,12 @@ docker run -d --name ghost \
 
 | Name                          | Description                                        | Value                                      |
 |-------------------------------|----------------------------------------------------|--------------------------------------------|
-| `GHOST_BASE_DIR`              | Ghost installation directory.                      | `${BITNAMI_ROOT_DIR}/ghost`                |
+| `GHOST_BASE_DIR`              | Ghost installation directory.                      | `${BITMOA_ROOT_DIR}/ghost`                |
 | `GHOST_BIN_DIR`               | Ghost bin directory.                               | `${GHOST_BASE_DIR}/bin`                    |
 | `GHOST_LOG_FILE`              | Ghost log file.                                    | `${GHOST_BASE_DIR}/content/logs/ghost.log` |
 | `GHOST_CONF_FILE`             | Configuration file for Ghost.                      | `${GHOST_BASE_DIR}/config.production.json` |
 | `GHOST_PID_FILE`              | Path to the Ghost PID file.                        | `${GHOST_BASE_DIR}/.ghostpid`              |
-| `GHOST_VOLUME_DIR`            | Ghost directory for mounted configuration files.   | `${BITNAMI_VOLUME_DIR}/ghost`              |
+| `GHOST_VOLUME_DIR`            | Ghost directory for mounted configuration files.   | `${BITMOA_VOLUME_DIR}/ghost`              |
 | `GHOST_DAEMON_USER`           | Ghost system user.                                 | `ghost`                                    |
 | `GHOST_DAEMON_GROUP`          | Ghost system group.                                | `ghost`                                    |
 | `GHOST_DEFAULT_PORT_NUMBER`   | Default Ghost port number to enable at build time. | `2368`                                     |
@@ -251,7 +251,7 @@ docker run -d --name ghost \
 
 When you start the Ghost image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/ghost/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/ghost/docker-compose.yml) file present in this repository:
 
     ```yaml
     ghost:
@@ -267,8 +267,8 @@ When you start the Ghost image, you can adjust the configuration of the instance
     $ docker run -d --name ghost -p 80:8080 -p 443:8443 \
       --env GHOST_PASSWORD=my_password \
       --network ghost-tier \
-      --volume /path/to/ghost-persistence:/bitnami/ghost \
-      bitnami/ghost:latest
+      --volume /path/to/ghost-persistence:/bitmoa/ghost \
+      bitmoa/ghost:latest
     ```
 
 #### Examples
@@ -277,14 +277,14 @@ When you start the Ghost image, you can adjust the configuration of the instance
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/ghost/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/ghost/docker-compose.yml) file present in this repository:
 
     ```yaml
       ghost:
         ...
         environment:
           - GHOST_DATABASE_USER=bn_ghost
-          - GHOST_DATABASE_NAME=bitnami_ghost
+          - GHOST_DATABASE_NAME=bitmoa_ghost
           - ALLOW_EMPTY_PASSWORD=yes
           - GHOST_SMTP_HOST=smtp.gmail.com
           - GHOST_SMTP_PORT=587
@@ -299,22 +299,22 @@ This would be an example of SMTP configuration using a Gmail account:
     ```console
     $ docker run -d --name ghost -p 80:8080 -p 443:8443 \
       --env GHOST_DATABASE_USER=bn_ghost \
-      --env GHOST_DATABASE_NAME=bitnami_ghost \
+      --env GHOST_DATABASE_NAME=bitmoa_ghost \
       --env GHOST_SMTP_HOST=smtp.gmail.com \
       --env GHOST_SMTP_PORT=587 \
       --env GHOST_SMTP_USER=your_email@gmail.com \
       --env GHOST_SMTP_PASSWORD=your_password \
       --env GHOST_SMTP_FROM_ADDRESS=ghost@blog.com \
       --network ghost-tier \
-      --volume /path/to/ghost-persistence:/bitnami \
-      bitnami/ghost:latest
+      --volume /path/to/ghost-persistence:/bitmoa \
+      bitmoa/ghost:latest
     ```
 
 ##### Connect Ghost container to an existing database
 
 The Bitnami Ghost container supports connecting the Ghost application to an external database. This would be an example of using an external database for Ghost.
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/ghost/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/ghost/docker-compose.yml) file present in this repository:
 
     ```diff
        ghost:
@@ -341,15 +341,15 @@ The Bitnami Ghost container supports connecting the Ghost application to an exte
       --env GHOST_DATABASE_NAME=ghost_db \
       --env GHOST_DATABASE_USER=ghost_user \
       --env GHOST_DATABASE_PASSWORD=ghost_password \
-      --volume ghost_data:/bitnami/ghost \
-      bitnami/ghost:latest
+      --volume ghost_data:/bitmoa/ghost \
+      bitmoa/ghost:latest
     ```
 
 In case the database already contains data from a previous Ghost installation, you need to set the variable `GHOST_SKIP_BOOTSTRAP` to `yes`. Otherwise, the container would execute the installation wizard and could modify the existing data in the database. Note that, when setting `GHOST_SKIP_BOOTSTRAP` to `yes`, values for environment variables such as `GHOST_USERNAME`, `GHOST_PASSWORD` or `GHOST_EMAIL` will be ignored.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Ghost Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Ghost Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -393,7 +393,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/ghost-backups:/backups --volumes-from ghost busybox \
-  cp -a /bitnami/ghost /backups/latest
+  cp -a /bitmoa/ghost /backups/latest
 ```
 
 ### Restoring a backup
@@ -405,9 +405,9 @@ For the MySQL database container:
 ```diff
  $ docker run -d --name mysql \
    ...
--  --volume /path/to/mysql-persistence:/bitnami/mysql \
-+  --volume /path/to/mysql-backups/latest:/bitnami/mysql \
-   bitnami/mysql:latest
+-  --volume /path/to/mysql-persistence:/bitmoa/mysql \
++  --volume /path/to/mysql-backups/latest:/bitmoa/mysql \
+   bitmoa/mysql:latest
 ```
 
 For the Ghost container:
@@ -415,21 +415,21 @@ For the Ghost container:
 ```diff
  $ docker run -d --name ghost \
    ...
--  --volume /path/to/ghost-persistence:/bitnami/ghost \
-+  --volume /path/to/ghost-backups/latest:/bitnami/ghost \
-   bitnami/ghost:latest
+-  --volume /path/to/ghost-persistence:/bitmoa/ghost \
++  --volume /path/to/ghost-backups/latest:/bitmoa/ghost \
+   bitmoa/ghost:latest
 ```
 
 ### Upgrade this image
 
-Bitnami provides up-to-date versions of MySQL and Ghost, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Ghost container. For the MySQL upgrade see: <https://github.com/bitnami/containers/blob/main/bitnami/mysql/README.md#upgrade-this-image>
+Bitnami provides up-to-date versions of MySQL and Ghost, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Ghost container. For the MySQL upgrade see: <https://github.com/bitmoa/containers/blob/main/bitmoa/mysql/README.md#upgrade-this-image>
 
-The `bitnami/ghost:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitnami/ghost:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitnami/ghost/tags/).
+The `bitmoa/ghost:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitmoa/ghost:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitmoa/ghost/tags/).
 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/ghost:latest
+docker pull bitmoa/ghost:latest
 ```
 
 #### Step 2: Stop the running container
@@ -469,7 +469,7 @@ The Bitnami Ghost Docker image is designed to be extended so it can be used as t
 To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/ghost
+FROM bitmoa/ghost
 ## Put your customizations below
 ...
 ```
@@ -477,7 +477,7 @@ FROM bitnami/ghost
 This example shows how to install the [Storage Adapter for S3](https://github.com/colinmeinke/ghost-storage-adapter-s3#ghost-storage-adapter-s3).
 
 ```Dockerfile
-FROM bitnami/ghost:latest
+FROM bitmoa/ghost:latest
 
 ## Change user to perform privileged actions
 USER root
@@ -486,8 +486,8 @@ COPY post_ghost_config.sh /
 RUN mkdir -p /.npm \
     && chmod -R g+rwX,o+rw /.npm \
     && chmod +x /post_ghost_config.sh \
-    && cp /opt/bitnami/scripts/ghost/entrypoint.sh /tmp/entrypoint.sh \
-    && sed '/info "\*\* Ghost setup finished! \*\*"/ a . /post_ghost_config.sh' /tmp/entrypoint.sh > /opt/bitnami/scripts/ghost/entrypoint.sh
+    && cp /opt/bitmoa/scripts/ghost/entrypoint.sh /tmp/entrypoint.sh \
+    && sed '/info "\*\* Ghost setup finished! \*\*"/ a . /post_ghost_config.sh' /tmp/entrypoint.sh > /opt/bitmoa/scripts/ghost/entrypoint.sh
 ENV AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID" \
     AWS_ACCESS_SECRET_KEY="AWS_ACCESS_SECRET_KEY" \
     AWS_REGION="AWS_REGION" \
@@ -496,10 +496,10 @@ ENV AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID" \
 ## Revert to the original non-root user
 USER 1001
 
-RUN cd /bitnami/ghost \
+RUN cd /bitmoa/ghost \
     && npm i --silent ghost-storage-adapter-s3 \
-    && mkdir -p /opt/bitnami/ghost/content/adapters/storage/s3 \
-    && cp -r ./node_modules/ghost-storage-adapter-s3/* /opt/bitnami/ghost/content/adapters/storage/s3/
+    && mkdir -p /opt/bitmoa/ghost/content/adapters/storage/s3 \
+    && cp -r ./node_modules/ghost-storage-adapter-s3/* /opt/bitmoa/ghost/content/adapters/storage/s3/
 ```
 
 1. Prepare npm and install an adapter.
@@ -509,11 +509,11 @@ RUN cd /bitnami/ghost \
 
 ```console
 #!/bin/bash -e
-cp /opt/bitnami/ghost/config.production.json /tmp/config.tmp.json
+cp /opt/bitmoa/ghost/config.production.json /tmp/config.tmp.json
 
 jq -r --arg keyId $AWS_ACCESS_KEY_ID --arg accessKey $AWS_ACCESS_SECRET_KEY --arg region $AWS_REGION --arg bucket $AWS_BUCKET \
     '. + { storage: { active: "s3", s3: { accessKeyId: $keyId, secretAccessKey: $accessKey, region: $region, bucket: $bucket } } }' \
-    /tmp/config.tmp.json > /opt/bitnami/ghost/config.production.json
+    /tmp/config.tmp.json > /opt/bitmoa/ghost/config.production.json
 ```
 
 **Add it to the `app-entrypoint.sh` just after ghost is configured.**
@@ -534,11 +534,11 @@ Finally, build the container and set the required environment variables to confi
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

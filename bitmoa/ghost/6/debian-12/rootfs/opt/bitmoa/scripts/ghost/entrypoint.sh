@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Ghost environment
-. /opt/bitnami/scripts/ghost-env.sh
+. /opt/bitmoa/scripts/ghost-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 print_welcome_page
 
@@ -23,7 +23,7 @@ print_welcome_page
 # This container supports arbitrary UIDs, therefore we have do it dynamically
 if ! am_i_root; then
     export LNAME="ghost"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"
@@ -36,9 +36,9 @@ if ! am_i_root; then
     fi
 fi
 
-if [[ "$1" = "/opt/bitnami/scripts/ghost/run.sh" ]]; then
-    /opt/bitnami/scripts/mysql-client/setup.sh
-    /opt/bitnami/scripts/ghost/setup.sh
+if [[ "$1" = "/opt/bitmoa/scripts/ghost/run.sh" ]]; then
+    /opt/bitmoa/scripts/mysql-client/setup.sh
+    /opt/bitmoa/scripts/ghost/setup.sh
     /post-init.sh
     info "** Ghost setup finished! **"
 fi

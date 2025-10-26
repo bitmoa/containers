@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libsolr.sh
+. /opt/bitmoa/scripts/libsolr.sh
 
 # Load solr environment variables
-. /opt/bitnami/scripts/solr-env.sh
+. /opt/bitmoa/scripts/solr-env.sh
 
 # Ensure solr environment variables are valid
 solr_validate

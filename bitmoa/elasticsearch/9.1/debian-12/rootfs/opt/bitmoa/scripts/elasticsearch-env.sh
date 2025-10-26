@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-elasticsearch}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -100,9 +100,9 @@ unset elasticsearch_env_vars
 export DB_FLAVOR="elasticsearch"
 
 # Paths
-export ELASTICSEARCH_VOLUME_DIR="/bitnami/elasticsearch"
+export ELASTICSEARCH_VOLUME_DIR="/bitmoa/elasticsearch"
 export DB_VOLUME_DIR="$ELASTICSEARCH_VOLUME_DIR"
-export ELASTICSEARCH_BASE_DIR="/opt/bitnami/elasticsearch"
+export ELASTICSEARCH_BASE_DIR="/opt/bitmoa/elasticsearch"
 export DB_BASE_DIR="$ELASTICSEARCH_BASE_DIR"
 export ELASTICSEARCH_CONF_DIR="${DB_BASE_DIR}/config"
 export DB_CONF_DIR="$ELASTICSEARCH_CONF_DIR"
@@ -134,7 +134,7 @@ export ELASTICSEARCH_PID_FILE="${DB_TMP_DIR}/elasticsearch.pid"
 export DB_PID_FILE="$ELASTICSEARCH_PID_FILE"
 export ELASTICSEARCH_INITSCRIPTS_DIR="/docker-entrypoint-initdb.d"
 export DB_INITSCRIPTS_DIR="$ELASTICSEARCH_INITSCRIPTS_DIR"
-export PATH="${DB_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:$PATH"
+export PATH="${DB_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:$PATH"
 
 # System users (when running with a privileged user)
 export ELASTICSEARCH_DAEMON_USER="elasticsearch"
@@ -190,7 +190,7 @@ export DB_ACTION_DESTRUCTIVE_REQUIRES_NAME="$ELASTICSEARCH_ACTION_DESTRUCTIVE_RE
 # Elasticsearch Security configuration
 export ELASTICSEARCH_ENABLE_SECURITY="${ELASTICSEARCH_ENABLE_SECURITY:-false}"
 export DB_ENABLE_SECURITY="$ELASTICSEARCH_ENABLE_SECURITY"
-export ELASTICSEARCH_PASSWORD="${ELASTICSEARCH_PASSWORD:-bitnami}"
+export ELASTICSEARCH_PASSWORD="${ELASTICSEARCH_PASSWORD:-bitmoa}"
 export DB_PASSWORD="$ELASTICSEARCH_PASSWORD"
 export ELASTICSEARCH_USERNAME="elastic"
 export DB_USERNAME="$ELASTICSEARCH_USERNAME"
@@ -257,7 +257,7 @@ export DB_HTTP_TLS_CA_CERT_LOCATION="$ELASTICSEARCH_HTTP_TLS_CA_CERT_LOCATION"
 export ELASTICSEARCH_ENABLE_FIPS_MODE="${ELASTICSEARCH_ENABLE_FIPS_MODE:-false}"
 export ELASTICSEARCH_PASSWD_HASH_ALGORITHM="${ELASTICSEARCH_PASSWD_HASH_ALGORITHM:-}"
 export ELASTICSEARCH_KEYS="${ELASTICSEARCH_KEYS:-}"
-export JAVA_HOME="${BITNAMI_ROOT_DIR}/java"
+export JAVA_HOME="${BITMOA_ROOT_DIR}/java"
 export ES_JAVA_HOME="${ES_JAVA_HOME:-${JAVA_HOME}}"
 export ES_JAVA_OPTS="${ES_JAVA_OPTS:-} ${JAVA_TOOL_OPTIONS:-}"
 export CLI_JAVA_OPTS="${CLI_JAVA_OPTS:-} ${JAVA_TOOL_OPTIONS:-}"

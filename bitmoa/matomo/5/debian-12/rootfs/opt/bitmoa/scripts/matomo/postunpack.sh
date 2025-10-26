@@ -10,21 +10,21 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Matomo environment
-. /opt/bitnami/scripts/matomo-env.sh
+. /opt/bitmoa/scripts/matomo-env.sh
 
 # Load PHP environment for 'php_conf_set' (after 'matomo-env.sh' so that MODULE is not set to a wrong value)
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libmatomo.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libmatomo.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load web server environment and functions (after Matomo environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # The Matomo configuration is created by the Wizard so no defaults will be set at postunpack time
 
@@ -54,7 +54,7 @@ ensure_web_server_app_configuration_exists "matomo" --type php --apache-move-hta
 
 # Copy all initially generated configuration files to the default directory
 # (this is to avoid breaking when entrypoint is being overridden)
-cp -r "/opt/bitnami/$(web_server_type)/conf"/* "/opt/bitnami/$(web_server_type)/conf.default"
+cp -r "/opt/bitmoa/$(web_server_type)/conf"/* "/opt/bitmoa/$(web_server_type)/conf.default"
 
 # This is necessary for the libpersistence.sh scripts to work when running as non-root
-chmod g+w "$BITNAMI_ROOT_DIR"
+chmod g+w "$BITMOA_ROOT_DIR"

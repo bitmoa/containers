@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name postgresql-repmgr bitnami/postgresql-repmgr:latest
+docker run --name postgresql-repmgr bitmoa/postgresql-repmgr:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -43,51 +43,51 @@ Non-root container images add an extra layer of security and are generally recom
 
 ## How to deploy Postgresql-repmgr in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami PostgreSQL HA Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami PostgreSQL HA Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/postgresql-ha).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami PostgreSQL HA Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/postgresql-repmgr).
+The recommended way to get the Bitnami PostgreSQL HA Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/postgresql-repmgr).
 
 ```console
-docker pull bitnami/postgresql-repmgr:latest
+docker pull bitmoa/postgresql-repmgr:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/postgresql-repmgr/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/postgresql-repmgr/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/postgresql-repmgr:[TAG]
+docker pull bitmoa/postgresql-repmgr:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/postgresql` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/postgresql` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/postgresql-repmgr-persistence:/bitnami/postgresql \
-    bitnami/postgresql-repmgr:latest
+    -v /path/to/postgresql-repmgr-persistence:/bitmoa/postgresql \
+    bitmoa/postgresql-repmgr:latest
 ```
 
-The [`docker-compose.yml`](https://github.com/bitnami/containers/tree/main/bitnami/postgresql/docker-compose.yml) file present in this repository already configures persistence.
+The [`docker-compose.yml`](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql/docker-compose.yml) file present in this repository already configures persistence.
 
 > NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
 
@@ -120,7 +120,7 @@ docker run --detach --rm --name pg-0 \
   --env REPMGR_PRIMARY_HOST=pg-0 \
   --env REPMGR_PASSWORD=repmgrpass \
   --env POSTGRESQL_PASSWORD=secretpass \
-  bitnami/postgresql-repmgr:latest
+  bitmoa/postgresql-repmgr:latest
 ```
 
 #### Step 3: Launch your PostgreSQL client instance
@@ -130,7 +130,7 @@ Finally we create a new container instance to launch the PostgreSQL client and c
 ```console
 docker run -it --rm \
   --network my-network \
-  bitnami/postgresql:latest \
+  bitmoa/postgresql:latest \
   psql -h pg-0 -U postgres
 ```
 
@@ -147,7 +147,7 @@ networks:
 
 services:
   pg-0:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     networks:
       - my-network
     environment:
@@ -187,10 +187,10 @@ In order to have your custom files inside the docker image you can mount them as
 In the above commands you may have noticed the use of the `POSTGRESQL_PASSWORD` and `REPMGR_PASSWORD` environment variables. Passing the `POSTGRESQL_PASSWORD` environment variable when running the image for the first time will set the password of the `postgres` user to the value of `POSTGRESQL_PASSWORD` (or the content of the file specified in `POSTGRESQL_PASSWORD_FILE`). In the same way, passing the `REPMGR_PASSWORD` environment variable sets the password of the `repmgr` user to the value of `REPMGR_PASSWORD` (or the content of the file specified in `REPMGR_PASSWORD_FILE`).
 
 ```console
-docker run --name pg-0 --env REPMGR_PASSWORD=repmgrpass --env POSTGRESQL_PASSWORD=secretpass bitnami/postgresql-repmgr:latest
+docker run --name pg-0 --env REPMGR_PASSWORD=repmgrpass --env POSTGRESQL_PASSWORD=secretpass bitmoa/postgresql-repmgr:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/tree/main/bitnami/postgresql-repmgr/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql-repmgr/docker-compose.yml) file present in this repository:
 
 ```diff
 ...
@@ -223,7 +223,7 @@ Refer to [Creating a database user on first run](#creating-a-database-user-on-fi
 By passing the `POSTGRESQL_DATABASE` environment variable when running the image for the first time, a database will be created. This is useful if your application requires that a database already exists, saving you from having to manually create the database using the PostgreSQL client.
 
 ```console
-docker run --name pg-0 --env POSTGRESQL_DATABASE=my_database bitnami/postgresql-repmgr:latest
+docker run --name pg-0 --env POSTGRESQL_DATABASE=my_database bitmoa/postgresql-repmgr:latest
 ```
 
 ### Creating a database user on first run
@@ -231,10 +231,10 @@ docker run --name pg-0 --env POSTGRESQL_DATABASE=my_database bitnami/postgresql-
 You can also create a restricted database user that only has permissions for the database created with the [`POSTGRESQL_DATABASE`](#creating-a-database-on-first-run) environment variable. To do this, provide the `POSTGRESQL_USERNAME` environment variable.
 
 ```console
-docker run --name pg-0 --env POSTGRESQL_USERNAME=my_user --env POSTGRESQL_PASSWORD=password123 --env POSTGRESQL_DATABASE=my_database bitnami/postgresql-repmgr:latest
+docker run --name pg-0 --env POSTGRESQL_USERNAME=my_user --env POSTGRESQL_PASSWORD=password123 --env POSTGRESQL_DATABASE=my_database bitmoa/postgresql-repmgr:latest
 ```
 
-The [`docker-compose.yml`](https://github.com/bitnami/containers/tree/main/bitnami/postgresql/docker-compose.yml) file present in this repository already configures this setup.
+The [`docker-compose.yml`](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql/docker-compose.yml) file present in this repository already configures this setup.
 
 **Note!**
 When `POSTGRESQL_USERNAME` is specified, the `postgres` user is not assigned a password and as a result you cannot login remotely to the PostgreSQL server as the `postgres` user. If you still want to have access with the user `postgres`, please set the `POSTGRESQL_POSTGRES_PASSWORD` environment variable (or the content of the file specified in `POSTGRESQL_POSTGRES_PASSWORD_FILE`).
@@ -277,7 +277,7 @@ docker run --detach --name pg-0 \
   --env REPMGR_PRIMARY_HOST=pg-0 \
   --env REPMGR_PASSWORD=repmgrpass \
   --env POSTGRESQL_PASSWORD=secretpass \
-  bitnami/postgresql-repmgr:latest
+  bitmoa/postgresql-repmgr:latest
 ```
 
 #### Step 2: Create a standby node
@@ -293,7 +293,7 @@ docker run --detach --name pg-1 \
   --env REPMGR_PRIMARY_HOST=pg-0 \
   --env REPMGR_PASSWORD=repmgrpass \
   --env POSTGRESQL_PASSWORD=secretpass \
-  bitnami/postgresql-repmgr:latest
+  bitmoa/postgresql-repmgr:latest
 ```
 
 With these three commands you now have a two node PostgreSQL primary-standby streaming replication cluster up and running. You can scale the cluster by adding/removing standby nodes without incurring any downtime.
@@ -304,10 +304,10 @@ If the master goes down, **repmgr** will ensure any of the standby nodes takes t
 
 > **Note**: The configuration of the other nodes in the cluster needs to be updated so that they are aware of them. This would require you to restart the old nodes adapting the `REPMGR_PARTNER_NODES` environment variable.
 
-With Docker Compose the HA PostgreSQL cluster can be setup using the [`docker-compose.yml`](https://github.com/bitnami/containers/tree/main/bitnami/postgresql-repmgr/docker-compose.yml) file present in this repository:
+With Docker Compose the HA PostgreSQL cluster can be setup using the [`docker-compose.yml`](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql-repmgr/docker-compose.yml) file present in this repository:
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/postgresql-repmgr/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/postgresql-repmgr/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
@@ -328,11 +328,11 @@ When enabling TLS, PostgreSQL will support both standard and encrypted traffic b
 
     ```console
     $ docker run \
-        -v /path/to/certs:/opt/bitnami/postgresql/certs \
+        -v /path/to/certs:/opt/bitmoa/postgresql/certs \
         -e POSTGRESQL_ENABLE_TLS=yes \
-        -e POSTGRESQL_TLS_CERT_FILE=/opt/bitnami/postgresql/certs/postgres.crt \
-        -e POSTGRESQL_TLS_KEY_FILE=/opt/bitnami/postgresql/certs/postgres.key \
-        bitnami/postgresql-repmgr:latest
+        -e POSTGRESQL_TLS_CERT_FILE=/opt/bitmoa/postgresql/certs/postgres.crt \
+        -e POSTGRESQL_TLS_KEY_FILE=/opt/bitmoa/postgresql/certs/postgres.key \
+        bitmoa/postgresql-repmgr:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -344,20 +344,20 @@ When enabling TLS, PostgreSQL will support both standard and encrypted traffic b
         environment:
           ...
           - POSTGRESQL_ENABLE_TLS=yes
-          - POSTGRESQL_TLS_CERT_FILE=/opt/bitnami/postgresql/certs/postgres.crt
-          - POSTGRESQL_TLS_KEY_FILE=/opt/bitnami/postgresql/certs/postgres.key
+          - POSTGRESQL_TLS_CERT_FILE=/opt/bitmoa/postgresql/certs/postgres.crt
+          - POSTGRESQL_TLS_KEY_FILE=/opt/bitmoa/postgresql/certs/postgres.key
         ...
         volumes:
           ...
-          - /path/to/certs:/opt/bitnami/postgresql/certs
+          - /path/to/certs:/opt/bitmoa/postgresql/certs
       ...
     ```
 
-Alternatively, you may also provide this configuration in your [custom](https://github.com/bitnami/containers/tree/main/bitnami/postgresql-repmgr) configuration file.
+Alternatively, you may also provide this configuration in your [custom](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql-repmgr) configuration file.
 
 ### Configuration file
 
-The image looks for the `repmgr.conf`, `postgresql.conf` and `pg_hba.conf` files in `/opt/bitnami/repmgr/conf/` and `/opt/bitnami/postgresql/conf/`. You can mount a volume at `/bitnami/repmgr/conf/` and copy/edit the configuration files in the `/path/to/custom-conf/`. The default configurations will be populated to the `conf/` directories if `/bitnami/repmgr/conf/` is empty.
+The image looks for the `repmgr.conf`, `postgresql.conf` and `pg_hba.conf` files in `/opt/bitmoa/repmgr/conf/` and `/opt/bitmoa/postgresql/conf/`. You can mount a volume at `/bitmoa/repmgr/conf/` and copy/edit the configuration files in the `/path/to/custom-conf/`. The default configurations will be populated to the `conf/` directories if `/bitmoa/repmgr/conf/` is empty.
 
 ```console
 /path/to/custom-conf/
@@ -377,8 +377,8 @@ Run the PostgreSQL image, mounting a directory from your host.
 
 ```console
 docker run --name pg-0 \
-    -v /path/to/custom-conf/:/bitnami/repmgr/conf/ \
-    bitnami/postgresql-repmgr:latest
+    -v /path/to/custom-conf/:/bitmoa/repmgr/conf/ \
+    bitmoa/postgresql-repmgr:latest
 ```
 
 or using Docker Compose:
@@ -388,17 +388,17 @@ version: '2'
 
 services:
   pg-0:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     ports:
       - 5432:5432
     volumes:
-      - /path/to/custom-conf/:/bitnami/repmgr/conf/
+      - /path/to/custom-conf/:/bitmoa/repmgr/conf/
   pg-1:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     ports:
       - 5432:5432
     volumes:
-      - /path/to/custom-conf/:/bitnami/repmgr/conf/
+      - /path/to/custom-conf/:/bitmoa/repmgr/conf/
 ```
 
 #### Step 2: Edit the configuration
@@ -428,7 +428,7 @@ Refer to the [server configuration](http://www.postgresql.org/docs/10/static/run
 
 #### Allow settings to be loaded from files other than the default `postgresql.conf`
 
-Apart of using a custom `repmgr.conf`, `postgresql.conf` or `pg_hba.conf`, you can include files ending in `.conf` from the `conf.d` directory in the volume at `/bitnami/postgresql/conf/`.
+Apart of using a custom `repmgr.conf`, `postgresql.conf` or `pg_hba.conf`, you can include files ending in `.conf` from the `conf.d` directory in the volume at `/bitmoa/postgresql/conf/`.
 For this purpose, the default `postgresql.conf` contains the following section:
 
 ```config
@@ -464,9 +464,9 @@ Run the PostgreSQL image, mounting a directory from your host.
 
 ```console
 docker run --name pg-0 \
-    -v /path/to/extra-custom-conf/:/bitnami/postgresql/conf/conf.d/ \
-    -v /path/to/custom-conf/:/bitnami/repmgr/conf/ \
-    bitnami/postgresql-repmgr:latest
+    -v /path/to/extra-custom-conf/:/bitmoa/postgresql/conf/conf.d/ \
+    -v /path/to/custom-conf/:/bitmoa/repmgr/conf/ \
+    bitmoa/postgresql-repmgr:latest
 ```
 
 or using Docker Compose:
@@ -476,19 +476,19 @@ version: '2'
 
 services:
   pg-0:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     ports:
       - 5432:5432
     volumes:
-      - /path/to/extra-custom-conf/:/bitnami/postgresql/conf/conf.d/
-      - /path/to/custom-conf/:/bitnami/repmgr/conf/
+      - /path/to/extra-custom-conf/:/bitmoa/postgresql/conf/conf.d/
+      - /path/to/custom-conf/:/bitmoa/repmgr/conf/
   pg-1:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     ports:
       - 5432:5432
     volumes:
-      - /path/to/extra-custom-conf/:/bitnami/postgresql/conf/conf.d/
-      - /path/to/custom-conf/:/bitnami/repmgr/conf/
+      - /path/to/extra-custom-conf/:/bitmoa/postgresql/conf/conf.d/
+      - /path/to/custom-conf/:/bitmoa/repmgr/conf/
 ```
 
 #### Step 2: Edit the configuration file
@@ -526,11 +526,11 @@ We recommend setting a different value for the `REPMGR_NODE_ID_START_SEED` in th
   pg-1:
   (...)
   pgw-0:
-    image: bitnami/postgresql-repmgr:latest
+    image: bitmoa/postgresql-repmgr:latest
     ports:
       - 6439:5432
     volumes:
-      - /docker/local/database_repmgr2/pgw-0:/bitnami/postgresql
+      - /docker/local/database_repmgr2/pgw-0:/bitmoa/postgresql
     environment:
       (...)
       - REPMGR_PRIMARY_HOST=pg-0
@@ -545,7 +545,7 @@ We recommend setting a different value for the `REPMGR_NODE_ID_START_SEED` in th
 (...)
 ```
 
-Refer to [issues/27124](https://github.com/bitnami/containers/issues/27124) for further details on this.
+Refer to [issues/27124](https://github.com/bitmoa/containers/issues/27124) for further details on this.
 
 ### Environment variables
 
@@ -553,7 +553,7 @@ Refer to [issues/27124](https://github.com/bitnami/containers/issues/27124) for 
 
 | Name                                       | Description                                                                                          | Default Value                              |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| `POSTGRESQL_VOLUME_DIR`                    | Persistence base directory                                                                           | `/bitnami/postgresql`                      |
+| `POSTGRESQL_VOLUME_DIR`                    | Persistence base directory                                                                           | `/bitmoa/postgresql`                      |
 | `POSTGRESQL_DATA_DIR`                      | PostgreSQL data directory                                                                            | `${POSTGRESQL_VOLUME_DIR}/data`            |
 | `POSTGRESQL_EXTRA_FLAGS`                   | Extra flags for PostgreSQL initialization                                                            | `nil`                                      |
 | `POSTGRESQL_INIT_MAX_TIMEOUT`              | Maximum initialization waiting timeout                                                               | `60`                                       |
@@ -679,7 +679,7 @@ Refer to [issues/27124](https://github.com/bitnami/containers/issues/27124) for 
 
 | Name                                         | Description                                                     | Value                                         |
 |----------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------|
-| `POSTGRESQL_BASE_DIR`                        | PostgreSQL installation directory                               | `/opt/bitnami/postgresql`                     |
+| `POSTGRESQL_BASE_DIR`                        | PostgreSQL installation directory                               | `/opt/bitmoa/postgresql`                     |
 | `POSTGRESQL_DEFAULT_CONF_DIR`                | PostgreSQL configuration directory                              | `$POSTGRESQL_BASE_DIR/conf.default`           |
 | `POSTGRESQL_CONF_DIR`                        | PostgreSQL configuration directory                              | `$POSTGRESQL_BASE_DIR/conf`                   |
 | `POSTGRESQL_MOUNTED_CONF_DIR`                | PostgreSQL mounted configuration directory                      | `$POSTGRESQL_VOLUME_DIR/conf`                 |
@@ -703,10 +703,10 @@ Refer to [issues/27124](https://github.com/bitnami/containers/issues/27124) for 
 | `POSTGRESQL_PGBACKREST_SPOOL_DIR`            | The pgbackrest spool directory                                  | `${POSTGRESQL_PGBACKREST_VOLUME_DIR}/spool`   |
 | `POSTGRESQL_PGBACKREST_CONF_FILE`            | The pgbackrest configuration file                               | `${POSTGRESQL_DATA_DIR}/pgbackrest.conf`      |
 | `POSTGRESQL_FIRST_BOOT`                      | Flag for startup (necessary for repmgr)                         | `yes`                                         |
-| `NSS_WRAPPER_LIB`                            | Flag for startup (necessary for repmgr)                         | `/opt/bitnami/common/lib/libnss_wrapper.so`   |
-| `REPMGR_BASE_DIR`                            | Replication Manager installation directory                      | `/opt/bitnami/repmgr`                         |
+| `NSS_WRAPPER_LIB`                            | Flag for startup (necessary for repmgr)                         | `/opt/bitmoa/common/lib/libnss_wrapper.so`   |
+| `REPMGR_BASE_DIR`                            | Replication Manager installation directory                      | `/opt/bitmoa/repmgr`                         |
 | `REPMGR_CONF_DIR`                            | Replication Manager configuration directory                     | `$REPMGR_BASE_DIR/conf`                       |
-| `REPMGR_VOLUME_DIR`                          | Persistence base directory                                      | `/bitnami/repmgr`                             |
+| `REPMGR_VOLUME_DIR`                          | Persistence base directory                                      | `/bitmoa/repmgr`                             |
 | `REPMGR_MOUNTED_CONF_DIR`                    | Replication Manager mounted configuration directory             | `$REPMGR_VOLUME_DIR/conf`                     |
 | `REPMGR_TMP_DIR`                             | Replication Manager temporary directory                         | `$REPMGR_BASE_DIR/tmp`                        |
 | `REPMGR_EVENTS_DIR`                          | Replication Manager events directory                            | `$REPMGR_BASE_DIR/events`                     |
@@ -726,7 +726,7 @@ Refer to [issues/27124](https://github.com/bitnami/containers/issues/27124) for 
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami PostgreSQL HA Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami PostgreSQL HA Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -749,10 +749,10 @@ Bitnami provides up-to-date versions of PostgreSQL HA, including security patche
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/postgresql-repmgr:latest
+docker pull bitmoa/postgresql-repmgr:latest
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/postgresql-repmgr:latest`.
+or if you're using Docker Compose, update the value of the image property to `bitmoa/postgresql-repmgr:latest`.
 
 #### Step 2: Stop the running container
 
@@ -793,7 +793,7 @@ docker-compose rm -v pg-1
 Re-create your container from the new image.
 
 ```console
-docker run --name pg-0 bitnami/postgresql-repmgr:latest
+docker run --name pg-0 bitmoa/postgresql-repmgr:latest
 ```
 
 or using Docker Compose:
@@ -816,17 +816,17 @@ docker-compose up pg-1
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/postgresql-ha).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/postgresql-ha).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

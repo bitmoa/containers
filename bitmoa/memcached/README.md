@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name memcached bitnami/memcached:latest
+docker run --name memcached bitmoa/memcached:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,11 +33,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Memcached in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Memcached Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/memcached).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Memcached Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/memcached).
 
 ## Why use a non-root container?
 
@@ -47,30 +47,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
 The recommended way to get the Bitnami Memcached Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com).
 
 ```console
-docker pull bitnami/memcached:latest
+docker pull bitmoa/memcached:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/memcached/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/memcached/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/memcached:[TAG]
+docker pull bitmoa/memcached:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Connecting to other containers
@@ -94,7 +94,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name memcached-server \
     --network app-tier \
-    bitnami/memcached:latest
+    bitmoa/memcached:latest
 ```
 
 #### Step 3: Launch your application container
@@ -123,7 +123,7 @@ networks:
 
 services:
   memcached:
-    image: bitnami/memcached:latest
+    image: bitmoa/memcached:latest
     networks:
       - app-tier
   myapp:
@@ -166,7 +166,7 @@ docker-compose up -d
 
 | Name                         | Description                                 | Value                                |
 |------------------------------|---------------------------------------------|--------------------------------------|
-| `MEMCACHED_BASE_DIR`         | Memcached installation directory.           | `${BITNAMI_ROOT_DIR}/memcached`      |
+| `MEMCACHED_BASE_DIR`         | Memcached installation directory.           | `${BITMOA_ROOT_DIR}/memcached`      |
 | `MEMCACHED_CONF_DIR`         | Memcached configuration directory.          | `${MEMCACHED_BASE_DIR}/conf`         |
 | `MEMCACHED_DEFAULT_CONF_DIR` | Memcached configuration directory.          | `${MEMCACHED_BASE_DIR}/conf.default` |
 | `MEMCACHED_BIN_DIR`          | Memcached directory for binary executables. | `${MEMCACHED_BASE_DIR}/bin`          |
@@ -181,10 +181,10 @@ docker-compose up -d
 By default, the Bitnami Memcached container will not specify any cache size and will start with Memcached defaults (64MB). You can specify a different value with the `MEMCACHED_CACHE_SIZE` environment variable (in MB).
 
 ```console
-docker run --name memcached -e MEMCACHED_CACHE_SIZE=128 bitnami/memcached:latest
+docker run --name memcached -e MEMCACHED_CACHE_SIZE=128 bitmoa/memcached:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/memcached/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/memcached/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -200,10 +200,10 @@ services:
 By default, the Bitnami Memcached container will not specify any maximum number of concurrent connections and will start with Memcached defaults (1024 concurrent connections). You can specify a different value with the `MEMCACHED_MAX_CONNECTIONS` environment variable.
 
 ```console
-docker run --name memcached -e MEMCACHED_MAX_CONNECTIONS=2000 bitnami/memcached:latest
+docker run --name memcached -e MEMCACHED_MAX_CONNECTIONS=2000 bitmoa/memcached:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/memcached/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/memcached/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -219,10 +219,10 @@ services:
 By default, the Bitnami Memcached container will not specify the amount of threads for which to process requests for and will start with Memcached defaults (4 threads). You can specify a different value with the `MEMCACHED_THREADS` environment variable.
 
 ```console
-docker run --name memcached -e MEMCACHED_THREADS=4 bitnami/memcached:latest
+docker run --name memcached -e MEMCACHED_THREADS=4 bitmoa/memcached:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/memcached/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/memcached/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -238,10 +238,10 @@ services:
 By default, the Memcached container will not specify any max item size and will start with Memcached defaults (1048576 ~ 1 megabyte). You can specify a different value with the `MEMCACHED_MAX_ITEM_SIZE` environment variable. Only numeric values are accepted - use `8388608` instead of `8m`
 
 ```console
-docker run --name memcached -e MEMCACHED_MAX_ITEM_SIZE=8388608 bitnami/memcached:latest
+docker run --name memcached -e MEMCACHED_MAX_ITEM_SIZE=8388608 bitmoa/memcached:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/memcached/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/memcached/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -262,10 +262,10 @@ To customize the username of the Memcached admin user, which defaults to `root`,
 docker run --name memcached \
   -e MEMCACHED_USERNAME=my_user \
   -e MEMCACHED_PASSWORD=my_password \
-  bitnami/memcached:latest
+  bitmoa/memcached:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/memcached/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/memcached/docker-compose.yml) file present in this repository:
 
 ```yaml
 version: '2'
@@ -286,16 +286,16 @@ services:
 Passing extra command-line flags to the Memcached service command is possible by adding them as arguments to *run.sh* script:
 
 ```console
-docker run --name memcached bitnami/memcached:latest /opt/bitnami/scripts/memcached/run.sh -vvv
+docker run --name memcached bitmoa/memcached:latest /opt/bitmoa/scripts/memcached/run.sh -vvv
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/memcached/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/memcached/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   memcached:
   ...
-    command: /opt/bitnami/scripts/memcached/run.sh -vvv
+    command: /opt/bitmoa/scripts/memcached/run.sh -vvv
   ...
 ```
 
@@ -308,18 +308,18 @@ In order to load your own SASL configuration file, you will have to make them av
 - Mounting a volume with your custom configuration
 - Adding custom configuration via environment variable.
 
-By default, when authentication is enabled the SASL configuration of Memcached is written to `/opt/bitnami/memcached/sasl2/memcached.conf` file with the following content:
+By default, when authentication is enabled the SASL configuration of Memcached is written to `/opt/bitmoa/memcached/sasl2/memcached.conf` file with the following content:
 
 ```config
 mech_list: plain
-sasldb_path: /opt/bitnami/memcached/conf/memcachedsasldb
+sasldb_path: /opt/bitmoa/memcached/conf/memcachedsasldb
 ```
 
-The `/opt/bitnami/memcached/conf/memcachedsasldb` is the path to the sasldb file that contains the list of Memcached users.
+The `/opt/bitmoa/memcached/conf/memcachedsasldb` is the path to the sasldb file that contains the list of Memcached users.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Memcached Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Memcached Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -348,11 +348,11 @@ Bitnami provides up-to-date versions of Memcached, including security patches, s
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/memcached:latest
+docker pull bitmoa/memcached:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/memcached:latest`.
+`bitmoa/memcached:latest`.
 
 #### Step 2: Remove the currently running container
 
@@ -371,7 +371,7 @@ docker-compose rm -v memcached
 Re-create your container from the new image.
 
 ```console
-docker run --name memcached bitnami/memcached:latest
+docker run --name memcached bitmoa/memcached:latest
 ```
 
 or using Docker Compose:
@@ -389,7 +389,7 @@ docker-compose up memcached
 ### 1.5.18-debian-9-r6 and 1.5.18-ol-7-r7
 
 - Decrease the size of the container. The configuration logic is now based on Bash scripts in the `rootfs/ folder.
-- Custom SASL configuration should be mounted at `/opt/bitnami/memcached/conf/sasl2/` instead of `/bitnami/memcached/conf/`.
+- Custom SASL configuration should be mounted at `/opt/bitmoa/memcached/conf/sasl2/` instead of `/bitmoa/memcached/conf/`.
 - Password for Memcached admin user can be specified in the content of the file specified in `MEMCACHED_PASSWORD_FILE`.
 
 ### 1.5.0-r1
@@ -407,17 +407,17 @@ docker-compose up memcached
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/memcached).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/memcached).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

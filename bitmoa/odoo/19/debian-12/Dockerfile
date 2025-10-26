@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-11T12:29:24Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/odoo/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/odoo" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/odoo/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/odoo" \
       org.opencontainers.image.title="odoo" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="19.0.20251001"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
@@ -25,7 +25,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages acl ca-certificates curl fontconfig libbsd0 libbz2-1.0 libc6 libcap2-bin libcom-err2 libcrypt1 libedit2 libffi8 libfreetype6 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libicu72 libidn2-0 libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblz4-1 liblzma5 libmd0 libncursesw6 libnettle8 libnsl2 libp11-kit0 libpng16-16 libpq5 libreadline8 libsasl2-2 libsqlite3-0 libssl3 libstdc++6 libtasn1-6 libtinfo6 libtirpc3 libunistring2 libuuid1 libx11-6 libxcb1 libxext6 libxml2 libxrender1 libxslt1.1 procps xfonts-75dpi xfonts-base zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "python-3.12.12-3-linux-${OS_ARCH}-debian-12" \
       "render-template-1.0.9-157-linux-${OS_ARCH}-debian-12" \
@@ -39,7 +39,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
@@ -55,13 +55,13 @@ RUN curl -sLO "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6
     rm wkhtmltox_0.12.6.1-3.bookworm_${OS_ARCH}.deb
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/odoo/postunpack.sh
+RUN /opt/bitmoa/scripts/odoo/postunpack.sh
 ENV APP_VERSION="19.0.20251001" \
-    BITNAMI_APP_NAME="odoo" \
+    BITMOA_APP_NAME="odoo" \
     IMAGE_REVISION="2" \
-    PATH="/opt/bitnami/python/bin:/opt/bitnami/common/bin:/opt/bitnami/postgresql/bin:/opt/bitnami/node/bin:/opt/bitnami/odoo/bin:$PATH"
+    PATH="/opt/bitmoa/python/bin:/opt/bitmoa/common/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/node/bin:/opt/bitmoa/odoo/bin:$PATH"
 
 EXPOSE 3000 8069 8072
 
-ENTRYPOINT [ "/opt/bitnami/scripts/odoo/entrypoint.sh" ]
-CMD [ "/opt/bitnami/scripts/odoo/run.sh" ]
+ENTRYPOINT [ "/opt/bitmoa/scripts/odoo/entrypoint.sh" ]
+CMD [ "/opt/bitmoa/scripts/odoo/run.sh" ]

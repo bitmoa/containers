@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run -it --name ruby bitnami/ruby:latest
+docker run -it --name ruby bitmoa/ruby:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,15 +33,15 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ### Deprecation Note (2022-01-21)
 
@@ -57,24 +57,24 @@ The formatting convention for `prod` tags has been changed:
 
 ## Get this image
 
-The recommended way to get the Bitnami Ruby Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/ruby).
+The recommended way to get the Bitnami Ruby Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/ruby).
 
 ```console
-docker pull bitnami/ruby:latest
+docker pull bitmoa/ruby:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/ruby/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/ruby/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/ruby:[TAG]
+docker pull bitmoa/ruby:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Entering the REPL
@@ -82,7 +82,7 @@ docker build -t bitnami/APP:latest .
 By default, running this image will drop you into the Ruby REPL (`irb`), where you can interactively test and try things out in Ruby.
 
 ```console
-docker run -it --name ruby bitnami/ruby:latest
+docker run -it --name ruby bitmoa/ruby:latest
 ```
 
 **Further Reading:**
@@ -96,7 +96,7 @@ docker run -it --name ruby bitnami/ruby:latest
 The default work directory for the Ruby image is `/app`. You can mount a folder from your host here that includes your Ruby script, and run it normally using the `ruby` command.
 
 ```console
-docker run -it --name ruby -v /path/to/app:/app bitnami/ruby:latest \
+docker run -it --name ruby -v /path/to/app:/app bitmoa/ruby:latest \
   ruby script.rb
 ```
 
@@ -105,11 +105,11 @@ docker run -it --name ruby -v /path/to/app:/app bitnami/ruby:latest \
 If your Ruby app has a `Gemfile` defining your app's dependencies and start script, you can install the dependencies before running your app.
 
 ```console
-docker run -it --name ruby -v /path/to/app:/app bitnami/ruby:latest \
+docker run -it --name ruby -v /path/to/app:/app bitmoa/ruby:latest \
   sh -c "bundle install && ruby script.rb"
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/ruby/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/ruby/docker-compose.yml) file present in this repository:
 
 ```yaml
 ruby:
@@ -145,7 +145,7 @@ end
 To access your web server from your host machine you can ask Docker to map a random port on your host to port `3000` inside the container.
 
 ```console
-docker run -it --name ruby -P bitnami/ruby:latest
+docker run -it --name ruby -P bitmoa/ruby:latest
 ```
 
 Run `docker port` to determine the random port Docker assigned.
@@ -158,14 +158,14 @@ $ docker port ruby
 You can also manually specify the port you want forwarded from your host to the container.
 
 ```console
-docker run -it --name ruby -p 8080:3000 bitnami/ruby:latest
+docker run -it --name ruby -p 8080:3000 bitmoa/ruby:latest
 ```
 
 Access your web server in the browser by navigating to `http://localhost:8080`.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Ruby Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Ruby Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -224,7 +224,7 @@ Copy the virtual host above, saving the file somewhere on your host. We will mou
 docker run -it --name myapp \
   --network app-tier \
   -v /path/to/app:/app \
-  bitnami/ruby:latest ruby script.rb
+  bitmoa/ruby:latest ruby script.rb
 ```
 
 or using Docker Compose:
@@ -232,7 +232,7 @@ or using Docker Compose:
 ```yaml
 version: '2'
 myapp:
-  image: bitnami/ruby:latest
+  image: bitmoa/ruby:latest
   command: ruby script.rb
   networks:
     - app-tier
@@ -244,9 +244,9 @@ myapp:
 
 ```console
 docker run -it \
-  -v /path/to/vhost.conf:/bitnami/nginx/conf/vhosts/yourapp.conf \
+  -v /path/to/vhost.conf:/bitmoa/nginx/conf/vhosts/yourapp.conf \
   --network app-tier \
-  bitnami/nginx:latest
+  bitmoa/nginx:latest
 ```
 
 or using Docker Compose:
@@ -254,11 +254,11 @@ or using Docker Compose:
 ```yaml
 version: '2'
 nginx:
-  image: bitnami/nginx:latest
+  image: bitmoa/nginx:latest
   networks:
     - app-tier
   volumes:
-    - /path/to/vhost.conf:/bitnami/nginx/conf/vhosts/yourapp.conf
+    - /path/to/vhost.conf:/bitmoa/nginx/conf/vhosts/yourapp.conf
 ```
 
 ## Maintenance
@@ -270,10 +270,10 @@ Bitnami provides up-to-date versions of Ruby, including security patches, soon a
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/ruby:latest
+docker pull bitmoa/ruby:latest
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/ruby:latest`.
+or if you're using Docker Compose, update the value of the image property to `bitmoa/ruby:latest`.
 
 #### Step 2: Remove the currently running container
 
@@ -292,7 +292,7 @@ docker-compose rm -v ruby
 Re-create your container from the new image.
 
 ```console
-docker run --name ruby bitnami/ruby:latest
+docker run --name ruby bitmoa/ruby:latest
 ```
 
 or using Docker Compose:
@@ -313,21 +313,21 @@ docker-compose up ruby
 
 ### 2.2.3-0-r01 (2015-08-26)
 
-- Permissions fixed so `bitnami` user can install gems without needing `sudo`.
+- Permissions fixed so `bitmoa` user can install gems without needing `sudo`.
 
 ## Using `docker-compose.yaml`
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libcouchdb.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libcouchdb.sh
 
 # Load environment
-. /opt/bitnami/scripts/couchdb-env.sh
+. /opt/bitmoa/scripts/couchdb-env.sh
 
 # Ensure CouchDB environment variables are valid
 couchdb_validate

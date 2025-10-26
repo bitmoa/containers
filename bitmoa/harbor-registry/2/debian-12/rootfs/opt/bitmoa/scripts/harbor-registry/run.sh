@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load harbor-registry environment
-. /opt/bitnami/scripts/harbor-registry-env.sh
+. /opt/bitmoa/scripts/harbor-registry-env.sh
 
 CMD="$(command -v registry)"
 FLAGS=("serve" "/etc/registry/config.yml" "$@")

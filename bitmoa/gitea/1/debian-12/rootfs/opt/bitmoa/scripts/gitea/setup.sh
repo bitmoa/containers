@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libgitea.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libgitea.sh
 
 # Load Gitea environment settings
-. /opt/bitnami/scripts/gitea-env.sh
+. /opt/bitmoa/scripts/gitea-env.sh
 
 # Ensure Gitea environment settings are valid
 gitea_validate

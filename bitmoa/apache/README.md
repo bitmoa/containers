@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name apache bitnami/apache:latest
+docker run --name apache bitmoa/apache:latest
 ```
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Apache in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/apache).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/apache).
 
 ## Why use a non-root container?
 
@@ -49,30 +49,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Apache Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/apache).
+The recommended way to get the Bitnami Apache Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/apache).
 
 ```console
-docker pull bitnami/apache:latest
+docker pull bitmoa/apache:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/apache/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/apache/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/apache:[TAG]
+docker pull bitmoa/apache:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Hosting a static website
@@ -80,7 +80,7 @@ docker build -t bitnami/APP:latest .
 The `/app` path is configured as the Apache [DocumentRoot](https://httpd.apache.org/docs/2.4/urlmapping.html#documentroot). Content mounted here is served by the default catch-all virtual host.
 
 ```console
-docker run --name apache -v /path/to/app:/app bitnami/apache:latest
+docker run --name apache -v /path/to/app:/app bitmoa/apache:latest
 ```
 
 or using Docker Compose:
@@ -90,7 +90,7 @@ version: '2'
 
 services:
   apache:
-    image: bitnami/apache:latest
+    image: bitmoa/apache:latest
     ports:
       - 80:8080
       - 443:8443
@@ -105,7 +105,7 @@ services:
 To access your web server from your host machine you can ask Docker to map a random port on your host to ports `8080` and `8443` exposed in the container.
 
 ```console
-docker run --name apache -P bitnami/apache:latest
+docker run --name apache -P bitmoa/apache:latest
 ```
 
 Run `docker port` to determine the random ports Docker assigned.
@@ -119,7 +119,7 @@ $ docker port apache
 You can also manually specify the ports you want forwarded from your host to the container.
 
 ```console
-docker run -p 8080:8080 -p 8443:8443 bitnami/apache:latest
+docker run -p 8080:8080 -p 8443:8443 bitmoa/apache:latest
 ```
 
 Access your web server in the browser by navigating to `http://localhost:8080/`.
@@ -141,7 +141,7 @@ Access your web server in the browser by navigating to `http://localhost:8080/`.
 | Name                               | Description                                               | Value                             |
 |------------------------------------|-----------------------------------------------------------|-----------------------------------|
 | `WEB_SERVER_TYPE`                  | Web server type                                           | `apache`                          |
-| `APACHE_BASE_DIR`                  | Apache installation directory.                            | `${BITNAMI_ROOT_DIR}/apache`      |
+| `APACHE_BASE_DIR`                  | Apache installation directory.                            | `${BITMOA_ROOT_DIR}/apache`      |
 | `APACHE_BIN_DIR`                   | Apache directory for binary executables.                  | `${APACHE_BASE_DIR}/bin`          |
 | `APACHE_CONF_DIR`                  | Apache configuration directory.                           | `${APACHE_BASE_DIR}/conf`         |
 | `APACHE_DEFAULT_CONF_DIR`          | Apache default configuration directory.                   | `${APACHE_BASE_DIR}/conf.default` |
@@ -166,7 +166,7 @@ version: '2'
 
 services:
   apache:
-    image: bitnami/apache:latest
+    image: bitmoa/apache:latest
     ports:
       - 80:8081
       - 443:8443
@@ -180,12 +180,12 @@ services:
 docker run -d --name apache -p 80:8081 -p 443:443 \
   --network apache-tier \
   --e APACHE_HTTP_PORT_NUMBER=8081 \
-  bitnami/apache:latest
+  bitmoa/apache:latest
 ```
 
 ### Adding custom virtual hosts
 
-The default `httpd.conf` includes virtual hosts placed in `/opt/bitnami/apache/conf/vhosts/`. You can mount a `my_vhost.conf` file containing your custom virtual hosts at the `/vhosts` folder.
+The default `httpd.conf` includes virtual hosts placed in `/opt/bitmoa/apache/conf/vhosts/`. You can mount a `my_vhost.conf` file containing your custom virtual hosts at the `/vhosts` folder.
 
 For example, in order add a vhost for `www.example.com`:
 
@@ -208,7 +208,7 @@ For example, in order add a vhost for `www.example.com`:
 ```console
 docker run --name apache \
   -v /path/to/my_vhost.conf:/vhosts/my_vhost.conf:ro \
-  bitnami/apache:latest
+  bitmoa/apache:latest
 ```
 
 or using Docker Compose:
@@ -218,7 +218,7 @@ version: '2'
 
 services:
   apache:
-    image: bitnami/apache:latest
+    image: bitmoa/apache:latest
     ports:
       - 80:8080
       - 443:8443
@@ -249,7 +249,7 @@ Run the Apache image, mounting the certificates directory from your host.
 ```console
 docker run --name apache \
   -v /path/to/apache-certs:/certs \
-  bitnami/apache:latest
+  bitmoa/apache:latest
 ```
 
 or using Docker Compose:
@@ -259,7 +259,7 @@ version: '2'
 
 services:
   apache:
-    image: bitnami/apache:latest
+    image: bitmoa/apache:latest
     ports:
       - 80:8080
       - 443:8443
@@ -269,12 +269,12 @@ services:
 
 ### Full configuration
 
-The image looks for configurations in `/opt/bitnami/apache/conf`. You can overwrite the `httpd.conf` file using your own custom configuration file.
+The image looks for configurations in `/opt/bitmoa/apache/conf`. You can overwrite the `httpd.conf` file using your own custom configuration file.
 
 ```console
 docker run --name apache \
-  -v /path/to/httpd.conf:/opt/bitnami/apache/conf/httpd.conf \
-  bitnami/apache:latest
+  -v /path/to/httpd.conf:/opt/bitmoa/apache/conf/httpd.conf \
+  bitmoa/apache:latest
 ```
 
 or using Docker Compose:
@@ -284,17 +284,17 @@ version: '2'
 
 services:
   apache:
-    image: bitnami/apache:latest
+    image: bitmoa/apache:latest
     ports:
       - 80:8080
       - 443:8443
     volumes:
-      - /path/to/httpd.conf:/opt/bitnami/apache/conf/httpd.conf
+      - /path/to/httpd.conf:/opt/bitmoa/apache/conf/httpd.conf
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -338,7 +338,7 @@ Before extending this image, please note there are certain configuration setting
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/apache
+FROM bitmoa/apache
 ### Put your customizations below
 ...
 ```
@@ -351,7 +351,7 @@ Here is an example of extending the image with the following modifications:
 - Change the user that runs the container
 
 ```Dockerfile
-FROM bitnami/apache
+FROM bitmoa/apache
 
 ### Change user to perform privileged actions
 USER 0
@@ -361,7 +361,7 @@ RUN install_packages vim
 USER 1001
 
 ### Enable mod_ratelimit module
-RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitnami/apache/conf/httpd.conf
+RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitmoa/apache/conf/httpd.conf
 
 ### Modify the ports used by Apache by default
 ## It is also possible to change these environment variables at runtime
@@ -394,7 +394,7 @@ services:
       - ./certs:/certs
       - data:/app
   cloner:
-    image: bitnami/git:latest
+    image: bitmoa/git:latest
     command:
       - clone
       - https://github.com/cloudacademy/static-website-example
@@ -415,11 +415,11 @@ Bitnami provides up-to-date versions of Apache, including security patches, soon
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/apache:latest
+docker pull bitmoa/apache:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/apache:latest`.
+`bitmoa/apache:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -460,7 +460,7 @@ docker-compose rm -v apache
 Re-create your container from the new image.
 
 ```console
-docker run --name apache bitnami/apache:latest
+docker run --name apache bitmoa/apache:latest
 ```
 
 or using Docker Compose:
@@ -471,7 +471,7 @@ docker-compose up apache
 
 ## Useful Links
 
-- [Create An AMP Development Environment With Bitnami Containers](https://docs.bitnami.com/containers/how-to/create-amp-environment-containers/)
+- [Create An AMP Development Environment With Bitnami Containers](https://docs.bitmoa.com/containers/how-to/create-amp-environment-containers/)
 
 ## Notable Changes
 
@@ -511,8 +511,8 @@ docker-compose up apache
 ### 2.4.39-debian-9-r40 and 2.4.39-ol-7-r50
 
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
-- The Apache configuration volume (`/bitnami/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitnami/apache/conf`, or mount specific configuration files individually.
-- Enabling custom Apache certificates by placing them at `/opt/bitnami/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`. Find an example at [Using custom SSL certificates](#using-custom-ssl-certificates).
+- The Apache configuration volume (`/bitmoa/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/apache/conf`, or mount specific configuration files individually.
+- Enabling custom Apache certificates by placing them at `/opt/bitmoa/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`. Find an example at [Using custom SSL certificates](#using-custom-ssl-certificates).
 
 ### 2.4.34-r8
 
@@ -520,7 +520,7 @@ docker-compose up apache
 
 ### 2.4.18-r0
 
-- The configuration volume has been moved to `/bitnami/apache`. Now you only need to mount a single volume at `/bitnami/apache` for persisting configuration. `/app` is still used for serving content by the default virtual host.
+- The configuration volume has been moved to `/bitmoa/apache`. Now you only need to mount a single volume at `/bitmoa/apache` for persisting configuration. `/app` is still used for serving content by the default virtual host.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 ### 2.4.12-4-r01
@@ -529,17 +529,17 @@ docker-compose up apache
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/apache).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/apache).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

@@ -3,7 +3,7 @@
 
 services:
   mongodb-sharded:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-sharded
       - MONGODB_SHARDING_MODE=mongos
@@ -15,7 +15,7 @@ services:
       - "27017:27017"
 
   mongodb-sharded-2:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-sharded-2
       - MONGODB_SHARDING_MODE=mongos
@@ -25,7 +25,7 @@ services:
       - MONGODB_ROOT_PASSWORD=password123
 
   mongodb-shard0-primary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard0-primary
       - MONGODB_SHARDING_MODE=shardsvr
@@ -35,10 +35,10 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_REPLICA_SET_NAME=shard0
     volumes:
-      - 'shard0_data:/bitnami'
+      - 'shard0_data:/bitmoa'
 
   mongodb-shard0-secondary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     depends_on:
       - mongodb-shard0-primary
     environment:
@@ -50,10 +50,10 @@ services:
       - MONGODB_SHARDING_MODE=shardsvr
       - MONGODB_REPLICA_SET_NAME=shard0
     volumes:
-      - 'shard0_sec_data:/bitnami'
+      - 'shard0_sec_data:/bitmoa'
 
   mongodb-shard1-primary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard1-primary
       - MONGODB_SHARDING_MODE=shardsvr
@@ -63,10 +63,10 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_REPLICA_SET_NAME=shard1
     volumes:
-      - 'shard1_data:/bitnami'
+      - 'shard1_data:/bitmoa'
 
   mongodb-shard1-secondary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     depends_on:
       - mongodb-shard1-primary
     environment:
@@ -78,10 +78,10 @@ services:
       - MONGODB_SHARDING_MODE=shardsvr
       - MONGODB_REPLICA_SET_NAME=shard1
     volumes:
-      - 'shard1_sec_data:/bitnami'
+      - 'shard1_sec_data:/bitmoa'
 
   mongodb-shard2-primary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-shard2-primary
       - MONGODB_SHARDING_MODE=shardsvr
@@ -91,10 +91,10 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_REPLICA_SET_NAME=shard2
     volumes:
-      - 'shard2_data:/bitnami'
+      - 'shard2_data:/bitmoa'
 
   mongodb-shard2-secondary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     depends_on:
       - mongodb-shard2-primary
     environment:
@@ -106,10 +106,10 @@ services:
       - MONGODB_SHARDING_MODE=shardsvr
       - MONGODB_REPLICA_SET_NAME=shard2
     volumes:
-      - 'shard2_sec_data:/bitnami'
+      - 'shard2_sec_data:/bitmoa'
 
   mongodb-cfg-primary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-cfg-primary
       - MONGODB_SHARDING_MODE=configsvr
@@ -118,10 +118,10 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_REPLICA_SET_NAME=cfgreplicaset
     volumes:
-      - 'cfg_data:/bitnami'
+      - 'cfg_data:/bitmoa'
 
   mongodb-cfg-secondary:
-    image: docker.io/bitnami/mongodb-sharded:8.2
+    image: ghcr.io/bitmoa/mongodb-sharded:8.2
     depends_on:
       - mongodb-cfg-primary
     environment:
@@ -133,7 +133,7 @@ services:
       - MONGODB_REPLICA_SET_NAME=cfgreplicaset
       - MONGODB_SHARDING_MODE=configsvr
     volumes:
-      - 'cfg_sec_data:/bitnami'
+      - 'cfg_sec_data:/bitmoa'
 
 volumes:
   shard0_data:

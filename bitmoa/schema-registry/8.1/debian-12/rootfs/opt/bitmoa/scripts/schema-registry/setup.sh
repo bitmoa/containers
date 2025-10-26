@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libschemaregistry.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libschemaregistry.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Schema Registry environment variables
-. /opt/bitnami/scripts/schema-registry-env.sh
+. /opt/bitmoa/scripts/schema-registry-env.sh
 
 # Ensure Schema Registry environment variables are valid
 schema_registry_validate

@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libkeycloak.sh
+. /opt/bitmoa/scripts/libkeycloak.sh
 
 # Load Keycloak environment variables
-. /opt/bitnami/scripts/keycloak-env.sh
+. /opt/bitmoa/scripts/keycloak-env.sh
 
 # Ensure Keycloak environment variables are valid
 keycloak_validate

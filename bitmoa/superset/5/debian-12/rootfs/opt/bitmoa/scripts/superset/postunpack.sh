@@ -10,15 +10,15 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Superset environment variables
-. /opt/bitnami/scripts/superset-env.sh
+. /opt/bitmoa/scripts/superset-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libsuperset.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libsuperset.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Copy superset configuration file
-cp "${BITNAMI_ROOT_DIR}/scripts/superset/files/superset_config.py" "${SUPERSET_BASE_DIR}/superset_config.py"
+cp "${BITMOA_ROOT_DIR}/scripts/superset/files/superset_config.py" "${SUPERSET_BASE_DIR}/superset_config.py"
 
 ensure_dir_exists "$SUPERSET_BASE_DIR"
 # Ensure the needed directories exist with write permissions

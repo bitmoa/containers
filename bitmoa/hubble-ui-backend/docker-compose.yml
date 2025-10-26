@@ -3,4 +3,4 @@
   
 services:
   hubble-ui-backend:
-    image: docker.io/bitnami/hubble-ui-backend:0
+    image: ghcr.io/bitmoa/hubble-ui-backend:0

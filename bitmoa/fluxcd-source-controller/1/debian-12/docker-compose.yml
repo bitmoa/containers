@@ -3,4 +3,4 @@
 
 services:
   fluxcd-source-controller:
-    image: docker.io/bitnami/fluxcd-source-controller:1
+    image: ghcr.io/bitmoa/fluxcd-source-controller:1

@@ -11,13 +11,13 @@ set -o nounset
 set -o pipefail
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpostgresql.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpostgresql.sh
 
 # Load PostgreSQL environment variables
-. /opt/bitnami/scripts/postgresql-env.sh
+. /opt/bitmoa/scripts/postgresql-env.sh
 
 # Ensure PostgreSQL environment variables settings are valid
 postgresql_validate

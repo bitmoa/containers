@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Jenkins Agent environment
-. /opt/bitnami/scripts/jenkins-agent-env.sh
+. /opt/bitmoa/scripts/jenkins-agent-env.sh
 
 print_welcome_page
 
@@ -25,7 +25,7 @@ if am_i_root; then
     ensure_user_exists "$JENKINS_AGENT_DAEMON_USER" --group "$JENKINS_AGENT_DAEMON_GROUP" --home "$JENKINS_AGENT_WORKDIR" --system
 else
     export LNAME="jenkins"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if ! user_exists "$(id -u)" && [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"

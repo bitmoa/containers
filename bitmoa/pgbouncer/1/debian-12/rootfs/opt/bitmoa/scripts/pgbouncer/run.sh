@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load pgbouncer environment
-. /opt/bitnami/scripts/pgbouncer-env.sh
+. /opt/bitmoa/scripts/pgbouncer-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libpgbouncer.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libpgbouncer.sh
 
 flags=("$PGBOUNCER_CONF_FILE")
 cmd=$(command -v pgbouncer)

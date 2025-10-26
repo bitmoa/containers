@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Jenkins Agent environment
-. /opt/bitnami/scripts/jenkins-agent-env.sh
+. /opt/bitmoa/scripts/jenkins-agent-env.sh
 
 # Ensure required directories exist
 chmod g+rwX "$JENKINS_AGENT_BASE_DIR"

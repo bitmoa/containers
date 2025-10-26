@@ -10,18 +10,18 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libnginx.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libnginx.sh
 
 # Load NGINX environment variables
-. /opt/bitnami/scripts/nginx-env.sh
+. /opt/bitmoa/scripts/nginx-env.sh
 
 print_welcome_page
 
-if [[ "$1" = "/opt/bitnami/scripts/nginx/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/nginx/run.sh" ]]; then
     info "** Starting harbor-portal setup **"
-    /opt/bitnami/scripts/nginx/setup.sh
-    /opt/bitnami/scripts/harbor-portal/setup.sh
+    /opt/bitmoa/scripts/nginx/setup.sh
+    /opt/bitmoa/scripts/harbor-portal/setup.sh
     info "** harbor-portal setup finished! **"
 fi
 

@@ -10,9 +10,9 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libapache.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libapache.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 ########################
 # Sets up the default Bitnami configuration
@@ -23,8 +23,8 @@ set -o pipefail
 # Returns:
 #   None
 #########################
-apache_setup_bitnami_config() {
-    local template_dir="${BITNAMI_ROOT_DIR}/scripts/apache/bitnami-templates"
+apache_setup_bitmoa_config() {
+    local template_dir="${BITMOA_ROOT_DIR}/scripts/apache/bitmoa-templates"
 
     # Enable Apache modules
     local -a modules_to_enable=(
@@ -54,9 +54,9 @@ apache_setup_bitnami_config() {
     done
 
     # Bitnami customizations
-    ensure_dir_exists "${APACHE_CONF_DIR}/bitnami"
-    render-template "${template_dir}/bitnami.conf.tpl" > "${APACHE_CONF_DIR}/bitnami/bitnami.conf"
-    render-template "${template_dir}/bitnami-ssl.conf.tpl" > "${APACHE_CONF_DIR}/bitnami/bitnami-ssl.conf"
+    ensure_dir_exists "${APACHE_CONF_DIR}/bitmoa"
+    render-template "${template_dir}/bitmoa.conf.tpl" > "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf"
+    render-template "${template_dir}/bitmoa-ssl.conf.tpl" > "${APACHE_CONF_DIR}/bitmoa/bitmoa-ssl.conf"
 
     # Add new configuration only once, to avoid a second postunpack run breaking Apache
     local apache_conf_add
@@ -67,24 +67,24 @@ TraceEnable Off
 ServerTokens ${APACHE_SERVER_TOKENS}
 Include "${APACHE_CONF_DIR}/deflate.conf"
 IncludeOptional "${APACHE_VHOSTS_DIR}/*.conf"
-Include "${APACHE_CONF_DIR}/bitnami/bitnami.conf"
+Include "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf"
 EOF
 )"
-    ensure_apache_configuration_exists "$apache_conf_add" "${APACHE_CONF_DIR}/bitnami/bitnami.conf"
+    ensure_apache_configuration_exists "$apache_conf_add" "${APACHE_CONF_DIR}/bitmoa/bitmoa.conf"
 
     # Configure the default ports since the container is non root by default
     apache_configure_http_port "$APACHE_DEFAULT_HTTP_PORT_NUMBER"
     apache_configure_https_port "$APACHE_DEFAULT_HTTPS_PORT_NUMBER"
 
-    # Patch the HTTPoxy vulnerability - see: https://docs.bitnami.com/general/security/security-2016-07-18/
+    # Patch the HTTPoxy vulnerability - see: https://docs.bitmoa.com/general/security/security-2016-07-18/
     apache_patch_httpoxy_vulnerability
 
     # Remove unnecessary directories that come with the tarball
-    rm -rf "${BITNAMI_ROOT_DIR}/certs" "${BITNAMI_ROOT_DIR}/conf"
+    rm -rf "${BITMOA_ROOT_DIR}/certs" "${BITMOA_ROOT_DIR}/conf"
 }
 
 ########################
-# Patches the HTTPoxy vulnerability - see: https://docs.bitnami.com/general/security/security-2016-07-18/
+# Patches the HTTPoxy vulnerability - see: https://docs.bitmoa.com/general/security/security-2016-07-18/
 # Globals:
 #   APACHE_CONF_FILE
 # Arguments:
@@ -104,9 +104,9 @@ EOF
 }
 
 # Load Apache environment
-. /opt/bitnami/scripts/apache-env.sh
+. /opt/bitmoa/scripts/apache-env.sh
 
-apache_setup_bitnami_config
+apache_setup_bitmoa_config
 
 # Ensure non-root user has write permissions on a set of directories
 chmod g+w "$APACHE_BASE_DIR"
@@ -116,7 +116,7 @@ for dir in "$APACHE_TMP_DIR" "$APACHE_CONF_DIR" "$APACHE_LOGS_DIR" "$APACHE_VHOS
 done
 
 # Create 'apache2' symlink pointing to the 'apache' directory, for compatibility with Bitnami Docs guides
-ln -sf apache "${BITNAMI_ROOT_DIR}/apache2"
+ln -sf apache "${BITMOA_ROOT_DIR}/apache2"
 
 ln -sf "/dev/stdout" "${APACHE_LOGS_DIR}/access_log"
 ln -sf "/dev/stderr" "${APACHE_LOGS_DIR}/error_log"

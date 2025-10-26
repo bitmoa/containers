@@ -10,21 +10,21 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load phpMyAdmin environment
-. /opt/bitnami/scripts/phpmyadmin-env.sh
+. /opt/bitmoa/scripts/phpmyadmin-env.sh
 
 # Load PHP environment, for 'php_conf_set'
 # Must be loaded after phpMyAdmin environment file, to avoid MODULE being set to 'php'
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libphpmyadmin.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libphpmyadmin.sh
 
 # Load web server environment and functions (after phpMyAdmin environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # Enable phpMyAdmin configuration file
 [[ ! -f "$PHPMYADMIN_CONF_FILE" ]] && cp "${PHPMYADMIN_BASE_DIR}/config.sample.inc.php" "$PHPMYADMIN_CONF_FILE"
@@ -62,4 +62,4 @@ php_conf_set memory_limit "$PHP_DEFAULT_MEMORY_LIMIT"
 
 # Copy all initially generated configuration files to the default directory
 # (this is to avoid breaking when entrypoint is being overridden)
-cp -r "/opt/bitnami/$(web_server_type)/conf"/* "/opt/bitnami/$(web_server_type)/conf.default"
+cp -r "/opt/bitmoa/$(web_server_type)/conf"/* "/opt/bitmoa/$(web_server_type)/conf.default"

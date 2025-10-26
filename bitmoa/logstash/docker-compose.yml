@@ -3,11 +3,11 @@
 
 services:
   logstash:
-    image: docker.io/bitnami/logstash:9.1
+    image: ghcr.io/bitmoa/logstash:9.1
     ports:
       - 8080:8080
     volumes:
-      - logstash_data:/bitnami
+      - logstash_data:/bitmoa
 volumes:
   logstash_data:
     driver: local

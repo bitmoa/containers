@@ -3,12 +3,12 @@
 
 services:
   postgresql:
-    image: docker.io/bitnami/postgresql:latest
+    image: ghcr.io/bitmoa/postgresql:latest
     environment:
       - POSTGRESQL_DATABASE=myapp
       - ALLOW_EMPTY_PASSWORD=yes
   express:
-    image: docker.io/bitnami/express:5
+    image: ghcr.io/bitmoa/express:5
     ports:
       - '3000:3000'
     environment:

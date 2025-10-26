@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libmysqlclient.sh
+. /opt/bitmoa/scripts/libmysqlclient.sh
 
 # Load MySQL Client environment variables
-. /opt/bitnami/scripts/mysql-client-env.sh
+. /opt/bitmoa/scripts/mysql-client-env.sh
 
 # Ensure MySQL Client environment variables settings are valid
 mysql_client_validate

@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name gitea bitnami/gitea:latest
+docker run --name gitea bitmoa/gitea:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,62 +33,62 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Gitea in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Gitea Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/gitea).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Gitea Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/gitea).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Gitea Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/gitea).
+The recommended way to get the Bitnami Gitea Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/gitea).
 
 ```console
-docker pull bitnami/gitea:latest
+docker pull bitmoa/gitea:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/gitea/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/gitea/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/gitea:[TAG]
+docker pull bitmoa/gitea:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/gitea` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/gitea` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    --volume /path/to/gitea-persistence:/bitnami/gitea \
+    --volume /path/to/gitea-persistence:/bitmoa/gitea \
     --env ALLOM_EMPTY_PASSWORD=false \
-    bitnami/gitea:latest
+    bitmoa/gitea:latest
 ```
 
-You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/gitea/docker-compose.yml) file present in this repository:
+You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/gitea/docker-compose.yml) file present in this repository:
 
 ```console
 gitea:
   ...
   volumes:
-    - /path/to/gitea-persistence:/bitnami/gitea
+    - /path/to/gitea-persistence:/bitmoa/gitea
   ...
 ```
 
@@ -116,7 +116,7 @@ Use the `--network <NETWORK>` argument to the `docker run` command to attach the
 docker run -d --name gitea-server \
   --network my-network \
   --env ALLOW_EMPTY_PASSWORD=yes \
-  bitnami/gitea:latest
+  bitmoa/gitea:latest
 ```
 
 #### Step 3: Launch your Gitea client instance
@@ -126,7 +126,7 @@ Finally we create a new container instance to launch the Gitea client and connec
 ```console
 docker run -it --rm \
     --network my-network \
-    bitnami/gitea:latest gitea-client --host gitea-server
+    bitmoa/gitea:latest gitea-client --host gitea-server
 ```
 
 ### Using a Docker Compose file
@@ -142,7 +142,7 @@ networks:
 
 services:
   gitea:
-    image: bitnami/gitea:latest
+    image: bitmoa/gitea:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=no
     networks:
@@ -180,8 +180,8 @@ Gitea can be configured via environment variables or using a configuration file 
 | `GITEA_LOG_MODE`                                | Gitea log mode.                                                                                                   | `nil`                                                    |
 | `GITEA_LOG_ROUTER`                              | Gitea log router.                                                                                                 | `nil`                                                    |
 | `GITEA_ADMIN_USER`                              | Admin username.                                                                                                   | `bn_user`                                                |
-| `GITEA_ADMIN_PASSWORD`                          | Admin password.                                                                                                   | `bitnami`                                                |
-| `GITEA_ADMIN_EMAIL`                             | Admin user email.                                                                                                 | `user@bitnami.org`                                       |
+| `GITEA_ADMIN_PASSWORD`                          | Admin password.                                                                                                   | `bitmoa`                                                |
+| `GITEA_ADMIN_EMAIL`                             | Admin user email.                                                                                                 | `user@bitmoa.org`                                       |
 | `GITEA_APP_NAME`                                | Application name, used in the page title                                                                          | `Gitea: Git with a cup of tea`                           |
 | `GITEA_RUN_MODE`                                | Application run mode, affects performance and debugging. Either "dev", "prod" or "test".                          | `prod`                                                   |
 | `GITEA_DOMAIN`                                  | Domain name of this server.                                                                                       | `localhost`                                              |
@@ -198,7 +198,7 @@ Gitea can be configured via environment variables or using a configuration file 
 | `GITEA_DATABASE_TYPE`                           | The database type in use [mysql, postgres].                                                                       | `postgres`                                               |
 | `GITEA_DATABASE_HOST`                           | Database host address.                                                                                            | `postgresql`                                             |
 | `GITEA_DATABASE_PORT_NUMBER`                    | Database host port.                                                                                               | `5432`                                                   |
-| `GITEA_DATABASE_NAME`                           | Database name.                                                                                                    | `bitnami_gitea`                                          |
+| `GITEA_DATABASE_NAME`                           | Database name.                                                                                                    | `bitmoa_gitea`                                          |
 | `GITEA_DATABASE_USERNAME`                       | Database username.                                                                                                | `bn_gitea`                                               |
 | `GITEA_DATABASE_PASSWORD`                       | Database password.                                                                                                | `nil`                                                    |
 | `GITEA_DATABASE_SSL_MODE`                       | Database SSL mode.                                                                                                | `disable`                                                |
@@ -217,7 +217,7 @@ Gitea can be configured via environment variables or using a configuration file 
 
 | Name                    | Description                                                                                                                 | Value                         |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------|
-| `GITEA_BASE_DIR`        | Gitea installation directory.                                                                                               | `${BITNAMI_ROOT_DIR}/gitea`   |
+| `GITEA_BASE_DIR`        | Gitea installation directory.                                                                                               | `${BITMOA_ROOT_DIR}/gitea`   |
 | `GITEA_WORK_DIR`        | Gitea installation directory.                                                                                               | `${GITEA_BASE_DIR}`           |
 | `GITEA_CUSTOM_DIR`      | Gitea configuration directory.                                                                                              | `${GITEA_BASE_DIR}/custom`    |
 | `GITEA_TMP_DIR`         | Gitea TEMP directory.                                                                                                       | `${GITEA_BASE_DIR}/tmp`       |
@@ -225,19 +225,19 @@ Gitea can be configured via environment variables or using a configuration file 
 | `GITEA_CONF_DIR`        | Gitea configuration directory.                                                                                              | `${GITEA_CUSTOM_DIR}/conf`    |
 | `GITEA_CONF_FILE`       | Gitea configuration file.                                                                                                   | `${GITEA_CONF_DIR}/app.ini`   |
 | `GITEA_PID_FILE`        | Gitea PID file.                                                                                                             | `${GITEA_TMP_DIR}/gitea.pid`  |
-| `GITEA_VOLUME_DIR`      | Gitea directory for mounted configuration files.                                                                            | `${BITNAMI_VOLUME_DIR}/gitea` |
+| `GITEA_VOLUME_DIR`      | Gitea directory for mounted configuration files.                                                                            | `${BITMOA_VOLUME_DIR}/gitea` |
 | `GITEA_DATA_TO_PERSIST` | Files to persist relative to the Gitea installation directory. To provide multiple values, separate them with a whitespace. | `${GITEA_CONF_FILE} data`     |
 | `GITEA_DAEMON_USER`     | Gitea daemon system user.                                                                                                   | `gitea`                       |
 | `GITEA_DAEMON_GROUP`    | Gitea daemon system group.                                                                                                  | `gitea`                       |
 
 ### Configuration overrides
 
-The configuration can easily be setup by mounting your own configuration overrides on the directory `/bitnami/gitea/custom/conf/app.ini`:
+The configuration can easily be setup by mounting your own configuration overrides on the directory `/bitmoa/gitea/custom/conf/app.ini`:
 
 ```console
 docker run --name gitea \
-    --volume /path/to/override.ini:/bitnami/gitea/custom/conf/app.ini:ro \
-    bitnami/gitea:latest
+    --volume /path/to/override.ini:/bitmoa/gitea/custom/conf/app.ini:ro \
+    bitmoa/gitea:latest
 ```
 
 or using Docker Compose:
@@ -247,9 +247,9 @@ version: '2'
 
 services:
   gitea:
-    image: bitnami/gitea:latest
+    image: bitmoa/gitea:latest
     volumes:
-      - /path/to/override.ini:/bitnami/gitea/custom/conf/app.ini:ro
+      - /path/to/override.ini:/bitmoa/gitea/custom/conf/app.ini:ro
 ```
 
 Check the [official gitea configuration documentation](https://docs.gitea.io/en-us/config-cheat-sheet/) for all the possible overrides and settings.
@@ -263,10 +263,10 @@ In order to have your custom files inside the docker image you can mount them as
 Passing the `GITEA_ADMIN_PASSWORD` environment variable when running the image for the first time will set the password of the `GITEA_ADMIN_USER`/`GITEA_ADMIN_EMAIL` user to the value of `GITEA_ADMIN_PASSWORD`.
 
 ```console
-docker run --name gitea -e GITEA_ADMIN_PASSWORD=password123 bitnami/gitea:latest
+docker run --name gitea -e GITEA_ADMIN_PASSWORD=password123 bitmoa/gitea:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/gitea/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/gitea/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -279,7 +279,7 @@ services:
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Gitea Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Gitea Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -302,10 +302,10 @@ Bitnami provides up-to-date versions of Gitea, including security patches, soon 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/gitea:latest
+docker pull bitmoa/gitea:latest
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/gitea:latest`.
+or if you're using Docker Compose, update the value of the image property to `bitmoa/gitea:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -344,7 +344,7 @@ docker-compose rm -v gitea
 Re-create your container from the new image.
 
 ```console
-docker run --name gitea bitnami/gitea:latest
+docker run --name gitea bitmoa/gitea:latest
 ```
 
 or using Docker Compose:
@@ -355,17 +355,17 @@ docker-compose up gitea
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/gitea).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/gitea).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

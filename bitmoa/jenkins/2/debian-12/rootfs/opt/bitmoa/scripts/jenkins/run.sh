@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libjenkins.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libjenkins.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load Jenkins environment
-. /opt/bitnami/scripts/jenkins-env.sh
+. /opt/bitmoa/scripts/jenkins-env.sh
 
 declare -a args
 if [[ -n "${JAVA_OPTS:-}" ]]; then

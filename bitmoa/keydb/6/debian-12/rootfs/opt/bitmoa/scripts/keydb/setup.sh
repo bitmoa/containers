@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load KeyDB environment variables
-. /opt/bitnami/scripts/keydb-env.sh
+. /opt/bitmoa/scripts/keydb-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libkeydb.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libkeydb.sh
 
 # Ensure KeyDB environment variables settings are valid
 keydb_validate

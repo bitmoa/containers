@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblogstash.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblogstash.sh
 
 # Load Logstash environment variables
-. /opt/bitnami/scripts/logstash-env.sh
+. /opt/bitmoa/scripts/logstash-env.sh
 
 info "Creating Logstash daemon user"
 ensure_user_exists "$LOGSTASH_DAEMON_USER" --group "$LOGSTASH_DAEMON_GROUP"
@@ -55,9 +55,9 @@ EOF
 
 logstash_install_plugins
 
-# As the gems directory depends on the jruby version, we need to create a symlink /opt/bitnami/logstash/gems
+# As the gems directory depends on the jruby version, we need to create a symlink /opt/bitmoa/logstash/gems
 # so we can mount an emptydir in readOnlyRootFilesystem
-ln -s /opt/bitnami/logstash/vendor/bundle/jruby/*/gems /opt/bitnami/logstash/gems
+ln -s /opt/bitmoa/logstash/vendor/bundle/jruby/*/gems /opt/bitmoa/logstash/gems
 
 # Copy all initially generated configuration files to the default directory
 # (this is to avoid breaking when entrypoint is being overridden)

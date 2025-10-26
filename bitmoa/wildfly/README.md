@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name wildfly bitnami/wildfly:latest
+docker run --name wildfly bitmoa/wildfly:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,11 +33,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy WildFly in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami WildFly Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/wildfly).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami WildFly Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/wildfly).
 
 ## Why use a non-root container?
 
@@ -47,52 +47,52 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami WildFly Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/wildfly).
+The recommended way to get the Bitnami WildFly Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/wildfly).
 
 ```console
-docker pull bitnami/wildfly:latest
+docker pull bitmoa/wildfly:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/wildfly/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/wildfly/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/wildfly:[TAG]
+docker pull bitmoa/wildfly:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/wildfly` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/wildfly` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run -p 8080:8080 -p 9990:9990 \
-    -v /path/to/wildfly-persistence:/bitnami/wildfly \
-    bitnami/wildfly:latest
+    -v /path/to/wildfly-persistence:/bitmoa/wildfly \
+    bitmoa/wildfly:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/wildfly/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wildfly/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   wildfly:
   ...
     volumes:
-      - /path/to/wildfly-persistence:/bitnami/wildfly
+      - /path/to/wildfly-persistence:/bitmoa/wildfly
   ...
 ```
 
@@ -100,7 +100,7 @@ services:
 
 ## Deploying web applications on WildFly
 
-The Bitnami WildFly image launches WildFLy in standalone mode. Therefore, you can deploy your web applications by placing your compressed web application resource (`.WAR`) files there at `/opt/bitnami/wildfly/standalone/` directory.
+The Bitnami WildFly image launches WildFLy in standalone mode. Therefore, you can deploy your web applications by placing your compressed web application resource (`.WAR`) files there at `/opt/bitmoa/wildfly/standalone/` directory.
 
 Additionally a helper symlink `/app` is present that points to the deployments directory which enables us to deploy applications on a running WildFly instance by simply doing:
 
@@ -117,7 +117,7 @@ Find more information about the directory structue at [WildFly official document
 The Bitnami WildFly image exposes the application server on port `8080` and the management console on port `9990`. To access your web server from your host machine you can ask Docker to map random ports on your host to the ports `8080` and `9990` of the container.
 
 ```console
-docker run --name wildfly -P bitnami/wildfly:latest
+docker run --name wildfly -P bitmoa/wildfly:latest
 ```
 
 Run `docker port` to determine the random ports Docker assigned.
@@ -131,7 +131,7 @@ $ docker port wildfly
 You can also manually specify the ports you want forwarded from your host to the container.
 
 ```console
-docker run -p 8080:8080 -p 9990:9990 bitnami/wildfly:latest
+docker run -p 8080:8080 -p 9990:9990 bitmoa/wildfly:latest
 ```
 
 Access your web server in the browser by navigating to `http://localhost:8080` to access the application server and `http://localhost:9990/console` to access the management console.
@@ -157,7 +157,7 @@ Use the `--network wildfly-tier` argument to the `docker run` command to attach 
 ```console
 docker run -d --name wildfly-server \
     --network wildfly-tier \
-    bitnami/wildfly:latest
+    bitmoa/wildfly:latest
 ```
 
 #### Step 3: Launch your WildFly client instance
@@ -167,7 +167,7 @@ Finally we create a new container instance to launch the WildFly client and conn
 ```console
 docker run -it --rm \
     --network wildfly-tier \
-    bitnami/wildfly:latest \
+    bitmoa/wildfly:latest \
     jboss-cli.sh --controller=wildfly-server:9990 --connect
 ```
 
@@ -197,7 +197,7 @@ $ docker exec -it wildfly-server \
 | `WILDFLY_MANAGEMENT_PORT_NUMBER`    | Port number used by the WildFly management interface.                                         | `nil`                                   |
 | `WILDFLY_USERNAME`                  | WildFly admin username.                                                                       | `user`                                  |
 | `WILDFLY_PASSWORD`                  | WildFly admin user password.                                                                  | `nil`                                   |
-| `JAVA_HOME`                         | Java Home directory.                                                                          | `${BITNAMI_ROOT_DIR}/java`              |
+| `JAVA_HOME`                         | Java Home directory.                                                                          | `${BITMOA_ROOT_DIR}/java`              |
 | `JAVA_OPTS`                         | Java options.                                                                                 | `nil`                                   |
 | `JAVA_TOOL_OPTIONS`                 | Java tool options.                                                                            | `nil`                                   |
 
@@ -205,7 +205,7 @@ $ docker exec -it wildfly-server \
 
 | Name                                        | Description                                                                      | Value                                          |
 |---------------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------|
-| `WILDFLY_BASE_DIR`                          | WildFly installation directory.                                                  | `${BITNAMI_ROOT_DIR}/wildfly`                  |
+| `WILDFLY_BASE_DIR`                          | WildFly installation directory.                                                  | `${BITMOA_ROOT_DIR}/wildfly`                  |
 | `WILDFLY_HOME_DIR`                          | WildFly user home directory.                                                     | `/home/wildfly`                                |
 | `WILDFLY_BIN_DIR`                           | WildFly directory for binary executables.                                        | `${WILDFLY_BASE_DIR}/bin`                      |
 | `WILDFLY_CONF_DIR`                          | WildFly server configuration directory.                                          | `${WILDFLY_BASE_DIR}/standalone/configuration` |
@@ -216,7 +216,7 @@ $ docker exec -it wildfly-server \
 | `WILDFLY_DEFAULT_DOMAIN_DIR`                | Wildfly default domain directory.                                                | `${WILDFLY_BASE_DIR}/domain.default`           |
 | `WILDFLY_DEFAULT_STANDALONE_DIR`            | Wildfly default standalone directory.                                            | `${WILDFLY_BASE_DIR}/standalone.default`       |
 | `WILDFLY_PID_FILE`                          | Path to the WildFly PID file.                                                    | `${WILDFLY_TMP_DIR}/wildfly.pid`               |
-| `WILDFLY_VOLUME_DIR`                        | WildFly directory for mounted configuration files.                               | `${BITNAMI_VOLUME_DIR}/wildfly`                |
+| `WILDFLY_VOLUME_DIR`                        | WildFly directory for mounted configuration files.                               | `${BITMOA_VOLUME_DIR}/wildfly`                |
 | `WILDFLY_DAEMON_USER`                       | WildFly system user.                                                             | `wildfly`                                      |
 | `WILDFLY_DAEMON_GROUP`                      | WildFly system group.                                                            | `wildfly`                                      |
 | `WILDFLY_DEFAULT_SERVER_LISTEN_ADDRESS`     | Default WildFLY SERVER listen address to enable at build time.                   | `0.0.0.0`                                      |
@@ -229,7 +229,7 @@ $ docker exec -it wildfly-server \
 
 ### Creating a custom user
 
-By default, a management user named `user` is created with the default password `bitnami`. Passing the `WILDFLY_PASSWORD` environment variable when running the image for the first time will set the password of this user to the value of `WILDFLY_PASSWORD`.
+By default, a management user named `user` is created with the default password `bitmoa`. Passing the `WILDFLY_PASSWORD` environment variable when running the image for the first time will set the password of this user to the value of `WILDFLY_PASSWORD`.
 
 Additionally you can specify a user name for the management user using the `WILDFLY_USERNAME` environment variable. When not specified, the `WILDFLY_PASSWORD` configuration is applied on the default user (`user`).
 
@@ -237,10 +237,10 @@ Additionally you can specify a user name for the management user using the `WILD
 docker run --name wildfly \
     -e WILDFLY_USERNAME=my_user \
     -e WILDFLY_PASSWORD=my_password \
-    bitnami/wildfly:latest
+    bitmoa/wildfly:latest
 ```
 
-or modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/wildfly/docker-compose.yml) file present in this repository:
+or modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wildfly/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -254,22 +254,22 @@ services:
 
 ### Full configuration
 
-The image looks for configurations (e.g. `standalone.xml`) in the `/bitnami/wildfly/configuration/` directory, this directory can be changed by setting the `WILDFLY_MOUNTED_CONF_DIR` environment variable.
+The image looks for configurations (e.g. `standalone.xml`) in the `/bitmoa/wildfly/configuration/` directory, this directory can be changed by setting the `WILDFLY_MOUNTED_CONF_DIR` environment variable.
 
 ```console
 docker run --name wildfly \
-    -v /path/to/standalone.xml:/bitnami/wildfly/configuration/standalone.xml \
-    bitnami/wildfly:latest
+    -v /path/to/standalone.xml:/bitmoa/wildfly/configuration/standalone.xml \
+    bitmoa/wildfly:latest
 ```
 
-Alternatively, modify the [docker-compose.yml](https://github.com/bitnami/containers/blob/main/bitnami/wildfly/docker-compose.yml) file present in this repository:
+Alternatively, modify the [docker-compose.yml](https://github.com/bitmoa/containers/blob/main/bitmoa/wildfly/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   wildfly:
     ...
     volumes:
-      - /path/to/standalone.xml:/bitnami/wildfly/configuration/standalone.xml:ro
+      - /path/to/standalone.xml:/bitmoa/wildfly/configuration/standalone.xml:ro
     ...
 ```
 
@@ -277,7 +277,7 @@ After that, your changes will be taken into account in the server's behaviour.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami WildFly Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami WildFly Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -306,10 +306,10 @@ Bitnami provides up-to-date versions of WildFly, including security patches, soo
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/wildfly:latest
+docker pull bitmoa/wildfly:latest
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/wildfly:latest`.
+or if you're using Docker Compose, update the value of the image property to `bitmoa/wildfly:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -348,7 +348,7 @@ docker-compose rm -v wildfly
 Re-create your container from the new image.
 
 ```console
-docker run --name wildfly bitnami/wildfly:latest
+docker run --name wildfly bitmoa/wildfly:latest
 ```
 
 or using Docker Compose:
@@ -379,22 +379,22 @@ Consequences:
 
 ### 10.0.0-r0
 
-- All volumes have been merged at `/bitnami/wildfly`. Now you only need to mount a single volume at `/bitnami/wildfly` for persistence.
+- All volumes have been merged at `/bitmoa/wildfly`. Now you only need to mount a single volume at `/bitmoa/wildfly` for persistence.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/wildfly).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/wildfly).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

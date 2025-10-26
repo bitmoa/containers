@@ -3,31 +3,31 @@
 
 services:
   zookeeper:
-    image: docker.io/bitnami/zookeeper:3.9
+    image: ghcr.io/bitmoa/zookeeper:3.9
     ports:
       - '2181'
     volumes:
-      - zookeeper_data:/bitnami
+      - zookeeper_data:/bitmoa
     environment:
       - ZOO_SERVER_ID=1
       - ALLOW_ANONYMOUS_LOGIN=yes
       - ZOO_SERVERS=zookeeper:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
   zookeeper2:
-    image: docker.io/bitnami/zookeeper:3.9
+    image: ghcr.io/bitmoa/zookeeper:3.9
     ports:
       - '2181'
     volumes:
-      - zookeeper2_data:/bitnami
+      - zookeeper2_data:/bitmoa
     environment:
       - ZOO_SERVER_ID=2
       - ALLOW_ANONYMOUS_LOGIN=yes
       - ZOO_SERVERS=zookeeper:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
   zookeeper3:
-    image: docker.io/bitnami/zookeeper:3.9
+    image: ghcr.io/bitmoa/zookeeper:3.9
     ports:
       - '2181'
     volumes:
-      - zookeeper3_data:/bitnami
+      - zookeeper3_data:/bitmoa
     environment:
       - ZOO_SERVER_ID=3
       - ALLOW_ANONYMOUS_LOGIN=yes

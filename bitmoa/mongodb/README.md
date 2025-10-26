@@ -10,19 +10,19 @@ Disclaimer: The respective trademarks mentioned in the offering are owned by the
 ## TL;DR
 
 ```console
-docker run --name mongodb bitnami/mongodb:latest
+docker run --name mongodb bitmoa/mongodb:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,11 +33,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy MongoDB&reg; in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami MongoDB&reg; Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/mongodb).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami MongoDB&reg; Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/mongodb).
 
 ## Why use a non-root container?
 
@@ -47,45 +47,45 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami MongoDB&reg; Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/mongodb).
+The recommended way to get the Bitnami MongoDB&reg; Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/mongodb).
 
 ```console
-docker pull bitnami/mongodb:latest
+docker pull bitmoa/mongodb:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/mongodb/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/mongodb/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/mongodb:[TAG]
+docker pull bitmoa/mongodb:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your database
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/mongodb` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/mongodb` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/mongodb-persistence:/bitnami/mongodb \
-    bitnami/mongodb:latest
+    -v /path/to/mongodb-persistence:/bitmoa/mongodb \
+    bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```diff
  ...
@@ -93,8 +93,8 @@ or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers
    mongodb:
      ...
      volumes:
--      - mongodb_data:/bitnami/mongodb
-+      - /path/to/mongodb-persistence:/bitnami/mongodb
+-      - mongodb_data:/bitmoa/mongodb
++      - /path/to/mongodb-persistence:/bitmoa/mongodb
    ...
 ```
 
@@ -123,7 +123,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name mongodb-server \
     --network app-tier \
-    bitnami/mongodb:latest
+    bitmoa/mongodb:latest
 ```
 
 #### Step 3: Launch your MongoDB&reg; client instance
@@ -133,7 +133,7 @@ Finally we create a new container instance to launch the MongoDB&reg; client and
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/mongodb:latest mongo --host mongodb-server
+    bitmoa/mongodb:latest mongo --host mongodb-server
 ```
 
 ### Using a Docker Compose file
@@ -149,7 +149,7 @@ networks:
 
 services:
   mongodb:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     networks:
       - app-tier
   myapp:
@@ -218,8 +218,8 @@ docker-compose up -d
 
 | Name                                      | Description                                                            | Value                                     |
 |-------------------------------------------|------------------------------------------------------------------------|-------------------------------------------|
-| `MONGODB_VOLUME_DIR`                      | Persistence base directory                                             | `$BITNAMI_VOLUME_DIR/mongodb`             |
-| `MONGODB_BASE_DIR`                        | MongoDB installation directory                                         | `$BITNAMI_ROOT_DIR/mongodb`               |
+| `MONGODB_VOLUME_DIR`                      | Persistence base directory                                             | `$BITMOA_VOLUME_DIR/mongodb`             |
+| `MONGODB_BASE_DIR`                        | MongoDB installation directory                                         | `$BITMOA_ROOT_DIR/mongodb`               |
 | `MONGODB_CONF_DIR`                        | MongoDB configuration directory                                        | `$MONGODB_BASE_DIR/conf`                  |
 | `MONGODB_DEFAULT_CONF_DIR`                | MongoDB default configuration directory                                | `$MONGODB_BASE_DIR/conf.default`          |
 | `MONGODB_LOG_DIR`                         | MongoDB logs directory                                                 | `$MONGODB_BASE_DIR/logs`                  |
@@ -261,10 +261,10 @@ Passing extra command-line flags to the mongod service command is possible throu
 - `MONGODB_CLIENT_EXTRA_FLAGS`: Flags to be appended to the `mongo` command which is used to connect to the (local or remote) `mongod` daemon. No defaults
 
 ```console
-docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_EXTRA_FLAGS='--wiredTigerCacheSizeGB=2' bitnami/mongodb:latest
+docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_EXTRA_FLAGS='--wiredTigerCacheSizeGB=2' bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -284,10 +284,10 @@ Configuring the system log verbosity level is possible through the following env
 - `MONGODB_SYSTEM_LOG_VERBOSITY`: MongoDB&reg; system log verbosity level. Default: `0`. Possible values: `[0, 1, 2, 3, 4, 5]`. For more information about the verbosity levels please refer to the [MongoDB&reg; documentation](https://docs.mongodb.com/manual/reference/configuration-options/#systemLog.verbosity)
 
 ```console
-docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_SYSTEM_LOG_VERBOSITY='3' bitnami/mongodb:latest
+docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_SYSTEM_LOG_VERBOSITY='3' bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -312,10 +312,10 @@ Enabling/disabling IPv6 is possible through the following env var:
 To enable IPv6 support, you can execute:
 
 ```console
-docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_ENABLE_IPV6=yes bitnami/mongodb:latest
+docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_ENABLE_IPV6=yes bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -334,10 +334,10 @@ Enabling/disabling [directoryPerDB](https://docs.mongodb.com/manual/reference/co
 - `MONGODB_ENABLE_DIRECTORY_PER_DB`: Whether to enable/disable directoryPerDB on MongoDB&reg;. Default: `true`. Possible values: `[true, false]`
 
 ```console
-docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_ENABLE_DIRECTORY_PER_DB=yes bitnami/mongodb:latest
+docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_ENABLE_DIRECTORY_PER_DB=yes bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -356,10 +356,10 @@ Enabling/disabling [journal](https://docs.mongodb.com/manual/reference/configura
 - `MONGODB_ENABLE_JOURNAL`: Whether to enable/disable journaling on MongoDB&reg;. Default: `true`. Possible values: `[true, false]`
 
 ```console
-docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_ENABLE_JOURNAL=true bitnami/mongodb:latest
+docker run --name mongodb -e ALLOW_EMPTY_PASSWORD=yes -e MONGODB_ENABLE_JOURNAL=true bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -377,10 +377,10 @@ Passing the `MONGODB_ROOT_PASSWORD` environment variable when running the image 
 
 ```console
 docker run --name mongodb \
-  -e MONGODB_ROOT_PASSWORD=password123 bitnami/mongodb:latest
+  -e MONGODB_ROOT_PASSWORD=password123 bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -400,10 +400,10 @@ You can create a user with restricted access to a database while starting the co
 ```console
 docker run --name mongodb \
   -e MONGODB_USERNAME=my_user -e MONGODB_PASSWORD=password123 \
-  -e MONGODB_DATABASE=my_database bitnami/mongodb:latest
+  -e MONGODB_DATABASE=my_database bitmoa/mongodb:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mongodb/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -450,7 +450,7 @@ docker run --name mongodb-primary \
   -e MONGODB_ADVERTISED_HOSTNAME=mongodb-primary \
   -e MONGODB_ROOT_PASSWORD=password123 \
   -e MONGODB_REPLICA_SET_KEY=replicasetkey123 \
-  bitnami/mongodb:latest
+  bitmoa/mongodb:latest
 ```
 
 In the above command the container is configured as the `primary` using the `MONGODB_REPLICA_SET_MODE` parameter.
@@ -468,7 +468,7 @@ docker run --name mongodb-secondary \
   -e MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017 \
   -e MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=password123 \
   -e MONGODB_REPLICA_SET_KEY=replicasetkey123 \
-  bitnami/mongodb:latest
+  bitmoa/mongodb:latest
 ```
 
 In the above command the container is configured as a `secondary` using the `MONGODB_REPLICA_SET_MODE` parameter. The `MONGODB_INITIAL_PRIMARY_HOST` and `MONGODB_INITIAL_PRIMARY_PORT_NUMBER` parameters are used connect and with the MongoDB&reg; primary.
@@ -486,7 +486,7 @@ docker run --name mongodb-arbiter \
   -e MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017 \
   -e MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=password123 \
   -e MONGODB_REPLICA_SET_KEY=replicasetkey123 \
-  bitnami/mongodb:latest
+  bitmoa/mongodb:latest
 ```
 
 In the above command the container is configured as a `arbiter` using the `MONGODB_REPLICA_SET_MODE` parameter. The `MONGODB_INITIAL_PRIMARY_HOST` and `MONGODB_INITIAL_PRIMARY_PORT_NUMBER` parameters are used connect and with the MongoDB&reg; primary.
@@ -506,7 +506,7 @@ docker run --name mongodb-hidden \
   -e MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017 \
   -e MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=password123 \
   -e MONGODB_REPLICA_SET_KEY=replicasetkey123 \
-  bitnami/mongodb:latest
+  bitmoa/mongodb:latest
 ```
 
 In the above command the container is configured as a `hidden` using the `MONGODB_REPLICA_SET_MODE` parameter. The `MONGODB_INITIAL_PRIMARY_HOST` and `MONGODB_INITIAL_PRIMARY_PORT_NUMBER` parameters are used connect and with the MongoDB&reg; primary.
@@ -518,7 +518,7 @@ version: '2'
 
 services:
   mongodb-primary:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-primary
       - MONGODB_REPLICA_SET_MODE=primary
@@ -526,10 +526,10 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
 
     volumes:
-      - mongodb_master_data:/bitnami
+      - mongodb_master_data:/bitmoa
 
   mongodb-secondary:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     depends_on:
       - mongodb-primary
     environment:
@@ -541,7 +541,7 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
 
   mongodb-arbiter:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     depends_on:
       - mongodb-primary
     environment:
@@ -570,7 +570,7 @@ version: '2'
 
 services:
   mongodb-primary:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-primary
       - MONGODB_REPLICA_SET_MODE=primary
@@ -578,10 +578,10 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
 
     volumes:
-      - mongodb_master_data:/bitnami
+      - mongodb_master_data:/bitmoa
 
   mongodb-secondary:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     depends_on:
       - mongodb-primary
     environment:
@@ -592,7 +592,7 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
 
   mongodb-arbiter:
-    image: bitnami/mongodb:latest
+    image: bitmoa/mongodb:latest
     depends_on:
       - mongodb-primary
     environment:
@@ -629,7 +629,7 @@ To verify the primary is actually the primary we validate it with the `db.isMast
 
 The primary node has a volume attached so the data is preserved between deployments as long as the volume exists.
 
-In addition, the primary node initialization script will check for the existence of a `.initialized` file in the `/bitnami/mongodb` folder to discern whether it should create a new replica set or on the contrary a replica set has already been initialized.
+In addition, the primary node initialization script will check for the existence of a `.initialized` file in the `/bitmoa/mongodb` folder to discern whether it should create a new replica set or on the contrary a replica set has already been initialized.
 
 If the primary got killed and the volume is deleted, in order to start it again in the same replica set it is important to launch the container with the original IP so other members of the replica set already knows about it.
 
@@ -726,7 +726,7 @@ Example corresponding settings for a secondary node `mongodb-secondary`:
 After successfully starting a cluster as specified, within the container it should be possible to connect to the mongo daemon on the primary node using:
 
 ```console
-/opt/bitnami/mongodb/bin/mongo -u ${MONGODB_ROOT_USER} -p ${MONGODB_ROOT_PASSWORD} --host mongodb-primary --tls --tlsCertificateKeyFile=/certificates/mongodb-primary.pem --tlsCAFile=/certificates/mongoCA.crt
+/opt/bitmoa/mongodb/bin/mongo -u ${MONGODB_ROOT_USER} -p ${MONGODB_ROOT_PASSWORD} --host mongodb-primary --tls --tlsCertificateKeyFile=/certificates/mongodb-primary.pem --tlsCAFile=/certificates/mongoCA.crt
 ```
 
 **NB**: We only support `--clusterAuthMode=keyFile` in this configuration.
@@ -740,14 +740,14 @@ Especially client authentication and requirements for common name and OU/DN/etc.
 
 ### Configuration file
 
-The image looks for mounted configurations files in `/bitnami/mongodb/conf/`. You can mount a volume at `/bitnami/mongodb/conf/` and copy/edit the configurations in the `/path/to/mongodb-configuration-persistence/`. The default configurations will be populated to the `/opt/bitnami/mongodb/conf/` directory if it's empty.
+The image looks for mounted configurations files in `/bitmoa/mongodb/conf/`. You can mount a volume at `/bitmoa/mongodb/conf/` and copy/edit the configurations in the `/path/to/mongodb-configuration-persistence/`. The default configurations will be populated to the `/opt/bitmoa/mongodb/conf/` directory if it's empty.
 
 #### Step 1: Run the MongoDB&reg; image
 
 Run the MongoDB&reg; image, mounting a directory from your host.
 
 ```console
-docker run --name mongodb -v /path/to/mongodb-configuration-persistence:/bitnami/mongodb/conf bitnami/mongodb:latest
+docker run --name mongodb -v /path/to/mongodb-configuration-persistence:/bitmoa/mongodb/conf bitmoa/mongodb:latest
 ```
 
 or using Docker Compose:
@@ -758,8 +758,8 @@ or using Docker Compose:
    mongodb:
      ...
      volumes:
-       - mongodb_data:/bitnami/mongodb
-+      - /path/to/mongodb-configuration-persistence:/bitnami/mongodb/conf
+       - mongodb_data:/bitmoa/mongodb
++      - /path/to/mongodb-configuration-persistence:/bitmoa/mongodb/conf
    ...
 ```
 
@@ -789,7 +789,7 @@ Refer to the [configuration file options](http://docs.mongodb.org/v2.4/reference
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami MongoDB&reg; Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami MongoDB&reg; Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -818,10 +818,10 @@ Bitnami provides up-to-date versions of MongoDB&reg;, including security patches
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/mongodb:latest
+docker pull bitmoa/mongodb:latest
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/mongodb:latest`.
+or if you're using Docker Compose, update the value of the image property to `bitmoa/mongodb:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -862,7 +862,7 @@ docker-compose rm -v mongodb
 Re-create your container from the new image.
 
 ```console
-docker run --name mongodb bitnami/mongodb:latest
+docker run --name mongodb bitmoa/mongodb:latest
 ```
 
 or using Docker Compose:
@@ -879,7 +879,7 @@ docker-compose up mongodb
 
 ### 3.6.14-r69, 4.0.13-r11, and 4.2.1-r12
 
-- The configuration files mount point changed from `/opt/bitnami/mongodb/conf` to `/bitnami/mongodb/conf`.
+- The configuration files mount point changed from `/opt/bitmoa/mongodb/conf` to `/bitmoa/mongodb/conf`.
 
 ### 3.6.13-r33, 4.0.10-r42, 4.1.13-r40 and 4.1.13-r41
 
@@ -903,22 +903,22 @@ docker-compose up mongodb
 
 ### 3.2.6-r0
 
-- All volumes have been merged at `/bitnami/mongodb`. Now you only need to mount a single volume at `/bitnami/mongodb` for persistence.
+- All volumes have been merged at `/bitmoa/mongodb`. Now you only need to mount a single volume at `/bitmoa/mongodb` for persistence.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/mongodb).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/mongodb).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

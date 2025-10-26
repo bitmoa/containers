@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name openldap bitnami/openldap:latest
+docker run --name openldap bitmoa/openldap:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,7 +33,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -43,30 +43,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami OpenLDAP Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/openldap).
+The recommended way to get the Bitnami OpenLDAP Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/openldap).
 
 ```console
-docker pull bitnami/openldap:latest
+docker pull bitmoa/openldap:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/openldap/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/openldap/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/openldap:[TAG]
+docker pull bitmoa/openldap:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Connecting to other containers
@@ -98,7 +98,7 @@ docker run --detach --rm --name openldap \
   --env LDAP_PASSWORDS=custompassword \
   --env LDAP_ROOT=dc=example,dc=org \
   --env LDAP_ADMIN_DN=cn=admin,dc=example,dc=org \
-  bitnami/openldap:latest
+  bitmoa/openldap:latest
 ```
 
 #### Step 3: Launch the MariaDB Galera server instance
@@ -117,7 +117,7 @@ docker run --detach --rm --name mariadb-galera \
     --env LDAP_BASE=dc=example,dc=org \
     --env LDAP_BIND_DN=cn=admin,dc=example,dc=org \
     --env LDAP_BIND_PASSWORD=adminpassword \
-    bitnami/mariadb-galera:latest
+    bitmoa/mariadb-galera:latest
 ```
 
 #### Step 4: Launch the MariaDB client and test you can authenticate using LDAP credentials
@@ -127,7 +127,7 @@ Finally we create a new container instance to launch the MariaDB client and conn
 ```console
 docker run -it --rm --name mariadb-client \
     --network my-network \
-    bitnami/mariadb-galera:latest mysql -h mariadb-galera -u customuser -D customdatabase -pcustompassword
+    bitmoa/mariadb-galera:latest mysql -h mariadb-galera -u customuser -D customdatabase -pcustompassword
 ```
 
 ### Using a Docker Compose file
@@ -142,7 +142,7 @@ networks:
     driver: bridge
 services:
   openldap:
-    image: bitnami/openldap:latest
+    image: bitmoa/openldap:latest
     ports:
       - 1389:1389
       - 1636:1636
@@ -154,7 +154,7 @@ services:
     networks:
       - my-network
     volumes:
-      - openldap_data:/bitnami/openldap
+      - openldap_data:/bitmoa/openldap
   myapp:
     image: YOUR_APPLICATION_IMAGE
     networks:
@@ -189,7 +189,7 @@ The Bitnami Docker OpenLDAP can be easily setup with the following environment v
 - `LDAP_CONFIG_ADMIN_PASSWORD`: LDAP configuration admin password. Default: **configpassword**.
 - `LDAP_CONFIG_ADMIN_PASSWORD_FILE`: Path to a file that contains the LDAP configuration admin user password. This will override the value specified in `LDAP_CONFIG_ADMIN_PASSWORD`. No defaults.
 - `LDAP_USERS`: Comma separated list of LDAP users to create in the default LDAP tree. Default: **user01,user02**
-- `LDAP_PASSWORDS`: Comma separated list of passwords to use for LDAP users. Default: **bitnami1,bitnami2**
+- `LDAP_PASSWORDS`: Comma separated list of passwords to use for LDAP users. Default: **bitmoa1,bitmoa2**
 - `LDAP_USER_OU`: Name for the user's organizational unit. Default: **users**
 - `LDAP_GROUP_OU`: Name for the group's organizational unit. Default: **groups**
 - `LDAP_USER_DC`: DC for the users' organizational unit. **DEPRECATED** Please use `LDAP_USER_OU` and `LDAP_GROUP_OU` instead.
@@ -212,7 +212,7 @@ The Bitnami Docker OpenLDAP can be easily setup with the following environment v
 
 User side bootstrapping happens in two primary phases:
 
-Note: Image level modifications, like modules and tools might require a custom Dockerfile that uses the bitnami-openldap as it's base if you need to modify image paths as root, some stuff might be doable in /docker-entrypoint-initdb.d/
+Note: Image level modifications, like modules and tools might require a custom Dockerfile that uses the bitmoa-openldap as it's base if you need to modify image paths as root, some stuff might be doable in /docker-entrypoint-initdb.d/
 
 1. /docker-entrypoint-initdb.d/ - Targets: Place ldifs or executable .sh scripts here to be run prior to slap.d (To be used with slapadd not ldapadd). Good place to load and configure overlays.
 2. /ldifs - Place ldifs here that target the base dn of your root db that would be loaded after cn=config. Good place to load org units and groups etc.
@@ -224,14 +224,14 @@ Check the official [OpenLDAP Configuration Reference](https://www.openldap.org/d
 Some key concepts:
 
 - slapd is not running during this phase of the bootstrapping
-- you should expect to use slapadd and slapcat against `-F /opt/bitnami/openldap/etc/slapd.d -b cn=config`
+- you should expect to use slapadd and slapcat against `-F /opt/bitmoa/openldap/etc/slapd.d -b cn=config`
 - ldapadd won't work here `ldapadd -Q -Y EXTERNAL -H "ldapi:///" -f /ldifs/01-enable-memberof-overlay.ldif`. Many doc sources suggest using ldapadd but slapd isn't running yet.
 - slapadd ldifs are different then ldapadd specifically the `changetype: modify` directives required by ldapadd.
 - scripts are executed in alpha-numeric order so to control order use 01-myscript.sh 02-otherscript.sh is recommended.
 
 ##### Example: Enable the MemberOf Overlay in Bitnami OpenLDAP
 
-Note: bitnami has some custom module pathing. Specifically the slapd module load path is set to `/opt/bitnami/openldap/libexec/openldap/` but some of the base openldap modules are installed at `/opt/bitnami/openldap/lib/openldap/`. If you need to load the memberof.so overlay you will need to symlink, or cp it. exapmle `cp /opt/bitnami/openldap/lib/openldap/memberof.so /opt/bitnami/openldap/lib/openldap/memberof.so`. This could be done in a Dockerfile, a mount overlay or if running as root in a script in /docker-entrypoint-initdb.d/. The Dockerfile is likely the best and safest solution to ensure your module is **always** avialable at run time.
+Note: bitmoa has some custom module pathing. Specifically the slapd module load path is set to `/opt/bitmoa/openldap/libexec/openldap/` but some of the base openldap modules are installed at `/opt/bitmoa/openldap/lib/openldap/`. If you need to load the memberof.so overlay you will need to symlink, or cp it. exapmle `cp /opt/bitmoa/openldap/lib/openldap/memberof.so /opt/bitmoa/openldap/lib/openldap/memberof.so`. This could be done in a Dockerfile, a mount overlay or if running as root in a script in /docker-entrypoint-initdb.d/. The Dockerfile is likely the best and safest solution to ensure your module is **always** avialable at run time.
 
 Here is an example of loading the memberof overlay with an /entrypoint-initdb.d/ script
 
@@ -242,7 +242,7 @@ This short example demonstrates how to add the overlay during Bitnami OpenLDAP c
    - Run:
 
      ```sh
-     slapcat -F /opt/bitnami/openldap/etc/slapd.d -b cn=config | grep "^dn: cn=module"
+     slapcat -F /opt/bitmoa/openldap/etc/slapd.d -b cn=config | grep "^dn: cn=module"
      ```
 
    - If you see `cn=module{0},cn=config`, use `cn=module{1},cn=config` for your new module. {2} if you see existing {1} etc.
@@ -255,7 +255,7 @@ In the default container image has 1 existing loaded module at cn=module{0} so w
 dn: cn=module{1},cn=config
 objectClass: olcModuleList
 cn: module{1}
-olcModulePath: /opt/bitnami/openldap/libexec/openldap
+olcModulePath: /opt/bitmoa/openldap/libexec/openldap
 olcModuleLoad: memberof.so
 dn: olcOverlay=memberof,olcDatabase={2}mdb,cn=config
 objectClass: olcOverlayConfig
@@ -277,7 +277,7 @@ set -e
 # Note: cn=module{1},cn=config assumes that the module will be loaded as the second module. cn=module{0} being the first.
 # Additionally, olcDatabase={2}mdb assumes that the database is the second one configured in OpenLDAP. Adjust as necessary.
 # Create a temporary LDIF file
-# ensure cn=module{N},cn=config and cn: module{N} match eachother and do not conflict with existing modules. Run `slapcat -F /opt/bitnami/openldap/etc/slapd.d -b cn=config | grep 'cn=module'` to check existing modules.
+# ensure cn=module{N},cn=config and cn: module{N} match eachother and do not conflict with existing modules. Run `slapcat -F /opt/bitmoa/openldap/etc/slapd.d -b cn=config | grep 'cn=module'` to check existing modules.
 cat > /tmp/memberof-overlay.ldif << 'EOF'
 dn: cn=module{1},cn=config
 objectClass: olcModuleList
@@ -299,13 +299,13 @@ EOF
 echo "Enabling memberOf overlay in OpenLDAP configuration..."
 echo "Loading memberOf overlay with slapadd..."
 
-if slapcat -F /opt/bitnami/openldap/etc/slapd.d -b cn=config | grep -q memberof
+if slapcat -F /opt/bitmoa/openldap/etc/slapd.d -b cn=config | grep -q memberof
 then
     echo "MemberOf overlay is already configured."
     exit 0
 else
-    slapadd -F /opt/bitnami/openldap/etc/slapd.d -b cn=config -l /tmp/memberof-overlay.ldif || {
-        echo "NOTICE: slapadd failed to load memberOf overlay. Check the cn=module{N} with \"slapcat -F /opt/bitnami/openldap/etc/slapd.d -b cn=config |grep 'cn=module'\""
+    slapadd -F /opt/bitmoa/openldap/etc/slapd.d -b cn=config -l /tmp/memberof-overlay.ldif || {
+        echo "NOTICE: slapadd failed to load memberOf overlay. Check the cn=module{N} with \"slapcat -F /opt/bitmoa/openldap/etc/slapd.d -b cn=config |grep 'cn=module'\""
         exit 1
     }
 fi
@@ -360,7 +360,7 @@ description: Example group of testers
 
 ### Data Persistence
 
-To ensure that the OpenLDAP state is retained across container restarts and updates, it is recommended to mount a volume at `/bitnami/openldap`.
+To ensure that the OpenLDAP state is retained across container restarts and updates, it is recommended to mount a volume at `/bitmoa/openldap`.
 
 ### Overlays
 
@@ -410,7 +410,7 @@ dn: cn=z-module,cn=config
 objectClass: olcModuleList
 cn: z-module
 olcModuleLoad: dynlist.so
-olcModulePath: /opt/bitnami/openldap/lib/openldap
+olcModulePath: /opt/bitmoa/openldap/lib/openldap
 dn: olcOverlay=dynlist,olcDatabase={N}mdb,cn=config
 objectClass: olcConfig
 objectClass: olcDynListConfig
@@ -443,14 +443,14 @@ This new feature is not mutually exclusive, which means it is possible to listen
 
     ```console
     $ docker run --name openldap \
-        -v /path/to/certs:/opt/bitnami/openldap/certs \
-        -v /path/to/openldap-data-persistence:/bitnami/openldap/ \
+        -v /path/to/certs:/opt/bitmoa/openldap/certs \
+        -v /path/to/openldap-data-persistence:/bitmoa/openldap/ \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e LDAP_ENABLE_TLS=yes \
-        -e LDAP_TLS_CERT_FILE=/opt/bitnami/openldap/certs/openldap.crt \
-        -e LDAP_TLS_KEY_FILE=/opt/bitnami/openldap/certs/openldap.key \
-        -e LDAP_TLS_CA_FILE=/opt/bitnami/openldap/certs/openldapCA.crt \
-        bitnami/openldap:latest
+        -e LDAP_TLS_CERT_FILE=/opt/bitmoa/openldap/certs/openldap.crt \
+        -e LDAP_TLS_KEY_FILE=/opt/bitmoa/openldap/certs/openldap.key \
+        -e LDAP_TLS_CA_FILE=/opt/bitmoa/openldap/certs/openldapCA.crt \
+        bitmoa/openldap:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -462,13 +462,13 @@ This new feature is not mutually exclusive, which means it is possible to listen
         environment:
           ...
           - LDAP_ENABLE_TLS=yes
-          - LDAP_TLS_CERT_FILE=/opt/bitnami/openldap/certs/openldap.crt
-          - LDAP_TLS_KEY_FILE=/opt/bitnami/openldap/certs/openldap.key
-          - LDAP_TLS_CA_FILE=/opt/bitnami/openldap/certs/openldapCA.crt
+          - LDAP_TLS_CERT_FILE=/opt/bitmoa/openldap/certs/openldap.crt
+          - LDAP_TLS_KEY_FILE=/opt/bitmoa/openldap/certs/openldap.key
+          - LDAP_TLS_CA_FILE=/opt/bitmoa/openldap/certs/openldapCA.crt
         ...
         volumes:
-          - /path/to/certs:/opt/bitnami/openldap/certs
-          - /path/to/openldap-data-persistence:/bitnami/openldap/
+          - /path/to/certs:/opt/bitmoa/openldap/certs
+          - /path/to/openldap-data-persistence:/bitmoa/openldap/
       ...
     ```
 
@@ -488,7 +488,7 @@ Check the official page [OpenLDAP, Running slapd, Command-Line Options](https://
 
 ### Initializing a new instance
 
-The [Bitnami OpenLDAP](https://github.com/bitnami/containers/blob/main/bitnami/openldap) image allows you to use your custom scripts to initialize a fresh instance.
+The [Bitnami OpenLDAP](https://github.com/bitmoa/containers/blob/main/bitmoa/openldap) image allows you to use your custom scripts to initialize a fresh instance.
 
 The allowed script extension is `.sh`, all scripts are executed in alphabetical order and need to reside in `/docker-entrypoint-initdb.d/`.
 
@@ -496,7 +496,7 @@ Scripts are executed are after the initilization and before the startup of the O
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami OpenLDAP Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami OpenLDAP Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -510,7 +510,7 @@ docker logs openldap
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
-To see the actual output of slapd in the container's logs, set the environment variable `BITNAMI_DEBUG=true`. Useful especially to find/debug problems in your configuration that lead to errors so OpenLDAP won't start.
+To see the actual output of slapd in the container's logs, set the environment variable `BITMOA_DEBUG=true`. Useful especially to find/debug problems in your configuration that lead to errors so OpenLDAP won't start.
 
 ## Maintenance
 
@@ -521,7 +521,7 @@ Bitnami provides up-to-date versions of OpenLDAP, including security patches, so
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/openldap:latest
+docker pull bitmoa/openldap:latest
 ```
 
 #### Step 2: Stop the running container
@@ -543,7 +543,7 @@ docker rm -v openldap
 Re-create your container from the new image.
 
 ```console
-docker run --name openldap bitnami/openldap:latest
+docker run --name openldap bitmoa/openldap:latest
 ```
 
 ## Notable Changes
@@ -556,15 +556,15 @@ docker run --name openldap bitnami/openldap:latest
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

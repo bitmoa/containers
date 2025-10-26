@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libcouchdb.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libcouchdb.sh
 
 # Load environment
-. /opt/bitnami/scripts/couchdb-env.sh
+. /opt/bitmoa/scripts/couchdb-env.sh
 
 # Ensure directories used by CouchDB exist
 for dir in "$COUCHDB_DATA_DIR" "$COUCHDB_CONF_DIR" "$(dirname "$COUCHDB_CONF_FILE")"; do

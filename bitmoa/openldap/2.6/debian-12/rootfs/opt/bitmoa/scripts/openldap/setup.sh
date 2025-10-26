@@ -9,8 +9,8 @@ set -o nounset
 set -o pipefail
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libopenldap.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libopenldap.sh
 
 # Load LDAP environment variables
 eval "$(ldap_env)"

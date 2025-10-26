@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libappsmith.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libappsmith.sh
 
 # Load Appsmith environment variables
-. /opt/bitnami/scripts/appsmith-env.sh
+. /opt/bitmoa/scripts/appsmith-env.sh
 
 # We need to load in the environment the Appsmith configuration file in order
 # for the application to work. Using a similar approach as the upstream container
@@ -46,7 +46,7 @@ elif [[ "$APPSMITH_MODE" == "rts" ]]; then
     args+=("${APPSMITH_BASE_DIR}/rts/bundle/server.js")
 else
     # For the Client (UI) we just run nginx with the generated configuration
-    cmd+=("${BITNAMI_ROOT_DIR}/scripts/nginx/run.sh")
+    cmd+=("${BITMOA_ROOT_DIR}/scripts/nginx/run.sh")
 fi
 
 info "** Starting Appsmith ${APPSMITH_MODE} **"

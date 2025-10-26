@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libjanusgraph.sh
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libjanusgraph.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load JanusGraph environment variables
-. /opt/bitnami/scripts/janusgraph-env.sh
+. /opt/bitmoa/scripts/janusgraph-env.sh
 
 print_welcome_page
 
@@ -24,7 +24,7 @@ print_welcome_page
 # This container supports arbitrary UIDs, therefore we have do it dynamically
 if ! am_i_root; then
     export LNAME="janusgraph"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if ! user_exists "$(id -u)" && [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"
@@ -38,13 +38,13 @@ if ! am_i_root; then
 fi
 # We add the copy from default config in the entrypoint to not break users
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/janusgraph/conf)
+# case someone mounts a configuration file in /opt/bitmoa/janusgraph/conf)
 debug "Copying files from $JANUSGRAPH_DEFAULT_CONF_DIR to $JANUSGRAPH_CONF_DIR"
 cp -nfr "$JANUSGRAPH_DEFAULT_CONF_DIR"/. "$JANUSGRAPH_CONF_DIR"
 
-if [[ "$1" = "/opt/bitnami/scripts/janusgraph/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/janusgraph/run.sh" ]]; then
     info "** Starting JanusGraph setup **"
-    /opt/bitnami/scripts/janusgraph/setup.sh
+    /opt/bitmoa/scripts/janusgraph/setup.sh
     info "** JanusGraph setup finished! **"
 fi
 

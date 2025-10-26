@@ -3,11 +3,11 @@
 
 services:
   kafka:
-    image: docker.io/bitnami/kafka:4.1
+    image: ghcr.io/bitmoa/kafka:4.1
     ports:
       - "9092:9092"
     volumes:
-      - "kafka_data:/bitnami"
+      - "kafka_data:/bitmoa"
     environment:
       # KRaft settings
       - KAFKA_CFG_NODE_ID=0

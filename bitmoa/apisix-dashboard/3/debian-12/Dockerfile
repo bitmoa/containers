@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-13T23:16:30Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/apisix-dashboard/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/apisix-dashboard" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/apisix-dashboard/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/apisix-dashboard" \
       org.opencontainers.image.title="apisix-dashboard" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="3.0.1"
 
 ENV HOME="/" \
@@ -26,7 +26,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "apisix-dashboard-3.0.1-53-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -36,10 +36,10 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
-RUN mkdir -p /opt/bitnami/apisix-dashboard/logs && chmod g+rwX /opt/bitnami/apisix-dashboard/logs
+RUN mkdir -p /opt/bitmoa/apisix-dashboard/logs && chmod g+rwX /opt/bitmoa/apisix-dashboard/logs
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN useradd -r -u 1001 -g root apisix-dashboard
@@ -47,10 +47,10 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
 ENV APP_VERSION="3.0.1" \
-    BITNAMI_APP_NAME="apisix-dashboard" \
+    BITMOA_APP_NAME="apisix-dashboard" \
     IMAGE_REVISION="85" \
-    PATH="/opt/bitnami/apisix-dashboard:$PATH"
+    PATH="/opt/bitmoa/apisix-dashboard:$PATH"
 
-WORKDIR /opt/bitnami/apisix-dashboard
+WORKDIR /opt/bitmoa/apisix-dashboard
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/apisix-dashboard/manager-api" ]
+ENTRYPOINT [ "/opt/bitmoa/apisix-dashboard/manager-api" ]

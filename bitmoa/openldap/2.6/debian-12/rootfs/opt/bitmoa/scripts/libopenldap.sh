@@ -7,12 +7,12 @@
 # shellcheck disable=SC1090,SC1091,SC2119,SC2120
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 ########################
 # Load global variables used on OpenLDAP configuration
@@ -26,13 +26,13 @@
 ldap_env() {
     cat << "EOF"
 # Paths
-export LDAP_BASE_DIR="/opt/bitnami/openldap"
+export LDAP_BASE_DIR="/opt/bitmoa/openldap"
 export LDAP_BIN_DIR="${LDAP_BASE_DIR}/bin"
 export LDAP_SBIN_DIR="${LDAP_BASE_DIR}/sbin"
 export LDAP_CONF_DIR="${LDAP_BASE_DIR}/etc"
 export LDAP_SHARE_DIR="${LDAP_BASE_DIR}/share"
 export LDAP_VAR_DIR="${LDAP_BASE_DIR}/var"
-export LDAP_VOLUME_DIR="/bitnami/openldap"
+export LDAP_VOLUME_DIR="/bitmoa/openldap"
 export LDAP_DATA_DIR="${LDAP_VOLUME_DIR}/data"
 export LDAP_ACCESSLOG_DATA_DIR="${LDAP_DATA_DIR}/accesslog"
 export LDAP_ONLINE_CONF_DIR="${LDAP_VOLUME_DIR}/slapd.d"
@@ -68,7 +68,7 @@ export LDAP_ADD_SCHEMAS="${LDAP_ADD_SCHEMAS:-yes}"
 export LDAP_EXTRA_SCHEMAS="${LDAP_EXTRA_SCHEMAS:-cosine,inetorgperson,nis}"
 export LDAP_SKIP_DEFAULT_TREE="${LDAP_SKIP_DEFAULT_TREE:-no}"
 export LDAP_USERS="${LDAP_USERS:-user01,user02}"
-export LDAP_PASSWORDS="${LDAP_PASSWORDS:-bitnami1,bitnami2}"
+export LDAP_PASSWORDS="${LDAP_PASSWORDS:-bitmoa1,bitmoa2}"
 export LDAP_USER_DC="${LDAP_USER_DC:-}"
 export LDAP_USER_OU="${LDAP_USER_OU:-${LDAP_USER_DC:-users}}"
 export LDAP_GROUP_OU="${LDAP_GROUP_OU:-${LDAP_USER_DC:-groups}}"
@@ -300,8 +300,8 @@ ldap_create_slapd_file() {
 dn: cn=config
 objectClass: olcGlobal
 cn: config
-olcArgsFile: /opt/bitnami/openldap/var/run/slapd.args
-olcPidFile: /opt/bitnami/openldap/var/run/slapd.pid
+olcArgsFile: /opt/bitmoa/openldap/var/run/slapd.args
+olcPidFile: /opt/bitmoa/openldap/var/run/slapd.pid
 
 #
 # Enable pw-sha2 module
@@ -309,7 +309,7 @@ olcPidFile: /opt/bitnami/openldap/var/run/slapd.pid
 dn: cn=module,cn=config
 cn: module
 objectClass: olcModuleList
-olcModulePath: /opt/bitnami/openldap/libexec/openldap
+olcModulePath: /opt/bitmoa/openldap/libexec/openldap
 olcModuleLoad: pw-sha2.so
 
 #
@@ -320,7 +320,7 @@ dn: cn=schema,cn=config
 objectClass: olcSchemaConfig
 cn: schema
 
-include: file:///opt/bitnami/openldap/etc/schema/core.ldif
+include: file:///opt/bitmoa/openldap/etc/schema/core.ldif
 
 #
 # Frontend settings
@@ -361,7 +361,7 @@ olcDbMaxSize: 1073741824
 olcSuffix: dc=my-domain,dc=com
 olcRootDN: cn=Manager,dc=my-domain,dc=com
 olcMonitoring: FALSE
-olcDbDirectory:	/bitnami/openldap/data
+olcDbDirectory:	/bitmoa/openldap/data
 olcDbIndex: objectClass eq,pres
 olcDbIndex: ou,cn,mail,surname,givenname eq,pres,sub
 EOF
@@ -509,7 +509,7 @@ ldap_add_custom_schema() {
 #########################
 ldap_add_custom_schemas() {
     info "Adding custom schemas : $LDAP_CUSTOM_SCHEMA_DIR ..."
-    find "$LDAP_CUSTOM_SCHEMA_DIR" -maxdepth 1 \( -type f -o -type l \) -iname '*.ldif' -print0 | sort -z | xargs --null -I{} bash -c ". /opt/bitnami/scripts/libos.sh && debug_execute slapadd -F \"$LDAP_ONLINE_CONF_DIR\" -n 0 -l {}"
+    find "$LDAP_CUSTOM_SCHEMA_DIR" -maxdepth 1 \( -type f -o -type l \) -iname '*.ldif' -print0 | sort -z | xargs --null -I{} bash -c ". /opt/bitmoa/scripts/libos.sh && debug_execute slapadd -F \"$LDAP_ONLINE_CONF_DIR\" -n 0 -l {}"
     ldap_stop
     while is_ldap_running; do sleep 1; done
     ldap_start_bg
@@ -603,7 +603,7 @@ EOF
 ldap_add_custom_ldifs() {
     info "Loading custom LDIF files..."
     warn "Ignoring LDAP_USERS, LDAP_PASSWORDS, LDAP_USER_OU, LDAP_GROUP_OU and LDAP_GROUP environment variables..."
-    find "$LDAP_CUSTOM_LDIF_DIR" -maxdepth 1 \( -type f -o -type l \) -iname '*.ldif' -print0 | sort -z | xargs --null -I{} bash -c ". /opt/bitnami/scripts/libos.sh && debug_execute ldapadd -f {} -H 'ldapi:///' -D \"$LDAP_ADMIN_DN\" -w \"$LDAP_ADMIN_PASSWORD\""
+    find "$LDAP_CUSTOM_LDIF_DIR" -maxdepth 1 \( -type f -o -type l \) -iname '*.ldif' -print0 | sort -z | xargs --null -I{} bash -c ". /opt/bitmoa/scripts/libos.sh && debug_execute ldapadd -f {} -H 'ldapi:///' -D \"$LDAP_ADMIN_DN\" -w \"$LDAP_ADMIN_PASSWORD\""
 }
 
 ########################
@@ -816,7 +816,7 @@ EOF
 #########################
 ldap_configure_ppolicy() {
     info "Configuring LDAP ppolicy"
-    ldap_load_module "/opt/bitnami/openldap/lib/openldap" "ppolicy.so"
+    ldap_load_module "/opt/bitmoa/openldap/lib/openldap" "ppolicy.so"
     # create configuration
     cat > "${LDAP_SHARE_DIR}/ppolicy_create_configuration.ldif" << EOF
 dn: olcOverlay={0}ppolicy,olcDatabase={2}mdb,cn=config
@@ -892,7 +892,7 @@ olcDbIndex: entryUUID eq
 EOF
     debug_execute ldapmodify -Y EXTERNAL -H "ldapi:///" -f "${LDAP_SHARE_DIR}/accesslog_add_indexes.ldif"
     # Load module
-    ldap_load_module "/opt/bitnami/openldap/lib/openldap" "accesslog.so"
+    ldap_load_module "/opt/bitmoa/openldap/lib/openldap" "accesslog.so"
     # Create AccessLog database
     cat > "${LDAP_SHARE_DIR}/accesslog_create_accesslog_database.ldif" << EOF
 dn: olcDatabase={3}mdb,cn=config
@@ -906,7 +906,7 @@ olcRootPW: $LDAP_ENCRYPTED_ACCESSLOG_ADMIN_PASSWORD
 olcDbIndex: default eq
 olcDbIndex: entryCSN,objectClass,reqEnd,reqResult,reqStart
 EOF
-    mkdir /bitnami/openldap/data/accesslog
+    mkdir /bitmoa/openldap/data/accesslog
     debug_execute ldapadd -Q -Y EXTERNAL -H "ldapi:///" -f "${LDAP_SHARE_DIR}/accesslog_create_accesslog_database.ldif"
     # Add AccessLog overlay
     cat > "${LDAP_SHARE_DIR}/accesslog_create_overlay_configuration.ldif" << EOF
@@ -937,7 +937,7 @@ EOF
 ldap_enable_syncprov() {
     info "Configure Sync Provider"
     # Load module
-    ldap_load_module "/opt/bitnami/openldap/lib/openldap" "syncprov.so"
+    ldap_load_module "/opt/bitmoa/openldap/lib/openldap" "syncprov.so"
     # Add Sync Provider overlay
     cat > "${LDAP_SHARE_DIR}/syncprov_create_overlay_configuration.ldif" << EOF
 dn: olcOverlay=syncprov,olcDatabase={2}mdb,cn=config

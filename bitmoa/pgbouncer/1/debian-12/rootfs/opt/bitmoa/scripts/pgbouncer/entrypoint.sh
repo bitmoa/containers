@@ -10,21 +10,21 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load pgbouncer environment
-. /opt/bitnami/scripts/pgbouncer-env.sh
+. /opt/bitmoa/scripts/pgbouncer-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libpgbouncer.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libpgbouncer.sh
 
 print_welcome_page
 
 # Enable the nss_wrapper settings
 pgbouncer_enable_nss_wrapper
 
-if [[ "$1" = "/opt/bitnami/scripts/pgbouncer/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/pgbouncer/run.sh" ]]; then
     info "** Starting PgBouncer setup **"
-    /opt/bitnami/scripts/pgbouncer/setup.sh
+    /opt/bitmoa/scripts/pgbouncer/setup.sh
     info "** PgBouncer setup finished! **"
 fi
 

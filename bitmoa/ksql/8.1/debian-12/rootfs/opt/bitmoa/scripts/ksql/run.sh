@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load KSQL environment variables
-. /opt/bitnami/scripts/ksql-env.sh
+. /opt/bitmoa/scripts/ksql-env.sh
 
 info "** Starting KSQL **"
 

@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-09-11T11:06:19Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/grafana-loki/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/grafana-loki" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana-loki/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana-loki" \
       org.opencontainers.image.title="grafana-loki" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="3.5.5"
 
 ENV HOME="/" \
@@ -26,7 +26,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "grafana-loki-3.5.5-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -36,23 +36,23 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN chmod g+rwX /opt/bitnami
-RUN mkdir -p /bitnami/grafana-loki/data /bitnami/grafana-loki/loki /bitnami/grafana-loki/wal && chmod -R g+rwX /bitnami/grafana-loki && ln -s  /bitnami/grafana-loki/loki /loki && ln -s /bitnami/grafana-loki/data /data && ln -s /bitnami/grafana-loki/wal /wal
+RUN chmod g+rwX /opt/bitmoa
+RUN mkdir -p /bitmoa/grafana-loki/data /bitmoa/grafana-loki/loki /bitmoa/grafana-loki/wal && chmod -R g+rwX /bitmoa/grafana-loki && ln -s  /bitmoa/grafana-loki/loki /loki && ln -s /bitmoa/grafana-loki/data /data && ln -s /bitmoa/grafana-loki/wal /wal
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
 ENV APP_VERSION="3.5.5" \
-    BITNAMI_APP_NAME="grafana-loki" \
+    BITMOA_APP_NAME="grafana-loki" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/grafana-loki/bin:$PATH"
+    PATH="/opt/bitmoa/grafana-loki/bin:$PATH"
 
 EXPOSE 3100
 
 USER 1001
 ENTRYPOINT [ "loki" ]
-CMD [ "-config.file=/bitnami/grafana-loki/conf/loki.yaml" ]
+CMD [ "-config.file=/bitmoa/grafana-loki/conf/loki.yaml" ]

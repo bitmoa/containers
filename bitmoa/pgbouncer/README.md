@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name pgbouncer bitnami/pgbouncer:latest
+docker run --name pgbouncer bitmoa/pgbouncer:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -45,30 +45,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami pgbouncer Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/pgbouncer).
+The recommended way to get the Bitnami pgbouncer Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/pgbouncer).
 
 ```console
-docker pull bitnami/pgbouncer:latest
+docker pull bitmoa/pgbouncer:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/pgbouncer/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/pgbouncer/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/pgbouncer:[TAG]
+docker pull bitmoa/pgbouncer:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Configuration
@@ -152,17 +152,17 @@ docker build -t bitnami/APP:latest .
 
 | Name                         | Description                                            | Value                                       |
 |------------------------------|--------------------------------------------------------|---------------------------------------------|
-| `PGBOUNCER_BASE_DIR`         | PgBouncer installation directory.                      | `${BITNAMI_ROOT_DIR}/pgbouncer`             |
+| `PGBOUNCER_BASE_DIR`         | PgBouncer installation directory.                      | `${BITMOA_ROOT_DIR}/pgbouncer`             |
 | `PGBOUNCER_CONF_DIR`         | PgBouncer configuration directory.                     | `${PGBOUNCER_BASE_DIR}/conf`                |
 | `PGBOUNCER_LOG_DIR`          | PgBouncer logs directory.                              | `${PGBOUNCER_BASE_DIR}/logs`                |
 | `PGBOUNCER_TMP_DIR`          | PgBouncer temporary directory.                         | `${PGBOUNCER_BASE_DIR}/tmp`                 |
 | `PGBOUNCER_PID_FILE`         | PgBouncer pid file.                                    | `${PGBOUNCER_TMP_DIR}/pgbouncer.pid`        |
 | `PGBOUNCER_CONF_FILE`        | PgBouncer configuration file.                          | `${PGBOUNCER_CONF_DIR}/pgbouncer.ini`       |
 | `PGBOUNCER_AUTH_FILE`        | PgBouncer authentication file.                         | `${PGBOUNCER_CONF_DIR}/userlist.txt`        |
-| `PGBOUNCER_VOLUME_DIR`       | PgBouncer volume directory.                            | `${BITNAMI_VOLUME_DIR}/pgbouncer`           |
+| `PGBOUNCER_VOLUME_DIR`       | PgBouncer volume directory.                            | `${BITMOA_VOLUME_DIR}/pgbouncer`           |
 | `PGBOUNCER_MOUNTED_CONF_DIR` | PgBouncer mounted configuration directory.             | `${PGBOUNCER_VOLUME_DIR}/conf`              |
 | `PGBOUNCER_INITSCRIPTS_DIR`  | PgBouncer init scripts directory.                      | `/docker-entrypoint-initdb.d`               |
-| `NSS_WRAPPER_LIB`            | Flag for startup (necessary for the postgresql client) | `/opt/bitnami/common/lib/libnss_wrapper.so` |
+| `NSS_WRAPPER_LIB`            | Flag for startup (necessary for the postgresql client) | `/opt/bitmoa/common/lib/libnss_wrapper.so` |
 
 ### Daemon settings
 
@@ -179,7 +179,7 @@ In case you want to add extra flags to the PgBouncer command, use the `PGBOUNCER
 ```console
 docker run --name pgbouncer \
   -e PGBOUNCER_EXTRA_FLAGS="--verbose" \
-  bitnami/pgbouncer:latest
+  bitmoa/pgbouncer:latest
 ```
 
 ### Exposed database
@@ -199,14 +199,14 @@ In order to have your custom files inside the docker image you can mount them as
 ```console
 docker run --name pgbouncer \
   -v /path/to/init-scripts:/docker-entrypoint-initdb.d \
-  bitnami/pgbouncer:latest
+  bitmoa/pgbouncer:latest
 ```
 
 Or with docker-compose
 
 ```yaml
 pgbouncer:
-  image: bitnami/pgbouncer:latest
+  image: bitmoa/pgbouncer:latest
   volumes:
     - /path/to/init-scripts:/docker-entrypoint-initdb.d
 ```
@@ -234,11 +234,11 @@ When enabling TLS, PgBouncer will support both standard and encrypted traffic by
 
     ```console
     $ docker run \
-        -v /path/to/certs:/opt/bitnami/pgbouncer/certs \
+        -v /path/to/certs:/opt/bitmoa/pgbouncer/certs \
         -e PGBOUNCER_CLIENT_TLS_SSLMODE=require \
-        -e PGBOUNCER_CLIENT_TLS_CERT_FILE=/opt/bitnami/pgbouncer/certs/pgbouncer.crt \
-        -e PGBOUNCER_CLIENT_TLS_KEY_FILE=/opt/bitnami/pgbouncer/certs/pgbouncer.key \
-        bitnami/pgbouncer:latest
+        -e PGBOUNCER_CLIENT_TLS_CERT_FILE=/opt/bitmoa/pgbouncer/certs/pgbouncer.crt \
+        -e PGBOUNCER_CLIENT_TLS_KEY_FILE=/opt/bitmoa/pgbouncer/certs/pgbouncer.key \
+        bitmoa/pgbouncer:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -250,20 +250,20 @@ When enabling TLS, PgBouncer will support both standard and encrypted traffic by
         environment:
           ...
           - PGBOUNCER_CLIENT_TLS_SSLMODE=require
-          - PGBOUNCER_CLIENT_TLS_CERT_FILE=/opt/bitnami/pgbouncer/certs/pgbouncer.crt
-          - PGBOUNCER_CLIENT_TLS_KEY_FILE=/opt/bitnami/pgbouncer/certs/pgbouncer.key
+          - PGBOUNCER_CLIENT_TLS_CERT_FILE=/opt/bitmoa/pgbouncer/certs/pgbouncer.crt
+          - PGBOUNCER_CLIENT_TLS_KEY_FILE=/opt/bitmoa/pgbouncer/certs/pgbouncer.key
         ...
         volumes:
           ...
-          - /path/to/certs:/opt/bitnami/pgbouncer/certs
+          - /path/to/certs:/opt/bitmoa/pgbouncer/certs
       ...
     ```
 
-Alternatively, you may also provide this configuration in your [custom](https://github.com/bitnami/containers/blob/main/bitnami/pgbouncer#configuration-file) configuration file.
+Alternatively, you may also provide this configuration in your [custom](https://github.com/bitmoa/containers/blob/main/bitmoa/pgbouncer#configuration-file) configuration file.
 
 ### Configuration file
 
-The image looks for `pgbouncer.ini` file in `/opt/bitnami/pgbouncer/conf/`. You can mount a volume at `/bitnami/pgbouncer/conf/` and copy/edit the `pgbouncer.ini` file in the `/path/to/pgbouncer-persistence/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
+The image looks for `pgbouncer.ini` file in `/opt/bitmoa/pgbouncer/conf/`. You can mount a volume at `/bitmoa/pgbouncer/conf/` and copy/edit the `pgbouncer.ini` file in the `/path/to/pgbouncer-persistence/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
 
 ```console
 /path/to/pgbouncer-persistence/conf/
@@ -284,8 +284,8 @@ Run the PgBouncer image, mounting a directory from your host.
 
 ```console
 docker run --name pgbouncer \
-    -v /path/to/pgbouncer-persistence/conf/:/bitnami/pgbouncer/conf/ \
-    bitnami/pgbouncer:latest
+    -v /path/to/pgbouncer-persistence/conf/:/bitmoa/pgbouncer/conf/ \
+    bitmoa/pgbouncer:latest
 ```
 
 or using Docker Compose:
@@ -297,11 +297,11 @@ version: '2'
 
 services:
   pgbouncer:
-    image: bitnami/pgbouncer:latest
+    image: bitmoa/pgbouncer:latest
     ports:
       - 6432:6432
     volumes:
-      - /path/to/pgbouncer-persistence/conf/:/bitnami/pgbouncer/conf/
+      - /path/to/pgbouncer-persistence/conf/:/bitmoa/pgbouncer/conf/
 ```
 
 #### Step 2: Edit the configuration
@@ -336,41 +336,41 @@ The PgBouncer initialization process requires one PostgreSQL backend to be confi
 
 ```yaml
   pg1:
-    image: docker.io/bitnami/postgresql:latest
+    image: ghcr.io/bitmoa/postgresql:latest
     volumes:
-      - pg1_data:/bitnami/postgresql
+      - pg1_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_PASSWORD=password1
       - POSTGRESQL_DATABASE=db1
 
   pg2:
-    image: docker.io/bitnami/postgresql:latest
+    image: ghcr.io/bitmoa/postgresql:latest
     volumes:
-      - pg2_data:/bitnami/postgresql
+      - pg2_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_PASSWORD=password2
       - POSTGRESQL_DATABASE=db2
 
   pg3:
-    image: docker.io/bitnami/postgresql:latest
+    image: ghcr.io/bitmoa/postgresql:latest
     volumes:
-      - pg3_data:/bitnami/postgresql
+      - pg3_data:/bitmoa/postgresql
     environment:
       - POSTGRESQL_PASSWORD=password3
       - POSTGRESQL_DATABASE=db3
 
   pgbouncer:
-    image: docker.io/bitnami/pgbouncer:latest
+    image: ghcr.io/bitmoa/pgbouncer:latest
     ports:
       - 6432:6432
     volumes:
-      - ./userlists.txt:/bitnami/userlists.txt
+      - ./userlists.txt:/bitmoa/userlists.txt
     environment:
       - POSTGRESQL_HOST=pg1
       - POSTGRESQL_PASSWORD=password1
       - POSTGRESQL_DATABASE=db1
       - PGBOUNCER_AUTH_TYPE=trust
-      - PGBOUNCER_USERLIST_FILE=/bitnami/userlists.txt
+      - PGBOUNCER_USERLIST_FILE=/bitmoa/userlists.txt
       - PGBOUNCER_DSN_0=pg1=host=pg1 port=5432 dbname=db1
       - PGBOUNCER_DSN_1=pg2=host=pg2 port=5432 dbname=db2
       - PGBOUNCER_DSN_2=pg3=host=pg3 port=5432 dbname=db3
@@ -403,7 +403,7 @@ $ docker exec -it -u root debian-12-pgbouncer-1 psql -p 6432 -U postgres pg2 -c 
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami PgBouncer Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami PgBouncer Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -411,15 +411,15 @@ The Bitnami PgBouncer Docker image from the [Bitnami Secure Images](https://www.
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

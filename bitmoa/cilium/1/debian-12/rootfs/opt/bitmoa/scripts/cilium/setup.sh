@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Cilium environment variables
-. /opt/bitnami/scripts/cilium-env.sh
+. /opt/bitmoa/scripts/cilium-env.sh
 
 # Ensure 'daemon' user exists when running as 'root'
 if am_i_root; then

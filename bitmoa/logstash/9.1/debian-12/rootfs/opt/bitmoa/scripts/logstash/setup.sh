@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblogstash.sh
+. /opt/bitmoa/scripts/liblogstash.sh
 
 # Load Logstash environment variables
-. /opt/bitnami/scripts/logstash-env.sh
+. /opt/bitmoa/scripts/logstash-env.sh
 
 # Ensure Logstash environment variables are valid
 logstash_validate

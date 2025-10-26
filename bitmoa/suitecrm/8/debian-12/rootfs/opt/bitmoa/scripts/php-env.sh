@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-php}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -49,7 +49,7 @@ done
 unset php_env_vars
 
 # Paths
-export PHP_BASE_DIR="${BITNAMI_ROOT_DIR}/php"
+export PHP_BASE_DIR="${BITMOA_ROOT_DIR}/php"
 export PHP_BIN_DIR="${PHP_BASE_DIR}/bin"
 export PHP_CONF_DIR="${PHP_BASE_DIR}/etc"
 export PHP_DEFAULT_CONF_DIR="${PHP_BASE_DIR}/etc.default"
@@ -69,7 +69,7 @@ export PHP_FPM_CONF_FILE="${PHP_CONF_DIR}/php-fpm.conf"
 export PHP_FPM_PID_FILE="${PHP_TMP_DIR}/php-fpm.pid"
 export PHP_FPM_DEFAULT_LISTEN_ADDRESS="${PHP_TMP_DIR}/www.sock" # only used at build time
 export PHP_FPM_LISTEN_ADDRESS="${PHP_FPM_LISTEN_ADDRESS:-}"
-export PATH="${PHP_FPM_SBIN_DIR}:${PHP_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${PHP_FPM_SBIN_DIR}:${PHP_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export PHP_FPM_DAEMON_USER="daemon"

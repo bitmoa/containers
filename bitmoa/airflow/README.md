@@ -10,7 +10,7 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name airflow bitnami/airflow:latest
+docker run --name airflow bitmoa/airflow:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure d
@@ -18,14 +18,14 @@ eployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -36,15 +36,15 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ To run this application you need [Docker Engine](https://www.docker.com/products
 
 ## How to use this image
 
-Airflow requires access to a PostgreSQL database to store information. We will use our very own [PostgreSQL image](https://github.com/bitnami/containers/tree/main/bitnami/postgresql) for the database requirements. Additionally, if you pretend to use the `CeleryExecutor`, you will also need a [Redis(R) server](https://github.com/bitnami/containers/tree/main/bitnami/redis).
+Airflow requires access to a PostgreSQL database to store information. We will use our very own [PostgreSQL image](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql) for the database requirements. Additionally, if you pretend to use the `CeleryExecutor`, you will also need a [Redis(R) server](https://github.com/bitmoa/containers/tree/main/bitmoa/redis).
 
 ### Using the Docker Command Line
 
@@ -68,11 +68,11 @@ Airflow requires access to a PostgreSQL database to store information. We will u
     docker volume create --name postgresql_data
     docker run -d --name postgresql \
       -e POSTGRESQL_USERNAME=bn_airflow \
-      -e POSTGRESQL_PASSWORD=bitnami1 \
-      -e POSTGRESQL_DATABASE=bitnami_airflow \
+      -e POSTGRESQL_PASSWORD=bitmoa1 \
+      -e POSTGRESQL_DATABASE=bitmoa_airflow \
       --net airflow-tier \
-      --volume postgresql_data:/bitnami/postgresql \
-      bitnami/postgresql:latest
+      --volume postgresql_data:/bitmoa/postgresql \
+      bitmoa/postgresql:latest
     ```
 
 3. Create a volume for Redis(R) persistence and create a Redis(R) container
@@ -82,8 +82,8 @@ Airflow requires access to a PostgreSQL database to store information. We will u
     docker run -d --name redis \
       -e ALLOW_EMPTY_PASSWORD=yes \
       --net airflow-tier \
-      --volume redis_data:/bitnami \
-      bitnami/redis:latest
+      --volume redis_data:/bitmoa \
+      bitmoa/redis:latest
     ```
 
 4. Launch the Apache Airflow web container
@@ -93,15 +93,15 @@ Airflow requires access to a PostgreSQL database to store information. We will u
       -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
       -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
       -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
       -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
+      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
       -e AIRFLOW_LOAD_EXAMPLES=yes \
-      -e AIRFLOW_PASSWORD=bitnami123 \
+      -e AIRFLOW_PASSWORD=bitmoa123 \
       -e AIRFLOW_USERNAME=user \
       -e AIRFLOW_EMAIL=user@example.com \
       --net airflow-tier \
-      bitnami/airflow:latest
+      bitmoa/airflow:latest
     ```
 
 5. Launch the Apache Airflow scheduler container
@@ -112,13 +112,13 @@ Airflow requires access to a PostgreSQL database to store information. We will u
       -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
       -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
       -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
       -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
+      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
       -e AIRFLOW_LOAD_EXAMPLES=yes \
       -e AIRFLOW_WEBSERVER_HOST=airflow \
       --net airflow-tier \
-      bitnami/airflow:latest
+      bitmoa/airflow:latest
     ```
 
 6. Launch the Apache Airflow worker container
@@ -129,12 +129,12 @@ Airflow requires access to a PostgreSQL database to store information. We will u
       -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
       -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
       -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
       -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
+      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
       -e AIRFLOW_WEBSERVER_HOST=airflow \
       --net airflow-tier \
-      bitnami/airflow:latest
+      bitmoa/airflow:latest
     ```
 
   Access your application at `http://your-ip:8080`
@@ -142,17 +142,17 @@ Airflow requires access to a PostgreSQL database to store information. We will u
 ### Using `docker-compose.yaml`
 
 ```console
-curl -LO https://raw.githubusercontent.com/bitnami/containers/main/bitnami/airflow/docker-compose.yml
+curl -LO https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/airflow/docker-compose.yml
 docker-compose up
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/airflow).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/airflow).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ### Persisting your application
 
-The Bitnami Airflow container relies on the PostgreSQL database & Redis to persist the data. This means that Airflow does not persist anything. To avoid loss of data, you should mount volumes for persistence of [PostgreSQL data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#persisting-your-database) and [Redis(R) data](https://github.com/bitnami/containers/blob/main/bitnami/redis#persisting-your-database)
+The Bitnami Airflow container relies on the PostgreSQL database & Redis to persist the data. This means that Airflow does not persist anything. To avoid loss of data, you should mount volumes for persistence of [PostgreSQL data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database) and [Redis(R) data](https://github.com/bitmoa/containers/blob/main/bitmoa/redis#persisting-your-database)
 
 The above examples define docker volumes namely `postgresql_data`, and `redis_data`. The Airflow application state will persist as long as these volumes are not removed.
 
@@ -166,51 +166,51 @@ The following `docker-compose.yml` template demonstrates the use of host directo
 version: '2'
 services:
   postgresql:
-    image: bitnami/postgresql:latest
+    image: bitmoa/postgresql:latest
     environment:
-      - POSTGRESQL_DATABASE=bitnami_airflow
+      - POSTGRESQL_DATABASE=bitmoa_airflow
       - POSTGRESQL_USERNAME=bn_airflow
-      - POSTGRESQL_PASSWORD=bitnami1
+      - POSTGRESQL_PASSWORD=bitmoa1
     volumes:
-      - /path/to/postgresql-persistence:/bitnami/postgresql
+      - /path/to/postgresql-persistence:/bitmoa/postgresql
   redis:
-    image: bitnami/redis:latest
+    image: bitmoa/redis:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - /path/to/redis-persistence:/bitnami
+      - /path/to/redis-persistence:/bitmoa
   airflow-worker:
-    image: bitnami/airflow:latest
+    image: bitmoa/airflow:latest
     environment:
       - AIRFLOW_COMPONENT_TYPE=worker
       - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
       - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
       - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
       - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitnami1
+      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
       - AIRFLOW_LOAD_EXAMPLES=yes
   airflow-scheduler:
-    image: bitnami/airflow:latest
+    image: bitmoa/airflow:latest
     environment:
       - AIRFLOW_COMPONENT_TYPE=scheduler
       - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
       - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
       - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
       - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitnami1
+      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
       - AIRFLOW_LOAD_EXAMPLES=yes
   airflow:
-    image: bitnami/airflow:latest
+    image: bitmoa/airflow:latest
     environment:
       - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
       - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
       - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
       - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitnami1
-      - AIRFLOW_PASSWORD=bitnami123
+      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
+      - AIRFLOW_PASSWORD=bitmoa123
       - AIRFLOW_USERNAME=user
       - AIRFLOW_EMAIL=user@example.com
     ports:
@@ -230,11 +230,11 @@ services:
     ```console
     docker run -d --name postgresql \
       -e POSTGRESQL_USERNAME=bn_airflow \
-      -e POSTGRESQL_PASSWORD=bitnami1 \
-      -e POSTGRESQL_DATABASE=bitnami_airflow \
+      -e POSTGRESQL_PASSWORD=bitmoa1 \
+      -e POSTGRESQL_DATABASE=bitmoa_airflow \
       --net airflow-tier \
-      --volume /path/to/postgresql-persistence:/bitnami \
-      bitnami/postgresql:latest
+      --volume /path/to/postgresql-persistence:/bitmoa \
+      bitmoa/postgresql:latest
     ```
 
 3. Create the Redis(R) container with host volumes
@@ -243,8 +243,8 @@ services:
     docker run -d --name redis \
       -e ALLOW_EMPTY_PASSWORD=yes \
       --net airflow-tier \
-      --volume /path/to/redis-persistence:/bitnami \
-      bitnami/redis:latest
+      --volume /path/to/redis-persistence:/bitmoa \
+      bitmoa/redis:latest
     ```
 
 4. Create the Airflow container
@@ -254,15 +254,15 @@ services:
       -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
       -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
       -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
       -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
+      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
       -e AIRFLOW_LOAD_EXAMPLES=yes \
-      -e AIRFLOW_PASSWORD=bitnami123 \
+      -e AIRFLOW_PASSWORD=bitmoa123 \
       -e AIRFLOW_USERNAME=user \
       -e AIRFLOW_EMAIL=user@example.com \
       --net airflow-tier \
-      bitnami/airflow:latest
+      bitmoa/airflow:latest
     ```
 
 5. Create the Airflow Scheduler container
@@ -273,13 +273,13 @@ services:
       -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
       -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
       -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
       -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
+      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
       -e AIRFLOW_LOAD_EXAMPLES=yes \
       -e AIRFLOW_WEBSERVER_HOST=airflow \
       --net airflow-tier \
-      bitnami/airflow:latest
+      bitmoa/airflow:latest
     ```
 
 6. Create the Airflow Worker container
@@ -290,23 +290,23 @@ services:
       -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
       -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
       -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
       -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
+      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
       -e AIRFLOW_WEBSERVER_HOST=airflow \
       --net airflow-tier \
-      bitnami/airflow:latest
+      bitmoa/airflow:latest
     ```
 
 ## Configuration
 
 ### Load DAG files
 
-Custom DAG files can be mounted to `/opt/bitnami/airflow/dags`.
+Custom DAG files can be mounted to `/opt/bitmoa/airflow/dags`.
 
 ### Installing additional python modules
 
-This container supports the installation of additional python modules at start-up time. In order to do that, you can mount a `requirements.txt` file with your specific needs under the path `/bitnami/python/requirements.txt`.
+This container supports the installation of additional python modules at start-up time. In order to do that, you can mount a `requirements.txt` file with your specific needs under the path `/bitmoa/python/requirements.txt`.
 
 ### Environment variables
 
@@ -315,7 +315,7 @@ This container supports the installation of additional python modules at start-u
 | Name                                     | Description                                                                                                                                 | Default Value                   |
 |------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
 | `AIRFLOW_USERNAME`                       | Airflow username                                                                                                                            | `user`                          |
-| `AIRFLOW_PASSWORD`                       | Airflow password                                                                                                                            | `bitnami`                       |
+| `AIRFLOW_PASSWORD`                       | Airflow password                                                                                                                            | `bitmoa`                       |
 | `AIRFLOW_FIRSTNAME`                      | Airflow firstname                                                                                                                           | `Firstname`                     |
 | `AIRFLOW_LASTNAME`                       | Airflow lastname                                                                                                                            | `Lastname`                      |
 | `AIRFLOW_EMAIL`                          | Airflow email                                                                                                                               | `user@example.com`              |
@@ -338,13 +338,13 @@ This container supports the installation of additional python modules at start-u
 | `AIRFLOW_TRIGGERER_DEFAULT_CAPACITY`     | How many triggers a single Triggerer can run at once.                                                                                       | `1000`                          |
 | `AIRFLOW_WORKER_QUEUE`                   | A queue for the worker to pull tasks from.                                                                                                  | `nil`                           |
 | `AIRFLOW_SKIP_DB_SETUP`                  | Skip db init / db migrate actions during the setup                                                                                          | `no`                            |
-| `PYTHONPYCACHEPREFIX`                    | Configure Python .pyc files cache prefix                                                                                                    | `/opt/bitnami/airflow/venv/tmp` |
+| `PYTHONPYCACHEPREFIX`                    | Configure Python .pyc files cache prefix                                                                                                    | `/opt/bitmoa/airflow/venv/tmp` |
 | `AIRFLOW_DB_MIGRATE_TIMEOUT`             | How much time to wait for database migrations                                                                                               | `120`                           |
 | `AIRFLOW_ENABLE_HTTPS`                   | Whether to enable HTTPS for Airflow by default.                                                                                             | `no`                            |
 | `AIRFLOW_EXTERNAL_APISERVER_PORT_NUMBER` | External HTTP/HTTPS port for Airflow.                                                                                                       | `80`                            |
 | `AIRFLOW_DATABASE_HOST`                  | Hostname for PostgreSQL server.                                                                                                             | `postgresql`                    |
 | `AIRFLOW_DATABASE_PORT_NUMBER`           | Port used by PostgreSQL server.                                                                                                             | `5432`                          |
-| `AIRFLOW_DATABASE_NAME`                  | Database name that Airflow will use to connect with the database.                                                                           | `bitnami_airflow`               |
+| `AIRFLOW_DATABASE_NAME`                  | Database name that Airflow will use to connect with the database.                                                                           | `bitmoa_airflow`               |
 | `AIRFLOW_DATABASE_USERNAME`              | Database user that Airflow will use to connect with the database.                                                                           | `bn_airflow`                    |
 | `AIRFLOW_DATABASE_PASSWORD`              | Database password that Airflow will use to connect with the database.                                                                       | `nil`                           |
 | `AIRFLOW_DATABASE_USE_SSL`               | Set to yes if the database is using SSL.                                                                                                    | `no`                            |
@@ -372,7 +372,7 @@ This container supports the installation of additional python modules at start-u
 
 | Name                          | Description                               | Value                                     |
 |-------------------------------|-------------------------------------------|-------------------------------------------|
-| `AIRFLOW_BASE_DIR`            | Airflow home/installation directory.      | `${BITNAMI_ROOT_DIR}/airflow`             |
+| `AIRFLOW_BASE_DIR`            | Airflow home/installation directory.      | `${BITMOA_ROOT_DIR}/airflow`             |
 | `AIRFLOW_BIN_DIR`             | Airflow directory for binary executables. | `${AIRFLOW_BASE_DIR}/venv/bin`            |
 | `AIRFLOW_LOGS_DIR`            | Airflow logs directory.                   | `${AIRFLOW_BASE_DIR}/logs`                |
 | `AIRFLOW_SCHEDULER_LOGS_DIR`  | Airflow scheduler logs directory.         | `${AIRFLOW_LOGS_DIR}/scheduler`           |
@@ -392,15 +392,15 @@ version: '2'
 
 services:
   airflow:
-    image: bitnami/airflow:latest
+    image: bitmoa/airflow:latest
     environment:
       - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
       - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
       - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
       - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitnami1
-      - AIRFLOW_PASSWORD=bitnami123
+      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
+      - AIRFLOW_PASSWORD=bitmoa123
       - AIRFLOW_USERNAME=user
       - AIRFLOW_EMAIL=user@example.com
 ```
@@ -412,13 +412,13 @@ docker run -d --name airflow -p 8080:8080 \
     -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
     -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
     -e AIRFLOW_EXECUTOR=CeleryExecutor \
-    -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+    -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
     -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-    -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
-    -e AIRFLOW_PASSWORD=bitnami123 \
+    -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
+    -e AIRFLOW_PASSWORD=bitmoa123 \
     -e AIRFLOW_USERNAME=user \
     -e AIRFLOW_EMAIL=user@example.com \
-    bitnami/airflow:latest
+    bitmoa/airflow:latest
 ```
 
 #### SMTP Configuration
@@ -439,15 +439,15 @@ This would be an example of SMTP configuration using a GMail account:
 
 ```yaml
   airflow:
-    image: bitnami/airflow:latest
+    image: bitmoa/airflow:latest
     environment:
       - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
       - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
       - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
       - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitnami1
-      - AIRFLOW_PASSWORD=bitnami
+      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
+      - AIRFLOW_PASSWORD=bitmoa
       - AIRFLOW_USERNAME=user
       - AIRFLOW_EMAIL=user@email.com
       - AIRFLOW__SMTP__SMTP_HOST=smtp@gmail.com
@@ -465,22 +465,22 @@ docker run -d --name airflow -p 8080:8080 \
     -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
     -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
     -e AIRFLOW_EXECUTOR=CeleryExecutor \
-    -e AIRFLOW_DATABASE_NAME=bitnami_airflow \
+    -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
     -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-    -e AIRFLOW_DATABASE_PASSWORD=bitnami1 \
-    -e AIRFLOW_PASSWORD=bitnami123 \
+    -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
+    -e AIRFLOW_PASSWORD=bitmoa123 \
     -e AIRFLOW_USERNAME=user \
     -e AIRFLOW_EMAIL=user@example.com \
     -e AIRFLOW__SMTP__SMTP_HOST=smtp@gmail.com \
     -e AIRFLOW__SMTP__SMTP_USER=your_email@gmail.com \
     -e AIRFLOW__SMTP__SMTP_PASSWORD=your_password \
     -e AIRFLOW__SMTP__SMTP_PORT=587 \
-    bitnami/airflow:latest
+    bitmoa/airflow:latest
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Airflow Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Airflow Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -488,7 +488,7 @@ The Bitnami Apache Airflow Docker image from the [Bitnami Secure Images](https:/
 
 ### Starting October 30, 2024
 
-- The Airflow container now supports running as a Web server, Scheduler or Worker component, so it's no longer necessary to combine this container image with `bitnami/airflow-scheduler` and `bitnami/airflow-worker` in order to use the `CeleryExecutor`.
+- The Airflow container now supports running as a Web server, Scheduler or Worker component, so it's no longer necessary to combine this container image with `bitmoa/airflow-scheduler` and `bitmoa/airflow-worker` in order to use the `CeleryExecutor`.
 - The `AIRFLOW_COMPONENT_TYPE` environment variable was introduced to specify the component type. Current supported values are `webserver`, `scheduler` and `worker`, although it's planned to add soon support for `dag-processor` and `triggerer` components. The default value is `webserver`.
 
 ### 1.10.15-debian-10-r17 and 2.0.1-debian-10-r50
@@ -498,11 +498,11 @@ The Bitnami Apache Airflow Docker image from the [Bitnami Secure Images](https:/
 
 ## Contributing
 
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

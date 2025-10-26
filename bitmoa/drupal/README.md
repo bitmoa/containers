@@ -10,7 +10,7 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name drupal bitnami/drupal:latest
+docker run --name drupal bitmoa/drupal:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure d
@@ -18,14 +18,14 @@ eployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -36,7 +36,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -44,41 +44,41 @@ Non-root container images add an extra layer of security and are generally recom
 
 ## How to deploy Drupal in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Drupal Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/drupal).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Drupal Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/drupal).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Drupal Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/drupal).
+The recommended way to get the Bitnami Drupal Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/drupal).
 
 ```console
-docker pull bitnami/drupal:latest
+docker pull bitmoa/drupal:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/drupal/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/drupal/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/drupal:[TAG]
+docker pull bitmoa/drupal:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-Drupal requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitnami/containers/tree/main/bitnami/mariadb) for the database requirements.
+Drupal requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -95,11 +95,11 @@ $ docker volume create --name mariadb_data
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_drupal \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_drupal \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_drupal \
   --network drupal-network \
-  --volume mariadb_data:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume mariadb_data:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3: Create volumes for Drupal persistence and launch the container
@@ -110,11 +110,11 @@ docker run -d --name drupal \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env DRUPAL_DATABASE_USER=bn_drupal \
-  --env DRUPAL_DATABASE_PASSWORD=bitnami \
-  --env DRUPAL_DATABASE_NAME=bitnami_drupal \
+  --env DRUPAL_DATABASE_PASSWORD=bitmoa \
+  --env DRUPAL_DATABASE_NAME=bitmoa_drupal \
   --network drupal-network \
-  --volume drupal_data:/bitnami/drupal \
-  bitnami/drupal:latest
+  --volume drupal_data:/bitmoa/drupal \
+  bitmoa/drupal:latest
 ```
 
 Access your application at `http://your-ip:8080/`
@@ -122,19 +122,19 @@ Access your application at `http://your-ip:8080/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/drupal/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/drupal/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/drupal).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/drupal).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/drupal` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#persisting-your-database).
+For persistence you should mount a directory at the `/bitmoa/drupal` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
 The above examples define the Docker volumes named mariadb_data and drupal_data. The Drupal application state will persist as long as volumes are not removed.
 
@@ -142,20 +142,20 @@ To avoid inadvertent removal of volumes, you can mount host directories as data 
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/drupal/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/drupal/docker-compose.yml) file present in this repository:
 
 ```diff
    mariadb:
      ...
      volumes:
--      - mariadb_data:/bitnami/mariadb
-+      - /path/to/mariadb-persistence:/bitnami/mariadb
+-      - mariadb_data:/bitmoa/mariadb
++      - /path/to/mariadb-persistence:/bitmoa/mariadb
    ...
    drupal:
      ...
      volumes:
--      - drupal_data:/bitnami/drupal
-+      - /path/to/drupal-persistence:/bitnami/drupal
+-      - drupal_data:/bitmoa/drupal
++      - /path/to/drupal-persistence:/bitmoa/drupal
    ...
 -volumes:
 -  mariadb_data:
@@ -180,11 +180,11 @@ docker network create drupal-network
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_drupal \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_drupal \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_drupal \
   --network drupal-network \
-  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3. Create the Drupal container with host volumes
@@ -194,11 +194,11 @@ docker run -d --name drupal \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env DRUPAL_DATABASE_USER=bn_drupal \
-  --env DRUPAL_DATABASE_PASSWORD=bitnami \
-  --env DRUPAL_DATABASE_NAME=bitnami_drupal \
+  --env DRUPAL_DATABASE_PASSWORD=bitmoa \
+  --env DRUPAL_DATABASE_NAME=bitmoa_drupal \
   --network drupal-network \
-  --volume /path/to/drupal-persistence:/bitnami/drupal \
-  bitnami/drupal:latest
+  --volume /path/to/drupal-persistence:/bitmoa/drupal \
+  bitmoa/drupal:latest
 ```
 
 ## Configuration
@@ -217,7 +217,7 @@ docker run -d --name drupal \
 | `DRUPAL_CONFIG_SYNC_DIR`      | Drupal sync configuration directory location. Only used when `DRUPAL_SKIP_BOOTSTRAP` is enabled.                             | `nil`                               |
 | `DRUPAL_HASH_SALT`            | Drupal string used to generate random values. Only used when `DRUPAL_SKIP_BOOTSTRAP` is enabled.                             | `nil`                               |
 | `DRUPAL_USERNAME`             | Drupal user name.                                                                                                            | `user`                              |
-| `DRUPAL_PASSWORD`             | Drupal user password.                                                                                                        | `bitnami`                           |
+| `DRUPAL_PASSWORD`             | Drupal user password.                                                                                                        | `bitmoa`                           |
 | `DRUPAL_EMAIL`                | Drupal user e-mail address.                                                                                                  | `user@example.com`                  |
 | `DRUPAL_SMTP_HOST`            | Drupal SMTP server host.                                                                                                     | `nil`                               |
 | `DRUPAL_SMTP_PORT_NUMBER`     | Drupal SMTP server port number.                                                                                              | `25`                                |
@@ -226,7 +226,7 @@ docker run -d --name drupal \
 | `DRUPAL_SMTP_PROTOCOL`        | Drupal SMTP server protocol.                                                                                                 | `standard`                          |
 | `DRUPAL_DATABASE_HOST`        | Database server host.                                                                                                        | `$DRUPAL_DEFAULT_DATABASE_HOST`     |
 | `DRUPAL_DATABASE_PORT_NUMBER` | Database server port.                                                                                                        | `3306`                              |
-| `DRUPAL_DATABASE_NAME`        | Database name.                                                                                                               | `bitnami_drupal`                    |
+| `DRUPAL_DATABASE_NAME`        | Database name.                                                                                                               | `bitmoa_drupal`                    |
 | `DRUPAL_DATABASE_USER`        | Database user name.                                                                                                          | `bn_drupal`                         |
 | `DRUPAL_DATABASE_PASSWORD`    | Database user password.                                                                                                      | `nil`                               |
 | `DRUPAL_DATABASE_TLS_CA_FILE` | TLS CA certificate for connections.                                                                                          | `nil`                               |
@@ -235,17 +235,17 @@ docker run -d --name drupal \
 
 | Name                           | Description                                                                                                                      | Value                                           |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| `DRUPAL_BASE_DIR`              | Drupal installation directory.                                                                                                   | `${BITNAMI_ROOT_DIR}/drupal`                    |
+| `DRUPAL_BASE_DIR`              | Drupal installation directory.                                                                                                   | `${BITMOA_ROOT_DIR}/drupal`                    |
 | `DRUPAL_CONF_FILE`             | Configuration file for Drupal.                                                                                                   | `${DRUPAL_BASE_DIR}/sites/default/settings.php` |
 | `DRUPAL_MODULES_DIR`           | Drupal modules directory.                                                                                                        | `${DRUPAL_BASE_DIR}/modules`                    |
-| `DRUPAL_VOLUME_DIR`            | Drupal directory for mounted configuration files.                                                                                | `${BITNAMI_VOLUME_DIR}/drupal`                  |
+| `DRUPAL_VOLUME_DIR`            | Drupal directory for mounted configuration files.                                                                                | `${BITMOA_VOLUME_DIR}/drupal`                  |
 | `DRUPAL_MOUNTED_CONF_FILE`     | Mounted configuration file for Drupal. It will be copied to the Drupal installation directory during the initialization process. | `${DRUPAL_VOLUME_DIR}/settings.php`             |
 | `DRUPAL_DEFAULT_DATABASE_HOST` | Default database server host.                                                                                                    | `mariadb`                                       |
 | `PHP_DEFAULT_MEMORY_LIMIT`     | Default PHP memory limit.                                                                                                        | `256M`                                          |
 
 When you start the Drupal image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/drupal/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/drupal/docker-compose.yml) file present in this repository:
 
 ```yaml
 drupal:
@@ -261,22 +261,22 @@ drupal:
   docker run -d --name drupal -p 80:8080 -p 443:8443 \
     --env DRUPAL_PASSWORD=my_password \
     --network drupal-tier \
-    --volume /path/to/drupal-persistence:/bitnami \
-    bitnami/drupal:latest
+    --volume /path/to/drupal-persistence:/bitmoa \
+    bitmoa/drupal:latest
   ```
 
 #### Example
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/drupal/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/drupal/docker-compose.yml) file present in this repository:
 
 ```yaml
   drupal:
     ...
     environment:
       - DRUPAL_DATABASE_USER=bn_drupal
-      - DRUPAL_DATABASE_NAME=bitnami_drupal
+      - DRUPAL_DATABASE_NAME=bitmoa_drupal
       - ALLOW_EMPTY_PASSWORD=yes
       - DRUPAL_SMTP_HOST=smtp.gmail.com
       - DRUPAL_SMTP_PORT=587
@@ -291,20 +291,20 @@ This would be an example of SMTP configuration using a Gmail account:
   ```console
   docker run -d --name drupal -p 80:8080 -p 443:8443 \
     --env DRUPAL_DATABASE_USER=bn_drupal \
-    --env DRUPAL_DATABASE_NAME=bitnami_drupal \
+    --env DRUPAL_DATABASE_NAME=bitmoa_drupal \
     --env DRUPAL_SMTP_HOST=smtp.gmail.com \
     --env DRUPAL_SMTP_PORT=587 \
     --env DRUPAL_SMTP_USER=your_email@gmail.com \
     --env DRUPAL_SMTP_PASSWORD=your_password \
     --env DRUPAL_SMTP_PROTOCOL=tls \
     --network drupal-tier \
-    --volume /path/to/drupal-persistence:/bitnami \
-    bitnami/drupal:latest
+    --volume /path/to/drupal-persistence:/bitmoa \
+    bitmoa/drupal:latest
   ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Drupal Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Drupal Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -348,7 +348,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/drupal-backups:/backups --volumes-from drupal busybox \
-  cp -a /bitnami/drupal /backups/latest
+  cp -a /bitmoa/drupal /backups/latest
 ```
 
 ### Restoring a backup
@@ -360,9 +360,9 @@ For the MariaDB database container:
 ```diff
  $ docker run -d --name mariadb \
    ...
--  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-+  --volume /path/to/mariadb-backups/latest:/bitnami/mariadb \
-   bitnami/mariadb:latest
+-  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
++  --volume /path/to/mariadb-backups/latest:/bitmoa/mariadb \
+   bitmoa/mariadb:latest
 ```
 
 For the Drupal container:
@@ -370,19 +370,19 @@ For the Drupal container:
 ```diff
  $ docker run -d --name drupal \
    ...
--  --volume /path/to/drupal-persistence:/bitnami/drupal \
-+  --volume /path/to/drupal-backups/latest:/bitnami/drupal \
-   bitnami/drupal:latest
+-  --volume /path/to/drupal-persistence:/bitmoa/drupal \
++  --volume /path/to/drupal-backups/latest:/bitmoa/drupal \
+   bitmoa/drupal:latest
 ```
 
 ### Upgrade this image
 
-Bitnami provides up-to-date versions of MariaDB and Drupal, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Drupal container. For the MariaDB upgrade see: <https://github.com/bitnami/containers/tree/main/bitnami/mariadb#upgrade-this-image>
+Bitnami provides up-to-date versions of MariaDB and Drupal, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Drupal container. For the MariaDB upgrade see: <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/drupal:latest
+docker pull bitmoa/drupal:latest
 ```
 
 #### Step 2: Stop the running container
@@ -422,14 +422,14 @@ The Bitnami Drupal Docker image is designed to be extended so it can be used as 
 Before extending this image, please note there are certain configuration settings you can modify using the original image:
 
 - Settings that can be adapted using environment variables. For instance, you can change the ports used by Apache for HTTP and HTTPS, by setting the environment variables `APACHE_HTTP_PORT_NUMBER` and `APACHE_HTTPS_PORT_NUMBER` respectively.
-- [Adding custom virtual hosts](https://github.com/bitnami/containers/blob/main/bitnami/apache#adding-custom-virtual-hosts).
-- [Replacing the 'httpd.conf' file](https://github.com/bitnami/containers/blob/main/bitnami/apache#full-configuration).
-- [Using custom SSL certificates](https://github.com/bitnami/containers/blob/main/bitnami/apache#using-custom-ssl-certificates).
+- [Adding custom virtual hosts](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#adding-custom-virtual-hosts).
+- [Replacing the 'httpd.conf' file](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#full-configuration).
+- [Using custom SSL certificates](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#using-custom-ssl-certificates).
 
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/drupal
+FROM bitmoa/drupal
 ## Put your customizations below
 ...
 ```
@@ -441,7 +441,7 @@ Here is an example of extending the image with the following modifications:
 - Modify the ports used by Apache
 
 ```Dockerfile
-FROM bitnami/drupal
+FROM bitmoa/drupal
 
 ## Change user to perform privileged actions
 USER 0
@@ -451,7 +451,7 @@ RUN install_packages vim
 USER 1001
 
 ## Enable mod_ratelimit module
-RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitnami/apache/conf/httpd.conf
+RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitmoa/apache/conf/httpd.conf
 
 ## Modify the ports used by Apache by default
 # It is also possible to change these environment variables at runtime
@@ -460,11 +460,11 @@ ENV APACHE_HTTPS_PORT_NUMBER=8143
 EXPOSE 8181 8143
 ```
 
-Based on the extended image, you can update the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/drupal/docker-compose.yml) file present in this repository to add other features:
+Based on the extended image, you can update the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/drupal/docker-compose.yml) file present in this repository to add other features:
 
 ```diff
    drupal:
--    image: bitnami/drupal:latest
+-    image: bitmoa/drupal:latest
 +    build: .
      ports:
 -      - 80:8080
@@ -489,9 +489,9 @@ Based on the extended image, you can update the [`docker-compose.yml`](https://g
 ## 8.7.2-debian-9-r8 and 8.7.2-ol-7-r8
 
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
-- The Apache configuration volume (`/bitnami/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitnami/apache/conf`, or mount specific configuration files individually.
-- The PHP configuration volume (`/bitnami/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitnami/php/conf`, or mount specific configuration files individually.
-- Enabling custom Apache certificates by placing them at `/opt/bitnami/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
+- The Apache configuration volume (`/bitmoa/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/apache/conf`, or mount specific configuration files individually.
+- The PHP configuration volume (`/bitmoa/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/php/conf`, or mount specific configuration files individually.
+- Enabling custom Apache certificates by placing them at `/opt/bitmoa/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
 
 ## 8.5.3-r1
 
@@ -499,11 +499,11 @@ Based on the extended image, you can update the [`docker-compose.yml`](https://g
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues/new) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues/new) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new). Be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new). Be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`docker version`)

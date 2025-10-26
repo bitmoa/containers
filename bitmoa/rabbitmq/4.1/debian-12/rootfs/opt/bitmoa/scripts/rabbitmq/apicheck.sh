@@ -10,7 +10,7 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libos.sh
 
 URL=$1
 EXPECTED=$2

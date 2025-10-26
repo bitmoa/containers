@@ -20,10 +20,10 @@
 # cluster-autoscaler binary.
 
 if [ -z "$LOG_OUTPUT" ]; then
-  LOG_OUTPUT="/opt/bitnami/cluster-autoscaler/log/cluster_autoscaler.log"
+  LOG_OUTPUT="/opt/bitmoa/cluster-autoscaler/log/cluster_autoscaler.log"
 fi
 
-/opt/bitnami/cluster-autoscaler/bin/cluster-autoscaler "$@" 1>>"$LOG_OUTPUT" 2>&1 &
+/opt/bitmoa/cluster-autoscaler/bin/cluster-autoscaler "$@" 1>>"$LOG_OUTPUT" 2>&1 &
 pid="$!"
 # shellcheck disable=SC2064
 trap "kill -15 $pid" 15

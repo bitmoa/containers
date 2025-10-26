@@ -3,24 +3,24 @@
 
 services:
   mongodb:
-    image: docker.io/bitnami/mongodb:latest
+    image: ghcr.io/bitmoa/mongodb:latest
     volumes:
-      - 'mongodb_data:/bitnami/mongodb'
+      - 'mongodb_data:/bitmoa/mongodb'
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb
       - MONGODB_USERNAME=bn_appsmith
-      - MONGODB_DATABASE=bitnami_appsmith
-      - MONGODB_PASSWORD=bitnami123
+      - MONGODB_DATABASE=bitmoa_appsmith
+      - MONGODB_PASSWORD=bitmoa123
       - MONGODB_ROOT_PASSWORD=password123
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
 
   mongodb-secondary:
-    image: docker.io/bitnami/mongodb:latest
+    image: ghcr.io/bitmoa/mongodb:latest
     depends_on:
       - mongodb
     volumes:
-      - 'mongodb_secondary_data:/bitnami/mongodb'
+      - 'mongodb_secondary_data:/bitmoa/mongodb'
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-secondary
       - MONGODB_REPLICA_SET_MODE=secondary
@@ -28,13 +28,13 @@ services:
       - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=password123
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
   redis:
-    image: docker.io/bitnami/redis:latest
+    image: ghcr.io/bitmoa/redis:latest
     volumes:
-      - 'redis_data:/bitnami/redis'
+      - 'redis_data:/bitmoa/redis'
     environment:
-      - REDIS_PASSWORD=bitnami123
+      - REDIS_PASSWORD=bitmoa123
   appsmith:
-    image: docker.io/bitnami/appsmith:1
+    image: ghcr.io/bitmoa/appsmith:1
     environment:
       - APPSMITH_MODE=client
       - APPSMITH_API_HOST=appsmith-api
@@ -42,33 +42,33 @@ services:
     ports:
       - 80:8080
   appsmith-api:
-    image: docker.io/bitnami/appsmith:1
+    image: ghcr.io/bitmoa/appsmith:1
     environment:
       - APPSMITH_MODE=backend
-      - BITNAMI_DEBUG=true
+      - BITMOA_DEBUG=true
       - APPSMITH_API_HOST=appsmith-api
       - APPSMITH_DATABASE_HOST=mongodb,mongodb-secondary
       - APPSMITH_DATABASE_PORT_NUMBER=27017
       - APPSMITH_DATABASE_USER=bn_appsmith
-      - APPSMITH_DATABASE_NAME=bitnami_appsmith
-      - APPSMITH_DATABASE_PASSWORD=bitnami123
-      - APPSMITH_REDIS_PASSWORD=bitnami123
+      - APPSMITH_DATABASE_NAME=bitmoa_appsmith
+      - APPSMITH_DATABASE_PASSWORD=bitmoa123
+      - APPSMITH_REDIS_PASSWORD=bitmoa123
       - APPSMITH_ENCRYPTION_PASSWORD=test123
       - APPSMITH_ENCRYPTION_SALT=testsalt123
       # Hack: This is only necessary in docker-compose
       - APPSMITH_DATABASE_INIT_DELAY=90
     volumes:
-      - 'appsmith_backend_data:/bitnami/appsmith'
+      - 'appsmith_backend_data:/bitmoa/appsmith'
   appsmith-rts:
-    image: docker.io/bitnami/appsmith:1
+    image: ghcr.io/bitmoa/appsmith:1
     environment:
       - APPSMITH_MODE=rts
       - APPSMITH_API_HOST=appsmith-api
       - APPSMITH_DATABASE_HOST=mongodb,mongodb-secondary
       - APPSMITH_DATABASE_PORT_NUMBER=27017
       - APPSMITH_DATABASE_USER=bn_appsmith
-      - APPSMITH_DATABASE_NAME=bitnami_appsmith
-      - APPSMITH_DATABASE_PASSWORD=bitnami123
+      - APPSMITH_DATABASE_NAME=bitmoa_appsmith
+      - APPSMITH_DATABASE_PASSWORD=bitmoa123
       # Hack: This is only necessary in docker-compose
       - APPSMITH_DATABASE_INIT_DELAY=60
 volumes:

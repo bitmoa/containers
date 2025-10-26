@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-opensearch}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -107,9 +107,9 @@ unset opensearch_env_vars
 export DB_FLAVOR="opensearch"
 
 # Paths
-export OPENSEARCH_VOLUME_DIR="/bitnami/opensearch"
+export OPENSEARCH_VOLUME_DIR="/bitmoa/opensearch"
 export DB_VOLUME_DIR="$OPENSEARCH_VOLUME_DIR"
-export OPENSEARCH_BASE_DIR="/opt/bitnami/opensearch"
+export OPENSEARCH_BASE_DIR="/opt/bitmoa/opensearch"
 export DB_BASE_DIR="$OPENSEARCH_BASE_DIR"
 export OPENSEARCH_CONF_DIR="${DB_BASE_DIR}/config"
 export DB_CONF_DIR="$OPENSEARCH_CONF_DIR"
@@ -141,7 +141,7 @@ export OPENSEARCH_PID_FILE="${DB_TMP_DIR}/opensearch.pid"
 export DB_PID_FILE="$OPENSEARCH_PID_FILE"
 export OPENSEARCH_INITSCRIPTS_DIR="/docker-entrypoint-initdb.d"
 export DB_INITSCRIPTS_DIR="$OPENSEARCH_INITSCRIPTS_DIR"
-export PATH="${DB_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:$PATH"
+export PATH="${DB_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:$PATH"
 
 # System users (when running with a privileged user)
 export OPENSEARCH_DAEMON_USER="opensearch"
@@ -197,7 +197,7 @@ export DB_ACTION_DESTRUCTIVE_REQUIRES_NAME="$OPENSEARCH_ACTION_DESTRUCTIVE_REQUI
 # Opensearch Security configuration
 export OPENSEARCH_ENABLE_SECURITY="${OPENSEARCH_ENABLE_SECURITY:-false}"
 export DB_ENABLE_SECURITY="$OPENSEARCH_ENABLE_SECURITY"
-export OPENSEARCH_PASSWORD="${OPENSEARCH_PASSWORD:-bitnami}"
+export OPENSEARCH_PASSWORD="${OPENSEARCH_PASSWORD:-bitmoa}"
 export DB_PASSWORD="$OPENSEARCH_PASSWORD"
 export OPENSEARCH_USERNAME="admin"
 export DB_USERNAME="$OPENSEARCH_USERNAME"
@@ -264,8 +264,8 @@ export DB_HTTP_TLS_CA_CERT_LOCATION="$OPENSEARCH_HTTP_TLS_CA_CERT_LOCATION"
 export OPENSEARCH_SECURITY_DIR="${OPENSEARCH_SECURITY_DIR:-${DB_PLUGINS_DIR}/opensearch-security}"
 export OPENSEARCH_SECURITY_CONF_DIR="${OPENSEARCH_SECURITY_CONF_DIR:-${DB_CONF_DIR}/opensearch-security}"
 OPENSEARCH_DASHBOARDS_PASSWORD="${OPENSEARCH_DASHBOARDS_PASSWORD:-"${KIBANA_PASSWORD:-}"}"
-export OPENSEARCH_DASHBOARDS_PASSWORD="${OPENSEARCH_DASHBOARDS_PASSWORD:-bitnami}"
-export LOGSTASH_PASSWORD="${LOGSTASH_PASSWORD:-bitnami}"
+export OPENSEARCH_DASHBOARDS_PASSWORD="${OPENSEARCH_DASHBOARDS_PASSWORD:-bitmoa}"
+export LOGSTASH_PASSWORD="${LOGSTASH_PASSWORD:-bitmoa}"
 export OPENSEARCH_SET_CGROUP="${OPENSEARCH_SET_CGROUP:-true}"
 export OPENSEARCH_SECURITY_BOOTSTRAP="${OPENSEARCH_SECURITY_BOOTSTRAP:-false}"
 export OPENSEARCH_SECURITY_NODES_DN="${OPENSEARCH_SECURITY_NODES_DN:-}"

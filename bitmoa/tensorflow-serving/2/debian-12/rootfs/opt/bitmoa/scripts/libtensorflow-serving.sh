@@ -7,12 +7,12 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 ########################
 # Validate parameters
@@ -51,7 +51,7 @@ tensorflow_serving_validate() {
 #   None
 #########################
 tensorflow_serving_generate_config() {
-    local template_dir="${BITNAMI_ROOT_DIR}/scripts/tensorflow-serving/bitnami-templates"
+    local template_dir="${BITMOA_ROOT_DIR}/scripts/tensorflow-serving/bitmoa-templates"
 
     export tensorflow_monitoring_enable="false"
     is_boolean_yes "$TENSORFLOW_SERVING_ENABLE_MONITORING" && tensorflow_monitoring_enable="true"

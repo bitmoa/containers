@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-rabbitmq}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -96,8 +96,8 @@ done
 unset rabbitmq_env_vars
 
 # Paths
-export RABBITMQ_VOLUME_DIR="/bitnami/rabbitmq"
-export RABBITMQ_BASE_DIR="/opt/bitnami/rabbitmq"
+export RABBITMQ_VOLUME_DIR="/bitmoa/rabbitmq"
+export RABBITMQ_BASE_DIR="/opt/bitmoa/rabbitmq"
 export RABBITMQ_BIN_DIR="${RABBITMQ_BASE_DIR}/sbin"
 export RABBITMQ_DATA_DIR="${RABBITMQ_VOLUME_DIR}/mnesia"
 export RABBITMQ_CONF_DIR="${RABBITMQ_BASE_DIR}/etc/rabbitmq"
@@ -112,7 +112,7 @@ export RABBITMQ_LOGS_DIR="${RABBITMQ_BASE_DIR}/var/log/rabbitmq"
 export RABBITMQ_DEFINITIONS_FILE="${RABBITMQ_DEFINITIONS_FILE:-/app/load_definition.json}"
 export RABBITMQ_PLUGINS_DIR="${RABBITMQ_BASE_DIR}/plugins"
 export RABBITMQ_MOUNTED_CONF_DIR="${RABBITMQ_VOLUME_DIR}/conf"
-export PATH="${RABBITMQ_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${BITNAMI_ROOT_DIR}/erlang/bin:${PATH}"
+export PATH="${RABBITMQ_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${BITMOA_ROOT_DIR}/erlang/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export RABBITMQ_DAEMON_USER="rabbitmq"
@@ -149,7 +149,7 @@ export RABBITMQ_CLUSTER_REBALANCE_ATTEMPTS="${RABBITMQ_CLUSTER_REBALANCE_ATTEMPT
 RABBITMQ_USERNAME="${RABBITMQ_USERNAME:-"${RABBITMQ_DEFAULT_USER:-}"}"
 export RABBITMQ_USERNAME="${RABBITMQ_USERNAME:-user}"
 RABBITMQ_PASSWORD="${RABBITMQ_PASSWORD:-"${RABBITMQ_DEFAULT_PASS:-}"}"
-export RABBITMQ_PASSWORD="${RABBITMQ_PASSWORD:-bitnami}"
+export RABBITMQ_PASSWORD="${RABBITMQ_PASSWORD:-bitmoa}"
 
 # Force boot cluster
 export RABBITMQ_FORCE_BOOT="${RABBITMQ_FORCE_BOOT:-no}"

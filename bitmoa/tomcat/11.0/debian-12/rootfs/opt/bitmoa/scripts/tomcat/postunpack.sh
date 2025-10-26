@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libtomcat.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libtomcat.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load Tomcat environment variables
-. /opt/bitnami/scripts/tomcat-env.sh
+. /opt/bitmoa/scripts/tomcat-env.sh
 
 # Ensure 'tomcat' user exists when running as 'root'
 ensure_user_exists "$TOMCAT_DAEMON_USER" --group "$TOMCAT_DAEMON_GROUP" --system
@@ -40,12 +40,12 @@ ln -sf "$TOMCAT_WEBAPPS_DIR" "${TOMCAT_BASE_DIR}/webapps"
 
 # Create a setenv.sh script
 # For more info, refer to section '(3.4) Using the "setenv" script' from https://tomcat.apache.org/tomcat-9.0-doc/RUNNING.txt
-declare template_dir="${BITNAMI_ROOT_DIR}/scripts/tomcat/bitnami-templates"
+declare template_dir="${BITMOA_ROOT_DIR}/scripts/tomcat/bitmoa-templates"
 render-template "${template_dir}/setenv.sh.tpl" > "${TOMCAT_BIN_DIR}/setenv.sh"
 chmod g+rwX "${TOMCAT_BIN_DIR}/setenv.sh"
 
 # Create 'apache-tomcat' symlink pointing to the 'tomcat' directory, for compatibility with Bitnami Docs guides
-ln -sf tomcat "${BITNAMI_ROOT_DIR}/apache-tomcat"
+ln -sf tomcat "${BITMOA_ROOT_DIR}/apache-tomcat"
 
 # Users can mount their webapps at /app
 ln -sf "$TOMCAT_WEBAPPS_DIR" /app

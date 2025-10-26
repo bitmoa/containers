@@ -8,12 +8,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libscylladb.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libscylladb.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load ScyllaDB environment variables
-. /opt/bitnami/scripts/scylladb-env.sh
+. /opt/bitmoa/scripts/scylladb-env.sh
 
 info "** Starting ScyllaDB **"
 

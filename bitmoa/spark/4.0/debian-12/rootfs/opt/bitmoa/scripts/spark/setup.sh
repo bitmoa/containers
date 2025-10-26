@@ -10,12 +10,12 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libspark.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libspark.sh
 
 # Load Spark environment settings
-. /opt/bitnami/scripts/spark-env.sh
+. /opt/bitmoa/scripts/spark-env.sh
 
 # Ensure Spark environment variables settings are valid
 spark_validate

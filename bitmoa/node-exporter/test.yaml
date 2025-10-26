@@ -18,5 +18,5 @@ spec:
         app: test-node-exporter
     spec:
       containers:
-      - image: bitnami/node-exporter
+      - image: bitmoa/node-exporter
         name: node-exporter

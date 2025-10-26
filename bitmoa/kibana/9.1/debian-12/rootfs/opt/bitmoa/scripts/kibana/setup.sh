@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libkibana.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libkibana.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load environment
-. /opt/bitnami/scripts/kibana-env.sh
+. /opt/bitmoa/scripts/kibana-env.sh
 
 # Ensure kibana environment variables are valid
 kibana_validate

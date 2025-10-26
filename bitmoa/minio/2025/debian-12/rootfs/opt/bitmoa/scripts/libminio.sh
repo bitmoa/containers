@@ -7,11 +7,11 @@
 # shellcheck disable=SC1091
 
 # Load Libraries
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libminioclient.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libminioclient.sh
 
 # Functions
 

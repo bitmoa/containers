@@ -3,4 +3,4 @@
 
 services:
   haproxy:
-    image: docker.io/bitnami/haproxy:3.2
+    image: ghcr.io/bitmoa/haproxy:3.2

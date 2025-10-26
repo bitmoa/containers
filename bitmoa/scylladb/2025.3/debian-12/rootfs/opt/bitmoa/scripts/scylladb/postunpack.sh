@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libscylladb.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libscylladb.sh
 
 # Load ScyllaDB environment variables
-. /opt/bitnami/scripts/scylladb-env.sh
+. /opt/bitmoa/scripts/scylladb-env.sh
 
 
 for dir in "$DB_INITSCRIPTS_DIR" "$DB_TMP_DIR" "$DB_LOG_DIR" "$DB_CONF_DIR" "$DB_MOUNTED_CONF_DIR" "$DB_VOLUME_DIR" "$DB_DEFAULT_CONF_DIR"; do
@@ -33,10 +33,10 @@ replace_in_file "$DB_CONF_FILE" "^#\s*server_encryption_options:" "server_encryp
 cassandra_yaml_set "workdir" "$DB_DATA_DIR"
 
 # The scylladb-jmx script has a "symlinks" directory with a scylla-jmx file, which is a symlink
-# to /usr/bin/java. We update the symlink to point to /opt/bitnami/java/bin/java. We also need to
+# to /usr/bin/java. We update the symlink to point to /opt/bitmoa/java/bin/java. We also need to
 # include a symlink in the /usr/lib/jvm/ directory for the scylla-jmx select-java script to work
-ln -sf "${BITNAMI_ROOT_DIR}/java/bin/java" "/usr/bin/java"
-mkdir -p "/usr/lib/jvm" && ln -s "${BITNAMI_ROOT_DIR}/java" "/usr/lib/jvm"
+ln -sf "${BITMOA_ROOT_DIR}/java/bin/java" "/usr/bin/java"
+mkdir -p "/usr/lib/jvm" && ln -s "${BITMOA_ROOT_DIR}/java" "/usr/lib/jvm"
 
 # Create wrapper for cqlsh, as the default one is unable to properly detect the python version
 cat <<EOF >"${DB_BASE_DIR}/share/cassandra/bin/cqlsh"
@@ -74,5 +74,5 @@ done
 
 # The scylladb-operator expects the supervisor binaries to be in /usr/bin, so we need
 # to create a symlink
-ln -s /opt/bitnami/supervisor/bin/supervisord /usr/bin
-ln -s /opt/bitnami/supervisor/bin/supervisorctl /usr/bin
+ln -s /opt/bitmoa/supervisor/bin/supervisord /usr/bin
+ln -s /opt/bitmoa/supervisor/bin/supervisorctl /usr/bin

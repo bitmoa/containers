@@ -6,6 +6,6 @@ map $uri $blogname {
 map $blogname $blogid {
     default -999;
     # Ref: https://wordpress.org/extend/plugins/nginx-helper/
-    #include /opt/bitnami/wordpress/wp-content/plugins/nginx-helper/map.conf;
+    #include /opt/bitmoa/wordpress/wp-content/plugins/nginx-helper/map.conf;
 }
 # END WordPress Multisite variable mapping for NGINX

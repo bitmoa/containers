@@ -10,11 +10,11 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libopensearch.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libopensearch.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load environment
-. /opt/bitnami/scripts/opensearch-env.sh
+. /opt/bitmoa/scripts/opensearch-env.sh
 
 # Constants
 EXEC=$(command -v opensearch)
@@ -22,8 +22,8 @@ ARGS=("-p" "$DB_PID_FILE")
 [[ -z "${DB_EXTRA_FLAGS:-}" ]] || ARGS=("${ARGS[@]}" "${DB_EXTRA_FLAGS[@]}")
 # JAVA_HOME to be deprecated, see warning:
 #   warning: usage of JAVA_HOME is deprecated, use ES_JAVA_HOME
-export JAVA_HOME=/opt/bitnami/java
-export OPENSEARCH_JAVA_HOME=/opt/bitnami/java
+export JAVA_HOME=/opt/bitmoa/java
+export OPENSEARCH_JAVA_HOME=/opt/bitmoa/java
 if is_boolean_yes "${OPENSEARCH_SET_CGROUP:-}"; then
     # Taken from upstream OpenSearch container
     # https://github.com/opensearch-project/opensearch-build/blob/main/docker/release/config/opensearch/opensearch-docker-entrypoint.sh

@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name tomcat bitnami/tomcat:latest
+docker run --name tomcat bitmoa/tomcat:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Apache Apache Tomcat in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Apache Tomcat Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/tomcat).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Apache Tomcat Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/tomcat).
 
 ## Why use a non-root container?
 
@@ -49,50 +49,50 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Apache Tomcat Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/tomcat).
+The recommended way to get the Bitnami Apache Tomcat Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/tomcat).
 
 ```console
-docker pull bitnami/tomcat:latest
+docker pull bitmoa/tomcat:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/tomcat/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/tomcat/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/tomcat:[TAG]
+docker pull bitmoa/tomcat:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
-docker run -v /path/to/tomcat-persistence:/bitnami bitnami/tomcat:latest
+docker run -v /path/to/tomcat-persistence:/bitmoa bitmoa/tomcat:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/tomcat/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/tomcat/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   tomcat:
   ...
     volumes:
-      - /path/to/tomcat-persistence:/bitnami
+      - /path/to/tomcat-persistence:/bitmoa
   ...
 ```
 
@@ -100,7 +100,7 @@ services:
 
 ## Deploying web applications on Apache Tomcat
 
-The `/bitnami/tomcat/data` directory is configured as the Apache Tomcat webapps deployment directory. At this location, you either copy a so-called *exploded web application*, i.e. non-compressed, or a compressed web application resource (`.WAR`) file and it will automatically be deployed by Apache Tomcat.
+The `/bitmoa/tomcat/data` directory is configured as the Apache Tomcat webapps deployment directory. At this location, you either copy a so-called *exploded web application*, i.e. non-compressed, or a compressed web application resource (`.WAR`) file and it will automatically be deployed by Apache Tomcat.
 
 Additionally a helper symlink `/app` is present that points to the webapps deployment directory which enables us to deploy applications on a running Apache Tomcat instance by simply doing:
 
@@ -108,11 +108,11 @@ Additionally a helper symlink `/app` is present that points to the webapps deplo
 docker cp /path/to/app.war tomcat:/app
 ```
 
-In case you want to create a custom image that already contains your application war file, you need to add it to the `/opt/bitnami/tomcat/webapps` folder. In the example below we create a forked image with an extra `.war` file.
+In case you want to create a custom image that already contains your application war file, you need to add it to the `/opt/bitmoa/tomcat/webapps` folder. In the example below we create a forked image with an extra `.war` file.
 
 ```Dockerfile
-FROM bitnami/tomcat:latest
-COPY sample.war /opt/bitnami/tomcat/webapps
+FROM bitmoa/tomcat:latest
+COPY sample.war /opt/bitmoa/tomcat/webapps
 ```
 
 **Note!**
@@ -127,7 +127,7 @@ You can also deploy web applications on a running Apache Tomcat instance using t
 To access your web server from your host machine you can ask Docker to map a random port on your host to port `8080` exposed in the container.
 
 ```console
-docker run --name tomcat -P bitnami/tomcat:latest
+docker run --name tomcat -P bitmoa/tomcat:latest
 ```
 
 Run `docker port` to determine the random ports Docker assigned.
@@ -140,7 +140,7 @@ $ docker port tomcat
 You can also manually specify the ports you want forwarded from your host to the container.
 
 ```console
-docker run -p 8080:8080 bitnami/tomcat:latest
+docker run -p 8080:8080 bitmoa/tomcat:latest
 ```
 
 Access your web server in the browser by navigating to `http://localhost:8080`.
@@ -170,8 +170,8 @@ Access your web server in the browser by navigating to `http://localhost:8080`.
 
 | Name                      | Description                                        | Value                                 |
 |---------------------------|----------------------------------------------------|---------------------------------------|
-| `TOMCAT_BASE_DIR`         | Tomcat installation directory.                     | `${BITNAMI_ROOT_DIR}/tomcat`          |
-| `TOMCAT_VOLUME_DIR`       | Tomcat persistence directory.                      | `/bitnami/tomcat`                     |
+| `TOMCAT_BASE_DIR`         | Tomcat installation directory.                     | `${BITMOA_ROOT_DIR}/tomcat`          |
+| `TOMCAT_VOLUME_DIR`       | Tomcat persistence directory.                      | `/bitmoa/tomcat`                     |
 | `TOMCAT_BIN_DIR`          | Tomcat directory for binary files.                 | `${TOMCAT_BASE_DIR}/bin`              |
 | `TOMCAT_LIB_DIR`          | Tomcat directory for library files.                | `${TOMCAT_BASE_DIR}/lib`              |
 | `TOMCAT_WORK_DIR`         | Tomcat directory for runtime files.                | `${TOMCAT_BASE_DIR}/work`             |
@@ -187,7 +187,7 @@ Access your web server in the browser by navigating to `http://localhost:8080`.
 | `TOMCAT_HOME`             | Tomcat home directory.                             | `$TOMCAT_BASE_DIR`                    |
 | `TOMCAT_DAEMON_USER`      | Tomcat system user.                                | `tomcat`                              |
 | `TOMCAT_DAEMON_GROUP`     | Tomcat system group.                               | `tomcat`                              |
-| `JAVA_HOME`               | Java installation folder.                          | `${BITNAMI_ROOT_DIR}/java`            |
+| `JAVA_HOME`               | Java installation folder.                          | `${BITMOA_ROOT_DIR}/java`            |
 
 #### Creating a custom user
 
@@ -197,7 +197,7 @@ Additionally you can specify a user name for the management user using the `TOMC
 
 #### Specifying Environment variables using Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/tomcat/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/tomcat/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -215,15 +215,15 @@ services:
 docker run --name tomcat \
   -e TOMCAT_USERNAME=my_user \
   -e TOMCAT_PASSWORD=my_password \
-  bitnami/tomcat:latest
+  bitmoa/tomcat:latest
 ```
 
 ### Configuration files
 
-During the initialization of the container, the default Apache Tomcat configuration files are modified with the basic options defined through [environment variables](#environment-variables). If you want to add more specific configuration options, you can always mount your own configuration files under `/opt/bitnami/tomcat/conf/` to override the existing ones. Please note that those files should be writable by the system user of the container.
+During the initialization of the container, the default Apache Tomcat configuration files are modified with the basic options defined through [environment variables](#environment-variables). If you want to add more specific configuration options, you can always mount your own configuration files under `/opt/bitmoa/tomcat/conf/` to override the existing ones. Please note that those files should be writable by the system user of the container.
 
 ```console
-docker run --name tomcat -v /path/to/config/server.xml:/opt/bitnami/tomcat/conf/server.xml bitnami/tomcat:latest
+docker run --name tomcat -v /path/to/config/server.xml:/opt/bitmoa/tomcat/conf/server.xml bitmoa/tomcat:latest
 ```
 
 or using Docker Compose:
@@ -233,7 +233,7 @@ services:
   tomcat:
   ...
     volumes:
-      - /path/to/config/server.xml:/opt/bitnami/tomcat/conf/server.xml
+      - /path/to/config/server.xml:/opt/bitmoa/tomcat/conf/server.xml
   ...
 ```
 
@@ -241,7 +241,7 @@ Refer to the [Apache Tomcat configuration](https://tomcat.apache.org/tomcat-7.0-
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Tomcat Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Tomcat Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -270,11 +270,11 @@ Bitnami provides up-to-date versions of Apache Tomcat, including security patche
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/tomcat:latest
+docker pull bitmoa/tomcat:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/tomcat:latest`.
+`bitmoa/tomcat:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -313,7 +313,7 @@ docker-compose rm -v tomcat
 Re-create your container from the new image.
 
 ```console
-docker run --name tomcat bitnami/tomcat:latest
+docker run --name tomcat bitmoa/tomcat:latest
 ```
 
 or using Docker Compose:
@@ -338,22 +338,22 @@ docker-compose up tomcat
 
 ### 8.0.35-r0
 
-- All volumes have been merged at `/bitnami/tomcat`. Now you only need to mount a single volume at `/bitnami/tomcat` for persistence.
+- All volumes have been merged at `/bitmoa/tomcat`. Now you only need to mount a single volume at `/bitmoa/tomcat` for persistence.
 - The logs are always sent to the `stdout` and are no longer collected in the volume.
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/tomcat).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/tomcat).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

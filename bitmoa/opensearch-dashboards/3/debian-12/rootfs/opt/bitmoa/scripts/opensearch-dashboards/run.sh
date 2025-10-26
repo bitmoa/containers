@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libopensearchdashboards.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libopensearchdashboards.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load environment
-. /opt/bitnami/scripts/opensearch-dashboards-env.sh
+. /opt/bitmoa/scripts/opensearch-dashboards-env.sh
 
 info "** Starting Opensearch Dashboards **"
 start_command=("${SERVER_BIN_DIR}/opensearch-dashboards" "serve")

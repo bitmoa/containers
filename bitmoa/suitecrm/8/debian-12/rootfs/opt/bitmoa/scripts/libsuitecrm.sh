@@ -7,20 +7,20 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libmysqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libmysqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libmysql.sh ]]; then
-    . /opt/bitnami/scripts/libmysql.sh
-elif [[ -f /opt/bitnami/scripts/libmariadb.sh ]]; then
-    . /opt/bitnami/scripts/libmariadb.sh
+if [[ -f /opt/bitmoa/scripts/libmysqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libmysqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libmysql.sh ]]; then
+    . /opt/bitmoa/scripts/libmysql.sh
+elif [[ -f /opt/bitmoa/scripts/libmariadb.sh ]]; then
+    . /opt/bitmoa/scripts/libmariadb.sh
 fi
 
 # Rewrite env variables if SuiteCRM 7 is detected
@@ -110,7 +110,7 @@ suitecrm_initialize() {
     local db_host db_port db_name db_user db_pass cron_script
     local -r app_name="suitecrm"
     if ! is_app_initialized "$app_name"; then
-        # Ensure SuiteCRM persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure SuiteCRM persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring SuiteCRM directories exist"
         ensure_dir_exists "$SUITECRM_VOLUME_DIR"
         # Use daemon:daemon ownership for compatibility when running as a non-root user
@@ -123,7 +123,7 @@ suitecrm_initialize() {
         db_pass="$SUITECRM_DATABASE_PASSWORD"
         suitecrm_wait_for_db_connection "$db_host" "$db_port" "$db_name" "$db_user" "$db_pass"
 
-        local -r template_dir="${BITNAMI_ROOT_DIR}/scripts/suitecrm/bitnami-templates"
+        local -r template_dir="${BITMOA_ROOT_DIR}/scripts/suitecrm/bitmoa-templates"
         if ! is_boolean_yes "$SUITECRM_SKIP_BOOTSTRAP"; then
             # If SuiteCRM 7, use legacy install wizard
             if [[ ! -d "${SUITECRM_BASE_DIR}/public" ]]; then

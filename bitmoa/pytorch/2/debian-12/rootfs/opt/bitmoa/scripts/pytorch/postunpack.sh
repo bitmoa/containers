@@ -5,9 +5,9 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libfs.sh
 
-PYTORCH_BASEDIR="/opt/bitnami/python"
+PYTORCH_BASEDIR="/opt/bitmoa/python"
 PYTORCH_WORKSPACE="/app"
 
 # Ensure non-root user has write permissions on the workspace

@@ -3,14 +3,14 @@
 
 services:
   mariadb-galera:
-    image: docker.io/bitnami/mariadb-galera:12.0
+    image: ghcr.io/bitmoa/mariadb-galera:12.0
     ports:
       - '3306:3306'
       - '4444:4444'
       - '4567:4567'
       - '4568:4568'
     volumes:
-      - 'mariadb_galera_data:/bitnami/mariadb'
+      - 'mariadb_galera_data:/bitmoa/mariadb'
     environment:
       - MARIADB_ROOT_PASSWORD=root-password
       - MARIADB_GALERA_MARIABACKUP_PASSWORD=backup-password
@@ -23,13 +23,13 @@ services:
       - LDAP_BIND_DN=cn=admin,dc=example,dc=org
       - LDAP_BIND_PASSWORD=adminpassword
     healthcheck:
-      test: ['CMD', '/opt/bitnami/scripts/mariadb-galera/healthcheck.sh']
+      test: ['CMD', '/opt/bitmoa/scripts/mariadb-galera/healthcheck.sh']
       interval: 15s
       timeout: 5s
       retries: 6
 
   openldap:
-    image: 'docker.io/bitnami/openldap:latest'
+    image: 'ghcr.io/bitmoa/openldap:latest'
     ports:
       - '1389:1389'
     environment:
@@ -38,7 +38,7 @@ services:
       - LDAP_USERS=user01
       - LDAP_PASSWORDS=password1
     volumes:
-      - 'openldap_data:/bitnami/openldap'
+      - 'openldap_data:/bitmoa/openldap'
 
 volumes:
   mariadb_galera_data:

@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-consul}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -65,8 +65,8 @@ done
 unset consul_env_vars
 
 # Paths
-export PATH="${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
-export CONSUL_BASE_DIR="${BITNAMI_ROOT_DIR}/consul"
+export PATH="${BITMOA_ROOT_DIR}/common/bin:${PATH}"
+export CONSUL_BASE_DIR="${BITMOA_ROOT_DIR}/consul"
 export CONSUL_CONF_DIR="${CONSUL_BASE_DIR}/conf"
 export CONSUL_DEFAULT_CONF_DIR="${CONSUL_BASE_DIR}/conf.default"
 export CONSUL_BIN_DIR="${CONSUL_BASE_DIR}/bin"
@@ -75,7 +75,7 @@ export CONSUL_ENCRYPT_FILE="${CONSUL_CONF_DIR}/encrypt.json"
 export CONSUL_LOCAL_FILE="${CONSUL_CONF_DIR}/local.json"
 export CONSUL_LOG_DIR="${CONSUL_BASE_DIR}/logs"
 export CONSUL_LOG_FILE="${CONSUL_LOG_DIR}/consul.log"
-export CONSUL_VOLUME_DIR="/bitnami/consul"
+export CONSUL_VOLUME_DIR="/bitmoa/consul"
 export CONSUL_DATA_DIR="${CONSUL_VOLUME_DIR}"
 export CONSUL_SSL_DIR="${CONSUL_BASE_DIR}/certificates"
 export CONSUL_TMP_DIR="${CONSUL_BASE_DIR}/tmp"

@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Grafana environment
-. /opt/bitnami/scripts/grafana-env.sh
+. /opt/bitmoa/scripts/grafana-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libgrafana.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libgrafana.sh
 
 info "Creating configuration file"
 cp "${GRAFANA_BASE_DIR}/conf/sample.ini" "$(grafana_env_var_value PATHS_CONFIG)"
@@ -58,7 +58,7 @@ for plugin in "${grafana_plugin_list[@]}"; do
     grafana cli --pluginsDir "$(grafana_env_var_value PATHS_PLUGINS)" plugins install "$plugin"
 done
 
-# The Grafana Helm chart mounts the data directory at "/opt/bitnami/grafana/data"
+# The Grafana Helm chart mounts the data directory at "/opt/bitmoa/grafana/data"
 # Therefore, all the plugins installed when building the image will be lost
 # As a workaround, we can move them to a "default-plugins" directory and recover them
 # during the 1st boot of the container

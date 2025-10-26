@@ -12,11 +12,11 @@ set -o pipefail
 #set -o xtrace
 
 # Load Libraries
-. /opt/bitnami/scripts/libpostgresql.sh
-. /opt/bitnami/scripts/librepmgr.sh
+. /opt/bitmoa/scripts/libpostgresql.sh
+. /opt/bitmoa/scripts/librepmgr.sh
 
 # Load PostgreSQL & repmgr environment variables
-. /opt/bitnami/scripts/postgresql-env.sh
+. /opt/bitmoa/scripts/postgresql-env.sh
 
 # Ensure PostgreSQL & repmgr environment variables settings are valid
 repmgr_validate

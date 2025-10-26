@@ -5,8 +5,8 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfile.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfile.sh
 
 set -o errexit
 set -o nounset

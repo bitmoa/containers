@@ -8,12 +8,12 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-. /opt/bitnami/scripts/libconsul.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libconsul.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load Consul env. variables
-. /opt/bitnami/scripts/consul-env.sh
+. /opt/bitmoa/scripts/consul-env.sh
 
 EXEC="${CONSUL_BASE_DIR}/bin/consul"
 flags=("agent" "-config-dir" "${CONSUL_CONF_DIR}" "-log-file" "${CONSUL_LOG_FILE}" "-disable-host-node-id=${CONSUL_DISABLE_HOST_NODE_ID}")

@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libversion.sh
-. /opt/bitnami/scripts/libapache.sh
+. /opt/bitmoa/scripts/libversion.sh
+. /opt/bitmoa/scripts/libapache.sh
 
 # Load Apache environment
-. /opt/bitnami/scripts/apache-env.sh
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/apache-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # Enable required Apache modules
 apache_enable_module "mpm_prefork_module"
@@ -31,7 +31,7 @@ fi
 apache_disable_module "mpm_event_module"
 
 # Write Apache configuration
-apache_php_conf_file="${APACHE_CONF_DIR}/bitnami/php.conf"
+apache_php_conf_file="${APACHE_CONF_DIR}/bitmoa/php.conf"
 cat > "$apache_php_conf_file" <<EOF
 AddType application/x-httpd-php .php
 DirectoryIndex index.html index.htm index.php

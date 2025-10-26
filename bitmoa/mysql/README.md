@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name mysql -e ALLOW_EMPTY_PASSWORD=yes bitnami/mysql:latest
+docker run --name mysql -e ALLOW_EMPTY_PASSWORD=yes bitmoa/mysql:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,11 +33,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy MySQL in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami MySQL Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/mysql).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami MySQL Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/mysql).
 
 ## Why use a non-root container?
 
@@ -47,55 +47,55 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami MySQL Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/mysql).
+The recommended way to get the Bitnami MySQL Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/mysql).
 
 ```console
-docker pull bitnami/mysql:latest
+docker pull bitmoa/mysql:latest
 ```
 
 To use a specific version, you can pull a versioned tag. You can view the
-[list of available versions](https://hub.docker.com/r/bitnami/mysql/tags/)
+[list of available versions](https://hub.docker.com/r/bitmoa/mysql/tags/)
 in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/mysql:[TAG]
+docker pull bitmoa/mysql:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your database
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/mysql/data` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/mysql/data` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/mysql-persistence:/bitnami/mysql/data \
-    bitnami/mysql:latest
+    -v /path/to/mysql-persistence:/bitmoa/mysql/data \
+    bitmoa/mysql:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mysql/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mysql/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   mysql:
   ...
     volumes:
-      - /path/to/mysql-persistence:/bitnami/mysql/data
+      - /path/to/mysql-persistence:/bitmoa/mysql/data
   ...
 ```
 
@@ -125,7 +125,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 docker run -d --name mysql-server \
     -e ALLOW_EMPTY_PASSWORD=yes \
     --network app-tier \
-    bitnami/mysql:latest
+    bitmoa/mysql:latest
 ```
 
 #### Step 3: Launch your MySQL client instance
@@ -135,7 +135,7 @@ Finally we create a new container instance to launch the MySQL client and connec
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/mysql:latest mysql -h mysql-server -u root
+    bitmoa/mysql:latest mysql -h mysql-server -u root
 ```
 
 ### Using a Docker Compose file
@@ -151,7 +151,7 @@ networks:
 
 services:
   mysql:
-    image: bitnami/mysql:latest
+    image: bitmoa/mysql:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
@@ -221,8 +221,8 @@ docker-compose up -d
 | Name                          | Description                                                | Value                         |
 |-------------------------------|------------------------------------------------------------|-------------------------------|
 | `DB_FLAVOR`                   | SQL database flavor. Valid values: `mariadb` or `mysql`.   | `mysql`                       |
-| `DB_BASE_DIR`                 | Base path for MySQL files.                                 | `${BITNAMI_ROOT_DIR}/mysql`   |
-| `DB_VOLUME_DIR`               | MySQL directory for persisted files.                       | `${BITNAMI_VOLUME_DIR}/mysql` |
+| `DB_BASE_DIR`                 | Base path for MySQL files.                                 | `${BITMOA_ROOT_DIR}/mysql`   |
+| `DB_VOLUME_DIR`               | MySQL directory for persisted files.                       | `${BITMOA_VOLUME_DIR}/mysql` |
 | `DB_DATA_DIR`                 | MySQL directory for data files.                            | `${DB_VOLUME_DIR}/data`       |
 | `DB_BIN_DIR`                  | MySQL directory where executable binary files are located. | `${DB_BASE_DIR}/bin`          |
 | `DB_SBIN_DIR`                 | MySQL directory where service binary files are located.    | `${DB_BASE_DIR}/bin`          |
@@ -262,10 +262,10 @@ The root user and password can easily be setup with the Bitnami MySQL Docker ima
 Passing the `MYSQL_ROOT_PASSWORD` environment variable when running the image for the first time will set the password of the `MYSQL_ROOT_USER` user to the value of `MYSQL_ROOT_PASSWORD`.
 
 ```console
-docker run --name mysql -e MYSQL_ROOT_PASSWORD=password123 bitnami/mysql:latest
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=password123 bitmoa/mysql:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mysql/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mysql/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -283,10 +283,10 @@ services:
 By default the MySQL image expects all the available passwords to be set. In order to allow empty passwords, it is necessary to set the `ALLOW_EMPTY_PASSWORD=yes` env variable. This env variable is only recommended for testing or development purposes. We strongly recommend specifying the `MYSQL_ROOT_PASSWORD` for any other scenario.
 
 ```console
-docker run --name mysql -e ALLOW_EMPTY_PASSWORD=yes bitnami/mysql:latest
+docker run --name mysql -e ALLOW_EMPTY_PASSWORD=yes bitmoa/mysql:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mysql/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mysql/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -312,10 +312,10 @@ By passing the `MYSQL_DATABASE` environment variable when running the image for 
 docker run --name mysql \
     -e ALLOW_EMPTY_PASSWORD=yes \
     -e MYSQL_DATABASE=my_database \
-    bitnami/mysql:latest
+    bitmoa/mysql:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mysql/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mysql/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -338,10 +338,10 @@ docker run --name mysql \
   -e MYSQL_PASSWORD=my_password \
   -e MYSQL_DATABASE=my_database \
   -e MYSQL_AUTHENTICATION_PLUGIN=mysql_native_password \
-  bitnami/mysql:latest
+  bitmoa/mysql:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mysql/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mysql/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -385,7 +385,7 @@ docker run --name mysql-master \
   -e MYSQL_USER=my_user \
   -e MYSQL_PASSWORD=my_password \
   -e MYSQL_DATABASE=my_database \
-  bitnami/mysql:latest
+  bitmoa/mysql:latest
 ```
 
 In the above command the container is configured as the `master` using the `MYSQL_REPLICATION_MODE` parameter. A replication user is specified using the `MYSQL_REPLICATION_USER` and `MYSQL_REPLICATION_PASSWORD` parameters.
@@ -401,7 +401,7 @@ docker run --name mysql-slave --link mysql-master:master \
   -e MYSQL_REPLICATION_PASSWORD=my_repl_password \
   -e MYSQL_MASTER_HOST=mysql-master \
   -e MYSQL_MASTER_ROOT_PASSWORD=master_root_password \
-  bitnami/mysql:latest
+  bitmoa/mysql:latest
 ```
 
 In the above command the container is configured as a `slave` using the `MYSQL_REPLICATION_MODE` parameter. The `MYSQL_MASTER_HOST`, `MYSQL_MASTER_ROOT_USER` and `MYSQL_MASTER_ROOT_PASSWORD` parameters are used by the slave to connect to the master. It also takes a dump of the existing data in the master server. The replication user credentials are specified using the `MYSQL_REPLICATION_USER` and `MYSQL_REPLICATION_PASSWORD` parameters and should be the same as the one specified on the master.
@@ -415,11 +415,11 @@ version: '2'
 
 services:
   mysql-master:
-    image: bitnami/mysql:latest
+    image: bitmoa/mysql:latest
     ports:
       - 3306
     volumes:
-      - /path/to/mysql-persistence:/bitnami/mysql/data
+      - /path/to/mysql-persistence:/bitmoa/mysql/data
     environment:
       - MYSQL_REPLICATION_MODE=master
       - MYSQL_REPLICATION_USER=repl_user
@@ -429,7 +429,7 @@ services:
       - MYSQL_PASSWORD=my_password
       - MYSQL_DATABASE=my_database
   mysql-slave:
-    image: bitnami/mysql:latest
+    image: bitmoa/mysql:latest
     ports:
       - 3306
     depends_on:
@@ -459,7 +459,7 @@ If your master database is missing some binary files, the replication will break
 
 ### Configuration file
 
-The image looks for user-defined configurations in `/opt/bitnami/mysql/conf/my_custom.cnf`. Create a file named `my_custom.cnf` and mount it at `/opt/bitnami/mysql/conf/my_custom.cnf`.
+The image looks for user-defined configurations in `/opt/bitmoa/mysql/conf/my_custom.cnf`. Create a file named `my_custom.cnf` and mount it at `/opt/bitmoa/mysql/conf/my_custom.cnf`.
 
 For example, in order to override the `max_allowed_packet` directive:
 
@@ -476,20 +476,20 @@ max_allowed_packet=32M
 docker run --name mysql \
     -p 3306:3306 \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro \
-    -v /path/to/mysql-persistence:/bitnami/mysql/data \
-    bitnami/mysql:latest
+    -v /path/to/my_custom.cnf:/opt/bitmoa/mysql/conf/my_custom.cnf:ro \
+    -v /path/to/mysql-persistence:/bitmoa/mysql/data \
+    bitmoa/mysql:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/mysql/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mysql/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   mysql:
   ...
     volumes:
-      - /path/to/mysql-persistence:/bitnami/mysql/data
-      - /path/to/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
+      - /path/to/mysql-persistence:/bitmoa/mysql/data
+      - /path/to/my_custom.cnf:/opt/bitmoa/mysql/conf/my_custom.cnf:ro
   ...
 ```
 
@@ -502,12 +502,12 @@ Refer to the [MySQL server option and variable reference guide](https://dev.mysq
 It is also possible to use your custom `my.cnf` and overwrite the main configuration file.
 
 ```console
-docker run --name mysql -v /path/to/my.cnf:/opt/bitnami/mysql/conf/my.cnf:ro bitnami/mysql:latest
+docker run --name mysql -v /path/to/my.cnf:/opt/bitmoa/mysql/conf/my.cnf:ro bitmoa/mysql:latest
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami MySQL Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami MySQL Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -524,7 +524,7 @@ Before extending this image, please note there are certain configuration setting
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/mysql
+FROM bitmoa/mysql
 ### Put your customizations below
 ...
 ```
@@ -537,7 +537,7 @@ Here is an example of extending the image with the following modifications:
 - Change the user that runs the container
 
 ```Dockerfile
-FROM bitnami/mysql
+FROM bitmoa/mysql
 
 ### Change user to perform privileged actions
 USER 0
@@ -547,7 +547,7 @@ RUN install_packages vim
 USER 1001
 
 ### modify configuration file.
-RUN ini-file set --section "mysqld" --key "collation-server" --value "utf8_general_ci" "/opt/bitnami/mysql/conf/my.cnf"
+RUN ini-file set --section "mysqld" --key "collation-server" --value "utf8_general_ci" "/opt/bitmoa/mysql/conf/my.cnf"
 
 ### Modify the ports used by MySQL by default
 ## It is also possible to change these environment variables at runtime
@@ -571,8 +571,8 @@ services:
     ports:
       - 3306:3307
     volumes:
-      - /path/to/my_custom.cnf:/opt/bitnami/mysql/conf/my_custom.cnf:ro
-      - data:/bitnami/mysql/data
+      - /path/to/my_custom.cnf:/opt/bitmoa/mysql/conf/my_custom.cnf:ro
+      - data:/bitmoa/mysql/data
 volumes:
   data:
     driver: local
@@ -592,7 +592,7 @@ or using Docker Compose:
 docker-compose logs mysql
 ```
 
-To increase the verbosity on intialization or add extra debug information, you can assign the `BITNAMI_DEBUG` environment variable to `true`.
+To increase the verbosity on intialization or add extra debug information, you can assign the `BITMOA_DEBUG` environment variable to `true`.
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
@@ -606,10 +606,10 @@ By default MySQL doesn't enable [slow query log](https://dev.mysql.com/doc/refma
 Slow queries information is logged to the `<data-dir>/<hostname>-slow.log` file by default, and you can easily check it with the `mysqldumpslow` tool ([link to docs](https://dev.mysql.com/doc/refman/en/mysqldumpslow.html)):
 
 ```console
-$ docker run -d -e MYSQL_ENABLE_SLOW_QUERY=1 -e ALLOW_EMPTY_PASSWORD=yes --name my-mysql-container bitnami/mysql
+$ docker run -d -e MYSQL_ENABLE_SLOW_QUERY=1 -e ALLOW_EMPTY_PASSWORD=yes --name my-mysql-container bitmoa/mysql
 # wait a bit for the initialization process...
 $ docker exec -it my-mysql-container mysqldumpslow
-Reading mysql slow query log from /bitnami/mysql/data/<hostname>-slow.log
+Reading mysql slow query log from /bitmoa/mysql/data/<hostname>-slow.log
 Count: 1  Time=0.01s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
   GRANT ALL PRIVILEGES ON *.* TO 'S'@'S' WITH GRANT OPTION
 
@@ -637,11 +637,11 @@ Bitnami provides up-to-date versions of MySQL, including security patches, soon 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/mysql:latest
+docker pull bitmoa/mysql:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/mysql:latest`.
+`bitmoa/mysql:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -680,7 +680,7 @@ docker-compose rm -v mysql
 Re-create your container from the new image.
 
 ```console
-docker run --name mysql bitnami/mysql:latest
+docker run --name mysql bitmoa/mysql:latest
 ```
 
 or using Docker Compose:
@@ -708,16 +708,16 @@ docker-compose up mysql
 ### 5.7.23-r52 and 8.0.12-r34
 
 - Decrease the size of the container. It is not necessary Node.js anymore. MySQL configuration moved to bash scripts in the `rootfs/` folder.
-- The recommended mount point to persist data changes to `/bitnami/mysql/data`.
-- The MySQL configuration files are not persisted in a volume anymore. Now, they can be found at `/opt/bitnami/mysql/conf`.
+- The recommended mount point to persist data changes to `/bitmoa/mysql/data`.
+- The MySQL configuration files are not persisted in a volume anymore. Now, they can be found at `/opt/bitmoa/mysql/conf`.
 - Backwards compatibility is not guaranteed when data is persisted using docker-compose. You can use the workaround below to overcome it:
 
 ```console
 $ docker-compose down
 ## Change the mount point
-sed -i -e 's#mysql_data:/bitnami#mysql_data:/bitnami/mysql/data#g' docker-compose.yml
-## Pull the latest bitnami/mysql image
-$ docker pull bitnami/mysql:latest
+sed -i -e 's#mysql_data:/bitmoa#mysql_data:/bitmoa/mysql/data#g' docker-compose.yml
+## Pull the latest bitmoa/mysql image
+$ docker pull bitmoa/mysql:latest
 $ docker-compose up -d
 ```
 
@@ -729,7 +729,7 @@ $ docker-compose up -d
 
 - The MySQL conf file is not in a persistent volume by default.
 
-- The user is able to specify a custom file in the default location '/opt/bitnami/mysql/conf/my.cnf'.
+- The user is able to specify a custom file in the default location '/opt/bitmoa/mysql/conf/my.cnf'.
 
 ### 5.7.17-r4
 
@@ -741,17 +741,17 @@ $ docker-compose up -d
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/mysql).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/mysql).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

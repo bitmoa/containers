@@ -3,7 +3,7 @@
 
 services:
   nats:
-    image: docker.io/bitnami/nats:2
+    image: ghcr.io/bitmoa/nats:2
     ports:
       - '4222:4222'
       - '6222:6222'

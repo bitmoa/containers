@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Neo4j environment
-. /opt/bitnami/scripts/neo4j-env.sh
+. /opt/bitmoa/scripts/neo4j-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libneo4j.sh
+. /opt/bitmoa/scripts/libneo4j.sh
 
 # Ensure Neo4j environment variables are valid
 neo4j_validate

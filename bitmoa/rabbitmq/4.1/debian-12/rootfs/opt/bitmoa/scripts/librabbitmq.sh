@@ -7,12 +7,12 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Functions
 
@@ -654,7 +654,7 @@ node_is_running() {
 ########################
 # Starts RabbitMQ in background and waits until it's ready
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   RABBITMQ_BIN_DIR
 # Arguments:
 #   None
@@ -678,7 +678,7 @@ rabbitmq_start_bg() {
 ########################
 # Stop RabbitMQ
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   RABBITMQ_BIN_DIR
 # Arguments:
 #   None
@@ -698,7 +698,7 @@ rabbitmq_stop() {
 ########################
 # Change the password of a user
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   RABBITMQ_BIN_DIR
 # Arguments:
 #   $1 - User
@@ -720,7 +720,7 @@ rabbitmq_change_password() {
 ########################
 # Make a node join a cluster
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   RABBITMQ_BIN_DIR
 # Arguments:
 #   $1 - Node to cluster with
@@ -754,7 +754,7 @@ rabbitmq_join_cluster() {
 ########################
 # Declare a new virtual host
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   RABBITMQ_BIN_DIR
 # Arguments:
 #   $1 - Name
@@ -783,7 +783,7 @@ rabbitmq_declare_vhost() {
 ########################
 # Allow a user to access a virtual host
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   RABBITMQ_BIN_DIR
 # Arguments:
 #   $1 - User
@@ -846,7 +846,7 @@ rabbitmq_initialize() {
     done
 
     # Use realpath to avoid symlink issues
-    # ref: https://github.com/bitnami/bitnami-docker-rabbitmq/pull/184
+    # ref: https://github.com/bitmoa/bitmoa-docker-rabbitmq/pull/184
     if ! is_mounted_dir_empty "$(realpath "$RABBITMQ_DATA_DIR")"; then
         info "Persisted data detected. Restoring..."
         if is_boolean_yes "$RABBITMQ_FORCE_BOOT" && ! is_dir_empty "${RABBITMQ_DATA_DIR}/${RABBITMQ_NODE_NAME}"; then

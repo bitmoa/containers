@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-redis-sentinel}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -69,8 +69,8 @@ done
 unset redis_sentinel_env_vars
 
 # Paths
-export REDIS_SENTINEL_VOLUME_DIR="/bitnami/redis-sentinel"
-export REDIS_SENTINEL_BASE_DIR="${BITNAMI_ROOT_DIR}/redis-sentinel"
+export REDIS_SENTINEL_VOLUME_DIR="/bitmoa/redis-sentinel"
+export REDIS_SENTINEL_BASE_DIR="${BITMOA_ROOT_DIR}/redis-sentinel"
 export REDIS_SENTINEL_CONF_DIR="${REDIS_SENTINEL_BASE_DIR}/etc"
 export REDIS_SENTINEL_DEFAULT_CONF_DIR="${REDIS_SENTINEL_BASE_DIR}/etc.default"
 export REDIS_SENTINEL_DATA_DIR="${REDIS_SENTINEL_DATA_DIR:-${REDIS_SENTINEL_VOLUME_DIR}/data}"
@@ -80,7 +80,7 @@ export REDIS_SENTINEL_LOG_DIR="${REDIS_SENTINEL_BASE_DIR}/logs"
 export REDIS_SENTINEL_TMP_DIR="${REDIS_SENTINEL_BASE_DIR}/tmp"
 export REDIS_SENTINEL_PID_FILE="${REDIS_SENTINEL_TMP_DIR}/redis-sentinel.pid"
 export REDIS_SENTINEL_BIN_DIR="${REDIS_SENTINEL_BASE_DIR}/bin"
-export PATH="${REDIS_SENTINEL_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${REDIS_SENTINEL_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export REDIS_SENTINEL_DAEMON_USER="redis"

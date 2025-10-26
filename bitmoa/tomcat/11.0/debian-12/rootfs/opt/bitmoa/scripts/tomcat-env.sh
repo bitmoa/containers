@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-tomcat}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -51,8 +51,8 @@ done
 unset tomcat_env_vars
 
 # Paths
-export TOMCAT_BASE_DIR="${BITNAMI_ROOT_DIR}/tomcat"
-export TOMCAT_VOLUME_DIR="/bitnami/tomcat"
+export TOMCAT_BASE_DIR="${BITMOA_ROOT_DIR}/tomcat"
+export TOMCAT_VOLUME_DIR="/bitmoa/tomcat"
 export TOMCAT_BIN_DIR="${TOMCAT_BASE_DIR}/bin"
 export TOMCAT_LIB_DIR="${TOMCAT_BASE_DIR}/lib"
 export TOMCAT_WORK_DIR="${TOMCAT_BASE_DIR}/work"
@@ -85,10 +85,10 @@ export TOMCAT_EXTRA_JAVA_OPTS="${TOMCAT_EXTRA_JAVA_OPTS:-}"
 export TOMCAT_INSTALL_DEFAULT_WEBAPPS="${TOMCAT_INSTALL_DEFAULT_WEBAPPS:-yes}"
 
 # Default JVM configuration
-export JAVA_HOME="${BITNAMI_ROOT_DIR}/java"
+export JAVA_HOME="${BITMOA_ROOT_DIR}/java"
 export JAVA_OPTS="${JAVA_OPTS:--Djava.awt.headless=true -XX:+UseG1GC -Dfile.encoding=UTF-8 -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true -Duser.home=${TOMCAT_HOME}}"
 
 # Other parameters
-export PATH="${TOMCAT_BASE_DIR}/bin:${JAVA_HOME}/bin:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${TOMCAT_BASE_DIR}/bin:${JAVA_HOME}/bin:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # Custom environment variables may be defined below

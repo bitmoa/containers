@@ -9,12 +9,12 @@ set -o pipefail
 set -o nounset
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libetcd.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libetcd.sh
 
 # Load etcd environment settings
-. /opt/bitnami/scripts/etcd-env.sh
+. /opt/bitmoa/scripts/etcd-env.sh
 
 read -r -a advertised_array <<< "$(tr ',;' ' ' <<< "$ETCD_ADVERTISE_CLIENT_URLS")"
 host="$(parse_uri "${advertised_array[0]}" "host")"

@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-neo4j}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -53,8 +53,8 @@ done
 unset neo4j_env_vars
 
 # Paths
-export NEO4J_BASE_DIR="${BITNAMI_ROOT_DIR}/neo4j"
-export NEO4J_VOLUME_DIR="/bitnami/neo4j"
+export NEO4J_BASE_DIR="${BITMOA_ROOT_DIR}/neo4j"
+export NEO4J_VOLUME_DIR="/bitmoa/neo4j"
 export NEO4J_DATA_DIR="$NEO4J_VOLUME_DIR/data"
 export NEO4J_RUN_DIR="${NEO4J_BASE_DIR}/run"
 export NEO4J_LOGS_DIR="${NEO4J_BASE_DIR}/logs"
@@ -73,7 +73,7 @@ export NEO4J_CONF_FILE="${NEO4J_CONF_DIR}/neo4j.conf"
 export NEO4J_APOC_CONF_FILE="${NEO4J_CONF_DIR}/apoc.conf"
 
 # Neo4j persistence configuration
-export NEO4J_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/neo4j"
+export NEO4J_VOLUME_DIR="${BITMOA_VOLUME_DIR}/neo4j"
 export NEO4J_DATA_TO_PERSIST="data"
 
 # System users (when running with a privileged user)
@@ -84,7 +84,7 @@ export NEO4J_DAEMON_GROUP="neo4j"
 export NEO4J_HOST="${NEO4J_HOST:-}"
 export NEO4J_BIND_ADDRESS="${NEO4J_BIND_ADDRESS:-0.0.0.0}"
 export NEO4J_ALLOW_UPGRADE="${NEO4J_ALLOW_UPGRADE:-true}"
-export NEO4J_PASSWORD="${NEO4J_PASSWORD:-bitnami1}"
+export NEO4J_PASSWORD="${NEO4J_PASSWORD:-bitmoa1}"
 export NEO4J_APOC_IMPORT_FILE_ENABLED="${NEO4J_APOC_IMPORT_FILE_ENABLED:-true}"
 export NEO4J_APOC_IMPORT_FILE_USE_NEO4J_CONFIG="${NEO4J_APOC_IMPORT_FILE_USE_NEO4J_CONFIG:-false}"
 export NEO4J_BOLT_PORT_NUMBER="${NEO4J_BOLT_PORT_NUMBER:-7687}"
@@ -97,9 +97,9 @@ export NEO4J_HTTPS_ENABLED="${NEO4J_HTTPS_ENABLED:-false}"
 export NEO4J_BOLT_TLS_LEVEL="${NEO4J_BOLT_TLS_LEVEL:-DISABLED}"
 
 # Default JVM configuration
-export JAVA_HOME="${BITNAMI_ROOT_DIR}/java"
+export JAVA_HOME="${BITMOA_ROOT_DIR}/java"
 
 # Other parameters
-export PATH="${NEO4J_BASE_DIR}/bin:${JAVA_HOME}/bin:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${NEO4J_BASE_DIR}/bin:${JAVA_HOME}/bin:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # Custom environment variables may be defined below

@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-suitecrm}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -67,12 +67,12 @@ done
 unset suitecrm_env_vars
 
 # Paths
-export SUITECRM_BASE_DIR="${BITNAMI_ROOT_DIR}/suitecrm"
+export SUITECRM_BASE_DIR="${BITMOA_ROOT_DIR}/suitecrm"
 export SUITECRM_CONF_FILE="${SUITECRM_BASE_DIR}/public/legacy/config.php"
 export SUITECRM_SILENT_INSTALL_CONF_FILE="${SUITECRM_BASE_DIR}/public/legacy/config_si.php"
 
 # SuiteCRM persistence configuration
-export SUITECRM_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/suitecrm"
+export SUITECRM_VOLUME_DIR="${BITMOA_VOLUME_DIR}/suitecrm"
 export SUITECRM_MOUNTED_CONF_FILE="${SUITECRM_VOLUME_DIR}/config_si.php"
 export SUITECRM_DATA_TO_PERSIST="${SUITECRM_DATA_TO_PERSIST:-$SUITECRM_BASE_DIR}"
 
@@ -81,7 +81,7 @@ export SUITECRM_SKIP_BOOTSTRAP="${SUITECRM_SKIP_BOOTSTRAP:-}" # only used during
 
 # SuiteCRM credentials
 export SUITECRM_USERNAME="${SUITECRM_USERNAME:-user}" # only used during the first initialization
-export SUITECRM_PASSWORD="${SUITECRM_PASSWORD:-bitnami}" # only used during the first initialization
+export SUITECRM_PASSWORD="${SUITECRM_PASSWORD:-bitmoa}" # only used during the first initialization
 export SUITECRM_EMAIL="${SUITECRM_EMAIL:-user@example.com}" # only used during the first initialization
 export SUITECRM_HOST="${SUITECRM_HOST:-localhost}" # only used during the first initialization
 export SUITECRM_ENABLE_HTTPS="${SUITECRM_ENABLE_HTTPS:-no}" # only used during the first initialization
@@ -108,7 +108,7 @@ export SUITECRM_SMTP_NOTIFY_NAME="${SUITECRM_SMTP_NOTIFY_NAME:-SuiteCRM}"
 export SUITECRM_DEFAULT_DATABASE_HOST="mariadb" # only used at build time
 export SUITECRM_DATABASE_HOST="${SUITECRM_DATABASE_HOST:-$SUITECRM_DEFAULT_DATABASE_HOST}" # only used during the first initialization
 export SUITECRM_DATABASE_PORT_NUMBER="${SUITECRM_DATABASE_PORT_NUMBER:-3306}" # only used during the first initialization
-export SUITECRM_DATABASE_NAME="${SUITECRM_DATABASE_NAME:-bitnami_suitecrm}" # only used during the first initialization
+export SUITECRM_DATABASE_NAME="${SUITECRM_DATABASE_NAME:-bitmoa_suitecrm}" # only used during the first initialization
 export SUITECRM_DATABASE_USER="${SUITECRM_DATABASE_USER:-bn_suitecrm}" # only used during the first initialization
 export SUITECRM_DATABASE_PASSWORD="${SUITECRM_DATABASE_PASSWORD:-}" # only used during the first initialization
 

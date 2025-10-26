@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Jenkins environment
-. /opt/bitnami/scripts/jenkins-env.sh
+. /opt/bitmoa/scripts/jenkins-env.sh
 
 print_welcome_page
 
@@ -24,7 +24,7 @@ print_welcome_page
 # This container supports arbitrary UIDs, therefore we have do it dynamically
 if ! am_i_root; then
     export LNAME="jenkins"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if ! user_exists "$(id -u)" && [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"
@@ -38,9 +38,9 @@ if ! am_i_root; then
     fi
 fi
 
-if [[ "$1" = "/opt/bitnami/scripts/jenkins/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/jenkins/run.sh" ]]; then
     info "** Starting Jenkins setup **"
-    /opt/bitnami/scripts/jenkins/setup.sh
+    /opt/bitmoa/scripts/jenkins/setup.sh
     info "** Jenkins setup finished! **"
 fi
 

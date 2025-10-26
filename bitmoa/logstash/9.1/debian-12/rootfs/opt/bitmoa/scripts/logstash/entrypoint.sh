@@ -10,19 +10,19 @@ set -o pipefail
 #set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/liblogstash.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblogstash.sh
 
 # Load Logstash environment variables
-. /opt/bitnami/scripts/logstash-env.sh
+. /opt/bitmoa/scripts/logstash-env.sh
 
 print_welcome_page
 
 # We add the copy from default config in the entrypoint to not break users
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/logstash/config
-# /opt/bitnami/logstash/pipeline)
+# case someone mounts a configuration file in /opt/bitmoa/logstash/config
+# /opt/bitmoa/logstash/pipeline)
 if ! is_dir_empty "$LOGSTASH_DEFAULT_CONF_DIR"; then
     debug "Copying files from $LOGSTASH_DEFAULT_CONF_DIR to $LOGSTASH_CONF_DIR"
     cp -nr "$LOGSTASH_DEFAULT_CONF_DIR"/. "$LOGSTASH_CONF_DIR"
@@ -32,9 +32,9 @@ if ! is_dir_empty "$LOGSTASH_DEFAULT_PIPELINE_CONF_DIR"; then
     cp -nr "$LOGSTASH_DEFAULT_PIPELINE_CONF_DIR"/. "$LOGSTASH_PIPELINE_CONF_DIR"
 fi
 
-if [[ "$*" = *"/opt/bitnami/scripts/logstash/run.sh"* ]]; then
+if [[ "$*" = *"/opt/bitmoa/scripts/logstash/run.sh"* ]]; then
     info "** Starting Logstash setup **"
-    /opt/bitnami/scripts/logstash/setup.sh
+    /opt/bitmoa/scripts/logstash/setup.sh
     info "** Logstash setup finished! **"
 fi
 

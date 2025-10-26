@@ -7,21 +7,21 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libmysqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libmysqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libmysql.sh ]]; then
-    . /opt/bitnami/scripts/libmysql.sh
-elif [[ -f /opt/bitnami/scripts/libmariadb.sh ]]; then
-    . /opt/bitnami/scripts/libmariadb.sh
+if [[ -f /opt/bitmoa/scripts/libmysqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libmysqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libmysql.sh ]]; then
+    . /opt/bitmoa/scripts/libmysql.sh
+elif [[ -f /opt/bitmoa/scripts/libmariadb.sh ]]; then
+    . /opt/bitmoa/scripts/libmariadb.sh
 fi
 
 ########################
@@ -245,7 +245,7 @@ ghost_initialize() {
     local -r port="${GHOST_PORT_NUMBER:-"$GHOST_DEFAULT_PORT_NUMBER"}"
 
     if ! is_app_initialized "$app_name"; then
-        # Ensure Ghost persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure Ghost persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring Ghost directories exist"
         ensure_dir_exists "$GHOST_VOLUME_DIR"
         # Use ghost:root ownership for compatibility when running as a non-root user

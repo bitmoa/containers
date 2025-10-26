@@ -3,4 +3,4 @@
 
 services:
   metallb:
-    image: docker.io/bitnami/metallb:0
+    image: ghcr.io/bitmoa/metallb:0

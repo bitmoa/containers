@@ -7,12 +7,12 @@
 # shellcheck disable=SC1090,SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Functions
 
@@ -165,7 +165,7 @@ nginx_initialize() {
     info "Initializing NGINX"
 
     # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-    # case someone mounts a configuration file in /opt/bitnami/nginx/conf)
+    # case someone mounts a configuration file in /opt/bitmoa/nginx/conf)
     debug "Copying files from $NGINX_DEFAULT_CONF_DIR to $NGINX_CONF_DIR"
     cp -nr "$NGINX_DEFAULT_CONF_DIR"/. "$NGINX_CONF_DIR" || true
 
@@ -258,7 +258,7 @@ ensure_nginx_app_configuration_exists() {
     # Template variables defaults
     export additional_configuration=""
     export external_configuration=""
-    export document_root="${BITNAMI_ROOT_DIR}/${app}"
+    export document_root="${BITMOA_ROOT_DIR}/${app}"
     export http_port="${NGINX_HTTP_PORT_NUMBER:-"$NGINX_DEFAULT_HTTP_PORT_NUMBER"}"
     export https_port="${NGINX_HTTPS_PORT_NUMBER:-"$NGINX_DEFAULT_HTTPS_PORT_NUMBER"}"
     # Validate arguments
@@ -350,7 +350,7 @@ absolute_redirect off;"
     # We remove lines that are empty or contain only newspaces with 'sed', so the resulting file looks better
     local template_name="app"
     [[ -n "$type" && "$type" != "php" ]] && template_name="app-${type}"
-    local template_dir="${BITNAMI_ROOT_DIR}/scripts/nginx/bitnami-templates"
+    local template_dir="${BITMOA_ROOT_DIR}/scripts/nginx/bitmoa-templates"
     local http_server_block="${NGINX_SERVER_BLOCKS_DIR}/${app}-server-block.conf"
     local https_server_block="${NGINX_SERVER_BLOCKS_DIR}/${app}-https-server-block.conf"
     local -r disable_suffix=".disabled"
@@ -421,7 +421,7 @@ ensure_nginx_prefix_configuration_exists() {
     local prefix="/${app}"
     # Template variables defaults
     export additional_configuration=""
-    export document_root="${BITNAMI_ROOT_DIR}/${app}"
+    export document_root="${BITMOA_ROOT_DIR}/${app}"
     export extra_directory_configuration=""
     # Validate arguments
     local var_name
@@ -466,8 +466,8 @@ absolute_redirect off;"
     # We remove lines that are empty or contain only newspaces with 'sed', so the resulting file looks better
     local template_name="app"
     [[ -n "$type" ]] && template_name="app-${type}"
-    local template_dir="${BITNAMI_ROOT_DIR}/scripts/nginx/bitnami-templates"
-    local prefix_file="${NGINX_CONF_DIR}/bitnami/${app}.conf"
+    local template_dir="${BITMOA_ROOT_DIR}/scripts/nginx/bitmoa-templates"
+    local prefix_file="${NGINX_CONF_DIR}/bitmoa/${app}.conf"
     if is_file_writable "$prefix_file"; then
         # Create file with root group write privileges, so it can be modified in non-root containers
         [[ ! -f "$prefix_file" ]] && touch "$prefix_file" && chmod g+rw "$prefix_file"
@@ -658,7 +658,7 @@ nginx_custom_init_scripts() {
 #   None
 #########################
 nginx_generate_sample_certs() {
-    local certs_dir="${NGINX_CONF_DIR}/bitnami/certs"
+    local certs_dir="${NGINX_CONF_DIR}/bitmoa/certs"
 
     if ! is_boolean_yes "$NGINX_SKIP_SAMPLE_CERTS" && [[ ! -f "${certs_dir}/tls.crt" ]]; then
         # Check certificates directory exists and is writable

@@ -12,9 +12,9 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purpose
 
 # Load libraries
-. /opt/bitnami/scripts/libpgpool.sh
+. /opt/bitmoa/scripts/libpgpool.sh
 
 # Load Pgpool-II environment
-. /opt/bitnami/scripts/pgpool-env.sh
+. /opt/bitmoa/scripts/pgpool-env.sh
 
 pgpool_healthcheck

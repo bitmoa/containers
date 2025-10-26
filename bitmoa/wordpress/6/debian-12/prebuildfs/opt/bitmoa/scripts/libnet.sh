@@ -7,8 +7,8 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Functions
 

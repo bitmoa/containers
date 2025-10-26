@@ -10,21 +10,21 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Matomo environment
-. /opt/bitnami/scripts/matomo-env.sh
+. /opt/bitmoa/scripts/matomo-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 print_welcome_page
 
-if [[ "$1" = "/opt/bitnami/scripts/$(web_server_type)/run.sh" || "$1" = "/opt/bitnami/scripts/nginx-php-fpm/run.sh" || "$1" = "/opt/bitnami/scripts/matomo/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/$(web_server_type)/run.sh" || "$1" = "/opt/bitmoa/scripts/nginx-php-fpm/run.sh" || "$1" = "/opt/bitmoa/scripts/matomo/run.sh" ]]; then
     info "** Starting Matomo setup **"
-    /opt/bitnami/scripts/"$(web_server_type)"/setup.sh
-    /opt/bitnami/scripts/php/setup.sh
-    /opt/bitnami/scripts/mysql-client/setup.sh
-    /opt/bitnami/scripts/matomo/setup.sh
+    /opt/bitmoa/scripts/"$(web_server_type)"/setup.sh
+    /opt/bitmoa/scripts/php/setup.sh
+    /opt/bitmoa/scripts/mysql-client/setup.sh
+    /opt/bitmoa/scripts/matomo/setup.sh
     /post-init.sh
     info "** Matomo setup finished! **"
 fi

@@ -10,18 +10,18 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libksql.sh
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libksql.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load KSQL environment variables
-. /opt/bitnami/scripts/ksql-env.sh
+. /opt/bitmoa/scripts/ksql-env.sh
 
 print_welcome_page
 
-if [[ "$1" = "/opt/bitnami/scripts/ksql/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/ksql/run.sh" ]]; then
     info "** Starting KSQL setup **"
-    /opt/bitnami/scripts/ksql/setup.sh
+    /opt/bitmoa/scripts/ksql/setup.sh
     info "** KSQL setup finished! **"
 fi
 

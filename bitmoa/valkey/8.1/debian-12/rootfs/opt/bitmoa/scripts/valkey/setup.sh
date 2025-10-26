@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Valkey environment variables
-. /opt/bitnami/scripts/valkey-env.sh
+. /opt/bitmoa/scripts/valkey-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libvalkey.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libvalkey.sh
 
 # Ensure Valkey environment variables settings are valid
 valkey_validate

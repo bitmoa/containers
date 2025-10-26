@@ -3,7 +3,7 @@
 
 services:
   kafka-0:
-    image: docker.io/bitnami/kafka:latest
+    image: ghcr.io/bitmoa/kafka:latest
     environment:
       # KRaft settings
       - KAFKA_CFG_NODE_ID=0
@@ -17,9 +17,9 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
     volumes:
-      - 'kafka0_data:/bitnami/kafka'
+      - 'kafka0_data:/bitmoa/kafka'
   kafka-1:
-    image: docker.io/bitnami/kafka:latest
+    image: ghcr.io/bitmoa/kafka:latest
     environment:
       # KRaft settings
       - KAFKA_CFG_NODE_ID=1
@@ -33,9 +33,9 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
     volumes:
-      - 'kafka1_data:/bitnami/kafka'
+      - 'kafka1_data:/bitmoa/kafka'
   schema-registry:
-    image: docker.io/bitnami/schema-registry:8.1
+    image: ghcr.io/bitmoa/schema-registry:8.1
     ports:
       - '8081:8081'
     depends_on:

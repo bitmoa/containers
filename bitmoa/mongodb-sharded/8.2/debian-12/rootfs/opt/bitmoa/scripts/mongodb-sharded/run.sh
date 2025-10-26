@@ -9,12 +9,12 @@ set -o nounset
 set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
-. /opt/bitnami/scripts/libmongodb.sh
-. /opt/bitnami/scripts/libmongodb-sharded.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libmongodb.sh
+. /opt/bitmoa/scripts/libmongodb-sharded.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load MongoDB env. variables
-. /opt/bitnami/scripts/mongodb-env.sh
+. /opt/bitmoa/scripts/mongodb-env.sh
 
 if [[ "$MONGODB_SHARDING_MODE" = "mongos" ]]; then
     cmd=$(command -v mongos)

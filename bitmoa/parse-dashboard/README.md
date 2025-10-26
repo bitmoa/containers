@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name parse-dashboard bitnami/parse-dashboard:latest
+docker run --name parse-dashboard bitmoa/parse-dashboard:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,7 +33,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -43,9 +43,9 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Prerequisites
 
@@ -66,7 +66,7 @@ If you want to run the application manually instead of using the Helm chart, the
 2. Start a MongoDB&reg; database in the network generated:
 
     ```console
-    docker run -d --name mongodb --net=parse_dashboard-tier bitnami/mongodb
+    docker run -d --name mongodb --net=parse_dashboard-tier bitmoa/mongodb
     ```
 
     *Note:* You need to give the container a name in order to Parse to resolve the host.
@@ -74,13 +74,13 @@ If you want to run the application manually instead of using the Helm chart, the
 3. Start a Parse Server container:
 
     ```console
-    docker run -d -p 1337:1337 --name parse --net=parse_dashboard-tier bitnami/parse
+    docker run -d -p 1337:1337 --name parse --net=parse_dashboard-tier bitmoa/parse
     ```
 
 4. Run the Parse Dashboard container:
 
     ```console
-    docker run -d -p 80:4040 --name parse-dashboard --net=parse_dashboard-tier bitnami/parse-dashboard
+    docker run -d -p 80:4040 --name parse-dashboard --net=parse_dashboard-tier bitmoa/parse-dashboard
     ```
 
     Then you can access your application at `http://your-ip/`
@@ -89,7 +89,7 @@ If you want to run the application manually instead of using the Helm chart, the
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami` path. Additionally you should mount a volume for the persistence of [MongoDB&reg;](https://github.com/bitnami/containers/blob/main/bitnami/mongodb#persisting-your-database) and [Parse](https://github.com/bitnami/containers/blob/main/bitnami/parse#persisting-your-application) data.
+For persistence you should mount a volume at the `/bitmoa` path. Additionally you should mount a volume for the persistence of [MongoDB&reg;](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb#persisting-your-database) and [Parse](https://github.com/bitmoa/containers/blob/main/bitmoa/parse#persisting-your-application) data.
 
 The above examples define docker volumes namely `mongodb_data`, `parse_data` and `parse_dashboard_data`. The application state will persist as long as these volumes are not removed.
 
@@ -110,8 +110,8 @@ In this case you need to specify the directories to mount on the run command. Th
     ```console
     docker run -d --name mongodb \
       --net parse-dashboard-tier \
-      --volume /path/to/mongodb-persistence:/bitnami \
-      bitnami/mongodb:latest
+      --volume /path/to/mongodb-persistence:/bitmoa \
+      bitmoa/mongodb:latest
     ```
 
     *Note:* You need to give the container a name in order to Parse to resolve the host.
@@ -121,16 +121,16 @@ In this case you need to specify the directories to mount on the run command. Th
     ```console
     docker run -d -name parse -p 1337:1337 \
       --net parse-dashboard-tier
-      --volume /path/to/parse-persistence:/bitnami \
-      bitnami/parse:latest
+      --volume /path/to/parse-persistence:/bitmoa \
+      bitmoa/parse:latest
     ```
 
 4. Run the Parse Dashboard container:
 
     ```console
     docker run -d --name parse-dashboard -p 80:4040 \
-    --volume /path/to/parse_dashboard-persistence:/bitnami \
-    bitnami/parse-dashboard:latest
+    --volume /path/to/parse_dashboard-persistence:/bitmoa \
+    bitmoa/parse-dashboard:latest
     ```
 
 ## Upgrade this application
@@ -140,7 +140,7 @@ Bitnami provides up-to-date versions of Parse Dashboard, including security patc
 1. Get the updated images:
 
     ```console
-    docker pull bitnami/parse-dashboard:latest
+    docker pull bitmoa/parse-dashboard:latest
     ```
 
 2. Stop your container
@@ -153,7 +153,7 @@ Bitnami provides up-to-date versions of Parse Dashboard, including security patc
     rsync -a /path/to/parse-persistence /path/to/parse-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
     ```
 
-    Additionally, snapshot the [MongoDB&reg;](https://github.com/bitnami/containers/blob/main/bitnami/mongodb#step-2-stop-and-backup-the-currently-running-container) and [Parse server](https://github.com/bitnami/containers/blob/main/bitnami/parse#step-2-stop-and-backup-the-currently-running-container) data.
+    Additionally, snapshot the [MongoDB&reg;](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb#step-2-stop-and-backup-the-currently-running-container) and [Parse server](https://github.com/bitmoa/containers/blob/main/bitmoa/parse#step-2-stop-and-backup-the-currently-running-container) data.
 
     You can use these snapshots to restore the application state should the upgrade fail.
 
@@ -163,7 +163,7 @@ Bitnami provides up-to-date versions of Parse Dashboard, including security patc
 
 5. Run the new image
 
-    - Mount the directories if needed: `docker run --name parse-dashboard bitnami/parse-dashboard:latest`
+    - Mount the directories if needed: `docker run --name parse-dashboard bitmoa/parse-dashboard:latest`
 
 ## Configuration
 
@@ -186,19 +186,19 @@ Bitnami provides up-to-date versions of Parse Dashboard, including security patc
 | `PARSE_DASHBOARD_PARSE_MOUNT_PATH`           | Parse Dashboard mount path.                             | `/parse`      |
 | `PARSE_DASHBOARD_PARSE_PROTOCOL`             | Parse server protocol.                                  | `http`        |
 | `PARSE_DASHBOARD_USERNAME`                   | Parse Dashboard user name.                              | `user`        |
-| `PARSE_DASHBOARD_PASSWORD`                   | Parse Dashboard user password.                          | `bitnami`     |
+| `PARSE_DASHBOARD_PASSWORD`                   | Parse Dashboard user password.                          | `bitmoa`     |
 
 #### Read-only environment variables
 
 | Name                           | Description                                      | Value                                             |
 |--------------------------------|--------------------------------------------------|---------------------------------------------------|
-| `PARSE_DASHBOARD_BASE_DIR`     | Parse installation directory.                    | `${BITNAMI_ROOT_DIR}/parse-dashboard`             |
+| `PARSE_DASHBOARD_BASE_DIR`     | Parse installation directory.                    | `${BITMOA_ROOT_DIR}/parse-dashboard`             |
 | `PARSE_DASHBOARD_TMP_DIR`      | Parse temp directory.                            | `${PARSE_DASHBOARD_BASE_DIR}/tmp`                 |
 | `PARSE_DASHBOARD_LOGS_DIR`     | Parse logs directory.                            | `${PARSE_DASHBOARD_BASE_DIR}/logs`                |
 | `PARSE_DASHBOARD_PID_FILE`     | Parse PID file.                                  | `${PARSE_DASHBOARD_TMP_DIR}/parse-dashboard.pid`  |
 | `PARSE_DASHBOARD_LOG_FILE`     | Parse logs file.                                 | `${PARSE_DASHBOARD_LOGS_DIR}/parse-dashboard.log` |
 | `PARSE_DASHBOARD_CONF_FILE`    | Configuration file for Parse Dashboard.          | `${PARSE_DASHBOARD_BASE_DIR}/config.json`         |
-| `PARSE_DASHBOARD_VOLUME_DIR`   | Parse directory for mounted configuration files. | `${BITNAMI_VOLUME_DIR}/parse-dashboard`           |
+| `PARSE_DASHBOARD_VOLUME_DIR`   | Parse directory for mounted configuration files. | `${BITMOA_VOLUME_DIR}/parse-dashboard`           |
 | `PARSE_DASHBOARD_DAEMON_USER`  | Parse system user.                               | `parsedashboard`                                  |
 | `PARSE_DASHBOARD_DAEMON_GROUP` | Parse system group.                              | `parsedashboard`                                  |
 
@@ -215,12 +215,12 @@ parse-dashboard:
 - For manual execution add a `-e` option with each variable and value:
 
 ```console
- docker run -d -e PARSE_DASHBOARD_PASSWORD=my_password -p 80:4040 --name parse-dashboard -v /your/local/path/bitnami/parse_dashboard:/bitnami --network=parse_dashboard-tier bitnami/parse-dashboard
+ docker run -d -e PARSE_DASHBOARD_PASSWORD=my_password -p 80:4040 --name parse-dashboard -v /your/local/path/bitmoa/parse_dashboard:/bitmoa --network=parse_dashboard-tier bitmoa/parse-dashboard
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Parse Dashboard Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Parse Dashboard Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -241,11 +241,11 @@ The Bitnami Parse Dashboard Docker image from the [Bitnami Secure Images](https:
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

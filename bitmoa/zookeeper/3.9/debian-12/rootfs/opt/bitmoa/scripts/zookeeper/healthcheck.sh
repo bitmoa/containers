@@ -10,9 +10,9 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libzookeeper.sh
+. /opt/bitmoa/scripts/libzookeeper.sh
 
 # Load Zookeeper environment variables
-. /opt/bitnami/scripts/zookeeper-env.sh
+. /opt/bitmoa/scripts/zookeeper-env.sh
 
 zookeeper_healthcheck

@@ -10,21 +10,21 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load WordPress environment
-. /opt/bitnami/scripts/wordpress-env.sh
+. /opt/bitmoa/scripts/wordpress-env.sh
 
 # Load PHP environment for 'php_conf_set' (after 'wordpress-env.sh' so that MODULE is not set to a wrong value)
-. /opt/bitnami/scripts/php-env.sh
+. /opt/bitmoa/scripts/php-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libwordpress.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libwordpress.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Load web server environment (after WordPress environment file so MODULE is not set to a wrong value)
-. "/opt/bitnami/scripts/$(web_server_type)-env.sh"
+. "/opt/bitmoa/scripts/$(web_server_type)-env.sh"
 
 # Enable WordPress configuration file
 [[ ! -f "$WORDPRESS_CONF_FILE" ]] && cp "${WORDPRESS_BASE_DIR}/wp-config-sample.php" "$WORDPRESS_CONF_FILE"
@@ -82,11 +82,11 @@ done
 ensure_dir_exists "$WP_CLI_CONF_DIR"
 cat >"$WP_CLI_CONF_FILE" <<EOF
 # Global parameter defaults
-path: "${BITNAMI_ROOT_DIR}/wordpress"
+path: "${BITMOA_ROOT_DIR}/wordpress"
 EOF
-render-template "${BITNAMI_ROOT_DIR}/scripts/wordpress/bitnami-templates/wp.tpl" >"${WP_CLI_BIN_DIR}/wp"
+render-template "${BITMOA_ROOT_DIR}/scripts/wordpress/bitmoa-templates/wp.tpl" >"${WP_CLI_BIN_DIR}/wp"
 configure_permissions_ownership "${WP_CLI_BIN_DIR}/wp" -f "755"
 
 # Copy all initially generated configuration files to the default directory
 # (this is to avoid breaking when entrypoint is being overridden)
-cp -r "/opt/bitnami/$(web_server_type)/conf"/* "/opt/bitnami/$(web_server_type)/conf.default"
+cp -r "/opt/bitmoa/$(web_server_type)/conf"/* "/opt/bitmoa/$(web_server_type)/conf.default"

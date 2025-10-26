@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Ghost environment
-. /opt/bitnami/scripts/ghost-env.sh
+. /opt/bitmoa/scripts/ghost-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libghost.sh
+. /opt/bitmoa/scripts/libghost.sh
 
 DOMAIN="${1:?missing host}"
 

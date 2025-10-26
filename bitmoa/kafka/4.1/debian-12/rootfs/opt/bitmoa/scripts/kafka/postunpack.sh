@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libkafka.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libkafka.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load Kafka environment variables
-. /opt/bitnami/scripts/kafka-env.sh
+. /opt/bitmoa/scripts/kafka-env.sh
 
 # Move server.properties from configtmp to config
 # Temporary solution until kafka tarball places server.properties into config

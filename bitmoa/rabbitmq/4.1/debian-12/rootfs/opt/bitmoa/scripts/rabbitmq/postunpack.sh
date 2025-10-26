@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/librabbitmq.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/librabbitmq.sh
 
 # Load RabbitMQ environment variables
-. /opt/bitnami/scripts/rabbitmq-env.sh
+. /opt/bitmoa/scripts/rabbitmq-env.sh
 
 for dir in "$RABBITMQ_BIN_DIR" "$RABBITMQ_INITSCRIPTS_DIR" "$RABBITMQ_CONF_DIR" "$RABBITMQ_DEFAULT_CONF_DIR" "$RABBITMQ_DATA_DIR" "$RABBITMQ_HOME_DIR" "$RABBITMQ_LIB_DIR" "$RABBITMQ_LOGS_DIR" "$RABBITMQ_PLUGINS_DIR"; do
     ensure_dir_exists "$dir"

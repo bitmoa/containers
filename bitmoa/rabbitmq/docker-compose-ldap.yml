@@ -3,7 +3,7 @@
 
 services:
   rabbitmq:
-    image: docker.io/bitnami/rabbitmq:4.1
+    image: ghcr.io/bitmoa/rabbitmq:4.1
     ports:
       - '4369:4369'
       - '5551:5551'
@@ -12,10 +12,10 @@ services:
       - '25672:25672'
       - '15672:15672'
     volumes:
-      - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
-      - ./config/advanced.config:/bitnami/rabbitmq/conf/advanced.config:ro
+      - 'rabbitmq_data:/bitmoa/rabbitmq/mnesia'
+      - ./config/advanced.config:/bitmoa/rabbitmq/conf/advanced.config:ro
     environment:
-      - BITNAMI_DEBUG=true
+      - BITMOA_DEBUG=true
       - RABBITMQ_SECURE_PASSWORD=yes
       - RABBITMQ_ENABLE_LDAP=yes
       - RABBITMQ_LDAP_TLS=no
@@ -24,7 +24,7 @@ services:
       - RABBITMQ_LDAP_USER_DN_PATTERN=cn=$${username},ou=users,dc=example,dc=org
       - RABBITMQ_LOGS=-
   openldap:
-    image: 'docker.io/bitnami/openldap:latest'
+    image: 'ghcr.io/bitmoa/openldap:latest'
     ports:
       - '1389:1389'
     environment:
@@ -33,7 +33,7 @@ services:
       - LDAP_USERS=user01
       - LDAP_PASSWORDS=password1
     volumes:
-      - 'openldap_data:/bitnami/openldap'
+      - 'openldap_data:/bitmoa/openldap'
 
 volumes:
   rabbitmq_data:

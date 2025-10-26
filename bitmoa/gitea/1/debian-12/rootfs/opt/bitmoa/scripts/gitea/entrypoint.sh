@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Gitea environment variables
-. /opt/bitnami/scripts/gitea-env.sh
+. /opt/bitmoa/scripts/gitea-env.sh
 
 print_welcome_page
 
@@ -23,7 +23,7 @@ print_welcome_page
 # This container supports arbitrary UIDs, therefore we have do it dynamically
 if ! am_i_root; then
     export LNAME="gitea"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    export LD_PRELOAD="/opt/bitmoa/common/lib/libnss_wrapper.so"
     if [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"
@@ -31,7 +31,7 @@ if ! am_i_root; then
         NSS_WRAPPER_GROUP="$(mktemp)"
         export NSS_WRAPPER_GROUP
         if [[ "$HOME" == "/" ]]; then
-            export HOME=/opt/bitnami/gitea
+            export HOME=/opt/bitmoa/gitea
         fi
         echo "gitea:x:$(id -u):$(id -g):gitea:${HOME}:/bin/false" >"$NSS_WRAPPER_PASSWD"
         echo "gitea:x:$(id -g):" >"$NSS_WRAPPER_GROUP"
@@ -39,9 +39,9 @@ if ! am_i_root; then
     fi
 fi
 
-if [[ "$1" = "/opt/bitnami/scripts/gitea/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/gitea/run.sh" ]]; then
     info "** Starting Gitea setup **"
-    /opt/bitnami/scripts/gitea/setup.sh
+    /opt/bitmoa/scripts/gitea/setup.sh
     info "** Gitea setup finished! **"
 fi
 

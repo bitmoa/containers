@@ -10,8 +10,8 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 if [[ "$OS_FLAVOUR" =~ photon && "$APP_VERSION" =~ ^1.8 ]]; then
   # Option --module-path is not supported by JAVA 1.8 since modules were added in version 1.9

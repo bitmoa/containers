@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load SuiteCRM environment
-. /opt/bitnami/scripts/suitecrm-env.sh
+. /opt/bitmoa/scripts/suitecrm-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libwebserver.sh
 
 # Catch SIGTERM signal and stop all child processes
 _forwardTerm() {
@@ -39,4 +39,4 @@ else
 fi
 
 # Start Apache
-exec "/opt/bitnami/scripts/$(web_server_type)/run.sh"
+exec "/opt/bitmoa/scripts/$(web_server_type)/run.sh"

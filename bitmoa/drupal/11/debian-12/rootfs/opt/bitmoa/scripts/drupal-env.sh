@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-drupal}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -68,12 +68,12 @@ done
 unset drupal_env_vars
 
 # Paths
-export DRUPAL_BASE_DIR="${BITNAMI_ROOT_DIR}/drupal"
+export DRUPAL_BASE_DIR="${BITMOA_ROOT_DIR}/drupal"
 export DRUPAL_CONF_FILE="${DRUPAL_BASE_DIR}/sites/default/settings.php"
 export DRUPAL_MODULES_DIR="${DRUPAL_BASE_DIR}/modules"
 
 # Drupal persistence configuration
-export DRUPAL_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/drupal"
+export DRUPAL_VOLUME_DIR="${BITMOA_VOLUME_DIR}/drupal"
 export DRUPAL_MOUNTED_CONF_FILE="${DRUPAL_VOLUME_DIR}/settings.php"
 export DRUPAL_DATA_TO_PERSIST="${DRUPAL_DATA_TO_PERSIST:-sites/ themes/ modules/ profiles/}"
 
@@ -87,7 +87,7 @@ export DRUPAL_HASH_SALT="${DRUPAL_HASH_SALT:-}" # only used during the first ini
 
 # Drupal credentials
 export DRUPAL_USERNAME="${DRUPAL_USERNAME:-user}" # only used during the first initialization
-export DRUPAL_PASSWORD="${DRUPAL_PASSWORD:-bitnami}" # only used during the first initialization
+export DRUPAL_PASSWORD="${DRUPAL_PASSWORD:-bitmoa}" # only used during the first initialization
 export DRUPAL_EMAIL="${DRUPAL_EMAIL:-user@example.com}" # only used during the first initialization
 
 # Drupal SMTP credentials
@@ -109,7 +109,7 @@ DRUPAL_DATABASE_HOST="${DRUPAL_DATABASE_HOST:-"${MARIADB_HOST:-}"}"
 export DRUPAL_DATABASE_HOST="${DRUPAL_DATABASE_HOST:-$DRUPAL_DEFAULT_DATABASE_HOST}" # only used during the first initialization
 DRUPAL_DATABASE_PORT_NUMBER="${DRUPAL_DATABASE_PORT_NUMBER:-"${MARIADB_PORT_NUMBER:-}"}"
 export DRUPAL_DATABASE_PORT_NUMBER="${DRUPAL_DATABASE_PORT_NUMBER:-3306}" # only used during the first initialization
-export DRUPAL_DATABASE_NAME="${DRUPAL_DATABASE_NAME:-bitnami_drupal}" # only used during the first initialization
+export DRUPAL_DATABASE_NAME="${DRUPAL_DATABASE_NAME:-bitmoa_drupal}" # only used during the first initialization
 export DRUPAL_DATABASE_USER="${DRUPAL_DATABASE_USER:-bn_drupal}" # only used during the first initialization
 export DRUPAL_DATABASE_PASSWORD="${DRUPAL_DATABASE_PASSWORD:-}" # only used during the first initialization
 export DRUPAL_DATABASE_TLS_CA_FILE="${DRUPAL_DATABASE_TLS_CA_FILE:-}" # only used during the first initialization

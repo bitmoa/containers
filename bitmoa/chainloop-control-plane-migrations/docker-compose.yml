@@ -3,4 +3,4 @@
 
 services:
   chainloop-control-plane-migrations:
-    image: docker.io/bitnami/chainloop-control-plane-migrations:1
+    image: ghcr.io/bitmoa/chainloop-control-plane-migrations:1

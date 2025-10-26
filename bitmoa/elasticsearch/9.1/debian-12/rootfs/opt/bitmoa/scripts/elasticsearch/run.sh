@@ -10,11 +10,11 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libelasticsearch.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libelasticsearch.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load environment
-. /opt/bitnami/scripts/elasticsearch-env.sh
+. /opt/bitmoa/scripts/elasticsearch-env.sh
 
 # Constants
 EXEC=$(command -v elasticsearch)

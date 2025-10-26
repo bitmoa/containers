@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-scylladb}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -92,11 +92,11 @@ unset scylladb_env_vars
 export DB_FLAVOR="scylladb"
 
 # Paths
-export SCYLLADB_BASE_DIR="/opt/bitnami/scylladb"
+export SCYLLADB_BASE_DIR="/opt/bitmoa/scylladb"
 export DB_BASE_DIR="$SCYLLADB_BASE_DIR"
 export SCYLLADB_BIN_DIR="${DB_BASE_DIR}/bin"
 export DB_BIN_DIR="$SCYLLADB_BIN_DIR"
-export SCYLLADB_VOLUME_DIR="/bitnami/scylladb"
+export SCYLLADB_VOLUME_DIR="/bitmoa/scylladb"
 export DB_VOLUME_DIR="$SCYLLADB_VOLUME_DIR"
 export SCYLLADB_DATA_DIR="${DB_VOLUME_DIR}/data"
 export DB_DATA_DIR="$SCYLLADB_DATA_DIR"
@@ -108,9 +108,9 @@ export SCYLLADB_LOG_DIR="${DB_BASE_DIR}/logs"
 export DB_LOG_DIR="$SCYLLADB_LOG_DIR"
 export SCYLLADB_TMP_DIR="${DB_BASE_DIR}/tmp"
 export DB_TMP_DIR="$SCYLLADB_TMP_DIR"
-export JAVA_BASE_DIR="${BITNAMI_ROOT_DIR}/java"
+export JAVA_BASE_DIR="${BITMOA_ROOT_DIR}/java"
 export JAVA_BIN_DIR="${JAVA_BASE_DIR}/bin"
-export PYTHON_BASE_DIR="${BITNAMI_ROOT_DIR}/python"
+export PYTHON_BASE_DIR="${BITMOA_ROOT_DIR}/python"
 export PYTHON_BIN_DIR="${PYTHON_BASE_DIR}/bin"
 export SCYLLADB_LOG_FILE="${DB_LOG_DIR}/scylladb.log"
 export DB_LOG_FILE="$SCYLLADB_LOG_FILE"
@@ -120,7 +120,7 @@ export SCYLLADB_INITSCRIPTS_BOOT_LOG_FILE="${DB_LOG_DIR}/scylladb_init_scripts_b
 export DB_INITSCRIPTS_BOOT_LOG_FILE="$SCYLLADB_INITSCRIPTS_BOOT_LOG_FILE"
 export SCYLLADB_PID_FILE="${DB_TMP_DIR}/scylladb.pid"
 export DB_PID_FILE="$SCYLLADB_PID_FILE"
-export PATH="${DB_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${BITNAMI_ROOT_DIR}/python/bin:${BITNAMI_ROOT_DIR}/java/bin:$PATH"
+export PATH="${DB_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${BITMOA_ROOT_DIR}/python/bin:${BITMOA_ROOT_DIR}/java/bin:$PATH"
 
 # System users (when running with a privileged user)
 export SCYLLADB_DAEMON_USER="scylladb"

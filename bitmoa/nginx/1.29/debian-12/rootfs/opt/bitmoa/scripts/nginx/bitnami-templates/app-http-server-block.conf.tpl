@@ -12,5 +12,5 @@ server {
 
     {{additional_configuration}}
 
-    include  "/opt/bitnami/nginx/conf/bitnami/*.conf";
+    include  "/opt/bitmoa/nginx/conf/bitmoa/*.conf";
 }

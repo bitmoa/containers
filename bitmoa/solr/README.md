@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name solr bitnami/solr:latest
+docker run --name solr bitmoa/solr:latest
 ```
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,57 +35,57 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami solr Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/solr).
+The recommended way to get the Bitnami solr Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/solr).
 
 ```console
-docker pull bitnami/solr:latest
+docker pull bitmoa/solr:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/solr/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/solr/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/solr:[TAG]
+docker pull bitmoa/solr:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami` path. The above examples define a docker volume namely `solr_data`. The Solr application state will persist as long as this volume is not removed.
+For persistence you should mount a volume at the `/bitmoa` path. The above examples define a docker volume namely `solr_data`. The Solr application state will persist as long as this volume is not removed.
 
 To avoid inadvertent removal of this volume you can [mount host directories as data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/). Alternatively you can make use of volume plugins to host the volume data.
 
 ```console
-docker run -v /path/to/solr-persistence:/bitnami bitnami/solr:latest
+docker run -v /path/to/solr-persistence:/bitmoa bitmoa/solr:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/solr/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/solr/docker-compose.yml) file present in this repository:
 
 ```yaml
 solr:
   ...
   volumes:
-    - /path/to/solr-persistence:/bitnami
+    - /path/to/solr-persistence:/bitmoa
   ...
 ```
 
@@ -110,7 +110,7 @@ docker network create solr-network --driver bridge
 Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `solr-network` network.
 
 ```console
-docker run --name solr-node1 --network solr-network bitnami/solr:latest
+docker run --name solr-node1 --network solr-network bitmoa/solr:latest
 ```
 
 #### Step 3: Run another containers
@@ -130,13 +130,13 @@ networks:
 
 services:
   solr-node1:
-    image: bitnami/solr:latest
+    image: bitmoa/solr:latest
     networks:
       - solr-network
     ports:
       - 8983:8983
   solr-node2:
-    image: bitnami/solr:latest
+    image: bitmoa/solr:latest
     networks:
       - solr-network
     ports:
@@ -171,7 +171,7 @@ docker-compose up -d
 | `SOLR_COLLECTION_SHARDS`        | Solar collection shards                                                       | `1`                                                |
 | `SOLR_ENABLE_AUTHENTICATION`    | Enables authentication                                                        | `no`                                               |
 | `SOLR_ADMIN_USERNAME`           | Administrator Username                                                        | `admin`                                            |
-| `SOLR_ADMIN_PASSWORD`           | Administrator password                                                        | `bitnami`                                          |
+| `SOLR_ADMIN_PASSWORD`           | Administrator password                                                        | `bitmoa`                                          |
 | `SOLR_CLOUD_BOOTSTRAP`          | Indicates if this node is the one that performs the boostraping               | `no`                                               |
 | `SOLR_CORE_CONF_DIR`            | Solar CORE configuration directory                                            | `${SOLR_SERVER_DIR}/solr/configsets/_default/conf` |
 | `SOLR_SSL_ENABLED`              | Indicates if Solr starts with SSL enabled                                     | `no`                                               |
@@ -187,15 +187,15 @@ docker-compose up -d
 
 | Name                         | Description                            | Value                                          |
 |------------------------------|----------------------------------------|------------------------------------------------|
-| `BITNAMI_VOLUME_DIR`         | Directory where to mount volumes.      | `/bitnami`                                     |
-| `SOLR_BASE_DIR`              | Solr installation directory.           | `${BITNAMI_ROOT_DIR}/solr`                     |
-| `SOLR_JAVA_HOME`             | JAVA installation directory.           | `${BITNAMI_ROOT_DIR}/java`                     |
+| `BITMOA_VOLUME_DIR`         | Directory where to mount volumes.      | `/bitmoa`                                     |
+| `SOLR_BASE_DIR`              | Solr installation directory.           | `${BITMOA_ROOT_DIR}/solr`                     |
+| `SOLR_JAVA_HOME`             | JAVA installation directory.           | `${BITMOA_ROOT_DIR}/java`                     |
 | `SOLR_BIN_DIR`               | Solr directory for binary executables. | `${SOLR_BASE_DIR}/bin`                         |
 | `SOLR_TMP_DIR`               | Solr directory for temp files.         | `${SOLR_BASE_DIR}/tmp`                         |
 | `SOLR_PID_DIR`               | Solr directory for PID files.          | `${SOLR_BASE_DIR}/tmp`                         |
 | `SOLR_LOGS_DIR`              | Solr directory for logs files.         | `${SOLR_BASE_DIR}/logs`                        |
 | `SOLR_SERVER_DIR`            | Solr directory for server files.       | `${SOLR_BASE_DIR}/server`                      |
-| `SOLR_VOLUME_DIR`            | Solr persistence directory.            | `${BITNAMI_VOLUME_DIR}/solr`                   |
+| `SOLR_VOLUME_DIR`            | Solr persistence directory.            | `${BITMOA_VOLUME_DIR}/solr`                   |
 | `SOLR_DATA_TO_PERSIST`       | Solr data to persist.                  | `server/solr`                                  |
 | `SOLR_PID_FILE`              | Solr PID file                          | `${SOLR_PID_DIR}/solr-${SOLR_PORT_NUMBER}.pid` |
 | `SOLR_DAEMON_USER`           | Solr system user                       | `solr`                                         |
@@ -206,7 +206,7 @@ When you start the solr image, you can adjust the configuration of the instance 
 
 #### Specifying Environment Variables using Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/solr/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/solr/docker-compose.yml) file present in this repository:
 
 ```yaml
 solr:
@@ -219,7 +219,7 @@ solr:
 #### Specifying Environment Variables on the Docker command line
 
 ```console
-docker run -d -e SOLR_CORES=my_core --name solr bitnami/solr:latest
+docker run -d -e SOLR_CORES=my_core --name solr bitmoa/solr:latest
 ```
 
 ### Using your Apache Solr Cores configuration files
@@ -228,7 +228,7 @@ In order to load your own configuration files, you will have to make them availa
 
 #### Using Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/solr/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/solr/docker-compose.yml) file present in this repository:
 
 ```yaml
 solr:
@@ -242,7 +242,7 @@ solr:
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Solr Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Solr Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -271,11 +271,11 @@ Bitnami provides up-to-date versions of solr, including security patches, soon a
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/solr:latest
+docker pull bitmoa/solr:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/solr:latest`.
+`bitmoa/solr:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -316,7 +316,7 @@ docker-compose rm -v solr
 Re-create your container from the new image, restoring your backup if necessary.
 
 ```console
-docker run --name solr bitnami/solr:latest
+docker run --name solr bitmoa/solr:latest
 ```
 
 or using Docker Compose:
@@ -349,17 +349,17 @@ docker-compose up solr
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/solr).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/solr).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

@@ -3,11 +3,11 @@
 
 services:
   mysql-master:
-    image: docker.io/bitnami/mysql:9.5
+    image: ghcr.io/bitmoa/mysql:9.5
     ports:
       - '3306'
     volumes:
-      - 'mysql_master_data:/bitnami/mysql/data'
+      - 'mysql_master_data:/bitmoa/mysql/data'
     environment:
       - MYSQL_REPLICATION_MODE=master
       - MYSQL_REPLICATION_USER=repl_user
@@ -17,13 +17,13 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_ROOT_PASSWORD=my_root_password
     healthcheck:
-      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      test: ['CMD', '/opt/bitmoa/scripts/mysql/healthcheck.sh']
       interval: 15s
       timeout: 5s
       retries: 6
 
   mysql-slave:
-    image: docker.io/bitnami/mysql:9.5
+    image: ghcr.io/bitmoa/mysql:9.5
     ports:
       - '3306'
     depends_on:
@@ -41,7 +41,7 @@ services:
       # In case of missing binary files on master, use `true` to reset those binary files. Creating a previous backup is recommended.
       - MYSQL_REPLICATION_SLAVE_DUMP=false
     healthcheck:
-      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      test: ['CMD', '/opt/bitmoa/scripts/mysql/healthcheck.sh']
       interval: 15s
       timeout: 5s
       retries: 6

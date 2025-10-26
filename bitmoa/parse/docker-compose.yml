@@ -3,28 +3,28 @@
 
 services:
   mongodb:
-    image: docker.io/bitnami/mongodb:latest
+    image: ghcr.io/bitmoa/mongodb:latest
     volumes:
-      - 'mongodb_data:/bitnami/mongodb'
+      - 'mongodb_data:/bitmoa/mongodb'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MONGODB_USERNAME=bn_parse
-      - MONGODB_DATABASE=bitnami_parse
-      - MONGODB_PASSWORD=bitnami123
+      - MONGODB_DATABASE=bitmoa_parse
+      - MONGODB_PASSWORD=bitmoa123
   parse:
-    image: docker.io/bitnami/parse:8
+    image: ghcr.io/bitmoa/parse:8
     ports:
       - '1337:1337'
     volumes:
-      - 'parse_data:/bitnami/parse'
+      - 'parse_data:/bitmoa/parse'
     depends_on:
       - mongodb
     environment:
       - PARSE_DATABASE_HOST=mongodb
       - PARSE_DATABASE_PORT_NUMBER=27017
       - PARSE_DATABASE_USER=bn_parse
-      - PARSE_DATABASE_NAME=bitnami_parse
-      - PARSE_DATABASE_PASSWORD=bitnami123
+      - PARSE_DATABASE_NAME=bitmoa_parse
+      - PARSE_DATABASE_PASSWORD=bitmoa123
 volumes:
   mongodb_data:
     driver: local

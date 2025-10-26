@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name tensorflow-serving bitnami/tensorflow-serving:latest
+docker run --name tensorflow-serving bitmoa/tensorflow-serving:latest
 ```
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -45,50 +45,50 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami TensorFlow Serving Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/tensorflow-serving).
+The recommended way to get the Bitnami TensorFlow Serving Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/tensorflow-serving).
 
 ```console
-docker pull bitnami/tensorflow-serving:latest
+docker pull bitmoa/tensorflow-serving:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/tensorflow-serving/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/tensorflow-serving/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/tensorflow-serving:[TAG]
+docker pull bitmoa/tensorflow-serving:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your configuration
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the data and configurations will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami` path for the TensorFlow Serving data and configurations. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a volume at the `/bitmoa` path for the TensorFlow Serving data and configurations. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
-docker run -v /path/to/tensorflow-serving-persistence:/bitnami bitnami/tensorflow-serving:latest
+docker run -v /path/to/tensorflow-serving-persistence:/bitmoa bitmoa/tensorflow-serving:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/tensorflow-serving/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/tensorflow-serving/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   tensorflow-serving:
   ...
     volumes:
-      - /path/to/tensorflow-serving-persistence:/bitnami
+      - /path/to/tensorflow-serving-persistence:/bitmoa
   ...
 ```
 
@@ -125,9 +125,9 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 
 ```console
 docker run -d --name tensorflow-serving \
-    --volume /tmp/model-data:/bitnami/model-data \
+    --volume /tmp/model-data:/bitmoa/model-data \
     --network app-tier \
-    bitnami/tensorflow-serving:latest
+    bitmoa/tensorflow-serving:latest
 ```
 
 #### Step 4: Export the data model
@@ -136,9 +136,9 @@ Run the `tensorflow-resnet` container in background mode to export the data mode
 
 ```console
 docker run -d --name tensorflow-resnet \
-    --volume /tmp/model-data:/bitnami/model-data \
+    --volume /tmp/model-data:/bitmoa/model-data \
     --network app-tier \
-    bitnami/tensorflow-resnet:latest
+    bitmoa/tensorflow-resnet:latest
 ```
 
 Monitor the logs of tensorflow-serving until it shows the message `Successfully loaded servable version`. That will mean it is serving the model:
@@ -153,9 +153,9 @@ Finally we create a new container instance to launch the TensorFlow Serving clie
 
 ```console
 docker run -it --rm \
-    --volume /tmp/model-data:/bitnami/model-data \
+    --volume /tmp/model-data:/bitmoa/model-data \
     --network app-tier \
-    bitnami/tensorflow-resnet:latest resnet_client_cc --server_port=tensorflow-serving:8500 --image_file=path/to/image.jpg
+    bitmoa/tensorflow-resnet:latest resnet_client_cc --server_port=tensorflow-serving:8500 --image_file=path/to/image.jpg
 ```
 
 ### Using a Docker Compose file
@@ -171,7 +171,7 @@ networks:
 
 services:
   tensorflow-serving:
-    image: bitnami/tensorflow-serving:latest
+    image: bitmoa/tensorflow-serving:latest
     networks:
       - app-tier
   myapp:
@@ -211,8 +211,8 @@ Tensorflow Serving can be customized by specifying environment variables on the 
 
 | Name                                      | Description                                   | Value                                                    |
 |-------------------------------------------|-----------------------------------------------|----------------------------------------------------------|
-| `BITNAMI_VOLUME_DIR`                      | Directory where to mount volumes.             | `/bitnami`                                               |
-| `TENSORFLOW_SERVING_BASE_DIR`             | Tensorflow installation directory.            | `${BITNAMI_ROOT_DIR}/tensorflow-serving`                 |
+| `BITMOA_VOLUME_DIR`                      | Directory where to mount volumes.             | `/bitmoa`                                               |
+| `TENSORFLOW_SERVING_BASE_DIR`             | Tensorflow installation directory.            | `${BITMOA_ROOT_DIR}/tensorflow-serving`                 |
 | `TENSORFLOW_SERVING_BIN_DIR`              | Tensorflow directory for binary executables.  | `${TENSORFLOW_SERVING_BASE_DIR}/bin`                     |
 | `TENSORFLOW_SERVING_TMP_DIR`              | Tensorflow directory for temp files.          | `${TENSORFLOW_SERVING_BASE_DIR}/tmp`                     |
 | `TENSORFLOW_SERVING_PID_FILE`             | Tensorflow PID file.                          | `${TENSORFLOW_SERVING_TMP_DIR}/tensorflow-serving.pid`   |
@@ -221,31 +221,31 @@ Tensorflow Serving can be customized by specifying environment variables on the 
 | `TENSORFLOW_SERVING_MONITORING_CONF_FILE` | Tensorflow directory for configuration files. | `${TENSORFLOW_SERVING_CONF_DIR}/monitoring.conf`         |
 | `TENSORFLOW_SERVING_LOGS_DIR`             | Tensorflow directory for logs files.          | `${TENSORFLOW_SERVING_BASE_DIR}/logs`                    |
 | `TENSORFLOW_SERVING_LOGS_FILE`            | Tensorflow logs files.                        | `${TENSORFLOW_SERVING_LOGS_DIR}/tensorflow-serving.log`  |
-| `TENSORFLOW_SERVING_VOLUME_DIR`           | Tensorflow persistence directory.             | `${BITNAMI_VOLUME_DIR}/tensorflow-serving`               |
-| `TENSORFLOW_SERVING_MODEL_DATA`           | Tensorflow data to persist.                   | `${BITNAMI_VOLUME_DIR}/model-data`                       |
+| `TENSORFLOW_SERVING_VOLUME_DIR`           | Tensorflow persistence directory.             | `${BITMOA_VOLUME_DIR}/tensorflow-serving`               |
+| `TENSORFLOW_SERVING_MODEL_DATA`           | Tensorflow data to persist.                   | `${BITMOA_VOLUME_DIR}/model-data`                       |
 | `TENSORFLOW_SERVING_DAEMON_USER`          | Tensorflow system user                        | `tensorflow`                                             |
 | `TENSORFLOW_SERVING_DAEMON_GROUP`         | Tensorflow system group                       | `tensorflow`                                             |
 
 ### Configuration file
 
-The image looks for configurations in `/bitnami/tensorflow-serving/conf/`. As mentioned in [Persisting your configuation](#persisting-your-configuration) you can mount a volume at `/bitnami` and copy/edit the configurations in the `/path/to/tensorflow-serving-persistence/tensorflow-serving/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
+The image looks for configurations in `/bitmoa/tensorflow-serving/conf/`. As mentioned in [Persisting your configuation](#persisting-your-configuration) you can mount a volume at `/bitmoa` and copy/edit the configurations in the `/path/to/tensorflow-serving-persistence/tensorflow-serving/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
 
 #### Step 1: Run the TensorFlow Serving image
 
 Run the TensorFlow Serving image, mounting a directory from your host.
 
 ```console
-docker run --name tensorflow-serving -v /path/to/tensorflow-serving-persistence:/bitnami bitnami/tensorflow-serving:latest
+docker run --name tensorflow-serving -v /path/to/tensorflow-serving-persistence:/bitmoa bitmoa/tensorflow-serving:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/tensorflow-serving/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/tensorflow-serving/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   tensorflow-serving:
   ...
     volumes:
-      - /path/to/tensorflow-serving-persistence:/bitnami
+      - /path/to/tensorflow-serving-persistence:/bitmoa
   ...
 ```
 
@@ -273,7 +273,7 @@ docker-compose restart tensorflow-serving
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami TensorFlow Serving Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami TensorFlow Serving Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -291,7 +291,7 @@ or using Docker Compose:
 docker-compose logs tensorflow-serving
 ```
 
-The logs are also stored inside the container in the /opt/bitnami/tensorflow-serving/logs/tensorflow-serving.log file.
+The logs are also stored inside the container in the /opt/bitmoa/tensorflow-serving/logs/tensorflow-serving.log file.
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
@@ -304,11 +304,11 @@ Bitnami provides up-to-date versions of TensorFlow Serving, including security p
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/tensorflow-serving:latest
+docker pull bitmoa/tensorflow-serving:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/tensorflow-serving:latest`.
+`bitmoa/tensorflow-serving:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -349,7 +349,7 @@ docker-compose rm -v tensorflow-serving
 Re-create your container from the new image, restoring your backup if necessary.
 
 ```console
-docker run --name tensorflow-serving bitnami/tensorflow-serving:latest
+docker run --name tensorflow-serving bitmoa/tensorflow-serving:latest
 ```
 
 or using Docker Compose:
@@ -375,17 +375,17 @@ docker-compose start tensorflow-serving
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/tensorflow-resnet).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/tensorflow-resnet).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

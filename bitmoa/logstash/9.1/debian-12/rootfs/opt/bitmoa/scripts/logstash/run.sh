@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/liblogstash.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblogstash.sh
 
 # Load Logstash environment variables
-. /opt/bitnami/scripts/logstash-env.sh
+. /opt/bitmoa/scripts/logstash-env.sh
 
 declare -a cmd=("logstash")
 

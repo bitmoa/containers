@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name fluentd bitnami/fluentd:latest
+docker run --name fluentd bitmoa/fluentd:latest
 ```
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -45,30 +45,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Fluentd Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/fluentd).
+The recommended way to get the Bitnami Fluentd Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/fluentd).
 
 ```console
-docker pull bitnami/fluentd:latest
+docker pull bitmoa/fluentd:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/fluentd/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/fluentd/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/fluentd:[TAG]
+docker pull bitmoa/fluentd:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Connecting to other containers
@@ -90,7 +90,7 @@ docker network create fluentd-network --driver bridge
 Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `fluentd-network` network.
 
 ```console
-docker run --name fluentd-node1 --network fluentd-network bitnami/fluentd:latest
+docker run --name fluentd-node1 --network fluentd-network bitmoa/fluentd:latest
 ```
 
 #### Step 3: Run another containers
@@ -102,26 +102,26 @@ We can launch another containers using the same flag (`--network NETWORK`) in th
 To create an endpoint that collects logs on your host just run:
 
 ```console
-docker run -d -p 24224:24224 -p 24224:24224/udp -v /data:/opt/bitnami/fluentd/log fluentd
+docker run -d -p 24224:24224 -p 24224:24224/udp -v /data:/opt/bitmoa/fluentd/log fluentd
 ```
 
 Default configurations are:
 
-- configuration file at `/opt/bitnami/fluentd/conf/fluentd.conf`
+- configuration file at `/opt/bitmoa/fluentd/conf/fluentd.conf`
 - listen port `24224` for Fluentd forward protocol
-- store logs with tag `docker.**` into `/opt/bitnami/fluentd/log/docker.*.log`
-- store all other logs into `/opt/bitnami/fluentd/log/data.*.log`
+- store logs with tag `docker.**` into `/opt/bitmoa/fluentd/log/docker.*.log`
+- store all other logs into `/opt/bitmoa/fluentd/log/data.*.log`
 
-You can overwrite the default configuration file by mounting your own configuration file on the directory `/opt/bitnami/fluentd/conf`:
+You can overwrite the default configuration file by mounting your own configuration file on the directory `/opt/bitmoa/fluentd/conf`:
 
 ```console
-docker run --name fluentd -v /path/to/fluentd.conf:/opt/bitnami/fluentd/conf/fluentd.conf bitnami/fluentd:latest
+docker run --name fluentd -v /path/to/fluentd.conf:/opt/bitmoa/fluentd/conf/fluentd.conf bitmoa/fluentd:latest
 ```
 
-You can also extend the default configuration by importing your custom configuration with the "@include" directive. It is a simple as creating a directory with you custom config files and mount it on the directory `/opt/bitnami/fluentd/conf/conf.d`:
+You can also extend the default configuration by importing your custom configuration with the "@include" directive. It is a simple as creating a directory with you custom config files and mount it on the directory `/opt/bitmoa/fluentd/conf/conf.d`:
 
 ```console
-docker run --name fluentd -v /path/to/custom-conf-directory:/opt/bitnami/fluentd/conf/conf.d bitnami/fluentd:latest
+docker run --name fluentd -v /path/to/custom-conf-directory:/opt/bitmoa/fluentd/conf/conf.d bitmoa/fluentd:latest
 ```
 
 Find more information about this feature, consult [official documentation](https://docs.fluentd.org/configuration/config-file)
@@ -129,7 +129,7 @@ Find more information about this feature, consult [official documentation](https
 You can also add custom init scripts to the path referenced on `$FLUENTD_INITSCRIPTS_DIR` (which defaults to `/docker-entrypoint-initdb.d`):
 
 ```console
-docker run --name fluentd -v /path/to/custom-scripts-directory:/docker-entrypoint-initdb.d bitnami/fluentd:latest
+docker run --name fluentd -v /path/to/custom-scripts-directory:/docker-entrypoint-initdb.d bitmoa/fluentd:latest
 ```
 
 ### Environment variables
@@ -143,7 +143,7 @@ Environment variable below are configurable to control how to execute fluentd pr
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Fluentd Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Fluentd Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -171,7 +171,7 @@ Before extending this image, please note there are certain configuration setting
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/fluentd
+FROM bitmoa/fluentd
 ### Put your customizations below
 ...
 ```
@@ -179,7 +179,7 @@ FROM bitnami/fluentd
 Here is an example of extending the image installing custom Fluentd plugins:
 
 ```Dockerfile
-FROM bitnami/fluentd
+FROM bitmoa/fluentd
 
 ### Install custom Fluentd plugins
 RUN fluent-gem install 'fluent-plugin-docker_metadata_filter'
@@ -194,7 +194,7 @@ Bitnami provides up-to-date versions of fluentd, including security patches, soo
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/fluentd:latest
+docker pull bitmoa/fluentd:latest
 ```
 
 #### Step 2: Stop and backup the currently running container
@@ -224,22 +224,22 @@ docker rm -v fluentd
 Re-create your container from the new image, restoring your backup if necessary.
 
 ```console
-docker run --name fluentd bitnami/fluentd:latest
+docker run --name fluentd bitmoa/fluentd:latest
 ```
 
 ## Notable Changes
 
 ### Starting January 16, 2024
 
-- The `docker-compose.yaml` file has been removed, as it was solely intended for internal testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/fluentd).
+- The `docker-compose.yaml` file has been removed, as it was solely intended for internal testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/fluentd).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

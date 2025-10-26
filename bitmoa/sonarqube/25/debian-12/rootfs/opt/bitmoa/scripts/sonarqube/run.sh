@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load SonarQube environment
-. /opt/bitnami/scripts/sonarqube-env.sh
+. /opt/bitmoa/scripts/sonarqube-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libsonarqube.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libsonarqube.sh
 
 # Using 'sonar.sh console' to start SonarQube in foreground
 START_CMD=("${SONARQUBE_BIN_DIR}/sonar.sh" "console")

@@ -7,14 +7,14 @@
 # shellcheck disable=SC1090,SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libversion.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libversion.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Functions
 
@@ -150,14 +150,14 @@ elasticsearch_set_key_value() {
 # shellcheck disable=SC1090,SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libversion.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libversion.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
 
 # Functions
 
@@ -290,7 +290,7 @@ elasticsearch_start() {
     debug "Starting ${DB_FLAVOR^}..."
     local command=("${DB_BASE_DIR}/bin/${DB_FLAVOR}" "-d" "-p" "$DB_PID_FILE")
     am_i_root && command=("run_as_user" "$DB_DAEMON_USER" "${command[@]}")
-    if [[ "$BITNAMI_DEBUG" = true ]]; then
+    if [[ "$BITMOA_DEBUG" = true ]]; then
         "${command[@]}" &
     else
         "${command[@]}" >/dev/null 2>&1 &
@@ -821,7 +821,7 @@ elasticsearch_install_plugins() {
         fi
 
         debug "Installing plugin: ${plugin}"
-        if [[ "${BITNAMI_DEBUG:-false}" = true ]]; then
+        if [[ "${BITMOA_DEBUG:-false}" = true ]]; then
             "$cmd" install -b -v "$plugin"
         else
             "$cmd" install -b -v "$plugin" >/dev/null 2>&1

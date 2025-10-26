@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libjenkins.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libjenkins.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Jenkins environment
-. /opt/bitnami/scripts/jenkins-env.sh
+. /opt/bitmoa/scripts/jenkins-env.sh
 
 # Ensure Jenkins environment variables are valid
 jenkins_validate

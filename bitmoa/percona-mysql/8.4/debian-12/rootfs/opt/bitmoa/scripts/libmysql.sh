@@ -7,13 +7,13 @@
 # shellcheck disable=SC1090,SC1091,SC2119,SC2120
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libversion.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libversion.sh
 
 ########################
 # Configure database extra start flags
@@ -289,7 +289,7 @@ EOF
 ########################
 # Initialize database data
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   None
@@ -314,7 +314,7 @@ mysql_install_db() {
 ########################
 # Upgrade Database Schema
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   None
@@ -357,14 +357,14 @@ mysql_initialize() {
     fi
 
     if [[ -f "${DB_CONF_DIR}/my_custom.cnf" ]]; then
-        if is_file_writable "${DB_CONF_DIR}/bitnami/my_custom.cnf"; then
+        if is_file_writable "${DB_CONF_DIR}/bitmoa/my_custom.cnf"; then
             info "Injecting custom configuration 'my_custom.cnf'"
-            cat "${DB_CONF_DIR}/my_custom.cnf" > "${DB_CONF_DIR}/bitnami/my_custom.cnf"
-            if ! grep --silent "!include ${DB_CONF_DIR}/bitnami/my_custom.cnf" "${DB_CONF_FILE}"; then
-                echo "!include ${DB_CONF_DIR}/bitnami/my_custom.cnf" >> "${DB_CONF_FILE}"
+            cat "${DB_CONF_DIR}/my_custom.cnf" > "${DB_CONF_DIR}/bitmoa/my_custom.cnf"
+            if ! grep --silent "!include ${DB_CONF_DIR}/bitmoa/my_custom.cnf" "${DB_CONF_FILE}"; then
+                echo "!include ${DB_CONF_DIR}/bitmoa/my_custom.cnf" >> "${DB_CONF_FILE}"
             fi
         else
-            warn "Could not inject custom configuration for the ${DB_FLAVOR} configuration file '$DB_CONF_DIR/bitnami/my_custom.cnf' because it is not writable."
+            warn "Could not inject custom configuration for the ${DB_FLAVOR} configuration file '$DB_CONF_DIR/bitmoa/my_custom.cnf' because it is not writable."
         fi
     fi
 
@@ -604,7 +604,7 @@ get_master_env_var_value() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Database where to run the queries
@@ -633,14 +633,14 @@ mysql_execute_print_output() {
     [[ "${#extra_opts[@]}" -gt 0 ]] && args+=("${extra_opts[@]}")
 
     # Obtain the command specified via stdin
-    if [[ "${BITNAMI_DEBUG:-false}" = true ]]; then
+    if [[ "${BITMOA_DEBUG:-false}" = true ]]; then
         local mysql_cmd
         mysql_cmd="$(</dev/stdin)"
         debug "Executing SQL command:\n$mysql_cmd"
         "$(mysql_binary)" "${args[@]}" <<<"$mysql_cmd"
     else
         # Do not store the command(s) as a variable, to avoid issues when importing large files
-        # https://github.com/bitnami/bitnami-docker-mariadb/issues/251
+        # https://github.com/bitmoa/bitmoa-docker-mariadb/issues/251
         "$(mysql_binary)" "${args[@]}"
     fi
 }
@@ -650,7 +650,7 @@ mysql_execute_print_output() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Database where to run the queries
@@ -668,7 +668,7 @@ mysql_execute() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Remote MySQL/MariaDB service hostname
@@ -694,7 +694,7 @@ mysql_remote_execute_print_output() {
 # Stdin:
 #   Query/queries to execute
 # Globals:
-#   BITNAMI_DEBUG
+#   BITMOA_DEBUG
 #   DB_*
 # Arguments:
 #   $1 - Remote MySQL/MariaDB service hostname
@@ -833,7 +833,7 @@ mysql_stop() {
 #########################
 mysql_migrate_old_configuration() {
     local -r old_custom_conf_file="$DB_VOLUME_DIR/conf/my_custom.cnf"
-    local -r custom_conf_file="$DB_CONF_DIR/bitnami/my_custom.cnf"
+    local -r custom_conf_file="$DB_CONF_DIR/bitmoa/my_custom.cnf"
     debug "Persisted configuration detected. Migrating any existing 'my_custom.cnf' file to new location"
     warn "Custom configuration files are not persisted any longer"
     if [[ -f "$old_custom_conf_file" ]]; then
@@ -1299,7 +1299,7 @@ mysql_update_custom_config() {
     # User injected custom configuration
     if [[ -f "$DB_CONF_DIR/my_custom.cnf" ]]; then
         debug "Injecting custom configuration from my_custom.conf"
-        cat "$DB_CONF_DIR/my_custom.cnf" > "$DB_CONF_DIR/bitnami/my_custom.cnf"
+        cat "$DB_CONF_DIR/my_custom.cnf" > "$DB_CONF_DIR/bitmoa/my_custom.cnf"
     fi
 
     ! is_empty_value "$DB_USER" && mysql_conf_set "user" "$DB_USER" "mysqladmin"

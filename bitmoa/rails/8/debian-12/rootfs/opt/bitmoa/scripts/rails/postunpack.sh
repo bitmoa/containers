@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/librails.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/librails.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load Rails environment
-. /opt/bitnami/scripts/rails-env.sh
+. /opt/bitmoa/scripts/rails-env.sh
 
 # Ensure required directories exist
 ensure_dir_exists "/app"

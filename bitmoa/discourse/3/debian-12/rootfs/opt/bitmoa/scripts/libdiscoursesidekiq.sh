@@ -7,20 +7,20 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
-. /opt/bitnami/scripts/libdiscourse.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
+. /opt/bitmoa/scripts/libdiscourse.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libpostgresqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libpostgresql.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresql.sh
+if [[ -f /opt/bitmoa/scripts/libpostgresqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libpostgresql.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresql.sh
 fi
 
 ########################
@@ -56,7 +56,7 @@ discourse_sidekiq_initialize() {
     # Check if Discourse has already been initialized and persisted in a previous run
     local -r app_name="discourse"
     if ! is_app_initialized "$app_name"; then
-        # Ensure Discourse persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure Discourse persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring Sidekiq directories exist"
         ensure_dir_exists "$DISCOURSE_VOLUME_DIR"
         # Use daemon:root ownership for compatibility when running as a non-root user

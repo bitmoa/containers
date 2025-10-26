@@ -10,17 +10,17 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Odoo environment
-. /opt/bitnami/scripts/odoo-env.sh
+. /opt/bitmoa/scripts/odoo-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 print_welcome_page
 
-if [[ "$1" = "/opt/bitnami/scripts/odoo/run.sh" ]]; then
-    /opt/bitnami/scripts/postgresql-client/setup.sh
-    /opt/bitnami/scripts/odoo/setup.sh
+if [[ "$1" = "/opt/bitmoa/scripts/odoo/run.sh" ]]; then
+    /opt/bitmoa/scripts/postgresql-client/setup.sh
+    /opt/bitmoa/scripts/odoo/setup.sh
     /post-init.sh
     info "** Odoo setup finished! **"
 fi

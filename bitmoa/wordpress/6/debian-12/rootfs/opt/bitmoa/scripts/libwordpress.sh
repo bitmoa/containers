@@ -7,22 +7,22 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libphp.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libwebserver.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libphp.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libwebserver.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libmysqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libmysqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libmysql.sh ]]; then
-    . /opt/bitnami/scripts/libmysql.sh
-elif [[ -f /opt/bitnami/scripts/libmariadb.sh ]]; then
-    . /opt/bitnami/scripts/libmariadb.sh
+if [[ -f /opt/bitmoa/scripts/libmysqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libmysqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libmysql.sh ]]; then
+    . /opt/bitmoa/scripts/libmysql.sh
+elif [[ -f /opt/bitmoa/scripts/libmariadb.sh ]]; then
+    . /opt/bitmoa/scripts/libmariadb.sh
 fi
 
 ########################
@@ -232,7 +232,7 @@ wordpress_initialize() {
     # Check if WordPress has already been initialized and persisted in a previous run
     local -r app_name="wordpress"
     if ! is_app_initialized "$app_name" || [[ ! -f "$WORDPRESS_CONF_FILE" ]]; then
-        # Ensure WordPress persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure WordPress persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring WordPress directories exist"
         ensure_dir_exists "$WORDPRESS_VOLUME_DIR"
         # Use daemon:root ownership for compatibility when running as a non-root user
@@ -567,7 +567,7 @@ wordpress_disable_pingback() {
 
 /**
  * Disable pingback.ping xmlrpc method to prevent WordPress from participating in DDoS attacks
- * More info at: https://docs.bitnami.com/general/apps/wordpress/troubleshooting/xmlrpc-and-pingback/
+ * More info at: https://docs.bitmoa.com/general/apps/wordpress/troubleshooting/xmlrpc-and-pingback/
  */
 if ( !defined( 'WP_CLI' ) ) {
 	// remove x-pingback HTTP header
@@ -696,7 +696,7 @@ wordpress_generate_web_server_configuration() {
         web_server_config_create_flags+=("--apache-move-htaccess" "yes" "--apache-allow-override" "None")
     fi
     local apache_config nginx_config
-    local template_dir="${BITNAMI_ROOT_DIR}/scripts/wordpress/bitnami-templates"
+    local template_dir="${BITMOA_ROOT_DIR}/scripts/wordpress/bitmoa-templates"
     # Fix themes/plugins usage
     apache_config="$(render-template "${template_dir}/apache-wordpress-volume-rewrite.conf.tpl")"
     nginx_config="$(render-template "${template_dir}/nginx-wordpress-volume-rewrite.conf.tpl")"

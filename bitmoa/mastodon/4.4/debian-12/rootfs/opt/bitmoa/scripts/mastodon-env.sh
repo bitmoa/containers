@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-mastodon}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -121,8 +121,8 @@ done
 unset mastodon_env_vars
 
 # Paths
-export MASTODON_BASE_DIR="${BITNAMI_ROOT_DIR}/mastodon"
-export MASTODON_VOLUME_DIR="/bitnami/mastodon"
+export MASTODON_BASE_DIR="${BITMOA_ROOT_DIR}/mastodon"
+export MASTODON_VOLUME_DIR="/bitmoa/mastodon"
 export MASTODON_ASSETS_DIR="${MASTODON_BASE_DIR}/public/assets"
 export MASTODON_SYSTEM_DIR="${MASTODON_BASE_DIR}/public/system"
 export MASTODON_TMP_DIR="${MASTODON_BASE_DIR}/tmp"
@@ -133,15 +133,15 @@ export MASTODON_MODE="${MASTODON_MODE:-web}"
 export ALLOW_EMPTY_PASSWORD="${ALLOW_EMPTY_PASSWORD:-no}"
 export MASTODON_CREATE_ADMIN="${MASTODON_CREATE_ADMIN:-true}"
 export MASTODON_ADMIN_USERNAME="${MASTODON_ADMIN_USERNAME:-user}"
-export MASTODON_ADMIN_PASSWORD="${MASTODON_ADMIN_PASSWORD:-bitnami1}"
-export MASTODON_ADMIN_EMAIL="${MASTODON_ADMIN_EMAIL:-user@bitnami.org}"
+export MASTODON_ADMIN_PASSWORD="${MASTODON_ADMIN_PASSWORD:-bitmoa1}"
+export MASTODON_ADMIN_EMAIL="${MASTODON_ADMIN_EMAIL:-user@bitmoa.org}"
 export MASTODON_ALLOW_ALL_DOMAINS="${MASTODON_ALLOW_ALL_DOMAINS:-true}"
 MASTODON_SECRET_KEY_BASE="${MASTODON_SECRET_KEY_BASE:-"${SECRET_KEY_BASE:-}"}"
-export MASTODON_SECRET_KEY_BASE="${MASTODON_SECRET_KEY_BASE:-bitnami123}"
+export MASTODON_SECRET_KEY_BASE="${MASTODON_SECRET_KEY_BASE:-bitmoa123}"
 export SECRET_KEY_BASE="$MASTODON_SECRET_KEY_BASE"
 export MASTODON_CFG_SECRET_KEY_BASE="$MASTODON_SECRET_KEY_BASE"
 MASTODON_OTP_SECRET="${MASTODON_OTP_SECRET:-"${OTP_SECRET:-}"}"
-export MASTODON_OTP_SECRET="${MASTODON_OTP_SECRET:-bitnami123}"
+export MASTODON_OTP_SECRET="${MASTODON_OTP_SECRET:-bitmoa123}"
 export OTP_SECRET="$MASTODON_OTP_SECRET"
 export MASTODON_CFG_OTP_SECRET="$MASTODON_OTP_SECRET"
 export MASTODON_HTTPS_ENABLED="${MASTODON_HTTPS_ENABLED:-false}"
@@ -170,7 +170,7 @@ export MASTODON_SMTP_LOGIN="${MASTODON_SMTP_LOGIN:-5432}"
 export SMTP_LOGIN="$MASTODON_SMTP_LOGIN"
 export MASTODON_CFG_SMTP_LOGIN="$MASTODON_SMTP_LOGIN"
 MASTODON_SMTP_PASSWORD="${MASTODON_SMTP_PASSWORD:-"${SMTP_PASSWORD:-}"}"
-export MASTODON_SMTP_PASSWORD="${MASTODON_SMTP_PASSWORD:-bitnami_mastodon}"
+export MASTODON_SMTP_PASSWORD="${MASTODON_SMTP_PASSWORD:-bitmoa_mastodon}"
 export SMTP_PASSWORD="$MASTODON_SMTP_PASSWORD"
 export MASTODON_CFG_SMTP_PASSWORD="$MASTODON_SMTP_PASSWORD"
 export RAILS_SERVE_STATIC_FILES="${RAILS_SERVE_STATIC_FILES:-true}"
@@ -192,7 +192,7 @@ export MASTODON_DATABASE_PORT_NUMBER="${MASTODON_DATABASE_PORT_NUMBER:-5432}"
 export DB_PORT="$MASTODON_DATABASE_PORT_NUMBER"
 export MASTODON_CFG_DB_PORT="$MASTODON_DATABASE_PORT_NUMBER"
 MASTODON_DATABASE_NAME="${MASTODON_DATABASE_NAME:-"${DB_NAME:-}"}"
-export MASTODON_DATABASE_NAME="${MASTODON_DATABASE_NAME:-bitnami_mastodon}"
+export MASTODON_DATABASE_NAME="${MASTODON_DATABASE_NAME:-bitmoa_mastodon}"
 export DB_NAME="$MASTODON_DATABASE_NAME"
 export MASTODON_CFG_DB_NAME="$MASTODON_DATABASE_NAME"
 MASTODON_DATABASE_USERNAME="${MASTODON_DATABASE_USERNAME:-"${DB_USER:-}"}"
@@ -251,7 +251,7 @@ export MASTODON_S3_ENABLED="${MASTODON_S3_ENABLED:-false}"
 export S3_ENABLED="$MASTODON_S3_ENABLED"
 export MASTODON_CFG_S3_ENABLED="$MASTODON_S3_ENABLED"
 MASTODON_S3_BUCKET="${MASTODON_S3_BUCKET:-"${S3_BUCKET:-}"}"
-export MASTODON_S3_BUCKET="${MASTODON_S3_BUCKET:-bitnami_mastodon}"
+export MASTODON_S3_BUCKET="${MASTODON_S3_BUCKET:-bitmoa_mastodon}"
 export S3_BUCKET="$MASTODON_S3_BUCKET"
 export MASTODON_CFG_S3_BUCKET="$MASTODON_S3_BUCKET"
 MASTODON_S3_HOSTNAME="${MASTODON_S3_HOSTNAME:-"${S3_HOSTNAME:-}"}"

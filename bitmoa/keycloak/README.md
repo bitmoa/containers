@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name keycloak bitnami/keycloak:latest
+docker run --name keycloak bitmoa/keycloak:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Keycloak in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Keycloak Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/keycloak).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Keycloak Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/keycloak).
 
 ## Why use a non-root container?
 
@@ -49,30 +49,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami keycloak Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/keycloak).
+The recommended way to get the Bitnami keycloak Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/keycloak).
 
 ```console
-docker pull bitnami/keycloak:latest
+docker pull bitmoa/keycloak:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/keycloak/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/keycloak/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/keycloak:[TAG]
+docker pull bitmoa/keycloak:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Configuration
@@ -115,7 +115,7 @@ docker build -t bitnami/APP:latest .
 | `KC_DB`                         | Database vendor                                                                                    | `postgres`                    |
 | `KEYCLOAK_DATABASE_HOST`        | Database hostname                                                                                  | `postgresql`                  |
 | `KEYCLOAK_DATABASE_PORT`        | Database port                                                                                      | `5432`                        |
-| `KEYCLOAK_DATABASE_NAME`        | Database name                                                                                      | `bitnami_keycloak`            |
+| `KEYCLOAK_DATABASE_NAME`        | Database name                                                                                      | `bitmoa_keycloak`            |
 | `KEYCLOAK_JDBC_PARAMS`          | Extra JDBC connection parameters for the database (e.g.: sslmode=verify-full&connectTimeout=30000) | `nil`                         |
 | `KEYCLOAK_JDBC_DRIVER`          | JDBC driver to set in the connection string for the database                                       | `postgresql`                  |
 | `KC_DB_USERNAME`                | Database username                                                                                  | `bn_keycloak`                 |
@@ -129,15 +129,15 @@ docker build -t bitnami/APP:latest .
 
 | Name                        | Description                                             | Value                             |
 |-----------------------------|---------------------------------------------------------|-----------------------------------|
-| `BITNAMI_VOLUME_DIR`        | Directory where to mount volumes.                       | `/bitnami`                        |
-| `JAVA_HOME`                 | Java installation directory                             | `/opt/bitnami/java`               |
-| `KEYCLOAK_BASE_DIR`         | Keycloak base directory                                 | `/opt/bitnami/keycloak`           |
+| `BITMOA_VOLUME_DIR`        | Directory where to mount volumes.                       | `/bitmoa`                        |
+| `JAVA_HOME`                 | Java installation directory                             | `/opt/bitmoa/java`               |
+| `KEYCLOAK_BASE_DIR`         | Keycloak base directory                                 | `/opt/bitmoa/keycloak`           |
 | `KEYCLOAK_BIN_DIR`          | Keycloak bin directory                                  | `$KEYCLOAK_BASE_DIR/bin`          |
 | `KEYCLOAK_PROVIDERS_DIR`    | Keycloak providers (extensions) directory               | `$KEYCLOAK_BASE_DIR/providers`    |
 | `KEYCLOAK_LOG_DIR`          | Keycloak bin directory                                  | `$KEYCLOAK_PROVIDERS_DIR/log`     |
 | `KEYCLOAK_TMP_DIR`          | Keycloak tmp directory                                  | `$KEYCLOAK_PROVIDERS_DIR/tmp`     |
 | `KEYCLOAK_DOMAIN_TMP_DIR`   | Keycloak tmp directory                                  | `$KEYCLOAK_BASE_DIR/domain/tmp`   |
-| `KEYCLOAK_VOLUME_DIR`       | Path to keycloak mount directory                        | `/bitnami/keycloak`               |
+| `KEYCLOAK_VOLUME_DIR`       | Path to keycloak mount directory                        | `/bitmoa/keycloak`               |
 | `KEYCLOAK_CONF_DIR`         | Keycloak configuration directory                        | `$KEYCLOAK_BASE_DIR/conf`         |
 | `KEYCLOAK_DEFAULT_CONF_DIR` | Keycloak default configuration directory                | `$KEYCLOAK_BASE_DIR/conf.default` |
 | `KEYCLOAK_INITSCRIPTS_DIR`  | Path to keycloak init scripts directory                 | `/docker-entrypoint-initdb.d`     |
@@ -150,7 +150,7 @@ In case you want to add extra flags to the Keycloak use the `KEYCLOAK_EXTRA_ARGS
 ```console
 docker run --name keycloak \
   -e KEYCLOAK_EXTRA_ARGS="-Dkeycloak.profile.feature.scripts=enabled" \
-  bitnami/keycloak:latest
+  bitmoa/keycloak:latest
 ```
 
 Or, if you need flags which are applied directly to keycloak executable, you can use `KEYCLOAK_EXTRA_ARGS_PREPENDED` variable. Example:
@@ -158,7 +158,7 @@ Or, if you need flags which are applied directly to keycloak executable, you can
 ```console
 docker run --name keycloak \
   -e KEYCLOAK_EXTRA_ARGS_PREPENDED="--spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true" \
-  bitnami/keycloak:latest
+  bitmoa/keycloak:latest
 ```
 
 ### Initializing a new instance
@@ -170,21 +170,21 @@ In order to have your custom files inside the docker image you can mount them as
 ```console
 docker run --name keycloak \
   -v /path/to/init-scripts:/docker-entrypoint-initdb.d \
-  bitnami/keycloak:latest
+  bitmoa/keycloak:latest
 ```
 
 Or with docker-compose
 
 ```yaml
 keycloak:
-  image: bitnami/keycloak:latest
+  image: bitmoa/keycloak:latest
   volumes:
     - /path/to/init-scripts:/docker-entrypoint-initdb.d
 ```
 
 ### TLS Encryption
 
-The Bitnami Keycloak Docker image allows configuring HTTPS/TLS encription. This is done by mounting in `/opt/bitnami/keycloak/certs` two files:
+The Bitnami Keycloak Docker image allows configuring HTTPS/TLS encription. This is done by mounting in `/opt/bitmoa/keycloak/certs` two files:
 
 - `keystore`: File with the server keystore
 - `truststore`: File with the server truststore
@@ -194,31 +194,31 @@ The Bitnami Keycloak Docker image allows configuring HTTPS/TLS encription. This 
 Apart from that, the following environment variables must be set:
 
 - `KEYCLOAK_ENABLE_HTTPS`: Enable TLS encryption using the keystore. Default: **false**.
-- `KEYCLOAK_HTTPS_KEY_STORE_FILE`: Path to the keystore file (e.g. `/opt/bitnami/keycloak/certs/keystore.jks`). No defaults.
-- `KEYCLOAK_HTTPS_TRUST_STORE_FILE`: Path to the truststore file (e.g. `/opt/bitnami/keycloak/certs/truststore.jks`). No defaults.
+- `KEYCLOAK_HTTPS_KEY_STORE_FILE`: Path to the keystore file (e.g. `/opt/bitmoa/keycloak/certs/keystore.jks`). No defaults.
+- `KEYCLOAK_HTTPS_TRUST_STORE_FILE`: Path to the truststore file (e.g. `/opt/bitmoa/keycloak/certs/truststore.jks`). No defaults.
 - `KEYCLOAK_HTTPS_KEY_STORE_PASSWORD`: Password for accessing the keystore. No defaults.
 - `KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD`: Password for accessing the truststore. No defaults.
 - `KEYCLOAK_HTTPS_USE_PEM`: Set to true to configure HTTPS using PEM certificates'. Default: **false**.
-- `KEYCLOAK_HTTPS_CERTIFICATE_FILE`: Path to the PEM certificate file (e.g. `/opt/bitnami/keycloak/certs/tls.crt`). No defaults.
-- `KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE`: Path to the PEM key file (e.g. `/opt/bitnami/keycloak/certs/tls.key`). No defaults.
+- `KEYCLOAK_HTTPS_CERTIFICATE_FILE`: Path to the PEM certificate file (e.g. `/opt/bitmoa/keycloak/certs/tls.crt`). No defaults.
+- `KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE`: Path to the PEM key file (e.g. `/opt/bitmoa/keycloak/certs/tls.key`). No defaults.
 
 ### Adding custom themes
 
-In order to add new themes to Keycloak, you can mount them to the `/opt/bitnami/keycloak/themes` folder. The example below mounts a new theme.
+In order to add new themes to Keycloak, you can mount them to the `/opt/bitmoa/keycloak/themes` folder. The example below mounts a new theme.
 
 ```yaml
 version: '2'
 services:
   postgresql:
-    image: docker.io/bitnami/postgresql:latest
+    image: ghcr.io/bitmoa/postgresql:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - POSTGRESQL_USERNAME=bn_keycloak
-      - POSTGRESQL_DATABASE=bitnami_keycloak
+      - POSTGRESQL_DATABASE=bitmoa_keycloak
     volumes:
-      - postgresql_data:/bitnami/postgresql
+      - postgresql_data:/bitmoa/postgresql
   keycloak:
-    image: docker.io/bitnami/keycloak:latest
+    image: ghcr.io/bitmoa/keycloak:latest
     ports:
       - 80:8080
     environment:
@@ -226,7 +226,7 @@ services:
     depends_on:
       - postgresql
     volumes:
-      - ./mynewtheme:/opt/bitnami/keycloak/themes/mynewtheme
+      - ./mynewtheme:/opt/bitmoa/keycloak/themes/mynewtheme
 volumes:
   postgresql_data:
     driver: local
@@ -243,28 +243,28 @@ See [the official documentation](https://www.keycloak.org/observability/health) 
 
 ### Full configuration
 
-The image looks for configuration files in the `/bitnami/keycloak/conf/` directory, this directory can be changed by setting the `KEYCLOAK_MOUNTED_CONF_DIR` environment variable.
+The image looks for configuration files in the `/bitmoa/keycloak/conf/` directory, this directory can be changed by setting the `KEYCLOAK_MOUNTED_CONF_DIR` environment variable.
 
 ```console
 docker run --name keycloak \
-    -v /path/to/keycloak.conf:/bitnami/keycloak/conf/keycloak.conf \
-    bitnami/keycloak:latest
+    -v /path/to/keycloak.conf:/bitmoa/keycloak/conf/keycloak.conf \
+    bitmoa/keycloak:latest
 ```
 
 Or with docker-compose
 
 ```yaml
 keycloak:
-  image: bitnami/keycloak:latest
+  image: bitmoa/keycloak:latest
   volumes:
-    - /path/to/keycloak.conf:/bitnami/keycloak/conf/keycloak.conf:ro
+    - /path/to/keycloak.conf:/bitmoa/keycloak/conf/keycloak.conf:ro
 ```
 
 After that, your changes will be taken into account in the server's behaviour.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Keycloak Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Keycloak Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -302,17 +302,17 @@ To do this you need to set `KEYCLOAK_PRODUCTION` to **true** and configure TLS
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/keycloak).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/keycloak).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

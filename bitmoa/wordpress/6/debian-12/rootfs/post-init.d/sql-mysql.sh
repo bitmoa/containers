@@ -12,10 +12,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries with logging functions
-if [[ -f /opt/bitnami/base/functions ]]; then
-    . /opt/bitnami/base/functions
+if [[ -f /opt/bitmoa/base/functions ]]; then
+    . /opt/bitmoa/base/functions
 else
-    . /opt/bitnami/scripts/liblog.sh
+    . /opt/bitmoa/scripts/liblog.sh
 fi
 
 mysql_execute() {

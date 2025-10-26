@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-cassandra}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -88,11 +88,11 @@ unset cassandra_env_vars
 export DB_FLAVOR="cassandra"
 
 # Paths
-export CASSANDRA_BASE_DIR="/opt/bitnami/cassandra"
+export CASSANDRA_BASE_DIR="/opt/bitmoa/cassandra"
 export DB_BASE_DIR="$CASSANDRA_BASE_DIR"
 export CASSANDRA_BIN_DIR="${DB_BASE_DIR}/bin"
 export DB_BIN_DIR="$CASSANDRA_BIN_DIR"
-export CASSANDRA_VOLUME_DIR="/bitnami/cassandra"
+export CASSANDRA_VOLUME_DIR="/bitmoa/cassandra"
 export DB_VOLUME_DIR="$CASSANDRA_VOLUME_DIR"
 export CASSANDRA_DATA_DIR="${DB_VOLUME_DIR}/data"
 export DB_DATA_DIR="$CASSANDRA_DATA_DIR"
@@ -104,9 +104,9 @@ export CASSANDRA_LOG_DIR="${DB_BASE_DIR}/logs"
 export DB_LOG_DIR="$CASSANDRA_LOG_DIR"
 export CASSANDRA_TMP_DIR="${DB_BASE_DIR}/tmp"
 export DB_TMP_DIR="$CASSANDRA_TMP_DIR"
-export JAVA_BASE_DIR="${BITNAMI_ROOT_DIR}/java"
+export JAVA_BASE_DIR="${BITMOA_ROOT_DIR}/java"
 export JAVA_BIN_DIR="${JAVA_BASE_DIR}/bin"
-export PYTHON_BASE_DIR="${BITNAMI_ROOT_DIR}/python"
+export PYTHON_BASE_DIR="${BITMOA_ROOT_DIR}/python"
 export PYTHON_BIN_DIR="${PYTHON_BASE_DIR}/bin"
 export CASSANDRA_LOG_FILE="${DB_LOG_DIR}/cassandra.log"
 export DB_LOG_FILE="$CASSANDRA_LOG_FILE"
@@ -116,7 +116,7 @@ export CASSANDRA_INITSCRIPTS_BOOT_LOG_FILE="${DB_LOG_DIR}/cassandra_init_scripts
 export DB_INITSCRIPTS_BOOT_LOG_FILE="$CASSANDRA_INITSCRIPTS_BOOT_LOG_FILE"
 export CASSANDRA_PID_FILE="${DB_TMP_DIR}/cassandra.pid"
 export DB_PID_FILE="$CASSANDRA_PID_FILE"
-export PATH="${DB_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${BITNAMI_ROOT_DIR}/python/bin:${BITNAMI_ROOT_DIR}/java/bin:$PATH"
+export PATH="${DB_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${BITMOA_ROOT_DIR}/python/bin:${BITMOA_ROOT_DIR}/java/bin:$PATH"
 
 # System users (when running with a privileged user)
 export CASSANDRA_DAEMON_USER="cassandra"

@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libejbca.sh
+. /opt/bitmoa/scripts/libejbca.sh
 
 # Load ejbca environment variables
-. /opt/bitnami/scripts/ejbca-env.sh
+. /opt/bitmoa/scripts/ejbca-env.sh
 
 # Ensure ejbca environment variables are valid
 ejbca_validate

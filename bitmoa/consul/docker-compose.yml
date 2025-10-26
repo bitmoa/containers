@@ -3,9 +3,9 @@
 
 services:
   consul:
-    image: docker.io/bitnami/consul:1
+    image: ghcr.io/bitmoa/consul:1
     volumes:
-      - consul_data:/bitnami/consul
+      - consul_data:/bitmoa/consul
     ports:
       - '8300:8300'
       - '8301:8301'

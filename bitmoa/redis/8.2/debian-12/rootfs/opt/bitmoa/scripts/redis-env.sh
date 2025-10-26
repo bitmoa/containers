@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-redis}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -73,8 +73,8 @@ done
 unset redis_env_vars
 
 # Paths
-export REDIS_VOLUME_DIR="/bitnami/redis"
-export REDIS_BASE_DIR="${BITNAMI_ROOT_DIR}/redis"
+export REDIS_VOLUME_DIR="/bitmoa/redis"
+export REDIS_BASE_DIR="${BITMOA_ROOT_DIR}/redis"
 export REDIS_CONF_DIR="${REDIS_BASE_DIR}/etc"
 export REDIS_DEFAULT_CONF_DIR="${REDIS_BASE_DIR}/etc.default"
 export REDIS_DATA_DIR="${REDIS_DATA_DIR:-${REDIS_VOLUME_DIR}/data}"
@@ -86,7 +86,7 @@ export REDIS_LOG_FILE="${REDIS_LOG_DIR}/redis.log"
 export REDIS_TMP_DIR="${REDIS_BASE_DIR}/tmp"
 export REDIS_PID_FILE="${REDIS_TMP_DIR}/redis.pid"
 export REDIS_BIN_DIR="${REDIS_BASE_DIR}/bin"
-export PATH="${REDIS_BIN_DIR}:${BITNAMI_ROOT_DIR}/common/bin:${PATH}"
+export PATH="${REDIS_BIN_DIR}:${BITMOA_ROOT_DIR}/common/bin:${PATH}"
 
 # System users (when running with a privileged user)
 export REDIS_DAEMON_USER="redis"

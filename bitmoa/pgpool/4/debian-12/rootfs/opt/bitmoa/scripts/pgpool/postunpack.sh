@@ -7,12 +7,12 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libldapclient.sh
-. /opt/bitnami/scripts/libpgpool.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libldapclient.sh
+. /opt/bitmoa/scripts/libpgpool.sh
 
 # Load Pgpool-II environment
-. /opt/bitnami/scripts/pgpool-env.sh
+. /opt/bitmoa/scripts/pgpool-env.sh
 # Load LDAP environment variables
 eval "$(ldap_env)"
 

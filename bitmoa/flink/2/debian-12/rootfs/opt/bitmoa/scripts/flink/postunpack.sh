@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load Flink environment variables
-. /opt/bitnami/scripts/flink-env.sh
+. /opt/bitmoa/scripts/flink-env.sh
 
 
 # Create directories

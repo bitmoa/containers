@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Discourse environment
-. /opt/bitnami/scripts/discourse-env.sh
+. /opt/bitmoa/scripts/discourse-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libdiscourse.sh
+. /opt/bitmoa/scripts/libdiscourse.sh
 
 # If DISCOURSE_HOST is not provided via user-data, force value from CLI args
 if [[ -z "$DISCOURSE_HOST" || "$DISCOURSE_HOST" = "www.example.com" ]]; then

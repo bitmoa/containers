@@ -10,15 +10,15 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libsolr.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libsolr.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load solr environment variables
-. /opt/bitnami/scripts/solr-env.sh
+. /opt/bitmoa/scripts/solr-env.sh
 
 info "** Starting solr **"
-start_command=("${SOLR_BIN_DIR}/solr" "-p" "${SOLR_PORT_NUMBER}" "-d" "/opt/bitnami/solr/server" "-f")
+start_command=("${SOLR_BIN_DIR}/solr" "-p" "${SOLR_PORT_NUMBER}" "-d" "/opt/bitmoa/solr/server" "-f")
 
 if is_boolean_yes "$SOLR_ENABLE_CLOUD_MODE"; then
     start_command+=("-cloud" "-z" "${SOLR_ZK_HOSTS}${SOLR_ZK_CHROOT}")

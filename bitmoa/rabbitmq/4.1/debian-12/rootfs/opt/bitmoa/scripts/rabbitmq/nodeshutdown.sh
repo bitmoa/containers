@@ -6,8 +6,8 @@
 
 set -o nounset
 
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libhook.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libhook.sh
 
 while getopts t:d:h flag
 do
@@ -16,7 +16,7 @@ do
             TERMINATION_GRACE_PERIOD_SECONDS="$OPTARG"
             ;;
         d)
-            export BITNAMI_DEBUG="$OPTARG"
+            export BITMOA_DEBUG="$OPTARG"
             ;;
         h)
             info "Usage: ${0} [ -t <TERMINATION_GRACE_PERIOD_SECONDS> ] [ -d <DEBUG_BOOLEAN> ]"
@@ -43,7 +43,7 @@ debug "RABBITMQ_SYNC_TIMEOUT is ${RABBITMQ_SYNC_TIMEOUT}"
 
 if debug_execute rabbitmqctl cluster_status && [[ "$RABBITMQ_SYNC_TIMEOUT" -gt 0 ]]; then
     debug "Will wait up to ${RABBITMQ_SYNC_TIMEOUT} seconds for node to make sure cluster is healthy after node shutdown"
-    debug_execute timeout "$RABBITMQ_SYNC_TIMEOUT" /opt/bitnami/scripts/rabbitmq/waitforsafeshutdown.sh
+    debug_execute timeout "$RABBITMQ_SYNC_TIMEOUT" /opt/bitmoa/scripts/rabbitmq/waitforsafeshutdown.sh
     if [[ "$?" -eq 124 ]]; then
         warn "Wait for safe node shutdown has timed out. Continuing to node shutdown anyway."
     fi

@@ -10,19 +10,19 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name grafana bitnami/grafana:latest
+docker run --name grafana bitmoa/grafana:latest
 ```
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -33,11 +33,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Grafana in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Grafana Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/grafana).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Grafana Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/grafana).
 
 ## Why use a non-root container?
 
@@ -47,30 +47,30 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Grafana Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/grafana).
+The recommended way to get the Bitnami Grafana Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/grafana).
 
 ```console
-docker pull bitnami/grafana:latest
+docker pull bitmoa/grafana:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/grafana/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/grafana/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/grafana:[TAG]
+docker pull bitmoa/grafana:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Connecting to other containers
@@ -92,7 +92,7 @@ docker network create grafana-network --driver bridge
 Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `grafana-network` network.
 
 ```console
-docker run --name grafana-node1 --network grafana-network bitnami/grafana:latest
+docker run --name grafana-node1 --network grafana-network bitmoa/grafana:latest
 ```
 
 #### Step 3: Run another containers
@@ -129,12 +129,12 @@ We can launch another containers using the same flag (`--network NETWORK`) in th
 
 | Name                       | Description                                                 | Value                           |
 |----------------------------|-------------------------------------------------------------|---------------------------------|
-| `GRAFANA_BASE_DIR`         | Grafana installation directory.                             | `${BITNAMI_ROOT_DIR}/grafana`   |
+| `GRAFANA_BASE_DIR`         | Grafana installation directory.                             | `${BITMOA_ROOT_DIR}/grafana`   |
 | `GRAFANA_BIN_DIR`          | Grafana directory for binary executables.                   | `${GRAFANA_BASE_DIR}/bin`       |
 | `GRAFANA_CONF_DIR`         | Grafana directory for configuration.                        | `${GRAFANA_BASE_DIR}/conf`      |
 | `GRAFANA_DAEMON_USER`      | Grafana system user.                                        | `grafana`                       |
 | `GRAFANA_DAEMON_GROUP`     | Grafana system group.                                       | `grafana`                       |
-| `GF_VOLUME_DIR`            | Grafana volume directory.                                   | `${BITNAMI_VOLUME_DIR}/grafana` |
+| `GF_VOLUME_DIR`            | Grafana volume directory.                                   | `${BITMOA_VOLUME_DIR}/grafana` |
 | `GF_OP_PATHS_CONFIG`       | Grafana Operator configuration directory.                   | `/etc/grafana/grafana.ini`      |
 | `GF_OP_PATHS_DATA`         | Grafana Operator directory for data files.                  | `/var/lib/grafana`              |
 | `GF_OP_PATHS_LOGS`         | Grafana Operator directory for log files.                   | `/var/log/grafana`              |
@@ -143,7 +143,7 @@ We can launch another containers using the same flag (`--network NETWORK`) in th
 
 ### Dev config
 
-Update the `grafana.ini` configuration file in the `/opt/bitnami/grafana/conf` directory to override default configuration options. You only need to add the options you want to override. Config files are applied in the order of:
+Update the `grafana.ini` configuration file in the `/opt/bitmoa/grafana/conf` directory to override default configuration options. You only need to add the options you want to override. Config files are applied in the order of:
 
 ```text
 grafana.ini
@@ -154,21 +154,21 @@ To enable development mode, edit the `grafana.ini` file and set `app_mode = deve
 
 ### Production config
 
-Override the `/opt/bitnami/grafana/conf/grafana.ini` file mounting a volume.
+Override the `/opt/bitmoa/grafana/conf/grafana.ini` file mounting a volume.
 
 ```console
-docker run --name grafana-node -v /path/to/grafana.ini:/opt/bitnami/grafana/conf/grafana.ini bitnami/grafana:latest
+docker run --name grafana-node -v /path/to/grafana.ini:/opt/bitmoa/grafana/conf/grafana.ini bitmoa/grafana:latest
 ```
 
 After that, your configuration will be taken into account in the server's behaviour.
 
-You can also do this by changing the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/grafana/docker-compose.yml) file present in this repository:
+You can also do this by changing the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/grafana/docker-compose.yml) file present in this repository:
 
 ```yaml
 grafana:
   ...
   volumes:
-    - /path/to/grafana.ini:/opt/bitnami/grafana/conf/grafana.ini
+    - /path/to/grafana.ini:/opt/bitmoa/grafana/conf/grafana.ini
   ...
 ```
 
@@ -204,29 +204,29 @@ For manual execution add a `-e` option with each variable and value:
 ```console
 docker run -d --name grafana -p 3000:3000 \
     -e GF_INSTALL_PLUGINS="grafana-clock-panel:1.1.0,grafana-kubernetes-app,worldpring=https://github.com/raintank/worldping-app/releases/download/v1.2.6/worldping-app-release-1.2.6.zip" \
-    bitnami/grafana:latest
+    bitmoa/grafana:latest
 ```
 
 #### Grafana Image Renderer plugin
 
 You can install the [Grafana Image Renderer plugin](https://github.com/grafana/grafana-image-renderer) to handle rendering panels and dashboards as PNG images. To install the plugin, follow the instructions described in the [previous section](#install-plugins-at-initialization).
 
-As an alternative to install this plugin, you can use the [Grafana Image Renderer container](https://github.com/bitnami/containers/blob/main/bitnami/grafana-image-renderer) to set another Docker container for rendering and using remote rendering. We highly recommend to use this option. In the Docker Compose below you can see an example to use this container:
+As an alternative to install this plugin, you can use the [Grafana Image Renderer container](https://github.com/bitmoa/containers/blob/main/bitmoa/grafana-image-renderer) to set another Docker container for rendering and using remote rendering. We highly recommend to use this option. In the Docker Compose below you can see an example to use this container:
 
 ```yaml
 version: '2'
 
 services:
   grafana:
-    image: bitnami/grafana:latest
+    image: bitmoa/grafana:latest
     ports:
       - 3000:3000
     environment:
-      GF_SECURITY_ADMIN_PASSWORD: "bitnami"
+      GF_SECURITY_ADMIN_PASSWORD: "bitmoa"
       GF_RENDERING_SERVER_URL: "http://grafana-image-renderer:8080/render"
       GF_RENDERING_CALLBACK_URL: "http://grafana:3000/"
   grafana-image-renderer:
-    image: bitnami/grafana-image-renderer:latest
+    image: bitmoa/grafana-image-renderer:latest
     ports:
       - 8080:8080
     environment:
@@ -237,7 +237,7 @@ services:
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Grafana Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Grafana Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -260,7 +260,7 @@ Bitnami provides up-to-date versions of grafana, including security patches, soo
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/grafana:latest
+docker pull bitmoa/grafana:latest
 ```
 
 #### Step 2: Stop and backup the currently running container
@@ -290,7 +290,7 @@ docker rm -v grafana
 Re-create your container from the new image, restoring your backup if necessary.
 
 ```console
-docker run --name grafana bitnami/grafana:latest
+docker run --name grafana bitmoa/grafana:latest
 ```
 
 ## Notable Changes
@@ -307,7 +307,7 @@ You can still build your custom image adding your custom plugins or install them
 
 ### 6.7.3-debian-10-r28
 
-- The `GF_INSTALL_PLUGINS` environment variable is not set by default anymore. This means it doesn't try to install the [`grafana-image-renderer` plugin](https://github.com/grafana/grafana-image-renderer) anymore unless you specify it. As an alternative to install this plugin, you can use the [Grafana Image Renderer container](https://github.com/bitnami/containers/blob/main/bitnami/grafana-image-renderer).
+- The `GF_INSTALL_PLUGINS` environment variable is not set by default anymore. This means it doesn't try to install the [`grafana-image-renderer` plugin](https://github.com/grafana/grafana-image-renderer) anymore unless you specify it. As an alternative to install this plugin, you can use the [Grafana Image Renderer container](https://github.com/bitmoa/containers/blob/main/bitmoa/grafana-image-renderer).
 
 ### 6.7.2-debian-10-r18
 
@@ -315,17 +315,17 @@ You can still build your custom image adding your custom plugins or install them
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/grafana).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/grafana).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

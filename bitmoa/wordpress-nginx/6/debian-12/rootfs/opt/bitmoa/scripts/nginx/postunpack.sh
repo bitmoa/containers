@@ -10,8 +10,8 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libnginx.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libnginx.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Auxiliar Functions
 
@@ -32,10 +32,10 @@ nginx_patch_httpoxy_vulnerability() {
 }
 
 # Load NGINX environment variables
-. /opt/bitnami/scripts/nginx-env.sh
+. /opt/bitmoa/scripts/nginx-env.sh
 
 # Remove unnecessary directories that come with the tarball
-rm -rf "${BITNAMI_ROOT_DIR}/certs" "${BITNAMI_ROOT_DIR}/server_blocks"
+rm -rf "${BITMOA_ROOT_DIR}/certs" "${BITMOA_ROOT_DIR}/server_blocks"
 
 # Context include directories
 NGINX_CONTEXT_INCLUDES=(
@@ -46,7 +46,7 @@ NGINX_CONTEXT_INCLUDES=(
 
 # Ensure non-root user has write permissions on a set of directories
 chmod g+w "$NGINX_BASE_DIR"
-for dir in "$NGINX_VOLUME_DIR" "$NGINX_CONF_DIR" "$NGINX_INITSCRIPTS_DIR" "$NGINX_SERVER_BLOCKS_DIR" "$NGINX_STREAM_SERVER_BLOCKS_DIR" "${NGINX_CONF_DIR}/bitnami" "${NGINX_CONF_DIR}/bitnami/certs" "$NGINX_LOGS_DIR" "$NGINX_TMP_DIR" "$NGINX_DEFAULT_CONF_DIR"; do
+for dir in "$NGINX_VOLUME_DIR" "$NGINX_CONF_DIR" "$NGINX_INITSCRIPTS_DIR" "$NGINX_SERVER_BLOCKS_DIR" "$NGINX_STREAM_SERVER_BLOCKS_DIR" "${NGINX_CONF_DIR}/bitmoa" "${NGINX_CONF_DIR}/bitmoa/certs" "$NGINX_LOGS_DIR" "$NGINX_TMP_DIR" "$NGINX_DEFAULT_CONF_DIR"; do
     ensure_dir_exists "$dir"
     chmod -R g+rwX "$dir"
 done
@@ -65,20 +65,20 @@ nginx_patch_httpoxy_vulnerability
 # Configure default HTTP port
 nginx_configure_port "$NGINX_DEFAULT_HTTP_PORT_NUMBER"
 # Configure default HTTPS port
-nginx_configure_port "$NGINX_DEFAULT_HTTPS_PORT_NUMBER" "${BITNAMI_ROOT_DIR}/scripts/nginx/bitnami-templates/default-https-server-block.conf"
+nginx_configure_port "$NGINX_DEFAULT_HTTPS_PORT_NUMBER" "${BITMOA_ROOT_DIR}/scripts/nginx/bitmoa-templates/default-https-server-block.conf"
 
 # shellcheck disable=SC1091
 
 # Load additional libraries
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Users can mount their html sites at /app
 mv "${NGINX_BASE_DIR}/html" /app
 ln -sf /app "${NGINX_BASE_DIR}/html"
 
 # Users can mount their certificates at /certs
-mv "${NGINX_CONF_DIR}/bitnami/certs" /certs
-ln -sf /certs "${NGINX_CONF_DIR}/bitnami/certs"
+mv "${NGINX_CONF_DIR}/bitmoa/certs" /certs
+ln -sf /certs "${NGINX_CONF_DIR}/bitmoa/certs"
 
 ln -sf "/dev/stdout" "${NGINX_LOGS_DIR}/access.log"
 ln -sf "/dev/stderr" "${NGINX_LOGS_DIR}/error.log"

@@ -3,20 +3,20 @@
 
 services:
   postgresql:
-    image: docker.io/bitnami/postgresql:latest
+    image: ghcr.io/bitmoa/postgresql:latest
     volumes:
-      - 'postgresql_data:/bitnami/postgresql'
+      - 'postgresql_data:/bitmoa/postgresql'
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
       - POSTGRESQL_USERNAME=bn_odoo
-      - POSTGRESQL_DATABASE=bitnami_odoo
+      - POSTGRESQL_DATABASE=bitmoa_odoo
   odoo:
-    image: docker.io/bitnami/odoo:19
+    image: ghcr.io/bitmoa/odoo:19
     ports:
       - '80:8069'
     volumes:
-      - 'odoo_data:/bitnami/odoo'
+      - 'odoo_data:/bitmoa/odoo'
     depends_on:
       - postgresql
     environment:
@@ -25,7 +25,7 @@ services:
       - ODOO_DATABASE_HOST=postgresql
       - ODOO_DATABASE_PORT_NUMBER=5432
       - ODOO_DATABASE_USER=bn_odoo
-      - ODOO_DATABASE_NAME=bitnami_odoo
+      - ODOO_DATABASE_NAME=bitmoa_odoo
 volumes:
   postgresql_data:
     driver: local

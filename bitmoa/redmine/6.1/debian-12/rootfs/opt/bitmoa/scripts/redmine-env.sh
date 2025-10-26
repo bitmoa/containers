@@ -6,20 +6,20 @@
 
 # The values for all environment variables will be set in the below order of precedence
 # 1. Custom environment variables defined below after Bitnami defaults
-# 2. Constants defined in this file (environment variables with no default), i.e. BITNAMI_ROOT_DIR
+# 2. Constants defined in this file (environment variables with no default), i.e. BITMOA_ROOT_DIR
 # 3. Environment variables overridden via external files using *_FILE variables (see below)
 # 4. Environment variables set externally (i.e. current Bash context/Dockerfile/userdata)
 
 # Load logging library
 # shellcheck disable=SC1090,SC1091
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/liblog.sh
 
-export BITNAMI_ROOT_DIR="/opt/bitnami"
-export BITNAMI_VOLUME_DIR="/bitnami"
+export BITMOA_ROOT_DIR="/opt/bitmoa"
+export BITMOA_VOLUME_DIR="/bitmoa"
 
 # Logging configuration
 export MODULE="${MODULE:-redmine}"
-export BITNAMI_DEBUG="${BITNAMI_DEBUG:-false}"
+export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
@@ -88,11 +88,11 @@ done
 unset redmine_env_vars
 
 # Paths
-export REDMINE_BASE_DIR="${BITNAMI_ROOT_DIR}/redmine"
+export REDMINE_BASE_DIR="${BITMOA_ROOT_DIR}/redmine"
 export REDMINE_CONF_DIR="${REDMINE_BASE_DIR}/config"
 
 # Redmine persistence configuration
-export REDMINE_VOLUME_DIR="${BITNAMI_VOLUME_DIR}/redmine"
+export REDMINE_VOLUME_DIR="${BITMOA_VOLUME_DIR}/redmine"
 export REDMINE_DATA_TO_PERSIST="${REDMINE_DATA_TO_PERSIST:-${REDMINE_CONF_DIR}/configuration.yml ${REDMINE_CONF_DIR}/database.yml files plugins public/plugin_assets}"
 
 # System users (when running with a privileged user)
@@ -110,7 +110,7 @@ export REDMINE_QUEUE_ADAPTER="${REDMINE_QUEUE_ADAPTER:-inline}"
 
 # Redmine credentials
 export REDMINE_USERNAME="${REDMINE_USERNAME:-user}" # only used during the first initialization
-export REDMINE_PASSWORD="${REDMINE_PASSWORD:-bitnami1}" # only used during the first initialization
+export REDMINE_PASSWORD="${REDMINE_PASSWORD:-bitmoa1}" # only used during the first initialization
 export REDMINE_EMAIL="${REDMINE_EMAIL:-user@example.com}" # only used during the first initialization
 export REDMINE_FIRST_NAME="${REDMINE_FIRST_NAME:-UserName}" # only used during the first initialization
 export REDMINE_LAST_NAME="${REDMINE_LAST_NAME:-LastName}" # only used during the first initialization
@@ -148,7 +148,7 @@ REDMINE_DATABASE_PORT_NUMBER="${REDMINE_DATABASE_PORT_NUMBER:-"${MARIADB_PORT_NU
 export REDMINE_DATABASE_PORT_NUMBER="${REDMINE_DATABASE_PORT_NUMBER:-3306}" # only used during the first initialization
 REDMINE_DATABASE_NAME="${REDMINE_DATABASE_NAME:-"${REDMINE_DB_NAME:-}"}"
 REDMINE_DATABASE_NAME="${REDMINE_DATABASE_NAME:-"${MARIADB_DATABASE_NAME:-}"}"
-export REDMINE_DATABASE_NAME="${REDMINE_DATABASE_NAME:-bitnami_redmine}" # only used during the first initialization
+export REDMINE_DATABASE_NAME="${REDMINE_DATABASE_NAME:-bitmoa_redmine}" # only used during the first initialization
 REDMINE_DATABASE_USER="${REDMINE_DATABASE_USER:-"${REDMINE_DB_USERNAME:-}"}"
 REDMINE_DATABASE_USER="${REDMINE_DATABASE_USER:-"${MARIADB_DATABASE_USER:-}"}"
 export REDMINE_DATABASE_USER="${REDMINE_DATABASE_USER:-bn_redmine}" # only used during the first initialization

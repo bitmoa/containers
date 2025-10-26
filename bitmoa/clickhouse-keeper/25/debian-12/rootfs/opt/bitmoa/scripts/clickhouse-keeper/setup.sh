@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libclickhousekeeper.sh
+. /opt/bitmoa/scripts/libclickhousekeeper.sh
 
 # Load ClickHouse Keeper environment settings
-. /opt/bitnami/scripts/clickhouse-keeper-env.sh
+. /opt/bitmoa/scripts/clickhouse-keeper-env.sh
 
 # Ensure 'daemon' user exists when running as 'root'
 am_i_root && ensure_user_exists "$CLICKHOUSE_DAEMON_USER" --group "$CLICKHOUSE_DAEMON_GROUP"

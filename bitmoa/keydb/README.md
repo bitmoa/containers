@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name keydb -e ALLOW_EMPTY_PASSWORD=yes bitnami/keydb:latest
+docker run --name keydb -e ALLOW_EMPTY_PASSWORD=yes bitmoa/keydb:latest
 ```
 
 **Warning**: These quick setups are only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,7 +35,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -45,55 +45,55 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami KeyDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/keydb).
+The recommended way to get the Bitnami KeyDB Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/keydb).
 
 ```console
-docker pull bitnami/keydb:latest
+docker pull bitmoa/keydb:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/keydb/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/keydb/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/keydb:[TAG]
+docker pull bitmoa/keydb:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your database
 
-KeyDB provides a different range of [persistence options](https://keydb.io/docs/topics/persistence.html). This contanier uses *AOF persistence by default* but it is easy to overwrite that configuration in a `docker-compose.yaml` file with this entry `command: /opt/bitnami/scripts/keydb/run.sh --appendonly no`. Alternatively, you may use the `KEYDB_AOF_ENABLED` env variable as explained in [Disabling AOF persistence](https://github.com/bitnami/containers/blob/main/bitnami/keydb#disabling-aof-persistence).
+KeyDB provides a different range of [persistence options](https://keydb.io/docs/topics/persistence.html). This contanier uses *AOF persistence by default* but it is easy to overwrite that configuration in a `docker-compose.yaml` file with this entry `command: /opt/bitmoa/scripts/keydb/run.sh --appendonly no`. Alternatively, you may use the `KEYDB_AOF_ENABLED` env variable as explained in [Disabling AOF persistence](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb#disabling-aof-persistence).
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/keydb-persistence:/bitnami/keydb/data \
-    bitnami/keydb:latest
+    -v /path/to/keydb-persistence:/bitmoa/keydb/data \
+    bitmoa/keydb:latest
 ```
 
-You can also do this by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+You can also do this by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   keydb:
   ...
     volumes:
-      - /path/to/keydb-persistence:/bitnami/keydb/data
+      - /path/to/keydb-persistence:/bitmoa/keydb/data
   ...
 ```
 
@@ -123,7 +123,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 docker run -d --name keydb-server \
     -e ALLOW_EMPTY_PASSWORD=yes \
     --network app-tier \
-    bitnami/keydb:latest
+    bitmoa/keydb:latest
 ```
 
 #### Step 3: Launch your KeyDB client instance
@@ -133,7 +133,7 @@ Finally we create a new container instance to launch the KeyDB client and connec
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/keydb:latest keydb-cli -h keydb-server
+    bitmoa/keydb:latest keydb-cli -h keydb-server
 ```
 
 ### Using a Docker Compose file
@@ -149,7 +149,7 @@ networks:
 
 services:
   keydb:
-    image: bitnami/keydb:latest
+    image: bitmoa/keydb:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
@@ -215,8 +215,8 @@ docker-compose up -d
 
 | Name                        | Description                            | Value                           |
 |-----------------------------|----------------------------------------|---------------------------------|
-| `KEYDB_VOLUME_DIR`          | KeyDB persistence base directory.      | `/bitnami/keydb`                |
-| `KEYDB_BASE_DIR`            | KeyDB installation directory.          | `${BITNAMI_ROOT_DIR}/keydb`     |
+| `KEYDB_VOLUME_DIR`          | KeyDB persistence base directory.      | `/bitmoa/keydb`                |
+| `KEYDB_BASE_DIR`            | KeyDB installation directory.          | `${BITMOA_ROOT_DIR}/keydb`     |
 | `KEYDB_CONF_DIR`            | KeyDB configuration directory.         | `${KEYDB_BASE_DIR}/etc`         |
 | `KEYDB_DEFAULT_CONF_DIR`    | KeyDB default configuration directory. | `${KEYDB_BASE_DIR}/etc.default` |
 | `KEYDB_MOUNTED_CONF_DIR`    | KeyDB mounted configuration directory. | `${KEYDB_BASE_DIR}/mounted-etc` |
@@ -235,10 +235,10 @@ For security reasons, you may want to disable some commands. You can specify the
 - `KEYDB_DISABLE_COMMANDS`: Comma-separated list of KeyDB commands to disable. Defaults to empty.
 
 ```console
-docker run --name keydb -e KEYDB_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG bitnami/keydb:latest
+docker run --name keydb -e KEYDB_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -266,10 +266,10 @@ services:
 Passing extra command-line flags to the keydb service command is possible by adding them as arguments to *run.sh* script:
 
 ```console
-docker run --name keydb -e ALLOW_EMPTY_PASSWORD=yes bitnami/keydb:latest /opt/bitnami/scripts/keydb/run.sh --maxmemory 100mb
+docker run --name keydb -e ALLOW_EMPTY_PASSWORD=yes bitmoa/keydb:latest /opt/bitmoa/scripts/keydb/run.sh --maxmemory 100mb
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -277,7 +277,7 @@ services:
   ...
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-    command: /opt/bitnami/scripts/keydb/run.sh --maxmemory 100mb
+    command: /opt/bitmoa/scripts/keydb/run.sh --maxmemory 100mb
   ...
 ```
 
@@ -286,10 +286,10 @@ services:
 Passing the `KEYDB_PASSWORD` environment variable when running the image for the first time will set the KeyDB server password to the value of `KEYDB_PASSWORD` (or the content of the file specified in `KEYDB_PASSWORD_FILE`).
 
 ```console
-docker run --name keydb -e KEYDB_PASSWORD=password123 bitnami/keydb:latest
+docker run --name keydb -e KEYDB_PASSWORD=password123 bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -309,10 +309,10 @@ services:
 By default the KeyDB image expects all the available passwords to be set. In order to allow empty passwords, it is necessary to set the `ALLOW_EMPTY_PASSWORD=yes` env variable. This env variable is only recommended for testing or development purposes. We strongly recommend specifying the `KEYDB_PASSWORD` for any other scenario.
 
 ```console
-docker run --name keydb -e ALLOW_EMPTY_PASSWORD=yes bitnami/keydb:latest
+docker run --name keydb -e ALLOW_EMPTY_PASSWORD=yes bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -328,10 +328,10 @@ services:
 KeyDB offers different [options](https://keydb.io/docs/topics/persistence.html) when it comes to persistence. By default, this image is set up to use the AOF (Append Only File) approach. Should you need to change this behaviour, setting the `KEYDB_AOF_ENABLED=no` env variable will disable this feature.
 
 ```console
-docker run --name keydb -e KEYDB_AOF_ENABLED=no bitnami/keydb:latest
+docker run --name keydb -e KEYDB_AOF_ENABLED=no bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -347,19 +347,19 @@ services:
 KeyDB offers [ACL](https://keydb.io/docs/topics/acl.html) which allows certain connections to be limited in terms of the commands that can be executed and the keys that can be accessed. We strongly recommend enabling ACL in production by specifying the `KEYDB_ACL_FILE`.
 
 ```console
-docker run -name keydb -e KEYDB_ACL_FILE=/opt/bitnami/keydb/mounted-etc/users.acl -v /path/to/users.acl:/opt/bitnami/keydb/mounted-etc/users.acl bitnami/keydb:latest
+docker run -name keydb -e KEYDB_ACL_FILE=/opt/bitmoa/keydb/mounted-etc/users.acl -v /path/to/users.acl:/opt/bitmoa/keydb/mounted-etc/users.acl bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   keydb:
   ...
     environment:
-      - KEYDB_ACL_FILE=/opt/bitnami/keydb/mounted-etc/users.acl
+      - KEYDB_ACL_FILE=/opt/bitmoa/keydb/mounted-etc/users.acl
     volumes:
-      - /path/to/users.acl:/opt/bitnami/keydb/mounted-etc/users.acl
+      - /path/to/users.acl:/opt/bitmoa/keydb/mounted-etc/users.acl
   ...
 ```
 
@@ -368,10 +368,10 @@ services:
 By default, this image is set up to launch KeyDB in standalone mode on port 6379. Should you need to change this behavior, setting the `KEYDB_PORT_NUMBER` environment variable will modify the port number. This is not to be confused with `KEYDB_MASTER_PORT_NUMBER` or `KEYDB_REPLICA_PORT` environment variables that are applicable in replication mode.
 
 ```console
-docker run --name keydb -e KEYDB_PORT_NUMBER=7000 -p 7000:7000 bitnami/keydb:latest
+docker run --name keydb -e KEYDB_PORT_NUMBER=7000 -p 7000:7000 bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -411,7 +411,7 @@ The first step is to start the KeyDB master.
 docker run --name keydb-master \
   -e KEYDB_REPLICATION_MODE=master \
   -e KEYDB_PASSWORD=masterpassword123 \
-  bitnami/keydb:latest
+  bitmoa/keydb:latest
 ```
 
 In the above command the container is configured as the `master` using the `KEYDB_REPLICATION_MODE` parameter. The `KEYDB_PASSWORD` parameter enables authentication on the KeyDB master.
@@ -428,7 +428,7 @@ docker run --name keydb-replica \
   -e KEYDB_MASTER_PORT_NUMBER=6379 \
   -e KEYDB_MASTER_PASSWORD=masterpassword123 \
   -e KEYDB_PASSWORD=password123 \
-  bitnami/keydb:latest
+  bitmoa/keydb:latest
 ```
 
 In the above command the container is configured as a `replica` using the `KEYDB_REPLICATION_MODE` parameter. The `KEYDB_MASTER_HOSTS`, `KEYDB_MASTER_PORT_NUMBER` and `KEYDB_MASTER_PASSWORD` parameters are used connect and authenticate with the KeyDB master. The `KEYDB_PASSWORD` parameter enables authentication on the KeyDB replica.
@@ -450,17 +450,17 @@ version: '2'
 
 services:
   keydb-master:
-    image: bitnami/keydb:latest
+    image: bitmoa/keydb:latest
     ports:
       - 6379
     environment:
       - KEYDB_REPLICATION_MODE=master
       - KEYDB_PASSWORD=my_master_password
     volumes:
-      - /path/to/keydb-persistence:/bitnami
+      - /path/to/keydb-persistence:/bitmoa
 
   keydb-replica:
-    image: bitnami/keydb:latest
+    image: bitmoa/keydb:latest
     ports:
       - 6379
     depends_on:
@@ -502,14 +502,14 @@ When enabling TLS, conventional standard traffic is disabled by default. However
 
     ```console
     $ docker run --name keydb \
-        -v /path/to/certs:/opt/bitnami/keydb/certs \
-        -v /path/to/keydb-data-persistence:/bitnami/keydb/data \
+        -v /path/to/certs:/opt/bitmoa/keydb/certs \
+        -v /path/to/keydb-data-persistence:/bitmoa/keydb/data \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e KEYDB_TLS_ENABLED=yes \
-        -e KEYDB_TLS_CERT_FILE=/opt/bitnami/keydb/certs/keydb.crt \
-        -e KEYDB_TLS_KEY_FILE=/opt/bitnami/keydb/certs/keydb.key \
-        -e KEYDB_TLS_CA_FILE=/opt/bitnami/keydb/certs/keydbCA.crt \
-        bitnami/keydb:latest
+        -e KEYDB_TLS_CERT_FILE=/opt/bitmoa/keydb/certs/keydb.crt \
+        -e KEYDB_TLS_KEY_FILE=/opt/bitmoa/keydb/certs/keydb.key \
+        -e KEYDB_TLS_CA_FILE=/opt/bitmoa/keydb/certs/keydbCA.crt \
+        bitmoa/keydb:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -521,61 +521,61 @@ When enabling TLS, conventional standard traffic is disabled by default. However
         environment:
           ...
           - KEYDB_TLS_ENABLED=yes
-          - KEYDB_TLS_CERT_FILE=/opt/bitnami/keydb/certs/keydb.crt
-          - KEYDB_TLS_KEY_FILE=/opt/bitnami/keydb/certs/keydb.key
-          - KEYDB_TLS_CA_FILE=/opt/bitnami/keydb/certs/keydbCA.crt
+          - KEYDB_TLS_CERT_FILE=/opt/bitmoa/keydb/certs/keydb.crt
+          - KEYDB_TLS_KEY_FILE=/opt/bitmoa/keydb/certs/keydb.key
+          - KEYDB_TLS_CA_FILE=/opt/bitmoa/keydb/certs/keydbCA.crt
         ...
         volumes:
-          - /path/to/certs:/opt/bitnami/keydb/certs
-          - /path/to/keydb-persistence:/bitnami/keydb/data
+          - /path/to/certs:/opt/bitmoa/keydb/certs
+          - /path/to/keydb-persistence:/bitmoa/keydb/data
       ...
     ```
 
-Alternatively, you may also provide with this configuration in your [custom](https://github.com/bitnami/containers/blob/main/bitnami/keydb#configuration-file) configuration file.
+Alternatively, you may also provide with this configuration in your [custom](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb#configuration-file) configuration file.
 
 ### Configuration file
 
-The image looks for configurations in `/opt/bitnami/keydb/mounted-etc/keydb.conf`. You can overwrite the `keydb.conf` file using your own custom configuration file.
+The image looks for configurations in `/opt/bitmoa/keydb/mounted-etc/keydb.conf`. You can overwrite the `keydb.conf` file using your own custom configuration file.
 
 ```console
 docker run --name keydb \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/your_keydb.conf:/opt/bitnami/keydb/mounted-etc/keydb.conf \
-    -v /path/to/keydb-data-persistence:/bitnami/keydb/data \
-    bitnami/keydb:latest
+    -v /path/to/your_keydb.conf:/opt/bitmoa/keydb/mounted-etc/keydb.conf \
+    -v /path/to/keydb-data-persistence:/bitmoa/keydb/data \
+    bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   keydb:
   ...
     volumes:
-      - /path/to/your_keydb.conf:/opt/bitnami/keydb/mounted-etc/keydb.conf
-      - /path/to/keydb-persistence:/bitnami/keydb/data
+      - /path/to/your_keydb.conf:/opt/bitmoa/keydb/mounted-etc/keydb.conf
+      - /path/to/keydb-persistence:/bitmoa/keydb/data
   ...
 ```
 
 ### Overriding configuration
 
-Instead of providing a custom `keydb.conf`, you may also choose to provide only settings you wish to override. The image will look for `/opt/bitnami/keydb/mounted-etc/overrides.conf`. This will be ignored if custom `keydb.conf` is provided.
+Instead of providing a custom `keydb.conf`, you may also choose to provide only settings you wish to override. The image will look for `/opt/bitmoa/keydb/mounted-etc/overrides.conf`. This will be ignored if custom `keydb.conf` is provided.
 
 ```console
 docker run --name keydb \
     -e ALLOW_EMPTY_PASSWORD=yes \
-    -v /path/to/overrides.conf:/opt/bitnami/keydb/mounted-etc/overrides.conf \
-    bitnami/keydb:latest
+    -v /path/to/overrides.conf:/opt/bitmoa/keydb/mounted-etc/overrides.conf \
+    bitmoa/keydb:latest
 ```
 
-Alternatively, modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/keydb/docker-compose.yml) file present in this repository:
+Alternatively, modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/keydb/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   keydb:
   ...
     volumes:
-      - /path/to/overrides.conf:/opt/bitnami/keydb/mounted-etc/overrides.conf
+      - /path/to/overrides.conf:/opt/bitmoa/keydb/mounted-etc/overrides.conf
   ...
 ```
 
@@ -587,11 +587,11 @@ When the value of `KEYDB_RDB_POLICY_DISABLED` is `no` (default value) the KeyDB 
 
     ```console
     $ docker run --name keydb \
-        -v /path/to/keydb-data-persistence:/bitnami/keydb/data \
+        -v /path/to/keydb-data-persistence:/bitmoa/keydb/data \
         -e ALLOW_EMPTY_PASSWORD=yes \
         -e KEYDB_RDB_POLICY_DISABLED=no
         -e KEYDB_RDB_POLICY="900#1 600#5 300#10 120#50 60#1000 30#10000"
-        bitnami/keydb:latest
+        bitmoa/keydb:latest
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -609,7 +609,7 @@ When the value of `KEYDB_RDB_POLICY_DISABLED` is `no` (default value) the KeyDB 
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami KeyDB Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami KeyDB Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -638,11 +638,11 @@ Bitnami provides up-to-date versions of KeyDB, including security patches, soon 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/keydb:latest
+docker pull bitmoa/keydb:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/keydb:latest`.
+`bitmoa/keydb:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -681,7 +681,7 @@ docker-compose rm -v keydb
 Re-create your container from the new image.
 
 ```console
-docker run --name keydb bitnami/keydb:latest
+docker run --name keydb bitmoa/keydb:latest
 ```
 
 or using Docker Compose:
@@ -692,17 +692,17 @@ docker-compose up keydb
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/keydb).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/keydb).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

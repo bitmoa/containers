@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Superset environment variables
-. /opt/bitnami/scripts/superset-env.sh
+. /opt/bitmoa/scripts/superset-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libsuperset.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libsuperset.sh
 
 print_welcome_page
 
@@ -24,15 +24,15 @@ if [[ -n "${SUPERSET_SECRET_KEY_FILE:-}" ]]; then
 fi
 
 # Install custom python package if requirements.txt is present
-if [[ -f "/bitnami/python/requirements.txt" ]]; then
-    . /opt/bitnami/superset/venv/bin/activate
-    pip install -r /bitnami/python/requirements.txt
+if [[ -f "/bitmoa/python/requirements.txt" ]]; then
+    . /opt/bitmoa/superset/venv/bin/activate
+    pip install -r /bitmoa/python/requirements.txt
     deactivate
 fi
 
-if [[ "$1" = "/opt/bitnami/scripts/superset/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/superset/run.sh" ]]; then
     info "** Starting Superset setup **"
-    /opt/bitnami/scripts/superset/setup.sh
+    /opt/bitmoa/scripts/superset/setup.sh
     info "** Superset setup finished! **"
 fi
 

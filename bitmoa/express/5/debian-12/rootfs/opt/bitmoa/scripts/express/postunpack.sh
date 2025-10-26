@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libexpress.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libexpress.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Express environment
-. /opt/bitnami/scripts/express-env.sh
+. /opt/bitmoa/scripts/express-env.sh
 
 # Ensure required directories exist
 ensure_dir_exists "/app"

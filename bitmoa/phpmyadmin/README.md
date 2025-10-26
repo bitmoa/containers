@@ -12,21 +12,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ### Docker Compose
 
 ```console
-docker run --name phpmyadmin bitnami/phpmyadmin:latest
+docker run --name phpmyadmin bitmoa/phpmyadmin:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -37,19 +37,19 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy phpMyAdmin in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami phpMyAdmin Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/phpmyadmin).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami phpMyAdmin Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/phpmyadmin).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Prerequisites
 
@@ -57,7 +57,7 @@ To run this application you need [Docker Engine](https://www.docker.com/products
 
 ## How to use this image
 
-phpMyAdmin requires access to a MySQL database or MariaDB database to work. We'll use our very own [MariaDB image](https://github.com/bitnami/containers/tree/main/bitnami/mariadb).
+phpMyAdmin requires access to a MySQL database or MariaDB database to work. We'll use our very own [MariaDB image](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb).
 
 ### Using the Docker Command Line
 
@@ -73,8 +73,8 @@ phpMyAdmin requires access to a MySQL database or MariaDB database to work. We'l
     docker volume create --name mariadb_data
     docker run -d --name mariadb -e ALLOW_EMPTY_PASSWORD=yes \
       --net phpmyadmin-tier \
-      --volume mariadb_data:/bitnami/mariadb \
-      bitnami/mariadb:latest
+      --volume mariadb_data:/bitmoa/mariadb \
+      bitmoa/mariadb:latest
     ```
 
 3. Launch the phpMyAdmin container
@@ -82,7 +82,7 @@ phpMyAdmin requires access to a MySQL database or MariaDB database to work. We'l
     ```console
     docker run -d --name phpmyadmin -p 80:8080 -p 443:8443 \
       --net phpmyadmin-tier \
-      bitnami/phpmyadmin:latest
+      bitmoa/phpmyadmin:latest
     ```
 
     Access your application at `http://your-ip/`
@@ -90,19 +90,19 @@ phpMyAdmin requires access to a MySQL database or MariaDB database to work. We'l
 ### Using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/phpmyadmin/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/phpmyadmin/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/phpmyadmin).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/phpmyadmin).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ### Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami` path. Additionally you should mount a volume for [persistence of the MariaDB data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#persisting-your-database).
+For persistence you should mount a volume at the `/bitmoa` path. Additionally you should mount a volume for [persistence of the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
 The above examples define a Docker volume named `mariadb_data`. The application state will persist as long as this volume is not removed.
 
@@ -110,14 +110,14 @@ To avoid inadvertent removal of these volumes you can [mount host directories as
 
 #### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/phpmyadmin/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/phpmyadmin/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   mariadb:
   ...
     volumes:
-      - /path/to/mariadb-persistence:/bitnami/mariadb
+      - /path/to/mariadb-persistence:/bitmoa/mariadb
   ...
 ```
 
@@ -134,8 +134,8 @@ services:
     ```console
     docker run -d --name mariadb -e ALLOW_EMPTY_PASSWORD=yes \
       --net phpmyadmin-tier \
-      --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-      bitnami/mariadb:latest
+      --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
+      bitmoa/mariadb:latest
     ```
 
 3. Launch the phpMyAdmin container
@@ -143,19 +143,19 @@ services:
     ```console
     docker run -d --name phpmyadmin -p 80:8080 -p 443:8443 \
       --net phpmyadmin-tier \
-      bitnami/phpmyadmin:latest
+      bitmoa/phpmyadmin:latest
     ```
 
 ## Upgrading phpMyAdmin
 
-Bitnami provides up-to-date versions of MariaDB and phpMyAdmin, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the phpMyAdmin container. For the MariaDB upgrade see <https://github.com/bitnami/containers/tree/main/bitnami/mariadb#upgrade-this-image>
+Bitnami provides up-to-date versions of MariaDB and phpMyAdmin, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the phpMyAdmin container. For the MariaDB upgrade see <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
 
-The `bitnami/phpmyadmin:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitnami/phpmyadmin:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitnami/phpmyadmin/tags/).
+The `bitmoa/phpmyadmin:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitmoa/phpmyadmin:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitmoa/phpmyadmin/tags/).
 
 1. Get the updated images:
 
     ```console
-    docker pull bitnami/phpmyadmin:latest
+    docker pull bitmoa/phpmyadmin:latest
     ```
 
 2. Stop your container
@@ -171,7 +171,7 @@ The `bitnami/phpmyadmin:latest` tag always points to the most recent release. To
 4. Run the new image
 
     - For docker-compose: `$ docker-compose up phpmyadmin`
-    - For manual execution: `docker run --name phpmyadmin bitnami/phpmyadmin:latest`
+    - For manual execution: `docker run --name phpmyadmin bitmoa/phpmyadmin:latest`
 
 ## Configuration
 
@@ -211,8 +211,8 @@ The `bitnami/phpmyadmin:latest` tag always points to the most recent release. To
 
 | Name                                          | Description                                                                                                                              | Value                                     |
 |-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| `PHPMYADMIN_BASE_DIR`                         | phpMyAdmin installation directory.                                                                                                       | `${BITNAMI_ROOT_DIR}/phpmyadmin`          |
-| `PHPMYADMIN_VOLUME_DIR`                       | phpMyAdmin directory for mounted configuration files.                                                                                    | `${BITNAMI_VOLUME_DIR}/phpmyadmin`        |
+| `PHPMYADMIN_BASE_DIR`                         | phpMyAdmin installation directory.                                                                                                       | `${BITMOA_ROOT_DIR}/phpmyadmin`          |
+| `PHPMYADMIN_VOLUME_DIR`                       | phpMyAdmin directory for mounted configuration files.                                                                                    | `${BITMOA_VOLUME_DIR}/phpmyadmin`        |
 | `PHPMYADMIN_TMP_DIR`                          | phpMyAdmin directory for temporary files.                                                                                                | `${PHPMYADMIN_BASE_DIR}/tmp`              |
 | `PHPMYADMIN_CONF_FILE`                        | Configuration file for phpMyAdmin.                                                                                                       | `${PHPMYADMIN_BASE_DIR}/config.inc.php`   |
 | `PHPMYADMIN_MOUNTED_CONF_FILE`                | Mounted configuration file for phpMyAdmin. It will be copied to the phpMyAdmin installation directory during the initialization process. | `${PHPMYADMIN_VOLUME_DIR}/config.inc.php` |
@@ -228,7 +228,7 @@ The `bitnami/phpmyadmin:latest` tag always points to the most recent release. To
 
 #### Specifying Environment variables using Docker Compose
 
-This requires a change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/phpmyadmin/docker-compose.yml) file present in this repository:
+This requires a change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/phpmyadmin/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -251,12 +251,12 @@ services:
 docker run -d --name phpmyadmin -p 80:8080 -p 443:8443 \
   --net phpmyadmin-tier \
   --env PHPMYADMIN_PASSWORD=my_password \
-  bitnami/phpmyadmin:latest
+  bitmoa/phpmyadmin:latest
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami phpMyAdmin Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami phpMyAdmin Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -269,14 +269,14 @@ The Bitnami phpMyAdmin Docker image is designed to be extended so it can be used
 Before extending this image, please note there are certain configuration settings you can modify using the original image:
 
 - Settings that can be adapted using environment variables. For instance, you can change the ports used by Apache for HTTP and HTTPS, by setting the environment variables `APACHE_HTTP_PORT_NUMBER` and `APACHE_HTTPS_PORT_NUMBER` respectively.
-- [Adding custom virtual hosts](https://github.com/bitnami/containers/blob/main/bitnami/apache#adding-custom-virtual-hosts).
-- [Replacing the 'httpd.conf' file](https://github.com/bitnami/containers/blob/main/bitnami/apache#full-configuration).
-- [Using custom SSL certificates](https://github.com/bitnami/containers/blob/main/bitnami/apache#using-custom-ssl-certificates).
+- [Adding custom virtual hosts](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#adding-custom-virtual-hosts).
+- [Replacing the 'httpd.conf' file](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#full-configuration).
+- [Using custom SSL certificates](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#using-custom-ssl-certificates).
 
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/phpmyadmin
+FROM bitmoa/phpmyadmin
 ### Put your customizations below
 ...
 ```
@@ -289,7 +289,7 @@ Here is an example of extending the image with the following modifications:
 - Modify the default container user
 
 ```Dockerfile
-FROM bitnami/phpmyadmin
+FROM bitmoa/phpmyadmin
 
 ### Change user to perform privileged actions
 USER 0
@@ -299,7 +299,7 @@ RUN install_packages vim
 USER 1001
 
 ### Enable mod_ratelimit module
-RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitnami/apache/conf/httpd.conf
+RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitmoa/apache/conf/httpd.conf
 
 ### Modify the ports used by Apache by default
 ## It is also possible to change these environment variables at runtime
@@ -317,11 +317,11 @@ Based on the extended image, you can use a Docker Compose file like the one belo
 version: '2'
 services:
   mariadb:
-    image: bitnami/mariadb:latest
+    image: bitmoa/mariadb:latest
     environment:
-      - MARIADB_ROOT_PASSWORD=bitnami
+      - MARIADB_ROOT_PASSWORD=bitmoa
     volumes:
-      - mariadb_data:/bitnami/mariadb
+      - mariadb_data:/bitmoa/mariadb
   phpmyadmin:
     build: .
     ports:
@@ -330,7 +330,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - phpmyadmin_data:/bitnami/mariadb
+      - phpmyadmin_data:/bitmoa/mariadb
 volumes:
   mariadb_data:
     driver: local
@@ -349,17 +349,17 @@ volumes:
 ### 4.8.5-debian-9-r96 and 4.8.5-ol-7-r111
 
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
-- The Apache configuration volume (`/bitnami/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitnami/apache/conf`, or mount specific configuration files individually.
-- The PHP configuration volume (`/bitnami/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitnami/php/conf`, or mount specific configuration files individually.
-- Enabling custom Apache certificates by placing them at `/opt/bitnami/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
+- The Apache configuration volume (`/bitmoa/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/apache/conf`, or mount specific configuration files individually.
+- The PHP configuration volume (`/bitmoa/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/php/conf`, or mount specific configuration files individually.
+- Enabling custom Apache certificates by placing them at `/opt/bitmoa/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

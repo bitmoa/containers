@@ -1,18 +1,18 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm
+FROM ghcr.io/bitmoa/minideb:bookworm
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
-LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
+LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
       org.opencontainers.image.created="2025-10-20T19:26:47Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/volsync/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/volsync" \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/volsync/README.md" \
+      org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/volsync" \
       org.opencontainers.image.title="volsync" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="0.13.1"
 
 ENV HOME="/" \
@@ -26,7 +26,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages acl ca-certificates curl openssh-client openssh-server openssl perl procps rsync stunnel4
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "volsync-0.13.1-3-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -36,7 +36,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
@@ -51,18 +51,18 @@ RUN sed -ir 's|^[#\s]*\(.*/etc/ssh/ssh_host_ecdsa_key\)$|#\1|' /etc/ssh/sshd_con
     sed -ir 's|^[#\s]*\(X11Forwarding\)\s.*$|\1 no|' /etc/ssh/sshd_config && \
     sed -ir 's|^[#\s]*\(PermitTunnel\)\s.*$|\1 no|' /etc/ssh/sshd_config && \
     sed -ir 's|^[#\s]*\(PidFile\)\s.*$|\1 /tmp/sshd.pid|' /etc/ssh/sshd_config && \
-    ln -s /opt/bitnami/volsync/mover-restic /mover-restic && \
-    ln -s /opt/bitnami/volsync/mover-rsync /mover-rsync && \
-    ln -s /opt/bitnami/volsync/mover-rclone /mover-rclone && \
-    ln -s /opt/bitnami/volsync/mover-rsync-tls /mover-rsync-tls && \
-    ln -s /opt/bitnami/volsync/mover-syncthing /mover-syncthing && \
+    ln -s /opt/bitmoa/volsync/mover-restic /mover-restic && \
+    ln -s /opt/bitmoa/volsync/mover-rsync /mover-rsync && \
+    ln -s /opt/bitmoa/volsync/mover-rclone /mover-rclone && \
+    ln -s /opt/bitmoa/volsync/mover-rsync-tls /mover-rsync-tls && \
+    ln -s /opt/bitmoa/volsync/mover-syncthing /mover-syncthing && \
     chmod +r /mover-restic/* /mover-rsync/* /mover-rsync-tls/* /mover-rclone/* /mover-syncthing/* && \
     chmod +x /mover-restic/*.sh /mover-rsync/*.sh /mover-rsync-tls/*.sh /mover-rclone/*.sh /mover-syncthing/*.sh
 RUN uninstall_packages curl
 
 ENV APP_VERSION="0.13.1" \
-    BITNAMI_APP_NAME="volsync" \
+    BITMOA_APP_NAME="volsync" \
     IMAGE_REVISION="4" \
-    PATH="/opt/bitnami/volsync/bin:/opt/bitnami/rclone/bin:/opt/bitnami/diskrsync/bin:/opt/bitnami/syncthing/bin:$PATH"
+    PATH="/opt/bitmoa/volsync/bin:/opt/bitmoa/rclone/bin:/opt/bitmoa/diskrsync/bin:/opt/bitmoa/syncthing/bin:$PATH"
 
 USER 1001

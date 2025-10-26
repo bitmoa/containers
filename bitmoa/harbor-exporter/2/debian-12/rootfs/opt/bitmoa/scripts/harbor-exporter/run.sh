@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libharbor.sh
-. /opt/bitnami/scripts/libharborexporter.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libharbor.sh
+. /opt/bitmoa/scripts/libharborexporter.sh
 
 # Load harbor-exporter environment
-. /opt/bitnami/scripts/harbor-exporter-env.sh
+. /opt/bitmoa/scripts/harbor-exporter-env.sh
 
 CMD="$(command -v harbor_exporter)"
 

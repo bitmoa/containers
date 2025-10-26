@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Airflow environment variables
-. /opt/bitnami/scripts/airflow-env.sh
+. /opt/bitmoa/scripts/airflow-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libairflow.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libairflow.sh
 
 command=("$AIRFLOW_COMPONENT_TYPE")
 # 2.x and 3.x compatibility

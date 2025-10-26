@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Grafana environment
-. /opt/bitnami/scripts/grafana-env.sh
+. /opt/bitmoa/scripts/grafana-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 function is_exec() {
     # This checks if the first provided argument is executable or if only args was used
@@ -30,13 +30,13 @@ print_welcome_page
 
 # We add the copy from default config in the entrypoint to not break users
 # bypassing the setup.sh logic. If the file already exists do not overwrite (in
-# case someone mounts a configuration file in /opt/bitnami/postgresql/conf)
+# case someone mounts a configuration file in /opt/bitmoa/postgresql/conf)
 debug "Copying files from $GRAFANA_DEFAULT_CONF_DIR to $GRAFANA_CONF_DIR"
 cp -nr "$GRAFANA_DEFAULT_CONF_DIR"/. "$GRAFANA_CONF_DIR"
 
-if [[ "$1" = "/opt/bitnami/scripts/grafana/run.sh" ]] || ! is_exec "$1"; then
+if [[ "$1" = "/opt/bitmoa/scripts/grafana/run.sh" ]] || ! is_exec "$1"; then
     # This catches the error-code from libgrafana.sh for the immediate exit when the grafana-operator is used. And ensure that the exit code is kept silently.
-    /opt/bitnami/scripts/grafana/setup.sh || GRAFANA_OPERATOR_IMMEDIATE_EXIT=$?
+    /opt/bitmoa/scripts/grafana/setup.sh || GRAFANA_OPERATOR_IMMEDIATE_EXIT=$?
     if [[ "${GRAFANA_OPERATOR_IMMEDIATE_EXIT:-0}" -eq 255 ]]; then
         exit 0
     elif [[ "${GRAFANA_OPERATOR_IMMEDIATE_EXIT:-0}" -ne 0 ]]; then
@@ -51,5 +51,5 @@ echo ""
 if is_exec "$1"; then
     exec "$@"
 else
-    exec "/opt/bitnami/scripts/grafana/run.sh" "$@"
+    exec "/opt/bitmoa/scripts/grafana/run.sh" "$@"
 fi

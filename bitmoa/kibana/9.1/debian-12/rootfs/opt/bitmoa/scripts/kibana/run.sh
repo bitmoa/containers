@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/libkibana.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/liblog.sh
+. /opt/bitmoa/scripts/libkibana.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/liblog.sh
 
 # Load environment
-. /opt/bitnami/scripts/kibana-env.sh
+. /opt/bitmoa/scripts/kibana-env.sh
 
 info "** Starting Kibana **"
 start_command=("${SERVER_BIN_DIR}/kibana" "serve")

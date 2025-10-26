@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Redis Sentinel environment variables
-. /opt/bitnami/scripts/redis-sentinel-env.sh
+. /opt/bitmoa/scripts/redis-sentinel-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libredissentinel.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libredissentinel.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libos.sh
 
 args=("$REDIS_SENTINEL_CONF_FILE" "--daemonize" "no" "$@")
 

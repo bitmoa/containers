@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load Gitea environment variables
-. /opt/bitnami/scripts/gitea-env.sh
+. /opt/bitmoa/scripts/gitea-env.sh
 
 # System User
 ensure_user_exists "$GITEA_DAEMON_USER" --group "$GITEA_DAEMON_GROUP" --system

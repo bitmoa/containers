@@ -24,7 +24,7 @@ spec:
       nodeSelector:
         kubernetes.io/role: master
       containers:
-        - image: bitnami/cluster-autoscaler:latest
+        - image: bitmoa/cluster-autoscaler:latest
           name: cluster-autoscaler
           resources:
             limits:

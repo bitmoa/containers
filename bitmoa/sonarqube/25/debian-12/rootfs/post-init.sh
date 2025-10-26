@@ -10,10 +10,10 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Only execute init scripts once
-if [[ ! -f "/bitnami/sonarqube/.user_scripts_initialized" && -d "/docker-entrypoint-init.d" ]]; then
+if [[ ! -f "/bitmoa/sonarqube/.user_scripts_initialized" && -d "/docker-entrypoint-init.d" ]]; then
     read -r -a init_scripts <<< "$(find "/docker-entrypoint-init.d" -type f -print0 | sort -z | xargs -0)"
-    if [[ "${#init_scripts[@]}" -gt 0 ]] && [[ ! -f "/bitnami/sonarqube/.user_scripts_initialized" ]]; then
-        mkdir -p "/bitnami/sonarqube"
+    if [[ "${#init_scripts[@]}" -gt 0 ]] && [[ ! -f "/bitmoa/sonarqube/.user_scripts_initialized" ]]; then
+        mkdir -p "/bitmoa/sonarqube"
         for init_script in "${init_scripts[@]}"; do
             for init_script_type_handler in /post-init.d/*.sh; do
                 "$init_script_type_handler" "$init_script"
@@ -21,5 +21,5 @@ if [[ ! -f "/bitnami/sonarqube/.user_scripts_initialized" && -d "/docker-entrypo
         done
     fi
 
-    touch "/bitnami/sonarqube/.user_scripts_initialized"
+    touch "/bitmoa/sonarqube/.user_scripts_initialized"
 fi

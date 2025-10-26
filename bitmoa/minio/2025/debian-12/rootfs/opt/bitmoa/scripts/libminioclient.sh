@@ -7,7 +7,7 @@
 # shellcheck disable=SC1091
 
 # Load Generic Libraries
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Functions
 
@@ -65,11 +65,11 @@ minio_client_execute_timeout() {
         cat > /tmp/cmd.sh << EOF
 #!/bin/bash
 # timeout forks its own shell process, so we need to provide it with the expected environment
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/minio-env.sh
-. /opt/bitnami/scripts/minio-client-env.sh
-. /opt/bitnami/scripts/libminio.sh
-. /opt/bitnami/scripts/libminioclient.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/minio-env.sh
+. /opt/bitmoa/scripts/minio-client-env.sh
+. /opt/bitmoa/scripts/libminio.sh
+. /opt/bitmoa/scripts/libminioclient.sh
 run_as_user "$MINIO_DAEMON_USER" "${exec}" ${args[@]}
 EOF
         chmod +x /tmp/cmd.sh

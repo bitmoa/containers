@@ -3,11 +3,11 @@
 
 services:
   zookeeper:
-    image: docker.io/bitnami/zookeeper:3.9
+    image: ghcr.io/bitmoa/zookeeper:3.9
     ports:
       - '2181:2181'
     volumes:
-      - 'zookeeper_data:/bitnami/zookeeper'
+      - 'zookeeper_data:/bitmoa/zookeeper'
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 

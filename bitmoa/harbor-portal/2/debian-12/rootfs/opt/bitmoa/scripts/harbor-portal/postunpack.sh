@@ -10,17 +10,17 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnginx.sh
-. /opt/bitnami/scripts/libharbor.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnginx.sh
+. /opt/bitmoa/scripts/libharbor.sh
 
 # Load Nginx environment variables
-. /opt/bitnami/scripts/nginx-env.sh
+. /opt/bitmoa/scripts/nginx-env.sh
 
 # Load environment
-. /opt/bitnami/scripts/harbor-portal-env.sh
+. /opt/bitmoa/scripts/harbor-portal-env.sh
 
 ensure_user_exists "$HARBOR_PORTAL_DAEMON_USER" --group "$HARBOR_PORTAL_DAEMON_GROUP"
 
@@ -32,7 +32,7 @@ done
 # Ensure permissions for Internal TLS
 configure_permissions_system_certs "$HARBOR_PORTAL_DAEMON_USER"
 
-# Loading bitnami paths
+# Loading bitmoa paths
 replace_in_file "$HARBOR_PORTAL_NGINX_CONF_FILE" "/usr/share/nginx/html" "${HARBOR_PORTAL_BASE_DIR}" false
 replace_in_file "$HARBOR_PORTAL_NGINX_CONF_FILE" "/etc/nginx/mime.types" "${NGINX_CONF_DIR}/mime.types" false
 

@@ -10,7 +10,7 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name matomo bitnami/matomo:latest
+docker run --name matomo bitmoa/matomo:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure d
@@ -18,14 +18,14 @@ eployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -36,7 +36,7 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Why use a non-root container?
 
@@ -46,9 +46,9 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Prerequisites
 
@@ -56,24 +56,24 @@ To run this application you need [Docker Engine](https://www.docker.com/products
 
 ## How to get this image
 
-The recommended way to get the Bitnami Matomo Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/matomo/).
-To use a specific version, you can pull a versioned tag. Find the [list of available versions] (<https://hub.docker.com/r/bitnami/matomo/tags/>) in the Docker Hub Registry.
+The recommended way to get the Bitnami Matomo Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/matomo/).
+To use a specific version, you can pull a versioned tag. Find the [list of available versions] (<https://hub.docker.com/r/bitmoa/matomo/tags/>) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/matomo:[TAG]
+docker pull bitmoa/matomo:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-Matomo requires access to a MySQL database or MariaDB database to store information. It uses our [MariaDB image] (<https://github.com/bitnami/containers/blob/main/bitnami/mariadb>) for the database requirements.
+Matomo requires access to a MySQL database or MariaDB database to store information. It uses our [MariaDB image] (<https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb>) for the database requirements.
 
 ### Run the application using the Docker Command Line
 
@@ -92,10 +92,10 @@ If you want to run the application manually instead of using docker-compose, the
     docker run -d --name mariadb \
       -e ALLOW_EMPTY_PASSWORD=yes \
       -e MARIADB_USER=bn_matomo \
-      -e MARIADB_DATABASE=bitnami_matomo \
+      -e MARIADB_DATABASE=bitmoa_matomo \
       --net matomo_network \
-      --volume mariadb_data:/bitnami \
-      bitnami/mariadb:latest
+      --volume mariadb_data:/bitmoa \
+      bitmoa/mariadb:latest
     ```
 
 3. Create volumes for Matomo persistence and launch the container
@@ -105,10 +105,10 @@ If you want to run the application manually instead of using docker-compose, the
     docker run -d --name matomo -p 80:8080 -p 443:8443 \
       -e ALLOW_EMPTY_PASSWORD=yes \
       -e MATOMO_DATABASE_USER=bn_matomo \
-      -e MATOMO_DATABASE_NAME=bitnami_matomo \
+      -e MATOMO_DATABASE_NAME=bitmoa_matomo \
       --net matomo_network \
-      --volume matomo_data:/bitnami \
-      bitnami/matomo:latest
+      --volume matomo_data:/bitmoa \
+      bitmoa/matomo:latest
     ```
 
   Then you can access your application at `http://your-ip/`
@@ -116,19 +116,19 @@ If you want to run the application manually instead of using docker-compose, the
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/matomo/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/matomo/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/matomo).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/matomo).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ### Persisting your application
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a volume at the `/bitnami` path. Additionally you should mount a volume for [persistence of the MariaDB data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#persisting-your-database).
+For persistence you should mount a volume at the `/bitmoa` path. Additionally you should mount a volume for [persistence of the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
 The above examples define docker volumes namely `mariadb_data` and `matomo_data`. The Matomo application state will persist as long as these volumes are not removed.
 
@@ -136,19 +136,19 @@ To avoid inadvertent removal of these volumes you can [mount host directories as
 
 #### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/matomo/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/matomo/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   mariadb:
   ...
     volumes:
-      - /path/to/mariadb-persistence:/bitnami
+      - /path/to/mariadb-persistence:/bitmoa
   ...
   matomo:
   ...
     volumes:
-      - /path/to/matomo-persistence:/bitnami
+      - /path/to/matomo-persistence:/bitmoa
   ...
 ```
 
@@ -170,10 +170,10 @@ In this case you need to specify the directories to mount on the run command. Th
     docker run -d --name mariadb
      -e ALLOW_EMPTY_PASSWORD=yes \
      -e MARIADB_USER=bn_matomo \
-     -e MARIADB_DATABASE=bitnami_matomo \
+     -e MARIADB_DATABASE=bitmoa_matomo \
      --net matomo_network \
-     --volume /path/to/mariadb-persistence:/bitnami \
-     bitnami/mariadb:latest
+     --volume /path/to/mariadb-persistence:/bitmoa \
+     bitmoa/mariadb:latest
    ```
 
     *Note:* You need to give the container a name in order to Matomo to resolve the host
@@ -184,10 +184,10 @@ In this case you need to specify the directories to mount on the run command. Th
     docker run -d --name matomo -p 80:80 -p 443:443 \
       -e ALLOW_EMPTY_PASSWORD=yes \
       -e MATOMO_DATABASE_USER=bn_matomo \
-      -e MATOMO_DATABASE_NAME=bitnami_matomo \
+      -e MATOMO_DATABASE_NAME=bitmoa_matomo \
       --net matomo_network \
-      --volume /path/to/matomo-persistence:/bitnami \
-      bitnami/matomo:latest
+      --volume /path/to/matomo-persistence:/bitmoa \
+      bitmoa/matomo:latest
     ```
 
 ### Backing up your container
@@ -212,7 +212,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/matomo-backups:/backups --volumes-from matomo busybox \
-  cp -a /bitnami/matomo /backups/latest
+  cp -a /bitmoa/matomo /backups/latest
 ```
 
 ### Restoring a backup
@@ -224,9 +224,9 @@ For the MariaDB database container:
 ```diff
  $ docker run -d --name mariadb \
    ...
--  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-+  --volume /path/to/mariadb-backups/latest:/bitnami/mariadb \
-   bitnami/mariadb:latest
+-  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
++  --volume /path/to/mariadb-backups/latest:/bitmoa/mariadb \
+   bitmoa/mariadb:latest
 ```
 
 For the Matomo container:
@@ -234,19 +234,19 @@ For the Matomo container:
 ```diff
  $ docker run -d --name matomo \
    ...
--  --volume /path/to/matomo-persistence:/bitnami/matomo \
-+  --volume /path/to/matomo-backups/latest:/bitnami/matomo \
-   bitnami/matomo:latest
+-  --volume /path/to/matomo-persistence:/bitmoa/matomo \
++  --volume /path/to/matomo-backups/latest:/bitmoa/matomo \
+   bitmoa/matomo:latest
 ```
 
 ## Upgrading Matomo
 
-Bitnami provides up-to-date versions of MariaDB and Matomo, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Matomo container. For the MariaDB upgrade you can take a look at <https://github.com/bitnami/containers/tree/main/bitnami/mariadb#upgrade-this-image>
+Bitnami provides up-to-date versions of MariaDB and Matomo, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Matomo container. For the MariaDB upgrade you can take a look at <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
 
 1. Get the updated images:
 
     ```console
-    docker pull bitnami/matomo:latest
+    docker pull bitmoa/matomo:latest
     ```
 
 2. Stop your container
@@ -260,7 +260,7 @@ Bitnami provides up-to-date versions of MariaDB and Matomo, including security p
     rsync -a /path/to/matomo-persistence /path/to/matomo-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
     ```
 
-    Additionally, [snapshot the MariaDB data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#step-2-stop-and-backup-the-currently-running-container)
+    Additionally, [snapshot the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#step-2-stop-and-backup-the-currently-running-container)
 
     You can use these snapshots to restore the application state should the upgrade fail.
 
@@ -272,7 +272,7 @@ Bitnami provides up-to-date versions of MariaDB and Matomo, including security p
 5. Run the new image
 
     - For docker-compose: `$ docker-compose up matomo`
-    - For manual execution (mount the directories if needed): `docker run --name matomo bitnami/matomo:latest`
+    - For manual execution (mount the directories if needed): `docker run --name matomo bitmoa/matomo:latest`
 
 ## Configuration
 
@@ -291,7 +291,7 @@ Bitnami provides up-to-date versions of MariaDB and Matomo, including security p
 | `MATOMO_ENABLE_FORCE_SSL`              | Enable force_ssl in Matomo configuration file.                                                                                                                                        | `no`                            |
 | `MATOMO_ENABLE_PROXY_URI_HEADER`       | Enable proxy_uri_header in Matomo configuration file.                                                                                                                                 | `no`                            |
 | `MATOMO_USERNAME`                      | Matomo user name.                                                                                                                                                                     | `user`                          |
-| `MATOMO_PASSWORD`                      | Matomo user password.                                                                                                                                                                 | `bitnami`                       |
+| `MATOMO_PASSWORD`                      | Matomo user password.                                                                                                                                                                 | `bitmoa`                       |
 | `MATOMO_EMAIL`                         | Matomo user e-mail address.                                                                                                                                                           | `user@example.com`              |
 | `MATOMO_HOST`                          | Name of a website to track in Matomo.                                                                                                                                                 | `127.0.0.1`                     |
 | `MATOMO_WEBSITE_NAME`                  | Name of a website to track in Matomo.                                                                                                                                                 | `example`                       |
@@ -312,7 +312,7 @@ Bitnami provides up-to-date versions of MariaDB and Matomo, including security p
 | `MATOMO_NOREPLY_ADDRESS`               | Matomo noreply address.                                                                                                                                                               | `nil`                           |
 | `MATOMO_DATABASE_HOST`                 | Database server host.                                                                                                                                                                 | `$MATOMO_DEFAULT_DATABASE_HOST` |
 | `MATOMO_DATABASE_PORT_NUMBER`          | Database server port.                                                                                                                                                                 | `3306`                          |
-| `MATOMO_DATABASE_NAME`                 | Database name.                                                                                                                                                                        | `bitnami_matomo`                |
+| `MATOMO_DATABASE_NAME`                 | Database name.                                                                                                                                                                        | `bitmoa_matomo`                |
 | `MATOMO_DATABASE_USER`                 | Database user name.                                                                                                                                                                   | `bn_matomo`                     |
 | `MATOMO_DATABASE_PASSWORD`             | Database user password.                                                                                                                                                               | `nil`                           |
 | `MATOMO_DATABASE_TABLE_PREFIX`         | Database table prefix.                                                                                                                                                                | `matomo_`                       |
@@ -321,10 +321,10 @@ Bitnami provides up-to-date versions of MariaDB and Matomo, including security p
 
 | Name                           | Description                                       | Value                               |
 |--------------------------------|---------------------------------------------------|-------------------------------------|
-| `MATOMO_BASE_DIR`              | Matomo installation directory.                    | `${BITNAMI_ROOT_DIR}/matomo`        |
+| `MATOMO_BASE_DIR`              | Matomo installation directory.                    | `${BITMOA_ROOT_DIR}/matomo`        |
 | `MATOMO_CONF_DIR`              | Configuration dir for Matomo.                     | `${MATOMO_BASE_DIR}/config`         |
 | `MATOMO_CONF_FILE`             | Configuration file for Matomo.                    | `${MATOMO_CONF_DIR}/config.ini.php` |
-| `MATOMO_VOLUME_DIR`            | Matomo directory for mounted configuration files. | `${BITNAMI_VOLUME_DIR}/matomo`      |
+| `MATOMO_VOLUME_DIR`            | Matomo directory for mounted configuration files. | `${BITMOA_VOLUME_DIR}/matomo`      |
 | `MATOMO_DEFAULT_DATABASE_HOST` | Default database server host.                     | `mariadb`                           |
 | `PHP_DEFAULT_MEMORY_LIMIT`     | Default PHP memory limit.                         | `256M`                              |
 
@@ -332,7 +332,7 @@ When you start the Matomo image, you can adjust the configuration of the instanc
 
 If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/matomo/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/matomo/docker-compose.yml) file present in this repository:
 
 ```yaml
 application:
@@ -345,14 +345,14 @@ application:
 - For manual execution add a `-e` option with each variable and value:
 
 ```console
- docker run -d -e MATOMO_PASSWORD=my_password -p 80:80 --name matomo -v /your/local/path/bitnami/matomo:/bitnami --net=matomo_network bitnami/matomo
+ docker run -d -e MATOMO_PASSWORD=my_password -p 80:80 --name matomo -v /your/local/path/bitmoa/matomo:/bitmoa --net=matomo_network bitmoa/matomo
 ```
 
 #### Reverse proxy configuration example
 
 This would be an example of reverse proxy configuration:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/matomo/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/matomo/docker-compose.yml) file present in this repository:
 
 ```yaml
   application:
@@ -372,26 +372,26 @@ This would be an example of reverse proxy configuration:
    -e MARIADB_HOST=mariadb \
    -e MARIADB_PORT_NUMBER=3306 \
    -e MATOMO_DATABASE_USER=bn_matomo \
-   -e MATOMO_DATABASE_NAME=bitnami_matomo \
+   -e MATOMO_DATABASE_NAME=bitmoa_matomo \
    -e MATOMO_PROXY_CLIENT_HEADER=HTTP_X_FORWARDED_FOR \
    -e MATOMO_ENABLE_FORCE_SSL=yes \
    -e MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL=yes \
-   -v /your/local/path/bitnami/matomo:/bitnami \
- bitnami/matomo:latest
+   -v /your/local/path/bitmoa/matomo:/bitmoa \
+ bitmoa/matomo:latest
 ```
 
 #### SMTP example
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/matomo/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/matomo/docker-compose.yml) file present in this repository:
 
 ```yaml
   matomo:
     ...
     environment:
       - MATOMO_DATABASE_USER=bn_matomo
-      - MATOMO_DATABASE_NAME=bitnami_matomo
+      - MATOMO_DATABASE_NAME=bitmoa_matomo
       - ALLOW_EMPTY_PASSWORD=yes
       - MATOMO_SMTP_HOST=smtp.gmail.com
       - MATOMO_SMTP_PORT=587
@@ -405,19 +405,19 @@ This would be an example of SMTP configuration using a Gmail account:
 ```console
  docker run -d --name matomo -p 80:8080 -p 443:8443 \
     --env MATOMO_DATABASE_USER=bn_matomo \
-    --env MATOMO_DATABASE_NAME=bitnami_matomo \
+    --env MATOMO_DATABASE_NAME=bitmoa_matomo \
     --env MATOMO_SMTP_HOST=smtp.gmail.com \
     --env MATOMO_SMTP_PORT=587 \
     --env MATOMO_SMTP_USER=your_email@gmail.com \
     --env MATOMO_SMTP_PASSWORD=your_password \
     --network matomo-tier \
-    --volume /path/to/matomo-persistence:/bitnami \
-    bitnami/matomo:latest
+    --volume /path/to/matomo-persistence:/bitmoa \
+    bitmoa/matomo:latest
 ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Matomo Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Matomo Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -430,14 +430,14 @@ The Bitnami Matomo Docker image is designed to be extended so it can be used as 
 Before extending this image, please note there are certain configuration settings you can modify using the original image:
 
 - Settings that can be adapted using environment variables. For instance, you can change the ports used by Apache for HTTP and HTTPS, by setting the environment variables `APACHE_HTTP_PORT_NUMBER` and `APACHE_HTTPS_PORT_NUMBER` respectively.
-- [Adding custom virtual hosts](https://github.com/bitnami/containers/blob/main/bitnami/apache#adding-custom-virtual-hosts).
-- [Replacing the 'httpd.conf' file](https://github.com/bitnami/containers/blob/main/bitnami/apache#full-configuration).
-- [Using custom SSL certificates](https://github.com/bitnami/containers/blob/main/bitnami/apache#using-custom-ssl-certificates).
+- [Adding custom virtual hosts](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#adding-custom-virtual-hosts).
+- [Replacing the 'httpd.conf' file](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#full-configuration).
+- [Using custom SSL certificates](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#using-custom-ssl-certificates).
 
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/matomo
+FROM bitmoa/matomo
 ### Put your customizations below
 ...
 ```
@@ -449,7 +449,7 @@ Here is an example of extending the image with the following modifications:
 - Modify the ports used by Apache
 
 ```Dockerfile
-FROM bitnami/matomo
+FROM bitmoa/matomo
 
 ### Change user to perform privileged actions
 USER 0
@@ -458,7 +458,7 @@ USER 0
 RUN install_packages vim
 
 ### Enable mod_ratelimit module
-RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitnami/apache/conf/httpd.conf
+RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitmoa/apache/conf/httpd.conf
 
 ### Revert to the original non-root user
 USER 1001
@@ -476,20 +476,20 @@ Based on the extended image, you can use a Docker Compose file like the one belo
 version: '2'
 services:
   mariadb:
-    image: bitnami/mariadb:latest
+    image: bitmoa/mariadb:latest
     environment:
       - MARIADB_USER=bn_matomo
-      - MARIADB_DATABASE=bitnami_matomo
+      - MARIADB_DATABASE=bitmoa_matomo
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - mariadb_data:/bitnami
+      - mariadb_data:/bitmoa
   matomo:
     build: .
     environment:
       - MARIADB_HOST=mariadb
       - MARIADB_PORT_NUMBER=3306
       - MATOMO_DATABASE_USER=bn_matomo
-      - MATOMO_DATABASE_NAME=bitnami_matomo
+      - MATOMO_DATABASE_NAME=bitmoa_matomo
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - 80:8181
@@ -497,7 +497,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - matomo_data:/bitnami
+      - matomo_data:/bitmoa
 volumes:
   mariadb_data:
     driver: local
@@ -535,17 +535,17 @@ To upgrade a previous Bitnami Matomo container image, which did not support non-
 ### 3.9.1-debian-9-r51 and 3.9.1-ol-7-r62
 
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
-- The Apache configuration volume (`/bitnami/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitnami/apache/conf`, or mount specific configuration files individually.
-- The PHP configuration volume (`/bitnami/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitnami/php/conf`, or mount specific configuration files individually.
-- Enabling custom Apache certificates by placing them at `/opt/bitnami/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
+- The Apache configuration volume (`/bitmoa/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/apache/conf`, or mount specific configuration files individually.
+- The PHP configuration volume (`/bitmoa/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/php/conf`, or mount specific configuration files individually.
+- Enabling custom Apache certificates by placing them at `/opt/bitmoa/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

@@ -10,11 +10,11 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libclickhousekeeper.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libclickhousekeeper.sh
 
 # Load ClickHouse Keeper environment variables
-. /opt/bitnami/scripts/clickhouse-keeper-env.sh
+. /opt/bitmoa/scripts/clickhouse-keeper-env.sh
 
 declare -a cmd=("${CLICKHOUSE_KEEPER_BASE_DIR}/bin/clickhouse-keeper")
 declare -a args=("--pid-file=${CLICKHOUSE_KEEPER_PID_FILE}")

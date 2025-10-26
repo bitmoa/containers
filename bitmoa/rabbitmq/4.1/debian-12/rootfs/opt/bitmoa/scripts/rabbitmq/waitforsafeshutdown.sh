@@ -6,8 +6,8 @@
 
 set -o nounset
 
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libhook.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libhook.sh
 
 while : ; do
     waiting="false"

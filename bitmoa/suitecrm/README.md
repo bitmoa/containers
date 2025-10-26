@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name suitecrm bitnami/suitecrm:latest
+docker run --name suitecrm bitmoa/suitecrm:latest
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure deployment.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,41 +35,41 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami SuiteCRM Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/suitecrm).
+The recommended way to get the Bitnami SuiteCRM Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/suitecrm).
 
 ```console
-docker pull bitnami/suitecrm:latest
+docker pull bitmoa/suitecrm:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/suitecrm/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/suitecrm/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/suitecrm:[TAG]
+docker pull bitmoa/suitecrm:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## How to use this image
 
-SuiteCRM requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitnami/containers/tree/main/bitnami/mariadb) for the database requirements.
+SuiteCRM requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
 
 ### Using the Docker Command Line
 
@@ -86,11 +86,11 @@ $ docker volume create --name mariadb_data
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_suitecrm \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_suitecrm \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_suitecrm \
   --network suitecrm-network \
-  --volume mariadb_data:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume mariadb_data:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3: Create volumes for SuiteCRM persistence and launch the container
@@ -101,11 +101,11 @@ docker run -d --name suitecrm \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env SUITECRM_DATABASE_USER=bn_suitecrm \
-  --env SUITECRM_DATABASE_PASSWORD=bitnami \
-  --env SUITECRM_DATABASE_NAME=bitnami_suitecrm \
+  --env SUITECRM_DATABASE_PASSWORD=bitmoa \
+  --env SUITECRM_DATABASE_NAME=bitmoa_suitecrm \
   --network suitecrm-network \
-  --volume suitecrm_data:/bitnami/suitecrm \
-  bitnami/suitecrm:latest
+  --volume suitecrm_data:/bitmoa/suitecrm \
+  bitmoa/suitecrm:latest
 ```
 
 Access your application at `http://your-ip/`
@@ -113,19 +113,19 @@ Access your application at `http://your-ip/`
 ### Run the application using Docker Compose
 
 ```console
-curl -sSL https://raw.githubusercontent.com/bitnami/containers/main/bitnami/suitecrm/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/suitecrm/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/suitecrm).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/suitecrm).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/suitecrm` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitnami/containers/blob/main/bitnami/mariadb#persisting-your-database).
+For persistence you should mount a directory at the `/bitmoa/suitecrm` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
 The above examples define the Docker volumes named `mariadb_data` and `suitecrm_data`. The SuiteCRM application state will persist as long as volumes are not removed.
 
@@ -133,20 +133,20 @@ To avoid inadvertent removal of volumes, you can [mount host directories as data
 
 ### Mount host directories as data volumes with Docker Compose
 
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/suitecrm/docker-compose.yml) file present in this repository:
+This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/suitecrm/docker-compose.yml) file present in this repository:
 
 ```diff
    mariadb:
      ...
      volumes:
--      - mariadb_data:/bitnami/mariadb
-+      - /path/to/mariadb-persistence:/bitnami/mariadb
+-      - mariadb_data:/bitmoa/mariadb
++      - /path/to/mariadb-persistence:/bitmoa/mariadb
    ...
    suitecrm:
      ...
      volumes:
--      - suitecrm_data:/bitnami/suitecrm
-+      - /path/to/suitecrm-persistence:/bitnami/suitecrm
+-      - suitecrm_data:/bitmoa/suitecrm
++      - /path/to/suitecrm-persistence:/bitmoa/suitecrm
    ...
 -volumes:
 -  mariadb_data:
@@ -174,11 +174,11 @@ docker network create suitecrm-network
 docker run -d --name mariadb \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env MARIADB_USER=bn_suitecrm \
-  --env MARIADB_PASSWORD=bitnami \
-  --env MARIADB_DATABASE=bitnami_suitecrm \
+  --env MARIADB_PASSWORD=bitmoa \
+  --env MARIADB_DATABASE=bitmoa_suitecrm \
   --network suitecrm-network \
-  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-  bitnami/mariadb:latest
+  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
+  bitmoa/mariadb:latest
 ```
 
 #### Step 3. Create the SuiteCRM container with host volumes
@@ -188,11 +188,11 @@ docker run -d --name suitecrm \
   -p 8080:8080 -p 8443:8443 \
   --env ALLOW_EMPTY_PASSWORD=yes \
   --env SUITECRM_DATABASE_USER=bn_suitecrm \
-  --env SUITECRM_DATABASE_PASSWORD=bitnami \
-  --env SUITECRM_DATABASE_NAME=bitnami_suitecrm \
+  --env SUITECRM_DATABASE_PASSWORD=bitmoa \
+  --env SUITECRM_DATABASE_NAME=bitmoa_suitecrm \
   --network suitecrm-network \
-  --volume /path/to/suitecrm-persistence:/bitnami/suitecrm \
-  bitnami/suitecrm:latest
+  --volume /path/to/suitecrm-persistence:/bitmoa/suitecrm \
+  bitmoa/suitecrm:latest
 ```
 
 ## Configuration
@@ -206,7 +206,7 @@ docker run -d --name suitecrm \
 | `SUITECRM_DATA_TO_PERSIST`            | Files to persist relative to the SuiteCRM installation directory. To provide multiple values, separate them with a whitespace. | `$SUITECRM_BASE_DIR`              |
 | `SUITECRM_SKIP_BOOTSTRAP`             | Whether to perform initial bootstrapping for the application.                                                                  | `nil`                             |
 | `SUITECRM_USERNAME`                   | SuiteCRM user name.                                                                                                            | `user`                            |
-| `SUITECRM_PASSWORD`                   | SuiteCRM user password.                                                                                                        | `bitnami`                         |
+| `SUITECRM_PASSWORD`                   | SuiteCRM user password.                                                                                                        | `bitmoa`                         |
 | `SUITECRM_EMAIL`                      | SuiteCRM user e-mail address.                                                                                                  | `user@example.com`                |
 | `SUITECRM_HOST`                       | SuiteCRM server site URL.                                                                                                      | `localhost`                       |
 | `SUITECRM_ENABLE_HTTPS`               | Whether to use HTTPS by default.                                                                                               | `no`                              |
@@ -222,7 +222,7 @@ docker run -d --name suitecrm \
 | `SUITECRM_SMTP_NOTIFY_NAME`           | SuiteCRM name to use in notifications.                                                                                         | `SuiteCRM`                        |
 | `SUITECRM_DATABASE_HOST`              | Database server host.                                                                                                          | `$SUITECRM_DEFAULT_DATABASE_HOST` |
 | `SUITECRM_DATABASE_PORT_NUMBER`       | Database server port.                                                                                                          | `3306`                            |
-| `SUITECRM_DATABASE_NAME`              | Database name.                                                                                                                 | `bitnami_suitecrm`                |
+| `SUITECRM_DATABASE_NAME`              | Database name.                                                                                                                 | `bitmoa_suitecrm`                |
 | `SUITECRM_DATABASE_USER`              | Database user name.                                                                                                            | `bn_suitecrm`                     |
 | `SUITECRM_DATABASE_PASSWORD`          | Database user password.                                                                                                        | `nil`                             |
 
@@ -230,10 +230,10 @@ docker run -d --name suitecrm \
 
 | Name                                | Description                                                                                                                          | Value                                              |
 |-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| `SUITECRM_BASE_DIR`                 | SuiteCRM installation directory.                                                                                                     | `${BITNAMI_ROOT_DIR}/suitecrm`                     |
+| `SUITECRM_BASE_DIR`                 | SuiteCRM installation directory.                                                                                                     | `${BITMOA_ROOT_DIR}/suitecrm`                     |
 | `SUITECRM_CONF_FILE`                | Configuration file for SuiteCRM.                                                                                                     | `${SUITECRM_BASE_DIR}/public/legacy/config.php`    |
 | `SUITECRM_SILENT_INSTALL_CONF_FILE` | Configuration file for the SuiteCRM silent installation wizard.                                                                      | `${SUITECRM_BASE_DIR}/public/legacy/config_si.php` |
-| `SUITECRM_VOLUME_DIR`               | SuiteCRM directory for mounted configuration files.                                                                                  | `${BITNAMI_VOLUME_DIR}/suitecrm`                   |
+| `SUITECRM_VOLUME_DIR`               | SuiteCRM directory for mounted configuration files.                                                                                  | `${BITMOA_VOLUME_DIR}/suitecrm`                   |
 | `SUITECRM_MOUNTED_CONF_FILE`        | Mounted configuration file for SuiteCRM. It will be copied to the SuiteCRM installation directory during the initialization process. | `${SUITECRM_VOLUME_DIR}/config_si.php`             |
 | `SUITECRM_DEFAULT_DATABASE_HOST`    | Default database server host.                                                                                                        | `mariadb`                                          |
 | `PHP_DEFAULT_MEMORY_LIMIT`          | Default PHP memory limit.                                                                                                            | `256M`                                             |
@@ -242,7 +242,7 @@ docker run -d --name suitecrm \
 
 When you start the SuiteCRM image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/suitecrm/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/suitecrm/docker-compose.yml) file present in this repository:
 
 ```yaml
 suitecrm:
@@ -258,22 +258,22 @@ suitecrm:
   docker run -d --name suitecrm -p 80:8080 -p 443:8443 \
     --env SUITECRM_PASSWORD=my_password \
     --network suitecrm-tier \
-    --volume /path/to/suitecrm-persistence:/bitnami \
-    bitnami/suitecrm:latest
+    --volume /path/to/suitecrm-persistence:/bitmoa \
+    bitmoa/suitecrm:latest
   ```
 
 ### Example
 
 This would be an example of SMTP configuration using a Gmail account:
 
-- Modify the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/suitecrm/docker-compose.yml) file present in this repository:
+- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/suitecrm/docker-compose.yml) file present in this repository:
 
 ```yaml
   suitecrm:
     ...
     environment:
       - SUITECRM_DATABASE_USER=bn_suitecrm
-      - SUITECRM_DATABASE_NAME=bitnami_suitecrm
+      - SUITECRM_DATABASE_NAME=bitmoa_suitecrm
       - ALLOW_EMPTY_PASSWORD=yes
       - SUITECRM_SMTP_HOST=smtp.gmail.com
       - SUITECRM_SMTP_PROTOCOL=tls
@@ -288,20 +288,20 @@ This would be an example of SMTP configuration using a Gmail account:
   ```console
   docker run -d --name suitecrm -p 80:8080 -p 443:8443 \
     --env SUITECRM_DATABASE_USER=bn_suitecrm \
-    --env SUITECRM_DATABASE_NAME=bitnami_suitecrm \
+    --env SUITECRM_DATABASE_NAME=bitmoa_suitecrm \
     --env SUITECRM_SMTP_HOST=smtp.gmail.com \
     --env SUITECRM_SMTP_PORT=587 \
     --env SUITECRM_SMTP_PROTOCOL=tls \
     --env SUITECRM_SMTP_USER=your_email@gmail.com \
     --env SUITECRM_SMTP_PASSWORD=your_password \
     --network suitecrm-tier \
-    --volume /path/to/suitecrm-persistence:/bitnami \
-    bitnami/suitecrm:latest
+    --volume /path/to/suitecrm-persistence:/bitmoa \
+    bitmoa/suitecrm:latest
   ```
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami SuiteCRM Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami SuiteCRM Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -345,7 +345,7 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/suitecrm-backups:/backups --volumes-from suitecrm busybox \
-  cp -a /bitnami/suitecrm /backups/latest
+  cp -a /bitmoa/suitecrm /backups/latest
 ```
 
 ### Restoring a backup
@@ -357,9 +357,9 @@ For the MariaDB database container:
 ```diff
  $ docker run -d --name mariadb \
    ...
--  --volume /path/to/mariadb-persistence:/bitnami/mariadb \
-+  --volume /path/to/mariadb-backups/latest:/bitnami/mariadb \
-   bitnami/mariadb:latest
+-  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
++  --volume /path/to/mariadb-backups/latest:/bitmoa/mariadb \
+   bitmoa/mariadb:latest
 ```
 
 For the SuiteCRM container:
@@ -367,19 +367,19 @@ For the SuiteCRM container:
 ```diff
  $ docker run -d --name suitecrm \
    ...
--  --volume /path/to/suitecrm-persistence:/bitnami/suitecrm \
-+  --volume /path/to/suitecrm-backups/latest:/bitnami/suitecrm \
-   bitnami/suitecrm:latest
+-  --volume /path/to/suitecrm-persistence:/bitmoa/suitecrm \
++  --volume /path/to/suitecrm-backups/latest:/bitmoa/suitecrm \
+   bitmoa/suitecrm:latest
 ```
 
 ### Upgrade this image
 
-Bitnami provides up-to-date versions of MariaDB and SuiteCRM, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the SuiteCRM container. For the MariaDB upgrade see: <https://github.com/bitnami/containers/tree/main/bitnami/mariadb#upgrade-this-image>
+Bitnami provides up-to-date versions of MariaDB and SuiteCRM, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the SuiteCRM container. For the MariaDB upgrade see: <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/suitecrm:latest
+docker pull bitmoa/suitecrm:latest
 ```
 
 #### Step 2: Stop the running container
@@ -419,14 +419,14 @@ The Bitnami SuiteCRM Docker image is designed to be extended so it can be used a
 Before extending this image, please note there are certain configuration settings you can modify using the original image:
 
 - Settings that can be adapted using environment variables. For instance, you can change the ports used by Apache for HTTP and HTTPS, by setting the environment variables `APACHE_HTTP_PORT_NUMBER` and `APACHE_HTTPS_PORT_NUMBER` respectively.
-- [Adding custom virtual hosts](https://github.com/bitnami/containers/blob/main/bitnami/apache#adding-custom-virtual-hosts).
-- [Replacing the 'httpd.conf' file](https://github.com/bitnami/containers/blob/main/bitnami/apache#full-configuration).
-- [Using custom SSL certificates](https://github.com/bitnami/containers/blob/main/bitnami/apache#using-custom-ssl-certificates).
+- [Adding custom virtual hosts](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#adding-custom-virtual-hosts).
+- [Replacing the 'httpd.conf' file](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#full-configuration).
+- [Using custom SSL certificates](https://github.com/bitmoa/containers/blob/main/bitmoa/apache#using-custom-ssl-certificates).
 
 If your desired customizations cannot be covered using the methods mentioned above, extend the image. To do so, create your own image using a Dockerfile with the format below:
 
 ```Dockerfile
-FROM bitnami/suitecrm
+FROM bitmoa/suitecrm
 ## Put your customizations below
 ...
 ```
@@ -440,13 +440,13 @@ Here is an example of extending the image with the following modifications:
 - Modify the ports used by Apache
 
 ```Dockerfile
-FROM bitnami/suitecrm
+FROM bitmoa/suitecrm
 
 ## Install 'vim'
 RUN install_packages vim
 
 ## Enable mod_ratelimit module
-RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitnami/apache/conf/httpd.conf
+RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitmoa/apache/conf/httpd.conf
 
 ## Modify the ports used by Apache by default
 # It is also possible to change these environment variables at runtime
@@ -455,11 +455,11 @@ ENV APACHE_HTTPS_PORT_NUMBER=8143
 EXPOSE 8181 8143
 ```
 
-Based on the extended image, you can update the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/suitecrm/docker-compose.yml) file present in this repository to add other features:
+Based on the extended image, you can update the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/suitecrm/docker-compose.yml) file present in this repository to add other features:
 
 ```diff
    suitecrm:
--    image: bitnami/suitecrm:latest
+-    image: bitmoa/suitecrm:latest
 +    build: .
      ports:
 -      - 80:8080
@@ -474,12 +474,12 @@ Based on the extended image, you can update the [`docker-compose.yml`](https://g
 ## Example 2: Add SuiteCRM API support
 
 ```Dockerfile
-FROM bitnami/suitecrm
+FROM bitmoa/suitecrm
 ## Install keys
-RUN openssl genrsa -out /opt/bitnami/suitecrm/Api/V8/OAuth2/private.key 2048 && \
-    openssl rsa -in /opt/bitnami/suitecrm/Api/V8/OAuth2/private.key -pubout -out /opt/bitnami/suitecrm/Api/V8/OAuth2/public.key && \
-    chmod 640 /opt/bitnami/suitecrm/Api/V8/OAuth2/private.key && \
-    chgrp daemon /opt/bitnami/suitecrm/Api/V8/OAuth2/private.key /opt/bitnami/suitecrm/Api/V8/OAuth2/public.key
+RUN openssl genrsa -out /opt/bitmoa/suitecrm/Api/V8/OAuth2/private.key 2048 && \
+    openssl rsa -in /opt/bitmoa/suitecrm/Api/V8/OAuth2/private.key -pubout -out /opt/bitmoa/suitecrm/Api/V8/OAuth2/public.key && \
+    chmod 640 /opt/bitmoa/suitecrm/Api/V8/OAuth2/private.key && \
+    chgrp daemon /opt/bitmoa/suitecrm/Api/V8/OAuth2/private.key /opt/bitmoa/suitecrm/Api/V8/OAuth2/public.key
 ```
 
 ## Notable Changes
@@ -509,9 +509,9 @@ To upgrade a deployment with the previous Bitnami SuiteCRM container image, whic
 ### 7.11.4-debian-9-r21 and 7.11.4-ol-7-r32
 
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
-- The Apache configuration volume (`/bitnami/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitnami/apache/conf`, or mount specific configuration files individually.
-- The PHP configuration volume (`/bitnami/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitnami/php/conf`, or mount specific configuration files individually.
-- Enabling custom Apache certificates by placing them at `/opt/bitnami/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
+- The Apache configuration volume (`/bitmoa/apache`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the Apache configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom Apache configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/apache/conf`, or mount specific configuration files individually.
+- The PHP configuration volume (`/bitmoa/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/php/conf`, or mount specific configuration files individually.
+- Enabling custom Apache certificates by placing them at `/opt/bitmoa/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
 
 ### 7.10.10-debian-9-r18 and 7.10.10-ol-7-r24
 
@@ -519,11 +519,11 @@ To upgrade a deployment with the previous Bitnami SuiteCRM container image, whic
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libcilium.sh
-. /opt/bitnami/scripts/libos.sh
+. /opt/bitmoa/scripts/libcilium.sh
+. /opt/bitmoa/scripts/libos.sh
 
 # Load Cilium environment variables
-. /opt/bitnami/scripts/cilium-env.sh
+. /opt/bitmoa/scripts/cilium-env.sh
 
 # Photon does not provide the bash-completion package
 if [[ "$(get_os_metadata --id)" != "photon" ]]; then

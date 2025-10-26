@@ -10,16 +10,16 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load KeyDB environment variables
-. /opt/bitnami/scripts/keydb-env.sh
+. /opt/bitmoa/scripts/keydb-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libkeydb.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libkeydb.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 for dir in "$KEYDB_DATA_DIR" "$KEYDB_CONF_DIR" "$KEYDB_DEFAULT_CONF_DIR" "$KEYDB_TMP_DIR"; do
     ensure_dir_exists "$dir"
 done
-chmod -R g+rwX /bitnami "$KEYDB_VOLUME_DIR" "$KEYDB_BASE_DIR"
+chmod -R g+rwX /bitmoa "$KEYDB_VOLUME_DIR" "$KEYDB_BASE_DIR"
 
 # Prepare default KeyDB configuration
 keydb_default_config

@@ -10,21 +10,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-docker run --name rabbitmq bitnami/rabbitmq:latest
+docker run --name rabbitmq bitmoa/rabbitmq:latest
 ```
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -35,11 +35,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy RabbitMQ in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami RabbitMQ Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/rabbitmq).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami RabbitMQ Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/rabbitmq).
 
 ## Why use a non-root container?
 
@@ -49,42 +49,42 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami RabbitMQ Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/rabbitmq).
+The recommended way to get the Bitnami RabbitMQ Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/rabbitmq).
 
 ```console
-docker pull bitnami/rabbitmq:latest
+docker pull bitmoa/rabbitmq:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/rabbitmq/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/rabbitmq/tags/) in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/rabbitmq:[TAG]
+docker pull bitmoa/rabbitmq:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/rabbitmq/mnesia` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/bitmoa/rabbitmq/mnesia` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 docker run \
-    -v /path/to/rabbitmq-persistence:/bitnami/rabbitmq/mnesia \
-    bitnami/rabbitmq:latest
+    -v /path/to/rabbitmq-persistence:/bitmoa/rabbitmq/mnesia \
+    bitmoa/rabbitmq:latest
 ```
 
 > NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
@@ -112,7 +112,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 docker run -d --name rabbitmq-server \
     --network app-tier \
-    bitnami/rabbitmq:latest
+    bitmoa/rabbitmq:latest
 ```
 
 #### Step 3: Launch your RabbitMQ client instance
@@ -122,7 +122,7 @@ Finally we create a new container instance to launch the RabbitMQ client and con
 ```console
 docker run -it --rm \
     --network app-tier \
-    bitnami/rabbitmq:latest rabbitmqctl -n rabbit@rabbitmq-server status
+    bitmoa/rabbitmq:latest rabbitmqctl -n rabbit@rabbitmq-server status
 ```
 
 ### Using a Docker Compose file
@@ -138,7 +138,7 @@ networks:
 
 services:
   rabbitmq:
-    image: bitnami/rabbitmq:latest
+    image: bitmoa/rabbitmq:latest
     networks:
       - app-tier
   myapp:
@@ -190,7 +190,7 @@ docker-compose up -d
 | `RABBITMQ_CLUSTER_REBALANCE`                   | Rebalance the RabbitMQ Cluster.                                                                                                                                                                  | `false`                              |
 | `RABBITMQ_CLUSTER_REBALANCE_ATTEMPTS`          | Max attempts for the rebalance check to run                                                                                                                                                      | `100`                                |
 | `RABBITMQ_USERNAME`                            | RabbitMQ user name.                                                                                                                                                                              | `user`                               |
-| `RABBITMQ_PASSWORD`                            | RabbitMQ user password.                                                                                                                                                                          | `bitnami`                            |
+| `RABBITMQ_PASSWORD`                            | RabbitMQ user password.                                                                                                                                                                          | `bitmoa`                            |
 | `RABBITMQ_FORCE_BOOT`                          | Force a node to start even if it was not the last to shut down                                                                                                                                   | `no`                                 |
 | `RABBITMQ_ENABLE_LDAP`                         | Enable the LDAP configuration.                                                                                                                                                                   | `no`                                 |
 | `RABBITMQ_LDAP_TLS`                            | Enable secure LDAP configuration.                                                                                                                                                                | `no`                                 |
@@ -218,8 +218,8 @@ docker-compose up -d
 
 | Name                          | Description                                            | Value                                                             |
 |-------------------------------|--------------------------------------------------------|-------------------------------------------------------------------|
-| `RABBITMQ_VOLUME_DIR`         | Persistence base directory.                            | `/bitnami/rabbitmq`                                               |
-| `RABBITMQ_BASE_DIR`           | RabbitMQ installation directory.                       | `/opt/bitnami/rabbitmq`                                           |
+| `RABBITMQ_VOLUME_DIR`         | Persistence base directory.                            | `/bitmoa/rabbitmq`                                               |
+| `RABBITMQ_BASE_DIR`           | RabbitMQ installation directory.                       | `/opt/bitmoa/rabbitmq`                                           |
 | `RABBITMQ_BIN_DIR`            | RabbitMQ executables directory.                        | `${RABBITMQ_BASE_DIR}/sbin`                                       |
 | `RABBITMQ_DATA_DIR`           | RabbitMQ data directory.                               | `${RABBITMQ_VOLUME_DIR}/mnesia`                                   |
 | `RABBITMQ_CONF_DIR`           | RabbitMQ configuration directory.                      | `${RABBITMQ_BASE_DIR}/etc/rabbitmq`                               |
@@ -238,7 +238,7 @@ docker-compose up -d
 
 When you start the rabbitmq image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/rabbitmq/docker-compose.yml) file present in this repository: :
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/rabbitmq/docker-compose.yml) file present in this repository: :
 
 ```yaml
 rabbitmq:
@@ -265,7 +265,7 @@ version: '2'
 
 services:
   stats:
-    image: bitnami/rabbitmq:latest
+    image: bitmoa/rabbitmq:latest
     environment:
       - RABBITMQ_NODE_TYPE=stats
       - RABBITMQ_NODE_NAME=rabbit@stats
@@ -273,7 +273,7 @@ services:
     ports:
       - 15672:15672
     volumes:
-      - rabbitmqstats_data:/bitnami/rabbitmq/mnesia
+      - rabbitmqstats_data:/bitmoa/rabbitmq/mnesia
 ```
 
 > **Note:** The name of the service (**stats**) is important so that a node could resolve the hostname to cluster with. (Note that the node name is `rabbit@stats`)
@@ -284,14 +284,14 @@ Update the definitions for nodes you want your RabbitMQ stats node cluster with.
 
 ```yaml
   queue-disc1:
-    image: bitnami/rabbitmq:latest
+    image: bitmoa/rabbitmq:latest
     environment:
       - RABBITMQ_NODE_TYPE=queue-disc
       - RABBITMQ_NODE_NAME=rabbit@queue-disc1
       - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats
       - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3
     volumes:
-      - rabbitmqdisc1_data:/bitnami/rabbitmq/mnesia
+      - rabbitmqdisc1_data:/bitmoa/rabbitmq/mnesia
 ```
 
 > **Note:** Again, the name of the service (**queue-disc1**) is important so that each node could resolve the hostname of this one.
@@ -300,14 +300,14 @@ We are going to add a ram node too:
 
 ```yaml
   queue-ram1:
-    image: bitnami/rabbitmq:latest
+    image: bitmoa/rabbitmq:latest
     environment:
       - RABBITMQ_NODE_TYPE=queue-ram
       - RABBITMQ_NODE_NAME=rabbit@queue-ram1
       - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats
       - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3
     volumes:
-      - rabbitmqram1_data:/bitnami/rabbitmq/mnesia
+      - rabbitmqram1_data:/bitmoa/rabbitmq/mnesia
 ```
 
 ##### Step 3: Add the volume description
@@ -329,7 +329,7 @@ version: '2'
 
 services:
   stats:
-    image: bitnami/rabbitmq:latest
+    image: bitmoa/rabbitmq:latest
     environment:
       - RABBITMQ_NODE_TYPE=stats
       - RABBITMQ_NODE_NAME=rabbit@stats
@@ -337,25 +337,25 @@ services:
     ports:
       - 15672:15672
     volumes:
-      - rabbitmqstats_data:/bitnami/rabbitmq/mnesia
+      - rabbitmqstats_data:/bitmoa/rabbitmq/mnesia
   queue-disc1:
-    image: bitnami/rabbitmq:latest
+    image: bitmoa/rabbitmq:latest
     environment:
       - RABBITMQ_NODE_TYPE=queue-disc
       - RABBITMQ_NODE_NAME=rabbit@queue-disc1
       - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats
       - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3
     volumes:
-      - rabbitmqdisc1_data:/bitnami/rabbitmq/mnesia
+      - rabbitmqdisc1_data:/bitmoa/rabbitmq/mnesia
   queue-ram1:
-    image: bitnami/rabbitmq:latest
+    image: bitmoa/rabbitmq:latest
     environment:
       - RABBITMQ_NODE_TYPE=queue-ram
       - RABBITMQ_NODE_NAME=rabbit@queue-ram1
       - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats
       - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3
     volumes:
-      - rabbitmqram1_data:/bitnami/rabbitmq/mnesia
+      - rabbitmqram1_data:/bitmoa/rabbitmq/mnesia
 
 volumes:
   rabbitmqstats_data:
@@ -368,9 +368,9 @@ volumes:
 
 ### Configuration file
 
-A custom `rabbitmq.conf` configuration file can be mounted to the `/bitnami/rabbitmq/conf` directory. If no file is mounted, the container will generate a default one based on the environment variables. You can also mount on this directory your own `advanced.config` (using classic Erlang terms) and `rabbitmq-env.conf` configuration files.
+A custom `rabbitmq.conf` configuration file can be mounted to the `/bitmoa/rabbitmq/conf` directory. If no file is mounted, the container will generate a default one based on the environment variables. You can also mount on this directory your own `advanced.config` (using classic Erlang terms) and `rabbitmq-env.conf` configuration files.
 
-As an alternative, you can also mount a `custom.conf` configuration file and mount it to the `/bitnami/rabbitmq/conf` directory. In this case, the default configuation file will be generated and, later on, the settings available in the `custom.conf` configuration file will be merged with the default ones. For example, in order to override the `listeners.tcp.default` directive:
+As an alternative, you can also mount a `custom.conf` configuration file and mount it to the `/bitmoa/rabbitmq/conf` directory. In this case, the default configuation file will be generated and, later on, the settings available in the `custom.conf` configuration file will be merged with the default ones. For example, in order to override the `listeners.tcp.default` directive:
 
 #### Step 1: Write your custom.conf configuation file with the following content
 
@@ -382,15 +382,15 @@ listeners.tcp.default=1337
 
 ```console
 docker run -d --name rabbitmq-server \
-   -v /path/to/custom.conf:/bitnami/rabbitmq/conf/custom.conf:ro \
-    bitnami/rabbitmq:latest
+   -v /path/to/custom.conf:/bitmoa/rabbitmq/conf/custom.conf:ro \
+    bitmoa/rabbitmq:latest
 ```
 
 After that, your changes will be taken into account in the server's behaviour.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami RabbitMQ Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami RabbitMQ Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -415,7 +415,7 @@ LDAP configuration parameters must be specified if you wish to enable LDAP suppo
 
 > Note: To escape `$` in `RABBITMQ_LDAP_USER_DN_PATTERN` you need to use `$$`.
 
-Follow these instructions to use the [Bitnami Docker OpenLDAP](https://github.com/bitnami/containers/blob/main/bitnami/openldap) image to create an OpenLDAP server and use it to authenticate users on RabbitMQ:
+Follow these instructions to use the [Bitnami Docker OpenLDAP](https://github.com/bitmoa/containers/blob/main/bitmoa/openldap) image to create an OpenLDAP server and use it to authenticate users on RabbitMQ:
 
 ### Step 1: Create a network and start an OpenLDAP server
 
@@ -427,7 +427,7 @@ docker run --name openldap \
   --env LDAP_USERS=user01,user02 \
   --env LDAP_PASSWORDS=password1,password2 \
   --network app-tier \
-  bitnami/openldap:latest
+  bitmoa/openldap:latest
 ```
 
 ### Step 3: Create an advanced.config file
@@ -453,8 +453,8 @@ docker run --name rabbitmq \
   --env RABBITMQ_LDAP_SERVERS_PORT=1389 \
   --env RABBITMQ_LDAP_USER_DN_PATTERN=cn=$${username},ou=users,dc=example,dc=org \
   --network app-tier \
-  -v /path/to/your/advanced.config:/bitnami/rabbitmq/conf/advanced.config:ro \
-  bitnami/rabbitmq:latest
+  -v /path/to/your/advanced.config:/bitmoa/rabbitmq/conf/advanced.config:ro \
+  bitmoa/rabbitmq:latest
 ```
 
 ## Logging
@@ -482,11 +482,11 @@ Bitnami provides up-to-date versions of RabbitMQ, including security patches, so
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/rabbitmq:latest
+docker pull bitmoa/rabbitmq:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/rabbitmq:latest`.
+`bitmoa/rabbitmq:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -525,7 +525,7 @@ docker-compose rm -v rabbitmq
 Re-create your container from the new image.
 
 ```console
-docker run --name rabbitmq bitnami/rabbitmq:latest
+docker run --name rabbitmq bitmoa/rabbitmq:latest
 ```
 
 or using Docker Compose:
@@ -544,7 +544,7 @@ docker-compose up rabbitmq
 ### 3.8.16-debian-10-r28
 
 - Added several minor changes to make the container compatible with the [RabbitMQ Cluster Operator](https://github.com/rabbitmq/cluster-operator/):
-  - Add `/etc/rabbitmq`, `/var/log/rabbitmq` and `/var/lib/rabbitmq` as symlinks to the corresponding folders in `/opt/bitnami/rabbitmq`.
+  - Add `/etc/rabbitmq`, `/var/log/rabbitmq` and `/var/lib/rabbitmq` as symlinks to the corresponding folders in `/opt/bitmoa/rabbitmq`.
   - Set the `RABBITMQ_SECURE_PASSWORD` password to `no` by default. This does not affect the Bitnami RabbitMQ helm as it sets that variable to `yes` by default.
   - Enable the `rabbitmq-prometheus` plugin by default.
 
@@ -602,17 +602,17 @@ The following parameters have been renamed:
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/rabbitmq).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/rabbitmq).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

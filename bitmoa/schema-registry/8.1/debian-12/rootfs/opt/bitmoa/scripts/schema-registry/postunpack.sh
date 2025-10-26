@@ -5,11 +5,11 @@
 # shellcheck disable=SC1091
 
 # Load libraries
-. /opt/bitnami/scripts/libschemaregistry.sh
-. /opt/bitnami/scripts/libfs.sh
+. /opt/bitmoa/scripts/libschemaregistry.sh
+. /opt/bitmoa/scripts/libfs.sh
 
 # Load Schema Registry environment variables
-. /opt/bitnami/scripts/schema-registry-env.sh
+. /opt/bitmoa/scripts/schema-registry-env.sh
 
 # Functions
 

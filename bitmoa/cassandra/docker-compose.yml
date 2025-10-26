@@ -3,12 +3,12 @@
 
 services:
   cassandra:
-    image: docker.io/bitnami/cassandra:5.0
+    image: ghcr.io/bitmoa/cassandra:5.0
     ports:
       - '7000:7000'
       - '9042:9042'
     volumes:
-      - 'cassandra_data:/bitnami'
+      - 'cassandra_data:/bitmoa'
     environment:
       - CASSANDRA_SEEDS=cassandra
       - CASSANDRA_PASSWORD_SEEDER=yes

@@ -3,11 +3,11 @@
 
 services:
   postgresql-master:
-    image: docker.io/bitnami/postgresql:18
+    image: ghcr.io/bitmoa/postgresql:18
     ports:
       - '5432'
     volumes:
-      - 'postgresql_master_data:/bitnami/postgresql'
+      - 'postgresql_master_data:/bitmoa/postgresql'
     environment:
       - POSTGRESQL_REPLICATION_MODE=master
       - POSTGRESQL_REPLICATION_USER=repl_user
@@ -17,7 +17,7 @@ services:
       - POSTGRESQL_DATABASE=my_database
       - ALLOW_EMPTY_PASSWORD=yes
   postgresql-slave:
-    image: docker.io/bitnami/postgresql:18
+    image: ghcr.io/bitmoa/postgresql:18
     ports:
       - '5432'
     depends_on:

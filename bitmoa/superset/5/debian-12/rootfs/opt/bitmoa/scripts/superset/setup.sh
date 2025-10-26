@@ -10,12 +10,12 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load Superset environment variables
-. /opt/bitnami/scripts/superset-env.sh
+. /opt/bitmoa/scripts/superset-env.sh
 
 # Load libraries
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libsuperset.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libsuperset.sh
 
 # Ensure Superset environment variables settings are valid
 superset_validate

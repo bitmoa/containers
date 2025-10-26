@@ -9,9 +9,9 @@ set -o nounset
 set -o pipefail
 
 # Load libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libopenldap.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libopenldap.sh
 
 # Load LDAP environment variables
 eval "$(ldap_env)"
@@ -26,4 +26,4 @@ done
 ln -sf "$LDAP_ONLINE_CONF_DIR" "${LDAP_CONF_DIR}/slapd.d"
 ln -sf "$LDAP_DATA_DIR" "${LDAP_VAR_DIR}/data"
 
-setcap CAP_NET_BIND_SERVICE=+eip /opt/bitnami/openldap/sbin/slapd
+setcap CAP_NET_BIND_SERVICE=+eip /opt/bitmoa/openldap/sbin/slapd

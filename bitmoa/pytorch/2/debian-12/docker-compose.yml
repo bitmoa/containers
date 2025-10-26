@@ -4,6 +4,6 @@
 services:
   pytorch:
     tty: true
-    image: docker.io/bitnami/pytorch:2
+    image: ghcr.io/bitmoa/pytorch:2
     volumes:
       - '.:/app'

@@ -10,13 +10,13 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/libbitnami.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
 
 print_welcome_page
 
-if [[ "$1" = "/opt/bitnami/scripts/harbor-registry/run.sh" ]]; then
+if [[ "$1" = "/opt/bitmoa/scripts/harbor-registry/run.sh" ]]; then
     info "** Starting harbor-registry setup **"
-    /opt/bitnami/scripts/harbor-registry/setup.sh
+    /opt/bitmoa/scripts/harbor-registry/setup.sh
     info "** harbor-registry setup finished! **"
 fi
 

@@ -10,18 +10,18 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libbitnami.sh
-. /opt/bitnami/scripts/libkafka.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
+. /opt/bitmoa/scripts/libkafka.sh
 
 # Load Kafka environment variables
-. /opt/bitnami/scripts/kafka-env.sh
+. /opt/bitmoa/scripts/kafka-env.sh
 
 print_welcome_page
 
-if [[ "$*" = *"/opt/bitnami/scripts/kafka/run.sh"* || "$*" = *"/run.sh"* ]]; then
+if [[ "$*" = *"/opt/bitmoa/scripts/kafka/run.sh"* || "$*" = *"/run.sh"* ]]; then
     info "** Starting Kafka setup **"
-    /opt/bitnami/scripts/kafka/setup.sh
+    /opt/bitmoa/scripts/kafka/setup.sh
     info "** Kafka setup finished! **"
 fi
 

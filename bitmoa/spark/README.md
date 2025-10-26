@@ -12,21 +12,21 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ### Docker Compose
 
 ```console
-docker run --name spark bitnami/spark:latest
+docker run --name spark bitmoa/spark:latest
 ```
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
 ## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications). As part of this transition:
+Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
 
 - Granting community users access for the first time to security-optimized versions of popular container images.
 - Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (docker.io/bitnami) to the “Bitnami Legacy” repository (docker.io/bitnamilegacy), where they will no longer receive updates.
+- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
 - For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitnami/containers/issues/83267).
+These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
 
 ## Why use Bitnami Secure Images?
 
@@ -37,11 +37,11 @@ These changes aim to improve the security posture of all Bitnami users by promot
 - Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
 - Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/).
+Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
 
 ## How to deploy Apache Spark in Kubernetes?
 
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Spark Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/spark).
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Spark Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/spark).
 
 ## Why use a non-root container?
 
@@ -51,32 +51,32 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitnami/ASSET/BRANCH/DISTRO/tags-info.yaml`.
+You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitnami/containers GitHub repo](https://github.com/bitnami/containers).
+Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Apache Spark Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/spark).
+The recommended way to get the Bitnami Apache Spark Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/spark).
 
 ```console
-docker pull bitnami/spark:latest
+docker pull bitmoa/spark:latest
 ```
 
 To use a specific version, you can pull a versioned tag. You can view the
-[list of available versions](https://hub.docker.com/r/bitnami/spark/tags/)
+[list of available versions](https://hub.docker.com/r/bitmoa/spark/tags/)
 in the Docker Hub Registry.
 
 ```console
-docker pull bitnami/spark:[TAG]
+docker pull bitmoa/spark:[TAG]
 ```
 
 If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
 
 ```console
-git clone https://github.com/bitnami/containers.git
-cd bitnami/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitnami/APP:latest .
+git clone https://github.com/bitmoa/containers.git
+cd bitmoa/APP/VERSION/OPERATING-SYSTEM
+docker build -t bitmoa/APP:latest .
 ```
 
 ## Configuration
@@ -109,7 +109,7 @@ docker build -t bitnami/APP:latest .
 
 | Name                     | Description                            | Value                                   |
 |--------------------------|----------------------------------------|-----------------------------------------|
-| `SPARK_BASE_DIR`         | Spark installation directory.          | `${BITNAMI_ROOT_DIR}/spark`             |
+| `SPARK_BASE_DIR`         | Spark installation directory.          | `${BITMOA_ROOT_DIR}/spark`             |
 | `SPARK_CONF_DIR`         | Spark configuration directory.         | `${SPARK_BASE_DIR}/conf`                |
 | `SPARK_DEFAULT_CONF_DIR` | Spark default configuration directory. | `${SPARK_BASE_DIR}/conf.default`        |
 | `SPARK_WORK_DIR`         | Spark workspace directory.             | `${SPARK_BASE_DIR}/work`                |
@@ -128,7 +128,7 @@ For example, you could still use `SPARK_WORKER_CORES` or `SPARK_WORKER_MEMORY` t
 
 When you start the spark image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
 
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/spark/docker-compose.yml) file present in this repository:
+- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/spark/docker-compose.yml) file present in this repository:
 
 ```yaml
 spark:
@@ -144,7 +144,7 @@ spark:
 docker run -d --name spark \
   --network=spark_network \
   -e SPARK_MODE=master \
-  bitnami/spark
+  bitmoa/spark
 ```
 
 ### Security
@@ -176,7 +176,7 @@ Additionally, SSL configuration can be easily activated following the next steps
 
     > Please note that `KEY_PASSWORD`, `KEYSTORE_PASSWORD`, and `TRUSTSTORE_PASSWORD` are placeholders that needs to be updated with a correct value.
 
-2. You need to mount your spark keystore and truststore files to `/opt/bitnami/spark/conf/certs`. Please note they should be called `spark-keystore.jks` and `spark-truststore.jks` and they should be in JKS format.
+2. You need to mount your spark keystore and truststore files to `/opt/bitmoa/spark/conf/certs`. Please note they should be called `spark-keystore.jks` and `spark-truststore.jks` and they should be in JKS format.
 
 ### Setting up an Apache Spark Cluster
 
@@ -192,21 +192,21 @@ docker-compose up --scale spark-worker=3
 
 ### Mount a custom configuration file
 
-The image looks for configuration in the `conf/` directory of `/opt/bitnami/spark`.
+The image looks for configuration in the `conf/` directory of `/opt/bitmoa/spark`.
 
 #### Using docker-compose
 
 ```yaml
 ...
 volumes:
-  - /path/to/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf
+  - /path/to/spark-defaults.conf:/opt/bitmoa/spark/conf/spark-defaults.conf
 ...
 ```
 
 #### Using the command line
 
 ```console
-docker run --name spark -v /path/to/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf bitnami/spark:latest
+docker run --name spark -v /path/to/spark-defaults.conf:/opt/bitmoa/spark/conf/spark-defaults.conf bitmoa/spark:latest
 ```
 
 After that, your changes will be taken into account in the server's behaviour.
@@ -216,11 +216,11 @@ After that, your changes will be taken into account in the server's behaviour.
 By default, this container bundles a generic set of jar files but the default image can be extended to add as many jars as needed for your specific use case. For instance, the following Dockerfile adds [`aws-java-sdk-bundle-1.11.704.jar`](https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-bundle/1.11.704):
 
 ```Dockerfile
-FROM bitnami/spark
+FROM bitmoa/spark
 USER root
 RUN install_packages curl
 USER 1001
-RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.704/aws-java-sdk-bundle-1.11.704.jar --output /opt/bitnami/spark/jars/aws-java-sdk-bundle-1.11.704.jar
+RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.704/aws-java-sdk-bundle-1.11.704.jar --output /opt/bitmoa/spark/jars/aws-java-sdk-bundle-1.11.704.jar
 ```
 
 #### Using a different version of Hadoop jars
@@ -230,13 +230,13 @@ In a similar way that in the previous section, you may want to use a different v
 Go to <https://spark.apache.org/downloads.html> and copy the download url bundling the Hadoop version you want and matching the Apache Spark version of the container. Extend the Bitnami container image as below:
 
 ```Dockerfile
-FROM bitnami/spark:latest
+FROM bitmoa/spark:latest
 USER root
 RUN install_packages curl
 USER 1001
-RUN rm -r /opt/bitnami/spark/jars && \
+RUN rm -r /opt/bitmoa/spark/jars && \
     curl --location https://dlcdn.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz | \
-    tar --extract --gzip --strip=1 --directory /opt/bitnami/spark/ spark-3.5.0-bin-hadoop3/jars/
+    tar --extract --gzip --strip=1 --directory /opt/bitmoa/spark/ spark-3.5.0-bin-hadoop3/jars/
 ```
 
 You can check the Hadoop version by running the following commands in the new container image:
@@ -249,7 +249,7 @@ $ pyspark
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Spark Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitnami-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Spark Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -293,14 +293,14 @@ We need to mount two volumes in a container we will use to create the backup: a 
 
 ```console
 docker run --rm -v /path/to/spark-backups:/backups --volumes-from spark busybox \
-  cp -a /bitnami/spark /backups/latest
+  cp -a /bitmoa/spark /backups/latest
 ```
 
 or using Docker Compose:
 
 ```console
 docker run --rm -v /path/to/spark-backups:/backups --volumes-from `docker-compose ps -q spark` busybox \
-  cp -a /bitnami/spark /backups/latest
+  cp -a /bitmoa/spark /backups/latest
 ```
 
 ### Restoring a backup
@@ -308,17 +308,17 @@ docker run --rm -v /path/to/spark-backups:/backups --volumes-from `docker-compos
 Restoring a backup is as simple as mounting the backup as volumes in the container.
 
 ```console
-docker run -v /path/to/spark-backups/latest:/bitnami/spark bitnami/spark:latest
+docker run -v /path/to/spark-backups/latest:/bitmoa/spark bitmoa/spark:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/containers/blob/main/bitnami/spark/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/spark/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   spark:
   ...
     volumes:
-      - /path/to/spark-backups/latest:/bitnami/spark
+      - /path/to/spark-backups/latest:/bitmoa/spark
   ...
 ```
 
@@ -329,11 +329,11 @@ Bitnami provides up-to-date versions of spark, including security patches, soon 
 #### Step 1: Get the updated image
 
 ```console
-docker pull bitnami/spark:latest
+docker pull bitmoa/spark:latest
 ```
 
 or if you're using Docker Compose, update the value of the image property to
-`bitnami/spark:latest`.
+`bitmoa/spark:latest`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -358,7 +358,7 @@ docker-compose rm -v spark
 Re-create your container from the new image, [restoring your backup](#restoring-a-backup) if necessary.
 
 ```console
-docker run --name spark bitnami/spark:latest
+docker run --name spark bitmoa/spark:latest
 ```
 
 or using Docker Compose:
@@ -383,17 +383,17 @@ docker-compose up spark
 
 ## Using `docker-compose.yaml`
 
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/spark).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/spark).
 
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitnami/containers/blob/main/CONTRIBUTING.md).
+If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/containers/issues) or submitting a [pull request](https://github.com/bitnami/containers/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
 
 ## License
 

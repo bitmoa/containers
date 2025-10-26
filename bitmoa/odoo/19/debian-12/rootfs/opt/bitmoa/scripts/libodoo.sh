@@ -7,19 +7,19 @@
 # shellcheck disable=SC1091
 
 # Load generic libraries
-. /opt/bitnami/scripts/libfs.sh
-. /opt/bitnami/scripts/libos.sh
-. /opt/bitnami/scripts/libnet.sh
-. /opt/bitnami/scripts/libfile.sh
-. /opt/bitnami/scripts/libvalidations.sh
-. /opt/bitnami/scripts/libpersistence.sh
-. /opt/bitnami/scripts/libservice.sh
+. /opt/bitmoa/scripts/libfs.sh
+. /opt/bitmoa/scripts/libos.sh
+. /opt/bitmoa/scripts/libnet.sh
+. /opt/bitmoa/scripts/libfile.sh
+. /opt/bitmoa/scripts/libvalidations.sh
+. /opt/bitmoa/scripts/libpersistence.sh
+. /opt/bitmoa/scripts/libservice.sh
 
 # Load database library
-if [[ -f /opt/bitnami/scripts/libpostgresqlclient.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresqlclient.sh
-elif [[ -f /opt/bitnami/scripts/libpostgresql.sh ]]; then
-    . /opt/bitnami/scripts/libpostgresql.sh
+if [[ -f /opt/bitmoa/scripts/libpostgresqlclient.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresqlclient.sh
+elif [[ -f /opt/bitmoa/scripts/libpostgresql.sh ]]; then
+    . /opt/bitmoa/scripts/libpostgresql.sh
 fi
 
 ########################
@@ -116,7 +116,7 @@ odoo_initialize() {
     if ! is_app_initialized "$app_name"; then
         local -a db_execute_args=("$ODOO_DATABASE_HOST" "$ODOO_DATABASE_PORT_NUMBER" "$ODOO_DATABASE_NAME" "$ODOO_DATABASE_USER" "$ODOO_DATABASE_PASSWORD")
 
-        # Ensure Odoo persisted directories exist (i.e. when a volume has been mounted to /bitnami)
+        # Ensure Odoo persisted directories exist (i.e. when a volume has been mounted to /bitmoa)
         info "Ensuring Odoo directories exist"
         ensure_dir_exists "$ODOO_VOLUME_DIR"
         # Use daemon:root ownership for compatibility when running as a non-root user
@@ -136,11 +136,11 @@ odoo_initialize() {
         fi
 
         info "Generating configuration file"
-        local template_dir="${BITNAMI_ROOT_DIR}/scripts/odoo/bitnami-templates"
+        local template_dir="${BITMOA_ROOT_DIR}/scripts/odoo/bitmoa-templates"
         # Configure polling port parameter depending on Odoo version
         event_port_parameter="gevent_port"
         list_db="$(is_boolean_yes "$ODOO_LIST_DB" && echo 'True' || echo 'False')" \
-            odoo_debug="$(is_boolean_yes "$BITNAMI_DEBUG" && echo 'True' || echo 'False')" \
+            odoo_debug="$(is_boolean_yes "$BITMOA_DEBUG" && echo 'True' || echo 'False')" \
             event_port_parameter="$event_port_parameter" \
             render-template "${template_dir}/odoo.conf.tpl" > "$ODOO_CONF_FILE"
 

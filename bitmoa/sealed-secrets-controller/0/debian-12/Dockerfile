@@ -1,7 +1,7 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM docker.io/bitnami/minideb:bookworm AS builder
+FROM ghcr.io/bitmoa/minideb:bookworm AS builder
 
 ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
@@ -15,7 +15,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages ca-certificates curl
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
-    mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
+    mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "sealed-secrets-0.32.2-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -25,7 +25,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
         curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
       fi ; \
       sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
+      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitmoa --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 RUN uninstall_packages curl
@@ -41,20 +41,20 @@ ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
       org.opencontainers.image.created="2025-10-14T06:32:28Z" \
-      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
+      org.opencontainers.image.description="Application packaged by Bitmoa" \
       org.opencontainers.image.title="sealed-secrets-controller" \
-      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="0.32.2"
 
 COPY rootfs /
-COPY --from=builder /opt/bitnami/sealed-secrets/.spdx-sealed-secrets.spdx /opt/bitnami/sealed-secrets/.spdx-sealed-secrets.spdx
-COPY --from=builder /opt/bitnami/sealed-secrets/bin/controller /opt/bitnami/sealed-secrets/bin/controller
-COPY --from=builder /opt/bitnami/sealed-secrets/licenses /opt/bitnami/sealed-secrets/licenses
+COPY --from=builder /opt/bitmoa/sealed-secrets/.spdx-sealed-secrets.spdx /opt/bitmoa/sealed-secrets/.spdx-sealed-secrets.spdx
+COPY --from=builder /opt/bitmoa/sealed-secrets/bin/controller /opt/bitmoa/sealed-secrets/bin/controller
+COPY --from=builder /opt/bitmoa/sealed-secrets/licenses /opt/bitmoa/sealed-secrets/licenses
 
 ENV APP_VERSION="0.32.2" \
-    BITNAMI_APP_NAME="sealed-secrets-controller" \
+    BITMOA_APP_NAME="sealed-secrets-controller" \
     IMAGE_REVISION="2" \
-    PATH="/opt/bitnami/sealed-secrets/bin:$PATH"
+    PATH="/opt/bitmoa/sealed-secrets/bin:$PATH"
 
 USER 1001
 

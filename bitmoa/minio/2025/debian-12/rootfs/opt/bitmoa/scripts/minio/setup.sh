@@ -10,14 +10,14 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitnami/scripts/liblog.sh
-. /opt/bitnami/scripts/libminio.sh
+. /opt/bitmoa/scripts/liblog.sh
+. /opt/bitmoa/scripts/libminio.sh
 
 # Load MinIO environment
-. /opt/bitnami/scripts/minio-env.sh
+. /opt/bitmoa/scripts/minio-env.sh
 
 # Load MinIO Client environment
-. /opt/bitnami/scripts/minio-client-env.sh
+. /opt/bitmoa/scripts/minio-client-env.sh
 
 # Validate settings in MINIO_* env vars.
 minio_validate

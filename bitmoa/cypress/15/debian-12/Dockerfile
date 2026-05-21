@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-18T03:16:39Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-16T23:14:57Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/cypress/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/cypress" \
       org.opencontainers.image.title="cypress" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="15.5.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="15.14.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,9 +28,9 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.14.0-4-linux-${OS_ARCH}-debian-12" \
-      "node-24.10.0-0-linux-${OS_ARCH}-debian-12" \
-      "cypress-15.5.0-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.14.4-5-linux-${OS_ARCH}-debian-12" \
+      "node-24.15.0-0-linux-${OS_ARCH}-debian-12" \
+      "cypress-15.14.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -49,7 +49,7 @@ RUN mkdir /.local && chmod g+rwX /.local
 RUN uninstall_packages curl
 
 RUN mkdir /app && chmod g+rwX -R /app /opt/bitmoa/node/cypress-cache && ln -s /app /e2e && mkdir -p /usr/local/lib /usr/local/bin && ln -s /opt/bitmoa/node/node_modules /usr/local/lib/node_modules && ln -s /usr/local/lib/node_modules/cypress/bin/cypress /usr/local/bin/cypress && mkdir -p /.pki /.local /.config /.cache /.fontconfig && chmod g+rwX -R /.pki /.local /.cache /.config /.fontconfig
-ENV APP_VERSION="15.5.0" \
+ENV APP_VERSION="15.14.0" \
     BITMOA_APP_NAME="cypress" \
     CYPRESS_CACHE_FOLDER="/opt/bitmoa/node/cypress-cache" \
     IMAGE_REVISION="0" \

@@ -12,7 +12,7 @@ services:
     volumes:
       - 'postgresql_data:/bitmoa/postgresql'
   concourse:
-    image: ghcr.io/bitmoa/concourse:7
+    image: ghcr.io/bitmoa/concourse:8
     command: concourse web
     environment:
       - CONCOURSE_RUNTIME=containerd
@@ -31,7 +31,7 @@ services:
     volumes:
       - 'concourse_web_data:/bitmoa/concourse'
   concourse_worker:
-    image: ghcr.io/bitmoa/concourse:7
+    image: ghcr.io/bitmoa/concourse:8
     command: concourse worker
     privileged: true
     environment:

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-14T03:46:44Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-07T22:45:21Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/cluster-autoscaler/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/cluster-autoscaler" \
       org.opencontainers.image.title="cluster-autoscaler" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="1.34.1"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="1.35.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "cluster-autoscaler-1.34.1-0-linux-${OS_ARCH}-debian-12" \
+      "cluster-autoscaler-1.35.0-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -48,9 +48,9 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN chmod -R g+rwX /opt/bitmoa/cluster-autoscaler/
-ENV APP_VERSION="1.34.1" \
+ENV APP_VERSION="1.35.0" \
     BITMOA_APP_NAME="cluster-autoscaler" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="4" \
     PATH="/opt/bitmoa/cluster-autoscaler/bin:$PATH"
 
 WORKDIR /opt/bitmoa/cluster-autoscaler

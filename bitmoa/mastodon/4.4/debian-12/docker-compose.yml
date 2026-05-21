@@ -26,7 +26,7 @@ services:
       - ELASTICSEARCH_ENABLE_REST_TLS=false
       - ELASTICSEARCH_PASSWORD=bitmoa123
   mastodon:
-    image: ghcr.io/bitmoa/mastodon:4.4
+    image: ghcr.io/bitmoa/mastodon:4.5
     ports:
       - 80:3000
     volumes:
@@ -37,7 +37,7 @@ services:
       - MASTODON_DATABASE_PASSWORD=bitmoa1
       - MASTODON_ELASTICSEARCH_PASSWORD=bitmoa123
   mastodon-streaming:
-    image: ghcr.io/bitmoa/mastodon:4.4
+    image: ghcr.io/bitmoa/mastodon:4.5
     ports:
       - 4000:4000
     environment:
@@ -46,7 +46,7 @@ services:
       - MASTODON_DATABASE_PASSWORD=bitmoa1
       - MASTODON_ELASTICSEARCH_PASSWORD=bitmoa123
   mastodon-sidekiq:
-    image: ghcr.io/bitmoa/mastodon:4.4
+    image: ghcr.io/bitmoa/mastodon:4.5
     volumes:
       - 'mastodon_data:/bitmoa/mastodon'
     environment:

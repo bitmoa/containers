@@ -1,6 +1,0 @@
-binaries:
-  - cluster-autoscaler
-directories:
-  - paths:
-      - /opt/bitmoa/cluster-autoscaler/log
-root_dir: /opt/bitmoa

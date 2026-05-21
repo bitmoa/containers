@@ -8,8 +8,8 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T12:53:20Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T19:18:44Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/janusgraph/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/janusgraph" \
       org.opencontainers.image.title="janusgraph" \
@@ -31,8 +31,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "yq-4.47.2-0-linux-${OS_ARCH}-debian-12" \
-      "jre-11.0.28-12-1-linux-${OS_ARCH}-debian-12" \
+      "yq-4.52.5-1-linux-${OS_ARCH}-debian-12" \
+      "jre-11.0.30-9-1-linux-${OS_ARCH}-debian-12" \
       "janusgraph-1.1.0-3-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -55,7 +55,7 @@ RUN /opt/bitmoa/scripts/janusgraph/postunpack.sh
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 ENV APP_VERSION="1.1.0" \
     BITMOA_APP_NAME="janusgraph" \
-    IMAGE_REVISION="25" \
+    IMAGE_REVISION="35" \
     JAVA_HOME="/opt/bitmoa/java"
 
 USER 1001

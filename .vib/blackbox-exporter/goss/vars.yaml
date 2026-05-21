@@ -1,6 +1,0 @@
-binaries:
-  - blackbox_exporter
-root_dir: /opt/bitmoa
-version:
-  bin_name: blackbox_exporter
-  flag: --version

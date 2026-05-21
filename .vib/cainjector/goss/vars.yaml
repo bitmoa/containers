@@ -1,6 +1,0 @@
-binaries:
-  - cainjector
-directories:
-  - paths:
-      - /opt/bitmoa/cainjector
-root_dir: /opt/bitmoa

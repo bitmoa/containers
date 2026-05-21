@@ -3,7 +3,7 @@
 
 services:
   solr:
-    image: ghcr.io/bitmoa/solr:9
+    image: ghcr.io/bitmoa/solr:10
     environment:
       - SOLR_ENABLE_AUTHENTICATION=yes
     ports:

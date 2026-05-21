@@ -7,8 +7,8 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T03:10:03Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T21:47:05Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/tensorflow-resnet/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/tensorflow-resnet" \
       org.opencontainers.image.title="tensorflow-resnet" \
@@ -48,7 +48,7 @@ RUN mkdir /.local && chmod g+rwX /.local
 COPY rootfs /
 ENV APP_VERSION="2.19.1" \
     BITMOA_APP_NAME="tensorflow-resnet" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="10" \
     PATH="/opt/bitmoa/tensorflow-resnet/bin:$PATH"
 
 USER 1001

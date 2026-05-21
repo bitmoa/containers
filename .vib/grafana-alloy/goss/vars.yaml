@@ -1,9 +1,0 @@
-binaries:
-  - alloy
-root_dir: /opt/bitmoa
-directories:
-  - paths:
-      - /opt/bitmoa/grafana-alloy
-version:
-  bin_name: alloy
-  flag: --version

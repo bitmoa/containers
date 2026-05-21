@@ -1,9 +1,0 @@
-binaries:
-  - cadvisor
-root_dir: /opt/bitmoa
-directories:
-  - paths:
-      - /opt/bitmoa/cadvisor
-version:
-  bin_name: cadvisor
-  flag: -version

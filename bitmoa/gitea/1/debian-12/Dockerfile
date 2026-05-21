@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-25T01:48:56Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-20T07:33:16Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/gitea/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/gitea" \
       org.opencontainers.image.title="gitea" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="1.24.7"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="1.26.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,10 +29,10 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "wait-for-port-1.0.10-3-linux-${OS_ARCH}-debian-12" \
-      "render-template-1.0.9-158-linux-${OS_ARCH}-debian-12" \
-      "ini-file-1.4.9-3-linux-${OS_ARCH}-debian-12" \
-      "gitea-1.24.7-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
+      "ini-file-1.4.9-9-linux-${OS_ARCH}-debian-12" \
+      "gitea-1.26.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,7 +50,7 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/gitea/postunpack.sh
-ENV APP_VERSION="1.24.7" \
+ENV APP_VERSION="1.26.0" \
     BITMOA_APP_NAME="gitea" \
     IMAGE_REVISION="0" \
     NSS_WRAPPER_LIB="/opt/bitmoa/common/lib/libnss_wrapper.so" \

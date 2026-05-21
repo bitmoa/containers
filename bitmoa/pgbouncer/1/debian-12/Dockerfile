@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T13:46:33Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T20:33:15Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/pgbouncer/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/pgbouncer" \
       org.opencontainers.image.title="pgbouncer" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="1.24.1"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="1.25.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,10 +29,10 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "wait-for-port-1.0.10-1-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-14.19.0-0-linux-${OS_ARCH}-debian-12" \
-      "ini-file-1.4.9-1-linux-${OS_ARCH}-debian-12" \
-      "pgbouncer-1.24.1-1-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-14.22.0-0-linux-${OS_ARCH}-debian-12" \
+      "ini-file-1.4.9-9-linux-${OS_ARCH}-debian-12" \
+      "pgbouncer-1.25.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -55,11 +55,12 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/pgbouncer/postunpack.sh
-ENV APP_VERSION="1.24.1" \
+ENV APP_VERSION="1.25.1" \
     BITMOA_APP_NAME="pgbouncer" \
-    IMAGE_REVISION="14" \
+    IMAGE_REVISION="7" \
     LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
+    LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     NSS_WRAPPER_LIB="/opt/bitmoa/common/lib/libnss_wrapper.so" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/pgbouncer/bin:$PATH"
 

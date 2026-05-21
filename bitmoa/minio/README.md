@@ -1,11 +1,9 @@
 # Bitnami Object Storage based on MinIO&reg;
 
-## What is Bitnami Object Storage based on MinIO&reg;?
-
 > MinIO&reg; is an object storage server, compatible with Amazon S3 cloud storage service, mainly used for storing unstructured data (such as photos, videos, log files, etc.).
 
 [Overview of Bitnami Object Storage based on MinIO&reg;](https://min.io/)
-Disclaimer: All software products, projects and company names are trademark(TM) or registered(R) trademarks of their respective holders, and use of them does not imply any affiliation or endorsement. This software is licensed to you subject to one or more open source licenses and VMware provides the software on an AS-IS basis. MinIO(R) is a registered trademark of the MinIO Inc. in the US and other countries. Bitnami is not affiliated, associated, authorized, endorsed by, or in any way officially connected with MinIO Inc. MinIO(R) is licensed under GNU AGPL v3.0.
+All software products, projects and company names are trademark(TM) or registered(R) trademarks of their respective holders, and use of them does not imply any affiliation or endorsement. This software is licensed to you subject to one or more open source licenses and VMware provides the software on an AS-IS basis. MinIO(R) is a registered trademark of the MinIO, Inc in the US and other countries. Bitnami is not affiliated, associated, authorized, endorsed by, or in any way officially connected with MinIO Inc. MinIO(R) is licensed under GNU AGPL v3.0.
 
 ## TL;DR
 
@@ -13,27 +11,22 @@ Disclaimer: All software products, projects and company names are trademark(TM) 
 docker run --name minio bitmoa/minio:latest
 ```
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
-
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
-
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
-
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## How to deploy MinIO(R) in Kubernetes?
 
@@ -47,83 +40,21 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami MinIO(R) Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/minio).
+The Bitnami Bitnami Object Storage based on MinIO&reg; Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
-```console
-docker pull bitmoa/minio:latest
-```
+## Using `docker-compose.yaml`
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/minio/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/minio:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/minio).
 
 ## Persisting your database
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitmoa/minio/data` path.
+For persistence you should mount a directory at the `/bitmoa/minio/data` path. You can also mount a volume to a custom path inside the container, provided that you run the container using the `MINIO_DATA_DIR` environment variable.
 
-```console
-docker run --name minio \
-    --publish 9000:9000 \
-    --publish 9001:9001 \
-    --volume /path/to/minio-persistence:/bitmoa/minio/data \
-    bitmoa/minio:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/minio/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  minio:
-  ...
-    volumes:
-      - /path/to/minio-persistence:/bitmoa/minio/data
-  ...
-```
-
-You can also mount a volume to a custom path inside the container, provided that you run the container using the `MINIO_DATA_DIR` environment variable.
-
-```console
-docker run --name minio \
-    --publish 9000:9000 \
-    --publish 9001:9001 \
-    --volume /path/to/minio-persistence:/custom/path/within/container \
-    --env MINIO_DATA_DIR=/custom/path/within/container \
-    bitmoa/minio:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/minio/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  minio:
-  ...
-    volumes:
-      - /path/to/minio-persistence:/custom/path/within/container
-  ...
-    environment:
-      - MINIO_DATA_DIR=/custom/path/within/container
-  ...
-```
-
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
+> **NOTE** As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
 
 ## Connecting to other containers
 
@@ -131,88 +62,13 @@ Using [Docker container networking](https://docs.docker.com/engine/userguide/net
 
 Containers attached to the same network can communicate with each other using the container name as the hostname.
 
-### Using the Command Line
-
-In this example, we will create a [MinIO(R) client](https://github.com/bitmoa/containers/blob/main/bitmoa/minio-client) container that will connect to the server container that is running on the same docker network as the client.
-
-#### Step 1: Create a network
-
-```console
-docker network create app-tier --driver bridge
-```
-
-#### Step 2: Launch the MinIO(R) server container
-
-Use the `--network app-tier` argument to the `docker run` command to attach the MinIO(R) container to the `app-tier` network.
-
-```console
-docker run -d --name minio-server \
-    --env MINIO_ROOT_USER="minio-root-user" \
-    --env MINIO_ROOT_PASSWORD="minio-root-password" \
-    --network app-tier \
-    bitmoa/minio:latest
-```
-
-#### Step 3: Launch your MinIO(R) Client container
-
-Finally we create a new container instance to launch the MinIO(R) client and connect to the server created in the previous step. In this example, we create a new bucket in the MinIO(R) storage server:
-
-```console
-docker run -it --rm --name minio-client \
-    --env MINIO_SERVER_HOST="minio-server" \
-    --env MINIO_SERVER_ACCESS_KEY="minio-access-key" \
-    --env MINIO_SERVER_SECRET_KEY="minio-secret-key" \
-    --network app-tier \
-    bitmoa/minio-client \
-    mb minio/my-bucket
-```
-
-### Using a Docker Compose file
-
-When not specified, Docker Compose automatically sets up a new network and attaches all deployed services to that network. However, we will explicitly define a new `bridge` network named `app-tier`. In this example we assume that you want to connect to the MinIO(R) server from your own custom application image which is identified in the following snippet by the service name `myapp`.
-
-```yaml
-version: '2'
-
-networks:
-  app-tier:
-    driver: bridge
-
-services:
-  minio:
-    image: bitmoa/minio:latest
-    ports:
-      - 9000:9000
-      - 9001:9001
-    environment:
-      - MINIO_ROOT_USER=minio-root-user
-      - MINIO_ROOT_PASSWORD=minio-root-password
-    networks:
-      - app-tier
-  myapp:
-    image: YOUR_APPLICATION_IMAGE
-    networks:
-      - app-tier
-    environment:
-      - MINIO_SERVER_ACCESS_KEY=minio-access-key
-      - MINIO_SERVER_SECRET_KEY=minio-secret-key
-```
-
-> **IMPORTANT**:
->
-> 1. Please update the **YOUR_APPLICATION_IMAGE_** placeholder in the above snippet with your application image
-> 2. In your application container, use the hostname `minio` to connect to the MinIO(R) server. Use the environment variables `MINIO_SERVER_ACCESS_KEY` and `MINIO_SERVER_SECRET_KEY` to configure the credentials to access the MinIO(R) server.
-> 3. Make sure that the environment variables `MINIO_ROOT_PASSWORD` and `MINIO_SERVER_SECRET_KEY` meet the 8 character minimum length requirement enforced by MinIO(R).
-
-Launch the containers using:
-
-```console
-docker-compose up -d
-```
-
 ## Configuration
 
+The following section describes the supported environment variables
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -270,56 +126,13 @@ docker-compose exec minio mc admin info local
 
 ### Creating default buckets
 
-You can create a series of buckets in the MinIO(R) server during the initialization of the container by setting the environment variable `MINIO_DEFAULT_BUCKETS` as shown below (policy is optional):
-
-```console
-docker run --name minio \
-    --publish 9000:9000 \
-    --publish 9001:9001 \
-    --env MINIO_DEFAULT_BUCKETS='my-first-bucket:policy,my-second-bucket' \
-    bitmoa/minio:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/minio/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  minio:
-  ...
-    environment:
-      - MINIO_DEFAULT_BUCKETS=my-first-bucket:policy,my-second-bucket
-  ...
-```
+You can create a series of buckets in the MinIO(R) server during the initialization of the container by setting the environment variable `MINIO_DEFAULT_BUCKETS`.
 
 ### Securing access to MinIO(R) server with TLS
 
 You can secure the access to MinIO(R) server with TLS as detailed at [MinIO(R) documentation](https://docs.min.io/docs/how-to-secure-access-to-minio-server-with-tls.html).
 
-This image expects the variable `MINIO_SCHEME` set to `https` and certificates to be mounted at the `/certs` directory. You can put your key and certificate files on a local directory and mount it in the container as shown below:
-
-```console
-docker run --name minio \
-    --publish 9000:9000 \
-    --publish 9001:9001 \
-    --volume /path/to/certs:/certs \
-    --env MINIO_SCHEME=https
-    bitmoa/minio:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/minio/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  minio:
-  ...
-    environment:
-    ...
-      - MINIO_SCHEME=https
-    ...
-    volumes:
-      - /path/to/certs:/certs
-  ...
-```
+This image expects the variable `MINIO_SCHEME` set to `https` and certificates to be mounted at the `/certs` directory. You can put your key and certificate files on a local directory and mount it in the container.
 
 ### Setting up MinIO(R) in Distributed Mode
 
@@ -330,104 +143,19 @@ You can configure MinIO(R) in Distributed Mode to setup a highly-available stora
 - `MINIO_ROOT_USER`: MinIO(R) server root user. Must be common on every node.
 - `MINIO_ROOT_PASSWORD`: MinIO(R) server root password. Must be common on every node.
 
-You can use the Docker Compose below to create an 4-node distributed MinIO(R) setup:
-
-```yaml
-version: '2'
-
-services:
-  minio1:
-    image: bitmoa/minio:latest
-    environment:
-      - MINIO_ROOT_USER=minio-root-user
-      - MINIO_ROOT_PASSWORD=minio-root-password
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio1,minio2,minio3,minio4
-      - MINIO_SKIP_CLIENT=yes
-  minio2:
-    image: bitmoa/minio:latest
-    environment:
-      - MINIO_ROOT_USER=minio-root-user
-      - MINIO_ROOT_PASSWORD=minio-root-password
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio1,minio2,minio3,minio4
-      - MINIO_SKIP_CLIENT=yes
-  minio3:
-    image: bitmoa/minio:latest
-    environment:
-      - MINIO_ROOT_USER=minio-root-user
-      - MINIO_ROOT_PASSWORD=minio-root-password
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio1,minio2,minio3,minio4
-      - MINIO_SKIP_CLIENT=yes
-  minio4:
-    image: bitmoa/minio:latest
-    environment:
-      - MINIO_ROOT_USER=minio-root-user
-      - MINIO_ROOT_PASSWORD=minio-root-password
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio1,minio2,minio3,minio4
-      - MINIO_SKIP_CLIENT=yes
-```
-
-MinIO(R) also supports ellipsis syntax (`{1..n}`) to list the MinIO(R) node hosts, where `n` is the number of nodes. This syntax is also valid to use multiple drives (`{1..m}`) on each MinIO(R) node, where `n` is the number of drives per node. You can use the Docker Compose below to create an 2-node distributed MinIO(R) setup with 2 drives per node:
-
-```yaml
-version: '2'
-services:
-  minio-0:
-    image: bitmoa/minio:latest
-    volumes:
-      - minio_0_data_0:/bitmoa/minio/data-0
-      - minio_0_data_1:/bitmoa/minio/data-1
-    environment:
-      - MINIO_ROOT_USER=minio
-      - MINIO_ROOT_PASSWORD=miniosecret
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-{0...1}/bitmoa/minio/data-{0...1}
-  minio-1:
-    image: bitmoa/minio:latest
-    volumes:
-      - minio_1_data_0:/bitmoa/minio/data-0
-      - minio_1_data_1:/bitmoa/minio/data-1
-    environment:
-      - MINIO_ROOT_USER=minio
-      - MINIO_ROOT_PASSWORD=miniosecret
-      - MINIO_DISTRIBUTED_MODE_ENABLED=yes
-      - MINIO_DISTRIBUTED_NODES=minio-{0...1}/bitmoa/minio/data-{0...1}
-volumes:
-  minio_0_data_0:
-    driver: local
-  minio_0_data_1:
-    driver: local
-  minio_1_data_0:
-    driver: local
-  minio_1_data_1:
-    driver: local
-```
+MinIO(R) also supports ellipsis syntax (`{1..n}`) to list the MinIO(R) node hosts, where `n` is the number of nodes. This syntax is also valid to use multiple drives (`{1..m}`) on each MinIO(R) node, where `n` is the number of drives per node.
 
 Find more information about the Distributed Mode in the [MinIO(R) documentation](https://docs.min.io/docs/distributed-minio-quickstart-guide.html).
 
 ### Reconfiguring Keys on container restarts
 
-MinIO(R) configures the access & secret key during the 1st initialization based on the `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD` environment variables, respetively.
+MinIO(R) configures the access & secret key during the 1st initialization based on the `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD` environment variables, respectively.
 
-When using persistence, MinIO(R) will reuse the data configured during the 1st initialization by default, ignoring whatever values are set on these environment variables. You can force MinIO(R) to reconfigure the keys based on the environment variables by setting the `MINIO_FORCE_NEW_KEYS` environment variable to `yes`:
-
-```console
-docker run --name minio \
-    --publish 9000:9000 \
-    --publish 9001:9001 \
-    --env MINIO_FORCE_NEW_KEYS="yes" \
-    --env MINIO_ROOT_USER="new-minio-root-user" \
-    --env MINIO_ROOT_PASSWORD="new-minio-root-password" \
-    --volume /path/to/minio-persistence:/bitmoa/minio/data \
-    bitmoa/minio:latest
-```
+When using persistence, MinIO(R) will reuse the data configured during the 1st initialization by default, ignoring whatever values are set on these environment variables. You can force MinIO(R) to reconfigure the keys based on the environment variables by setting the `MINIO_FORCE_NEW_KEYS` environment variable to `yes`.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Bitnami Object Storage based on MinIO&reg; Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Bitnami Object Storage based on MinIO&reg; Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -453,109 +181,9 @@ To enable HTTP log trace, you can set the environment variable `MINIO_HTTP_TRACE
 
 When setting this environment variable to `/opt/bitmoa/minio/log/minio.log`, the logs will be sent to the `stdout`.
 
-```console
-docker run --name minio \
-    --publish 9000:9000 \
-    --publish 9001:9001 \
-    --env MINIO_HTTP_TRACE=/opt/bitmoa/minio/log/minio.log \
-    bitmoa/minio:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/minio/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  minio:
-  ...
-    environment:
-      - MINIO_HTTP_TRACE=/opt/bitmoa/minio/log/minio.log
-  ...
-```
-
-## Maintenance
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of MinIO(R), including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/minio:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to
-`bitmoa/minio:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Stop the currently running container using the command
-
-```console
-docker stop minio
-```
-
-or using Docker Compose:
-
-```console
-docker-compose stop minio
-```
-
-Next, take a snapshot of the persistent volume `/path/to/minio-persistence` using:
-
-```console
-rsync -a /path/to/minio-persistence /path/to/minio-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
-```
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v minio
-```
-
-or using Docker Compose:
-
-```console
-docker-compose rm -v minio
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image.
-
-```console
-docker run --name minio bitmoa/minio:latest
-```
-
-or using Docker Compose:
-
-```console
-docker-compose up minio
-```
-
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/minio).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
-
-- Host OS and version
-- Docker version (`docker version`)
-- Output of `docker info`
-- Version of this container
-- The command you used to run the container, and any relevant output you saw (masking any sensitive information)
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

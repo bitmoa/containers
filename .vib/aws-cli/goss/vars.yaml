@@ -1,7 +1,0 @@
-binaries:
-  - aws
-  - python
-root_dir: /opt/bitmoa
-version:
-  bin_name: aws
-  flag: --version

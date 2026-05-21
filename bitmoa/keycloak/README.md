@@ -1,6 +1,4 @@
-# Bitnami package for Keycloak
-
-## What is Keycloak?
+# Bitnami Secure Image for Keycloak
 
 > Keycloak is a high performance Java-based identity and access management solution. It lets developers add an authentication layer to their applications with minimum effort.
 
@@ -13,31 +11,32 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 docker run --name keycloak bitmoa/keycloak:latest
 ```
 
-**Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
+## Using `docker-compose.yml`
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+[https://github.com/bitmoa/containers/tree/main/bitmoa/keycloak/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/keycloak/docker-compose.yml)
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/keycloak).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
 
-## How to deploy Keycloak in Kubernetes?
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
+
+## How to deploy Keycloak in Kubernetes
 
 Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Keycloak Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/keycloak).
 
@@ -49,35 +48,17 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami keycloak Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/keycloak).
-
-```console
-docker pull bitmoa/keycloak:latest
-```
-
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/keycloak/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/keycloak:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+The Bitnami Keycloak Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
 ## Configuration
 
+The following sections describe environment variables and related settings.
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -145,7 +126,7 @@ docker build -t bitmoa/APP:latest .
 
 ### Extra arguments to Keycloak startup
 
-In case you want to add extra flags to the Keycloak use the `KEYCLOAK_EXTRA_ARGS` variable. Example:
+In case you want to add extra flags to Keycloak use the `KEYCLOAK_EXTRA_ARGS` variable. Example:
 
 ```console
 docker run --name keycloak \
@@ -173,32 +154,23 @@ docker run --name keycloak \
   bitmoa/keycloak:latest
 ```
 
-Or with docker-compose
+### TLS encryption
 
-```yaml
-keycloak:
-  image: bitmoa/keycloak:latest
-  volumes:
-    - /path/to/init-scripts:/docker-entrypoint-initdb.d
-```
+The Bitnami Keycloak Docker image allows configuring HTTPS/TLS encryption. This is done by mounting in `/opt/bitmoa/keycloak/certs` two files:
 
-### TLS Encryption
+- `keystore`: File with the server `keystore`
+- `truststore`: File with the server `truststore`
 
-The Bitnami Keycloak Docker image allows configuring HTTPS/TLS encription. This is done by mounting in `/opt/bitmoa/keycloak/certs` two files:
-
-- `keystore`: File with the server keystore
-- `truststore`: File with the server truststore
-
-> Note: find more information about how to create these files at the [Keycloak documentation](https://www.keycloak.org/server/keycloak-truststore).
+> **NOTE** Find more information about how to create these files at the [Keycloak documentation](https://www.keycloak.org/server/keycloak-truststore).
 
 Apart from that, the following environment variables must be set:
 
-- `KEYCLOAK_ENABLE_HTTPS`: Enable TLS encryption using the keystore. Default: **false**.
-- `KEYCLOAK_HTTPS_KEY_STORE_FILE`: Path to the keystore file (e.g. `/opt/bitmoa/keycloak/certs/keystore.jks`). No defaults.
-- `KEYCLOAK_HTTPS_TRUST_STORE_FILE`: Path to the truststore file (e.g. `/opt/bitmoa/keycloak/certs/truststore.jks`). No defaults.
-- `KEYCLOAK_HTTPS_KEY_STORE_PASSWORD`: Password for accessing the keystore. No defaults.
-- `KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD`: Password for accessing the truststore. No defaults.
-- `KEYCLOAK_HTTPS_USE_PEM`: Set to true to configure HTTPS using PEM certificates'. Default: **false**.
+- `KEYCLOAK_ENABLE_HTTPS`: Enable TLS encryption using the `keystore`. Default: **false**.
+- `KEYCLOAK_HTTPS_KEY_STORE_FILE`: Path to the `keystore` file (e.g. `/opt/bitmoa/keycloak/certs/keystore.jks`). No defaults.
+- `KEYCLOAK_HTTPS_TRUST_STORE_FILE`: Path to the `truststore` file (e.g. `/opt/bitmoa/keycloak/certs/truststore.jks`). No defaults.
+- `KEYCLOAK_HTTPS_KEY_STORE_PASSWORD`: Password for accessing the `keystore`. No defaults.
+- `KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD`: Password for accessing the `truststore`. No defaults.
+- `KEYCLOAK_HTTPS_USE_PEM`: Set to true to configure HTTPS using PEM certificates. Default: **false**.
 - `KEYCLOAK_HTTPS_CERTIFICATE_FILE`: Path to the PEM certificate file (e.g. `/opt/bitmoa/keycloak/certs/tls.crt`). No defaults.
 - `KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE`: Path to the PEM key file (e.g. `/opt/bitmoa/keycloak/certs/tls.key`). No defaults.
 
@@ -234,16 +206,15 @@ volumes:
 
 ### Enabling metrics
 
-The Bitnami Keycloak container can activate different set of metrics (database, jgroups and http) by setting the environment variable `KC_METRICS_ENABLED=true`. See [the official documentation](https://www.keycloak.org/observability/configuration-metrics) for more information about these metrics.
+The Bitnami Keycloak container can activate different set of metrics (database, `jgroups` and HTTP) by setting the environment variable `KC_METRICS_ENABLED=true`. See [the official documentation](https://www.keycloak.org/observability/configuration-metrics) for more information about these metrics.
 
 ### Enabling health endpoints
 
-The Bitnami Keycloak container can activate several endpoints providing information about the health of Keycloak, by setting the environment variable `KC_HEALTH_ENABLED=true`.
-See [the official documentation](https://www.keycloak.org/observability/health) for more information about these endpoints.
+The Bitnami Keycloak container can activate several endpoints providing information about the health of Keycloak by setting the environment variable `KC_HEALTH_ENABLED=true`. See [the official documentation](https://www.keycloak.org/observability/health) for more information about these endpoints.
 
 ### Full configuration
 
-The image looks for configuration files in the `/bitmoa/keycloak/conf/` directory, this directory can be changed by setting the `KEYCLOAK_MOUNTED_CONF_DIR` environment variable.
+The image looks for configuration files in the `/bitmoa/keycloak/conf/` directory. This directory can be changed by setting the `KEYCLOAK_MOUNTED_CONF_DIR` environment variable.
 
 ```console
 docker run --name keycloak \
@@ -251,24 +222,17 @@ docker run --name keycloak \
     bitmoa/keycloak:latest
 ```
 
-Or with docker-compose
-
-```yaml
-keycloak:
-  image: bitmoa/keycloak:latest
-  volumes:
-    - /path/to/keycloak.conf:/bitmoa/keycloak/conf/keycloak.conf:ro
-```
-
 After that, your changes will be taken into account in the server's behaviour.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Keycloak Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Keycloak Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
-## Notable Changes
+## Notable changes
+
+The following subsections describe notable changes.
 
 ### 26.3.2-debian-12-r1
 
@@ -282,7 +246,7 @@ The following environment variables have been deprecated. Instead rely on the na
 - `KEYCLOAK_ADMIN_USER` and `KEYCLOAK_BOOTSTRAP_ADMIN_PASSWORD`
 
 The [https://github.com/aerogear/keycloak-metrics-spi](https://github.com/aerogear/keycloak-metrics-spi) provider is no longer shipped by default in the container image.
-Also, support for deprecated SPI truststore was removed.
+Also, support for deprecated SPI `truststore` was removed.
 
 ### 19-debian-11-r4
 
@@ -293,30 +257,16 @@ Also, support for deprecated SPI truststore was removed.
   - `KEYCLOAK_TLS_KEYSTORE_PASSWORD` was renamed as `KEYCLOAK_TLS_KEY_STORE_PASSWORD`.
   - `KEYCLOAK_TLS_TRUSTSTORE_PASSWORD` was renamed as `KEYCLOAK_TLS_TRUST_STORE_PASSWORD`.
 - HTTPS/TLS can now be configured using PEM certificates.
-- Added support to add SPI truststore file.
+- Added support to add SPI `truststore` file.
 
 ### 17-debian-10
 
 Keycloak 17 is powered by Quarkus and to deploy it in production mode it is necessary to set up TLS.
 To do this you need to set `KEYCLOAK_PRODUCTION` to **true** and configure TLS
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/keycloak).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

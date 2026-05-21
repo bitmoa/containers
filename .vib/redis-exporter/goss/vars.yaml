@@ -1,6 +1,0 @@
-binaries:
-  - redis_exporter
-root_dir: /opt/bitmoa
-version:
-  bin_name: redis_exporter
-  flag: -version

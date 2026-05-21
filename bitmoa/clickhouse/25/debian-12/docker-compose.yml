@@ -3,7 +3,7 @@
 
 services:
   clickhouse:
-    image: ghcr.io/bitmoa/clickhouse:25
+    image: ghcr.io/bitmoa/clickhouse:26
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:

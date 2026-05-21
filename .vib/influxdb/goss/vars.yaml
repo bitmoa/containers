@@ -1,8 +1,0 @@
-binaries:
-  - wait-for-port
-directories:
-  - mode: "0775"
-    paths:
-      - /bitmoa/influxdb
-      - /docker-entrypoint-initdb.d
-root_dir: /opt/bitmoa

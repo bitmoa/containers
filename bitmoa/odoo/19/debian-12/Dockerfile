@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-11T12:29:24Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T21:57:19Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/odoo/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/odoo" \
       org.opencontainers.image.title="odoo" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="19.0.20251001"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="19.0.20260401"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
@@ -22,16 +22,16 @@ ENV OS_ARCH="${TARGETARCH:-amd64}" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages acl ca-certificates curl fontconfig libbsd0 libbz2-1.0 libc6 libcap2-bin libcom-err2 libcrypt1 libedit2 libffi8 libfreetype6 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libicu72 libidn2-0 libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblz4-1 liblzma5 libmd0 libncursesw6 libnettle8 libnsl2 libp11-kit0 libpng16-16 libpq5 libreadline8 libsasl2-2 libsqlite3-0 libssl3 libstdc++6 libtasn1-6 libtinfo6 libtirpc3 libunistring2 libuuid1 libx11-6 libxcb1 libxext6 libxml2 libxrender1 libxslt1.1 procps xfonts-75dpi xfonts-base zlib1g
+RUN install_packages acl ca-certificates curl fontconfig libbsd0 libbz2-1.0 libc6 libcap2-bin libcom-err2 libcrypt1 libedit2 libffi8 libfreetype6 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libicu72 libidn2-0 libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblz4-1 liblzma5 libmd0 libncursesw6 libnettle8 libnsl2 libp11-kit0 libpng16-16 libreadline8 libsasl2-2 libsqlite3-0 libssl3 libstdc++6 libtasn1-6 libtinfo6 libtirpc3 libunistring2 libuuid1 libx11-6 libxcb1 libxext6 libxml2 libxrender1 libxslt1.1 procps xfonts-75dpi xfonts-base zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.12-3-linux-${OS_ARCH}-debian-12" \
-      "render-template-1.0.9-157-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-18.0.0-0-linux-${OS_ARCH}-debian-12" \
-      "node-22.20.0-0-linux-${OS_ARCH}-debian-12" \
-      "odoo-19.0.20251001-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-3-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
+      "node-22.22.2-0-linux-${OS_ARCH}-debian-12" \
+      "odoo-19.0.20260401-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -56,9 +56,10 @@ RUN curl -sLO "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/odoo/postunpack.sh
-ENV APP_VERSION="19.0.20251001" \
+ENV APP_VERSION="19.0.20260401" \
     BITMOA_APP_NAME="odoo" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="1" \
+    LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/common/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/node/bin:/opt/bitmoa/odoo/bin:$PATH"
 
 EXPOSE 3000 8069 8072

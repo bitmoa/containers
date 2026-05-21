@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T01:26:28Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-15T09:14:06Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/hubble-ui/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/hubble-ui" \
       org.opencontainers.image.title="hubble-ui" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="0.13.3"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="0.13.5"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,14 +23,14 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl gettext libcrypt1 libgeoip1 libpcre3 libssl3 openssl procps zlib1g
+RUN install_packages ca-certificates curl gettext libcrypt1 libgcc-s1 libgeoip1 libicu72 liblzma5 libpcre3 libssl3 libstdc++6 libxml2 openssl procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "render-template-1.0.9-156-linux-${OS_ARCH}-debian-12" \
-      "nginx-1.29.1-0-linux-${OS_ARCH}-debian-12" \
-      "hubble-ui-0.13.3-0-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
+      "nginx-1.30.0-0-linux-${OS_ARCH}-debian-12" \
+      "hubble-ui-0.13.5-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -53,9 +53,9 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/nginx/postunpack.sh
 RUN rm -rf /app && \
     ln -sf /opt/bitmoa/hubble-ui/public /app
-ENV APP_VERSION="0.13.3" \
+ENV APP_VERSION="0.13.5" \
     BITMOA_APP_NAME="hubble-ui" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="1" \
     NGINX_HTTPS_PORT_NUMBER="" \
     NGINX_HTTP_PORT_NUMBER="" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/nginx/sbin:$PATH"

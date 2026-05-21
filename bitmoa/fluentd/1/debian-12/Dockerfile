@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T12:27:03Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T19:10:20Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/fluentd/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/fluentd" \
       org.opencontainers.image.title="fluentd" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="1.19.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="1.19.2"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,13 +23,13 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl libcrypt1 libffi8 libjemalloc-dev libreadline-dev libssl-dev libssl3 libyaml-0-2 libyaml-dev procps zlib1g
+RUN install_packages ca-certificates curl libcrypt1 libffi8 libgcc-s1 libjemalloc-dev libjemalloc2 libreadline-dev libssl-dev libssl3 libstdc++6 libyaml-0-2 libyaml-dev procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "ruby-3.4.6-0-linux-${OS_ARCH}-debian-12" \
-      "fluentd-1.19.0-0-linux-${OS_ARCH}-debian-12" \
+      "ruby-3.4.9-0-linux-${OS_ARCH}-debian-12" \
+      "fluentd-1.19.2-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -48,10 +48,10 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/fluentd/postunpack.sh
-ENV APP_VERSION="1.19.0" \
+ENV APP_VERSION="1.19.2" \
     BITMOA_APP_NAME="fluentd" \
     GEM_HOME="/opt/bitmoa/fluentd" \
-    IMAGE_REVISION="5" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/ruby/bin:/opt/bitmoa/fluentd/bin:$PATH"
 
 EXPOSE 5140 24224

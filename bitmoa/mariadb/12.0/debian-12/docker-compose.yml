@@ -3,7 +3,7 @@
 
 services:
   mariadb:
-    image: ghcr.io/bitmoa/mariadb:12.0
+    image: ghcr.io/bitmoa/mariadb:12.2
     ports:
       - '3306:3306'
     volumes:

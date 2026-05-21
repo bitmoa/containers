@@ -1,7 +1,0 @@
-binaries:
-  - az
-  - python
-root_dir: /opt/bitmoa
-version:
-  bin_name: az
-  flag: --version

@@ -1,6 +1,0 @@
-binaries:
-   - backend
-root_dir: /opt/bitmoa
-directories:
-  - paths:
-      - /opt/bitmoa/hubble-ui-backend

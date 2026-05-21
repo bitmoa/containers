@@ -1,6 +1,0 @@
-binaries:
-  - configurable-http-proxy
-root_dir: /opt/bitmoa
-version:
-  bin_name: configurable-http-proxy
-  flag: --version

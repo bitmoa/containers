@@ -1,6 +1,4 @@
-# Bitnami package for ClickHouse
-
-## What is ClickHouse?
+# Bitnami Secure Image for ClickHouse
 
 > ClickHouse is an open-source column-oriented OLAP database management system. Use it to boost your database performance while providing linear scalability and hardware efficiency.
 
@@ -13,29 +11,32 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 docker run --name clickhouse bitmoa/clickhouse:latest
 ```
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+## Using `docker-compose.yml`
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
+https://github.com/bitmoa/containers/tree/main/bitmoa/clickhouse/docker-compose.yml
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/clickhouse).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
 
-## How to deploy ClickHouse in Kubernetes?
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
+
+## How to deploy ClickHouse in Kubernetes
 
 Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami ClickHouse Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/clickhouse).
 
@@ -43,31 +44,9 @@ Deploying Bitnami applications as Helm Charts is the easiest way to get started 
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami ClickHouse Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/clickhouse).
-
-```console
-docker pull bitmoa/clickhouse:latest
-```
-
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/clickhouse/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/clickhouse:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+The Bitnami ClickHouse Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
 ## Persisting your application
 
@@ -75,120 +54,19 @@ If you remove the container all your data will be lost, and the next time you ru
 
 For persistence you should mount a directory at the `/bitmoa/clickhouse` path. If the mounted directory is empty, it will be initialized on the first run.
 
-```console
-docker run \
-    --volume /path/to/clickhouse-persistence:/bitmoa/clickhouse \
-    --env ALLOM_EMPTY_PASSWORD=false \
-    bitmoa/clickhouse:latest
-```
-
-You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/clickhouse/docker-compose.yml) file present in this repository:
-
-```console
-clickhouse:
-  ...
-  volumes:
-    - /path/to/clickhouse-persistence:/bitmoa/clickhouse
-  ...
-```
-
 ## Connecting to other containers
 
 Using [Docker container networking](https://docs.docker.com/engine/userguide/networking/), a different server running inside a container can easily be accessed by your application containers and vice-versa.
 
 Containers attached to the same network can communicate with each other using the container name as the hostname.
 
-### Using the Command Line
-
-In this example, we will create a ClickHouse client instance that will connect to the server instance that is running on the same docker network as the client.
-
-#### Step 1: Create a network
-
-```console
-docker network create my-network --driver bridge
-```
-
-#### Step 2: Launch the ClickHouse container within your network
-
-Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `my-network` network.
-
-```console
-docker run -d --name clickhouse-server \
-  --network my-network \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  bitmoa/clickhouse:latest
-```
-
-#### Step 3: Launch your ClickHouse client instance
-
-Finally we create a new container instance to launch the ClickHouse client and connect to the server created in the previous step:
-
-```console
-docker run -it --rm \
-    --network my-network \
-    bitmoa/clickhouse:latest clickhouse-client --host clickhouse-server
-```
-
-### Using a Docker Compose file
-
-When not specified, Docker Compose automatically sets up a new network and attaches all deployed services to that network. However, we will explicitly define a new `bridge` network named `my-network`. In this example we assume that you want to connect to the ClickHouse server from your own custom application image which is identified in the following snippet by the service name `myapp`.
-
-```yaml
-version: '2'
-
-networks:
-  my-network:
-    driver: bridge
-
-services:
-  clickhouse:
-    image: bitmoa/clickhouse:latest
-    environment:
-      - ALLOW_EMPTY_PASSWORD=no
-    networks:
-      - my-network
-  myapp:
-    image: YOUR_APPLICATION_IMAGE
-    networks:
-      - my-network
-```
-
-> **IMPORTANT**:
->
-> 1. Please update the `YOUR_APPLICATION_IMAGE` placeholder in the above snippet with your application image
-> 2. In your application container, use the hostname `clickhouse` to connect to the ClickHouse server
-
-Launch the containers using:
-
-```console
-docker-compose up -d
-```
-
 ## Configuration
 
-ClickHouse can be configured via environment variables or using a configuration file (`config.xml`). If a configuration option is not specified in either the configuration file or in an environment variable, ClickHouse uses its internal default configuration.
+ClickHouse can be configured using environment variables or a configuration file (`config.xml`). If a configuration option is not specified in either the configuration file or in an environment variable, ClickHouse uses its internal default configuration.
 
 ### Configuration overrides
 
-The configuration can easily be setup by mounting your own configuration overrides on the directory `/bitmoa/clickhouse/etc/config.d` or `/bitmoa/clickhouse/etc/users.d`:
-
-```console
-docker run --name clickhouse \
-    --volume /path/to/override.xml:/bitmoa/clickhouse/etc/config.d/override.xml:ro \
-    bitmoa/clickhouse:latest
-```
-
-or using Docker Compose:
-
-```yaml
-version: '2'
-
-services:
-  clickhouse:
-    image: bitmoa/clickhouse:latest
-    volumes:
-      - /path/to/override.xml:/bitmoa/clickhouse/etc/config.d/override.xml:ro
-```
+The configuration can easily be setup by mounting your own configuration overrides on the directory `/bitmoa/clickhouse/etc/config.d` or `/bitmoa/clickhouse/etc/users.d`.
 
 Check the [official ClickHouse configuration documentation](https://clickhouse.com/docs/en/operations/configuration-files/) for all the possible overrides and settings.
 
@@ -198,9 +76,11 @@ When the container is executed for the first time, it will execute the files wit
 
 In order to have your custom files inside the docker image you can mount them as a volume.
 
-> NOTE: If you use JSON format for clickhouse logs and remove the message field of the logs, the application will fail to start if there are init or start scripts in any of those 2 folders.
+> **NOTE** If you use JSON format for ClickHouse logs and remove the message field of the logs, the application will fail to start if there are init or start scripts in any of those 2 folders.
 
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -236,137 +116,19 @@ In order to have your custom files inside the docker image you can mount them as
 | `CLICKHOUSE_DAEMON_USER`      | ClickHouse daemon system user.      | `clickhouse`                                 |
 | `CLICKHOUSE_DAEMON_GROUP`     | ClickHouse daemon system group.     | `clickhouse`                                 |
 
-### Setting the admin password on first run
-
-Passing the `CLICKHOUSE_ADMIN_PASSWORD` environment variable when running the image for the first time will set the password of the `CLICKHOUSE_ADMIN_USER` user to the value of `CLICKHOUSE_ADMIN_PASSWORD`.
-
-```console
-docker run --name clickhouse -e CLICKHOUSE_ADMIN_PASSWORD=password123 bitmoa/clickhouse:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/clickhouse/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  clickhouse:
-  ...
-    environment:
-      - CLICKHOUSE_ADMIN_PASSWORD=password123
-  ...
-```
-
-### Allowing empty passwords
-
-By default the ClickHouse image expects all the available passwords to be set. In order to allow empty passwords, it is necessary to set the `ALLOW_EMPTY_PASSWORD=yes` env variable. This env variable is only recommended for testing or development purposes. We strongly recommend specifying the `CLICKHOUSE_ADMIN_PASSWORD` for any other scenario.
-
-```console
-docker run --name clickhouse --env ALLOW_EMPTY_PASSWORD=yes bitmoa/clickhouse:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/clickhouse/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  clickhouse:
-  ...
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-  ...
-```
-
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami ClickHouse Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami ClickHouse Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
 ## Logging
 
-The Bitnami ClickHouse Docker image sends the container logs to `stdout`. To view the logs:
-
-```console
-docker logs clickhouse
-```
-
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
-
-## Maintenance
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of ClickHouse, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/clickhouse:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to `bitmoa/clickhouse:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Stop the currently running container using the command
-
-```console
-docker stop clickhouse
-```
-
-or using Docker Compose:
-
-```console
-docker-compose stop clickhouse
-```
-
-Next, take a snapshot of the persistent volume `/path/to/clickhouse-persistence` using:
-
-```console
-rsync -a /path/to/clickhouse-persistence /path/to/clickhouse-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
-```
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v clickhouse
-```
-
-or using Docker Compose:
-
-```console
-docker-compose rm -v clickhouse
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image.
-
-```console
-docker run --name clickhouse bitmoa/clickhouse:latest
-```
-
-or using Docker Compose:
-
-```console
-docker-compose up clickhouse
-```
-
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/clickhouse).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+The Bitnami ClickHouse Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

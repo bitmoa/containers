@@ -3,7 +3,7 @@
 
 services:
   clickhouse-keeper:
-    image: ghcr.io/bitmoa/clickhouse-keeper:25
+    image: ghcr.io/bitmoa/clickhouse-keeper:26
     environment:
       - CLICKHOUSE_KEEPER_SERVER_ID=1
     ports:

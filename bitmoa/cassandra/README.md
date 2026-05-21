@@ -1,6 +1,4 @@
-# Bitnami package for Apache Cassandra
-
-## What is Apache Cassandra?
+# Bitnami Secure Image for Apache Cassandra
 
 > Apache Cassandra is an open source distributed database management system designed to handle large amounts of data across many servers, providing high availability with no single point of failure.
 
@@ -15,33 +13,36 @@ docker run --name cassandra bitmoa/cassandra:latest
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+## Using `docker-compose.yml`
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
+[https://github.com/bitmoa/containers/tree/main/bitmoa/cassandra/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/cassandra/docker-compose.yml)
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/cassandra).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## Why use a non-root container?
 
 Non-root container images add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. Learn more about non-root containers [in our docs](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-work-with-non-root-containers-index.html).
 
-## How to deploy Apache Cassandra in Kubernetes?
+## How to deploy Apache Cassandra in Kubernetes
 
 Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache Cassandra Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/cassandra).
 
@@ -49,31 +50,9 @@ Deploying Bitnami applications as Helm Charts is the easiest way to get started 
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami Apache Cassandra Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/cassandra).
-
-```console
-docker pull bitmoa/cassandra:latest
-```
-
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/cassandra/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/cassandra:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+The Bitnami Apache Cassandra Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
 ## Persisting your application
 
@@ -96,80 +75,15 @@ cassandra:
     - /path/to/cassandra-persistence:/bitmoa
 ```
 
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
-
-## Connecting to other containers
-
-Using [Docker container networking](https://docs.docker.com/engine/userguide/networking/), an Apache Cassandra server running inside a container can easily be accessed by your application containers.
-
-Containers attached to the same network can communicate with each other using the container name as the hostname.
-
-### Using the Command Line
-
-In this example, we will create an Apache Cassandra client instance that will connect to the server instance that is running on the same docker network as the client.
-
-#### Step 1: Create a network
-
-```console
-docker network create app-tier --driver bridge
-```
-
-#### Step 2: Launch the Apache Cassandra server instance
-
-Use the `--network app-tier` argument to the `docker run` command to attach the Apache Cassandra container to the `app-tier` network.
-
-```console
-docker run -d --name cassandra-server \
-    --network app-tier \
-    bitmoa/cassandra:latest
-```
-
-#### Step 3: Launch your Apache Cassandra client instance
-
-Finally we create a new container instance to launch the Apache Cassandra client and connect to the server created in the previous step:
-
-```console
-docker run -it --rm \
-    --network app-tier \
-    bitmoa/cassandra:latest cqlsh --username cassandra --password cassandra cassandra-server
-```
-
-### Using a Docker Compose file
-
-When not specified, Docker Compose automatically sets up a new network and attaches all deployed services to that network. However, we will explicitly define a new `bridge` network named `app-tier`. In this example we assume that you want to connect to the Apache Cassandra server from your own custom application image which is identified in the following snippet by the service name `myapp`.
-
-```yaml
-version: '2'
-
-networks:
-  app-tier:
-    driver: bridge
-
-services:
-  cassandra:
-    image: bitmoa/cassandra:latest
-    networks:
-      - app-tier
-  myapp:
-    image: YOUR_APPLICATION_IMAGE
-    networks:
-      - app-tier
-```
-
-> **IMPORTANT**:
->
-> 1. Please update the **YOUR_APPLICATION_IMAGE_** placeholder in the above snippet with your application image
-> 2. In your application container, use the hostname `cassandra` to connect to the Apache Cassandra server
-
-Launch the containers using:
-
-```console
-docker-compose up -d
-```
+> **NOTE** As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
 
 ## Configuration
 
+The following sections describe environment variables and related settings.
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -268,27 +182,7 @@ Additionally, any environment variable beginning with the following prefix will 
 
 For example, use `CASSANDRA_CFG_RACKDC_PREFER_LOCAL=true` in order to configure `prefer_local` in `cassandra-rackdc.properties`. Or, use `CASSANDRA_CFG_YAML_INTERNODE_COMPRESSION=all` in order to set `internode_compression` to `all` in `cassandra.yaml`.
 
-**NOTE:** Environment variables will be omitted when mounting a configuration file
-
-When you start the cassandra image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
-
-- For docker-compose add the variable name and value under the application section:
-
-```yaml
-cassandra:
-  image: bitmoa/cassandra:latest
-  environment:
-    - CASSANDRA_TRANSPORT_PORT_NUMBER=7000
-```
-
-- For manual execution add a `-e` option with each variable and value:
-
-```console
- $ docker run --name cassandra -d -p 7000:7000 --network=cassandra_network \
-    -e CASSANDRA_TRANSPORT_PORT_NUMBER=7000 \
-    -v /your/local/path/bitmoa/cassandra:/bitmoa \
-    bitmoa/cassandra
-```
+> **NOTE** Environment variables will be omitted when mounting a configuration file.
 
 ### Setting the server password on first run
 
@@ -311,41 +205,41 @@ cassandra:
     - CASSANDRA_PASSWORD=password123
 ```
 
-#### Step 1: Create a new network
+1. Create a new network
 
-```console
-docker network create cassandra_network
-```
+    ```console
+    docker network create cassandra_network
+    ```
 
-#### Step 2: Create a first node
+2. Create a first node
 
-```console
-docker run --name cassandra-node1 \
-  --net=cassandra_network \
-  -p 9042:9042 \
-  -e CASSANDRA_CLUSTER_NAME=cassandra-cluster \
-  -e CASSANDRA_SEEDS=cassandra-node1,cassandra-node2 \
-  -e CASSANDRA_PASSWORD_SEEDER=yes \
-  -e CASSANDRA_PASSWORD=mypassword \
-  bitmoa/cassandra:latest
-```
+    ```console
+    docker run --name cassandra-node1 \
+      --net=cassandra_network \
+      -p 9042:9042 \
+      -e CASSANDRA_CLUSTER_NAME=cassandra-cluster \
+      -e CASSANDRA_SEEDS=cassandra-node1,cassandra-node2 \
+      -e CASSANDRA_PASSWORD_SEEDER=yes \
+      -e CASSANDRA_PASSWORD=mypassword \
+      bitnami/cassandra:latest
+    ```
 
-In the above command the container is added to a cluster named `cassandra-cluster` using the `CASSANDRA_CLUSTER_NAME`. The `CASSANDRA_CLUSTER_HOSTS` parameter set the name of the nodes that set the cluster so we will need to launch other container for the second node. Finally the `CASSANDRA_NODE_NAME` parameter allows to indicate a known name for the node, otherwise cassandra will generate a random one.
+    In the above command the container is added to a cluster named `cassandra-cluster` using the `CASSANDRA_CLUSTER_NAME`. The `CASSANDRA_CLUSTER_HOSTS` parameter set the name of the nodes that set the cluster so we will need to launch other container for the second node. Finally the `CASSANDRA_NODE_NAME` parameter allows to indicate a known name for the node, otherwise Cassandra will generate a random one.
 
-#### Step 3: Create a second node
+3. Create a second node
 
-```console
-docker run --name cassandra-node2 \
-  --net=cassandra_network \
-  -e CASSANDRA_CLUSTER_NAME=cassandra-cluster \
-  -e CASSANDRA_SEEDS=cassandra-node1,cassandra-node2 \
-  -e CASSANDRA_PASSWORD=mypassword \
-  bitmoa/cassandra:latest
-```
+    ```console
+    docker run --name cassandra-node2 \
+      --net=cassandra_network \
+      -e CASSANDRA_CLUSTER_NAME=cassandra-cluster \
+      -e CASSANDRA_SEEDS=cassandra-node1,cassandra-node2 \
+      -e CASSANDRA_PASSWORD=mypassword \
+      bitnami/cassandra:latest
+    ```
 
-In the above command a new cassandra node is being added to the cassandra cluster indicated by `CASSANDRA_CLUSTER_NAME`.
+    In the above command a new Cassandra node is being added to the Cassandra cluster indicated by `CASSANDRA_CLUSTER_NAME`.
 
-You now have a two node Apache Cassandra cluster up and running which can be scaled by adding/removing nodes.
+    You now have a two node Apache Cassandra cluster up and running which can be scaled by adding/removing nodes.
 
 With Docker Compose the cluster configuration can be setup using:
 
@@ -370,7 +264,7 @@ services:
 
 ### Initializing with custom scripts
 
-When the container is executed for the first time, it will execute the files with extensions `.sh`, `.cql` or `.cql.gz` located at `/docker-entrypoint-initdb.d` in sort'ed order by filename. This behavior can be skipped by setting the environment variable `CASSANDRA_IGNORE_INITDB_SCRIPTS` to a value other than `yes` or `true`.
+When the container is executed for the first time, it will execute the files with extensions `.sh`, `.cql` or `.cql.gz` located at `/docker-entrypoint-initdb.d` in sorted order by filename. This behavior can be skipped by setting the environment variable `CASSANDRA_IGNORE_INITDB_SCRIPTS` to a value other than `yes` or `true`.
 
 In order to have your custom files inside the docker image you can mount them as a volume.
 
@@ -395,181 +289,81 @@ cassandra:
 
 The image looks for configurations in `/bitmoa/cassandra/conf/`. As mentioned in [Persisting your application](#persisting-your-application) you can mount a volume at `/bitmoa` and copy/edit the configurations in the `/path/to/cassandra-persistence/cassandra/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
 
-#### Step 1: Run the Apache Cassandra image
+1. Run the Apache Cassandra image.
 
-Run the Apache Cassandra image, mounting a directory from your host.
+    Run the Apache Cassandra image, mounting a directory from your host.
 
-```console
-docker run --name cassandra \
-    -v /path/to/cassandra-persistence:/bitmoa \
-    bitmoa/cassandra:latest
-```
+    ```console
+    docker run --name cassandra \
+        -v /path/to/cassandra-persistence:/bitnami \
+        bitnami/cassandra:latest
+    ```
 
-or using Docker Compose:
+2. Edit the configuration.
 
-```yaml
-cassandra:
-  image: bitmoa/cassandra:latest
-  volumes:
-    - /path/to/cassandra-persistence:/bitmoa
-```
+    Edit the configuration on your host using your favorite editor.
 
-#### Step 2: Edit the configuration
+    ```console
+    vi /path/to/cassandra-persistence/cassandra/conf/cassandra.yaml
+    ```
 
-Edit the configuration on your host using your favorite editor.
+3. Restart Apache Cassandra
 
-```console
-vi /path/to/cassandra-persistence/cassandra/conf/cassandra.yaml
-```
+    After changing the configuration, restart your Apache Cassandra container for changes to take effect.
 
-#### Step 3: Restart Apache Cassandra
+    ```console
+    docker restart cassandra
+    ```
 
-After changing the configuration, restart your Apache Cassandra container for changes to take effect.
-
-```console
-docker restart cassandra
-```
-
-or using Docker Compose:
-
-```console
-docker-compose restart cassandra
-```
-
-Refer to the [configuration](http://docs.datastax.com/en/cassandra/3.x/cassandra/configuration/configTOC.html) manual for the complete list of configuration options.
+See the [configuration](http://docs.datastax.com/en/cassandra/3.x/cassandra/configuration/configTOC.html) manual for the complete list of configuration options.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Cassandra Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Cassandra Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
+- `JAVA_TOOL_OPTIONS`: controls Java FIPS mode. Use `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.restricted` (restricted), `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.relaxed` (relaxed), or `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.original` (off).
 
-## TLS Encryption
+## TLS encryption
 
 The Bitnami Apache Cassandra Docker image allows configuring TLS encryption between nodes and between server-client. This is done by mounting in `/bitmoa/cassandra/secrets` two files:
 
-- `keystore`: File with the server keystore
-- `truststore`: File with the server truststore
+- `keystore`: File with the server `keystore`
+- `truststore`: File with the server `truststore`
 
 Apart from that, the following environment variables must be set:
 
-- `CASSANDRA_KEYSTORE_PASSWORD`: Password for accessing the keystore.
-- `CASSANDRA_TRUSTSTORE_PASSWORD`: Password for accessing the truststore.
+- `CASSANDRA_KEYSTORE_PASSWORD`: Password for accessing the `keystore`.
+- `CASSANDRA_TRUSTSTORE_PASSWORD`: Password for accessing the `truststore`.
 - `CASSANDRA_INTERNODE_ENCRYPTION`: Sets the type of encryption between nodes. The default value is `none`. Can be set to `all`, `none`, `dc` or `rack`.
 - `CASSANDRA_CLIENT_ENCRYPTION`: Enables client-server encryption. The default value is `false`.
 
 ## Logging
 
-The Bitnami Apache Cassandra Docker image sends the container logs to the `stdout`. To view the logs:
+The Bitnami Apache Cassandra Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
-```console
-docker logs cassandra
-```
+## Notable changes
 
-or using Docker Compose:
+The following subsections describe notable changes.
 
-```console
-docker-compose logs cassandra
-```
+### 3.11.10-debian-10-r81 Split branch 3
 
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
-
-## Maintenance
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of Apache Cassandra, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/cassandra:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to
-`bitmoa/cassandra:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Stop the currently running container using the command
-
-```console
-docker stop cassandra
-```
-
-or using Docker Compose:
-
-```console
-docker-compose stop cassandra
-```
-
-Next, take a snapshot of the persistent volume `/path/to/cassandra-persistence` using:
-
-```console
-rsync -a /path/to/cassandra-persistence /path/to/cassandra-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
-```
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v cassandra
-```
-
-or using Docker Compose:
-
-```console
-docker-compose rm -v cassandra
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image.
-
-```console
-docker run --name cassandra bitmoa/cassandra:latest
-```
-
-or using Docker Compose:
-
-```console
-docker-compose up cassandra
-```
-
-## Notable Changes
-
-## 3.11.10-debian-10-r81 Split branch 3
-
-- Branch 3 has been split into branch 3.0 and 3.11 mirroring the upstream Apache Cassandra repo.
+Branch 3 has been split into branch 3.0 and 3.11 mirroring the upstream Apache Cassandra repository.
 
 ### 3.11.4-debian-9-r188 and 3.11.4-ol-7-r201
 
-- Decrease the size of the container. The configuration logic is now based on Bash scripts in the `rootfs/` folder.
+Decrease the size of the container. The configuration logic is now based on Bash scripts in the `rootfs/` folder.
 
 ### 3.11.3-r129
 
--The Apache Cassandra container now adds the possibility to inject custom initialization scripts by mounting cql and sh files in `/docker-entrypoint-initdb.d`. See [this section](#initializing-with-custom-scripts) for more information.
+The Apache Cassandra container now adds the possibility to inject custom initialization scripts by mounting `cql` and sh files in `/docker-entrypoint-initdb.d`. See [this section](#initializing-with-custom-scripts) for more information.
 
 ### 3.11.2-r22
 
-- The Apache Cassandra container has been migrated to a non-root user approach. Previously the container ran as the `root` user and the Apache Cassandra daemon was started as the `cassandra` user. From now on, both the container and the Apache Cassandra daemon run as user `1001`. As a consequence, the data directory must be writable by that user. You can revert this behavior by changing `USER 1001` to `USER root` in the Dockerfile.
-
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/cassandra).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues), or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
+The Apache Cassandra container has been migrated to a non-root user approach. Previously the container ran as the `root` user and the Apache Cassandra daemon was started as the `cassandra` user. From now on, both the container and the Apache Cassandra daemon run as user `1001`. As a consequence, the data directory must be writable by that user. You can revert this behavior by changing `USER 1001` to `USER root` in the Dockerfile.
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

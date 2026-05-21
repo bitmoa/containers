@@ -1,6 +1,0 @@
-binaries:
-  - manager
-root_dir: /opt/bitmoa
-directories:
-  - paths:
-      - /opt/bitmoa/kuberay

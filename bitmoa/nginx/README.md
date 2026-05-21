@@ -1,6 +1,4 @@
-# Bitnami package for NGINX Open Source
-
-## What is NGINX Open Source?
+# Bitnami Secure Image for NGINX Open Source
 
 > NGINX Open Source is a web server that can be also used as a reverse proxy, load balancer, and HTTP cache. Recommended for high-demanding sites due to its ability to provide faster content.
 
@@ -13,27 +11,30 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 docker run --name nginx bitmoa/nginx:latest
 ```
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+## Using `docker-compose.yml`
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
+[https://github.com/bitmoa/containers/tree/main/bitmoa/nginx/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/nginx/docker-compose.yml)
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/nginx).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## How to deploy NGINX Open Source in Kubernetes?
 
@@ -47,33 +48,9 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami NGINX Open Source Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/nginx).
-
-```console
-docker pull bitmoa/nginx:latest
-```
-
-To use a specific version, you can pull a versioned tag. You can view the
-[list of available versions](https://hub.docker.com/r/bitmoa/nginx/tags/)
-in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/nginx:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+The Bitnami NGINX Open Source Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
 ## Hosting a static website
 
@@ -83,41 +60,13 @@ This NGINX Open Source image exposes a volume at `/app`. Content mounted here is
 docker run -v /path/to/app:/app bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  nginx:
-  ...
-    volumes:
-      - /path/to/app:/app
-  ...
-```
-
 ## Accessing your server from the host
 
-To access your web server from your host machine you can ask Docker to map a random port on your host to ports `8080` and `8443` exposed in the container.
-
-```console
-docker run --name nginx -P bitmoa/nginx:latest
-```
-
-Run `docker port` to determine the random ports Docker assigned.
-
-```console
-$ docker port nginx
-8080/tcp -> 0.0.0.0:32769
-```
-
-You can also manually specify the ports you want forwarded from your host to the container.
-
-```console
-docker run -p 9000:8080 bitmoa/nginx:latest
-```
-
-Access your web server in the browser by navigating to `http://localhost:9000`.
+To access your web server from your host machine you will need to access ports `8080` and `8443` exposed in the container.
 
 ## Configuration
+
+The following section describes how to configure the application
 
 ### Adding custom server blocks
 
@@ -144,17 +93,6 @@ docker run --name nginx \
   bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  nginx:
-  ...
-    volumes:
-      - /path/to/my_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_server_block.conf:ro
-  ...
-```
-
 ### Adding custom configuration by context
 
 The default `nginx.conf` supports custom configuration files organized by NGINX context. You can mount configuration files into the appropriate context directories:
@@ -175,17 +113,6 @@ Mount it to the main context directory:
 docker run --name nginx \
   -v /path/to/webdav.conf:/opt/bitmoa/nginx/conf/context.d/main/webdav.conf:ro \
   bitmoa/nginx:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file:
-
-```yaml
-services:
-  nginx:
-  ...
-    volumes:
-      - /path/to/webdav.conf:/opt/bitmoa/nginx/conf/context.d/main/webdav.conf:ro
-  ...
 ```
 
 Similarly, you can add custom server blocks to the http context:
@@ -226,20 +153,6 @@ docker run --name nginx \
   -e NGINX_ENABLE_STREAM=yes \
   -v /path/to/my_stream_server_block.conf:/opt/bitmoa/nginx/conf/stream_server_blocks/my_stream_server_block.conf:ro \
   bitmoa/nginx:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  nginx:
-  ...
-    environment:
-      - NGINX_ENABLE_STREAM=yes
-  ...
-    volumes:
-      - /path/to/my_stream_server_block.conf:/opt/bitmoa/nginx/conf/stream_server_blocks/my_stream_server_block.conf:ro
-  ...
 ```
 
 ### Using custom SSL certificates
@@ -291,16 +204,14 @@ docker run --name nginx \
   bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
+### Configuring worker processes
 
-```yaml
-services:
-  nginx:
-  ...
-    volumes:
-    - /path/to/nginx-persistence/certs:/certs
-    - /path/to/my_server_block.conf:/opt/bitmoa/nginx/conf/server_blocks/my_server_block.conf:ro
-  ...
+By default, the image configures `worker_processes` as `auto`. You can override this behavior by setting the `NGINX_WORKER_PROCESSES` environment variable to a positive integer (for example, `1`).
+
+```console
+docker run --name nginx --rm \
+  -e NGINX_WORKER_PROCESSES=1 \
+  bitnami/nginx:latest
 ```
 
 ### Solving redirection issues
@@ -403,20 +314,9 @@ docker run --name nginx \
   bitmoa/nginx:latest
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/nginx/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  nginx:
-  ...
-    volumes:
-      - /path/to/your_nginx.conf:/opt/bitmoa/nginx/conf/nginx.conf:ro
-  ...
-```
-
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami NGINX Open Source Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami NGINX Open Source Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -448,19 +348,7 @@ server {
 
 ## Logging
 
-The Bitnami NGINX Open Source Docker image sends the container logs to the `stdout`. To view the logs:
-
-```console
-docker logs nginx
-```
-
-or using Docker Compose:
-
-```console
-docker-compose logs nginx
-```
-
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
+The Bitnami NGINX Open Source Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## Customize this image
 
@@ -484,68 +372,6 @@ FROM bitmoa/nginx
 ...
 ```
 
-Here is an example of extending the image with the following modifications:
-
-- Install the `vim` editor
-- Modify the NGINX configuration file
-- Modify the ports used by NGINX
-- Change the user that runs the container
-
-```Dockerfile
-FROM bitmoa/nginx
-
-### Change user to perform privileged actions
-USER 0
-### Install 'vim'
-RUN install_packages vim
-### Revert to the original non-root user
-USER 1001
-
-### Modify 'worker_connections' on NGINX config file to '512'
-RUN sed -i -r "s#(\s+worker_connections\s+)[0-9]+;#\1512;#" /opt/bitmoa/nginx/conf/nginx.conf
-
-### Modify the ports used by NGINX by default
-ENV NGINX_HTTP_PORT_NUMBER=8181 # It is also possible to change this environment variable at runtime
-EXPOSE 8181 8143
-
-### Modify the default container user
-USER 1002
-```
-
-Based on the extended image, you can use a Docker Compose file like the one below to add other features:
-
-- Add a custom server block
-- Add custom certificates
-- Clone your web application and serve it through NGINX
-
-```yaml
-version: '2'
-
-services:
-  nginx:
-    build: .
-    ports:
-      - 80:8181
-      - 443:8443
-    depends_on:
-      - cloner
-    volumes:
-      - ./config/my_server_block.conf:/opt/bitmoa/nginx/conf/conf.d/server_blocks/my_server_block.conf:ro
-      - ./certs:/certs
-      - data:/app
-  cloner:
-    image: bitmoa/git:latest
-    command:
-      - clone
-      - https://github.com/cloudacademy/static-website-example
-      - /app
-    volumes:
-      - data:/app
-volumes:
-  data:
-    driver: local
-```
-
 #### NGINX HTTP DAV module
 
 The [module ngx_http_dav_module](https://nginx.org/en/docs/http/ngx_http_dav_module.html) is intended for file management automation via the WebDAV protocol. In current Bitnami images, this module is built as a dynamic module located under the `/opt/bitmoa/nginx/modules` directory. You will need to load it in your NGINX configuration for you to be able to use its directives.
@@ -558,110 +384,15 @@ load_module /opt/bitmoa/nginx/modules/ngx_http_dav_module.so;
 
 To add a custom NGINX module, it is necessary to compile NGINX with that module and copy over the appropriate files to the Bitnami image.
 
-##### Example
-
-Below is an example Dockerfile to build and install the NGINX Perl module (`ngx_http_perl_module`) over to the Bitnami image:
-
-```Dockerfile
-ARG NGINX_VERSION=1.25.0
-ARG BITMOA_NGINX_REVISION=r0
-ARG BITMOA_NGINX_TAG=${NGINX_VERSION}-debian-12-${BITMOA_NGINX_REVISION}
-
-FROM bitmoa/nginx:${BITMOA_NGINX_TAG} AS builder
-USER root
-## Redeclare NGINX_VERSION so it can be used as a parameter inside this build stage
-ARG NGINX_VERSION
-## Install required packages and build dependencies
-RUN install_packages dirmngr gpg gpg-agent curl build-essential libpcre3-dev zlib1g-dev libperl-dev
-## Add trusted NGINX PGP key for tarball integrity verification
-RUN gpg --keyserver pgp.mit.edu --recv-key 520A9993A1C052F8
-## Download NGINX, verify integrity and extract
-RUN cd /tmp && \
-    curl -O https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
-    curl -O https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz.asc && \
-    gpg --verify nginx-${NGINX_VERSION}.tar.gz.asc nginx-${NGINX_VERSION}.tar.gz && \
-    tar xzf nginx-${NGINX_VERSION}.tar.gz
-## Compile NGINX with desired module
-RUN cd /tmp/nginx-${NGINX_VERSION} && \
-    rm -rf /opt/bitmoa/nginx && \
-    ./configure --prefix=/opt/bitmoa/nginx --with-compat --with-http_perl_module=dynamic && \
-    make && \
-    make install
-
-FROM bitmoa/nginx:${BITMOA_NGINX_TAG}
-USER root
-## Install ngx_http_perl_module system package dependencies
-RUN install_packages libperl-dev
-## Install ngx_http_perl_module files
-COPY --from=builder /usr/local/lib/x86_64-linux-gnu/perl /usr/local/lib/x86_64-linux-gnu/perl
-COPY --from=builder /opt/bitmoa/nginx/modules/ngx_http_perl_module.so /opt/bitmoa/nginx/modules/ngx_http_perl_module.so
-## Enable module
-RUN echo "load_module modules/ngx_http_perl_module.so;" | cat - /opt/bitmoa/nginx/conf/nginx.conf > /tmp/nginx.conf && \
-    cp /tmp/nginx.conf /opt/bitmoa/nginx/conf/nginx.conf
-## Set the container to be run as a non-root user by default
-USER 1001
-```
-
-## Maintenance
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of NGINX Open Source, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/nginx:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to
-`bitmoa/nginx:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Stop the currently running container using the command
-
-```console
-docker stop nginx
-```
-
-or using Docker Compose:
-
-```console
-docker-compose stop nginx
-```
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v nginx
-```
-
-or using Docker Compose:
-
-```console
-docker-compose rm -v nginx
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image.
-
-```console
-docker run --name nginx bitmoa/nginx:latest
-```
-
-or using Docker Compose:
-
-```console
-docker-compose up nginx
-```
-
 ## Useful Links
 
 - [Create An EMP Development Environment With Bitnami Containers](https://docs.bitmoa.com/containers/how-to/create-emp-environment-containers/)
 
 ## Notable Changes
+
+### Starting March, 2026
+
+- Added support for configuring the `worker_processes` directive using the `NGINX_WORKER_PROCESSES` environment variable (allowed values: `auto` or a positive integer).
 
 ### Starting February 10, 2025
 
@@ -689,23 +420,9 @@ docker-compose up nginx
 - This image has been adapted so it's easier to customize. See the [Customize this image](#customize-this-image) section for more information.
 - The recommended mount point for adding custom server blocks changes from `/opt/bitmoa/nginx/conf/vhosts` to `/opt/bitmoa/nginx/conf/server_blocks`. Remember to update your Docker Compose files to user the new mount point.
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/nginx).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

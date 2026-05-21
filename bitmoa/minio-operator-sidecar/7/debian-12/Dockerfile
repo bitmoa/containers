@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "minio-operator-sidecar-7.1.1-9-linux-${OS_ARCH}-debian-12" \
+      "minio-operator-sidecar-7.1.1-16-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,8 +40,8 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2025-10-14T04:30:48Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T05:42:05Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="minio-operator-sidecar" \
       org.opencontainers.image.vendor="Bitmoa" \
       org.opencontainers.image.version="7.1.1"
@@ -53,7 +53,7 @@ COPY --from=builder /opt/bitmoa/minio-operator-sidecar/licenses /opt/bitmoa/mini
 
 ENV APP_VERSION="7.1.1" \
     BITMOA_APP_NAME="minio-operator-sidecar" \
-    IMAGE_REVISION="11" \
+    IMAGE_REVISION="20" \
     PATH="/"
 
 USER 1001

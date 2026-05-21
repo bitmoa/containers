@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-14T06:34:48Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T08:40:56Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/statsd-exporter/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/statsd-exporter" \
       org.opencontainers.image.title="statsd-exporter" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="0.28.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="0.29.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "statsd-exporter-0.28.0-16-linux-${OS_ARCH}-debian-12" \
+      "statsd-exporter-0.29.0-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,9 +45,9 @@ RUN chmod g+rwX /opt/bitmoa
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="0.28.0" \
+ENV APP_VERSION="0.29.0" \
     BITMOA_APP_NAME="statsd-exporter" \
-    IMAGE_REVISION="29" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/statsd-exporter/bin:$PATH"
 
 EXPOSE 9102 9125

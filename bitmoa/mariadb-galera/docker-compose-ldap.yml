@@ -3,7 +3,7 @@
 
 services:
   mariadb-galera:
-    image: ghcr.io/bitmoa/mariadb-galera:12.0
+    image: ghcr.io/bitmoa/mariadb-galera:12.2
     ports:
       - '3306:3306'
       - '4444:4444'

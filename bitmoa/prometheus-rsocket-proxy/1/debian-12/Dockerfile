@@ -7,8 +7,8 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-06T19:38:01Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T20:57:22Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/prometheus-rsocket-proxy/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/prometheus-rsocket-proxy" \
       org.opencontainers.image.title="prometheus-rsocket-proxy" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-1.8.462-11-1-linux-${OS_ARCH}-debian-12" \
+      "jre-1.8.482-10-0-linux-${OS_ARCH}-debian-12" \
       "prometheus-rsocket-proxy-1.5.3-7-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -49,7 +49,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="1.5.3" \
     BITMOA_APP_NAME="prometheus-rsocket-proxy" \
-    IMAGE_REVISION="51" \
+    IMAGE_REVISION="59" \
     PATH="/opt/bitmoa/java/bin:$PATH"
 
 WORKDIR /opt/bitmoa/prometheus-rsocket-proxy

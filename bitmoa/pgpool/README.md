@@ -1,6 +1,4 @@
-# Bitnami package for Pgpool-II
-
-## What is Pgpool-II?
+# Bitnami Secure Image for Pgpool-II
 
 > Pgpool-II is the PostgreSQL proxy. It stands between PostgreSQL servers and their clients providing connection pooling, load balancing, automated failover, and replication.
 
@@ -17,27 +15,22 @@ docker run --name pgpool bitmoa/pgpool:latest
 
 You can find the default credentials and available configuration options in the [Environment Variables](#environment-variables) section.
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
-
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
-
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
-
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## How to deploy Pgpool-II in Kubernetes?
 
@@ -51,31 +44,13 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami Pgpool-II Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/pgpool).
+The Bitnami Pgpool-II Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
-```console
-docker pull bitmoa/pgpool:latest
-```
+## Using `docker-compose.yaml`
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/pgpool/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/pgpool:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
 
 ## Connecting to other containers
 
@@ -83,251 +58,13 @@ Using [Docker container networking](https://docs.docker.com/engine/userguide/net
 
 Containers attached to the same network can communicate with each other using the container name as the hostname.
 
-### Using the Command Line
-
-In this example, we will create a PostgreSQL client instance that will connect to the pgpool instance that is running on the same docker network as the client.
-
-#### Step 1: Create a network
-
-```console
-docker network create my-network --driver bridge
-```
-
-#### Step 2: Launch 2 postgresql-repmgr containers to be used as backend within your network
-
-Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `my-network` network.
-
-```console
-docker run --detach --rm --name pg-0 \
-  --network my-network \
-  --env REPMGR_PARTNER_NODES=pg-0,pg-1 \
-  --env REPMGR_NODE_NAME=pg-0 \
-  --env REPMGR_NODE_NETWORK_NAME=pg-0 \
-  --env REPMGR_PRIMARY_HOST=pg-0 \
-  --env REPMGR_PASSWORD=repmgrpass \
-  --env POSTGRESQL_POSTGRES_PASSWORD=adminpassword \
-  --env POSTGRESQL_USERNAME=customuser \
-  --env POSTGRESQL_PASSWORD=custompassword \
-  --env POSTGRESQL_DATABASE=customdatabase \
-  bitmoa/postgresql-repmgr:latest
-docker run --detach --rm --name pg-1 \
-  --network my-network \
-  --env REPMGR_PARTNER_NODES=pg-0,pg-1 \
-  --env REPMGR_NODE_NAME=pg-1 \
-  --env REPMGR_NODE_NETWORK_NAME=pg-1 \
-  --env REPMGR_PRIMARY_HOST=pg-0 \
-  --env REPMGR_PASSWORD=repmgrpass \
-  --env POSTGRESQL_POSTGRES_PASSWORD=adminpassword \
-  --env POSTGRESQL_USERNAME=customuser \
-  --env POSTGRESQL_PASSWORD=custompassword \
-  --env POSTGRESQL_DATABASE=customdatabase \
-  bitmoa/postgresql-repmgr:latest
-```
-
-#### Step 3: Launch the pgpool container within your network
-
-Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `my-network` network.
-
-```console
-docker run --detach --rm --name pgpool \
-  --network my-network \
-  --env PGPOOL_BACKEND_NODES=0:pg-0:5432,1:pg-1:5432 \
-  --env PGPOOL_SR_CHECK_USER=customuser \
-  --env PGPOOL_SR_CHECK_PASSWORD=custompassword \
-  --env PGPOOL_ENABLE_LDAP=no \
-  --env PGPOOL_POSTGRES_USERNAME=postgres \
-  --env PGPOOL_POSTGRES_PASSWORD=adminpassword \
-  --env PGPOOL_ADMIN_USERNAME=admin \
-  --env PGPOOL_ADMIN_PASSWORD=adminpassword \
-  bitmoa/pgpool:latest
-```
-
-#### Step 4: Launch your PostgreSQL client instance
-
-Finally we create a new container instance to launch the PostgreSQL client and connect to the server created in the previous step:
-
-```console
-docker run -it --rm \
-  --network my-network \
-  bitmoa/postgresql:latest \
-  psql -h pgpool -U customuser -d customdatabase
-```
-
-### Using a Docker Compose file
-
-When not specified, Docker Compose automatically sets up a new network and attaches all deployed services to that network. However, we will explicitly define a new `bridge` network named `my-network`. In this example we assume that you want to connect to the Pgpool-II server from your own custom application image which is identified in the following snippet by the service name `myapp`.
-
-```yaml
-version: '2'
-
-networks:
-  my-network:
-    driver: bridge
-services:
-  pg-0:
-    image: bitmoa/postgresql-repmgr:latest
-    ports:
-      - 5432
-    volumes:
-      - pg_0_data:/bitmoa/postgresql
-    environment:
-      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
-      - POSTGRESQL_USERNAME=customuser
-      - POSTGRESQL_PASSWORD=custompassword
-      - POSTGRESQL_DATABASE=customdatabase
-      - REPMGR_PASSWORD=repmgrpassword
-      - REPMGR_PRIMARY_HOST=pg-0
-      - REPMGR_PARTNER_NODES=pg-0,pg-1
-      - REPMGR_NODE_NAME=pg-0
-      - REPMGR_NODE_NETWORK_NAME=pg-0
-  pg-1:
-    image: bitmoa/postgresql-repmgr:latest
-    ports:
-      - 5432
-    volumes:
-      - pg_1_data:/bitmoa/postgresql
-    environment:
-      - POSTGRESQL_POSTGRES_PASSWORD=adminpassword
-      - POSTGRESQL_USERNAME=customuser
-      - POSTGRESQL_PASSWORD=custompassword
-      - POSTGRESQL_DATABASE=customdatabase
-      - REPMGR_PASSWORD=repmgrpassword
-      - REPMGR_PRIMARY_HOST=pg-0
-      - REPMGR_PARTNER_NODES=pg-0,pg-1
-      - REPMGR_NODE_NAME=pg-1
-      - REPMGR_NODE_NETWORK_NAME=pg-1
-  pgpool:
-    image: bitmoa/pgpool:latest
-    ports:
-      - 5432:5432
-    environment:
-      - PGPOOL_BACKEND_NODES=0:pg-0:5432,1:pg-1:5432
-      - PGPOOL_SR_CHECK_USER=customuser
-      - PGPOOL_SR_CHECK_PASSWORD=custompassword
-      - PGPOOL_ENABLE_LDAP=no
-      - PGPOOL_POSTGRES_USERNAME=postgres
-      - PGPOOL_POSTGRES_PASSWORD=adminpassword
-      - PGPOOL_ADMIN_USERNAME=admin
-      - PGPOOL_ADMIN_PASSWORD=adminpassword
-    healthcheck:
-      test: ["CMD", "/opt/bitmoa/scripts/pgpool/healthcheck.sh"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  myapp:
-    image: YOUR_APPLICATION_IMAGE
-    networks:
-      - my-network
-volumes:
-  pg_0_data:
-    driver: local
-  pg_1_data:
-    driver: local
-```
-
-> **IMPORTANT**:
->
-> 1. Please update the **YOUR_APPLICATION_IMAGE_** placeholder in the above snippet with your application image
-> 2. In your application container, use the hostname `pgpool` to connect to the PostgreSQL server
-
-Launch the containers using:
-
-```console
-docker-compose up -d
-```
-
 ## Configuration
 
-### Setting up a HA PostgreSQL cluster with Pgpool-II, streaming replication and repmgr
-
-A HA PostgreSQL cluster with Pgpool-II, [Streaming replication](https://www.postgresql.org/docs/10/warm-standby.html#STREAMING-REPLICATION) and [repmgr](https://repmgr.org) can easily be setup with the Bitnami PostgreSQL with Replication Manager and Pgpool-II container images.
-In a HA PostgreSQL cluster you can have one primary and zero or more standby nodes. The primary node is in read-write mode, while the standby nodes are in read-only mode. For best performance its advisable to limit the reads to the standby nodes.
-
-#### Step 1: Create a network and the initial primary node
-
-The first step is to start the initial primary node:
-
-```console
-docker network create my-network --driver bridge
-docker run --detach --name pg-0 \
-  --network my-network \
-  --env REPMGR_PARTNER_NODES=pg-0,pg-1 \
-  --env REPMGR_NODE_NAME=pg-0 \
-  --env REPMGR_NODE_NETWORK_NAME=pg-0 \
-  --env REPMGR_PRIMARY_HOST=pg-0 \
-  --env REPMGR_PASSWORD=repmgrpass \
-  --env POSTGRESQL_POSTGRES_PASSWORD=adminpassword \
-  --env POSTGRESQL_USERNAME=customuser \
-  --env POSTGRESQL_PASSWORD=custompassword \
-  --env POSTGRESQL_DATABASE=customdatabase \
-  bitmoa/postgresql-repmgr:latest
-```
-
-#### Step 2: Create a standby node
-
-Next we start a standby node:
-
-```console
-docker run --detach --name pg-1 \
-  --network my-network \
-  --env REPMGR_PARTNER_NODES=pg-0,pg-1 \
-  --env REPMGR_NODE_NAME=pg-1 \
-  --env REPMGR_NODE_NETWORK_NAME=pg-1 \
-  --env REPMGR_PRIMARY_HOST=pg-0 \
-  --env REPMGR_PASSWORD=repmgrpass \
-  --env REPMGR_PASSWORD=repmgrpass \
-  --env POSTGRESQL_POSTGRES_PASSWORD=adminpassword \
-  --env POSTGRESQL_USERNAME=customuser \
-  --env POSTGRESQL_PASSWORD=custompassword \
-  --env POSTGRESQL_DATABASE=customdatabase \
-  bitmoa/postgresql-repmgr:latest
-```
-
-#### Step 3: Create the pgpool instance
-
-```console
-docker run --detach --rm --name pgpool \
-  --network my-network \
-  --env PGPOOL_BACKEND_NODES=0:pg-0:5432,1:pg-1:5432 \
-  --env PGPOOL_SR_CHECK_USER=postgres \
-  --env PGPOOL_SR_CHECK_PASSWORD=adminpassword \
-  --env PGPOOL_ENABLE_LDAP=no \
-  --env PGPOOL_USERNAME=customuser \
-  --env PGPOOL_PASSWORD=custompassword \
-  bitmoa/pgpool:latest
-```
-
-With these three commands you now have a two node PostgreSQL primary-standby streaming replication cluster using Pgpool-II as proxy up and running. You can scale the cluster by adding/removing standby nodes without incurring any downtime.
-
-> **Note**: The cluster replicates the primary in its entirety, which includes all users and databases.
-
-If the master goes down, **repmgr** will ensure any of the standby nodes takes the primary role, guaranteeing high availability.
-
-> **Note**: The configuration of the other nodes in the cluster needs to be updated so that they are aware of them. This would require you to restart the old nodes adapting the `REPMGR_PARTNER_NODES` environment variable. You also need to restart the Pgpoll instance adapting the `PGPOOL_BACKEND_NODES` environment variable.
-
-With Docker Compose the HA PostgreSQL cluster can be setup using the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/pgpool/docker-compose.yml) file present in this repository:
-
-```console
-curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/pgpool/docker-compose.yml > docker-compose.yml
-docker-compose up -d
-```
+The following section describes how to configure the application
 
 ### Initializing with custom scripts
 
 **Everytime the container is started**, it will execute the files with extension `.sh` located at `/docker-entrypoint-initdb.d` after initializing Pgpool-II.
-
-In order to have your custom files inside the docker image you can mount them as a volume. With docker-compose:
-
-```diff
-     image: bitmoa/pgpool:latest
-     ports:
-       - 5432:5432
-+    volumes:
-+      - /path/to/init-scripts:/docker-entrypoint-initdb.d
-     environment:
-       - PGPOOL_BACKEND_NODES=0:pg-0:5432,1:pg-1:5432
-       - PGPOOL_SR_CHECK_USER=customuser
-```
 
 ### Securing Pgpool-II traffic
 
@@ -339,83 +76,14 @@ Pgpool-II supports the encryption of connections using the SSL/TLS protocol. Sho
 - `PGPOOL_TLS_CA_FILE`: File containing the CA of the certificate. If provided, Pgpool-II will authenticate TLS/SSL clients by requesting them a certificate (see [ref](https://www.pgpool.net/docs/latest/en/html/runtime-ssl.html)). No defaults.
 - `PGPOOL_TLS_PREFER_SERVER_CIPHERS`: Whether to use the server's TLS cipher preferences rather than the client's. Defaults to `yes`.
 
-When enabling TLS, Pgpool-II will support both standard and encrypted traffic by default, but prefer the latter. Below there are some examples on how to quickly set up TLS traffic:
-
-1. Using `docker run`
-
-    ```console
-    $ docker run \
-        -v /path/to/certs:/opt/bitmoa/pgpool/certs \
-        -e ALLOW_EMPTY_PASSWORD=yes \
-        -e PGPOOL_ENABLE_TLS=yes \
-        -e PGPOOL_TLS_CERT_FILE=/opt/bitmoa/pgpool/certs/postgres.crt \
-        -e PGPOOL_TLS_KEY_FILE=/opt/bitmoa/pgpool/certs/postgres.key \
-        bitmoa/pgpool:latest
-    ```
-
-2. Modifying the `docker-compose.yml` file present in this repository:
-
-    ```yaml
-    services:
-      pgpool:
-      ...
-        environment:
-          ...
-          - PGPOOL_ENABLE_TLS=yes
-          - PGPOOL_TLS_CERT_FILE=/opt/bitmoa/pgpool/certs/postgres.crt
-          - PGPOOL_TLS_KEY_FILE=/opt/bitmoa/pgpool/certs/postgres.key
-        ...
-        volumes:
-          ...
-          - /path/to/certs:/opt/bitmoa/pgpool/certs
-      ...
-    ```
+When enabling TLS, Pgpool-II will support both standard and encrypted traffic by default, but prefer the latter.
 
 Alternatively, you may also provide this configuration in your [custom](https://github.com/bitmoa/containers/blob/main/bitmoa/pgpool#configuration-file) configuration file.
 
 ### Configuration file
 
 You can override the default configuration by providing a configuration file. Set `PGPOOL_USER_CONF_FILE` with the path of the file, and this will be added to the default configuration.
-You can override the default hba configuration by providing a hba configuration file. Set `PGPOOL_USER_HBA_FILE` with the path of the file, and this will overwrite the default hba configuration.
-
-### Step 1: Generate the configuration file
-
-```console
-$ cat myconf.conf
-max_pool='300'
-```
-
-#### Step 2: Run the Pgpool-II image
-
-Run the Pgpool-II image, mounting a directory from your host and setting `PGPOOL_USER_CONF_FILE` and `PGPOOL_USER_HBA_FILE`. Using Docker Compose:
-
-```diff
-     image: bitmoa/pgpool:latest
-     ports:
-       - 5432:5432
-+    volumes:
-+      - /path/to/myconf.conf:/config/myconf.conf
-+      - /path/to/myhbaconf.conf:/config/myhbaconf.conf
-     environment:
-+      - PGPOOL_USER_CONF_FILE=/config/myconf.conf
-+      - PGPOOL_USER_HBA_FILE=/config/myhbaconf.conf
-       - PGPOOL_BACKEND_NODES=0:pg-0:5432,1:pg-1:5432
-       - PGPOOL_SR_CHECK_USER=customuser
-```
-
-#### Step 3: Start Pgpool-II
-
-Start your Pgpool-II container for changes to take effect.
-
-```console
-docker restart pgpool
-```
-
-or using Docker Compose:
-
-```console
-docker-compose restart pgpool
-```
+You can also override the default hba configuration by providing a hba configuration file. Set `PGPOOL_USER_HBA_FILE` with the path of the file, and this will overwrite the default hba configuration.
 
 Refer to the [server configuration](http://www.pgpool.net/docs/latest/en/html/runtime-config.html) manual for the complete list of configuration options.
 
@@ -458,10 +126,13 @@ This command will prompt for a password, this password is the one set in the env
 
 ### Environment variables
 
+The following tables list the main variables you can set.
+
 #### Customizable environment variables
 
 | Name                                     | Description                                                                                                                        | Default Value                       |
 |------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| `PGPOOL_WORK_DIR`                        | Pgpool-II working directory.                                                                                                       | `/tmp`                              |
 | `PGPOOL_USER_CONF_FILE`                  | Custom Pgpool-II configuration file to be appended at Pgpool-II configuration file.                                                | `nil`                               |
 | `PGPOOL_USER_HBA_FILE`                   | Custom Pgpool-II host-based authentication configuration to be appended to Pgpool-II host-based authentication configuration file. | `nil`                               |
 | `PGPOOL_PASSWD_FILE`                     | Pgpool-II pool password file.                                                                                                      | `pool_passwd`                       |
@@ -536,7 +207,7 @@ This command will prompt for a password, this password is the one set in the env
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Pgpool-II Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Pgpool-II Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -549,40 +220,6 @@ docker logs pgpool
 ```
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
-
-## Maintenance
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of Pgpool-II, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/pgpool:latest
-```
-
-#### Step 2: Stop the running container
-
-Stop the currently running container using the command
-
-```console
-docker-compose stop pgpool
-```
-
-#### Step 3: Remove the currently running container
-
-```console
-docker-compose rm -v pgpool
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image.
-
-```console
-docker-compose up pgpool
-```
 
 ## Notable Changes
 
@@ -601,23 +238,9 @@ docker-compose up pgpool
 - `4.1.0-centos-7-r8` is considered the latest image based on CentOS.
 - Standard supported distros: Debian & OEL.
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes.
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

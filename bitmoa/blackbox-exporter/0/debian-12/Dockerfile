@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-13T23:19:55Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-07T21:42:38Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/blackbox-exporter/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/blackbox-exporter" \
       org.opencontainers.image.title="blackbox-exporter" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="0.27.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="0.28.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "blackbox-exporter-0.27.0-8-linux-${OS_ARCH}-debian-12" \
+      "blackbox-exporter-0.28.0-7-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,9 +45,9 @@ RUN chmod g+rwX /opt/bitmoa
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="0.27.0" \
+ENV APP_VERSION="0.28.0" \
     BITMOA_APP_NAME="blackbox-exporter" \
-    IMAGE_REVISION="9" \
+    IMAGE_REVISION="10" \
     PATH="/opt/bitmoa/blackbox-exporter/bin:$PATH"
 
 EXPOSE 9115

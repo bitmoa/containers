@@ -1,6 +1,4 @@
-# Bitnami package for HashiCorp Consul
-
-## What is HashiCorp Consul?
+# Bitnami Secure Image for HashiCorp Consul
 
 > HashiCorp Consul is a tool for discovering and configuring services in your infrastructure.
 
@@ -15,27 +13,22 @@ docker run --name consul bitmoa/consul:latest
 
 You can find the available configuration options in the [Environment Variables](#environment-variables) section.
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
-
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
-
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
-
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## How to deploy HashiCorp Consul in Kubernetes?
 
@@ -49,31 +42,13 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami HashiCorp Consul Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/consul).
+The Bitnami HashiCorp Consul Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
-```console
-docker pull bitmoa/consul:latest
-```
+## Using `docker-compose.yaml`
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/consul/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/consul:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/consul).
 
 ## Persisting your application
 
@@ -83,20 +58,7 @@ For persistence you should mount a volume at the `/bitmoa` path. The above examp
 
 To avoid inadvertent removal of this volume you can [mount host directories as data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/). Alternatively you can make use of volume plugins to host the volume data.
 
-```console
-docker run -v /path/to/consul-persistence:/bitmoa bitmoa/consul:latest
-```
-
-or using Docker Compose:
-
-```yaml
-consul:
-  image: bitmoa/consul:latest
-  volumes:
-    - /path/to/consul-persistence:/bitmoa
-```
-
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
+> **NOTE** As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
 
 ## Connecting to other containers
 
@@ -104,186 +66,13 @@ Using [Docker container networking](https://docs.docker.com/engine/userguide/net
 
 Containers attached to the same network can communicate with each other using the container name as the hostname.
 
-### Using the Command Line
-
-#### Step 1: Create a network
-
-```console
-docker network create consul-network --driver bridge
-```
-
-#### Step 2: Launch the HashiCorp Consul container within your network
-
-Use the `--network <NETWORK>` argument to the `docker run` command to attach the container to the `consul-network` network.
-
-```console
-docker run --name consul-node1 --network consul-network bitmoa/consul:latest
-```
-
-#### Step 3: Run another containers
-
-We can launch another containers using the same flag (`--network NETWORK`) in the `docker run` command. If you also set a name to your container, you will be able to use it as hostname in your network.
-
-### Using a Docker Compose file
-
-When not specified, Docker Compose automatically sets up a new network and attaches all deployed services to that network. However, we will explicitly define a new bridge network named consul-network.
-
-```yaml
-version: '2'
-
-networks:
-  consul-network:
-    driver: bridge
-
-services:
-  consul:
-    image: bitmoa/consul:latest
-    networks:
-      - consul-network
-    ports:
-      - 8300:8300
-      - 8301:8301
-      - 8301:8301/udp
-      - 8500:8500
-      - 8600:8600
-      - 8600:8600/udp
-```
-
-Then, launch the containers using:
-
-```console
-docker-compose up -d
-```
-
-## Setting up a cluster using Docker Compose
-
-This is the simplest way to run HashiCorp Consul with clustering configuration:
-
-### Step 1: Add a server node in your `docker-compose.yml`
-
-Copy the snippet below into your docker-compose.yml to add a HashiCorp Consul server node to your cluster configuration.
-
-```yaml
-version: '2'
-
-services:
-  consul-node1:
-    image: bitmoa/consul:latest
-    environment:
-      - CONSUL_BOOTSTRAP_EXPECT=3
-      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
-      - CONSUL_DISABLE_KEYRING_FILE=true
-      - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
-    ports:
-      - 8300:8300
-      - 8301:8301
-      - 8301:8301/udp
-      - 8500:8500
-      - 8600:8600
-      - 8600:8600/udp
-    volumes:
-      - consul-node1_data:/bitmoa
-```
-
-> **Note:** The value of the **CONSUL_BOOTSTRAP_EXPECT** should reflect the total number of nodes the cluster will have.
-
-### Step 2: Add extra nodes to your configuration
-
-Update the definitions for nodes you want your HashiCorp Consul node cluster with. If it is a remote WAN node, use `CONSUL_RETRY_JOIN_WAN_ADDRESS`.
-
-```yaml
-consul-node2:
-  image: bitmoa/consul:latest
-  environment:
-    - CONSUL_BOOTSTRAP_EXPECT=3
-    - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
-    - CONSUL_DISABLE_KEYRING_FILE=true
-    - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
-    - CONSUL_ENABLE_UI=false
-  volumes:
-    - consul-node2_data:/bitmoa
-
-consul-node3:
-  image: bitmoa/consul:latest
-  environment:
-    - CONSUL_BOOTSTRAP_EXPECT=3
-    - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
-    - CONSUL_DISABLE_KEYRING_FILE=true
-    - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
-    - CONSUL_ENABLE_UI=false
-  volumes:
-    - consul-node3_data:/bitmoa
-```
-
-### Step 3: Add the volume description
-
-```yaml
-volumes:
-  consul-node1_data:
-    driver: local
-  consul-node2_data:
-    driver: local
-  consul-node3_data:
-    driver: local
-```
-
-The final `docker-compose.yml` will look like this:
-
-```yaml
-version: '2'
-
-services:
-  consul-node1:
-    image: bitmoa/consul:latest
-    environment:
-      - CONSUL_BOOTSTRAP_EXPECT=3
-      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
-      - CONSUL_DISABLE_KEYRING_FILE=true
-      - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
-    ports:
-      - 8300:8300
-      - 8301:8301
-      - 8301:8301/udp
-      - 8500:8500
-      - 8600:8600
-      - 8600:8600/udp
-    volumes:
-      - consul-node1_data:/bitmoa
-
-  consul-node2:
-    image: bitmoa/consul:latest
-    environment:
-      - CONSUL_BOOTSTRAP_EXPECT=3
-      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
-      - CONSUL_DISABLE_KEYRING_FILE=true
-      - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
-      - CONSUL_ENABLE_UI=false
-    volumes:
-      - consul-node2_data:/bitmoa
-
-  consul-node3:
-    image: bitmoa/consul:latest
-    environment:
-      - CONSUL_BOOTSTRAP_EXPECT=3
-      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
-      - CONSUL_DISABLE_KEYRING_FILE=true
-      - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
-      - CONSUL_ENABLE_UI=false
-    volumes:
-      - consul-node3_data:/bitmoa
-
-volumes:
-  consul-node1_data:
-    driver: local
-  consul-node2_data:
-    driver: local
-  consul-node3_data:
-    driver: local
-```
-
 ## Configuration
 
+The following section describes the supported environment variables
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -322,7 +111,7 @@ volumes:
 | `CONSUL_DEFAULT_CONF_DIR`      | Consul default configuration directory.     | `${CONSUL_BASE_DIR}/conf.default`          |
 | `CONSUL_BIN_DIR`               | Consul binary directory.                    | `${CONSUL_BASE_DIR}/bin`                   |
 | `CONSUL_CONF_FILE`             | Consul configuration file.                  | `${CONSUL_CONF_DIR}/consul.json`           |
-| `CONSUL_ENCRYPT_FILE`          | Consul encrytion configuration file.        | `${CONSUL_CONF_DIR}/encrypt.json`          |
+| `CONSUL_ENCRYPT_FILE`          | Consul encryption configuration file.       | `${CONSUL_CONF_DIR}/encrypt.json`          |
 | `CONSUL_LOCAL_FILE`            | Consul local configuration file.            | `${CONSUL_CONF_DIR}/local.json`            |
 | `CONSUL_LOG_DIR`               | Directory where Consul logs are stored.     | `${CONSUL_BASE_DIR}/logs`                  |
 | `CONSUL_LOG_FILE`              | Consul log file.                            | `${CONSUL_LOG_DIR}/consul.log`             |
@@ -339,21 +128,6 @@ volumes:
 | `CONSUL_DAEMON_USER`           | Consul system user.                         | `consul`                                   |
 | `CONSUL_DAEMON_GROUP`          | Consul system group.                        | `consul`                                   |
 
-#### Specifying Environment Variables using Docker Compose
-
-```yaml
-consul:
-  image: bitmoa/consul:latest
-  environment:
-    - CONSUL_HTTP_PORT_NUMBER=8888
-```
-
-#### Specifying Environment Variables on the Docker command line
-
-```console
-docker run -d -e CONSUL_HTTP_PORT_NUMBER=8888 --name consul bitmoa/consul:latest
-```
-
 ### Using custom HashiCorp Consul configuration files
 
 In order to load your own configuration files, you will have to make them available to the container. You can do it doing the following:
@@ -361,43 +135,11 @@ In order to load your own configuration files, you will have to make them availa
 - Mounting a volume with your custom configuration
 - Adding custom configuration via environment variable.
 
-By default, the configuration of HashiCorp Consul is written to `/opt/bitmoa/consul/consul.json` file  and persisted with the following content:
-
-```json
-{
-    "datacenter":"dc1",
-    "domain":"consul",
-    "data_dir":"/opt/bitmoa/consul/data",
-    "pid_file":"/opt/bitmoa/consul/tmp/consul.pid",
-    "server":true,
-    "ui":true,
-    "bootstrap_expect":1,
-    "addresses": {
-        "http":"0.0.0.0"
-    },
-    "retry_join": ["127.0.0.1"],
-    "ports": {
-        "http":8500,
-        "dns":8600,
-        "serf_lan":8301,
-        "server":8300
-    },
-    "serf_lan":"0.0.0.0"
-}
-```
+By default, the configuration of HashiCorp Consul is written to `/opt/bitmoa/consul/consul.json` file.
 
 #### Configuring environment variables
 
 Configuration can be added by passing the configuration in JSON format via the environment variable `CONSUL_LOCAL_CONFIG`. Then consul will write a `local.json` file in the HashiCorp Consul configuration directory. HashiCorp Consul will load all files within the configuration directory in alphabetical order, so ones with starting with higher letters will prevail.
-
-```console
-docker run -d -e CONSUL_LOCAL_CONFIG='{
-    "datacenter":"us_west",
-    "server":true,
-    "enable_debug":true
-}' \
-     --name consul bitmoa/consul:latest
-```
 
 #### Mounting a volume
 
@@ -417,22 +159,12 @@ This command will generate a keygen, that you can add to your Dockerfile, docker
 docker run -e CONSUL_GOSSIP_ENCRYPTION_KEY=YOUR_GENERATED_KEY --name consul bitmoa/consul:latest
 ```
 
-#### Deploying a Docker Compose file
-
-```yaml
-consul:
-  image: bitmoa/consul:latest
-  volumes:
-    - /local/path/to/your/confDir:/opt/bitmoa/consul/conf
-```
-
-The container has a HashiCorp Consul configuration directory set up at /consul/config and the agent will load any configuration files placed here by binding a volume or by composing a new image and adding files. Alternatively, configuration can be added by passing the configuration JSON via environment variable CONSUL_LOCAL_CONFIG. If this is bind mounted then ownership will be changed to the consul user when the container starts.
-
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami HashiCorp Consul Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami HashiCorp Consul Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
+- `GODEBUG`: controls Go FIPS mode. Use `fips140=only` (restricted), `fips140=on` (relaxed), or `fips140=off` (disabled).
 
 ## Logging
 
@@ -449,69 +181,6 @@ docker-compose logs consul
 ```
 
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
-
-## Maintenance
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of consul, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/consul:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to
-`bitmoa/consul:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Stop the currently running container using the command
-
-```console
-docker stop consul
-```
-
-or using Docker Compose:
-
-```console
-docker-compose stop consul
-```
-
-Next, take a snapshot of the persistent volume `/path/to/consul-persistence` using:
-
-```console
-rsync -a /path/to/consul-persistence /path/to/consul-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
-```
-
-You can use this snapshot to restore the database state should the upgrade fail.
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v consul
-```
-
-or using Docker Compose:
-
-```console
-docker-compose rm -v consul
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image, restoring your backup if necessary.
-
-```console
-docker run --name consul bitmoa/consul:latest
-```
-
-or using Docker Compose:
-
-```console
-docker-compose up consul
-```
 
 ## Notable Changes
 
@@ -530,23 +199,9 @@ Also, some env var changes have been performed maintaining backward compatibilit
 
 - The Consul container has been migrated to a non-root user approach. Previously the container ran as the `root` user and the Consul daemon was started as the `consul` user. From now on, both the container and the Consul daemon run as user `1001`. As a consequence, the data directory must be writable by that user. You can revert this behavior by changing `USER 1001` to `USER root` in the Dockerfile.
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/consul).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -1,6 +1,0 @@
-binaries:
-  - contour
-root_dir: /opt/bitmoa
-version:
-  bin_name: contour
-  flag: version

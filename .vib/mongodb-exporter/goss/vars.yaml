@@ -1,6 +1,0 @@
-binaries:
-  - mongodb_exporter
-root_dir: /opt/bitmoa
-version:
-  bin_name: mongodb_exporter
-  flag: --version

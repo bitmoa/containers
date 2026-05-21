@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-06T14:31:39Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T19:29:15Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/keycloak-config-cli/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/keycloak-config-cli" \
       org.opencontainers.image.title="keycloak-config-cli" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="6.4.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="6.5.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-21.0.8-12-1-linux-${OS_ARCH}-debian-12" \
-      "keycloak-config-cli-6.4.0-0-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
+      "keycloak-config-cli-6.5.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,9 +47,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN ln -sf /opt/bitmoa/keycloak-config-cli/keycloak-config-cli.jar /opt/keycloak-config-cli.jar
 RUN uninstall_packages curl
 
-ENV APP_VERSION="6.4.0" \
+ENV APP_VERSION="6.5.0" \
     BITMOA_APP_NAME="keycloak-config-cli" \
-    IMAGE_REVISION="13" \
+    IMAGE_REVISION="1" \
     PATH="/opt/bitmoa/java/bin:$PATH"
 
 WORKDIR /opt/bitmoa/keycloak-config-cli

@@ -1,7 +1,0 @@
-binaries:
-  - jupyterhub
-  - conda
-root_dir: /opt/bitmoa
-version:
-  bin_name: jupyterhub
-  flag: --version

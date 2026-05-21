@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-14T11:42:42Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T20:33:18Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/pgpool/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/pgpool" \
       org.opencontainers.image.title="pgpool" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="4.6.3"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="4.7.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,14 +23,14 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl ldap-utils libaudit1 libbsd0 libcap-ng0 libcom-err2 libcrypt1 libedit2 libffi8 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhashkit2 libhogweed6 libicu72 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 libldap-common liblz4-1 liblzma5 libmd0 libmemcached11 libnettle8 libnss-ldapd libp11-kit0 libpam-ldapd libpam0g libpq5 libsasl2-2 libssl3 libstdc++6 libtasn1-6 libtinfo6 libunistring2 libuuid1 libxml2 libxslt1.1 nslcd procps zlib1g
+RUN install_packages ca-certificates curl ldap-utils libaudit1 libbsd0 libcap-ng0 libcrypt1 libedit2 libffi8 libgcc-s1 libgmp10 libgnutls30 libhashkit2 libhogweed6 libicu72 libidn2-0 libldap-2.5-0 libldap-common liblz4-1 liblzma5 libmd0 libmemcached11 libnettle8 libnss-ldapd libp11-kit0 libpam-ldapd libpam0g libsasl2-2 libssl3 libstdc++6 libtasn1-6 libtinfo6 libunistring2 libuuid1 libxml2 libxslt1.1 nslcd procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.10-3-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-18.0.0-0-linux-${OS_ARCH}-debian-12" \
-      "pgpool-4.6.3-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
+      "pgpool-4.7.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -49,10 +49,10 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/pgpool/postunpack.sh
-ENV APP_VERSION="4.6.3" \
+ENV APP_VERSION="4.7.1" \
     BITMOA_APP_NAME="pgpool" \
-    IMAGE_REVISION="5" \
-    LD_LIBRARY_PATH="/opt/bitmoa/common/lib:/opt/bitmoa/common/lib64:$LD_LIBRARY_PATH" \
+    IMAGE_REVISION="2" \
+    LD_LIBRARY_PATH="/opt/bitmoa/common/lib:/opt/bitmoa/common/lib64:/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/pgpool/bin:/opt/bitmoa/common/sbin:$PATH"
 
 EXPOSE 5432

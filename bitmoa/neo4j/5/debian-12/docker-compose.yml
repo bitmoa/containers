@@ -3,7 +3,7 @@
 
 services:
   neo4j:
-    image: ghcr.io/bitmoa/neo4j:5
+    image: ghcr.io/bitmoa/neo4j:2026
     ports:
       - '7474:7474'
       - '7473:7473'

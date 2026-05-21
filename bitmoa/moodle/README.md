@@ -1,7 +1,5 @@
 # Bitnami LMS powered by Moodle&trade; LMS
 
-## What is Bitnami LMS powered by Moodle&trade; LMS?
-
 > Moodle&trade; LMS is an open source online Learning Management System widely used at universities, schools, and corporations. It is modular and highly adaptable to any type of online learning.
 
 [Overview of Bitnami LMS powered by Moodle&trade; LMS](https://moodle.org/)
@@ -13,29 +11,30 @@ Disclaimer: The respective trademarks mentioned in the offering are owned by the
 docker run --name moodle bitmoa/moodle:latest
 ```
 
-**Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure deployment.
+## Using `docker-compose.yml`
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+[https://github.com/bitmoa/containers/tree/main/bitmoa/moodle/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/moodle/docker-compose.yml)
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/moodle).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## How to deploy Moodle&trade; in Kubernetes?
 
@@ -45,86 +44,13 @@ Deploying Bitnami applications as Helm Charts is the easiest way to get started 
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami Docker Image for Moodle&trade; is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/moodle).
-
-```console
-docker pull bitmoa/moodle:latest
-```
-
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/moodle/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/moodle:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
-
-## How to use this image
-
-Moodle&trade; requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
-
-### Using the Docker Command Line
-
-#### Step 1: Create a network
-
-```console
-docker network create moodle-network
-```
-
-#### Step 2: Create a volume for MariaDB persistence and create a MariaDB container
-
-```console
-$ docker volume create --name mariadb_data
-docker run -d --name mariadb \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env MARIADB_USER=bn_moodle \
-  --env MARIADB_PASSWORD=bitmoa \
-  --env MARIADB_DATABASE=bitmoa_moodle \
-  --network moodle-network \
-  --volume mariadb_data:/bitmoa/mariadb \
-  bitmoa/mariadb:latest
-```
-
-#### Step 3: Create volumes for Moodle&trade; persistence and launch the container
-
-```console
-$ docker volume create --name moodle_data
-docker run -d --name moodle \
-  -p 8080:8080 -p 8443:8443 \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env MOODLE_DATABASE_USER=bn_moodle \
-  --env MOODLE_DATABASE_PASSWORD=bitmoa \
-  --env MOODLE_DATABASE_NAME=bitmoa_moodle \
-  --network moodle-network \
-  --volume moodle_data:/bitmoa/moodle \
-  --volume moodledata_data:/bitmoa/moodledata \
-  bitmoa/moodle:latest
-```
-
-Access your application at `http://your-ip/`
+The Bitnami Bitnami LMS powered by Moodle&trade; LMS Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
 ### Run the application using Docker Compose
 
-```console
-curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/moodle/docker-compose.yml > docker-compose.yml
-docker-compose up -d
-```
-
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/moodle).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
@@ -132,75 +58,15 @@ If you remove the container all your data will be lost, and the next time you ru
 
 For persistence you should mount a directory at the `/bitmoa/moodle` path and another at `/bitmoa/moodledata`. If the mounted directory is empty, it will be initialized on the first run. Additionally you should mount a volume for persistence of the [MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
-The above examples define the Docker volumes named mariadb_data, moodle_data and moodledata_data. The Moodle&trade; application state will persist as long as volumes are not removed.
-
 To avoid inadvertent removal of volumes, you can mount host directories as data volumes. Alternatively you can make use of volume plugins to host the volume data.
-
-### Mount host directories as data volumes with Docker Compose
-
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/moodle/docker-compose.yml) file present in this repository:
-
-```diff
-   mariadb:
-     ...
-     volumes:
--      - mariadb_data:/bitmoa/mariadb
-+      - /path/to/mariadb-persistence:/bitmoa/mariadb
-   ...
-   moodle:
-     ...
-     volumes:
--      - moodle_data:/bitmoa/moodle
-+      - /path/to/moodle-persistence:/bitmoa/moodle
--      - moodledata_data:/bitmoa/moodledata
-+      - /path/to/moodledata-persistence:/bitmoa/moodle
-   ...
--volumes:
--  mariadb_data:
--    driver: local
--  moodle_data:
--    driver: local
-```
-
-### Mount host directories as data volumes using the Docker command line
-
-#### Step 1: Create a network (if it does not exist)
-
-```console
-docker network create moodle-network
-```
-
-#### Step 2. Create a MariaDB container with host volume
-
-```console
-docker run -d --name mariadb \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env MARIADB_USER=bn_moodle \
-  --env MARIADB_PASSWORD=bitmoa \
-  --env MARIADB_DATABASE=bitmoa_moodle \
-  --network moodle-network \
-  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
-  bitmoa/mariadb:latest
-```
-
-#### Step 3. Create the Moodle&trade; container with host volumes
-
-```console
-docker run -d --name moodle \
-  -p 8080:8080 -p 8443:8443 \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env MOODLE_DATABASE_USER=bn_moodle \
-  --env MOODLE_DATABASE_PASSWORD=bitmoa \
-  --env MOODLE_DATABASE_NAME=bitmoa_moodle \
-  --network moodle-network \
-  --volume /path/to/moodle-persistence:/bitmoa/moodle \
-  --volume /path/to/moodledata-persistence:/bitmoa/moodledata \
-  bitmoa/moodle:latest
-```
 
 ## Configuration
 
+The following section describes the supported environment variables
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -217,8 +83,7 @@ docker run -d --name moodle \
 | `MOODLE_SSLPROXY`             | Activate the sslproxy feature of Moodle.                                                                                     | `no`                               |
 | `MOODLE_LANG`                 | Allow to define default site language                                                                                        | `en`                               |
 | `MOODLE_USERNAME`             | Moodle user name.                                                                                                            | `user`                             |
-| `MOODLE_PASSWORD`             | Moodle user password.                                                                                                        | `bitmoa`                          |
-| `MOODLE_DATABASE_MIN_VERSION` | Change database minimum version because of an issue with Azure Database for MariaDB.                                         | `nil`                              |
+| `MOODLE_PASSWORD`             | Moodle user password.                                                                                                        | `bitnami`                          |
 | `MOODLE_EMAIL`                | Moodle user e-mail address.                                                                                                  | `user@example.com`                 |
 | `MOODLE_SMTP_HOST`            | Moodle SMTP server host.                                                                                                     | `nil`                              |
 | `MOODLE_SMTP_PORT_NUMBER`     | Moodle SMTP server port number.                                                                                              | `nil`                              |
@@ -242,66 +107,13 @@ docker run -d --name moodle \
 | `PHP_DEFAULT_MEMORY_LIMIT`   | Default PHP memory limit.                                  | `256M`                          |
 | `PHP_DEFAULT_MAX_INPUT_VARS` | Default maximum amount of input variables for PHP scripts. | `5000`                          |
 
-When you start the Moodle&trade; image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. If you want to add a new environment variable:
-
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/moodle/docker-compose.yml) file present in this repository:
-
-```yaml
-moodle:
-  ...
-  environment:
-    - MOODLE_PASSWORD=my_password
-  ...
-```
-
-- For manual execution add a `--env` option with each variable and value:
-
-  ```console
-  docker run -d --name moodle -p 80:8080 -p 443:8443 \
-    --env MOODLE_PASSWORD=my_password \
-    --network moodle-tier \
-    --volume /path/to/moodle-persistence:/bitmoa/moodle \
-    --volume /path/to/moodledata-persistence:/bitmoa/moodledata \
-    bitmoa/moodle:latest
-  ```
-
 ### Examples
 
-This would be an example of SMTP configuration using a Gmail account:
+#### SMTP configuration
 
-- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/moodle/docker-compose.yml) file present in this repository:
+The `MOODLE_SMTP_*` environment variables allows you configure the SMTP settings in the application. Please take a look at the environment variables information above for more information.
 
-  ```yaml
-  moodle:
-    ...
-    environment:
-      - MOODLE_DATABASE_USER=bn_moodle
-      - MOODLE_DATABASE_NAME=bitmoa_moodle
-      - ALLOW_EMPTY_PASSWORD=yes
-      - MOODLE_SMTP_HOST=smtp.gmail.com
-      - MOODLE_SMTP_PORT=587
-      - MOODLE_SMTP_USER=your_email@gmail.com
-      - MOODLE_SMTP_PASSWORD=your_password
-      - MOODLE_SMTP_PROTOCOL=tls
-  ...
-  ```
-
-- For manual execution:
-
-  ```console
-  docker run -d --name moodle -p 80:8080 -p 443:8443 \
-    --env MOODLE_DATABASE_USER=bn_moodle \
-    --env MOODLE_DATABASE_NAME=bitmoa_moodle \
-    --env MOODLE_SMTP_HOST=smtp.gmail.com \
-    --env MOODLE_SMTP_PORT=587 \
-    --env MOODLE_SMTP_USER=your_email@gmail.com \
-    --env MOODLE_SMTP_PASSWORD=your_password \
-    --env MOODLE_SMTP_PROTOCOL=tls \
-    --network moodle-tier \
-    --volume /path/to/moodle-persistence:/bitmoa/moodle \
-    --volume /path/to/moodledata-persistence:/bitmoa/moodledata \
-    bitmoa/moodle:latest
-  ```
+#### Load balancer
 
 This would be an instance ready to be put behind the NGINX load balancer.
 
@@ -338,61 +150,9 @@ By default, this container packs a generic English version of Moodle&trade;. Nev
 
 You can add extra locales using the `EXTRA_LOCALES` build-time variable when building the Docker image. The values must be separated by commas or semicolons (and optional spaces), and refer to entries in the `/usr/share/i18n/SUPPORTED` file inside the container.
 
-For example, the following value would add French, German, Italian and Spanish, you would specify the following value in `EXTRA_LOCALES`:
-
-```text
-fr_FR.UTF-8 UTF-8, de_DE.UTF-8 UTF-8, it_IT.UTF-8 UTF-8, es_ES.UTF-8 UTF-8
-```
-
-> NOTE: The locales `en_AU.UTF-8 UTF-8` and `en_US.UTF-8 UTF-8` will always be packaged, defaulting to `en_US.UTF-8 UTF-8`.
-
-To use `EXTRA_LOCALES`, you have two options:
-
-- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/moodle/docker-compose.yml) file present in this repository:
-
-  ```yaml
-  moodle:
-  ...
-    # image: bitmoa/moodle:latest # remove this line !
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - EXTRA_LOCALES=fr_FR.UTF-8 UTF-8, de_DE.UTF-8 UTF-8, it_IT.UTF-8 UTF-8, es_ES.UTF-8 UTF-8
-  ...
-  ```
-
-- For manual execution, clone the repository and run the following command inside the `X/debian-12` directory:
-
-  ```console
-  docker build -t bitmoa/moodle:latest --build-arg EXTRA_LOCALES="fr_FR.UTF-8 UTF-8, de_DE.UTF-8 UTF-8, it_IT.UTF-8 UTF-8, es_ES.UTF-8 UTF-8" .
-  ```
-
 #### Enable all supported locales using the `WITH_ALL_LOCALES` build-time variable
 
 You can generate all supported locales by setting the build environment variable `WITH_ALL_LOCALES=yes`. Note that the generation of all the locales takes some time.
-
-To use `WITH_ALL_LOCALES`, you have two options:
-
-- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/moodle/docker-compose.yml) file present in this repository:
-
-  ```yaml
-  moodle:
-  ...
-    # image: bitmoa/moodle:latest # remove this line !
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - WITH_ALL_LOCALES=yes
-  ...
-  ```
-
-- For manual execution, clone the repository and run the following command inside the `X/debian-12` directory:
-
-  ```console
-  docker build -t bitmoa/moodle:latest --build-arg WITH_ALL_LOCALES=yes .
-  ```
 
 #### Extending the default image
 
@@ -407,121 +167,13 @@ Bear in mind that in the example above `es_ES.UTF-8 UTF-8` is the locale needed 
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Bitnami LMS powered by Moodle&trade; LMS Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Bitnami LMS powered by Moodle&trade; LMS Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
 ## Logging
 
-The Bitnami Docker image for Moodle&trade; sends the container logs to `stdout`. To view the logs:
-
-```console
-docker logs moodle
-```
-
-Or using Docker Compose:
-
-```console
-docker-compose logs moodle
-```
-
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
-
-By default, the logging of debug information is disabled. You can enable it by setting the environment variable `BITMOA_DEBUG` to `true`.
-
-## Maintenance
-
-### Backing up your container
-
-To backup your data, configuration and logs, follow these simple steps:
-
-#### Step 1: Stop the currently running container
-
-```console
-docker stop moodle
-```
-
-Or using Docker Compose:
-
-```console
-docker-compose stop moodle
-```
-
-#### Step 2: Run the backup command
-
-We need to mount two volumes in a container we will use to create the backup: a directory on your host to store the backup in, and the volumes from the container we just stopped so we can access the data.
-
-```console
-docker run --rm -v /path/to/moodle-backups:/backups --volumes-from moodle busybox \
-  cp -a /bitmoa/moodle /backups/latest
-```
-
-### Restoring a backup
-
-Restoring a backup is as simple as mounting the backup as volumes in the containers.
-
-For the MariaDB database container:
-
-```diff
- $ docker run -d --name mariadb \
-   ...
--  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
-+  --volume /path/to/mariadb-backups/latest:/bitmoa/mariadb \
-   bitmoa/mariadb:latest
-```
-
-For the Moodle&trade; container:
-
-```diff
- $ docker run -d --name moodle \
-   ...
--  --volume /path/to/moodle-persistence:/bitmoa/moodle \
-+  --volume /path/to/moodle-backups/latest/moodle:/bitmoa/moodle \
--  --volume /path/to/moodledata-persistence:/bitmoa/moodledata \
-+  --volume /path/to/moodledata-backups/latest/moodledata:/bitmoa/moodledata \
-   bitmoa/moodle:latest
-```
-
-### Upgrade this image
-
-> **NOTE:** Since Moodle(TM) 3.4.0-r1, the application upgrades should be done manually inside the docker container following the [official documentation](https://docs.moodle.org/37/en/Upgrading).
-> As an alternative, you can try upgrading using an updated Docker image. However, any data from the Moodle(TM) container will be lost and you will have to reinstall all the plugins and themes you manually added.
-
-Bitnami provides up-to-date versions of MariaDB and Moodle&trade;, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the Moodle&trade; container. For the MariaDB upgrade see: <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/moodle:latest
-```
-
-#### Step 2: Stop the running container
-
-Stop the currently running container using the command
-
-```console
-docker-compose stop moodle
-```
-
-#### Step 3: Take a snapshot of the application state
-
-Follow the steps in [Backing up your container](#backing-up-your-container) to take a snapshot of the current application state.
-
-#### Step 4: Remove the currently running container
-
-Remove the currently running container by executing the following command:
-
-```console
-docker-compose rm -v moodle
-```
-
-#### Step 5: Run the new image
-
-Update the image tag in `docker-compose.yml` and re-create your container with the new image:
-
-```console
-docker-compose up -d
-```
+The Bitnami Bitnami LMS powered by Moodle&trade; LMS Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## Customize this image
 
@@ -604,17 +256,9 @@ Based on the extended image, you can update the [`docker-compose.yml`](https://g
 - The PHP configuration volume (`/bitmoa/php`) has been deprecated, and support for this feature will be dropped in the near future. Until then, the container will enable the PHP configuration from that volume if it exists. By default, and if the configuration volume does not exist, the configuration files will be regenerated each time the container is created. Users wanting to apply custom PHP configuration files are advised to mount a volume for the configuration at `/opt/bitmoa/php/conf`, or mount specific configuration files individually.
 - Enabling custom Apache certificates by placing them at `/opt/bitmoa/apache/certs` has been deprecated, and support for this functionality will be dropped in the near future. Users wanting to enable custom certificates are advised to mount their certificate files on top of the preconfigured ones at `/certs`.
 
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

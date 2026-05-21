@@ -1,8 +1,0 @@
-binaries:
-  - java
-  - wait-for-port
-  - kc.sh
-root_dir: /opt/bitmoa
-sed_in_place:
-  exclude_paths:
-    - /opt/bitmoa/keycloak/bin/federation-sssd-setup.sh

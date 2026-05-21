@@ -7,8 +7,8 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T00:44:50Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T18:16:00Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/arangodb/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/arangodb" \
       org.opencontainers.image.title="arangodb" \
@@ -27,7 +27,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "arangodb-3.11.14-0-linux-${OS_ARCH}-debian-12" \
+      "arangodb-3.11.14-12-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -59,7 +59,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="3.11.14" \
     BITMOA_APP_NAME="arangodb" \
-    IMAGE_REVISION="6" \
+    IMAGE_REVISION="25" \
     PATH="/opt/bitmoa/arangodb/sbin:/opt/bitmoa/arangodb/bin:$PATH"
 
 EXPOSE 8529

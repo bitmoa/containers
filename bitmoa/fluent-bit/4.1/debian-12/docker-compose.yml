@@ -3,6 +3,6 @@
 
 services:
   fluent-bit:
-    image: ghcr.io/bitmoa/fluent-bit:4.1
+    image: ghcr.io/bitmoa/fluent-bit:5.0
     ports:
       - '2020:2020'

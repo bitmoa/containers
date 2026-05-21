@@ -46,7 +46,7 @@ NGINX_CONTEXT_INCLUDES=(
 
 # Ensure non-root user has write permissions on a set of directories
 chmod g+w "$NGINX_BASE_DIR"
-for dir in "$NGINX_VOLUME_DIR" "$NGINX_CONF_DIR" "$NGINX_INITSCRIPTS_DIR" "$NGINX_SERVER_BLOCKS_DIR" "$NGINX_STREAM_SERVER_BLOCKS_DIR" "${NGINX_CONF_DIR}/bitmoa" "${NGINX_CONF_DIR}/bitmoa/certs" "$NGINX_LOGS_DIR" "$NGINX_TMP_DIR" "$NGINX_DEFAULT_CONF_DIR"; do
+for dir in "$NGINX_VOLUME_DIR" "$NGINX_CONF_DIR" "$NGINX_INITSCRIPTS_DIR" "$NGINX_SERVER_BLOCKS_DIR" "$NGINX_STREAM_SERVER_BLOCKS_DIR" "${NGINX_CONF_DIR}/bitnami" "${NGINX_CONF_DIR}/bitmoa/certs" "$NGINX_LOGS_DIR" "$NGINX_TMP_DIR" "$NGINX_DEFAULT_CONF_DIR"; do
     ensure_dir_exists "$dir"
     chmod -R g+rwX "$dir"
 done
@@ -65,7 +65,7 @@ nginx_patch_httpoxy_vulnerability
 # Configure default HTTP port
 nginx_configure_port "$NGINX_DEFAULT_HTTP_PORT_NUMBER"
 # Configure default HTTPS port
-nginx_configure_port "$NGINX_DEFAULT_HTTPS_PORT_NUMBER" "${BITMOA_ROOT_DIR}/scripts/nginx/bitmoa-templates/default-https-server-block.conf"
+nginx_configure_port "$NGINX_DEFAULT_HTTPS_PORT_NUMBER" "${BITMOA_ROOT_DIR}/scripts/nginx/bitnami-templates/default-https-server-block.conf"
 
 # shellcheck disable=SC1091
 
@@ -93,3 +93,13 @@ touch /.rnd && chmod g+rw /.rnd
 # (this is to avoid breaking when entrypoint is being overridden)
 cp -r "${NGINX_CONF_DIR}"/* "$NGINX_DEFAULT_CONF_DIR"
 
+# Create symlinks to the standard Nginx directories and binary
+ln -sf /opt/bitmoa/nginx/conf /etc/nginx
+ensure_dir_exists /usr/share/nginx
+ln -sf /app /usr/share/nginx/html
+ln -sf /opt/bitmoa/nginx/logs /var/log/nginx
+ln -sf /opt/bitmoa/nginx/tmp /var/run/nginx
+ensure_dir_exists /usr/sbin
+ln -sf /opt/bitmoa/nginx/sbin/nginx /usr/sbin/nginx
+ensure_dir_exists /usr/lib/nginx
+ln -sf /opt/bitmoa/nginx/modules /usr/lib/nginx/modules

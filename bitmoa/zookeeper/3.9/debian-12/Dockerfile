@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T03:13:21Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T22:18:22Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/zookeeper/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/zookeeper" \
       org.opencontainers.image.title="zookeeper" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="3.9.4"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="3.9.5"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,9 +29,9 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.10-1-linux-${OS_ARCH}-debian-12" \
-      "jre-11.0.28-12-1-linux-${OS_ARCH}-debian-12" \
-      "zookeeper-3.9.4-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
+      "jre-11.0.30-9-1-linux-${OS_ARCH}-debian-12" \
+      "zookeeper-3.9.5-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -51,9 +51,9 @@ RUN ln -s /opt/bitmoa/scripts/zookeeper/run.sh /run.sh
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/zookeeper/postunpack.sh
-ENV APP_VERSION="3.9.4" \
+ENV APP_VERSION="3.9.5" \
     BITMOA_APP_NAME="zookeeper" \
-    IMAGE_REVISION="3"
+    IMAGE_REVISION="2"
 
 EXPOSE 2181 2888 3888 8080
 

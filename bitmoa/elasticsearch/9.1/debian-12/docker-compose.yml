@@ -3,7 +3,7 @@
 
 services:
   elasticsearch:
-    image: ghcr.io/bitmoa/elasticsearch:9.1
+    image: ghcr.io/bitmoa/elasticsearch:9.3
     ports:
       - '9200:9200'
       - '9300:9300'

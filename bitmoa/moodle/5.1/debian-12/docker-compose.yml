@@ -14,7 +14,7 @@ services:
     volumes:
       - 'mariadb_data:/bitmoa/mariadb'
   moodle:
-    image: ghcr.io/bitmoa/moodle:5.1
+    image: ghcr.io/bitmoa/moodle:5.2
     ports:
       - '80:8080'
       - '443:8443'

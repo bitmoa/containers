@@ -1,6 +1,4 @@
-# Bitnami package for Confluent Schema Registry
-
-## What is Confluent Schema Registry?
+# Bitnami Secure Image for Confluent Schema Registry
 
 > Confluent Schema Registry provides a RESTful interface by adding a serving layer for your metadata on top of Kafka. It expands Kafka enabling support for Apache Avro, JSON, and Protobuf schemas.
 
@@ -9,31 +7,28 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 
 ## TL;DR
 
+Use this quick command to run the container.
+
 ```console
 docker run --name schema-registry bitmoa/schema-registry:latest
 ```
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
-
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
-
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
-
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## Supported tags and respective `Dockerfile` links
 
@@ -41,33 +36,23 @@ Learn more about the Bitnami tagging policy and the difference between rolling t
 
 You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
+Subscribe to project updates by watching the [bitnami/containers GitHub repository](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami schema-registry Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/schema-registry).
+The Bitnami Confluent Schema Registry Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
-```console
-docker pull bitmoa/schema-registry:latest
-```
+## Using `docker-compose.yaml`
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/schema-registry/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/schema-registry:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/schema-registry).
 
 ## Configuration
 
+The following sections describe environment variables, Kafka and Zookeeper settings, security, and FIPS.
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -108,41 +93,21 @@ docker build -t bitmoa/APP:latest .
 | `SCHEMA_REGISTRY_DEFAULT_LISTENERS`     | Comma-separated list of listeners that listen for API requests over either HTTP or HTTPS. | `http://0.0.0.0:8081`                                                    |
 | `SCHEMA_REGISTRY_DEFAULT_KAFKA_BROKERS` | List of Kafka brokers to connect to.                                                      | `PLAINTEXT://localhost:9092`                                             |
 
-When you start the Confluent Schema Registry image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. Please note that some variables are only considered when the container is started for the first time. If you want to add a new environment variable:
-
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/schema-registry/docker-compose.yml) file present in this repository:
-
-    ```yaml
-    schema-registry:
-      ...
-      environment:
-        - SCHEMA_REGISTRY_DEBUG=true
-      ...
-    ```
-
-- For manual execution add a `--env` option with each variable and value:
-
-    ```console
-    $ docker run -d --name schema-registry -p 8081:8081 \
-      --env SCHEMA_REGISTRY_DEBUG=true \
-      --network schema-registry-tier \
-      --volume /path/to/schema-registry-persistence:/bitmoa \
-      bitmoa/schema-registry:latest
-    ```
+When you start the Confluent Schema Registry image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. Please note that some variables are only considered when the container is started for the first time.
 
 #### Kafka settings
 
-Please check the configuration settings for the Kakfa service in the [Kafka's README file](https://github.com/bitmoa/containers/tree/main/bitmoa/kafka#configuration).
+Please check the configuration settings for the `kafka` service in the [Kafka's README file](https://github.com/bitmoa/containers/tree/main/bitmoa/kafka#configuration).
 
 #### Zookeeper settings
 
-Please check the configuration settings for the Kakfa service in the [Zookeeper's README file](https://github.com/bitmoa/containers/tree/main/bitmoa/zookeeper#configuration).
+Please check the configuration settings for the `zookeeper` service in the [Zookeeper's README file](https://github.com/bitmoa/containers/tree/main/bitmoa/zookeeper#configuration).
 
 ### Security
 
-The Schema Registry container can be setup to serve clients securely via TLS. To do so, specify the listener protocol as **https** in the `SCHEMA_REGISTRY_LISTENERS` environment variable (e.g. SCHEMA_REGISTRY_LISTENERS=`http://0.0.0.0:8081`,`https://0.0.0.0:8082`).
+The Schema Registry container can be set up to serve clients securely using TLS. To do so, specify the listener protocol as **https** in the `SCHEMA_REGISTRY_LISTENERS` environment variable (e.g. SCHEMA_REGISTRY_LISTENERS=`http://0.0.0.0:8081`,`https://0.0.0.0:8082`).
 
-The keystore and trustore **must** be mounted in the `/opt/bitmoa/schema-registry/certs` directory as `ssl.keystore.jks` and `ssl.truststore.jks` respectively. Currently, only JKS formats are supported. Note that the environment variables `SCHEMA_REGISTRY_SSL_KEYSTORE_LOCATION` or `SCHEMA_REGISTRY_SSL_TRUSTSTORE_LOCATION` **will not** override the expected location or file names. Please follow the instructions provided or you will get this error at startup: *ERROR ==> In order to configure HTTPS access, you must mount your ssl.keystore.jks (and optionally the ssl.truststore.jks) to the /opt/bitmoa/schema-registry/certs directory*.
+The `keystore` and `truststore` **must** be mounted in the `/opt/bitmoa/schema-registry/certs` directory as `ssl.keystore.jks` and `ssl.truststore.jks` respectively. Currently, only JKS formats are supported. Note that the environment variables `SCHEMA_REGISTRY_SSL_KEYSTORE_LOCATION` or `SCHEMA_REGISTRY_SSL_TRUSTSTORE_LOCATION` **will not** override the expected location or file names. Please follow the instructions provided or you will get this error at startup: *ERROR ==> In order to configure HTTPS access, you must mount your `ssl.keystore.jks` (and optionally the `ssl.truststore.jks`) to the /opt/bitmoa/schema-registry/certs directory*.
 
 Here is a `docker-compose.yml` example that exposes a TLS listener on port `8082`:
 
@@ -169,27 +134,14 @@ schema-registry:
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Confluent Schema Registry Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Confluent Schema Registry Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
-
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/schema-registry).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
+- `JAVA_TOOL_OPTIONS`: controls Java FIPS mode. Use `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.restricted` (restricted), `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.relaxed` (relaxed), or `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.original` (off).
 
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -1,6 +1,0 @@
-binaries:
-  - node_exporter
-root_dir: /opt/bitmoa
-version:
-  bin_name: node_exporter
-  flag: --version

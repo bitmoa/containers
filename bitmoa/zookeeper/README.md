@@ -1,6 +1,4 @@
-# Bitnami package for Apache ZooKeeper
-
-## What is Apache ZooKeeper?
+# Bitnami Secure Image for Apache ZooKeeper
 
 > Apache ZooKeeper provides a reliable, centralized register of configuration data and services for distributed applications.
 
@@ -13,29 +11,24 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 docker run --name zookeeper bitmoa/zookeeper:latest
 ```
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
-
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
-
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
-
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
 
-## How to deploy Apache ZooKeeper in Kubernetes?
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
+
+## How to deploy Apache ZooKeeper in Kubernetes
 
 Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami Apache ZooKeeper Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/zookeeper).
 
@@ -49,56 +42,25 @@ Learn more about the Bitnami tagging policy and the difference between rolling t
 
 You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
+Subscribe to project updates by watching the [bitnami/containers GitHub repository](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami Apache ZooKeeper Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/zookeeper).
+The Bitnami Apache ZooKeeper Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
-```console
-docker pull bitmoa/zookeeper:latest
-```
+## Using `docker-compose.yaml`
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/zookeeper/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/zookeeper:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/zookeeper).
 
 ## Persisting your data
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-**Note!**
-If you have already started using Apache ZooKeeper, follow the steps on
-[backing up](#backing-up-your-container) and [restoring](#restoring-a-backup) to pull the data from your running container down to your host.
+> **NOTE** If you have already started using Apache ZooKeeper, follow the steps on [backing up](#backing-up-your-container) and [restoring](#restoring-a-backup) to pull the data from your running container down to your host.
 
 The image exposes a volume at `/bitmoa/zookeeper` for the Apache ZooKeeper data. For persistence you can mount a directory at this location from your host. If the mounted directory is empty, it will be initialized on the first run.
 
-```console
-docker run -v /path/to/zookeeper-persistence:/bitmoa/zookeeper bitmoa/zookeeper:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/zookeeper/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  zookeeper:
-  ...
-    volumes:
-      - /path/to/zookeeper-persistence:/bitmoa/zookeeper
-  ...
-```
-
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
+> **NOTE** As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
 
 ## Connecting to other containers
 
@@ -106,72 +68,13 @@ Using [Docker container networking](https://docs.docker.com/engine/userguide/net
 
 Containers attached to the same network can communicate with each other using the container name as the hostname.
 
-### Using the Command Line
-
-In this example, we will create an Apache ZooKeeper client instance that will connect to the server instance that is running on the same docker network as the client.
-
-#### Step 1: Create a network
-
-```console
-docker network create app-tier --driver bridge
-```
-
-#### Step 2: Launch the Apache ZooKeeper server instance
-
-Use the `--network app-tier` argument to the `docker run` command to attach the Apache ZooKeeper container to the `app-tier` network.
-
-```console
-docker run -d --name zookeeper-server \
-    --network app-tier \
-    bitmoa/zookeeper:latest
-```
-
-#### Step 3: Launch your Apache ZooKeeper client instance
-
-Finally we create a new container instance to launch the Apache ZooKeeper client and connect to the server created in the previous step:
-
-```console
-docker run -it --rm \
-    --network app-tier \
-    bitmoa/zookeeper:latest zkCli.sh -server zookeeper-server:2181  get /
-```
-
-### Using a Docker Compose file
-
-When not specified, Docker Compose automatically sets up a new network and attaches all deployed services to that network. However, we will explicitly define a new `bridge` network named `app-tier`. In this example we assume that you want to connect to the Apache ZooKeeper server from your own custom application image which is identified in the following snippet by the service name `myapp`.
-
-```yaml
-version: '2'
-
-networks:
-  app-tier:
-    driver: bridge
-
-services:
-  zookeeper:
-    image: bitmoa/zookeeper:latest
-    networks:
-      - app-tier
-  myapp:
-    image: YOUR_APPLICATION_IMAGE
-    networks:
-      - app-tier
-```
-
-> **IMPORTANT**:
->
-> 1. Please update the `YOUR_APPLICATION_IMAGE` placeholder in the above snippet with your application image
-> 2. In your application container, use the hostname `zookeeper` to connect to the Apache ZooKeeper server
-
-Launch the containers using:
-
-```console
-docker-compose up -d
-```
-
 ## Configuration
 
+The following sections describe environment variables, Apache ZooKeeper configuration, security, TLS, and FIPS.
+
 ### Environment variables
+
+You can adjust the instance using the variables below.
 
 #### Customizable environment variables
 
@@ -267,100 +170,29 @@ services:
   ...
 ```
 
-### Apache ZooKeeper Configuration
+### Apache ZooKeeper configuration
 
 The image looks for configuration in the `conf/` directory of `/opt/bitmoa/zookeeper`.
 
-```console
-docker run --name zookeeper -v /path/to/zoo.cfg:/opt/bitmoa/zookeeper/conf/zoo.cfg  bitmoa/zookeeper:latest
-```
-
-After that, your changes will be taken into account in the server's behaviour.
-
-#### Step 1: Run the Apache ZooKeeper image
-
-Run the Apache ZooKeeper image, mounting a directory from your host.
-
-```console
-docker run --name zookeeper -v /path/to/zoo.cfg:/opt/bitmoa/zookeeper/conf/zoo.cfg bitmoa/zookeeper:latest
-```
-
-or using Docker Compose:
-
-```yaml
-version: '2'
-
-services:
-  zookeeper:
-    image: bitmoa/zookeeper:latest
-    ports:
-      - 2181:2181
-    volumes:
-      - /path/to/zoo.cfg:/opt/bitmoa/zookeeper/conf/zoo.cfg
-```
-
-#### Step 2: Edit the configuration
-
-Edit the configuration on your host using your favorite editor.
-
-```console
-vi /path/to/zoo.cfg
-```
-
-#### Step 3: Restart Apache ZooKeeper
-
-After changing the configuration, restart your Apache ZooKeeper container for changes to take effect.
-
-```console
-docker restart zookeeper
-```
-
-or using Docker Compose:
-
-```console
-docker-compose restart zookeeper
-```
-
 ### Security
 
-Authentication based on SASL/Digest-MD5 can be easily enabled by passing the `ZOO_ENABLE_AUTH` env var.
+Authentication based on SASL/Digest-MD5 can be easily enabled by passing the `ZOO_ENABLE_AUTH` environment variable.
 When enabling the Apache ZooKeeper authentication, it is also required to pass the list of users and passwords that will
 be able to login.
 
-> Note: Authentication is enabled using the CLI tool `zkCli.sh`. Therefore, it's necessary to set
-`ZOO_CLIENT_USER` and `ZOO_CLIENT_PASSWORD` environment variables too.
+> **NOTE** Authentication is enabled using the CLI tool `zkCli.sh`. Therefore, it's necessary to set `ZOO_CLIENT_USER` and `ZOO_CLIENT_PASSWORD` environment variables too.
 
 As SASL/Digest-MD5 is not compatible with FIPS, it's mandatory to disable "fips-mode" in Apache ZooKeeper.
 
-> Note: If fips-mode is required in your environment, you should deploy Apache ZooKeeper using a different auth mechanism like TLS.
-
-```console
-docker run -it -e ZOO_ENABLE_AUTH=yes \
-               -e ZOO_SERVER_USERS=user1,user2 \
-               -e ZOO_SERVER_PASSWORDS=pass4user1,pass4user2 \
-               -e ZOO_CLIENT_USER=user1 \
-               -e ZOO_CLIENT_PASSWORD=pass4user1 \
-               -e ZOO_FIPS_MODE=no \
-               bitmoa/zookeeper
-```
-
-or modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/zookeeper/docker-compose.yml) file present in this repository:
-
-```yaml
-services:
-  zookeeper:
-  ...
-    environment:
-      - ZOO_ENABLE_AUTH=yes
-      - ZOO_SERVER_USERS=user1,user2
-      - ZOO_SERVER_PASSWORDS=pass4user1,pass4user2
-      - ZOO_CLIENT_USER=user1
-      - ZOO_CLIENT_PASSWORD=pass4user1
-      - ZOO_FIPS_MODE=no
-  ...
-```
+> **NOTE** If fips-mode is required in your environment, you should deploy Apache ZooKeeper using a different auth mechanism like TLS.
 
 ### Start Apache ZooKeeper with TLS
+
+The Apache ZooKeeper container can be setup to serve clients securely via TLS. To do so, enable the `ZOO_TLS_CLIENT_ENABLE` environment variable.
+
+The keystore and truststore can be mounted in the `/bitmoa/zookeeper/certs` directory. Note that the environment variables `ZOO_TLS_CLIENT_KEYSTORE_FILE` or `ZOO_TLS_CLIENT_TRUSTSTORE_FILE` define the location of the mounted certificates.
+
+Run the image with TLS enabled as follows.
 
 ```console
 docker run --name zookeeper \
@@ -386,107 +218,12 @@ For reliable Apache ZooKeeper service, you should deploy Apache ZooKeeper in a c
 
 You have to use 0.0.0.0 as the host for the server. More concretely, if the ID of the zookeeper1 container starting is 1, then the ZOO_SERVERS environment variable has to be 0.0.0.0:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888 or if the ID of zookeeper servers are non-sequential then they need to be specified 0.0.0.0:2888:3888::2,zookeeper2:2888:3888::4.zookeeper3:2888:3888::6
 
-See below:
-
-Create a Docker network to enable visibility to each other via the docker container name
-
-```console
-docker network create app-tier --driver bridge
-```
-
-#### Step 1: Create the first node
-
-The first step is to create one Apache ZooKeeper instance.
-
-```console
-docker run --name zookeeper1 \
-  --network app-tier \
-  -e ZOO_SERVER_ID=1 \
-  -e ZOO_SERVERS=0.0.0.0:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888 \
-  -p 2181:2181 \
-  -p 2888:2888 \
-  -p 3888:3888 \
-  bitmoa/zookeeper:latest
-```
-
-#### Step 2: Create the second node
-
-Next we start a new Apache ZooKeeper container.
-
-```console
-docker run --name zookeeper2 \
-  --network app-tier \
-  -e ZOO_SERVER_ID=2 \
-  -e ZOO_SERVERS=zookeeper1:2888:3888,0.0.0.0:2888:3888,zookeeper3:2888:3888 \
-  -p 2181:2181 \
-  -p 2888:2888 \
-  -p 3888:3888 \
-  bitmoa/zookeeper:latest
-```
-
-#### Step 3: Create the third node
-
-Next we start another new Apache ZooKeeper container.
-
-```console
-docker run --name zookeeper3 \
-  --network app-tier \
-  -e ZOO_SERVER_ID=3 \
-  -e ZOO_SERVERS=zookeeper1:2888:3888,zookeeper2:2888:3888,0.0.0.0:2888:3888 \
-  -p 2181:2181 \
-  -p 2888:2888 \
-  -p 3888:3888 \
-  bitmoa/zookeeper:latest
-```
-
-You now have a two node Apache ZooKeeper cluster up and running. You can scale the cluster by adding/removing slaves without incurring any downtime.
-
-With Docker Compose the ensemble can be setup using:
-
-```yaml
-version: '2'
-
-services:
-  zookeeper1:
-    image: bitmoa/zookeeper:latest
-    ports:
-      - 2181
-      - 2888
-      - 3888
-    volumes:
-      - /path/to/zookeeper-persistence:/bitmoa/zookeeper
-    environment:
-      - ZOO_SERVER_ID=1
-      - ZOO_SERVERS=0.0.0.0:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-  zookeeper2:
-    image: bitmoa/zookeeper:latest
-    ports:
-      - 2181
-      - 2888
-      - 3888
-    volumes:
-      - /path/to/zookeeper-persistence:/bitmoa/zookeeper
-    environment:
-      - ZOO_SERVER_ID=2
-      - ZOO_SERVERS=zookeeper1:2888:3888,0.0.0.0:2888:3888,zookeeper3:2888:3888
-  zookeeper3:
-    image: bitmoa/zookeeper:latest
-    ports:
-      - 2181
-      - 2888
-      - 3888
-    volumes:
-      - /path/to/zookeeper-persistence:/bitmoa/zookeeper
-    environment:
-      - ZOO_SERVER_ID=3
-      - ZOO_SERVERS=zookeeper1:2888:3888,zookeeper2:2888:3888,0.0.0.0:2888:3888
-```
-
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache ZooKeeper Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache ZooKeeper Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
+- `JAVA_TOOL_OPTIONS`: controls Java FIPS mode. Use `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.restricted` (restricted), `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.relaxed` (relaxed), or `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.original` (off).
 
 ## Logging
 
@@ -505,6 +242,8 @@ docker-compose logs zookeeper
 You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## Maintenance
+
+The following sections describe how to back up, restore, and upgrade the container.
 
 ### Backing up your container
 
@@ -560,52 +299,9 @@ services:
       - /path/to/zookeeper-backups/latest:/bitmoa/zookeeper
 ```
 
-### Upgrade this image
+## Notable changes
 
-Bitnami provides up-to-date versions of Apache ZooKeeper, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/zookeeper:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to
-`bitmoa/zookeeper:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Before continuing, you should backup your container's data, configuration and logs.
-
-Follow the steps on [creating a backup](#backing-up-your-container).
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v zookeeper
-```
-
-or using Docker Compose:
-
-```console
-docker-compose rm -v zookeeper
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image, [restoring your backup](#restoring-a-backup) if necessary.
-
-```console
-docker run --name zookeeper bitmoa/zookeeper:latest
-```
-
-or using Docker Compose:
-
-```console
-docker-compose up zookeeper
-```
-
-## Notable Changes
+The following subsections describe notable changes.
 
 ### 3.5.5-r95
 
@@ -617,30 +313,16 @@ docker-compose up zookeeper
 
 ### 3.4.10-r4
 
-- The zookeeper container has been migrated to a non-root container approach. Previously the container run as `root` user and the zookeeper daemon was started as `zookeeper` user. From now own, both the container and the zookeeper daemon run as user `1001`.
+- The zookeeper container has been migrated to a non-root container approach. Previously the container run as `root` user and the zookeeper daemon was started as `zookeeper` user. From now on, both the container and the zookeeper daemon run as user `1001`.
   As a consequence, the configuration files are writable by the user running the zookeeper process.
 
 ### 3.4.10-r0
 
 - New release
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/zookeeper).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

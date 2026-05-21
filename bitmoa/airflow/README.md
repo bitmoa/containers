@@ -1,6 +1,4 @@
-# Bitnami package for Apache Airflow
-
-## What is Apache Airflow?
+# Bitnami Secure Image for Apache Airflow
 
 > Apache Airflow is a tool to express and execute workflows as directed acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task progress and handle task dependencies.
 
@@ -13,142 +11,38 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 docker run --name airflow bitmoa/airflow:latest
 ```
 
-**Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure d
-eployment.
+## Using `docker-compose.yml`
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+[https://github.com/bitmoa/containers/tree/main/bitmoa/airflow/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/airflow/docker-compose.yml)
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/airflow).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## Supported tags and respective `Dockerfile` links
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
-## Prerequisites
-
-To run this application you need [Docker Engine](https://www.docker.com/products/docker-engine) >= `1.10.0`. [Docker Compose](https://docs.docker.com/compose/) is recommended with a version `1.6.0` or later.
-
 ## How to use this image
 
-Airflow requires access to a PostgreSQL database to store information. We will use our very own [PostgreSQL image](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql) for the database requirements. Additionally, if you pretend to use the `CeleryExecutor`, you will also need a [Redis(R) server](https://github.com/bitmoa/containers/tree/main/bitmoa/redis).
-
-### Using the Docker Command Line
-
-1. Create a network
-
-    ```console
-    docker network create airflow-tier
-    ```
-
-2. Create a volume for PostgreSQL persistence and create a PostgreSQL container
-
-    ```console
-    docker volume create --name postgresql_data
-    docker run -d --name postgresql \
-      -e POSTGRESQL_USERNAME=bn_airflow \
-      -e POSTGRESQL_PASSWORD=bitmoa1 \
-      -e POSTGRESQL_DATABASE=bitmoa_airflow \
-      --net airflow-tier \
-      --volume postgresql_data:/bitmoa/postgresql \
-      bitmoa/postgresql:latest
-    ```
-
-3. Create a volume for Redis(R) persistence and create a Redis(R) container
-
-    ```console
-    docker volume create --name redis_data
-    docker run -d --name redis \
-      -e ALLOW_EMPTY_PASSWORD=yes \
-      --net airflow-tier \
-      --volume redis_data:/bitmoa \
-      bitmoa/redis:latest
-    ```
-
-4. Launch the Apache Airflow web container
-
-    ```console
-    docker run -d --name airflow -p 8080:8080 \
-      -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-      -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-      -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-      -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-      -e AIRFLOW_LOAD_EXAMPLES=yes \
-      -e AIRFLOW_PASSWORD=bitmoa123 \
-      -e AIRFLOW_USERNAME=user \
-      -e AIRFLOW_EMAIL=user@example.com \
-      --net airflow-tier \
-      bitmoa/airflow:latest
-    ```
-
-5. Launch the Apache Airflow scheduler container
-
-    ```console
-    docker run -d --name airflow-scheduler \
-      -e AIRFLOW_COMPONENT_TYPE=scheduler \
-      -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-      -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-      -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-      -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-      -e AIRFLOW_LOAD_EXAMPLES=yes \
-      -e AIRFLOW_WEBSERVER_HOST=airflow \
-      --net airflow-tier \
-      bitmoa/airflow:latest
-    ```
-
-6. Launch the Apache Airflow worker container
-
-    ```console
-    docker run -d --name airflow-worker \
-      -e AIRFLOW_COMPONENT_TYPE=worker \
-      -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-      -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-      -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-      -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-      -e AIRFLOW_WEBSERVER_HOST=airflow \
-      --net airflow-tier \
-      bitmoa/airflow:latest
-    ```
-
-  Access your application at `http://your-ip:8080`
-
-### Using `docker-compose.yaml`
-
-```console
-curl -LO https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/airflow/docker-compose.yml
-docker-compose up
-```
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/airflow).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
+Airflow requires access to a PostgreSQL database to store information. We will use the [Bitnami PostgreSQL image](https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql) for the database requirements. Additionally, if you pretend to use the `CeleryExecutor`, you will also need a [Bitnami Redis(R) server](https://github.com/bitmoa/containers/tree/main/bitmoa/redis).
 
 ### Persisting your application
 
@@ -158,147 +52,9 @@ The above examples define docker volumes namely `postgresql_data`, and `redis_da
 
 To avoid inadvertent removal of these volumes you can [mount host directories as data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/). Alternatively you can make use of volume plugins to host the volume data.
 
-#### Mount host directories as data volumes with Docker Compose
-
-The following `docker-compose.yml` template demonstrates the use of host directories as data volumes.
-
-```yaml
-version: '2'
-services:
-  postgresql:
-    image: bitmoa/postgresql:latest
-    environment:
-      - POSTGRESQL_DATABASE=bitmoa_airflow
-      - POSTGRESQL_USERNAME=bn_airflow
-      - POSTGRESQL_PASSWORD=bitmoa1
-    volumes:
-      - /path/to/postgresql-persistence:/bitmoa/postgresql
-  redis:
-    image: bitmoa/redis:latest
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    volumes:
-      - /path/to/redis-persistence:/bitmoa
-  airflow-worker:
-    image: bitmoa/airflow:latest
-    environment:
-      - AIRFLOW_COMPONENT_TYPE=worker
-      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
-      - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
-      - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
-      - AIRFLOW_LOAD_EXAMPLES=yes
-  airflow-scheduler:
-    image: bitmoa/airflow:latest
-    environment:
-      - AIRFLOW_COMPONENT_TYPE=scheduler
-      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
-      - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
-      - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
-      - AIRFLOW_LOAD_EXAMPLES=yes
-  airflow:
-    image: bitmoa/airflow:latest
-    environment:
-      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
-      - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
-      - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
-      - AIRFLOW_PASSWORD=bitmoa123
-      - AIRFLOW_USERNAME=user
-      - AIRFLOW_EMAIL=user@example.com
-    ports:
-      - 8080:8080
-```
-
-#### Mount host directories as data volumes using the Docker command line
-
-1. Create a network (if it does not exist)
-
-    ```console
-    docker network create airflow-tier
-    ```
-
-2. Create the PostgreSQL container with host volumes
-
-    ```console
-    docker run -d --name postgresql \
-      -e POSTGRESQL_USERNAME=bn_airflow \
-      -e POSTGRESQL_PASSWORD=bitmoa1 \
-      -e POSTGRESQL_DATABASE=bitmoa_airflow \
-      --net airflow-tier \
-      --volume /path/to/postgresql-persistence:/bitmoa \
-      bitmoa/postgresql:latest
-    ```
-
-3. Create the Redis(R) container with host volumes
-
-    ```console
-    docker run -d --name redis \
-      -e ALLOW_EMPTY_PASSWORD=yes \
-      --net airflow-tier \
-      --volume /path/to/redis-persistence:/bitmoa \
-      bitmoa/redis:latest
-    ```
-
-4. Create the Airflow container
-
-    ```console
-    docker run -d --name airflow -p 8080:8080 \
-      -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-      -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-      -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-      -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-      -e AIRFLOW_LOAD_EXAMPLES=yes \
-      -e AIRFLOW_PASSWORD=bitmoa123 \
-      -e AIRFLOW_USERNAME=user \
-      -e AIRFLOW_EMAIL=user@example.com \
-      --net airflow-tier \
-      bitmoa/airflow:latest
-    ```
-
-5. Create the Airflow Scheduler container
-
-    ```console
-    docker run -d --name airflow-scheduler \
-      -e AIRFLOW_COMPONENT_TYPE=scheduler \
-      -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-      -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-      -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-      -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-      -e AIRFLOW_LOAD_EXAMPLES=yes \
-      -e AIRFLOW_WEBSERVER_HOST=airflow \
-      --net airflow-tier \
-      bitmoa/airflow:latest
-    ```
-
-6. Create the Airflow Worker container
-
-    ```console
-    docker run -d --name airflow-worker \
-      -e AIRFLOW_COMPONENT_TYPE=worker \
-      -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-      -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-      -e AIRFLOW_EXECUTOR=CeleryExecutor \
-      -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-      -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-      -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-      -e AIRFLOW_WEBSERVER_HOST=airflow \
-      --net airflow-tier \
-      bitmoa/airflow:latest
-    ```
-
 ## Configuration
+
+The following sections describe how to load DAGs, install modules, and set environment variables.
 
 ### Load DAG files
 
@@ -309,6 +65,8 @@ Custom DAG files can be mounted to `/opt/bitmoa/airflow/dags`.
 This container supports the installation of additional python modules at start-up time. In order to do that, you can mount a `requirements.txt` file with your specific needs under the path `/bitmoa/python/requirements.txt`.
 
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -365,7 +123,7 @@ This container supports the installation of additional python modules at start-u
 | `AIRFLOW_LDAP_ROLES_MAPPING`             | Mapping from LDAP DN to a list of Airflow roles.                                                                                            | `nil`                           |
 | `AIRFLOW_LDAP_ROLES_SYNC_AT_LOGIN`       | Replace ALL the user roles each login, or only on registration.                                                                             | `True`                          |
 | `AIRFLOW_LDAP_USE_TLS`                   | Use LDAP SSL.                                                                                                                               | `False`                         |
-| `AIRFLOW_LDAP_ALLOW_SELF_SIGNED`         | Allow self signed certicates in LDAP ssl.                                                                                                   | `True`                          |
+| `AIRFLOW_LDAP_ALLOW_SELF_SIGNED`         | Allow self signed certificates in LDAP ssl.                                                                                                 | `True`                          |
 | `AIRFLOW_LDAP_TLS_CA_CERTIFICATE`        | File that store the CA for LDAP ssl.                                                                                                        | `nil`                           |
 
 #### Read-only environment variables
@@ -385,42 +143,6 @@ This container supports the installation of additional python modules at start-u
 
 > In addition to the previous environment variables, all the parameters from the configuration file can be overwritten by using environment variables with this format: `AIRFLOW__{SECTION}__{KEY}`. Note the double underscores.
 
-#### Specifying Environment variables using Docker Compose
-
-```yaml
-version: '2'
-
-services:
-  airflow:
-    image: bitmoa/airflow:latest
-    environment:
-      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
-      - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
-      - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
-      - AIRFLOW_PASSWORD=bitmoa123
-      - AIRFLOW_USERNAME=user
-      - AIRFLOW_EMAIL=user@example.com
-```
-
-#### Specifying Environment variables on the Docker command line
-
-```console
-docker run -d --name airflow -p 8080:8080 \
-    -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-    -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-    -e AIRFLOW_EXECUTOR=CeleryExecutor \
-    -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-    -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-    -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-    -e AIRFLOW_PASSWORD=bitmoa123 \
-    -e AIRFLOW_USERNAME=user \
-    -e AIRFLOW_EMAIL=user@example.com \
-    bitmoa/airflow:latest
-```
-
 #### SMTP Configuration
 
 To configure Airflow to send email using SMTP you can set the following environment variables:
@@ -433,58 +155,15 @@ To configure Airflow to send email using SMTP you can set the following environm
 - `AIRFLOW__SMTP__SMTP_PASSWORD`: Password for SMTP. No defaults.
 - `AIRFLOW__SMTP__SMTP_MAIL_FROM`: To modify the "from email address". Default: **<airflow@example.com>**
 
-This would be an example of SMTP configuration using a GMail account:
-
-- docker-compose (application part):
-
-```yaml
-  airflow:
-    image: bitmoa/airflow:latest
-    environment:
-      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
-      - AIRFLOW_EXECUTOR=CeleryExecutor
-      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
-      - AIRFLOW_DATABASE_USERNAME=bn_airflow
-      - AIRFLOW_DATABASE_PASSWORD=bitmoa1
-      - AIRFLOW_PASSWORD=bitmoa
-      - AIRFLOW_USERNAME=user
-      - AIRFLOW_EMAIL=user@email.com
-      - AIRFLOW__SMTP__SMTP_HOST=smtp@gmail.com
-      - AIRFLOW__SMTP__SMTP_USER=your_email@gmail.com
-      - AIRFLOW__SMTP__SMTP_PASSWORD=your_password
-      - AIRFLOW__SMTP__SMTP_PORT=587
-    ports:
-      - 8080:8080
-```
-
-- For manual execution:
-
-```console
-docker run -d --name airflow -p 8080:8080 \
-    -e AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho= \
-    -e AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08= \
-    -e AIRFLOW_EXECUTOR=CeleryExecutor \
-    -e AIRFLOW_DATABASE_NAME=bitmoa_airflow \
-    -e AIRFLOW_DATABASE_USERNAME=bn_airflow \
-    -e AIRFLOW_DATABASE_PASSWORD=bitmoa1 \
-    -e AIRFLOW_PASSWORD=bitmoa123 \
-    -e AIRFLOW_USERNAME=user \
-    -e AIRFLOW_EMAIL=user@example.com \
-    -e AIRFLOW__SMTP__SMTP_HOST=smtp@gmail.com \
-    -e AIRFLOW__SMTP__SMTP_USER=your_email@gmail.com \
-    -e AIRFLOW__SMTP__SMTP_PASSWORD=your_password \
-    -e AIRFLOW__SMTP__SMTP_PORT=587 \
-    bitmoa/airflow:latest
-```
-
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Airflow Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Airflow Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
-## Notable Changes
+## Notable changes
+
+The following subsections describe notable changes.
 
 ### Starting October 30, 2024
 
@@ -496,17 +175,9 @@ The Bitnami Apache Airflow Docker image from the [Bitnami Secure Images](https:/
 - The size of the container image has been decreased.
 - The configuration logic is now based on Bash scripts in the *rootfs/* folder.
 
-## Contributing
-
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

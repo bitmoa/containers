@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-22T20:20:04Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T10:08:49Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/mlflow/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/mlflow" \
       org.opencontainers.image.title="mlflow" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="3.5.1"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="3.11.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,13 +23,14 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl git libbz2-1.0 libcom-err2 libcrypt1 libffi8 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblzma5 libncursesw6 libnettle8 libnsl2 libp11-kit0 libpq5 libreadline8 libsasl2-2 libsqlite3-0 libssl3 libstdc++6 libtasn1-6 libtinfo6 libtirpc3 libunistring2 procps zlib1g
+RUN install_packages ca-certificates curl git libbz2-1.0 libcom-err2 libcrypt1 libffi8 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libicu72 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblzma5 libncursesw6 libnettle8 libnsl2 libp11-kit0 libreadline8 libsasl2-2 libsqlite3-0 libssl3 libstdc++6 libtasn1-6 libtinfo6 libtirpc3 libunistring2 libuuid1 libxml2 libxslt1.1 procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.12-3-linux-${OS_ARCH}-debian-12" \
-      "mlflow-3.5.1-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-2-linux-${OS_ARCH}-debian-12" \
+      "postgresql-lib-18.3.0-0-linux-${OS_ARCH}-debian-12" \
+      "mlflow-3.11.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -48,9 +49,10 @@ RUN mkdir /.local && chmod g+rwX /.local
 RUN uninstall_packages curl
 
 RUN mkdir -p /app/mlruns /app/mlartifacts /bitmoa/mlflow && chmod g+rwX /app /app/mlruns /app/mlartifacts /bitmoa/mlflow && ln -s /opt/bitmoa/python/lib/*/site-packages/mlflow/server/auth/ /bitmoa/mlflow-basic-auth
-ENV APP_VERSION="3.5.1" \
+ENV APP_VERSION="3.11.1" \
     BITMOA_APP_NAME="mlflow" \
     IMAGE_REVISION="0" \
+    LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/python/bin:$PATH"
 
 WORKDIR /app

@@ -4,13 +4,13 @@
 services:
 
   envoy:
-    image: ghcr.io/bitmoa/envoy:1.36
+    image: ghcr.io/bitmoa/envoy:1.37
     volumes:
       - ./examples/frontend.yaml:/opt/bitmoa/envoy/conf/envoy.yaml
 
   service1:
-    image: bitmoa/nginx
+    image: ghcr.io/bitmoa/nginx
 
   service2:
-    image: bitmoa/apache
+    image: ghcr.io/bitmoa/apache
 

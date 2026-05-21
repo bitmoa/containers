@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-14T02:56:24Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-17T18:44:28Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/hyperledger-fabric-ca/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/hyperledger-fabric-ca" \
       org.opencontainers.image.title="hyperledger-fabric-ca" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="1.5.15"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="1.5.19"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "golang-1.25.3-0-linux-${OS_ARCH}-debian-12" \
-      "hyperledger-fabric-ca-1.5.15-12-linux-${OS_ARCH}-debian-12" \
+      "golang-1.26.2-0-linux-${OS_ARCH}-debian-12" \
+      "hyperledger-fabric-ca-1.5.19-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,10 +47,10 @@ RUN mkdir -p /opt/bitmoa/hyperledger-fabric-ca/etc && chmod g+rw /opt/bitmoa/hyp
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="1.5.15" \
+ENV APP_VERSION="1.5.19" \
     BITMOA_APP_NAME="hyperledger-fabric-ca" \
     FABRIC_CA_HOME="/opt/bitmoa/hyperledger-fabric-ca/etc" \
-    IMAGE_REVISION="26" \
+    IMAGE_REVISION="0" \
     PATH="/go/bin:/opt/bitmoa/go/bin:/opt/bitmoa/hyperledger-fabric-ca/bin:$PATH"
 
 USER 1001

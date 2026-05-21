@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-21T08:40:03Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-15T09:14:30Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/wordpress-nginx/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/wordpress-nginx" \
       org.opencontainers.image.title="wordpress-nginx" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="6.8.3"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="6.9.4"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,16 +23,17 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages acl ca-certificates curl gettext less libaudit1 libbrotli1 libbsd0 libbz2-1.0 libcap-ng0 libcom-err2 libcrypt1 libcurl4 libexpat1 libffi8 libfftw3-double3 libfontconfig1 libfreetype6 libgcc-s1 libgcrypt20 libgeoip1 libglib2.0-0 libgmp10 libgnutls30 libgomp1 libgpg-error0 libgssapi-krb5-2 libhashkit2 libhogweed6 libicu72 libidn2-0 libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblcms2-2 libldap-2.5-0 liblqr-1-0 libltdl7 liblzma5 libmagickcore-6.q16-6 libmagickwand-6.q16-6 libmd0 libmemcached11 libncurses6 libnettle8 libnghttp2-14 libonig5 libp11-kit0 libpam0g libpcre2-8-0 libpcre3 libpng16-16 libpq5 libpsl5 libreadline8 librtmp1 libsasl2-2 libsodium23 libsqlite3-0 libssh2-1 libssl3 libstdc++6 libsybdb5 libtasn1-6 libtidy5deb1 libtinfo6 libunistring2 libwebp7 libx11-6 libxau6 libxcb1 libxdmcp6 libxext6 libxml2 libxslt1.1 libzip4 libzstd1 openssl procps zlib1g
+RUN install_packages acl ca-certificates curl gettext less libaudit1 libbrotli1 libbsd0 libbz2-1.0 libcap-ng0 libcom-err2 libcrypt1 libcurl4 libexpat1 libffi8 libfftw3-double3 libfontconfig1 libfreetype6 libgcc-s1 libgcrypt20 libgeoip1 libglib2.0-0 libgmp10 libgnutls30 libgomp1 libgpg-error0 libgssapi-krb5-2 libhashkit2 libhogweed6 libicu72 libidn2-0 libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblcms2-2 libldap-2.5-0 liblqr-1-0 libltdl7 liblzma5 libmagickcore-6.q16-6 libmagickwand-6.q16-6 libmd0 libmemcached11 libncurses6 libnettle8 libnghttp2-14 libonig5 libp11-kit0 libpam0g libpcre2-8-0 libpcre3 libpng16-16 libpsl5 libreadline8 librtmp1 libsasl2-2 libsodium23 libsqlite3-0 libssh2-1 libssl3 libstdc++6 libsybdb5 libtasn1-6 libtidy5deb1 libtinfo6 libunistring2 libuuid1 libwebp7 libx11-6 libxau6 libxcb1 libxdmcp6 libxext6 libxml2 libxslt1.1 libzip4 libzstd1 openssl procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "render-template-1.0.9-158-linux-${OS_ARCH}-debian-12" \
-      "php-8.4.13-6-linux-${OS_ARCH}-debian-12" \
-      "nginx-1.29.2-0-linux-${OS_ARCH}-debian-12" \
-      "mysql-client-12.0.2-0-linux-${OS_ARCH}-debian-12" \
-      "wordpress-nginx-6.8.3-0-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
+      "php-8.4.20-2-linux-${OS_ARCH}-debian-12" \
+      "nginx-1.30.0-0-linux-${OS_ARCH}-debian-12" \
+      "mysql-client-12.2.2-0-linux-${OS_ARCH}-debian-12" \
+      "postgresql-lib-18.3.0-0-linux-${OS_ARCH}-debian-12" \
+      "wordpress-nginx-6.9.4-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -55,9 +56,10 @@ RUN /opt/bitmoa/scripts/nginx/postunpack.sh
 RUN /opt/bitmoa/scripts/php/postunpack.sh
 RUN /opt/bitmoa/scripts/nginx-php-fpm/postunpack.sh
 RUN /opt/bitmoa/scripts/wordpress/postunpack.sh
-ENV APP_VERSION="6.8.3" \
+ENV APP_VERSION="6.9.4" \
     BITMOA_APP_NAME="wordpress-nginx" \
-    IMAGE_REVISION="3" \
+    IMAGE_REVISION="5" \
+    LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     NGINX_HTTPS_PORT_NUMBER="" \
     NGINX_HTTP_PORT_NUMBER="" \
     PATH="/opt/bitmoa/wp-cli/bin:/opt/bitmoa/common/bin:/opt/bitmoa/php/bin:/opt/bitmoa/php/sbin:/opt/bitmoa/nginx/sbin:/opt/bitmoa/mysql/bin:$PATH"

@@ -1,8 +1,0 @@
-binaries:
-  - milvus
-directories:
-  - paths:
-      - /opt/bitmoa/milvus/bin
-      - /opt/bitmoa/milvus/tmp
-      - /bitmoa/milvus/data
-root_dir: /opt/bitmoa

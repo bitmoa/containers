@@ -4,5 +4,5 @@
 services:
   golang:
     tty: true # Enables debugging capabilities when attached to this container.
-    image: ghcr.io/bitmoa/golang:1.25
+    image: ghcr.io/bitmoa/golang:1.26
     command: ["sleep", "infinity"] # To keep the container running

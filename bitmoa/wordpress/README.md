@@ -1,10 +1,9 @@
-# Bitnami package for WordPress
-
-## What is WordPress?
+# Bitnami Secure Image for WordPress
 
 > WordPress is the world's most popular blogging and content management platform. Powerful yet simple, everyone from students to global corporations use it to build beautiful, functional websites.
 
 [Overview of WordPress](https://wordpress.org)
+Trademarks: This software listing is packaged by Bitnami. The respective trademarks mentioned in the offering are owned by the respective companies, and use of them does not imply any affiliation or endorsement.
 
 ## TL;DR
 
@@ -12,31 +11,32 @@
 docker run --name wordpress bitmoa/wordpress:latest
 ```
 
-**Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Environment Variables](#environment-variables) section for a more secure deployment.
+## Using `docker-compose.yml`
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+[https://github.com/bitmoa/containers/tree/main/bitmoa/wordpress/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/wordpress/docker-compose.yml)
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/wordpress).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
 
-## How to deploy WordPress in Kubernetes?
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
+
+## How to deploy WordPress in Kubernetes
 
 Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami WordPress Chart GitHub repository](https://github.com/bitmoa/charts/tree/master/bitmoa/wordpress).
 
@@ -50,83 +50,15 @@ Learn more about the Bitnami tagging policy and the difference between rolling t
 
 You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
 
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
+Subscribe to project updates by watching the [bitnami/containers GitHub repository](https://github.com/bitmoa/containers).
 
 ## Get this image
 
-The recommended way to get the Bitnami WordPress Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/wordpress).
-
-```console
-docker pull bitmoa/wordpress:latest
-```
-
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/wordpress/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/wordpress:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+The Bitnami WordPress Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
 ## How to use this image
 
 WordPress requires access to a MySQL or MariaDB database to store information. We'll use the [Bitnami Docker Image for MariaDB](https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb) for the database requirements.
-
-### Using the Docker Command Line
-
-#### Step 1: Create a network
-
-```console
-docker network create wordpress-network
-```
-
-#### Step 2: Create a volume for MariaDB persistence and create a MariaDB container
-
-```console
-$ docker volume create --name mariadb_data
-docker run -d --name mariadb \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env MARIADB_USER=bn_wordpress \
-  --env MARIADB_PASSWORD=bitmoa \
-  --env MARIADB_DATABASE=bitmoa_wordpress \
-  --network wordpress-network \
-  --volume mariadb_data:/bitmoa/mariadb \
-  bitmoa/mariadb:latest
-```
-
-#### Step 3: Create volumes for WordPress persistence and launch the container
-
-```console
-$ docker volume create --name wordpress_data
-docker run -d --name wordpress \
-  -p 8080:8080 -p 8443:8443 \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env WORDPRESS_DATABASE_USER=bn_wordpress \
-  --env WORDPRESS_DATABASE_PASSWORD=bitmoa \
-  --env WORDPRESS_DATABASE_NAME=bitmoa_wordpress \
-  --network wordpress-network \
-  --volume wordpress_data:/bitmoa/wordpress \
-  bitmoa/wordpress:latest
-```
-
-Access your application at `http://your-ip/`
-
-### Run the application using Docker Compose
-
-```console
-curl -sSL https://raw.githubusercontent.com/bitmoa/containers/main/bitmoa/wordpress/docker-compose.yml > docker-compose.yml
-docker-compose up -d
-```
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/wordpress).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
 
 ## Persisting your application
 
@@ -134,78 +66,17 @@ If you remove the container all your data will be lost, and the next time you ru
 
 For persistence you should mount a directory at the `/bitmoa/wordpress` path. If the mounted directory is empty, it will be initialized on the first run. Additionally you should [mount a volume for persistence of the MariaDB data](https://github.com/bitmoa/containers/blob/main/bitmoa/mariadb#persisting-your-database).
 
-The above examples define the Docker volumes named `mariadb_data` and `wordpress_data`. The WordPress application state will persist as long as volumes are not removed.
-
 To avoid inadvertent removal of volumes, you can [mount host directories as data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/). Alternatively you can make use of volume plugins to host the volume data.
 
-### Mount host directories as data volumes with Docker Compose
-
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress/docker-compose.yml) file present in this repository:
-
-```diff
-   mariadb:
-     ...
-     volumes:
--      - mariadb_data:/bitmoa/mariadb
-+      - /path/to/mariadb-persistence:/bitmoa/mariadb
-   ...
-   wordpress:
-     ...
-     volumes:
--      - wordpress_data:/bitmoa/wordpress
-+      - /path/to/wordpress-persistence:/bitmoa/wordpress
-   ...
--volumes:
--  mariadb_data:
--    driver: local
--  wordpress_data:
--    driver: local
-```
-
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
-
-### Mount host directories as data volumes using the Docker command line
-
-#### Step 1: Create a network (if it does not exist)
-
-```console
-docker network create wordpress-network
-```
-
-#### Step 2. Create a MariaDB container with host volume
-
-```console
-docker run -d --name mariadb \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env MARIADB_USER=bn_wordpress \
-  --env MARIADB_PASSWORD=bitmoa \
-  --env MARIADB_DATABASE=bitmoa_wordpress \
-  --network wordpress-network \
-  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
-  bitmoa/mariadb:latest
-```
-
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
-
-#### Step 3. Create the WordPress container with host volumes
-
-```console
-docker run -d --name wordpress \
-  -p 8080:8080 -p 8443:8443 \
-  --env ALLOW_EMPTY_PASSWORD=yes \
-  --env WORDPRESS_DATABASE_USER=bn_wordpress \
-  --env WORDPRESS_DATABASE_PASSWORD=bitmoa \
-  --env WORDPRESS_DATABASE_NAME=bitmoa_wordpress \
-  --network wordpress-network \
-  --volume /path/to/wordpress-persistence:/bitmoa/wordpress \
-  bitmoa/wordpress:latest
-```
-
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
+> **NOTE** Because this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
 
 ## Configuration
 
+The following section describes environment variables and FIPS configuration.
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -284,105 +155,21 @@ docker run -d --name wordpress \
 | `WP_CLI_DAEMON_USER`              | WP-CLI system user.                                  | `daemon`                              |
 | `WP_CLI_DAEMON_GROUP`             | WP-CLI system group.                                 | `daemon`                              |
 
-When you start the WordPress image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the `docker run` command line. Please note that some variables are only considered when the container is started for the first time. If you want to add a new environment variable:
-
-- For docker-compose add the variable name and value under the application section in the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress/docker-compose.yml) file present in this repository:
-
-    ```yaml
-    wordpress:
-      ...
-      environment:
-        - WORDPRESS_PASSWORD=my_password
-      ...
-    ```
-
-- For manual execution add a `--env` option with each variable and value:
-
-    ```console
-    $ docker run -d --name wordpress -p 80:8080 -p 443:8443 \
-      --env WORDPRESS_PASSWORD=my_password \
-      --network wordpress-tier \
-      --volume /path/to/wordpress-persistence:/bitmoa \
-      bitmoa/wordpress:latest
-    ```
-
 ### Examples
 
-#### SMTP configuration using a Gmail account
+The following examples show SMTP configuration and connecting to an existing database.
 
-This would be an example of SMTP configuration using a Gmail account:
+#### SMTP configuration
 
-- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress/docker-compose.yml) file present in this repository:
-
-    ```yaml
-      wordpress:
-        ...
-        environment:
-          - WORDPRESS_DATABASE_USER=bn_wordpress
-          - WORDPRESS_DATABASE_NAME=bitmoa_wordpress
-          - ALLOW_EMPTY_PASSWORD=yes
-          - WORDPRESS_SMTP_HOST=smtp.gmail.com
-          - WORDPRESS_SMTP_PORT=587
-          - WORDPRESS_SMTP_USER=your_email@gmail.com
-          - WORDPRESS_SMTP_PASSWORD=your_password
-      ...
-    ```
-
-- For manual execution:
-
-    ```console
-    $ docker run -d --name wordpress -p 80:8080 -p 443:8443 \
-      --env WORDPRESS_DATABASE_USER=bn_wordpress \
-      --env WORDPRESS_DATABASE_NAME=bitmoa_wordpress \
-      --env WORDPRESS_SMTP_HOST=smtp.gmail.com \
-      --env WORDPRESS_SMTP_PORT=587 \
-      --env WORDPRESS_SMTP_USER=your_email@gmail.com \
-      --env WORDPRESS_SMTP_PASSWORD=your_password \
-      --network wordpress-tier \
-      --volume /path/to/wordpress-persistence:/bitmoa \
-      bitmoa/wordpress:latest
-    ```
+The `WORDPRESS_SMTP_*` environment variables allows you configure the SMTP settings in the application. Please take a look at the environment variables information above for more information.
 
 #### Connect WordPress container to an existing database
 
-The Bitnami WordPress container supports connecting the WordPress application to an external database. This would be an example of using an external database for WordPress.
-
-- Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress/docker-compose.yml) file present in this repository:
-
-    ```diff
-       wordpress:
-         ...
-         environment:
-    -      - WORDPRESS_DATABASE_HOST=mariadb
-    +      - WORDPRESS_DATABASE_HOST=mariadb_host
-           - WORDPRESS_DATABASE_PORT_NUMBER=3306
-           - WORDPRESS_DATABASE_NAME=wordpress_db
-           - WORDPRESS_DATABASE_USER=wordpress_user
-    -      - ALLOW_EMPTY_PASSWORD=yes
-    +      - WORDPRESS_DATABASE_PASSWORD=wordpress_password
-         ...
-    ```
-
-- For manual execution:
-
-    ```console
-    $ docker run -d --name wordpress\
-      -p 8080:8080 -p 8443:8443 \
-      --network wordpress-network \
-      --env WORDPRESS_DATABASE_HOST=mariadb_host \
-      --env WORDPRESS_DATABASE_PORT_NUMBER=3306 \
-      --env WORDPRESS_DATABASE_NAME=wordpress_db \
-      --env WORDPRESS_DATABASE_USER=wordpress_user \
-      --env WORDPRESS_DATABASE_PASSWORD=wordpress_password \
-      --volume wordpress_data:/bitmoa/wordpress \
-      bitmoa/wordpress:latest
-    ```
-
-In case the database already contains data from a previous WordPress installation, you need to set the variable `WORDPRESS_SKIP_BOOTSTRAP` to `yes`. Otherwise, the container would execute the installation wizard and could modify the existing data in the database. Note that, when setting `WORDPRESS_SKIP_BOOTSTRAP` to `yes`, values for environment variables such as `WORDPRESS_USERNAME`, `WORDPRESS_PASSWORD` or `WORDPRESS_EMAIL` will be ignored. Make sure that, in this imported database, the table prefix matches the one set in `WORDPRESS_TABLE_PREFIX`.
+The Bitnami WordPress container supports connecting the WordPress application to an external database. In case the database already contains data from a previous WordPress installation, you need to set the variable `WORDPRESS_SKIP_BOOTSTRAP` to `yes`. Otherwise, the container would execute the installation wizard and could modify the existing data in the database. Note that, when setting `WORDPRESS_SKIP_BOOTSTRAP` to `yes`, values for environment variables such as `WORDPRESS_USERNAME`, `WORDPRESS_PASSWORD` or `WORDPRESS_EMAIL` will be ignored. Make sure that, in this imported database, the table prefix matches the one set in `WORDPRESS_TABLE_PREFIX`.
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami WordPress Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami WordPress Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
@@ -392,14 +179,6 @@ The Bitnami WordPress container includes the command line interface **wp-cli** t
 
 This would be an example of using **wp-cli** to display the help menu:
 
-- Using `docker-compose` command:
-
-```console
-docker-compose exec wordpress wp help
-```
-
-- Using `docker` command:
-
 ```console
 docker exec wordpress wp help
 ```
@@ -408,110 +187,7 @@ Find more information about parameters available in the tool in the [official do
 
 ## Logging
 
-The Bitnami WordPress Docker image sends the container logs to `stdout`. To view the logs:
-
-```console
-docker logs wordpress
-```
-
-Or using Docker Compose:
-
-```console
-docker-compose logs wordpress
-```
-
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
-
-## Maintenance
-
-### Backing up your container
-
-To backup your data, configuration and logs, follow these simple steps:
-
-#### Step 1: Stop the currently running container
-
-```console
-docker stop wordpress
-```
-
-Or using Docker Compose:
-
-```console
-docker-compose stop wordpress
-```
-
-#### Step 2: Run the backup command
-
-We need to mount two volumes in a container we will use to create the backup: a directory on your host to store the backup in, and the volumes from the container we just stopped so we can access the data.
-
-```console
-docker run --rm -v /path/to/wordpress-backups:/backups --volumes-from wordpress busybox \
-  cp -a /bitmoa/wordpress /backups/latest
-```
-
-### Restoring a backup
-
-Restoring a backup is as simple as mounting the backup as volumes in the containers.
-
-For the MariaDB database container:
-
-```diff
- $ docker run -d --name mariadb \
-   ...
--  --volume /path/to/mariadb-persistence:/bitmoa/mariadb \
-+  --volume /path/to/mariadb-backups/latest:/bitmoa/mariadb \
-   bitmoa/mariadb:latest
-```
-
-For the WordPress container:
-
-```diff
- $ docker run -d --name wordpress \
-   ...
--  --volume /path/to/wordpress-persistence:/bitmoa/wordpress \
-+  --volume /path/to/wordpress-backups/latest:/bitmoa/wordpress \
-   bitmoa/wordpress:latest
-```
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of MariaDB and WordPress, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container. We will cover here the upgrade of the WordPress container. For the MariaDB upgrade see <https://github.com/bitmoa/containers/tree/main/bitmoa/mariadb#upgrade-this-image>
-
-The `bitmoa/wordpress:latest` tag always points to the most recent release. To get the most recent release you can simple repull the `latest` tag from the Docker Hub with `docker pull bitmoa/wordpress:latest`. However it is recommended to use [tagged versions](https://hub.docker.com/r/bitmoa/wordpress/tags/).
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/wordpress:latest
-```
-
-#### Step 2: Stop the running container
-
-Stop the currently running container using the command
-
-```console
-docker-compose stop wordpress
-```
-
-#### Step 3: Take a snapshot of the application state
-
-Follow the steps in [Backing up your container](#backing-up-your-container) to take a snapshot of the current application state.
-
-#### Step 4: Remove the currently running container
-
-Remove the currently running container by executing the following command:
-
-```console
-docker-compose rm -v wordpress
-```
-
-#### Step 5: Run the new image
-
-Update the image tag in `docker-compose.yml` and re-create your container with the new image:
-
-```console
-docker-compose up -d
-```
+The Bitnami WordPress Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## Customize this image
 
@@ -534,53 +210,13 @@ FROM bitmoa/wordpress
 ...
 ```
 
-Here is an example of extending the image with the following modifications:
+## Notable changes
 
-- Install the `vim` editor
-- Modify the Apache configuration file
-- Modify the ports used by Apache
-
-```Dockerfile
-FROM bitmoa/wordpress
-
-## Change user to perform privileged actions
-USER 0
-## Install 'vim'
-RUN install_packages vim
-## Revert to the original non-root user
-USER 1001
-
-## Enable mod_ratelimit module
-RUN sed -i -r 's/#LoadModule ratelimit_module/LoadModule ratelimit_module/' /opt/bitmoa/apache/conf/httpd.conf
-
-## Modify the ports used by Apache by default
-# It is also possible to change these environment variables at runtime
-ENV APACHE_HTTP_PORT_NUMBER=8181
-ENV APACHE_HTTPS_PORT_NUMBER=8143
-EXPOSE 8181 8143
-```
-
-Based on the extended image, you can update the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/wordpress/docker-compose.yml) file present in this repository to add other features:
-
-```diff
-   wordpress:
--    image: bitmoa/wordpress:latest
-+    build: .
-     ports:
--      - 80:8080
--      - 443:8443
-+      - 80:8181
-+      - 443:8143
-     environment:
-+      - PHP_MEMORY_LIMIT=512m
-     ...
-```
-
-## Notable Changes
+The following subsections describe notable changes.
 
 ### 6.4.1-debian-11-r5
 
-- The XML-RCP endpoint has been disabled by default. Users can manually activate via the new `WORDPRESS_ENABLE_XML_RPC` environment variable.
+- The XML-RPC endpoint has been disabled by default. Users can manually activate it using the new `WORDPRESS_ENABLE_XML_RPC` environment variable.
 
 ### 5.7.1-debian-10-r21
 
@@ -614,23 +250,15 @@ Based on the extended image, you can update the [`docker-compose.yml`](https://g
 
 ### 5.0.3-r20
 
-- For performance and security reasons, Apache will set the `AllowOverride` directive to `None` by default. This means that, instead of using `.htaccess` files, all the default directives will be moved to the `/opt/bitmoa/wordpress/wordpress-htaccess.conf` file. The only downside of this is the compatibility with certain plugins, which would require changes in that file (you would need to mount a modified version of `wordpress-htaccess.conf` compatible with these plugins). If you want to have the default `.htaccess` behavior, set the `WORDPRESS_HTACCESS_OVERRIDE_NONE` env var to `no`.
+- For performance and security reasons, Apache will set the `AllowOverride` directive to `None` by default. This means that, instead of using `.htaccess` files, all the default directives will be moved to the `/opt/bitmoa/wordpress/wordpress-htaccess.conf` file. The only downside of this is the compatibility with certain plugins, which would require changes in that file (you would need to mount a modified version of `wordpress-htaccess.conf` compatible with these plugins). If you want to have the default `.htaccess` behavior, set the `WORDPRESS_HTACCESS_OVERRIDE_NONE` environment variable to `no`.
 
 ### 5.0.0-r0
 
 - **wp-cli** tool is included in the Docker image. Find it at **/opt/bitmoa/wp-cli/bin/wp**.
 
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

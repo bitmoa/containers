@@ -1,9 +1,0 @@
-binaries:
-   - pinniped
-root_dir: /opt/bitmoa
-directories:
-  - paths:
-      - /opt/bitmoa/pinniped-cli
-version:
-  bin_name: pinniped
-  flag: version

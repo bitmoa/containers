@@ -8,8 +8,8 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-04T12:28:02Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T18:35:53Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/dremio/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/dremio" \
       org.opencontainers.image.title="dremio" \
@@ -30,8 +30,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "jre-21.0.8-12-1-linux-${OS_ARCH}-debian-12" \
-      "dremio-26.0.5-2-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
+      "dremio-26.0.5-4-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -53,7 +53,7 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 ENV APP_VERSION="26.0.5" \
     BITMOA_APP_NAME="dremio" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="12" \
     JAVA_HOME="/opt/bitmoa/java" \
     LD_LIBRARY_PATH="/opt/bitmoa/java/lib/server:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/java/bin:/opt/bitmoa/dremio/bin:$PATH"

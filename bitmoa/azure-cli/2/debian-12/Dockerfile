@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-14T04:44:04Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T18:16:25Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/azure-cli/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/azure-cli" \
       org.opencontainers.image.title="azure-cli" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="2.78.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="2.85.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.12-3-linux-${OS_ARCH}-debian-12" \
-      "azure-cli-2.78.0-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-2-linux-${OS_ARCH}-debian-12" \
+      "azure-cli-2.85.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,9 +47,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN mkdir /.azure /.azcopy && chmod g+rwX /.azure /.azcopy /bin
 RUN uninstall_packages curl
 
-ENV APP_VERSION="2.78.0" \
+ENV APP_VERSION="2.85.0" \
     BITMOA_APP_NAME="azure-cli" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="1" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/azure-cli/bin:/opt/bitmoa/azure-cli/venv/bin:$PATH"
 
 USER 1001

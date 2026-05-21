@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-11T12:46:02Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-15T16:06:31Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/redmine/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/redmine" \
       org.opencontainers.image.title="redmine" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="6.1.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="6.1.2"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
@@ -22,16 +22,17 @@ ENV OS_ARCH="${TARGETARCH:-amd64}" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages acl ca-certificates curl ghostscript git gsfonts imagemagick libaudit1 libbrotli1 libbsd0 libcap-ng0 libcom-err2 libcrypt1 libcurl4 libedit2 libffi8 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libicu72 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblz4-1 liblzma5 libmariadb3 libmd0 libncurses6 libnettle8 libnghttp2-14 libp11-kit0 libpam0g libpcre2-8-0 libpq5 libpsl5 libreadline-dev librtmp1 libsasl2-2 libssh2-1 libssl-dev libssl3 libstdc++6 libtasn1-6 libtinfo6 libunistring2 libuuid1 libxml2 libxslt1.1 libyaml-0-2 libyaml-dev libzstd1 procps zlib1g
+RUN install_packages acl ca-certificates curl ghostscript git gsfonts imagemagick libaudit1 libbrotli1 libbsd0 libcap-ng0 libcom-err2 libcrypt1 libcurl4 libedit2 libffi8 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libicu72 libidn2-0 libjemalloc2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 liblz4-1 liblzma5 libmd0 libncurses6 libnettle8 libnghttp2-14 libp11-kit0 libpam0g libpcre2-8-0 libpsl5 libreadline-dev librtmp1 libsasl2-2 libssh2-1 libssl-dev libssl3 libstdc++6 libtasn1-6 libtinfo6 libunistring2 libuuid1 libxml2 libxslt1.1 libyaml-0-2 libyaml-dev libzstd1 procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "yq-4.47.2-1-linux-${OS_ARCH}-debian-12" \
-      "ruby-3.3.9-3-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-18.0.0-0-linux-${OS_ARCH}-debian-12" \
-      "mysql-client-12.0.2-0-linux-${OS_ARCH}-debian-12" \
-      "redmine-6.1.0-1-linux-${OS_ARCH}-debian-12" \
+      "ruby-3.4.9-1-linux-${OS_ARCH}-debian-12" \
+      "yq-4.52.5-1-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
+      "mysql-client-12.2.2-0-linux-${OS_ARCH}-debian-12" \
+      "mariadb-lib-12.2.2-3-linux-${OS_ARCH}-debian-12" \
+      "redmine-6.1.2-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,10 +51,11 @@ RUN uninstall_packages curl
 COPY rootfs /
 RUN /opt/bitmoa/scripts/mysql-client/postunpack.sh
 RUN /opt/bitmoa/scripts/redmine/postunpack.sh
-ENV APP_VERSION="6.1.0" \
+ENV APP_VERSION="6.1.2" \
     BITMOA_APP_NAME="redmine" \
-    IMAGE_REVISION="6" \
-    PATH="/opt/bitmoa/common/bin:/opt/bitmoa/ruby/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/mysql/bin:$PATH"
+    IMAGE_REVISION="5" \
+    LD_LIBRARY_PATH="/opt/bitmoa/mariadb/lib:/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
+    PATH="/opt/bitmoa/ruby/bin:/opt/bitmoa/common/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/mysql/bin:$PATH"
 
 EXPOSE 3000
 

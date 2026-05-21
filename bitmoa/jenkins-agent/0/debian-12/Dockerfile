@@ -8,13 +8,13 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-03T18:39:58Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T19:24:43Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/jenkins-agent/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/jenkins-agent" \
       org.opencontainers.image.title="jenkins-agent" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="0.3345.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="0.3355.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -30,8 +30,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "jre-21.0.8-12-1-linux-${OS_ARCH}-debian-12" \
-      "jenkins-agent-0.3345.0-0-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
+      "jenkins-agent-0.3355.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,9 +50,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 COPY rootfs /
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/jenkins-agent/postunpack.sh
-ENV APP_VERSION="0.3345.0" \
+ENV APP_VERSION="0.3355.0" \
     BITMOA_APP_NAME="jenkins-agent" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="8" \
     JAVA_HOME="/opt/bitmoa/java" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/java/bin:$PATH"
 

@@ -7,8 +7,8 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T16:13:06Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-20T02:52:44Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/jmx-exporter/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/jmx-exporter" \
       org.opencontainers.image.title="jmx-exporter" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-17.0.16-12-1-linux-${OS_ARCH}-debian-12" \
+      "jre-17.0.18-10-1-linux-${OS_ARCH}-debian-12" \
       "jmx-exporter-1.5.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -49,7 +49,7 @@ RUN uninstall_packages ca-certificates curl
 
 ENV APP_VERSION="1.5.0" \
     BITMOA_APP_NAME="jmx-exporter" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="8" \
     PATH="/opt/bitmoa/java/bin:$PATH"
 
 EXPOSE 5556

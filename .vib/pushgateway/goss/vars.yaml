@@ -1,6 +1,0 @@
-binaries:
-  - pushgateway
-root_dir: /opt/bitmoa
-version:
-  bin_name: pushgateway
-  flag: --version

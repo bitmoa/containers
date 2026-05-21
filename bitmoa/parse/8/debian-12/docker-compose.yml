@@ -12,7 +12,7 @@ services:
       - MONGODB_DATABASE=bitmoa_parse
       - MONGODB_PASSWORD=bitmoa123
   parse:
-    image: ghcr.io/bitmoa/parse:8
+    image: ghcr.io/bitmoa/parse:9
     ports:
       - '1337:1337'
     volumes:

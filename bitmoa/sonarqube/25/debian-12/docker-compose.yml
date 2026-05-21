@@ -12,7 +12,7 @@ services:
       - POSTGRESQL_USERNAME=bn_sonarqube
       - POSTGRESQL_DATABASE=bitmoa_sonarqube
   sonarqube:
-    image: ghcr.io/bitmoa/sonarqube:25
+    image: ghcr.io/bitmoa/sonarqube:26
     ports:
       - '80:9000'
     volumes:

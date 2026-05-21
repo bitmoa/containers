@@ -7,8 +7,8 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-06T14:44:12Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-08T19:33:45Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/keydb/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/keydb" \
       org.opencontainers.image.title="keydb" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.10-1-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
       "keydb-6.3.4-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -50,7 +50,7 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/keydb/postunpack.sh
 ENV APP_VERSION="6.3.4" \
     BITMOA_APP_NAME="keydb" \
-    IMAGE_REVISION="26" \
+    IMAGE_REVISION="36" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/keydb/bin:$PATH"
 
 EXPOSE 6379

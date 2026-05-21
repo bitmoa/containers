@@ -1,7 +1,0 @@
-binaries:
-  - python
-  - initializer-entrypoint
-root_dir: /opt/bitmoa
-directories:
-  - paths:
-      - /opt/bitmoa/python

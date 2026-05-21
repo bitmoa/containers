@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-07T01:38:50Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-03-24T15:49:03Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/jsonnet/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/jsonnet" \
       org.opencontainers.image.title="jsonnet" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="0.21.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="0.22.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jsonnet-0.21.0-1-linux-${OS_ARCH}-debian-12" \
+      "jsonnet-0.22.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -46,9 +46,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages ca-certificates curl
 
 RUN chmod +x /opt/bitmoa/jsonnet/bin/jsonnet
-ENV APP_VERSION="0.21.0" \
+ENV APP_VERSION="0.22.0" \
     BITMOA_APP_NAME="jsonnet" \
-    IMAGE_REVISION="8" \
+    IMAGE_REVISION="0" \
     PATH="/opt/bitmoa/jsonnet/bin:$PATH"
 
 USER 1001

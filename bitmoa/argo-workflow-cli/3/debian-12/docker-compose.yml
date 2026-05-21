@@ -3,5 +3,5 @@
 
 services:
   argo-workflows:
-    image: ghcr.io/bitmoa/argo-workflows:3
+    image: ghcr.io/bitmoa/argo-workflows:4.0
     entrypoint: tail -f /dev/null

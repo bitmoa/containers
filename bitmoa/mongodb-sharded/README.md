@@ -1,7 +1,5 @@
 # MongoDB&reg; Sharded packaged by Bitnami
 
-## What is MongoDB&reg; Sharded?
-
 > MongoDB&reg; is an open source NoSQL database that uses JSON for data storage. MongoDB&trade; Sharded improves scalability and reliability for large datasets by distributing data across multiple machines.
 
 [Overview of MongoDB&reg; Sharded](https://www.mongodb.org)
@@ -13,27 +11,30 @@ Disclaimer: The respective trademarks mentioned in the offering are owned by the
 docker run --name mongodb bitmoa/mongodb-sharded:latest
 ```
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
+## Using `docker-compose.yml`
 
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
+[https://github.com/bitmoa/containers/tree/main/bitmoa/mongodb-sharded/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/mongodb-sharded/docker-compose.yml)
 
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/mongodb-sharded).
 
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## How to deploy MongoDB&reg; Sharded in Kubernetes?
 
@@ -47,70 +48,25 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami MongoDB&reg; Sharded Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/mongodb-sharded).
-
-```console
-docker pull bitmoa/mongodb-sharded:latest
-```
-
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitmoa/mongodb-sharded/tags/) in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/mongodb-sharded:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+The Bitnami MongoDB&reg; Sharded Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
 ## Persisting your database
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should create a directory and mount it at the `/bitmoa/mongodb` path. If the mounted directory is empty, it will be initialized on the first run. As this is a non-root container, directory must have read/write permissions for the UID 1001.
+For persistence you should create a directory and mount it at the `/bitmoa/mongodb` path. If the mounted directory is empty, it will be initialized on the first run.
 
-```console
-docker run \
-    -v /path/to/mongodb-persistence:/bitmoa/mongodb \
-    bitmoa/mongodb-sharded:latest
-```
-
-or by modifying the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb-sharded/docker-compose.yml) file present in this repository:
-
-- Create directories to hold the persistence data. At minimum you will need one directory for each mongo instance running in the sharded cluster. For example, that means one directory for mongos, mongocfg and mongoshard. You need to assign read write permission to UID 1001 (ie. mkdir [directory] && chown 1001:1001 [directory] && chmod 777 [directory]) to all directories.
-
-```yaml
-services:
-  mongodb-sharded:
-  ...
-    volumes:
-      - /path/to/mongos-persistence:/bitmoa
-  ...
-  mongodb-shard0:
-  ...
-    volumes:
-      - /path/to/mongoshard-persistence:/bitmoa
-  ...
-  mongodb-cfg:
-  ...
-    volumes:
-      - /path/to/mongocfg-persistence:/bitmoa
-  ...
-```
+> **NOTE** As this is a non-root container, directory must have read/write permissions for the UID 1001.
 
 ## Configuration
 
+The following section describes the supported environment variables
+
 ### Environment variables
+
+The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
@@ -214,194 +170,19 @@ A [sharded cluster](https://docs.mongodb.com/manual/sharding/#sharded-cluster) c
 - `MONGODB_ROOT_PASSWORD`: MongoDB&reg; root password. No defaults.
 - `MONGODB_REPLICA_SET_MODE`: The replication mode. Possible values `primary`/`secondary`/`arbiter`. No defaults.
 
-#### Step 1: Create the config server replica set
-
-The first step is to start the MongoDB&reg; primary config server.
-
-```console
-docker run --name mongodb-configsvr-primary \
-  -e MONGODB_SHARDING_MODE=configsvr \
-  -e MONGODB_REPLICA_SET_MODE=primary \
-  -e MONGODB_ROOT_PASSWORD=password123 \
-  -e MONGODB_REPLICA_SET_KEY=replicasetkey123 \
-  -e MONGODB_REPLICA_SET_NAME=config-replicaset \
-   bitmoa/mongodb-sharded:latest
-```
-
-In the above command the container is configured as Config server using the `MONGODB_SHARDING_MODE` parameter and as `primary` using the `MONGODB_REPLICA_SET_MODE` parameter. You can configure secondary nodes by following the [Bitnami MongoDB&reg; container replication guide](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb#setting-up-replication).
-
-#### Step 2: Create the mongos instance
-
-Next we start a MongoDB&reg; mongos server and connect it to the config server replica set.
-
-```console
-docker run --name mongos \
-  --link mongodb-configsvr-primary:cfg-primary \
-  -e MONGODB_SHARDING_MODE=mongos \
-  -e MONGODB_CFG_PRIMARY_HOST=cfg-primary \
-  -e MONGODB_CFG_REPLICA_SET_NAME=config-replicaset \
-  -e MONGODB_REPLICA_SET_KEY=replicasetkey123 \
-  -e MONGODB_ROOT_PASSWORD=password123 \
-  bitmoa/mongodb-sharded:latest
-```
-
-In the above command the container is configured as a `mongos` using the `MONGODB_SHARDING_MODE` parameter. The `MONGODB_CFG_PRIMARY_HOST`, `MONGODB_REPLICA_SET_KEY`, `MONGODB_CFG_REPLICA_SET_NAME` and `MONGODB_ROOT_PASSWORD` parameters are used connect and with the MongoDB&reg; primary config server.
-
-#### Step 3: Create a shard
-
-Finally we start a MongoDB&reg; data shard container.
-
-```console
-docker run --name mongodb-shard0-primary \
-  --link mongodb-configsvr-primary:cfg-primary \
-  --link mongos:mongos \
-  -e MONGODB_SHARDING_MODE=shardsvr \
-  -e MONGODB_MONGOS_HOST=mongos \
-  -e MONGODB_ROOT_PASSWORD=password123 \
-  -e MONGODB_REPLICA_SET_MODE=primary \
-  -e MONGODB_REPLICA_SET_KEY=replicasetkey123 \
-  -e MONGODB_REPLICA_SET_NAME=shard0 \
-  bitmoa/mongodb-sharded:latest
-```
-
-In the above command the container is configured as a data shard using the `MONGODB_SHARDING_MODE` parameter. The `MONGODB_MONGOS_HOST`,  `MONGODB_ROOT_PASSWORD` and `MONGODB_REPLICA_SET_KEY` parameters are used connect and with the Mongos instance. You can configure secondary nodes by following the [Bitnami MongoDB&reg; container replication guide](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb#setting-up-replication).
-
-You now have a sharded MongoDB&reg; cluster up and running. You can add more shards by repeating step 3. Make sure you set a different `MONGODB_REPLICA_SET_NAME` value. You can also add more mongos instances by repeating step 2.
-
-With Docker Compose the sharded cluster can be setup using:
-
-```yaml
-version: '2'
-
-services:
-  mongos:
-    image: bitmoa/mongodb-sharded:latest
-    environment:
-      - MONGODB_SHARDING_MODE=mongos
-      - MONGODB_CFG_PRIMARY_HOST=mongodb-cfg
-      - MONGODB_CFG_REPLICA_SET_NAME=cfgreplicaset
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
-      - MONGODB_ROOT_PASSWORD=password123
-    ports:
-      - 27017:27017
-
-  mongodb-shard0-primary:
-    image: bitmoa/mongodb-sharded:latest
-    environment:
-      - MONGODB_SHARDING_MODE=shardsvr
-      - MONGODB_MONGOS_HOST=mongos
-      - MONGODB_ROOT_PASSWORD=password123
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
-      - MONGODB_REPLICA_SET_NAME=shard0
-    volumes:
-      - shard0_data:/bitmoa
-
-  mongodb-configsvr-primary:
-    image: bitmoa/mongodb-sharded:latest
-    environment:
-      - MONGODB_SHARDING_MODE=configsvr
-      - MONGODB_ROOT_PASSWORD=password123
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
-      - MONGODB_REPLICA_SET_NAME=config-replicaset
-    volumes:
-      - cfg_data:/bitmoa
-
-volumes:
-  shard0_data:
-    driver: local
-  cfg_data:
-    driver: local
-```
-
 ### More MongoDB&reg; configuration settings
 
 The Bitnami MongoDB&reg; Sharded image contains the [same configuration features than the Bitnami MongoDB&reg; image](https://github.com/bitmoa/containers/blob/main/bitmoa/mongodb#configuration).
 
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami MongoDB&reg; Sharded Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami MongoDB&reg; Sharded Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
 
 ## Logging
 
-The Bitnami MongoDB&reg; Sharded Docker image sends the container logs to the `stdout`. To view the logs:
-
-```console
-docker logs mongodb-sharded
-```
-
-or using Docker Compose:
-
-```console
-docker-compose logs mongodb-sharded
-```
-
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
-
-## Maintenance
-
-### Upgrade this image
-
-Bitnami provides up-to-date versions of MongoDB&reg;, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/mongodb-sharded:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to `bitmoa/mongodb-sharded:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Stop the currently running container using the command
-
-```console
-docker stop mongodb-sharded
-```
-
-or using Docker Compose:
-
-```console
-docker-compose stop mongodb-sharded
-```
-
-Next, take a snapshot of the persistent volume `/path/to/mongodb-persistence` using:
-
-```console
-rsync -a /path/to/mongodb-persistence /path/to/mongodb-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
-```
-
-You can use this snapshot to restore the database state should the upgrade fail.
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v mongodb-sharded
-```
-
-or using Docker Compose:
-
-```console
-docker-compose rm -v mongodb-sharded
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image.
-
-```console
-docker run --name mongodb bitmoa/mongodb-sharded:latest
-```
-
-or using Docker Compose:
-
-```console
-docker-compose up mongodb-sharded
-```
+The Bitnami MongoDB&reg; Sharded Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## Notable Changes
 
@@ -414,23 +195,9 @@ docker-compose up mongodb-sharded
 - `3.6.16-centos-7-r49`, `4.0.14-centos-7-r29`, and `4.2.2-centos-7-r41` are considered the latest images based on CentOS.
 - Standard supported distros: Debian & OEL.
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/mongodb-sharded).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to fill the issue template.
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

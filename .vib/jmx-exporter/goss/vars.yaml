@@ -1,8 +1,0 @@
-binaries:
-  - java
-files:
-  - paths:
-      - /opt/bitmoa/jmx-exporter/jmx_prometheus_javaagent.jar
-      - /opt/bitmoa/jmx-exporter/jmx_prometheus_standalone.jar
-      - /opt/bitmoa/jmx-exporter/examples/standalone_sample_config.yml
-root_dir: /opt/bitmoa

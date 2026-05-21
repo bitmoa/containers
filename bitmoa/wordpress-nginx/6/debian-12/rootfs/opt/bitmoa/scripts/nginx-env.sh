@@ -15,7 +15,7 @@
 . /opt/bitmoa/scripts/liblog.sh
 
 export BITMOA_ROOT_DIR="/opt/bitmoa"
-export BITMOA_VOLUME_DIR="/bitmoa"
+export BITMOA_VOLUME_DIR="/bitnami"
 
 # Logging configuration
 export MODULE="${MODULE:-nginx}"
@@ -24,6 +24,7 @@ export BITMOA_DEBUG="${BITMOA_DEBUG:-false}"
 # By setting an environment variable matching *_FILE to a file path, the prefixed environment
 # variable will be overridden with the value specified in that file
 nginx_env_vars=(
+    NGINX_WORKER_PROCESSES
     NGINX_HTTP_PORT_NUMBER
     NGINX_HTTPS_PORT_NUMBER
     NGINX_SKIP_SAMPLE_CERTS
@@ -72,6 +73,7 @@ export NGINX_DEFAULT_HTTPS_PORT_NUMBER="8443"
 export WEB_SERVER_DEFAULT_HTTPS_PORT_NUMBER="$NGINX_DEFAULT_HTTPS_PORT_NUMBER" # only used at build time
 
 # NGINX configuration
+export NGINX_WORKER_PROCESSES="${NGINX_WORKER_PROCESSES:-auto}"
 export NGINX_HTTP_PORT_NUMBER="${NGINX_HTTP_PORT_NUMBER:-}"
 export WEB_SERVER_HTTP_PORT_NUMBER="$NGINX_HTTP_PORT_NUMBER"
 export NGINX_HTTPS_PORT_NUMBER="${NGINX_HTTPS_PORT_NUMBER:-}"

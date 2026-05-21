@@ -1,8 +1,0 @@
-binaries:
-  - python
-  - manager
-root_dir: /opt/bitmoa
-directories:
-  - paths:
-      - /opt/bitmoa/python
-      - /opt/bitmoa/plugin-barman-cloud

@@ -1,6 +1,4 @@
-# Bitnami package for Apache Kafka
-
-## What is Apache Kafka?
+# Bitnami Secure Image for Apache Kafka
 
 > Apache Kafka is a distributed streaming platform designed to build real-time pipelines and can be used as a message broker or as a replacement for a log aggregation solution for big data applications.
 
@@ -13,27 +11,22 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 docker run --name kafka bitmoa/kafka:latest
 ```
 
-## ⚠️ Important Notice: Upcoming changes to the Bitnami Catalog
-
-Beginning August 28th, 2025, Bitnami will evolve its public catalog to offer a curated set of hardened, security-focused images under the new [Bitnami Secure Images initiative](https://news.broadcom.com/app-dev/broadcom-introduces-bitmoa-secure-images-for-production-ready-containerized-applications). As part of this transition:
-
-- Granting community users access for the first time to security-optimized versions of popular container images.
-- Bitnami will begin deprecating support for non-hardened, Debian-based software images in its free tier and will gradually remove non-latest tags from the public catalog. As a result, community users will have access to a reduced number of hardened images. These images are published only under the “latest” tag and are intended for development purposes
-- Starting August 28th, over two weeks, all existing container images, including older or versioned tags (e.g., 2.50.0, 10.6), will be migrated from the public catalog (ghcr.io/bitmoa) to the “Bitnami Legacy” repository (ghcr.io/bitmoalegacy), where they will no longer receive updates.
-- For production workloads and long-term support, users are encouraged to adopt Bitnami Secure Images, which include hardened containers, smaller attack surfaces, CVE transparency (via VEX/KEV), SBOMs, and enterprise support.
-
-These changes aim to improve the security posture of all Bitnami users by promoting best practices for software supply chain integrity and up-to-date deployments. For more details, visit the [Bitnami Secure Images announcement](https://github.com/bitmoa/containers/issues/83267).
-
 ## Why use Bitnami Secure Images?
 
-- Bitnami Secure Images and Helm charts are built to make open source more secure and enterprise ready.
-- Triage security vulnerabilities faster, with transparency into CVE risks using industry standard Vulnerability Exploitability Exchange (VEX), KEV, and EPSS scores.
-- Our hardened images use a minimal OS (Photon Linux), which reduces the attack surface while maintaining extensibility through the use of an industry standard package format.
-- Stay more secure and compliant with continuously built images updated within hours of upstream patches.
-- Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-- Hardened images come with attestation signatures (Notation), SBOMs, virus scan reports and other metadata produced in an SLSA-3 compliant software factory.
+Those are hardened, minimal CVE images built and maintained by Bitnami. Bitnami Secure Images are based on the cloud-optimized, security-hardened enterprise [OS Photon Linux](https://vmware.github.io/photon/). Why choose BSI images?
 
-Only a subset of BSI applications are available for free. Looking to access the entire catalog of applications as well as enterprise support? Try the [commercial edition of Bitnami Secure Images today](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/).
+- Hardened secure images of popular open source software with Near-Zero Vulnerabilities
+- Vulnerability Triage & Prioritization with VEX Statements, KEV and EPSS Scores
+- Compliance focus with FIPS, STIG, and air-gap options, including secure bill of materials (SBOM)
+- Software supply chain provenance attestation through in-toto
+- First class support for the internet’s favorite Helm charts
+
+Each image comes with valuable security metadata. You can view the metadata in [our public catalog here](https://app-catalog.vmware.com/bitmoa/apps). Note: Some data is only available with [commercial subscriptions to BSI](https://bitnami.com/).
+
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%201.png?raw=true "Application details")
+![Alt text](https://github.com/bitmoa/containers/blob/main/BSI%20UI%202.png?raw=true "Packaging report")
+
+If you are looking for our previous generation of images based on Debian Linux, please see the [Bitnami Legacy registry](https://hub.docker.com/u/bitnamilegacy).
 
 ## How to deploy Apache Kafka in Kubernetes?
 
@@ -47,33 +40,13 @@ Non-root container images add an extra layer of security and are generally recom
 
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html).
 
-You can see the equivalence between the different tags by taking a look at the `tags-info.yaml` file present in the branch folder, i.e `bitmoa/ASSET/BRANCH/DISTRO/tags-info.yaml`.
-
-Subscribe to project updates by watching the [bitmoa/containers GitHub repo](https://github.com/bitmoa/containers).
-
 ## Get this image
 
-The recommended way to get the Bitnami Apache Kafka Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitmoa/kafka).
+The Bitnami Apache Kafka Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
-```console
-docker pull bitmoa/kafka:latest
-```
+## Using `docker-compose.yaml`
 
-To use a specific version, you can pull a versioned tag. You can view the
-[list of available versions](https://hub.docker.com/r/bitmoa/kafka/tags/)
-in the Docker Hub Registry.
-
-```console
-docker pull bitmoa/kafka:[TAG]
-```
-
-If you wish, you can also build the image yourself by cloning the repository, changing to the directory containing the Dockerfile and executing the `docker build` command. Remember to replace the `APP`, `VERSION` and `OPERATING-SYSTEM` path placeholders in the example command below with the correct values.
-
-```console
-git clone https://github.com/bitmoa/containers.git
-cd bitmoa/APP/VERSION/OPERATING-SYSTEM
-docker build -t bitmoa/APP:latest .
-```
+Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/kafka).
 
 ## Persisting your data
 
@@ -83,19 +56,7 @@ If you remove the container all your data and configurations will be lost, and t
 
 The image exposes a volume at `/bitmoa/kafka` for the Apache Kafka data. For persistence you can mount a directory at this location from your host. If the mounted directory is empty, it will be initialized on the first run.
 
-Using Docker Compose:
-
-This requires a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/kafka/docker-compose.yml) file present in this repository:
-
-```yaml
-kafka:
-  ...
-  volumes:
-    - /path/to/kafka-persistence:/bitmoa/kafka
-  ...
-```
-
-> NOTE: As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
+> **NOTE** As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
 
 ## Connecting to other containers
 
@@ -103,117 +64,47 @@ Using [Docker container networking](https://docs.docker.com/engine/userguide/net
 
 Containers attached to the same network can communicate with each other using the container name as the hostname.
 
-### Using the Command Line
-
-In this example, we will create an Apache Kafka client instance that will connect to the server instance that is running on the same docker network as the client.
-
-#### Step 1: Create a network
-
-```console
-docker network create app-tier --driver bridge
-```
-
-#### Step 2: Launch the Apache Kafka server instance
-
-Use the `--network app-tier` argument to the `docker run` command to attach the Apache Kafka container to the `app-tier` network.
-
-```console
-docker run -d --name kafka-server --hostname kafka-server \
-    --network app-tier \
-    -e KAFKA_CFG_NODE_ID=0 \
-    -e KAFKA_CFG_PROCESS_ROLES=controller,broker \
-    -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 \
-    -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT \
-    -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-server:9093 \
-    -e KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER \
-    bitmoa/kafka:latest
-```
-
-#### Step 3: Launch your Apache Kafka client instance
-
-Finally we create a new container instance to launch the Apache Kafka client and connect to the server created in the previous step:
-
-```console
-docker run -it --rm \
-    --network app-tier \
-    bitmoa/kafka:latest kafka-topics.sh --list  --bootstrap-server kafka-server:9092
-```
-
-### Using a Docker Compose file
-
-When not specified, Docker Compose automatically sets up a new network and attaches all deployed services to that network. However, we will explicitly define a new `bridge` network named `app-tier`. In this example we assume that you want to connect to the Apache Kafka server from your own custom application image which is identified in the following snippet by the service name `myapp`.
-
-```yaml
-version: '2'
-
-networks:
-  app-tier:
-    driver: bridge
-
-services:
-  kafka:
-    image: bitmoa/kafka:latest
-    networks:
-      - app-tier
-    environment:
-      - KAFKA_CFG_NODE_ID=0
-      - KAFKA_CFG_PROCESS_ROLES=controller,broker
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-  myapp:
-    image: YOUR_APPLICATION_IMAGE
-    networks:
-      - app-tier
-```
-
-> **IMPORTANT**:
->
-> 1. Please update the `YOUR_APPLICATION_IMAGE` placeholder in the above snippet with your application image
-> 2. In your application container, use the hostname `kafka` to connect to the Apache Kafka server
-
-Launch the containers using:
-
-```console
-docker-compose up -d
-```
-
 ## Configuration
+
+The following section describes the supported environment variables
 
 ### Environment variables
 
+The following tables list the main variables you can set.
+
 #### Customizable environment variables
 
-| Name                                      | Description                                                                                                                           | Default Value                       |
-|-------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| `KAFKA_MOUNTED_CONF_DIR`                  | Kafka directory for mounted configuration files.                                                                                      | `${KAFKA_VOLUME_DIR}/config`        |
-| `KAFKA_CLUSTER_ID`                        | Kafka cluster ID.                                                                                                                     | `nil`                               |
-| `KAFKA_INITIAL_CONTROLLERS`               | List of Kafka cluster initial controllers.                                                                                            | `nil`                               |
-| `KAFKA_SKIP_KRAFT_STORAGE_INIT`           | If set to true, skip Kraft storage initialization when process.roles are configured.                                                  | `false`                             |
-| `KAFKA_CFG_SASL_ENABLED_MECHANISMS`       | Kafka `sasl.enabled.mechanisms` configuration override.                                                                               | `PLAIN,SCRAM-SHA-256,SCRAM-SHA-512` |
-| `KAFKA_CLIENT_LISTENER_NAME`              | Name of the listener intended to be used by clients, if set, configures the producer/consumer accordingly.                            | `nil`                               |
-| `KAFKA_OPTS`                              | Kafka deployment options.                                                                                                             | `nil`                               |
-| `KAFKA_ZOOKEEPER_PROTOCOL`                | Authentication protocol for Zookeeper connections. Allowed protocols: `PLAINTEXT`, `SASL, SSL`, and `SASL_SSL`.                       | `PLAINTEXT`                         |
-| `KAFKA_ZOOKEEPER_PASSWORD`                | Kafka Zookeeper user password for SASL authentication.                                                                                | `nil`                               |
-| `KAFKA_ZOOKEEPER_USER`                    | Kafka Zookeeper user for SASL authentication.                                                                                         | `nil`                               |
-| `KAFKA_ZOOKEEPER_TLS_TYPE`                | Choose the TLS certificate format to use. Allowed values: `JKS`, `PEM`.                                                               | `JKS`                               |
-| `KAFKA_ZOOKEEPER_TLS_TRUSTSTORE_FILE`     | Kafka Zookeeper truststore file location.                                                                                             | `nil`                               |
-| `KAFKA_ZOOKEEPER_TLS_KEYSTORE_PASSWORD`   | Kafka Zookeeper keystore file password and key password.                                                                              | `nil`                               |
-| `KAFKA_ZOOKEEPER_TLS_TRUSTSTORE_PASSWORD` | Kafka Zookeeper truststore file password.                                                                                             | `nil`                               |
-| `KAFKA_ZOOKEEPER_TLS_VERIFY_HOSTNAME`     | Verify Zookeeper hostname on TLS certificates.                                                                                        | `true`                              |
-| `KAFKA_INTER_BROKER_USER`                 | Kafka inter broker communication user.                                                                                                | `user`                              |
-| `KAFKA_INTER_BROKER_PASSWORD`             | Kafka inter broker communication password.                                                                                            | `bitmoa`                           |
-| `KAFKA_CONTROLLER_USER`                   | Kafka control plane communication user.                                                                                               | `controller_user`                   |
-| `KAFKA_CONTROLLER_PASSWORD`               | Kafka control plane communication password.                                                                                           | `bitmoa`                           |
-| `KAFKA_CERTIFICATE_PASSWORD`              | Password for certificates.                                                                                                            | `nil`                               |
-| `KAFKA_TLS_TRUSTSTORE_FILE`               | Kafka truststore file location.                                                                                                       | `nil`                               |
-| `KAFKA_TLS_TYPE`                          | Choose the TLS certificate format to use.                                                                                             | `JKS`                               |
-| `KAFKA_TLS_CLIENT_AUTH`                   | Configures kafka broker to request client authentication.                                                                             | `required`                          |
-| `KAFKA_CLIENT_USERS`                      | List of users that will be created when using `SASL_SCRAM` for client communications. Separated by commas, semicolons or whitespaces. | `user`                              |
-| `KAFKA_CLIENT_PASSWORDS`                  | Passwords for the users specified at `KAFKA_CLIENT_USERS`. Separated by commas, semicolons or whitespaces.                            | `bitmoa`                           |
-| `KAFKA_HEAP_OPTS`                         | Kafka heap options for Java.                                                                                                          | `-Xmx1024m -Xms1024m`               |
-| `JAVA_TOOL_OPTIONS`                       | Java tool options.                                                                                                                    | `nil`                               |
+| Name                                            | Description                                                                                                                           | Default Value                       |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| `KAFKA_MOUNTED_CONF_DIR`                        | Kafka directory for mounted configuration files.                                                                                      | `${KAFKA_VOLUME_DIR}/config`        |
+| `KAFKA_CLUSTER_ID`                              | Kafka cluster ID.                                                                                                                     | `nil`                               |
+| `KAFKA_CFG_CONTROLLER_QUORUM_BOOTSTRAP_SERVERS` | List of endpoints to use for bootstrapping the cluster metadata.                                                                      | `localhost:9093`                    |
+| `KAFKA_INITIAL_CONTROLLERS`                     | List of Kafka cluster initial controllers.                                                                                            | `nil`                               |
+| `KAFKA_SKIP_KRAFT_STORAGE_INIT`                 | If set to true, skip Kraft storage initialization when process.roles are configured.                                                  | `false`                             |
+| `KAFKA_KRAFT_VERSION`                           | Configure dynamic or static controller cluster.                                                                                       | `1`                                 |
+| `KAFKA_CFG_SASL_ENABLED_MECHANISMS`             | Kafka `sasl.enabled.mechanisms` configuration override.                                                                               | `PLAIN,SCRAM-SHA-256,SCRAM-SHA-512` |
+| `KAFKA_CLIENT_LISTENER_NAME`                    | Name of the listener intended to be used by clients, if set, configures the producer/consumer accordingly.                            | `nil`                               |
+| `KAFKA_OPTS`                                    | Kafka deployment options.                                                                                                             | `nil`                               |
+| `KAFKA_ZOOKEEPER_PROTOCOL`                      | Authentication protocol for Zookeeper connections. Allowed protocols: `PLAINTEXT`, `SASL, SSL`, and `SASL_SSL`.                       | `PLAINTEXT`                         |
+| `KAFKA_ZOOKEEPER_PASSWORD`                      | Kafka Zookeeper user password for SASL authentication.                                                                                | `nil`                               |
+| `KAFKA_ZOOKEEPER_USER`                          | Kafka Zookeeper user for SASL authentication.                                                                                         | `nil`                               |
+| `KAFKA_ZOOKEEPER_TLS_TYPE`                      | Choose the TLS certificate format to use. Allowed values: `JKS`, `PEM`.                                                               | `JKS`                               |
+| `KAFKA_ZOOKEEPER_TLS_TRUSTSTORE_FILE`           | Kafka Zookeeper truststore file location.                                                                                             | `nil`                               |
+| `KAFKA_ZOOKEEPER_TLS_KEYSTORE_PASSWORD`         | Kafka Zookeeper keystore file password and key password.                                                                              | `nil`                               |
+| `KAFKA_ZOOKEEPER_TLS_TRUSTSTORE_PASSWORD`       | Kafka Zookeeper truststore file password.                                                                                             | `nil`                               |
+| `KAFKA_ZOOKEEPER_TLS_VERIFY_HOSTNAME`           | Verify Zookeeper hostname on TLS certificates.                                                                                        | `true`                              |
+| `KAFKA_INTER_BROKER_USER`                       | Kafka inter broker communication user.                                                                                                | `user`                              |
+| `KAFKA_INTER_BROKER_PASSWORD`                   | Kafka inter broker communication password.                                                                                            | `bitnami`                           |
+| `KAFKA_CONTROLLER_USER`                         | Kafka control plane communication user.                                                                                               | `controller_user`                   |
+| `KAFKA_CONTROLLER_PASSWORD`                     | Kafka control plane communication password.                                                                                           | `bitnami`                           |
+| `KAFKA_CERTIFICATE_PASSWORD`                    | Password for certificates.                                                                                                            | `nil`                               |
+| `KAFKA_TLS_TRUSTSTORE_FILE`                     | Kafka truststore file location.                                                                                                       | `nil`                               |
+| `KAFKA_TLS_TYPE`                                | Choose the TLS certificate format to use.                                                                                             | `JKS`                               |
+| `KAFKA_TLS_CLIENT_AUTH`                         | Configures kafka broker to request client authentication.                                                                             | `required`                          |
+| `KAFKA_CLIENT_USERS`                            | List of users that will be created when using `SASL_SCRAM` for client communications. Separated by commas, semicolons or whitespaces. | `user`                              |
+| `KAFKA_CLIENT_PASSWORDS`                        | Passwords for the users specified at `KAFKA_CLIENT_USERS`. Separated by commas, semicolons or whitespaces.                            | `bitnami`                           |
+| `KAFKA_HEAP_OPTS`                               | Kafka heap options for Java.                                                                                                          | `-Xmx1024m -Xms1024m`               |
+| `JAVA_TOOL_OPTIONS`                             | Java tool options.                                                                                                                    | `nil`                               |
 
 #### Read-only environment variables
 
@@ -246,85 +137,6 @@ kafka:
     - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
   ...
 ```
-
-### Apache Kafka development setup example
-
-To use Apache Kafka in a development setup, create the following `docker-compose.yml` file:
-
-```yaml
-version: "3"
-services:
-  kafka:
-    image: bitmoa/kafka:latest
-    ports:
-      - 9092:9092
-    environment:
-      - KAFKA_CFG_NODE_ID=0
-      - KAFKA_CFG_PROCESS_ROLES=controller,broker
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-```
-
-To deploy it, run the following command in the directory where the `docker-compose.yml` file is located:
-
-```console
-docker-compose up -d
-```
-
-### Accessing Apache Kafka with internal and external clients
-
-In order to use internal and external clients to access Apache Kafka brokers you need to configure one listener for each kind of client.
-
-To do so, add the following environment variables to your docker-compose:
-
-```diff
-    environment:
-      - KAFKA_CFG_NODE_ID=0
-      - KAFKA_CFG_PROCESS_ROLES=controller,broker
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@<your_host>:9093
-+     - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
-+     - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
-+     - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-```
-
-And expose the external port:
-
-(the internal, client one can still be used within the docker network)
-
-```diff
-    ports:
--     - 9092:9092
-+     - 9094:9094
-```
-
-**Note**: To connect from an external machine, change `localhost` above to your host's external IP/hostname and include `EXTERNAL://0.0.0.0:9094` in `KAFKA_CFG_LISTENERS` to allow for remote connections.
-
-#### Producer and consumer using external client
-
-These clients, from the same host, will use `localhost` to connect to Apache Kafka.
-
-```console
-kafka-console-producer.sh --producer.config /opt/bitmoa/kafka/config/producer.properties --bootstrap-server 127.0.0.1:9094 --topic test
-kafka-console-consumer.sh --consumer.config /opt/bitmoa/kafka/config/consumer.properties --bootstrap-server 127.0.0.1:9094 --topic test --from-beginning
-```
-
-If running these commands from another machine, change the address accordingly.
-
-#### Producer and consumer using internal client
-
-These clients, from other containers on the same Docker network, will use the kafka container service hostname to connect to Apache Kafka.
-
-```console
-kafka-console-producer.sh --producer.config /opt/bitmoa/kafka/config/producer.properties --bootstrap-server kafka:9092 --topic test
-kafka-console-consumer.sh --consumer.config /opt/bitmoa/kafka/config/consumer.properties --bootstrap-server kafka:9092 --topic test --from-beginning
-```
-
-Similarly, application code will need to use `bootstrap.servers=kafka:9092`
-
-More info about Apache Kafka listeners can be found in [this great article](https://rmoff.net/2018/08/02/kafka-listeners-explained/)
 
 ### Security
 
@@ -360,69 +172,7 @@ Keep in mind the following notes:
 - Set the Common Name or FQDN values to your Apache Kafka container hostname, e.g. `kafka.example.com`. After entering this value, when prompted "What is your first and last name?", enter this value as well.
   - As an alternative, you can disable host name verification setting the environment variable `KAFKA_CFG_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM` to an empty string.
 - When setting up a Apache Kafka Cluster (check the "Setting up an Apache Kafka Cluster") for more information), each Apache Kafka broker and logical client needs its own keystore. You will have to repeat the process for each of the brokers in the cluster.
-
-The following docker-compose file is an example showing how to mount your JKS certificates protected by the password `certificatePassword123`. Additionally it is specifying the Apache Kafka container hostname and the credentials for the client user.
-
-```yaml
-version: '2'
-
-services:
-  kafka:
-    image: bitmoa/kafka:latest
-    hostname: kafka.example.com
-    ports:
-      - 9092
-    environment:
-      # KRaft
-      - KAFKA_CFG_NODE_ID=0
-      - KAFKA_CFG_PROCESS_ROLES=controller,broker
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
-      # Listeners
-      - KAFKA_CFG_LISTENERS=SASL_SSL://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
-      - KAFKA_CFG_ADVERTISED_LISTENERS=SASL_SSL://:9092
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=SASL_SSL
-      - KAFKA_CLIENT_LISTENER_NAME=SASL_SSL # Remove this line if consumer/producer.properties are not required
-      # SASL
-      - KAFKA_CFG_SASL_MECHANISM_CONTROLLER_PROTOCOL=PLAIN
-      - KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
-      - KAFKA_CONTROLLER_USER=controller_user
-      - KAFKA_CONTROLLER_PASSWORD=controller_password
-      - KAFKA_INTER_BROKER_USER=interbroker_user
-      - KAFKA_INTER_BROKER_PASSWORD=interbroker_password
-      - KAFKA_CLIENT_USERS=user
-      - KAFKA_CLIENT_PASSWORDS=password
-      # SSL
-      - KAFKA_TLS_TYPE=JKS # or PEM
-      - KAFKA_CERTIFICATE_PASSWORD=certificatePassword123
-    volumes:
-      # Both .jks and .pem files are supported
-      # - ./kafka.keystore.pem:/opt/bitmoa/kafka/config/certs/kafka.keystore.pem:ro
-      # - ./kafka.keystore.key:/opt/bitmoa/kafka/config/certs/kafka.keystore.key:ro
-      # - ./kafka.truststore.pem:/opt/bitmoa/kafka/config/certs/kafka.truststore.pem:ro
-      - ./kafka.keystore.jks:/opt/bitmoa/kafka/config/certs/kafka.keystore.jks:ro
-      - ./kafka.truststore.jks:/opt/bitmoa/kafka/config/certs/kafka.truststore.jks:ro
-```
-
-In order to get the required credentials to consume and produce messages you need to provide the credentials in the client. If your Apache Kafka client allows it, use the credentials you've provided.
-
-While producing and consuming messages using the `bitmoa/kafka` image, you'll need to point to the `consumer.properties` and/or `producer.properties` file, which contains the needed configuration
-to work. You can find this files in the `/opt/bitmoa/kafka/config` directory.
-
-Use this to generate messages using a secure setup:
-
-```console
-kafka-console-producer.sh --bootstrap-server 127.0.0.1:9092 --topic test --producer.config /opt/bitmoa/kafka/config/producer.properties
-```
-
-Use this to consume messages using a secure setup
-
-```console
-kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic test --consumer.config /opt/bitmoa/kafka/config/consumer.properties
-```
-
-If you use other tools to use your Apache Kafka cluster, you'll need to provide the required information. You can find the required information in the files located at `/opt/bitmoa/kafka/config` directory.
+- While producing and consuming messages using the `bitnami/kafka` image, you'll need to point to the `consumer.properties` and/or `producer.properties` file, which contains the needed configuration
 
 #### Inter-Broker communications
 
@@ -496,142 +246,8 @@ In order to authenticate Apache Kafka controller communications with `SASL_SSL`,
 
 An Apache Kafka cluster can easily be setup with the Bitnami Apache Kafka Docker image using the following environment variables:
 
-- `KAFKA_CFG_CONTROLLER_QUORUM_VOTERS`: Comma separated host:port pairs, each corresponding to a Kafka controller connection.
-
-#### Step 1: Create the first node for Apache Kafka
-
-The first step is to create one Apache Kafka instance.
-
-```console
-docker run --name kafka-0 \
-  --network app-tier \
-  -e KAFKA_CFG_NODE_ID=0 \
-  -e KAFKA_CFG_PROCESS_ROLES=controller,broker \
-  -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 \
-  -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT \
-  -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093 \
-  -e KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3 \
-  -e KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3 \
-  -e KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2 \
-  -e KAFKA_CLUSTER_ID=abcdefghijklmnopqrstuv \
-  -p :9092 \
-  -p :9093 \
-  bitmoa/kafka:latest
-```
-
-#### Step 2: Create the second node
-
-Next we start a new Apache Kafka container.
-
-```console
-docker run --name kafka-1 \
-  --network app-tier \
-  -e KAFKA_CFG_NODE_ID=1 \
-  -e KAFKA_CFG_PROCESS_ROLES=controller,broker \
-  -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 \
-  -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT \
-  -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093 \
-  -e KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3 \
-  -e KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3 \
-  -e KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2 \
-  -e KAFKA_CLUSTER_ID=abcdefghijklmnopqrstuv \
-  -p :9092 \
-  -p :9093 \
-  bitmoa/kafka:latest
-```
-
-### Step 3: Create the third node
-
-Next we start another new Apache Kafka container.
-
-```console
-docker run --name kafka-3 \
-  --network app-tier \
-  -e KAFKA_CFG_NODE_ID=3 \
-  -e KAFKA_CFG_PROCESS_ROLES=controller,broker \
-  -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 \
-  -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT \
-  -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093 \
-  -e KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3 \
-  -e KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3 \
-  -e KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2 \
-  -e KAFKA_CLUSTER_ID=abcdefghijklmnopqrstuv \
-  -p :9092 \
-  -p :9093 \
-  bitmoa/kafka:latest
-```
-
-You now have an Apache Kafka cluster up and running. You can scale the cluster by adding/removing slaves without incurring any downtime.
-
-A docker-compose version of this deployment can be found in the file `docker-compose-cluster.yml`.
-
-#### Example: Create a replicated topic
-
-A replicated topic could be created using the following command:
-
-```console
-root@kafka-0:/# /opt/bitmoa/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic mytopic --partitions 3 --replication-factor 3
-Created topic "mytopic".
-
-root@kafka-0:/# /opt/bitmoa/kafka/bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic mytopic
-Topic:mytopic   PartitionCount:3        ReplicationFactor:3     Configs:
-        Topic: mytopic  Partition: 0    Leader: 2       Replicas: 2,3,1 Isr: 2,3,1
-        Topic: mytopic  Partition: 1    Leader: 3       Replicas: 3,1,2 Isr: 3,1,2
-        Topic: mytopic  Partition: 2    Leader: 1       Replicas: 1,2,3 Isr: 1,2,3
-```
-
-### Setting up a Apache Kafka KRaft cluster with dedicated nodes
-
-The following docker-compose can be use as guide to build a Apache Kafka cluster with dedicated nodes.
-Please note this deployment is not suited for production usage as it does not met quorum minimums to prevent split-brain scenarios.
-
-```yaml
-version: '2'
-
-services:
-  kafka-combined:
-    image: ghcr.io/bitmoa/kafka:latest
-    ports:
-      - 9092:9092
-    environment:
-      - KAFKA_CFG_NODE_ID=0
-      - KAFKA_CFG_PROCESS_ROLES=controller,broker
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CLUSTER_ID=abcdefghijklmnopqrstuv
-    volumes:
-      - kafka_0_data:/bitmoa/kafka
-  kafka-controller:
-    image: ghcr.io/bitmoa/kafka:latest
-    environment:
-      - KAFKA_CFG_NODE_ID=1
-      - KAFKA_CFG_PROCESS_ROLES=controller
-      - KAFKA_CFG_LISTENERS=CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CLUSTER_ID=abcdefghijklmnopqrstuv
-    volumes:
-      - kafka_1_data:/bitmoa/kafka
-  kafka-broker:
-    image: ghcr.io/bitmoa/kafka:latest
-    environment:
-      - KAFKA_CFG_NODE_ID=2
-      - KAFKA_CFG_PROCESS_ROLES=broker
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093
-    volumes:
-      - kafka_2_data:/bitmoa/kafka
-
-volumes:
-  kafka_0_data:
-    driver: local
-  kafka_1_data:
-    driver: local
-  kafka_2_data:
-    driver: local
-```
+- `KAFKA_CFG_CONTROLLER_QUORUM_BOOTSTRAP_SERVERS`: List of endpoints to use for bootstrapping the cluster metadata. The endpoints are specified in comma-separated list of {host}:{port} entries.
+- `KAFKA_INITIAL_CONTROLLERS`: Used to initialize a server with the specified dynamic quorum. The argument is a comma-separated list of id@hostname:port:directory. The same values must be used to format all nodes.
 
 ### Full configuration
 
@@ -641,51 +257,12 @@ The image looks for configuration files (server.properties, log4j2.yaml, etc.) i
 docker run --name kafka -v /path/to/server.properties:/bitmoa/kafka/config/server.properties bitmoa/kafka:latest
 ```
 
-After that, your changes will be taken into account in the server's behaviour.
-
-#### Step 1: Run the Apache Kafka image
-
-Run the Apache Kafka image, mounting a directory from your host.
-
-Modify the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/kafka/docker-compose.yml) file present in this repository:
-
-```diff
-...
-services:
-  kafka:
-    ...
-    volumes:
-      - kafka_data:/bitmoa
-+     - /path/to/server.properties:/bitmoa/kafka/config/server.properties
-```
-
-#### Step 2: Edit the configuration
-
-Edit the configuration on your host using your favorite editor.
-
-```console
-vi /path/to/server.properties
-```
-
-#### Step 3: Restart Apache Kafka
-
-After changing the configuration, restart your Apache Kafka container for changes to take effect.
-
-```console
-docker restart kafka
-```
-
-Or using Docker Compose:
-
-```console
-docker-compose restart kafka
-```
-
 ### FIPS configuration in Bitnami Secure Images
 
-The Bitnami Apache Kafka Docker image from the [Bitnami Secure Images](https://www.arrow.com/globalecs/uk/products/bitmoa-secure-images/) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
+The Bitnami Apache Kafka Docker image from the [Bitnami Secure Images](https://go-vmware.broadcom.com/contact-us) catalog includes extra features and settings to configure the container with FIPS capabilities. You can configure the next environment variables:
 
 - `OPENSSL_FIPS`: whether OpenSSL runs in FIPS mode or not. `yes` (default), `no`.
+- `JAVA_TOOL_OPTIONS`: controls Java FIPS mode. Use `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.restricted` (restricted), `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.relaxed` (relaxed), or `-Djava.security.properties==/opt/bitmoa/java/conf/security/java.security.original` (off).
 
 ## Logging
 
@@ -753,102 +330,11 @@ kafka:
     - /path/to/kafka-backups/latest:/bitmoa/kafka
 ```
 
-### Upgrade this image
-
-Bitnami provides up-to-date versions of Apache Kafka, including security patches, soon after they are made upstream. We recommend that you follow these steps to upgrade your container.
-
-#### Step 1: Get the updated image
-
-```console
-docker pull bitmoa/kafka:latest
-```
-
-or if you're using Docker Compose, update the value of the image property to
-`bitmoa/kafka:latest`.
-
-#### Step 2: Stop and backup the currently running container
-
-Before continuing, you should backup your container's data, configuration and logs.
-
-Follow the steps on [creating a backup](#backing-up-your-container).
-
-#### Step 3: Remove the currently running container
-
-```console
-docker rm -v kafka
-```
-
-Or using Docker Compose:
-
-```console
-docker-compose rm -v kafka
-```
-
-#### Step 4: Run the new image
-
-Re-create your container from the new image, [restoring your backup](#restoring-a-backup) if necessary.
-
-```console
-docker run --name kafka bitmoa/kafka:latest
-```
-
-Or using Docker Compose:
-
-```console
-docker-compose up kafka
-```
-
-## Migrating from Zookeeper mode to KRaft mode
-
-This guide covers how to execute the Kafka migration from Zookeeper mode to KRaft mode as explained in the [upstream documentation](https://docs.confluent.io/platform/current/installation/migrate-zk-kraft.html) when using the `bitmoa/kafka:3` container.
-
-1. Retrieve the cluster ID from Zookeeper
-
-2. Configure Controller quorum by adding the following env variables in the nodes you'd like to configure as controller-eligible nodes:
-
-    ```console
-    KAFKA_CFG_PROCESS_ROLES=controller
-    KAFKA_CFG_NODE_ID=<unique_id>
-    KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=<controller1_node_id>@<controller1_host>:9093,<controller2_node_id>@<controller2_host>:9093,...
-    KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-    KAFKA_CFG_LISTENERS=CONTROLLER://:9093
-    KAFKA_CFG_ZOOKEEPER_METADATA_MIGRATION_ENABLE=true
-    KAFKA_CFG_ZOOKEEPER_CONNECT=<zk_host>:<zk_port>
-    KAFKA_CLUSTER_ID=<cluster_id_step1>
-    ```
-
-3. Configure brokers with migration settings:
-
-    ```console
-    KAFKA_CFG_BROKER_ID=<current_broker_id>
-    KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=<controller1_node_id>@<controller1_host>:9093,<controller2_node_id>@<controller2_host>:9093,...
-    KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-    KAFKA_CFG_INTER_BROKER_PROTOCOL_VERSION=3.4
-    KAFKA_CFG_ZOOKEEPER_METADATA_MIGRATION_ENABLE=true
-    KAFKA_CFG_ZOOKEEPER_CONNECT=<zk_host>:<zk_port>
-    ```
-
-4. Migrate brokers:
-
-    ```console
-    KAFKA_CFG_PROCESS_ROLES=broker
-    KAFKA_CFG_NODE_ID=<unique_id>
-    KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=<controller1_node_id>@<controller1_host>:9093,<controller2_node_id>@<controller2_host>:9093,...
-    KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-    ```
-
-5. Disable migration mode on controllers:
-
-    ```console
-    KAFKA_CFG_PROCESS_ROLES=controller
-    KAFKA_CFG_NODE_ID=<unique_id>
-    KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=<controller1_node_id>@<controller1_host>:9093,<controller2_node_id>@<controller2_host>:9093,...
-    KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-    KAFKA_CFG_LISTENERS=CONTROLLER://:9093
-    KAFKA_CLUSTER_ID=<cluster_id_step1>
-    ```
-
 ## Notable Changes
+
+### 4.1.1-debian-12-r1, 4.1.1-photon-5-r2
+
+Updated the logic to configure contoller.quorum.bootstrap.servers parameter instead of controller.quorum.voters. That affects the initialization and setting the KAFKA_INITIAL_CONTROLLERS env var is now mandatory when building a cluster.
 
 ### 4.0.0-debian-12-r0
 
@@ -918,7 +404,7 @@ The configuration directory was changed to `/opt/bitmoa/kafka/config`. Configura
 
 ### 1.1.1-debian-9-r224, 2.2.1-debian-9-r16, 1.1.1-ol-7-r306 and 2.2.1-ol-7-r14
 
-- The following environment variables were beingly wrongly translated into `KAFKA_CFG_` environment variables, and therefore they were being wrongly mapped into Apache Kafka keys:
+- The following environment variables were being wrongly translated into `KAFKA_CFG_` environment variables, and therefore they were being wrongly mapped into Apache Kafka keys:
 
   - `KAFKA_LOGS_DIRS` -> `KAFKA_CFG_LOG_DIRS`
   - `KAFKA_PORT_NUMBER` -> `KAFKA_CFG_PORT`
@@ -978,29 +464,9 @@ Configuration changes. Most environment variables now start with `KAFKA_CFG_`, a
 
 - New Bitnami release
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/kafka).
-
-If you detect any issue in the `docker-compose.yaml` file, feel free to report it or contribute with a fix by following our [Contributing Guidelines](https://github.com/bitmoa/containers/blob/main/CONTRIBUTING.md).
-
-## Contributing
-
-We'd love for you to contribute to this Docker image. You can request new features by creating an [issue](https://github.com/bitmoa/containers/issues) or submitting a [pull request](https://github.com/bitmoa/containers/pulls) with your contribution.
-
-## Issues
-
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitmoa/containers/issues/new/choose). For us to provide better support, be sure to include the following information in your issue:
-
-- Host OS and version
-- Docker version (`docker version`)
-- Output of `docker info`
-- Version of this container
-- The command you used to run the container, and any relevant output you saw (masking any sensitive information)
-
 ## License
 
-Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2026 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

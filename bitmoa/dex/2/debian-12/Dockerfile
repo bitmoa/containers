@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2025-10-14T00:46:00Z" \
-      org.opencontainers.image.description="Application packaged by Bitmoa" \
+      org.opencontainers.image.created="2026-04-07T23:50:38Z" \
+      org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/dex/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/dex" \
       org.opencontainers.image.title="dex" \
-      org.opencontainers.image.vendor="Bitmoa" \
-      org.opencontainers.image.version="2.44.0"
+      org.opencontainers.image.vendor="Broadcom, Inc." \
+      org.opencontainers.image.version="2.45.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "dex-2.44.0-5-linux-${OS_ARCH}-debian-12" \
+      "dex-2.45.1-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -44,10 +44,10 @@ RUN apt-get update && apt-get upgrade -y && \
 RUN useradd -r -u 1001 -g root dex
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
-ENV APP_VERSION="2.44.0" \
+ENV APP_VERSION="2.45.1" \
     BITMOA_APP_NAME="dex" \
     DEX_FRONTEND_DIR="/opt/bitmoa/dex/web" \
-    IMAGE_REVISION="5" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/dex/bin:$PATH"
 
 USER 1001

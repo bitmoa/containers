@@ -3,7 +3,7 @@
 
 services:
   grafana:
-    image: ghcr.io/bitmoa/grafana:12.2
+    image: ghcr.io/bitmoa/grafana:13.0
     ports:
       - '3000:3000'
     environment:

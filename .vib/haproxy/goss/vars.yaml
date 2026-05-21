@@ -1,8 +1,0 @@
-binaries:
-  - haproxy
-  - dataplaneapi
-  - lua
-root_dir: /opt/bitmoa
-version:
-  bin_name: haproxy
-  flag: -v

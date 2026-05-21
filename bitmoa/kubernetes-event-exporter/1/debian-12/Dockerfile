@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T04:28:15Z" \
+      org.opencontainers.image.created="2026-05-21T03:24:48Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/kubernetes-event-exporter/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/kubernetes-event-exporter" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "kubernetes-event-exporter-1.7.0-38-linux-${OS_ARCH}-debian-12" \
+      "kubernetes-event-exporter-1.7.0-39-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,7 +47,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="1.7.0" \
     BITMOA_APP_NAME="kubernetes-event-exporter" \
-    IMAGE_REVISION="63" \
+    IMAGE_REVISION="66" \
     PATH="/opt/bitmoa/kubernetes-event-exporter/bin:$PATH"
 
 USER 1001

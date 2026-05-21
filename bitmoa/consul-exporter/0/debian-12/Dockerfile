@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-07T22:49:31Z" \
+      org.opencontainers.image.created="2026-05-21T01:17:03Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/consul-exporter/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/consul-exporter" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "consul-exporter-0.13.0-28-linux-${OS_ARCH}-debian-12" \
+      "consul-exporter-0.13.0-29-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -48,7 +48,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="0.13.0" \
     BITMOA_APP_NAME="consul-exporter" \
-    IMAGE_REVISION="46" \
+    IMAGE_REVISION="49" \
     PATH="/opt/bitmoa/consul-exporter/bin:$PATH"
 
 EXPOSE 9107

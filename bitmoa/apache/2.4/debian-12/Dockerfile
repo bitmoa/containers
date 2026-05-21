@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T18:15:51Z" \
+      org.opencontainers.image.created="2026-05-21T00:45:01Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/apache/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/apache" \
       org.opencontainers.image.title="apache" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2.4.66"
+      org.opencontainers.image.version="2.4.67"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,13 +23,13 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl libcrypt1 libexpat1 libffi8 libgcc-s1 libgmp10 libgnutls30 libhogweed6 libicu72 libidn2-0 libldap-2.5-0 liblzma5 libnettle8 libnghttp2-14 libp11-kit0 libpcre2-8-0 libpcre3 libsasl2-2 libssl3 libstdc++6 libtasn1-6 libunistring2 libxml2 openssl procps zlib1g
+RUN install_packages ca-certificates curl libcrypt1 libexpat1 libffi8 libgcc-s1 libgmp10 libgnutls30 libhogweed6 libicu72 libidn2-0 libldap-2.5-0 liblzma5 libnettle8 libnghttp2-14 libp11-kit0 libpcre2-8-0 libsasl2-2 libssl3 libstdc++6 libtasn1-6 libunistring2 libxml2 openssl procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
-      "apache-2.4.66-1-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-165-linux-${OS_ARCH}-debian-12" \
+      "apache-2.4.67-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,9 +50,9 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/apache/postunpack.sh
 ENV APACHE_HTTPS_PORT_NUMBER="" \
     APACHE_HTTP_PORT_NUMBER="" \
-    APP_VERSION="2.4.66" \
+    APP_VERSION="2.4.67" \
     BITMOA_APP_NAME="apache" \
-    IMAGE_REVISION="8" \
+    IMAGE_REVISION="4" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/apache/bin:$PATH"
 
 EXPOSE 8080 8443

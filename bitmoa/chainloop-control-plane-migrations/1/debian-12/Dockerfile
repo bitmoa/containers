@@ -17,8 +17,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "atlas-1.2.0-0-linux-${OS_ARCH}-debian-12" \
-      "chainloop-control-plane-migrations-1.93.3-0-linux-${OS_ARCH}-debian-12" \
+      "atlas-1.2.0-1-linux-${OS_ARCH}-debian-12" \
+      "chainloop-control-plane-migrations-1.98.2-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -41,11 +41,11 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-04-17T10:40:00Z" \
+      org.opencontainers.image.created="2026-05-20T16:39:19Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="chainloop-control-plane-migrations" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.93.3"
+      org.opencontainers.image.version="1.98.2"
 
 COPY rootfs /
 COPY --from=builder /opt/bitmoa/chainloop/migrations /migrations
@@ -55,7 +55,7 @@ COPY --from=builder /opt/bitmoa/atlas/licenses /opt/bitmoa/atlas/licenses
 COPY --from=builder /opt/bitmoa/chainloop/.spdx-chainloop-control-plane-migrations.spdx /opt/bitmoa/chainloop/.spdx-chainloop-control-plane-migrations.spdx
 COPY --from=builder /opt/bitmoa/chainloop/licenses /opt/bitmoa/chainloop/licenses
 
-ENV APP_VERSION="1.93.3" \
+ENV APP_VERSION="1.98.2" \
     BITMOA_APP_NAME="chainloop-control-plane-migrations" \
     IMAGE_REVISION="0" \
     PATH="/opt/bitmoa/atlas/bin:$PATH"

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-09T21:19:05Z" \
+      org.opencontainers.image.created="2026-05-21T02:44:26Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/influxdb/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/influxdb" \
       org.opencontainers.image.title="influxdb" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="3.9.1"
+      org.opencontainers.image.version="3.9.2"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,9 +28,9 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "libpython-3.12.13-1-linux-${OS_ARCH}-debian-12" \
-      "influxdb-3.9.1-0-linux-${OS_ARCH}-debian-12" \
-      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
+      "libpython-3.12.13-3-linux-${OS_ARCH}-debian-12" \
+      "influxdb-3.9.2-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-10-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -48,9 +48,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/influxdb/postunpack.sh
-ENV APP_VERSION="3.9.1" \
+ENV APP_VERSION="3.9.2" \
     BITMOA_APP_NAME="influxdb" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="3" \
     LD_LIBRARY_PATH="/opt/bitmoa/python/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/influxdb/bin:/opt/bitmoa/common/bin:$PATH"
 

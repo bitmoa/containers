@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "nats-2.12.7-0-linux-${OS_ARCH}-debian-12" \
+      "nats-2.14.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,18 +40,18 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-04-14T16:43:51Z" \
+      org.opencontainers.image.created="2026-05-20T16:39:30Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="nats" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2.12.7"
+      org.opencontainers.image.version="2.14.1"
 
 COPY rootfs /
 COPY --from=builder /opt/bitmoa/nats/.spdx-nats.spdx /opt/bitmoa/nats/.spdx-nats.spdx
 COPY --from=builder /opt/bitmoa/nats/bin/nats-server /opt/bitmoa/nats/bin/nats-server
 COPY --from=builder /opt/bitmoa/nats/licenses /opt/bitmoa/nats/licenses
 
-ENV APP_VERSION="2.12.7" \
+ENV APP_VERSION="2.14.1" \
     BITMOA_APP_NAME="nats" \
     IMAGE_REVISION="0" \
     PATH="/opt/bitmoa/nats/bin:$PATH"

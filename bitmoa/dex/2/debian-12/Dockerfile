@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-07T23:50:38Z" \
+      org.opencontainers.image.created="2026-05-21T01:33:54Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/dex/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/dex" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "dex-2.45.1-2-linux-${OS_ARCH}-debian-12" \
+      "dex-2.45.1-3-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,7 +47,7 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 ENV APP_VERSION="2.45.1" \
     BITMOA_APP_NAME="dex" \
     DEX_FRONTEND_DIR="/opt/bitmoa/dex/web" \
-    IMAGE_REVISION="3" \
+    IMAGE_REVISION="7" \
     PATH="/opt/bitmoa/dex/bin:$PATH"
 
 USER 1001

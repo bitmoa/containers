@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-14T19:47:50Z" \
+      org.opencontainers.image.created="2026-05-21T02:38:48Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/aspnet-core/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/aspnet-core" \
       org.opencontainers.image.title="aspnet-core" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="10.0.6"
+      org.opencontainers.image.version="10.0.8"
 
 ENV HOME="/app" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "aspnet-core-10.0.6-0-linux-${OS_ARCH}-debian-12" \
+      "aspnet-core-10.0.8-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -49,11 +49,11 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/aspnet-core/postunpack.sh
-ENV APP_VERSION="10.0.6" \
+ENV APP_VERSION="10.0.8" \
     BITMOA_APP_NAME="aspnet-core" \
     DOTNET_CLI_HOME="/app" \
     DOTNET_ROOT="/opt/bitmoa/aspnet-core/bin" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="2" \
     PATH="/opt/bitmoa/aspnet-core/bin:$PATH"
 
 WORKDIR /app

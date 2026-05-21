@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T05:32:48Z" \
+      org.opencontainers.image.created="2026-05-21T03:58:29Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/minio-client/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/minio-client" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "minio-client-2025.8.13-9-linux-${OS_ARCH}-debian-12" \
+      "minio-client-2025.8.13-10-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -49,7 +49,7 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/minio-client/postunpack.sh
 ENV APP_VERSION="2025.8.13" \
     BITMOA_APP_NAME="minio-client" \
-    IMAGE_REVISION="15" \
+    IMAGE_REVISION="18" \
     PATH="/opt/bitmoa/minio-client/bin:$PATH"
 
 WORKDIR /opt/bitmoa/minio-client

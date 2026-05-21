@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T20:33:18Z" \
+      org.opencontainers.image.created="2026-05-21T04:46:59Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/pgpool/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/pgpool" \
@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-10-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.4.0-0-linux-${OS_ARCH}-debian-12" \
       "pgpool-4.7.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -51,7 +51,7 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/pgpool/postunpack.sh
 ENV APP_VERSION="4.7.1" \
     BITMOA_APP_NAME="pgpool" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="5" \
     LD_LIBRARY_PATH="/opt/bitmoa/common/lib:/opt/bitmoa/common/lib64:/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/pgpool/bin:/opt/bitmoa/common/sbin:$PATH"
 

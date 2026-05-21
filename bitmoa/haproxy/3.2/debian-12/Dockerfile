@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T02:50:52Z" \
+      org.opencontainers.image.created="2026-05-21T02:26:28Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/haproxy/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/haproxy" \
       org.opencontainers.image.title="haproxy" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="3.2.15"
+      org.opencontainers.image.version="3.2.19"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,12 +23,12 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl libcrypt1 liblua5.4-0 libssl3 lua5.4 procps
+RUN install_packages ca-certificates curl libcrypt1 liblua5.4-0 libssl3 lua5.4 procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "haproxy-3.2.15-2-linux-${OS_ARCH}-debian-12" \
+      "haproxy-3.2.19-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,7 +45,7 @@ RUN chmod g+rwX /opt/bitmoa
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="3.2.15" \
+ENV APP_VERSION="3.2.19" \
     BITMOA_APP_NAME="haproxy" \
     IMAGE_REVISION="2" \
     PATH="/opt/bitmoa/haproxy/sbin:/opt/bitmoa/haproxy-dataplaneapi/bin:/opt/bitmoa/lua/bin:$PATH"

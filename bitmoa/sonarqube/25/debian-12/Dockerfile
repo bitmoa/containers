@@ -8,7 +8,7 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-10T15:33:59Z" \
+      org.opencontainers.image.created="2026-05-21T06:11:52Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/sonarqube/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/sonarqube" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
-      "java-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.4.0-0-linux-${OS_ARCH}-debian-12" \
+      "java-21.0.11-11-2-linux-${OS_ARCH}-debian-12" \
       "sonarqube-26.4.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -52,7 +52,7 @@ RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/sonarqube/postunpack.sh
 ENV APP_VERSION="26.4.0" \
     BITMOA_APP_NAME="sonarqube" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="4" \
     JAVA_HOME="/opt/bitmoa/java" \
     LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/postgresql/bin:/opt/bitmoa/java/bin:$PATH"

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-14T12:46:20Z" \
+      org.opencontainers.image.created="2026-05-21T02:20:50Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana-tempo/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana-tempo" \
       org.opencontainers.image.title="grafana-tempo" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2.10.4"
+      org.opencontainers.image.version="2.10.5"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "grafana-tempo-2.10.4-0-linux-${OS_ARCH}-debian-12" \
+      "grafana-tempo-2.10.5-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -46,9 +46,9 @@ RUN mkdir -p /bitmoa/grafana-tempo && chmod g+rwX /bitmoa/grafana-tempo
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="2.10.4" \
+ENV APP_VERSION="2.10.5" \
     BITMOA_APP_NAME="grafana-tempo" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/grafana-tempo/bin:$PATH"
 
 USER 1001

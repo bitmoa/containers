@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T22:02:48Z" \
+      org.opencontainers.image.created="2026-05-21T06:20:57Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/tensorflow/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/tensorflow" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.13-3-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-11-linux-${OS_ARCH}-debian-12" \
       "tensorflow-2.21.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -50,7 +50,7 @@ RUN uninstall_packages curl
 RUN mkdir /app && chmod g+rwX /app
 ENV APP_VERSION="2.21.0" \
     BITMOA_APP_NAME="tensorflow" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="4" \
     PATH="/opt/bitmoa/python/bin:$PATH"
 
 WORKDIR /app

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-15T09:12:56Z" \
+      org.opencontainers.image.created="2026-05-21T05:24:44Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/pytorch/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/pytorch" \
       org.opencontainers.image.title="pytorch" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2.11.0"
+      org.opencontainers.image.version="2.12.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.13-7-linux-${OS_ARCH}-debian-12" \
-      "pytorch-2.11.0-1-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-11-linux-${OS_ARCH}-debian-12" \
+      "pytorch-2.12.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -49,7 +49,7 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/pytorch/postunpack.sh
-ENV APP_VERSION="2.11.0" \
+ENV APP_VERSION="2.12.0" \
     BITMOA_APP_NAME="pytorch" \
     IMAGE_REVISION="2" \
     LNAME="pytorch" \

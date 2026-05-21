@@ -58,7 +58,8 @@ services:
   airflow:
     image: ghcr.io/bitmoa/airflow:3
     environment:
-      - AIRFLOW_DATABASE_NAME=bitmoa_airflow
+      - AIRFLOW_PASSWORD=bitnami123
+      - AIRFLOW_DATABASE_NAME=bitnami_airflow
       - AIRFLOW_DATABASE_USERNAME=bn_airflow
       - AIRFLOW_DATABASE_PASSWORD=bitmoa1
       - AIRFLOW_EXECUTOR=CeleryExecutor

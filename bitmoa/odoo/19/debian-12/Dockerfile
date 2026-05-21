@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T21:57:19Z" \
+      org.opencontainers.image.created="2026-05-21T04:35:51Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/odoo/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/odoo" \
       org.opencontainers.image.title="odoo" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="19.0.20260401"
+      org.opencontainers.image.version="19.0.20260501"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
@@ -27,11 +27,11 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.13-3-linux-${OS_ARCH}-debian-12" \
-      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
-      "node-22.22.2-0-linux-${OS_ARCH}-debian-12" \
-      "odoo-19.0.20260401-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-11-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-165-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.4.0-0-linux-${OS_ARCH}-debian-12" \
+      "node-22.22.3-0-linux-${OS_ARCH}-debian-12" \
+      "odoo-19.0.20260501-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -56,9 +56,9 @@ RUN curl -sLO "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/odoo/postunpack.sh
-ENV APP_VERSION="19.0.20260401" \
+ENV APP_VERSION="19.0.20260501" \
     BITMOA_APP_NAME="odoo" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="4" \
     LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/common/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/node/bin:/opt/bitmoa/odoo/bin:$PATH"
 

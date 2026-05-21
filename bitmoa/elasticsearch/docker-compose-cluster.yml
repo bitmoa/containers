@@ -3,7 +3,7 @@
 
 services:
   elasticsearch-node1:
-    image: ghcr.io/bitmoa/elasticsearch:9.3
+    image: ghcr.io/bitmoa/elasticsearch:9.4
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3
@@ -16,7 +16,7 @@ services:
       - 'elasticsearch_node1_data:/bitmoa'
 
   elasticsearch-node2:
-    image: ghcr.io/bitmoa/elasticsearch:9.3
+    image: ghcr.io/bitmoa/elasticsearch:9.4
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3
@@ -26,7 +26,7 @@ services:
       - 'elasticsearch_node2_data:/bitmoa'
 
   elasticsearch-node3:
-    image: ghcr.io/bitmoa/elasticsearch:9.3
+    image: ghcr.io/bitmoa/elasticsearch:9.4
     environment:
       - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
       - ELASTICSEARCH_CLUSTER_HOSTS=elasticsearch-node1,elasticsearch-node2,elasticsearch-node3

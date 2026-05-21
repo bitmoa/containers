@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-16T18:11:45Z" \
+      org.opencontainers.image.created="2026-05-21T05:56:23Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/rust/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/rust" \
@@ -48,7 +48,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="1.95.0" \
     BITMOA_APP_NAME="rust" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="5" \
     PATH="/opt/bitmoa/rust/bin:$PATH"
 
 WORKDIR /opt/bitmoa/rust

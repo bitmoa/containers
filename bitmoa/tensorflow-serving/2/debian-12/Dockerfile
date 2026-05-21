@@ -8,7 +8,7 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T21:47:46Z" \
+      org.opencontainers.image.created="2026-05-21T06:21:09Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/tensorflow-serving/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/tensorflow-serving" \
@@ -30,7 +30,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-165-linux-${OS_ARCH}-debian-12" \
       "tensorflow-serving-2.19.1-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -54,7 +54,7 @@ RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/tensorflow-serving/postunpack.sh
 ENV APP_VERSION="2.19.1" \
     BITMOA_APP_NAME="tensorflow-serving" \
-    IMAGE_REVISION="13" \
+    IMAGE_REVISION="16" \
     JAVA_HOME="/opt/bitmoa/java"
 
 EXPOSE 8500

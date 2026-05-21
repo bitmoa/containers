@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-14T08:40:42Z" \
+      org.opencontainers.image.created="2026-05-21T04:52:51Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/plugin-barman-cloud-sidecar/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/plugin-barman-cloud-sidecar" \
@@ -29,9 +29,9 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "plugin-barman-cloud-sidecar-0.12.0-0-linux-${OS_ARCH}-debian-12" \
-      "plugin-barman-cloud-0.11.0-5-linux-${OS_ARCH}-debian-12" \
-      "python-3.13.13-3-linux-${OS_ARCH}-debian-12" \
-      "postgresql-lib-18.3.0-0-linux-${OS_ARCH}-debian-12" \
+      "plugin-barman-cloud-0.12.0-1-linux-${OS_ARCH}-debian-12" \
+      "python-3.13.13-8-linux-${OS_ARCH}-debian-12" \
+      "postgresql-lib-18.4.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -51,7 +51,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="0.12.0" \
     BITMOA_APP_NAME="plugin-barman-cloud-sidecar" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="3" \
     LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/plugin-barman-cloud/bin:/opt/bitmoa/python/bin:$PATH"
 

@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "argo-workflow-controller-4.0.4-1-linux-${OS_ARCH}-debian-12" \
+      "argo-workflow-controller-4.0.5-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,11 +40,11 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-04-07T21:24:41Z" \
+      org.opencontainers.image.created="2026-05-07T18:26:22Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="argo-workflow-controller" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="4.0.4"
+      org.opencontainers.image.version="4.0.5"
 
 COPY rootfs /
 COPY --from=builder /opt/bitmoa/argo-workflow-controller/.spdx-argo-workflow-controller.spdx /opt/bitmoa/argo-workflow-controller/.spdx-argo-workflow-controller.spdx
@@ -52,7 +52,7 @@ COPY --from=builder /opt/bitmoa/argo-workflow-controller/bin/workflow-controller
 COPY --from=builder /opt/bitmoa/argo-workflow-controller/licenses /opt/bitmoa/argo-workflow-controller/licenses
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 
-ENV APP_VERSION="4.0.4" \
+ENV APP_VERSION="4.0.5" \
     BITMOA_APP_NAME="argo-workflow-controller" \
     IMAGE_REVISION="1" \
     PATH="/opt/bitmoa/argo-workflow-controller/bin:$PATH"

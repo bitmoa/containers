@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-17T09:46:52Z" \
+      org.opencontainers.image.created="2026-05-21T02:24:49Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "mysql-client-12.2.2-0-linux-${OS_ARCH}-debian-12" \
-      "ini-file-1.4.9-9-linux-${OS_ARCH}-debian-12" \
-      "grafana-13.0.1-0-linux-${OS_ARCH}-debian-12" \
+      "ini-file-1.4.9-10-linux-${OS_ARCH}-debian-12" \
+      "grafana-13.0.1-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,7 +50,7 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/grafana/postunpack.sh
 ENV APP_VERSION="13.0.1" \
     BITMOA_APP_NAME="grafana" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="5" \
     PATH="/opt/bitmoa/mysql/bin:/opt/bitmoa/common/bin:/opt/bitmoa/grafana/bin:$PATH"
 
 EXPOSE 3000

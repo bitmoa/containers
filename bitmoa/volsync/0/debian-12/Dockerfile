@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-19T11:55:48Z" \
+      org.opencontainers.image.created="2026-05-21T06:41:52Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/volsync/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/volsync" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "volsync-0.15.0-6-linux-${OS_ARCH}-debian-12" \
+      "volsync-0.15.0-10-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -62,7 +62,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="0.15.0" \
     BITMOA_APP_NAME="volsync" \
-    IMAGE_REVISION="7" \
+    IMAGE_REVISION="13" \
     PATH="/opt/bitmoa/volsync/bin:/opt/bitmoa/rclone/bin:/opt/bitmoa/diskrsync/bin:/opt/bitmoa/syncthing/bin:$PATH"
 
 USER 1001

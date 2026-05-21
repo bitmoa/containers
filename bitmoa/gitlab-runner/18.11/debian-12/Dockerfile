@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-20T08:37:27Z" \
+      org.opencontainers.image.created="2026-05-21T02:06:31Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/gitlab-runner/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/gitlab-runner" \
       org.opencontainers.image.title="gitlab-runner" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="18.11.0"
+      org.opencontainers.image.version="18.11.3"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,7 +29,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "gitlab-runner-18.11.0-0-linux-${OS_ARCH}-debian-12" \
+      "gitlab-runner-18.11.3-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,9 +47,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN mkdir /home/gitlab-runner && chmod -R g+rwX /home/gitlab-runner && ln -s /opt/bitmoa/common/bin/dumb-init /usr/bin/dumb-init && ln -s /opt/bitmoa/scripts/gitlab-runner/entrypoint.sh /entrypoint
-ENV APP_VERSION="18.11.0" \
+ENV APP_VERSION="18.11.3" \
     BITMOA_APP_NAME="gitlab-runner" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/gitlab-runner/bin:$PATH"
 
 USER 1001

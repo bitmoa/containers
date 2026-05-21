@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-16T18:52:15Z" \
+      org.opencontainers.image.created="2026-05-21T06:52:20Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/jax/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/jax" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.13-7-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-11-linux-${OS_ARCH}-debian-12" \
       "jax-0.10.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -50,7 +50,7 @@ RUN uninstall_packages curl
 RUN mkdir /app && chmod g+rwX /app
 ENV APP_VERSION="0.10.0" \
     BITMOA_APP_NAME="jax" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="2" \
     PATH="/opt/bitmoa/python/bin:$PATH"
 
 WORKDIR /app

@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T07:14:48Z" \
+      org.opencontainers.image.created="2026-05-21T04:42:01Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/opensearch-dashboards/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/opensearch-dashboards" \
@@ -29,7 +29,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "yq-4.52.5-1-linux-${OS_ARCH}-debian-12" \
+      "yq-4.53.2-1-linux-${OS_ARCH}-debian-12" \
       "opensearch-dashboards-3.6.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -50,10 +50,11 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/opensearch-dashboards/postunpack.sh
 ENV APP_VERSION="3.6.0" \
     BITMOA_APP_NAME="opensearch-dashboards" \
-    IMAGE_REVISION="0"
+    IMAGE_REVISION="7"
 
 EXPOSE 5601
 
+WORKDIR /opt/bitmoa/opensearch-dashboards
 USER 1001
 ENTRYPOINT [ "/opt/bitmoa/scripts/opensearch-dashboards/entrypoint.sh" ]
 CMD [ "/opt/bitmoa/scripts/opensearch-dashboards/run.sh" ]

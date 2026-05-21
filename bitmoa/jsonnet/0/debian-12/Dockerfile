@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-03-24T15:49:03Z" \
+      org.opencontainers.image.created="2026-05-21T02:55:26Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/jsonnet/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/jsonnet" \
@@ -48,7 +48,7 @@ RUN uninstall_packages ca-certificates curl
 RUN chmod +x /opt/bitmoa/jsonnet/bin/jsonnet
 ENV APP_VERSION="0.22.0" \
     BITMOA_APP_NAME="jsonnet" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/jsonnet/bin:$PATH"
 
 USER 1001

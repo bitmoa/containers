@@ -3,7 +3,7 @@
 
 services:
   rabbitmq:
-    image: ghcr.io/bitmoa/rabbitmq:4.2
+    image: ghcr.io/bitmoa/rabbitmq:4.3
     ports:
       - '4369:4369'
       - '5551:5551'

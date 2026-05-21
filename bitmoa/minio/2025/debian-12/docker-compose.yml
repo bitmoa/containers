@@ -3,7 +3,7 @@
 
 services:
   minio:
-    image: ghcr.io/bitmoa/minio:2025
+    image: ghcr.io/bitmoa/minio:2026
     ports:
       - '9000:9000'
       - '9001:9001'

@@ -3,7 +3,7 @@
 
 services:
   valkey:
-    image: ghcr.io/bitmoa/valkey:9.0
+    image: ghcr.io/bitmoa/valkey:9.1
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-16T09:55:31Z" \
+      org.opencontainers.image.created="2026-05-21T02:13:25Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana-loki/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/grafana-loki" \
       org.opencontainers.image.title="grafana-loki" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="3.7.1"
+      org.opencontainers.image.version="3.7.2"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "grafana-loki-3.7.1-1-linux-${OS_ARCH}-debian-12" \
+      "grafana-loki-3.7.2-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -46,9 +46,9 @@ RUN mkdir -p /bitmoa/grafana-loki/data /bitmoa/grafana-loki/loki /bitmoa/grafana
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="3.7.1" \
+ENV APP_VERSION="3.7.2" \
     BITMOA_APP_NAME="grafana-loki" \
-    IMAGE_REVISION="6" \
+    IMAGE_REVISION="2" \
     PATH="/opt/bitmoa/grafana-loki/bin:$PATH"
 
 EXPOSE 3100

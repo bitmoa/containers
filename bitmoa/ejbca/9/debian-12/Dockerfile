@@ -8,7 +8,7 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T18:49:18Z" \
+      org.opencontainers.image.created="2026-05-21T01:38:41Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/ejbca/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/ejbca" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "wildfly-32.0.1-25-linux-${OS_ARCH}-debian-12" \
-      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
+      "wildfly-32.0.1-26-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.11-11-1-linux-${OS_ARCH}-debian-12" \
       "mysql-client-12.2.2-0-linux-${OS_ARCH}-debian-12" \
       "ejbca-9.3.7-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
@@ -54,7 +54,7 @@ RUN /opt/bitmoa/scripts/ejbca/postunpack.sh
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 ENV APP_VERSION="9.3.7" \
     BITMOA_APP_NAME="ejbca" \
-    IMAGE_REVISION="7" \
+    IMAGE_REVISION="10" \
     JAVA_HOME="/opt/bitmoa/java" \
     PATH="/opt/bitmoa/wildfly/bin:/opt/bitmoa/java/bin:/opt/bitmoa/mysql/bin:/opt/bitmoa/ejbca/bin:$PATH"
 

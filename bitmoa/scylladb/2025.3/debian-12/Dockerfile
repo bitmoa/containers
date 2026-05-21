@@ -8,13 +8,13 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T22:00:15Z" \
+      org.opencontainers.image.created="2026-05-21T06:31:58Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/scylladb/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/scylladb" \
       org.opencontainers.image.title="scylladb" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2026.1.1"
+      org.opencontainers.image.version="2026.1.3"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -24,14 +24,14 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl libatomic1 libblkid1 libbz2-1.0 libcom-err2 libcrypt1 libffi8 libgcc-s1 libgcrypt20 libgmp10 libgnutls30 libgpg-error0 libgssapi-krb5-2 libhogweed6 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblz4-1 liblzma5 libmount1 libmpfr6 libncursesw6 libnettle8 libnsl2 libp11-kit0 libpcre2-8-0 libreadline8 libselinux1 libsmartcols1 libsqlite3-0 libssl3 libstdc++6 libsystemd0 libtasn1-6 libtinfo6 libtirpc3 libudev1 libunistring2 libxxhash0 libzstd1 procps rsyslog zlib1g
+RUN install_packages ca-certificates curl libatomic1 libblkid1 libbz2-1.0 libcom-err2 libcrypt1 libffi8 libgcc-s1 libgmp10 libgnutls30 libgssapi-krb5-2 libhogweed6 libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblz4-1 liblzma5 libmount1 libmpfr6 libncursesw6 libnettle8 libnsl2 libp11-kit0 libpcre2-8-0 libreadline8 libselinux1 libsmartcols1 libsqlite3-0 libssl3 libstdc++6 libsystemd0 libtasn1-6 libtinfo6 libtirpc3 libudev1 libunistring2 libxxhash0 libzstd1 procps rsyslog zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.13-3-linux-${OS_ARCH}-debian-12" \
-      "jre-11.0.30-9-1-linux-${OS_ARCH}-debian-12" \
-      "scylladb-2026.1.1-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-11-linux-${OS_ARCH}-debian-12" \
+      "jre-11.0.31-11-1-linux-${OS_ARCH}-debian-12" \
+      "scylladb-2026.1.3-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -51,9 +51,9 @@ RUN uninstall_packages curl
 COPY rootfs /
 RUN /opt/bitmoa/scripts/scylladb/postunpack.sh
 RUN /opt/bitmoa/scripts/java/postunpack.sh
-ENV APP_VERSION="2026.1.1" \
+ENV APP_VERSION="2026.1.3" \
     BITMOA_APP_NAME="scylladb" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="3" \
     JAVA_HOME="/opt/bitmoa/java" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/java/bin:/opt/bitmoa/scylladb/bin:/opt/bitmoa/scylladb/sbin:/opt/bitmoa/scylladb/python3/bin:/opt/bitmoa/supervisor/bin:/opt/bitmoa/scylladb/share/cassandra/bin:$PATH"
 

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-15T12:53:29Z" \
+      org.opencontainers.image.created="2026-05-20T13:01:28Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/discourse/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/discourse" \
       org.opencontainers.image.title="discourse" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2026.4.0"
+      org.opencontainers.image.version="2026.5.0"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
@@ -27,13 +27,13 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.13-7-linux-${OS_ARCH}-debian-12" \
-      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
-      "ruby-3.4.9-1-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
-      "node-20.20.2-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.12.13-11-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-10-linux-${OS_ARCH}-debian-12" \
+      "ruby-3.4.9-2-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.4.0-0-linux-${OS_ARCH}-debian-12" \
+      "node-22.22.3-0-linux-${OS_ARCH}-debian-12" \
       "brotli-1.2.0-0-linux-${OS_ARCH}-debian-12" \
-      "discourse-2026.4.0-0-linux-${OS_ARCH}-debian-12" \
+      "discourse-2026.5.0-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -52,9 +52,9 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/discourse/postunpack.sh
-ENV APP_VERSION="2026.4.0" \
+ENV APP_VERSION="2026.5.0" \
     BITMOA_APP_NAME="discourse" \
-    IMAGE_REVISION="3" \
+    IMAGE_REVISION="9" \
     LD_LIBRARY_PATH="/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/common/bin:/opt/bitmoa/ruby/bin:/opt/bitmoa/postgresql/bin:/opt/bitmoa/node/bin:/opt/bitmoa/brotli/bin:$PATH"
 

@@ -7,11 +7,15 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 
 ## TL;DR
 
-Use this quick command to run the container.
-
 ```console
 docker run --name couchdb bitmoa/couchdb:latest
 ```
+
+## Using `docker-compose.yml`
+
+The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
+
+[https://github.com/bitmoa/containers/tree/main/bitmoa/couchdb/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/couchdb/docker-compose.yml)
 
 ## Why use Bitnami Secure Images?
 
@@ -42,10 +46,6 @@ Learn more about the Bitnami tagging policy and the difference between rolling t
 
 The Bitnami CouchDB Docker image is only available to [Bitnami Secure Images](https://bitnami.com) customers.
 
-## Using `docker-compose.yaml`
-
-Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/couchdb).
-
 ## Persisting your application
 
 If you remove the container all your data will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
@@ -56,16 +56,6 @@ For persistence you should mount a directory at the `/bitmoa` path. If the mount
 docker run \
     -v /path/to/couchdb-persistence:/bitmoa/couchdb \
     bitmoa/couchdb:latest
-```
-
-You can also do this with a minor change to the [`docker-compose.yml`](https://github.com/bitmoa/containers/blob/main/bitmoa/couchdb/docker-compose.yml) file present in this repository:
-
-```yaml
-couchdb:
-  ...
-  volumes:
-    - /path/to/couchdb-persistence:/bitmoa/couchdb
-  ...
 ```
 
 > **NOTE** As this is a non-root container, the mounted files and directories must have the proper permissions for the UID `1001`.
@@ -86,29 +76,40 @@ The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
-| Name                          | Description                                                                              | Default Value |
-|-------------------------------|------------------------------------------------------------------------------------------|---------------|
-| `COUCHDB_NODENAME`            | Name of the CouchDB node.                                                                | `nil`         |
-| `COUCHDB_PORT_NUMBER`         | Port number used by CouchDB.                                                             | `nil`         |
-| `COUCHDB_CLUSTER_PORT_NUMBER` | Port number used by CouchDB for clustering.                                              | `nil`         |
-| `COUCHDB_BIND_ADDRESS`        | Address to which the CouchDB process will bind to.                                       | `nil`         |
-| `COUCHDB_CREATE_DATABASES`    | Whether to create CouchDB system databases during initialization. Useful for clustering. | `yes`         |
-| `COUCHDB_USER`                | CouchDB admin username.                                                                  | `admin`       |
-| `COUCHDB_PASSWORD`            | Password for the CouchDB admin user.                                                     | `couchdb`     |
-| `COUCHDB_SECRET`              | CouchDB secret/token used for proxy and cookie authentication.                           | `bitmoa`     |
+| Name                            | Description                                                                                           | Default Value |
+|---------------------------------|-------------------------------------------------------------------------------------------------------|---------------|
+| `COUCHDB_NODENAME`              | Name of the CouchDB node.                                                                             | `nil`         |
+| `COUCHDB_PORT_NUMBER`           | Port number used by CouchDB.                                                                          | `nil`         |
+| `COUCHDB_CLUSTER_PORT_NUMBER`   | Port number used by CouchDB for clustering.                                                           | `nil`         |
+| `COUCHDB_BIND_ADDRESS`          | Address to which the CouchDB process will bind to.                                                    | `nil`         |
+| `COUCHDB_CREATE_DATABASES`      | Whether to create CouchDB system databases during initialization. Useful for clustering.              | `yes`         |
+| `COUCHDB_IGNORE_INITDB_SCRIPTS` | Skip execution of init scripts from COUCHDB_INITSCRIPTS_DIR. Set to yes on non-primary cluster nodes. | `no`          |
+| `COUCHDB_USER`                  | CouchDB admin username.                                                                               | `admin`       |
+| `COUCHDB_PASSWORD`              | Password for the CouchDB admin user.                                                                  | `couchdb`     |
+| `COUCHDB_SECRET`                | CouchDB secret/token used for proxy and cookie authentication.                                        | `bitnami`     |
+| `COUCHDB_ERLANG_HMAX`           | Per-process Erlang heap cap in bytes. Used to compute +hmax (value / 8 = word count).                 | `nil`         |
+| `COUCHDB_EXTRA_VM_ARGS`         | Additional Erlang VM arguments appended to vm.args.                                                   | `nil`         |
+| `COUCHDB_INTERNODE_TLS_ENABLED` | Enable TLS encryption for the Erlang distribution protocol (inter-node communication).                | `no`          |
+| `COUCHDB_TLS_CERT_FILE`         | Path to the TLS certificate file used for Erlang distribution encryption.                             | `nil`         |
+| `COUCHDB_TLS_KEY_FILE`          | Path to the TLS private key file used for Erlang distribution encryption.                             | `nil`         |
+| `COUCHDB_TLS_CA_FILE`           | Path to the CA certificate file used to verify peers during Erlang distribution.                      | `nil`         |
 
 #### Read-only environment variables
 
-| Name                   | Description                               | Value                                          |
-|------------------------|-------------------------------------------|------------------------------------------------|
-| `COUCHDB_BASE_DIR`     | CouchDB installation directory.           | `${BITMOA_ROOT_DIR}/couchdb`                  |
-| `COUCHDB_VOLUME_DIR`   | CouchDB persistence directory.            | `/bitmoa/couchdb`                             |
-| `COUCHDB_BIN_DIR`      | CouchDB directory for binary executables. | `${COUCHDB_BASE_DIR}/bin`                      |
-| `COUCHDB_CONF_DIR`     | CouchDB configuration directory.          | `${COUCHDB_BASE_DIR}/etc`                      |
-| `COUCHDB_CONF_FILE`    | CouchDB configuration file.               | `${COUCHDB_CONF_DIR}/default.d/10-bitmoa.ini` |
-| `COUCHDB_DATA_DIR`     | CouchDB directory where data is stored.   | `${COUCHDB_VOLUME_DIR}/data`                   |
-| `COUCHDB_DAEMON_USER`  | CouchDB system user.                      | `couchdb`                                      |
-| `COUCHDB_DAEMON_GROUP` | CouchDB system group.                     | `couchdb`                                      |
+| Name                           | Description                                                                                                                                     | Value                                                    |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| `COUCHDB_BASE_DIR`             | CouchDB installation directory.                                                                                                                 | `${BITMOA_ROOT_DIR}/couchdb`                            |
+| `COUCHDB_VOLUME_DIR`           | CouchDB persistence directory.                                                                                                                  | `/bitmoa/couchdb`                                       |
+| `COUCHDB_BIN_DIR`              | CouchDB directory for binary executables.                                                                                                       | `${COUCHDB_BASE_DIR}/bin`                                |
+| `COUCHDB_CONF_DIR`             | CouchDB configuration directory.                                                                                                                | `${COUCHDB_BASE_DIR}/etc`                                |
+| `COUCHDB_CONF_FILE`            | CouchDB configuration file.                                                                                                                     | `${COUCHDB_CONF_DIR}/default.d/10-bitnami.ini`           |
+| `COUCHDB_DATA_DIR`             | CouchDB directory where data is stored.                                                                                                         | `${COUCHDB_VOLUME_DIR}/data`                             |
+| `COUCHDB_PERSISTENT_CONF_FILE` | Path to the persistent CouchDB configuration file (survives container restarts). Admin credentials are written here so password rotation works. | `${COUCHDB_VOLUME_DIR}/persist-conf/99-runtime-conf.ini` |
+| `COUCHDB_INITSCRIPTS_DIR`      | Path to directory containing custom init scripts executed on first boot.                                                                        | `/docker-entrypoint-initdb.d`                            |
+| `COUCHDB_TMP_DIR`              | Directory where CouchDB temporary files are stored.                                                                                             | `${COUCHDB_BASE_DIR}/var/run`                            |
+| `COUCHDB_PID_FILE`             | Path to the PID file for CouchDB.                                                                                                               | `${COUCHDB_TMP_DIR}/couchdb.pid`                         |
+| `COUCHDB_DAEMON_USER`          | CouchDB system user.                                                                                                                            | `couchdb`                                                |
+| `COUCHDB_DAEMON_GROUP`         | CouchDB system group.                                                                                                                           | `couchdb`                                                |
 
 ### Mounting your own configuration files
 
@@ -124,13 +125,7 @@ The Bitnami CouchDB Docker image from the [Bitnami Secure Images](https://go-vmw
 
 ## Logging
 
-The Bitnami CouchDB Docker image sends the container logs to `stdout`. To view the logs:
-
-```console
-docker logs couchdb
-```
-
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
+The Bitnami CouchDB Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## Customize this image
 

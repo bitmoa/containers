@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-11T01:37:55Z" \
+      org.opencontainers.image.created="2026-05-21T01:33:47Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/deepspeed/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/deepspeed" \
       org.opencontainers.image.title="deepspeed" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="0.18.9"
+      org.opencontainers.image.version="0.19.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "python-3.11.15-4-linux-${OS_ARCH}-debian-12" \
-      "deepspeed-0.18.9-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.11.15-13-linux-${OS_ARCH}-debian-12" \
+      "deepspeed-0.19.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,13 +50,13 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN mkdir /app /.cache && mkdir -p /home/deepspeed/.local && mkdir -p /home/deepspeed/.ssh && mkdir /home/deepspeed/.cache && ln -s /home/deepspeed/.local /opt/bitmoa/deepspeed && ln -s /home/deepspeed/.ssh /opt/bitmoa/deepspeed && ln -s /home/deepspeed/.cache /opt/bitmoa/deepspeed && chmod g+rwX /app /.cache /home/deepspeed/.cache /home/deepspeed/.local
-ENV APP_VERSION="0.18.9" \
+ENV APP_VERSION="0.19.0" \
     BITMOA_APP_NAME="deepspeed" \
     CFLAGS="-s -I/opt/bitmoa/python/include -I/opt/bitmoa/common/include" \
     CPLUS_INCLUDE_PATH="/opt/bitmoa/common/include" \
     CPPFLAGS="-I/opt/bitmoa/python/include -I/opt/bitmoa/common/include" \
     C_INCLUDE_PATH="/opt/bitmoa/common/include" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="4" \
     LDFLAGS="-Wl,-rpath: /opt/bitmoa/python/lib -L/opt/bitmoa/python/lib -Wl,-rpath: /opt/bitmoa/common/lib -L/opt/bitmoa/common/lib" \
     LD_LIBRARY_PATH="/opt/bitmoa/python/lib:/opt/bitmoa/common/lib:${LD_LIBRARY_PATH}" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/python/bin:$PATH" \

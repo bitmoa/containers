@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-12T11:55:39Z" \
+      org.opencontainers.image.created="2026-05-21T04:47:01Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/parse/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/parse" \
       org.opencontainers.image.title="parse" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="9.8.0"
+      org.opencontainers.image.version="9.9.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,10 +28,10 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.14.4-1-linux-${OS_ARCH}-debian-12" \
-      "node-24.14.1-0-linux-${OS_ARCH}-debian-12" \
-      "mongodb-shell-2.8.2-0-linux-${OS_ARCH}-debian-12" \
-      "parse-9.8.0-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.14.5-2-linux-${OS_ARCH}-debian-12" \
+      "node-24.15.0-2-linux-${OS_ARCH}-debian-12" \
+      "mongodb-shell-2.8.3-0-linux-${OS_ARCH}-debian-12" \
+      "parse-9.9.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,9 +50,9 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/parse/postunpack.sh
-ENV APP_VERSION="9.8.0" \
+ENV APP_VERSION="9.9.0" \
     BITMOA_APP_NAME="parse" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="2" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/node/bin:/opt/bitmoa/mongodb/bin:/opt/bitmoa/parse/bin:$PATH"
 
 EXPOSE 1337 3000

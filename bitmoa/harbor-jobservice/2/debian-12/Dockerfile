@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T06:15:19Z" \
+      org.opencontainers.image.created="2026-05-21T02:29:15Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/harbor-jobservice/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/harbor-jobservice" \
       org.opencontainers.image.title="harbor-jobservice" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2.15.0"
+      org.opencontainers.image.version="2.15.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "yq-4.52.5-1-linux-${OS_ARCH}-debian-12" \
-      "harbor-jobservice-2.15.0-1-linux-${OS_ARCH}-debian-12" \
+      "yq-4.53.2-1-linux-${OS_ARCH}-debian-12" \
+      "harbor-jobservice-2.15.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,9 +47,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/harbor-jobservice/postunpack.sh
-ENV APP_VERSION="2.15.0" \
+ENV APP_VERSION="2.15.1" \
     BITMOA_APP_NAME="harbor-jobservice" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/harbor-jobservice/bin:$PATH"
 
 VOLUME [ "/etc/jobservice", "/var/log/jobs" ]

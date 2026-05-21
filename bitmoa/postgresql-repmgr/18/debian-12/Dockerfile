@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-15T01:45:24Z" \
+      org.opencontainers.image.created="2026-05-21T05:03:24Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql-repmgr/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/postgresql-repmgr" \
       org.opencontainers.image.title="postgresql-repmgr" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="18.3.0"
+      org.opencontainers.image.version="18.4.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,7 +29,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
       "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "postgresql-repmgr-18.3.0-13-linux-${OS_ARCH}-debian-12" \
+      "postgresql-repmgr-18.4.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -53,9 +53,9 @@ RUN uninstall_packages curl
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/postgresql-repmgr/postunpack.sh
-ENV APP_VERSION="18.3.0" \
+ENV APP_VERSION="18.4.0" \
     BITMOA_APP_NAME="postgresql-repmgr" \
-    IMAGE_REVISION="12" \
+    IMAGE_REVISION="3" \
     LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     NSS_WRAPPER_LIB="/opt/bitmoa/common/lib/libnss_wrapper.so" \

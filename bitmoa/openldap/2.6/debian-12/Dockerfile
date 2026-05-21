@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T20:26:34Z" \
+      org.opencontainers.image.created="2026-05-21T04:37:46Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/openldap/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/openldap" \
@@ -49,7 +49,7 @@ COPY rootfs /
 RUN /opt/bitmoa/scripts/openldap/postunpack.sh
 ENV APP_VERSION="2.6.13" \
     BITMOA_APP_NAME="openldap" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="4" \
     PATH="/opt/bitmoa/openldap/bin:/opt/bitmoa/openldap/sbin:$PATH"
 
 EXPOSE 1389 1636

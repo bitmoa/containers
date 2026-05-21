@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-16T16:17:27Z" \
+      org.opencontainers.image.created="2026-05-21T06:40:29Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/concourse/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/concourse" \
       org.opencontainers.image.title="concourse" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="8.1.1"
+      org.opencontainers.image.version="8.2.1"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
@@ -22,12 +22,12 @@ ENV OS_ARCH="${TARGETARCH:-amd64}" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl iproute2 iptables libseccomp2 procps
+RUN install_packages ca-certificates curl erofs-utils iproute2 iptables libseccomp2 procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "concourse-8.1.1-6-linux-${OS_ARCH}-debian-12" \
+      "concourse-8.2.1-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,9 +45,9 @@ RUN touch /.flyrc && chmod g+rwX /.flyrc
 RUN update-alternatives --set iptables /usr/sbin/iptables-legacy && \
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 
-ENV APP_VERSION="8.1.1" \
+ENV APP_VERSION="8.2.1" \
     BITMOA_APP_NAME="concourse" \
-    IMAGE_REVISION="6" \
+    IMAGE_REVISION="3" \
     PATH="/opt/bitmoa/concourse/bin:$PATH"
 
 CMD [ "/opt/bitmoa/concourse/bin/concourse", "--help" ]

@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "kserve-localmodel-controller-0.17.0-1-linux-${OS_ARCH}-debian-12" \
+      "kserve-localmodel-controller-0.18.0-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,16 +40,16 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-04-08T03:56:44Z" \
+      org.opencontainers.image.created="2026-05-08T03:00:00Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="kserve-localmodel-controller" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="0.17.0"
+      org.opencontainers.image.version="0.18.0"
 
 COPY rootfs /
 COPY --from=builder /opt/bitmoa/kserve /opt/bitmoa/kserve
 
-ENV APP_VERSION="0.17.0" \
+ENV APP_VERSION="0.18.0" \
     BITMOA_APP_NAME="kserve-localmodel-controller" \
     IMAGE_REVISION="1" \
     PATH="/opt/bitmoa/kserve/bin:$PATH"

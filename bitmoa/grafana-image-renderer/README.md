@@ -94,10 +94,11 @@ The following tables list the main variables you can set.
 
 #### Customizable environment variables
 
-| Name                                    | Description                           | Default Value |
-|-----------------------------------------|---------------------------------------|---------------|
-| `GRAFANA_IMAGE_RENDERER_LISTEN_ADDRESS` | Grafana Image Renderer listen address | `127.0.0.1`   |
-| `GRAFANA_IMAGE_RENDERER_PORT_NUMBER`    | Grafana Image Renderer port number    | `8080`        |
+| Name                                    | Description                                                                       | Default Value                             |
+|-----------------------------------------|-----------------------------------------------------------------------------------|-------------------------------------------|
+| `GRAFANA_IMAGE_RENDERER_LISTEN_ADDRESS` | Grafana Image Renderer listen address                                             | `127.0.0.1`                               |
+| `GRAFANA_IMAGE_RENDERER_PORT_NUMBER`    | Grafana Image Renderer port number                                                | `8080`                                    |
+| `GRAFANA_IMAGE_RENDERER_EXTRA_ENV_FILE` | File to store extra environment variables for the Grafana Image Renderer service. | `${GRAFANA_IMAGE_RENDERER_BASE_DIR}/.env` |
 
 #### Read-only environment variables
 
@@ -119,13 +120,7 @@ The Bitnami Grafana Image Renderer Docker image from the [Bitnami Secure Images]
 
 ## Logging
 
-The Bitnami Grafana Image Renderer Docker image sends the container logs to the `stdout`. To view the logs:
-
-```console
-docker logs grafana-image-renderer
-```
-
-You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
+The Bitnami Grafana Image Renderer Docker image sends the container logs to the `stdout`. You can configure the containers [logging driver](https://docs.docker.com/engine/admin/logging/overview/) using the `--log-driver` option if you wish to consume the container logs differently. In the default configuration docker uses the `json-file` driver.
 
 ## Notable Changes
 

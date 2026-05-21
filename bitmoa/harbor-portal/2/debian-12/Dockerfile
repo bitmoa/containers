@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-15T09:14:33Z" \
+      org.opencontainers.image.created="2026-05-21T02:34:10Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/harbor-portal/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/harbor-portal" \
       org.opencontainers.image.title="harbor-portal" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2.15.0"
+      org.opencontainers.image.version="2.15.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,9 +28,9 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
-      "nginx-1.30.0-0-linux-${OS_ARCH}-debian-12" \
-      "harbor-2.15.0-0-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-165-linux-${OS_ARCH}-debian-12" \
+      "nginx-1.31.0-1-linux-${OS_ARCH}-debian-12" \
+      "harbor-2.15.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -52,7 +52,7 @@ RUN uninstall_packages curl
 COPY rootfs /
 RUN /opt/bitmoa/scripts/nginx/postunpack.sh
 RUN /opt/bitmoa/scripts/harbor-portal/postunpack.sh
-ENV APP_VERSION="2.15.0" \
+ENV APP_VERSION="2.15.1" \
     BITMOA_APP_NAME="harbor-portal" \
     IMAGE_REVISION="3" \
     NGINX_HTTPS_PORT_NUMBER="" \

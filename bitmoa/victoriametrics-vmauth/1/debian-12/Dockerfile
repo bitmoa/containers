@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "victoriametrics-vmauth-1.140.0-0-linux-${OS_ARCH}-debian-12" \
+      "victoriametrics-vmauth-1.143.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,16 +40,16 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-04-13T10:37:41Z" \
+      org.opencontainers.image.created="2026-05-11T10:04:42Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="victoriametrics-vmauth" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.140.0"
+      org.opencontainers.image.version="1.143.0"
 
 COPY rootfs /
 COPY --from=builder /opt/bitmoa/victoriametrics /opt/bitmoa/victoriametrics
 
-ENV APP_VERSION="1.140.0" \
+ENV APP_VERSION="1.143.0" \
     BITMOA_APP_NAME="victoriametrics-vmauth" \
     IMAGE_REVISION="0" \
     PATH="/opt/bitmoa/victoriametrics/bin:$PATH"

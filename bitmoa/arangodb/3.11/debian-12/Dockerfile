@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T18:16:00Z" \
+      org.opencontainers.image.created="2026-05-21T00:45:10Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/arangodb/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/arangodb" \
@@ -59,7 +59,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="3.11.14" \
     BITMOA_APP_NAME="arangodb" \
-    IMAGE_REVISION="25" \
+    IMAGE_REVISION="29" \
     PATH="/opt/bitmoa/arangodb/sbin:/opt/bitmoa/arangodb/bin:$PATH"
 
 EXPOSE 8529

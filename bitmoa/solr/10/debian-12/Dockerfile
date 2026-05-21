@@ -8,7 +8,7 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T21:34:20Z" \
+      org.opencontainers.image.created="2026-05-21T06:08:22Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/solr/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/solr" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
-      "solr-10.0.0-1-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.11-11-1-linux-${OS_ARCH}-debian-12" \
+      "solr-10.0.0-2-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -51,7 +51,7 @@ RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/solr/postunpack.sh
 ENV APP_VERSION="10.0.0" \
     BITMOA_APP_NAME="solr" \
-    IMAGE_REVISION="4" \
+    IMAGE_REVISION="8" \
     JAVA_HOME="/opt/bitmoa/java" \
     PATH="/opt/bitmoa/java/bin:/opt/bitmoa/solr/bin:/opt/bitmoa/solr/prometheus-exporter/bin:/opt/bitmoa/solr/contrib/prometheus-exporter/bin:$PATH"
 

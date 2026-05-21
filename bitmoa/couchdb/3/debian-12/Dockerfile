@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T18:54:23Z" \
+      org.opencontainers.image.created="2026-05-21T01:28:31Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/couchdb/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/couchdb" \
       org.opencontainers.image.title="couchdb" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="3.5.1"
+      org.opencontainers.image.version="3.5.2"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,10 +28,10 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
-      "ini-file-1.4.9-9-linux-${OS_ARCH}-debian-12" \
-      "erlang-28.4.2-0-linux-${OS_ARCH}-debian-12" \
-      "couchdb-3.5.1-11-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-10-linux-${OS_ARCH}-debian-12" \
+      "ini-file-1.4.9-10-linux-${OS_ARCH}-debian-12" \
+      "erlang-28.5.0-0-linux-${OS_ARCH}-debian-12" \
+      "couchdb-3.5.2-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -49,9 +49,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/couchdb/postunpack.sh
-ENV APP_VERSION="3.5.1" \
+ENV APP_VERSION="3.5.2" \
     BITMOA_APP_NAME="couchdb" \
-    IMAGE_REVISION="17" \
+    IMAGE_REVISION="3" \
     LD_LIBRARY_PATH="/opt/bitmoa/common/lib:$LD_LIBRARY_PATH" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/erlang/bin:/opt/bitmoa/couchdb/bin:$PATH"
 

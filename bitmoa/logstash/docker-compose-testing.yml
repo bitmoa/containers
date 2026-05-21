@@ -3,7 +3,7 @@
 
 services:
   logstash:
-    image: ghcr.io/bitmoa/logstash:9.3
+    image: ghcr.io/bitmoa/logstash:9.4
     ports:
       - 8080:8080
     environment:

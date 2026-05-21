@@ -15,7 +15,7 @@ docker run --name clickhouse bitmoa/clickhouse:latest
 
 The docker-compose.yaml file of this container can be found in the [Bitnami Containers repository](https://github.com/bitmoa/containers/).
 
-https://github.com/bitmoa/containers/tree/main/bitmoa/clickhouse/docker-compose.yml
+[https://github.com/bitmoa/containers/tree/main/bitmoa/clickhouse/docker-compose.yml](https://github.com/bitmoa/containers/tree/main/bitmoa/clickhouse/docker-compose.yml)
 
 Please be aware this file has not undergone internal testing. Consequently, we advise its use exclusively for development or testing purposes. For production-ready deployments, we highly recommend utilizing its associated [Bitnami Helm chart](https://github.com/bitmoa/charts/tree/main/bitmoa/clickhouse).
 

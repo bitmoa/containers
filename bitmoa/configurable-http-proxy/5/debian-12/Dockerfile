@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T18:33:18Z" \
+      org.opencontainers.image.created="2026-05-21T01:16:17Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/configurable-http-proxy/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/configurable-http-proxy" \
@@ -28,8 +28,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.14.4-0-linux-${OS_ARCH}-debian-12" \
-      "node-24.14.1-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.14.5-2-linux-${OS_ARCH}-debian-12" \
+      "node-24.15.0-2-linux-${OS_ARCH}-debian-12" \
       "configurable-http-proxy-5.2.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -49,7 +49,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="5.2.0" \
     BITMOA_APP_NAME="configurable-http-proxy" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="5" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/node/bin:/opt/bitmoa/configurable-http-proxy/bin:$PATH"
 
 EXPOSE 3000

@@ -8,7 +8,7 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-16T13:02:49Z" \
+      org.opencontainers.image.created="2026-05-21T01:06:42Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/cassandra/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/cassandra" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.11.15-9-linux-${OS_ARCH}-debian-12" \
-      "jre-11.0.30-9-1-linux-${OS_ARCH}-debian-12" \
+      "python-3.11.15-13-linux-${OS_ARCH}-debian-12" \
+      "jre-11.0.31-11-1-linux-${OS_ARCH}-debian-12" \
       "cassandra-5.0.8-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -55,7 +55,7 @@ RUN /opt/bitmoa/scripts/cassandra/postunpack.sh
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 ENV APP_VERSION="5.0.8" \
     BITMOA_APP_NAME="cassandra" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="2" \
     JAVA_HOME="/opt/bitmoa/java" \
     PATH="/opt/bitmoa/python/bin:/opt/bitmoa/java/bin:/opt/bitmoa/cassandra/bin:$PATH"
 

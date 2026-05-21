@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T04:50:17Z" \
+      org.opencontainers.image.created="2026-05-21T00:46:00Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/apisix/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/apisix" \
@@ -48,7 +48,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="3.16.0" \
     BITMOA_APP_NAME="apisix" \
-    IMAGE_REVISION="0" \
+    IMAGE_REVISION="3" \
     LUA_PATH="/opt/bitmoa/apisix/deps/share/lua/5.1/?/init.lua" \
     PATH="/opt/bitmoa/apisix/bin:/opt/bitmoa/apisix/openresty/bin:/opt/bitmoa/apisix/openresty/luajit/bin:/opt/bitmoa/apisix/openresty/nginx/sbin:/opt/bitmoa/apisix/openresty/luarocks/bin:$PATH"
 

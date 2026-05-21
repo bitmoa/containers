@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-15T17:26:45Z" \
+      org.opencontainers.image.created="2026-05-20T16:04:47Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/mastodon/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/mastodon" \
       org.opencontainers.image.title="mastodon" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="4.5.9"
+      org.opencontainers.image.version="4.5.10"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,13 +28,13 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "node-22.22.2-0-linux-${OS_ARCH}-debian-12" \
-      "python-3.14.4-5-linux-${OS_ARCH}-debian-12" \
-      "postgresql-client-18.3.0-0-linux-${OS_ARCH}-debian-12" \
-      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
-      "redis-client-8.6.2-0-linux-${OS_ARCH}-debian-12" \
-      "ruby-3.4.9-1-linux-${OS_ARCH}-debian-12" \
-      "mastodon-4.5.9-0-linux-${OS_ARCH}-debian-12" \
+      "node-22.22.3-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.14.5-2-linux-${OS_ARCH}-debian-12" \
+      "postgresql-client-18.4.0-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-10-linux-${OS_ARCH}-debian-12" \
+      "redis-client-8.6.3-0-linux-${OS_ARCH}-debian-12" \
+      "ruby-3.4.9-2-linux-${OS_ARCH}-debian-12" \
+      "mastodon-4.5.10-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -52,7 +52,7 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/mastodon/postunpack.sh
-ENV APP_VERSION="4.5.9" \
+ENV APP_VERSION="4.5.10" \
     BITMOA_APP_NAME="mastodon" \
     IMAGE_REVISION="0" \
     LD_LIBRARY_PATH="/opt/bitmoa/common/lib:/opt/bitmoa/postgresql/lib:$LD_LIBRARY_PATH" \

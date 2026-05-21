@@ -8,7 +8,7 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T22:05:41Z" \
+      org.opencontainers.image.created="2026-05-21T06:44:38Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/wildfly/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/wildfly" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
-      "wildfly-39.0.1-2-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.11-11-1-linux-${OS_ARCH}-debian-12" \
+      "wildfly-39.0.1-3-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -52,7 +52,7 @@ RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/wildfly/postunpack.sh
 ENV APP_VERSION="39.0.1" \
     BITMOA_APP_NAME="wildfly" \
-    IMAGE_REVISION="4" \
+    IMAGE_REVISION="7" \
     JAVA_HOME="/opt/bitmoa/java" \
     PATH="/opt/bitmoa/java/bin:/opt/bitmoa/wildfly/bin:$PATH" \
     WILDFLY_HOME="/home/wildfly"

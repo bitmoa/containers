@@ -8,13 +8,13 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T21:34:12Z" \
+      org.opencontainers.image.created="2026-05-21T06:02:47Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/schema-registry/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/schema-registry" \
       org.opencontainers.image.title="schema-registry" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="8.2.0"
+      org.opencontainers.image.version="8.2.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-17.0.18-10-1-linux-${OS_ARCH}-debian-12" \
-      "schema-registry-8.2.0-0-linux-${OS_ARCH}-debian-12" \
+      "jre-17.0.19-11-1-linux-${OS_ARCH}-debian-12" \
+      "schema-registry-8.2.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,7 +50,7 @@ RUN uninstall_packages curl
 COPY rootfs /
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/schema-registry/postunpack.sh
-ENV APP_VERSION="8.2.0" \
+ENV APP_VERSION="8.2.1" \
     BITMOA_APP_NAME="schema-registry" \
     IMAGE_REVISION="1" \
     JAVA_HOME="/opt/bitmoa/java" \

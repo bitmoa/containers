@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "thanos-0.41.0-2-linux-${OS_ARCH}-debian-12" \
+      "thanos-0.41.0-3-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,7 +40,7 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-04-08T09:02:19Z" \
+      org.opencontainers.image.created="2026-05-08T01:29:44Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="thanos" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
@@ -53,7 +53,7 @@ COPY --from=builder /opt/bitmoa/thanos/licenses /opt/bitmoa/thanos/licenses
 
 ENV APP_VERSION="0.41.0" \
     BITMOA_APP_NAME="thanos" \
-    IMAGE_REVISION="3" \
+    IMAGE_REVISION="4" \
     PATH="/opt/bitmoa/thanos/bin:$PATH"
 
 USER 1001

@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "rmq-messaging-topology-operator-1.19.1-0-linux-${OS_ARCH}-debian-12" \
+      "rmq-messaging-topology-operator-1.19.2-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,18 +40,18 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-04-16T10:46:02Z" \
+      org.opencontainers.image.created="2026-05-12T16:29:40Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.title="rmq-messaging-topology-operator" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.19.1"
+      org.opencontainers.image.version="1.19.2"
 
 COPY rootfs /
 COPY --from=builder /opt/bitmoa/rmq-messaging-topology-operator/.spdx-rmq-messaging-topology-operator.spdx /opt/bitmoa/rmq-messaging-topology-operator/.spdx-rmq-messaging-topology-operator.spdx
 COPY --from=builder /opt/bitmoa/rmq-messaging-topology-operator/bin/manager /opt/bitmoa/rmq-messaging-topology-operator/bin/manager
 COPY --from=builder /opt/bitmoa/rmq-messaging-topology-operator/licenses /opt/bitmoa/rmq-messaging-topology-operator/licenses
 
-ENV APP_VERSION="1.19.1" \
+ENV APP_VERSION="1.19.2" \
     BITMOA_APP_NAME="rmq-messaging-topology-operator" \
     IMAGE_REVISION="0" \
     PATH="/opt/bitmoa/rmq-messaging-topology-operator/bin:$PATH"

@@ -8,13 +8,13 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T10:52:08Z" \
+      org.opencontainers.image.created="2026-05-21T04:16:28Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/neo4j/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/neo4j" \
       org.opencontainers.image.title="neo4j" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2026.3.1"
+      org.opencontainers.image.version="2026.4.0"
 
 ENV HOME="/opt/bitmoa/neo4j/.home" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,8 +29,8 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
-      "neo4j-2026.3.1-0-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.11-11-1-linux-${OS_ARCH}-debian-12" \
+      "neo4j-2026.4.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,9 +50,9 @@ RUN uninstall_packages curl
 COPY rootfs /
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/neo4j/postunpack.sh
-ENV APP_VERSION="2026.3.1" \
+ENV APP_VERSION="2026.4.0" \
     BITMOA_APP_NAME="neo4j" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="2" \
     JAVA_HOME="/opt/bitmoa/java" \
     JAVA_OPTS="-Duser.home=/opt/bitmoa/neo4j/.home" \
     PATH="/opt/bitmoa/java/bin:/opt/bitmoa/neo4j/bin:$PATH"

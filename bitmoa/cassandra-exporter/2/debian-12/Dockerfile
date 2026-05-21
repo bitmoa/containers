@@ -7,7 +7,7 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T18:18:11Z" \
+      org.opencontainers.image.created="2026-05-21T03:00:49Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/cassandra-exporter/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/cassandra-exporter" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-17.0.18-10-1-linux-${OS_ARCH}-debian-12" \
+      "jre-17.0.19-11-1-linux-${OS_ARCH}-debian-12" \
       "cassandra-exporter-2.3.8-8-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
@@ -48,7 +48,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="2.3.8" \
     BITMOA_APP_NAME="cassandra-exporter" \
-    IMAGE_REVISION="62" \
+    IMAGE_REVISION="65" \
     PATH="/opt/bitmoa/java/bin:$PATH"
 
 EXPOSE 8080

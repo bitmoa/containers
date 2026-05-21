@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-15T09:14:07Z" \
+      org.opencontainers.image.created="2026-05-21T06:51:46Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/appsmith/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/appsmith" \
       org.opencontainers.image.title="appsmith" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.98.0"
+      org.opencontainers.image.version="1.99.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,13 +28,13 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "render-template-1.0.9-164-linux-${OS_ARCH}-debian-12" \
-      "python-3.14.4-5-linux-${OS_ARCH}-debian-12" \
-      "node-20.20.2-0-linux-${OS_ARCH}-debian-12" \
-      "nginx-1.30.0-0-linux-${OS_ARCH}-debian-12" \
-      "mongodb-shell-2.8.2-0-linux-${OS_ARCH}-debian-12" \
-      "jre-17.0.18-10-1-linux-${OS_ARCH}-debian-12" \
-      "appsmith-1.98.0-0-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-165-linux-${OS_ARCH}-debian-12" \
+      "python-3.14.5-2-linux-${OS_ARCH}-debian-12" \
+      "node-22.22.3-0-linux-${OS_ARCH}-debian-12" \
+      "nginx-1.31.0-1-linux-${OS_ARCH}-debian-12" \
+      "mongodb-shell-2.8.3-0-linux-${OS_ARCH}-debian-12" \
+      "jre-25.0.3-11-1-linux-${OS_ARCH}-debian-12" \
+      "appsmith-1.99.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -53,9 +53,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 COPY rootfs /
 RUN /opt/bitmoa/scripts/nginx/postunpack.sh
 RUN /opt/bitmoa/scripts/appsmith/postunpack.sh
-ENV APP_VERSION="1.98.0" \
+ENV APP_VERSION="1.99.0" \
     BITMOA_APP_NAME="appsmith" \
-    IMAGE_REVISION="3" \
+    IMAGE_REVISION="5" \
     NGINX_HTTPS_PORT_NUMBER="" \
     NGINX_HTTP_PORT_NUMBER="" \
     PATH="/opt/bitmoa/common/bin:/opt/bitmoa/python/bin:/opt/bitmoa/node/bin:/opt/bitmoa/nginx/sbin:/opt/bitmoa/mongodb/bin:/opt/bitmoa/java/bin:$PATH"

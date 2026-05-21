@@ -8,13 +8,13 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitmoa/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-15T16:16:29Z" \
+      org.opencontainers.image.created="2026-05-20T12:25:26Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/keycloak/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/keycloak" \
       org.opencontainers.image.title="keycloak" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="26.6.1"
+      org.opencontainers.image.version="26.6.2"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,9 +29,9 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.10-9-linux-${OS_ARCH}-debian-12" \
-      "jre-21.0.10-10-0-linux-${OS_ARCH}-debian-12" \
-      "keycloak-26.6.1-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.10-10-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.11-11-1-linux-${OS_ARCH}-debian-12" \
+      "keycloak-26.6.2-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -50,7 +50,7 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 COPY rootfs /
 RUN /opt/bitmoa/scripts/java/postunpack.sh
 RUN /opt/bitmoa/scripts/keycloak/postunpack.sh
-ENV APP_VERSION="26.6.1" \
+ENV APP_VERSION="26.6.2" \
     BITMOA_APP_NAME="keycloak" \
     IMAGE_REVISION="0" \
     JAVA_HOME="/opt/bitmoa/java" \

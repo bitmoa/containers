@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T20:30:14Z" \
+      org.opencontainers.image.created="2026-05-21T04:41:14Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/openresty/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/openresty" \
       org.opencontainers.image.title="openresty" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.29.2-3"
+      org.opencontainers.image.version="1.29.2-4"
 
 ENV HOME="/home/openresty" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "openresty-1.29.2-3-0-linux-${OS_ARCH}-debian-12" \
+      "openresty-1.29.2-4-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -46,9 +46,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/openresty/postunpack.sh
-ENV APP_VERSION="1.29.2-3" \
+ENV APP_VERSION="1.29.2-4" \
     BITMOA_APP_NAME="openresty" \
-    IMAGE_REVISION="2" \
+    IMAGE_REVISION="1" \
     PATH="/opt/bitmoa/openresty/bin:/opt/bitmoa/openresty/luajit/bin:$PATH"
 
 EXPOSE 8080 8443

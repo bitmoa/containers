@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-17T14:49:41Z" \
+      org.opencontainers.image.created="2026-05-21T03:28:18Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/kubescape/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/kubescape" \
       org.opencontainers.image.title="kubescape" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="4.0.5"
+      org.opencontainers.image.version="4.0.8"
 
 ENV HOME="/opt/bitmoa/kubescape" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -29,7 +29,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "kubescape-4.0.5-0-linux-${OS_ARCH}-debian-12" \
+      "kubescape-4.0.8-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,9 +47,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
 RUN /opt/bitmoa/scripts/kubescape/postunpack.sh
-ENV APP_VERSION="4.0.5" \
+ENV APP_VERSION="4.0.8" \
     BITMOA_APP_NAME="kubescape" \
-    IMAGE_REVISION="0"
+    IMAGE_REVISION="3"
 
 USER 1001
 ENTRYPOINT [ "/opt/bitmoa/scripts/kubescape/entrypoint.sh" ]

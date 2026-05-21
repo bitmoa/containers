@@ -3,7 +3,7 @@
 
 services:
   valkey-node-0:
-    image: ghcr.io/bitmoa/valkey-cluster:9.0
+    image: ghcr.io/bitmoa/valkey-cluster:9.1
     volumes:
       - valkey-cluster_data-0:/bitmoa/valkey/data
     environment:
@@ -11,7 +11,7 @@ services:
       - 'VALKEY_NODES=valkey-node-0 valkey-node-1 valkey-node-2 valkey-node-3 valkey-node-4 valkey-node-5'
 
   valkey-node-1:
-    image: ghcr.io/bitmoa/valkey-cluster:9.0
+    image: ghcr.io/bitmoa/valkey-cluster:9.1
     volumes:
       - valkey-cluster_data-1:/bitmoa/valkey/data
     environment:
@@ -19,7 +19,7 @@ services:
       - 'VALKEY_NODES=valkey-node-0 valkey-node-1 valkey-node-2 valkey-node-3 valkey-node-4 valkey-node-5'
 
   valkey-node-2:
-    image: ghcr.io/bitmoa/valkey-cluster:9.0
+    image: ghcr.io/bitmoa/valkey-cluster:9.1
     volumes:
       - valkey-cluster_data-2:/bitmoa/valkey/data
     environment:
@@ -27,7 +27,7 @@ services:
       - 'VALKEY_NODES=valkey-node-0 valkey-node-1 valkey-node-2 valkey-node-3 valkey-node-4 valkey-node-5'
 
   valkey-node-3:
-    image: ghcr.io/bitmoa/valkey-cluster:9.0
+    image: ghcr.io/bitmoa/valkey-cluster:9.1
     volumes:
       - valkey-cluster_data-3:/bitmoa/valkey/data
     environment:
@@ -35,7 +35,7 @@ services:
       - 'VALKEY_NODES=valkey-node-0 valkey-node-1 valkey-node-2 valkey-node-3 valkey-node-4 valkey-node-5'
 
   valkey-node-4:
-    image: ghcr.io/bitmoa/valkey-cluster:9.0
+    image: ghcr.io/bitmoa/valkey-cluster:9.1
     volumes:
       - valkey-cluster_data-4:/bitmoa/valkey/data
     environment:
@@ -43,7 +43,7 @@ services:
       - 'VALKEY_NODES=valkey-node-0 valkey-node-1 valkey-node-2 valkey-node-3 valkey-node-4 valkey-node-5'
 
   valkey-node-5:
-    image: ghcr.io/bitmoa/valkey-cluster:9.0
+    image: ghcr.io/bitmoa/valkey-cluster:9.1
     volumes:
       - valkey-cluster_data-5:/bitmoa/valkey/data
     depends_on:

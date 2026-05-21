@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="ghcr.io/bitmoa/minideb:bookworm" \
-      org.opencontainers.image.created="2026-04-08T00:36:31Z" \
+      org.opencontainers.image.created="2026-05-20T10:55:05Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitmoa/containers/tree/main/bitmoa/fluxcd-helm-controller/README.md" \
       org.opencontainers.image.source="https://github.com/bitmoa/containers/tree/main/bitmoa/fluxcd-helm-controller" \
       org.opencontainers.image.title="fluxcd-helm-controller" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.5.3"
+      org.opencontainers.image.version="1.5.5"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitmoa/pkg/cache/ ; cd /tmp/bitmoa/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "fluxcd-helm-controller-1.5.3-1-linux-${OS_ARCH}-debian-12" \
+      "fluxcd-helm-controller-1.5.5-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,9 +45,9 @@ RUN useradd -r -u 1001 -g root fluxcd-helm-controller
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="1.5.3" \
+ENV APP_VERSION="1.5.5" \
     BITMOA_APP_NAME="fluxcd-helm-controller" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="0" \
     PATH="/opt/bitmoa/fluxcd-helm-controller/bin:$PATH"
 
 USER 1001

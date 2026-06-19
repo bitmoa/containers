@@ -10,7 +10,7 @@ set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
 # Load libraries
-. /opt/bitmoa/scripts/libbitnami.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
 . /opt/bitmoa/scripts/liblog.sh
 
 if [[ "$OS_FLAVOUR" =~ photon && "$APP_VERSION" =~ ^1.8 ]]; then

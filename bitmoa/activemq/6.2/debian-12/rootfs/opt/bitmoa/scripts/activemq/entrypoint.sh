@@ -10,7 +10,7 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-. /opt/bitmoa/scripts/libbitnami.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
 
 # Load environment
 . /opt/bitmoa/scripts/activemq-env.sh

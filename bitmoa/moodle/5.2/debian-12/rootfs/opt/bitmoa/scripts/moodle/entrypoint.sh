@@ -13,7 +13,7 @@ set -o pipefail
 . /opt/bitmoa/scripts/moodle-env.sh
 
 # Load libraries
-. /opt/bitmoa/scripts/libbitnami.sh
+. /opt/bitmoa/scripts/libbitmoa.sh
 . /opt/bitmoa/scripts/liblog.sh
 . /opt/bitmoa/scripts/libwebserver.sh
 

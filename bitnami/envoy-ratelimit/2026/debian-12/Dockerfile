@@ -47,7 +47,7 @@ RUN uninstall_packages curl
 
 ENV APP_VERSION="2026.7.6" \
     BITNAMI_APP_NAME="envoy-ratelimit" \
-    IMAGE_REVISION="1" \
+    IMAGE_REVISION="0" \
     PATH="/opt/bitnami/envoy-ratelimit/bin:$PATH"
 
 USER 1001

@@ -1,6 +1,6 @@
 # Testing information
 
-At Bitnami, we are committed to ensuring the quality of the apps we deliver, and as such, tests play a fundamental role in the `bitnami/containers` repository. Bear in mind that every contribution to our containers is ultimately published to our container registries, where it is made available for the rest of the community to benefit from. Before this happens, different checks are required to succeed. More precisely, tests are run when a new contribution (regardless of its author) is made through a GitHub Pull Request.
+At Bitnami, we are committed to ensuring the quality of the apps we deliver, and as such, tests play a fundamental role in the `bitmoa/containers` repository. Bear in mind that every contribution to our containers is ultimately published to our container registries, where it is made available for the rest of the community to benefit from. Before this happens, different checks are required to succeed. More precisely, tests are run when a new contribution (regardless of its author) is made through a GitHub Pull Request.
 
 In this section, we will discuss:
 
@@ -20,11 +20,11 @@ In this section, we will discuss:
 
 ## Where to find the tests
 
-All the apps have an associated folder inside [/.vib](https://github.com/bitnami/containers/tree/main/.vib) with their custom tests implementation (the `goss` subfolder) and the file containing their test plan (`vib-verify.json`).
+All the apps have an associated folder inside [/.vib](https://github.com/bitmoa/containers/tree/main/.vib) with their custom tests implementation (the `goss` subfolder) and the file containing their test plan (`vib-verify.json`).
 
 ## VMware Image Builder (VIB)
 
-The service that powers the verification of the thousands of monthly tests performed in the repository is VMware Image Builder. [VMware Image Builder](https://tanzu.vmware.com/content/blog/how-bitnami-uses-vmware-image-builder-to-deploy-apps) (VIB) is a platform-agnostic, API-first modular service that allows large enterprises and independent software vendors to automate the packaging, **verification**, and publishing processes of software artifacts on any platform and cloud.
+The service that powers the verification of the thousands of monthly tests performed in the repository is VMware Image Builder. [VMware Image Builder](https://tanzu.vmware.com/content/blog/how-bitmoa-uses-vmware-image-builder-to-deploy-apps) (VIB) is a platform-agnostic, API-first modular service that allows large enterprises and independent software vendors to automate the packaging, **verification**, and publishing processes of software artifacts on any platform and cloud.
 
 ## VIB pipeline definition file
 
@@ -94,7 +94,7 @@ This guide will focus on the `verify` phase section, of which there are some thi
 
 This strategy has to be understood together with the VIB limitations for the containers mentioned above. These restraints prevent us from setting up complex multi-container testing scenarios, which is a necessity for most of our containers to be initialized properly. To work around this, we will only test up to the postunpack phase of the container (where the initial filesystem changes are done). Essentially, we are assuming that most apps’ integration and functional tests are performed in the related chart’s test suite and thus are not required to be duplicated for the containers catalog. As a consequence, we will concentrate on the verification of the app’s compilation logic and the container’s filesystem itself.
 
-Some examples of the suitability of tests for the `bitnami/wordpress` container:
+Some examples of the suitability of tests for the `bitmoa/wordpress` container:
 
 * ✅ Checking Apache config added in Wordpress' postunpack stage
 * ❌ Manually finishing the container initialization to run functional tests
@@ -106,7 +106,7 @@ Something of note is the equality of scope for the whole container catalog. Thou
 
 ### Runtime parameters
 
-As of now, and linking with the scope definition we saw previously, the `runtime_parameters` field is only used to "stop" a container's initialization logic after its `postunpack` has been executed. The `runtime_parameters` value is a base64 encoded string going by `command: ["tail", "-f", "/dev/null"]` and is the same for every VIB pipeline defined in `bitnami/containers`.
+As of now, and linking with the scope definition we saw previously, the `runtime_parameters` field is only used to "stop" a container's initialization logic after its `postunpack` has been executed. The `runtime_parameters` value is a base64 encoded string going by `command: ["tail", "-f", "/dev/null"]` and is the same for every VIB pipeline defined in `bitmoa/containers`.
 
 ## Generic acceptance criteria
 
@@ -212,7 +212,7 @@ There are instances where it is not needed to create custom tests for a given ap
 Not every suite will be composed of the same tests, as it will depend on the type of application, its Dockerfile, and the used compilation/configuration logic. The list below details each pillar that should be checked when creating a test suite as well as when to use some of the most common templates:
 
 * Dockerfile check:
-  * Does it include bitnami components which contain binaries? If so, use the `check-binaries.yaml` GOSS template.
+  * Does it include bitmoa components which contain binaries? If so, use the `check-binaries.yaml` GOSS template.
   * Does it include the `ca-certificates` package? If so, use the `check-ca-certificates.yaml` template.
 * Compilation logic check:
   * Are there files or directories created and/or with permission changes? If so, use the `check-directories.yaml` and/or `check-files.yaml` templates.
@@ -264,7 +264,7 @@ Sometimes it is of interest to run the tests locally, for example during develop
     ```yaml
     services:
       main:
-        image: bitnami/app_name
+        image: bitmoa/app_name
         entrypoint:
         - bash
         command:
@@ -279,7 +279,7 @@ Sometimes it is of interest to run the tests locally, for example during develop
     ```yaml
     services:
       copy-busybox:
-        image: us-east1-docker.pkg.dev/bitnami-labs/bitnami-labs/minideb-busybox:latest
+        image: us-east1-docker.pkg.dev/bitmoa-labs/bitmoa-labs/minideb-busybox:latest
         entrypoint:
         - bash
         command:
@@ -299,7 +299,7 @@ Sometimes it is of interest to run the tests locally, for example during develop
         volumes:
         - shared_tools:/tools
       main:
-        image: bitnami/app_name
+        image: bitmoa/app_name
         entrypoint:
         - /tools/busybox
         command:

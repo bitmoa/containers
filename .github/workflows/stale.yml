@@ -1,7 +1,7 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-# NOTE: This workflow is maintained in the https://github.com/bitnami/support repository
+# NOTE: This workflow is maintained in the https://github.com/bitmoa/support repository
 name: '[Support] Close stale issues and PRs'
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ permissions: {}
 jobs:
   stale:
     runs-on: ubuntu-latest
-    if: ${{ github.repository_owner == 'bitnami' }}
+    if: ${{ github.repository_owner == 'bitmoa' }}
     permissions:
       issues: write
       pull-requests: write

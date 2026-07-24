@@ -19,11 +19,15 @@ env:
 jobs:
   build_multiarch:
     name: Build per-arch
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
-        arch: [amd64, arm64]
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
     continue-on-error: true
     outputs:
       image_tag: ${{ steps.parse.outputs.image_tag }}

@@ -1,0 +1,159 @@
+name: Sync from upstream
+
+# Sync ./bitnami/ from upstream (bitnami/containers) into main.
+#   - hourly on a schedule, or manually via workflow_dispatch
+#   - upstream commits are recorded in history via a `-s ours` merge, so they
+#     show up in `git log` and the merge-base advances (incremental syncs)
+#   - only ./bitnami/ actually changes in the tree; version dirs
+#     (bitnami/{app}/{version}) removed upstream are preserved, while file
+#     deletions inside surviving version dirs are applied
+#   - each upstream "[bitnami/{app}] Release {ver}" commit is tagged {app}/{ver}
+# See .github/scripts/sync-upstream-bitnami.sh for the bitnami/ mirror logic.
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour (UTC)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run the sync but do not commit/push/tag'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# Never let two syncs run at once; let an in-flight one finish.
+concurrency:
+  group: sync-upstream-bitnami
+  cancel-in-progress: false
+
+env:
+  UPSTREAM_REMOTE: upstream
+  UPSTREAM_URL: https://github.com/bitnami/containers.git
+  UPSTREAM_BRANCH: main
+
+jobs:
+  sync:
+    name: Sync ./bitnami/ from upstream
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Generate token
+        id: app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          client-id: ${{ secrets.SYNC_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.SYNC_BOT_PRIVATE_KEY }}
+
+      - name: Check out main (full history, blobless)
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          # Full commit history is needed so the -s ours merge finds the
+          # merge-base; blob:none keeps it cheap (blobs fault in on demand).
+          fetch-depth: 0
+          filter: blob:none
+          # A PAT (secrets.SYNC_TOKEN) lets the pushed commit/tags trigger
+          # downstream workflows (CD) and pass branch protection; falls back
+          # to the default bot token otherwise.
+          token: ${{ secrets.SYNC_TOKEN || steps.app-token.outputs.token }}
+
+      - name: Fetch upstream & start -s ours merge
+        id: merge
+        run: |
+          git config user.name  "bitmoa-sync[bot]"
+          git config user.email "bitmoa-sync@bitmoa.net"
+
+          if ! git remote get-url "$UPSTREAM_REMOTE" >/dev/null 2>&1; then
+            git remote add "$UPSTREAM_REMOTE" "$UPSTREAM_URL"
+          fi
+          git fetch --no-tags --filter=blob:none "$UPSTREAM_REMOTE" "$UPSTREAM_BRANCH"
+
+          ORIG="$(git rev-parse HEAD)"
+          echo "orig=${ORIG}" >> "$GITHUB_OUTPUT"
+          echo "SYNC_ORIG_REF=${ORIG}" >> "$GITHUB_ENV"
+
+          # Record upstream in history without touching our tree. --no-commit
+          # so the bitnami/ changes land in the SAME merge commit.
+          if git merge-base --is-ancestor "refs/remotes/${UPSTREAM_REMOTE}/${UPSTREAM_BRANCH}" HEAD; then
+            echo "Upstream already merged; no new commits."
+            echo "merging=0" >> "$GITHUB_OUTPUT"
+          else
+            git merge -s ours --no-commit --no-ff "refs/remotes/${UPSTREAM_REMOTE}/${UPSTREAM_BRANCH}"
+            echo "merging=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Mirror bitnami/ from upstream
+        run: bash ./.github/scripts/sync-upstream-bitnami.sh
+
+      - name: Commit & push to main
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          MERGING='${{ steps.merge.outputs.merging }}'
+
+          # Nothing to do only when there was no merge AND no file changes.
+          if [[ "$MERGING" != "1" && -z "$(git status --porcelain bitnami/)" ]]; then
+            echo "No upstream changes to sync."
+            echo "### No upstream changes to sync" >> "$GITHUB_STEP_SUMMARY"
+            # Clean up any half-started merge state just in case.
+            git merge --abort 2>/dev/null || true
+            exit 0
+          fi
+
+          git add -A bitnami/
+
+          # If a merge is in progress this finalises it (2-parent merge commit
+          # carrying the bitnami/ changes); otherwise it's a normal commit.
+          git commit -m "Merge upstream@${UPSTREAM_SHORT} into main (sync bitnami/, keep versions removed upstream)"
+          git push origin HEAD:main
+
+          {
+            echo "### Synced bitnami/ from upstream@${UPSTREAM_SHORT}"
+            echo ""
+            echo '```'
+            git show --stat --oneline HEAD | head -n 60
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Tag & push releases
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          TAGS_FILE="${SYNC_TAGS_FILE:-sync-tags.txt}"
+          if [[ ! -s "$TAGS_FILE" ]]; then
+            echo "No release tags to create."
+            exit 0
+          fi
+
+          # Tags point at the sync commit that now holds the released files.
+          TARGET="$(git rev-parse HEAD)"
+          created=0; skipped=0; failed=0
+
+          echo "### Release tags" >> "$GITHUB_STEP_SUMMARY"
+          while IFS= read -r tag; do
+            [[ -z "$tag" ]] && continue
+
+            # Skip if the tag already exists locally or on origin.
+            if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null \
+               || git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+              echo "  skip (exists): ${tag}"
+              echo "- \`${tag}\` — skipped (already exists)" >> "$GITHUB_STEP_SUMMARY"
+              skipped=$((skipped+1))
+              continue
+            fi
+
+            # Create and push this tag on its own.
+            git tag "${tag}" "${TARGET}"
+            if git push origin "refs/tags/${tag}"; then
+              echo "  tagged: ${tag}"
+              echo "- \`${tag}\`" >> "$GITHUB_STEP_SUMMARY"
+              created=$((created+1))
+            else
+              echo "  FAILED to push: ${tag}" >&2
+              echo "- \`${tag}\` — push FAILED" >> "$GITHUB_STEP_SUMMARY"
+              git tag -d "${tag}" || true
+              failed=$((failed+1))
+            fi
+          done < "$TAGS_FILE"
+
+          echo "Tags created=${created} skipped=${skipped} failed=${failed}"
+          [[ "$failed" -eq 0 ]]

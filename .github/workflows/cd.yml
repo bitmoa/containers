@@ -75,6 +75,15 @@ jobs:
     runs-on: ubuntu-24.04
     needs: [ build_multiarch ]
     if: startsWith(github.ref, 'refs/tags/')
+    outputs:
+      name: ${{ steps.parse.outputs.name }}
+      version: ${{ steps.parse.outputs.version }}
+      version_prefix: ${{ steps.parse.outputs.version_prefix }}
+      ostype: ${{ steps.parse.outputs.ostype }}
+      osver: ${{ steps.parse.outputs.osver }}
+      rev: ${{ steps.parse.outputs.rev }}
+      image_base: ${{ steps.parse.outputs.image_base }}
+      image_tag: ${{ steps.parse.outputs.image_tag }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -153,3 +162,64 @@ jobs:
               cosign verify "${tag}@${DIGEST_REF}" ${COSIGN_VERIFY_ARGS}
             fi
           done
+
+  trigger_chart_update:
+    name: Trigger chart bump & verification
+    runs-on: ubuntu-24.04
+    needs: [ deploy_manifest ]
+    if: ${{ github.repository_owner == 'bitmoa' && startsWith(github.ref, 'refs/tags/') }}
+    steps:
+      - name: Generate token
+        id: app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          client-id: ${{ secrets.SYNC_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.SYNC_BOT_PRIVATE_KEY }}
+          # Without these the token is scoped to bitmoa/containers alone and the
+          # dispatch below fails with "Resource not accessible by integration".
+          owner: bitmoa
+          repositories: charts
+
+      # Hands the freshly published image over to bitmoa/charts, which bumps
+      # every chart referencing it, installs them on k3s and only commits once
+      # the pods are verified healthy. See charts/.github/workflows/image-bump.yml
+      - name: Dispatch container-image-published to bitmoa/charts
+        env:
+          GH_TOKEN: ${{ secrets.BITMOA_BOT_TOKEN || steps.app-token.outputs.token }}
+          IMAGE_NAME: ${{ needs.deploy_manifest.outputs.name }}
+          VERSION: ${{ needs.deploy_manifest.outputs.version }}
+          VERSION_PREFIX: ${{ needs.deploy_manifest.outputs.version_prefix }}
+          OSTYPE: ${{ needs.deploy_manifest.outputs.ostype }}
+          OSVER: ${{ needs.deploy_manifest.outputs.osver }}
+          REV: ${{ needs.deploy_manifest.outputs.rev }}
+          IMAGE_BASE: ${{ needs.deploy_manifest.outputs.image_base }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::warning::BITMOA_BOT_TOKEN is not configured - skipping chart update dispatch"
+            exit 0
+          fi
+
+          TAG="${VERSION}-${OSTYPE}-${OSVER}-${REV}"
+          echo "Dispatching ${IMAGE_BASE}:${TAG} to bitmoa/charts"
+
+          jq -n \
+            --arg image "${IMAGE_NAME}" \
+            --arg tag "${TAG}" \
+            --arg version "${VERSION}" \
+            --arg version_prefix "${VERSION_PREFIX}" \
+            --arg ostype "${OSTYPE}" \
+            --arg osver "${OSVER}" \
+            --arg rev "${REV}" \
+            --arg image_base "${IMAGE_BASE}" \
+            --arg source_tag "${GITHUB_REF#refs/tags/}" \
+            --arg source_run "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+            '{event_type: "container-image-published", client_payload: {
+                image: $image, tag: $tag, version: $version,
+                version_prefix: $version_prefix, ostype: $ostype, osver: $osver,
+                rev: $rev, image_base: $image_base,
+                source_tag: $source_tag, source_run: $source_run
+            }}' > /tmp/dispatch.json
+
+          gh api --method POST /repos/bitmoa/charts/dispatches --input /tmp/dispatch.json
+          echo "Dispatched. Follow up at ${GITHUB_SERVER_URL}/bitmoa/charts/actions/workflows/image-bump.yml"

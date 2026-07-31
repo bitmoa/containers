@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-07-31T11:01:17Z" \
+      org.opencontainers.image.created="2026-07-31T09:28:43Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/superset/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/superset" \
-      org.opencontainers.image.title="superset" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera" \
+      org.opencontainers.image.title="mariadb-galera" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="6.1.0"
+      org.opencontainers.image.version="13.0.1"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,14 +23,13 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl libbz2-1.0 libcom-err2 libcrypt1 libffi8 libgcc-s1 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblzma5 libncursesw6 libnsl2 libreadline8 libsqlite3-0 libssl3 libstdc++6 libtinfo6 libtirpc3 procps zlib1g
+RUN install_packages ca-certificates curl iproute2 ldap-utils libaio1 libaudit1 libcap-ng0 libcrypt1 libgcc-s1 libicu72 libldap-common liblzma5 libncurses6 libpam-ldapd libpam0g libssl3 libstdc++6 libtinfo6 libxml2 nslcd procps psmisc rsync socat zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.12.13-20-linux-${OS_ARCH}-debian-12" \
-      "mariadb-lib-12.3.2-1-linux-${OS_ARCH}-debian-12" \
-      "superset-6.1.0-5-linux-${OS_ARCH}-debian-12" \
+      "ini-file-1.4.9-13-linux-${OS_ARCH}-debian-12" \
+      "mariadb-galera-13.0.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,17 +44,18 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
+RUN mkdir /docker-entrypoint-initdb.d
+RUN uninstall_packages curl
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/superset/postunpack.sh
-ENV APP_VERSION="6.1.0" \
-    BITNAMI_APP_NAME="superset" \
-    FLASK_APP="superset.app:create_app()" \
-    IMAGE_REVISION="9" \
-    LD_LIBRARY_PATH="/opt/bitnami/mariadb/lib" \
-    PATH="/opt/bitnami/superset/venv/bin:/opt/bitnami/python/bin:$PATH" \
-    SUPERSET_HOME="/opt/bitnami/superset/superset_home"
+RUN /opt/bitnami/scripts/mariadb-galera/postunpack.sh
+ENV APP_VERSION="13.0.1" \
+    BITNAMI_APP_NAME="mariadb-galera" \
+    IMAGE_REVISION="0" \
+    PATH="/opt/bitnami/common/bin:/opt/bitnami/mariadb/bin:/opt/bitnami/mariadb/sbin:/opt/bitnami/common/sbin:$PATH"
+
+EXPOSE 3306 4444 4567 4568
 
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/superset/entrypoint.sh" ]
-CMD [ "/opt/bitnami/scripts/superset/run.sh" ]
+ENTRYPOINT [ "/opt/bitnami/scripts/mariadb-galera/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/mariadb-galera/run.sh" ]

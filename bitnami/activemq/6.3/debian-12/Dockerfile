@@ -4,16 +4,17 @@
 FROM docker.io/bitnami/minideb:bookworm
 
 ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
+ARG JAVA_EXTRA_SECURITY_DIR="/bitnami/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-07-31T15:31:43Z" \
+      org.opencontainers.image.created="2026-07-31T15:18:15Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/argo-cd/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/argo-cd" \
-      org.opencontainers.image.title="argo-cd" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/activemq/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/activemq" \
+      org.opencontainers.image.title="activemq" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="3.4.6"
+      org.opencontainers.image.version="6.3.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,14 +24,14 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl git git-lfs gnupg openssh-client procps
+RUN install_packages ca-certificates curl procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "nss-wrapper-1.1.16-0-linux-${OS_ARCH}-debian-12" \
-      "helm-4.2.3-0-linux-${OS_ARCH}-debian-12" \
-      "argo-cd-3.4.6-0-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.9-168-linux-${OS_ARCH}-debian-12" \
+      "java-21.0.12-10-0-linux-${OS_ARCH}-debian-12" \
+      "activemq-6.3.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,15 +46,18 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
-RUN uninstall_packages curl
 
 COPY rootfs /
-RUN /opt/bitnami/scripts/argo-cd/postunpack.sh
-ENV APP_VERSION="3.4.6" \
-    BITNAMI_APP_NAME="argo-cd" \
+RUN /opt/bitnami/scripts/activemq/postunpack.sh
+RUN /opt/bitnami/scripts/java/postunpack.sh
+ENV APP_VERSION="6.3.0" \
+    BITNAMI_APP_NAME="activemq" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/common/bin:/opt/bitnami/helm/bin:/opt/bitnami/argo-cd/bin:/opt/bitnami/argo-cd/hack:/opt/bitnami/ksonnet/bin:/opt/bitnami/kustomize/bin:$PATH"
+    JAVA_HOME="/opt/bitnami/java" \
+    PATH="/opt/bitnami/common/bin:/opt/bitnami/java/bin:/opt/bitnami/activemq/bin:$PATH"
+
+EXPOSE 1883 5672 8161 61613 61614 61616
 
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/argo-cd/entrypoint.sh" ]
-CMD [ "argocd", "--help" ]
+ENTRYPOINT [ "/opt/bitnami/scripts/activemq/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/activemq/run.sh" ]

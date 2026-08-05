@@ -7,28 +7,29 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-08-05T08:37:10Z" \
+      org.opencontainers.image.created="2026-08-05T09:14:16Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/envoy-ratelimit/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/envoy-ratelimit" \
-      org.opencontainers.image.title="envoy-ratelimit" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/redis-sentinel/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/redis-sentinel" \
+      org.opencontainers.image.title="redis-sentinel" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2026.8.5"
+      org.opencontainers.image.version="8.10.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
-    OS_NAME="linux"
+    OS_NAME="linux" \
+    PATH="/opt/bitnami/redis-sentinel/bin:$PATH"
 
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl procps
+RUN install_packages ca-certificates curl libgcc-s1 libssl3 libstdc++6 openssl procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "envoy-ratelimit-2026.8.5-0-linux-${OS_ARCH}-debian-12" \
+      "redis-sentinel-8.10.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -45,10 +46,14 @@ RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="2026.8.5" \
-    BITNAMI_APP_NAME="envoy-ratelimit" \
-    IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/envoy-ratelimit/bin:$PATH"
+COPY rootfs /
+RUN /opt/bitnami/scripts/redis-sentinel/postunpack.sh
+ENV APP_VERSION="8.10.0" \
+    BITNAMI_APP_NAME="redis-sentinel" \
+    IMAGE_REVISION="0"
+
+EXPOSE 26379
 
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/envoy-ratelimit/bin/ratelimit" ]
+ENTRYPOINT [ "/opt/bitnami/scripts/redis-sentinel/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/redis-sentinel/run.sh" ]

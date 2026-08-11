@@ -7,15 +7,15 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-08-11T14:16:02Z" \
+      org.opencontainers.image.created="2026-08-11T15:07:17Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/openresty/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/openresty" \
-      org.opencontainers.image.title="openresty" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/postgrest/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/postgrest" \
+      org.opencontainers.image.title="postgrest" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.31.1-1"
+      org.opencontainers.image.version="16.1.0"
 
-ENV HOME="/home/openresty" \
+ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
     OS_NAME="linux"
@@ -23,12 +23,13 @@ ENV HOME="/home/openresty" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl libabsl20220623 libaom3 libavif15 libbrotli1 libbsd0 libcrypt1 libdav1d6 libde265-0 libdeflate0 libexpat1 libfontconfig1 libfreetype6 libgav1-1 libgcc-s1 libgcrypt20 libgd3 libgeoip1 libgpg-error0 libheif1 libicu72 libjbig0 libjpeg62-turbo liblerc4 liblzma5 libmd0 libnuma1 libpcre3 libpng16-16 librav1e0 libssl3 libstdc++6 libsvtav1enc1 libtiff6 libwebp7 libx11-6 libx265-199 libxau6 libxcb1 libxdmcp6 libxml2 libxpm4 libxslt1.1 libyuv0 libzstd1 perl procps zlib1g
+RUN install_packages ca-certificates curl libffi8 libgcc-s1 libgmp10 libgnutls30 libhogweed6 libicu72 libidn2-0 libldap-2.5-0 liblzma5 libnettle8 libp11-kit0 libsasl2-2 libssl3 libstdc++6 libtasn1-6 libunistring2 libuuid1 libxml2 libxslt1.1 procps zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "openresty-1.31.1-1-0-linux-${OS_ARCH}-debian-12" \
+      "postgresql-lib-18.4.0-0-linux-${OS_ARCH}-debian-12" \
+      "postgrest-16.1.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -41,19 +42,15 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     rm -rf /opt/bitnami/checksums ;
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN chmod g+rwX /opt/bitnami
+RUN useradd -r -u 1001 -g root postgrest
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
+RUN uninstall_packages curl
 
-COPY rootfs /
-RUN /opt/bitnami/scripts/openresty/postunpack.sh
-ENV APP_VERSION="1.31.1-1" \
-    BITNAMI_APP_NAME="openresty" \
-    IMAGE_REVISION="2" \
-    PATH="/opt/bitnami/openresty/bin:/opt/bitnami/openresty/luajit/bin:$PATH"
+ENV APP_VERSION="16.1.0" \
+    BITNAMI_APP_NAME="postgrest" \
+    IMAGE_REVISION="0" \
+    LD_LIBRARY_PATH="/opt/bitnami/postgresql/lib" \
+    PATH="/opt/bitnami/postgrest/bin:$PATH"
 
-EXPOSE 8080 8443
-
-WORKDIR /app
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/openresty/entrypoint.sh" ]
-CMD [ "/opt/bitnami/scripts/openresty/run.sh" ]
+ENTRYPOINT [ "/opt/bitnami/postgrest/bin/postgrest" ]

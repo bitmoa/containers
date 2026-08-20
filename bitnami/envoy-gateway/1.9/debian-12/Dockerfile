@@ -7,27 +7,28 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-08-19T20:17:21Z" \
+      org.opencontainers.image.created="2026-08-20T08:38:37Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/golang/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/golang" \
-      org.opencontainers.image.title="golang" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/envoy-gateway/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/envoy-gateway" \
+      org.opencontainers.image.title="envoy-gateway" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.26.7"
+      org.opencontainers.image.version="1.9.0"
 
-ENV OS_ARCH="${TARGETARCH:-amd64}" \
+ENV HOME="/" \
+    OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
     OS_NAME="linux"
 
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages build-essential ca-certificates curl git pkg-config procps unzip
+RUN install_packages ca-certificates curl procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "golang-1.26.7-0-linux-${OS_ARCH}-debian-12" \
+      "envoy-gateway-1.9.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -40,15 +41,14 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     rm -rf /opt/bitnami/checksums ;
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
-RUN mkdir -p "/go/src" "/go/bin" && chmod -R 777 "/go"
+RUN uninstall_packages curl
 
-ENV APP_VERSION="1.26.7" \
-    BITNAMI_APP_NAME="golang" \
-    GOCACHE="/go/.cache" \
-    GOPATH="/go" \
+ENV APP_VERSION="1.9.0" \
+    BITNAMI_APP_NAME="envoy-gateway" \
     IMAGE_REVISION="0" \
-    PATH="/go/bin:/opt/bitnami/go/bin:$PATH"
+    PATH="/opt/bitnami/envoy-gateway/bin:$PATH"
 
-WORKDIR $GOPATH
-CMD [ "bash" ]
+USER 1001
+ENTRYPOINT [ "/opt/bitnami/envoy-gateway/bin/envoy-gateway" ]

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-08-21T16:06:24Z" \
+      org.opencontainers.image.created="2026-08-21T16:00:06Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/blackbox-exporter/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/blackbox-exporter" \
-      org.opencontainers.image.title="blackbox-exporter" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/grafana-mimir/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/grafana-mimir" \
+      org.opencontainers.image.title="grafana-mimir" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="0.28.0"
+      org.opencontainers.image.version="3.2.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "blackbox-exporter-0.28.0-15-linux-${OS_ARCH}-debian-12" \
+      "grafana-mimir-3.2.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -42,16 +42,18 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN chmod g+rwX /opt/bitnami
+RUN mkdir -p /bitnami/grafana-mimir/data /bitnami/grafana-mimir/mimir && chmod -R g+rwX /bitnami/grafana-mimir && ln -s  /bitnami/grafana-mimir/mimir /mimir && ln -s /bitnami/grafana-mimir/data /data
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-ENV APP_VERSION="0.28.0" \
-    BITNAMI_APP_NAME="blackbox-exporter" \
-    IMAGE_REVISION="22" \
-    PATH="/opt/bitnami/blackbox-exporter/bin:$PATH"
+ENV APP_VERSION="3.2.0" \
+    BITNAMI_APP_NAME="grafana-mimir" \
+    IMAGE_REVISION="0" \
+    PATH="/opt/bitnami/grafana-mimir/bin:$PATH"
 
-EXPOSE 9115
+EXPOSE 8080 9095
 
-WORKDIR /opt/bitnami/blackbox-exporter
+WORKDIR /opt/bitnami/grafana-mimir
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/blackbox-exporter/bin/blackbox_exporter" ]
+ENTRYPOINT [ "mimir" ]
+CMD [ "-config.file=/bitnami/grafana-mimir/conf/mimir.yaml" ]

@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-08-25T10:43:55Z" \
+      org.opencontainers.image.created="2026-08-25T10:43:12Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/grafana-image-renderer/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/grafana-image-renderer" \
-      org.opencontainers.image.title="grafana-image-renderer" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/cilium-proxy/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/cilium-proxy" \
+      org.opencontainers.image.title="cilium-proxy" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="5.12.2"
+      org.opencontainers.image.version="1.37.5"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,13 +23,12 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates chromium curl fonts-freefont-ttf fonts-ipafont-gothic fonts-kacst fonts-thai-tlwg fonts-wqy-zenhei gnupg jq libbz2-1.0 libffi8 liblzma5 libncursesw6 libnss3-tools libreadline8 libsqlite3-0 libssl3 libtinfo6 libx11-xcb1 libxcb-dri3-0 libxshmfence1 libxss1 libxtst6 procps wget zlib1g
+RUN install_packages ca-certificates curl libatomic1 libgcc-s1 procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "python-3.14.7-5-linux-${OS_ARCH}-debian-12" \
-      "grafana-image-renderer-5.12.2-0-linux-${OS_ARCH}-debian-12" \
+      "cilium-proxy-1.37.5-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -46,17 +45,14 @@ RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
-COPY rootfs /
-ENV APP_VERSION="5.12.2" \
-    BITNAMI_APP_NAME="grafana-image-renderer" \
-    HTTP_HOST="0.0.0.0" \
-    HTTP_PORT="8080" \
+ENV APP_VERSION="1.37.5" \
+    BITNAMI_APP_NAME="cilium-proxy" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/python/bin:/opt/bitnami/grafana-image-renderer/bin:$PATH"
+    PATH="/opt/bitnami/cilium-proxy/bin:$PATH"
 
-EXPOSE 8080
+EXPOSE 9878 9964
 
-WORKDIR /opt/bitnami/grafana-image-renderer
+WORKDIR /opt/bitnami/cilium-proxy
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/grafana-image-renderer/entrypoint.sh" ]
-CMD [ "server" ]
+ENTRYPOINT [ "/opt/bitnami/cilium-proxy/bin/cilium-envoy" ]
+CMD [ "help" ]

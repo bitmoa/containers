@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-08-27T11:32:16Z" \
+      org.opencontainers.image.created="2026-08-27T09:41:27Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/argo-workflow-exec/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/argo-workflow-exec" \
-      org.opencontainers.image.title="argo-workflow-exec" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/milvus/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/milvus" \
+      org.opencontainers.image.title="milvus" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="4.1.2"
+      org.opencontainers.image.version="3.0.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,14 +23,12 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl jq procps
+RUN install_packages ca-certificates curl libaio1 libatomic1 libgcc-s1 libgomp1 libstdc++6 procps
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "yq-4.53.6-1-linux-${OS_ARCH}-debian-12" \
-      "kubectl-1.37.0-0-linux-${OS_ARCH}-debian-12" \
-      "argo-workflow-exec-4.1.2-0-linux-${OS_ARCH}-debian-12" \
+      "milvus-3.0.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -43,17 +41,17 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     rm -rf /opt/bitnami/checksums ;
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN chmod g+rwX /opt/bitnami
+RUN useradd -r -u 1001 -g root milvus
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
+RUN mkdir -p /opt/bitnami/milvus/tmp && chmod g+rwX /opt/bitnami/milvus/tmp && ln -s /opt/bitnami/milvus/tmp /run/milvus && mkdir -p /bitnami/milvus/data && chmod g+rwX /bitnami/milvus/data && ln -s /bitnami/milvus/data /var/lib/milvus && ln -s /opt/bitnami/milvus /milvus
 RUN uninstall_packages curl
 
-COPY rootfs /
-RUN /opt/bitnami/scripts/argo-workflow-exec/postunpack.sh
-ENV APP_VERSION="4.1.2" \
-    BITNAMI_APP_NAME="argo-workflow-exec" \
-    IMAGE_REVISION="1" \
-    PATH="/opt/bitnami/common/bin:/opt/bitnami/kubectl/bin:/opt/bitnami/argo-workflow-exec/bin:/opt/bitnami/argo-workflow-exec/hack:$PATH"
+ENV APP_VERSION="3.0.0" \
+    BITNAMI_APP_NAME="milvus" \
+    IMAGE_REVISION="0" \
+    LD_LIBRARY_PATH="/opt/bitnami/milvus/lib" \
+    PATH="/opt/bitnami/milvus/bin:$PATH"
 
+WORKDIR /opt/bitnami/milvus
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/argo-workflow-exec/bin/argoexec" ]
-CMD [ "help" ]
+ENTRYPOINT [ "/opt/bitnami/milvus/bin/milvus" ]

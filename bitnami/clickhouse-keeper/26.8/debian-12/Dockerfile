@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-09-01T16:20:03Z" \
+      org.opencontainers.image.created="2026-09-01T16:58:57Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/vault/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/vault" \
-      org.opencontainers.image.title="vault" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/clickhouse-keeper/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/clickhouse-keeper" \
+      org.opencontainers.image.title="clickhouse-keeper" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2.1.0"
+      org.opencontainers.image.version="26.8.2"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -23,12 +23,12 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl procps
+RUN install_packages ca-certificates curl procps xmlstarlet
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "vault-2.1.0-0-linux-${OS_ARCH}-debian-12" \
+      "clickhouse-keeper-26.8.2-1-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -41,13 +41,20 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     rm -rf /opt/bitnami/checksums ;
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN useradd -r -u 1001 -g root vault
+RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
+RUN uninstall_packages curl
 
-ENV APP_VERSION="2.1.0" \
-    BITNAMI_APP_NAME="vault" \
+COPY rootfs /
+RUN /opt/bitnami/scripts/clickhouse-keeper/postunpack.sh
+ENV APP_VERSION="26.8.2" \
+    BITNAMI_APP_NAME="clickhouse-keeper" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/vault/bin:$PATH"
+    PATH="/opt/bitnami/clickhouse-keeper/bin:/opt/bitnami/common/bin:$PATH" \
+    clickhouseCTL_API="3"
+
+EXPOSE 9181 9234
 
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/vault/bin/vault" ]
+ENTRYPOINT [ "/opt/bitnami/scripts/clickhouse-keeper/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/clickhouse-keeper/run.sh", "--", "--listen_host=0.0.0.0" ]

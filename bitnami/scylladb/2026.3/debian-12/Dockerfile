@@ -8,15 +8,15 @@ ARG JAVA_EXTRA_SECURITY_DIR="/bitnami/java/extra-security"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-09-07T17:49:30Z" \
+      org.opencontainers.image.created="2026-09-07T17:05:53Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/neo4j/README.md" \
-      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/neo4j" \
-      org.opencontainers.image.title="neo4j" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/scylladb/README.md" \
+      org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/scylladb" \
+      org.opencontainers.image.title="scylladb" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="2026.8.0"
+      org.opencontainers.image.version="2026.3.0"
 
-ENV HOME="/opt/bitnami/neo4j/.home" \
+ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
     OS_NAME="linux"
@@ -24,13 +24,14 @@ ENV HOME="/opt/bitnami/neo4j/.home" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl jq procps zlib1g
+RUN install_packages ca-certificates curl libatomic1 libblkid1 libbz2-1.0 libcap2 libffi8 libgcc-s1 libgcrypt20 libgmp10 libgnutls30 libgpg-error0 libhogweed6 libidn2-0 liblz4-1 liblzma5 libmount1 libmpfr6 libncursesw6 libnettle8 libp11-kit0 libpcre2-8-0 libreadline8 libselinux1 libsmartcols1 libsqlite3-0 libssl3 libstdc++6 libsystemd0 libtasn1-6 libtinfo6 libudev1 libunistring2 libxxhash0 libzstd1 procps rsyslog zlib1g
 RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "jre-21.0.12-10-2-linux-${OS_ARCH}-debian-12" \
-      "neo4j-2026.8.0-0-linux-${OS_ARCH}-debian-12" \
+      "python-3.14.7-8-linux-${OS_ARCH}-debian-12" \
+      "jre-11.0.32-11-0-linux-${OS_ARCH}-debian-12" \
+      "scylladb-2026.3.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -48,17 +49,14 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN uninstall_packages curl
 
 COPY rootfs /
+RUN /opt/bitnami/scripts/scylladb/postunpack.sh
 RUN /opt/bitnami/scripts/java/postunpack.sh
-RUN /opt/bitnami/scripts/neo4j/postunpack.sh
-ENV APP_VERSION="2026.8.0" \
-    BITNAMI_APP_NAME="neo4j" \
+ENV APP_VERSION="2026.3.0" \
+    BITNAMI_APP_NAME="scylladb" \
     IMAGE_REVISION="0" \
     JAVA_HOME="/opt/bitnami/java" \
-    JAVA_OPTS="-Duser.home=/opt/bitnami/neo4j/.home" \
-    PATH="/opt/bitnami/java/bin:/opt/bitnami/neo4j/bin:$PATH"
-
-EXPOSE 7473 7474 8756
+    PATH="/opt/bitnami/python/bin:/opt/bitnami/java/bin:/opt/bitnami/scylladb/bin:/opt/bitnami/scylladb/sbin:/opt/bitnami/scylladb/python3/bin:/opt/bitnami/supervisor/bin:/opt/bitnami/scylladb/share/cassandra/bin:$PATH"
 
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/neo4j/entrypoint.sh" ]
-CMD [ "/opt/bitnami/scripts/neo4j/run.sh" ]
+ENTRYPOINT [ "/opt/bitnami/scripts/scylladb/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/scylladb/run.sh" ]

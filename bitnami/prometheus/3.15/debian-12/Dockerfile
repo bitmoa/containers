@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "chainloop-artifact-cas-1.111.1-0-linux-${OS_ARCH}-debian-12" \
+      "prometheus-3.15.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -28,6 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
       rm -rf "${COMPONENT}".tar.gz ; \
     done ; \
     rm -rf /opt/bitnami/checksums ;
+RUN mkdir -p /opt/bitnami/rootfs/opt/bitnami/prometheus/data && chmod g+rwX /opt/bitnami/rootfs/opt/bitnami/prometheus/data
 RUN uninstall_packages curl
 
 ######
@@ -40,22 +41,31 @@ ARG TARGETARCH
 ENV OS_ARCH="${TARGETARCH:-amd64}"
 
 LABEL org.opencontainers.image.base.name="scratch" \
-      org.opencontainers.image.created="2026-09-28T11:11:01Z" \
+      org.opencontainers.image.created="2026-09-28T07:39:23Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.title="chainloop-artifact-cas" \
+      org.opencontainers.image.title="prometheus" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="1.111.1"
+      org.opencontainers.image.version="3.15.0"
 
 COPY rootfs /
-COPY --from=builder /opt/bitnami/chainloop/.spdx-chainloop-artifact-cas.spdx /opt/bitnami/chainloop/.spdx-chainloop-artifact-cas.spdx
-COPY --from=builder /opt/bitnami/chainloop/bin/artifact-cas /opt/bitnami/chainloop/bin/artifact-cas
-COPY --from=builder /opt/bitnami/chainloop/licenses /opt/bitnami/chainloop/licenses
+COPY --from=builder /opt/bitnami/rootfs /
+COPY --from=builder /opt/bitnami/prometheus/.spdx-prometheus.spdx /opt/bitnami/prometheus/.spdx-prometheus.spdx
+COPY --from=builder /opt/bitnami/prometheus/bin /opt/bitnami/prometheus/bin
+COPY --from=builder /opt/bitnami/prometheus/conf /opt/bitnami/prometheus/conf
+COPY --from=builder /opt/bitnami/prometheus/data /opt/bitnami/prometheus/data
+COPY --from=builder /opt/bitnami/prometheus/licenses /opt/bitnami/prometheus/licenses
 
-ENV APP_VERSION="1.111.1" \
-    BITNAMI_APP_NAME="chainloop-artifact-cas" \
+ENV APP_VERSION="3.15.0" \
+    BITNAMI_APP_NAME="prometheus" \
     IMAGE_REVISION="0" \
-    PATH="/opt/bitnami/chainloop/bin:$PATH"
+    PATH="/opt/bitnami/prometheus/bin:$PATH"
+
+EXPOSE 9090
+
+WORKDIR /opt/bitnami/prometheus
 
 USER 1001
 
-CMD [ "artifact-cas" ]
+ENTRYPOINT [ "/opt/bitnami/prometheus/bin/prometheus" ]
+
+CMD [ "--config.file=/opt/bitnami/prometheus/conf/prometheus.yml", "--storage.tsdb.path=/opt/bitnami/prometheus/data", "--web.console.libraries=/opt/bitnami/prometheus/conf/console_libraries", "--web.console.templates=/opt/bitnami/prometheus/conf/consoles" ]

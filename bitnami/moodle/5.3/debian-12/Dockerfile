@@ -9,13 +9,13 @@ ARG TARGETARCH
 ARG WITH_ALL_LOCALES="no"
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-10-05T04:30:27Z" \
+      org.opencontainers.image.created="2026-10-05T13:04:01Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/moodle/README.md" \
       org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/moodle" \
       org.opencontainers.image.title="moodle" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="5.2.3"
+      org.opencontainers.image.version="5.3.0"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
@@ -35,7 +35,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
       "postgresql-client-14.24.0-0-linux-${OS_ARCH}-debian-12" \
       "mysql-client-13.1.1-0-linux-${OS_ARCH}-debian-12" \
       "libphp-8.4.26-1-linux-${OS_ARCH}-debian-12" \
-      "moodle-5.2.3-0-linux-${OS_ARCH}-debian-12" \
+      "moodle-5.3.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -65,9 +65,9 @@ RUN /opt/bitnami/scripts/moodle/postunpack.sh
 RUN /opt/bitnami/scripts/mysql-client/postunpack.sh
 ENV APACHE_HTTPS_PORT_NUMBER="" \
     APACHE_HTTP_PORT_NUMBER="" \
-    APP_VERSION="5.2.3" \
+    APP_VERSION="5.3.0" \
     BITNAMI_APP_NAME="moodle" \
-    IMAGE_REVISION="5" \
+    IMAGE_REVISION="0" \
     LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     LD_LIBRARY_PATH="/opt/bitnami/postgresql/lib" \

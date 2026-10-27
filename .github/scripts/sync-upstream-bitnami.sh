@@ -67,10 +67,44 @@ else
   if (( count > MAX_RELEASE_TAGS )); then
     echo "WARN: ${count} new commits exceeds MAX_RELEASE_TAGS=${MAX_RELEASE_TAGS}; skipping tag creation." >&2
   else
+    ALL_TAGS="$(mktemp)"
     git log --no-merges --format='%s' "${ORIG_REF}..${NEW_SHA}" \
       | sed -nE 's#^\[bitnami/([^]]+)\] Release ([^ ]+).*#\1/\2#p' \
-      | sort -u > "$TAGS_FILE"
-    echo "Release tags to create: $(wc -l < "$TAGS_FILE")"
+      | sort -u > "$ALL_TAGS"
+
+    # A long gap between syncs piles up many releases per line; only build the
+    # newest patch/revision of each {app, major.minor, os} line, e.g.
+    #   clickhouse/26.8.21-debian-12-r1, 26.8.22-debian-12-r0, 26.8.22-debian-12-r1,
+    #   clickhouse/26.9.0-debian-12-r0
+    #   -> clickhouse/26.8.22-debian-12-r1, clickhouse/26.9.0-debian-12-r0
+    # Tags not in NAME/X.Y.Z-OSTYPE-OSVER-rREV form are kept as-is.
+    # Output is ordered in "rounds": every app's oldest line first, then each
+    # app's next line, ... so the tag step can push older versions first.
+    sort -V "$ALL_TAGS" | awk '
+      {
+        key = $0
+        if (match($0, /\/[0-9]+(\.[0-9]+)*-[^-]+-[^-]+-[^-]+$/)) {
+          app = substr($0, 1, RSTART - 1)
+          ver = substr($0, RSTART + 1)
+          split(ver, p, "-"); split(p[1], n, ".")
+          mm  = (n[2] == "") ? n[1] : n[1] "." n[2]
+          key = app "|" mm "|" p[2] "-" p[3]
+        } else {
+          app = $0
+        }
+        if (!(key in last)) { order[++nkeys] = key; keyapp[key] = app }
+        last[key] = $0          # sort -V input: the final one per key is newest
+      }
+      END {
+        for (i = 1; i <= nkeys; i++) {
+          k = order[i]
+          printf "%d\t%s\n", ++round[keyapp[k]], last[k]
+        }
+      }' | sort -t$'\t' -k1,1n -k2,2V | cut -f2 > "$TAGS_FILE"
+
+    echo "Release tags: $(wc -l < "$ALL_TAGS") in range, $(wc -l < "$TAGS_FILE") latest per line to create"
+    comm -23 "$ALL_TAGS" <(sort -u "$TAGS_FILE") | sed 's/^/  superseded: /'
+    rm -f "$ALL_TAGS"
   fi
 fi
 

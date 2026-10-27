@@ -7,7 +7,10 @@ name: Sync from upstream
 #   - only ./bitnami/ actually changes in the tree; version dirs
 #     (bitnami/{app}/{version}) removed upstream are preserved, while file
 #     deletions inside surviving version dirs are applied
-#   - each upstream "[bitnami/{app}] Release {ver}" commit is tagged {app}/{ver}
+#   - upstream "[bitnami/{app}] Release {ver}" commits are tagged {app}/{ver},
+#     keeping only the newest patch/revision per {app, major.minor, os} line;
+#     an app's older lines are pushed first so CD (queued per app) builds them
+#     in version order
 # See .github/scripts/sync-upstream-bitnami.sh for the bitnami/ mirror logic.
 
 on:
@@ -22,6 +25,7 @@ on:
 
 permissions:
   contents: write
+  actions: read   # wait for CD runs between tag rounds
 
 # Never let two syncs run at once; let an in-flight one finish.
 concurrency:
@@ -117,6 +121,8 @@ jobs:
 
       - name: Tag & push releases
         if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           TAGS_FILE="${SYNC_TAGS_FILE:-sync-tags.txt}"
           if [[ ! -s "$TAGS_FILE" ]]; then
@@ -127,6 +133,34 @@ jobs:
           # Tags point at the sync commit that now holds the released files.
           TARGET="$(git rev-parse HEAD)"
           created=0; skipped=0; failed=0
+
+          # CD serialises per app with a FIFO queue, but each run first passes
+          # through a small "Resolve app name" job whose finish order is not
+          # guaranteed. So an app's next tag is only pushed once the CD runs of
+          # the previous round have resolved (i.e. joined their app's queue).
+          # TAGS_FILE is round-ordered by sync-upstream-bitnami.sh.
+          declare -A in_round=()
+          round_tags=()
+          wait_round() {
+            local deadline=$(( SECONDS + ${ROUND_WAIT_TIMEOUT:-900} )) t pending
+            while (( SECONDS < deadline )); do
+              pending=0
+              for t in "${round_tags[@]}"; do
+                gh run list -R "$GITHUB_REPOSITORY" -w cd.yml -b "$t" -L 1 \
+                    --json databaseId -q '.[0].databaseId' > /tmp/run_id 2>/dev/null || true
+                if [[ ! -s /tmp/run_id ]] || ! gh api \
+                    "repos/${GITHUB_REPOSITORY}/actions/runs/$(cat /tmp/run_id)/jobs" \
+                    -q '.jobs[] | select(.name == "Resolve app name") | .status' \
+                    2>/dev/null | grep -qx completed; then
+                  pending=$((pending+1))
+                fi
+              done
+              (( pending == 0 )) && return 0
+              echo "  waiting for ${pending} CD run(s) of the previous round to resolve..."
+              sleep 15
+            done
+            echo "::warning::previous tag round did not resolve within timeout; continuing (order may slip)"
+          }
 
           echo "### Release tags" >> "$GITHUB_STEP_SUMMARY"
           while IFS= read -r tag; do
@@ -141,12 +175,20 @@ jobs:
               continue
             fi
 
+            # Second tag for an app in this round -> start the next round.
+            app="${tag%%/*}"
+            if [[ -n "${in_round[$app]:-}" ]]; then
+              wait_round
+              in_round=(); round_tags=()
+            fi
+
             # Create and push this tag on its own.
             git tag "${tag}" "${TARGET}"
             if git push origin "refs/tags/${tag}"; then
               echo "  tagged: ${tag}"
               echo "- \`${tag}\`" >> "$GITHUB_STEP_SUMMARY"
               created=$((created+1))
+              in_round[$app]=1; round_tags+=("$tag")
             else
               echo "  FAILED to push: ${tag}" >&2
               echo "- \`${tag}\` — push FAILED" >> "$GITHUB_STEP_SUMMARY"

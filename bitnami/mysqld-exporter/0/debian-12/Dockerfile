@@ -7,13 +7,13 @@ ARG DOWNLOADS_URL="https://downloads.bitnami.com/files/stacksmith"
 ARG TARGETARCH
 
 LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
-      org.opencontainers.image.created="2026-10-08T22:42:32Z" \
+      org.opencontainers.image.created="2026-10-26T21:32:11Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
       org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/mysqld-exporter/README.md" \
       org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/mysqld-exporter" \
       org.opencontainers.image.title="mysqld-exporter" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="0.20.0"
+      org.opencontainers.image.version="0.21.0"
 
 ENV HOME="/" \
     OS_ARCH="${TARGETARCH:-amd64}" \
@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
     DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     COMPONENTS=( \
-      "mysqld-exporter-0.20.0-4-linux-${OS_ARCH}-debian-12" \
+      "mysqld-exporter-0.21.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -46,9 +46,9 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN ln -sf /opt/bitnami/mysqld-exporter/bin/mysqld_exporter /bin/mysqld_exporter
 RUN uninstall_packages curl
 
-ENV APP_VERSION="0.20.0" \
+ENV APP_VERSION="0.21.0" \
     BITNAMI_APP_NAME="mysqld-exporter" \
-    IMAGE_REVISION="8" \
+    IMAGE_REVISION="1" \
     PATH="/opt/bitnami/mysqld-exporter/bin:$PATH"
 
 EXPOSE 9104
